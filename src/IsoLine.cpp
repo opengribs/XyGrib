@@ -210,6 +210,8 @@ void IsoLine::extractIsoLine (GriddedRecord *rec, int deltaI, int deltaJ)
             c = rec->getValueOnRegularGrid (dtc, i-deltaI, j  );
             d = rec->getValueOnRegularGrid (dtc, i,        j  );
 
+            if( a == GRIB_NOTDEF || b == GRIB_NOTDEF || c == GRIB_NOTDEF || d == GRIB_NOTDEF ) continue;
+
             // Détermine si 1 ou 2 segments traversent la case ab-cd
             // a  b
             // c  d
