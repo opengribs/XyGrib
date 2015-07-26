@@ -203,11 +203,11 @@ void IsoLine::extractIsoLine (GriddedRecord *rec, int deltaI, int deltaJ)
 
 	for (j=deltaI; j<H; j+=deltaJ)     // !!!! 1 to end
     {
-        for (i=deltaI; i<W; i+=deltaI)
+        a = rec->getValueOnRegularGrid (dtc, deltaI, j-deltaJ );
+        c = rec->getValueOnRegularGrid (dtc, deltaI, j  );
+        for (i=deltaI; i<W; i+=deltaI, a =b, c = d )
         {
-            a = rec->getValueOnRegularGrid (dtc, i-deltaI, j-deltaJ );
             b = rec->getValueOnRegularGrid (dtc, i,        j-deltaJ);
-            c = rec->getValueOnRegularGrid (dtc, i-deltaI, j  );
             d = rec->getValueOnRegularGrid (dtc, i,        j  );
 
             if( a == GRIB_NOTDEF || b == GRIB_NOTDEF || c == GRIB_NOTDEF || d == GRIB_NOTDEF ) continue;
