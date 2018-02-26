@@ -136,11 +136,16 @@ DataPointInfo::DataPointInfo (
 			: reader->getDateInterpolatedValue (DataCode(GRB_FRZRAIN_CATEG,LV_GND_SURF,0), x,y,date);
 	CAPEsfc = reader==NULL ? GRIB_NOTDEF
 			: reader->getDateInterpolatedValue (DataCode(GRB_CAPE,LV_GND_SURF,0), x,y,date);
-	CINsfc = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_CIN,LV_GND_SURF,0), x,y,date);
-	GUSTsfc = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_WIND_GUST,LV_GND_SURF,0), x,y,date);
-	//-----------------------------------------
+    CINsfc = reader==NULL ? GRIB_NOTDEF
+            : reader->getDateInterpolatedValue (DataCode(GRB_CIN,LV_GND_SURF,0), x,y,date);
+    // added by david
+    compReflect = reader==NULL ? GRIB_NOTDEF
+            : reader->getDateInterpolatedValue (DataCode(GRB_COMP_REFL,LV_ATMOS_ALL,0), x,y,date);
+    GUSTsfc = reader==NULL ? GRIB_NOTDEF
+            : reader->getDateInterpolatedValue (DataCode(GRB_WIND_GUST,LV_GND_SURF,0), x,y,date);
+//    GUSTsfc = reader==NULL ? GRIB_NOTDEF
+//            : reader->getDateInterpolatedValue (DataCode(GRB_WIND_GUST,LV_ABOV_GND,10), x,y,date);
+    //-----------------------------------------
 	// Wind 10m
 	//-----------------------------------------
 	vx_10m = reader==NULL ? GRIB_NOTDEF
@@ -246,9 +251,12 @@ float DataPointInfo::getDataValue (const DataCode &dtc) const
 	switch (dtc.dataType) {
 		case GRB_CAPE 		  : 
 			return CAPEsfc;
-		case GRB_CIN 		  : 
-			return CINsfc;
-		case GRB_WIND_GUST	  : 
+        case GRB_CIN 		  :
+            return CINsfc;
+        // added by david
+        case GRB_COMP_REFL 		  :
+            return compReflect;
+        case GRB_WIND_GUST	  :
 			return GUSTsfc;
 		case GRB_SNOW_DEPTH   : 
 			return snowDepth;

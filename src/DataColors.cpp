@@ -35,8 +35,10 @@ DataColors::DataColors ()
 	colors_CloudsWhite.readFile (Util::pathColors()+"colors_clouds_white_pc.txt", 1, 0);
 	colors_CloudsBlack.readFile (Util::pathColors()+"colors_clouds_black_pc.txt", 1, 0);
 	colors_CAPE.readFile (Util::pathColors()+"colors_cape_jkg.txt", 1, 0);
-	colors_CIN.readFile (Util::pathColors()+"colors_cin_jkg.txt", 1, 0);
-	colors_HumidRel.readFile (Util::pathColors()+"colors_humidrel_pc.txt", 1, 0);
+    colors_CIN.readFile (Util::pathColors()+"colors_cin_jkg.txt", 1, 0);
+    // added by david
+    colors_Reflectivity.readFile (Util::pathColors()+"colors_reflect_dbz.txt", 1, 0);
+    colors_HumidRel.readFile (Util::pathColors()+"colors_humidrel_pc.txt", 1, 0);
 	colors_DeltaTemp.readFile (Util::pathColors()+"colors_deltatemp_celcius.txt", 1, 0);
 	colors_Binary.readFile (Util::pathColors()+"colors_binary.txt", 1, 0);
 	colors_WaveHeight.readFile (Util::pathColors()+"colors_waveheight_m.txt", 1, 0);
@@ -93,7 +95,11 @@ QRgb  DataColors::getCAPEColor (double v, bool smooth) {
 }
 //--------------------------------------------------------------------------
 QRgb  DataColors::getCINColor (double v, bool smooth) {
-	return colors_CIN.getColor (v, smooth);
+    return colors_CIN.getColor (v, smooth);
+}
+//-----added by david ------------------------------------------------------
+QRgb  DataColors::getReflectColor (double v, bool smooth) {
+    return colors_Reflectivity.getColor (v, smooth);
 }
 //--------------------------------------------------------------------------
 QRgb  DataColors::getHumidColor (double v, bool smooth) {
@@ -233,6 +239,10 @@ void DataColors::setColorDataTypeFunction (const DataCode &dtc)
 		case GRB_CIN :
 			function_getColor = &DataColors::getCINColor;
 			break;
+        // added by david
+        case GRB_COMP_REFL :
+            function_getColor = &DataColors::getReflectColor;
+            break;
 		case GRB_WAV_SIG_HT :
 		case GRB_WAV_MAX_HT :
 			function_getColor = &DataColors::getWaveHeightColor;
@@ -282,6 +292,9 @@ QRgb DataColors::getDataCodeColor (const DataCode &dtc, double v, bool smooth)
 			return DataColors::getCAPEColor (v, smooth);
 		case GRB_CIN :
 			return DataColors::getCINColor (v, smooth);
+        // added by david
+        case GRB_COMP_REFL :
+            return DataColors::getReflectColor (v, smooth);
 		case GRB_WAV_SIG_HT :
 		case GRB_WAV_MAX_HT :
 			return DataColors::getWaveHeightColor (v, smooth);
@@ -330,9 +343,12 @@ ColorScale *DataColors::getColorScale (const DataCode &dtc)
 			return &colors_Binary;
 		case GRB_CAPE :
 			return &colors_CAPE;
-		case GRB_CIN :
-			return &colors_CIN;
-		case GRB_WAV_SIG_HT :
+        case GRB_CIN :
+            return &colors_CIN;
+        // added by david
+        case GRB_COMP_REFL :
+            return &colors_Reflectivity;
+        case GRB_WAV_SIG_HT :
 		case GRB_WAV_MAX_HT :
 			return &colors_WaveHeight;
 		case GRB_WAV_WHITCAP_PROB :

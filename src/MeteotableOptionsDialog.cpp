@@ -270,6 +270,8 @@ void DialogMeteotableOptions::createDataLists()
     addData (tr("Frozen rain possible"), GRB_FRZRAIN_CATEG,LV_GND_SURF,0, defaultvis,defaultpos++);
     addData (tr("CAPE (surface)"),         GRB_CAPE,LV_GND_SURF,0, defaultvis,defaultpos++);
     addData (tr("CIN (surface)"),         GRB_CIN,LV_GND_SURF,0, defaultvis,defaultpos++);
+    // added by david
+    addData (tr("Composite Reflectivity (atm)"),         GRB_COMP_REFL,LV_ATMOS_ALL,0, defaultvis,defaultpos++);
     addData (tr("SkewT-LogP"), 	GRB_TEMP,LV_ATMOS_ALL,0, defaultvis,defaultpos++);
     //----------------------------------
     addData (tr("Wind")+" ("+tr("surface")+")", GRB_PRV_WIND_XY2D,LV_GND_SURF,0, defaultvis,defaultpos++);

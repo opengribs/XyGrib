@@ -34,8 +34,8 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 {
 	if (gfld->locallen != 0) {
 		DBG ("Unsupported local content : locallen=%ld", gfld->locallen);
-		ok = false;
-		return;
+        ok = false;
+        return;
 	}
 	if (!(gfld->griddef==0 && gfld->igdtnum==0 && gfld->igdtlen>=19)) {
 		// ! Latitude/Longitude grid
@@ -453,6 +453,11 @@ int Grib2Record::analyseProductType ()
 			else if (paramnumber==7)
 				return GRB_CIN;
 		}
+        // added by david
+        else if (paramcat==16) {//TABLE 4.2-0-16
+            if (paramnumber==5)
+                return GRB_COMP_REFL;
+        }
 	}
 	else if (pdtnum==8) {
 		if (paramcat==0) {//TABLE 4.2-0-0

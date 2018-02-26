@@ -727,8 +727,10 @@ void MainWindow::openMeteoDataFile (QString fileName)
 			menuBar->acView_FrzRainCateg->setEnabled(ok);
 
 			menuBar->acView_CAPEsfc->setEnabled (plotter->hasDataType (GRB_CAPE));
-			menuBar->acView_CINsfc->setEnabled (plotter->hasDataType (GRB_CIN));
-			menuBar->acView_ThetaEColors->setEnabled (plotter->hasDataType (GRB_PRV_THETA_E));
+            menuBar->acView_CINsfc->setEnabled (plotter->hasDataType (GRB_CIN));
+            // added by david
+            menuBar->acView_ReflectColors->setEnabled (plotter->hasDataType (GRB_COMP_REFL));
+            menuBar->acView_ThetaEColors->setEnabled (plotter->hasDataType (GRB_PRV_THETA_E));
 
 			ok = plotter->hasDataType (GRB_WIND_VX);
 			menuBar->acView_WindColors->setEnabled(ok);
@@ -854,8 +856,10 @@ void MainWindow::openMeteoDataFile (QString fileName)
 			menuBar->acView_SnowDepth->setEnabled(ok);
 			menuBar->acView_FrzRainCateg->setEnabled(ok);
 			menuBar->acView_CAPEsfc->setEnabled(ok);
-			menuBar->acView_CINsfc->setEnabled(ok);
-			menuBar->acView_ThetaEColors->setEnabled(ok);
+            menuBar->acView_CINsfc->setEnabled(ok);
+            // added by david
+            menuBar->acView_ReflectColors->setEnabled(ok);
+            menuBar->acView_ThetaEColors->setEnabled(ok);
 			menuBar->acView_Isotherms0->setEnabled(ok);
 			menuBar->acView_Isotherms0Labels->setEnabled(ok);
 			menuBar->acView_GroupIsotherms0Step->setEnabled(ok);
@@ -1918,10 +1922,14 @@ void MainWindow::setMenubarColorMapData (const DataCode &dtc, bool trigAction)
 		case GRB_CAPE :
 			act = mb->acView_CAPEsfc;
 			break;
-		case GRB_CIN :
-			act = mb->acView_CINsfc;
-			break;
-		case GRB_PRV_THETA_E :
+    case GRB_CIN :
+        act = mb->acView_CINsfc;
+        break;
+    // added by david
+    case GRB_COMP_REFL :
+        act = mb->acView_ReflectColors;
+        break;
+        case GRB_PRV_THETA_E :
 			act = mb->acView_ThetaEColors;
 			break;
 		case GRB_WAV_SIG_HT :
@@ -2016,8 +2024,11 @@ void MainWindow::slot_GroupColorMap (QAction *act)
     else if (act == mb->acView_CAPEsfc)
     	dtc.set (GRB_CAPE,LV_GND_SURF,0);
     else if (act == mb->acView_CINsfc)
-    	dtc.set (GRB_CIN,LV_GND_SURF,0);
-	//-----------------------------------
+        dtc.set (GRB_CIN,LV_GND_SURF,0);
+    // added by david
+    else if (act == mb->acView_ReflectColors)
+        dtc.set (GRB_COMP_REFL,LV_ATMOS_ALL,0);
+    //-----------------------------------
     else if (act == mb->acView_ThetaEColors)
 	{	// search "prefered" altitude for theta-e
 		dtc.set (GRB_TYPE_NOT_DEFINED,LV_TYPE_NOT_DEFINED,0); 

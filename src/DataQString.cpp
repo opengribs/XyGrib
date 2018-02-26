@@ -180,6 +180,8 @@ QString DataCodeStr::toString_name (const DataCode &dtc)
 		case GRB_SNOW_CATEG   : return tr("Snowfall possible");
 		case GRB_CAPE 		  : return tr("CAPE");
 		case GRB_CIN 		  : return tr("CIN");
+        // added by david
+        case GRB_COMP_REFL    : return tr("Composite Reflectivity");
 
 		case GRB_PRV_WIND_XY2D    : return tr("Wind");
 		case GRB_PRV_WIND_JET     : return tr("Wind (jet stream)");

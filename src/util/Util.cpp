@@ -377,6 +377,10 @@ QString Util::getDataUnit (const DataCode &dtc)
 		case GRB_CIN 		  : 
 			return tr("J/kg");
 			break;
+        // added by david
+        case GRB_COMP_REFL    :
+            return tr("dBZ");
+            break;
 		case GRB_SNOW_DEPTH   : 
 			unit = Util::getSetting("snowDepthUnit", tr("m")).toString();
 			if (unit == tr("m"))
@@ -480,8 +484,16 @@ QString Util::formatCAPEsfc (float jkg, bool withUnit)
 {
     QString unite = Util::getDataUnit (DataCode(GRB_CAPE,LV_GND_SURF,0));
     QString r;
-	r.sprintf("%d", qRound(jkg));
-	return (withUnit) ? r+" "+unite : r;
+    r.sprintf("%d", qRound(jkg));
+    return (withUnit) ? r+" "+unite : r;
+}
+//---------- added by david ---------------------------------
+QString Util::formatReflect(float dbz, bool withUnit)
+{
+    QString unite = Util::getDataUnit (DataCode(GRB_COMP_REFL,LV_ATMOS_ALL,0));
+    QString r;
+    r.sprintf("%d", qRound(dbz));
+    return (withUnit) ? r+" "+unite : r;
 }
 //----------------------------------------------------------------
 QString Util::formatWaveHeight (float meter, bool withUnit)

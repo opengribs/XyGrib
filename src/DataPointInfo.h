@@ -44,6 +44,8 @@ class DataPointInfo
         bool hasFrzRainCateg()  const {return frzRainCateg!=GRIB_NOTDEF;}
         bool hasCAPEsfc()   	const {return CAPEsfc!=GRIB_NOTDEF;}
         bool hasCINsfc()   	const {return CINsfc!=GRIB_NOTDEF;}
+        // added by david
+        bool hasCompReflect()   const {return compReflect!=GRIB_NOTDEF;}
         bool hasGUSTsfc()   	const {return GUSTsfc!=GRIB_NOTDEF;}
         
         bool hasCloudTotal ()   const {return cloudTotal!=GRIB_NOTDEF;}
@@ -115,6 +117,8 @@ class DataPointInfo
         float   frzRainCateg;
         float   CAPEsfc;
         float   CINsfc;
+        // added by david
+        float   compReflect;
         float   GUSTsfc;
 
 		// data at 925 850 700 600 500 400 300 200 hPa

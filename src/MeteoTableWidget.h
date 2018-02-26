@@ -202,8 +202,10 @@ class MeteoTableWidget : public QWidget
 		void  addLine_DeltaTemperature (const Altitude &alt, uchar type, int lig);
 		void  addLine_Categorical 	   (uchar type, int lig);
 		void  addLine_CAPEsfc    (int lig);
-		void  addLine_CINsfc     (int lig);
-		void  addLine_SkewT      (int lig);
+        void  addLine_CINsfc     (int lig);
+        // added by david
+        void  addLine_Reflectivity     (int lig);
+        void  addLine_SkewT      (int lig);
 		void  addLine_GUSTsfc    (int lig);
 		void  addLine_Isotherm0Height  (int lig);
 		void  addLine_GeopotentialAltitude  (const Altitude &alt, int lig);

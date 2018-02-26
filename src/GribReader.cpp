@@ -84,8 +84,8 @@ void GribReader::storeRecordInMap (GribRecord *rec)
 {
 	if (rec==NULL || !rec->isOk())
 		return;
-// 	DBG ("%g %g   %g %g", rec->getXmin(),rec->getXmax(), getYmin(),getYmax());
-	
+//    DBG ("%g %g   %g %g", rec->getXmin(),rec->getXmax(), getYmin(),getYmax());
+
 	std::map <std::string, std::vector<GribRecord *>* >::iterator it;
 	it = mapGribRecords.find(rec->getKey());
 	if (it == mapGribRecords.end())
@@ -145,7 +145,7 @@ void GribReader::readAllGribRecords (int nbrecs)
         	{
 				if (firstdate== -1)
 					firstdate = rec->getRecordCurrentDate();
-				//DBG("%d %d %d %d", rec->getDataType(),rec->getLevelType(), rec->getLevelValue(), rec->getRecordCurrentDate()); 
+//                DBG("%d %d %d %d", rec->getDataType(),rec->getLevelType(), rec->getLevelValue(), rec->getRecordCurrentDate());
 				if (//-----------------------------------------
 					(rec->getDataType()==GRB_PRESSURE_MSL
 						&& rec->getLevelType()==LV_MSL && rec->getLevelValue()==0)
@@ -324,7 +324,12 @@ void GribReader::readAllGribRecords (int nbrecs)
 						&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
 				|| (rec->getDataType()==GRB_WIND_GUST
 						&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
-				//-----------------------------------------
+                // added by david
+//                || (rec->getDataType()==GRB_WIND_GUST
+//                        && rec->getLevelType()==LV_ABOV_GND && rec->getLevelValue()==10)
+                || (rec->getDataType()==GRB_COMP_REFL
+                        && rec->getLevelType()==LV_ATMOS_ALL)
+                //-----------------------------------------
 				|| (rec->getLevelType()==LV_GND_SURF
 					&& (   rec->getDataType()==GRB_WAV_SIG_HT
 						|| rec->getDataType()==GRB_WAV_WND_DIR

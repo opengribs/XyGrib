@@ -129,8 +129,10 @@ MenuBar::MenuBar (QWidget *parent, bool withmblue)
 			acView_SnowDepth = addGroup (acView_GroupColorMap, menuColorMap, tr("Snow (depth)"), "", "");
 			acView_FrzRainCateg = addGroup (acView_GroupColorMap, menuColorMap, tr("Frozen rain (rainfall possible)"), "", "");
 			acView_CAPEsfc = addGroup (acView_GroupColorMap, menuColorMap, tr("CAPE"), "", "");
-			acView_CINsfc = addGroup (acView_GroupColorMap, menuColorMap, tr("CIN"), "", "");
-			acView_ThetaEColors = addGroup (acView_GroupColorMap, menuColorMap, tr("Theta-e"), "", tr("Equivalent potential temperature"));
+            acView_CINsfc = addGroup (acView_GroupColorMap, menuColorMap, tr("CIN"), "", "");
+            // added by david
+            acView_ReflectColors = addGroup (acView_GroupColorMap, menuColorMap, tr("Reflectivity"), "", "");
+            acView_ThetaEColors = addGroup (acView_GroupColorMap, menuColorMap, tr("Theta-e"), "", tr("Equivalent potential temperature"));
         //--------------------------------
         menuColorMap->addSeparator();
         acView_WindArrow = addActionCheck (menuColorMap, tr("Wind arrows"), tr("Ctrl+J"),

@@ -166,6 +166,14 @@ void BoardPanel::showDataPointInfo (
 		else
 			lbCINsfc.setText("");
 	}
+    // added by david
+    if (cellReflect->isVisible()) {
+        if (pf.hasCompReflect())
+            lbReflect.setText(Util::formatReflect(pf.compReflect));
+        else
+            lbReflect.setText("");
+    }
+
 	//------------------------------------------------
 	// Data in altitude
 	//------------------------------------------------
@@ -311,6 +319,8 @@ BoardPanel::BoardPanel (QWidget *parent)
         lbSnowDepth.setText("0");
         lbCAPEsfc.setText("0");
         lbCINsfc.setText("0");
+        // added by david
+        lbReflect.setText("0");
         lbGUSTsfc.setText("0");
         lbCurrentDir.setText("0");
         lbCurrentSpeed.setText("0");
@@ -344,6 +354,8 @@ BoardPanel::BoardPanel (QWidget *parent)
         lbSnowDepth.setText("");
         lbCAPEsfc.setText("");
         lbCINsfc.setText("");
+        // added by david
+        lbReflect.setText("");
         lbGUSTsfc.setText("");
         lbCurrentDir.setText("");
         lbCurrentSpeed.setText("");
@@ -414,6 +426,11 @@ void BoardPanel::updateLabelsSizes()
     lbCAPEsfc.setMinimumWidth( fmt.width(strlong) );
     lbCINsfc.setFrameStyle(style);
     lbCINsfc.setMinimumWidth( fmt.width(strlong) );
+
+    //added by david
+    lbReflect.setFrameStyle(style);
+    lbReflect.setMinimumWidth( fmt.width(strlong) );
+
 	
 	// Altitude : hPa Geopot Temp Theta-e
 //    strlong = " 850 hPa ";
@@ -536,7 +553,9 @@ void BoardPanel::createMenuPopup ()
 	addAction (tr("Isotherm 0°C"), "boardPanelIsotherm0", cellIsotherm0);
 	addAction (tr("Snow (depth)"), "boardPanelSnowDepth", cellSnowDepth);
 	addAction (tr("CAPE CIN"), "boardPanelCAPE", cellCAPECIN);
-	addAction (tr("Altitude"), "boardPanelAltitudeData", cellAltitude);
+    // added by david
+    addAction (tr("Reflectivity"), "boardPanelReflect", cellReflect);
+    addAction (tr("Altitude"), "boardPanelAltitudeData", cellAltitude);
 	addAction (tr("Waves"), "boardPanelWaves", cellWaves);
 }
 //-------------------------------------------------------
@@ -599,6 +618,8 @@ void BoardPanel::createInterface ()
 	cellIsotherm0 = new BoardPanelCell (mainFrame, mainFrameLay);
 	cellSnowDepth = new BoardPanelCell (mainFrame, mainFrameLay);
 	cellCAPECIN = new BoardPanelCell (mainFrame, mainFrameLay);
+    // added by david
+    cellReflect = new BoardPanelCell (mainFrame, mainFrameLay);
 	cellAltitude = new BoardPanelCell (mainFrame, mainFrameLay);
 	cellWaves = new BoardPanelCell (mainFrame, mainFrameLay);
 		
@@ -684,6 +705,13 @@ void BoardPanel::createInterface ()
         hlay->addWidget(&lbCINsfc, 0, Qt::AlignRight);
         hlay->addWidget(new QLabel(tr("J/Kg")), 10, Qt::AlignRight);
         cellCAPECIN->setLayout(hlay);
+
+    // added by david
+    hlay = newQHBoxLayout ();
+        hlay->addWidget(new QLabel(tr("Composite Reflectivity")), 10, Qt::AlignRight);
+        hlay->addWidget(&lbReflect, 0, Qt::AlignRight);
+        cellReflect->setLayout(hlay);
+
 
     //--------------------------
     // Altitude data

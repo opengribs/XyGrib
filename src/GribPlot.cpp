@@ -405,6 +405,8 @@ void GribPlot::draw_ColoredMapPlain (
 		case GRB_FRZRAIN_CATEG :
 		case GRB_CAPE :
 		case GRB_CIN :
+        // added by david
+        case GRB_COMP_REFL :
 		case GRB_PRV_THETA_E :
 		case GRB_WAV_SIG_HT :
 		case GRB_WAV_MAX_HT :

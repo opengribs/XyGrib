@@ -126,6 +126,8 @@ class Util : public QObject
     static QString formatRain (float mmh, bool withUnit=true);
     static QString formatPressure (float pasc, bool withUnit=true, int precision=1);
     static QString formatCAPEsfc (float jkg, bool withUnit=true);
+    // added by david
+    static QString formatReflect (float dbz, bool withUnit=true);
 	
     static QString formatSpeed (float meterspersecond, bool withUnit, QString unit="kts");
     static QString formatSpeed_Wind (float meterspersecond, bool withUnit=true);

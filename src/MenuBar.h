@@ -109,8 +109,10 @@ public:
 		QAction *acView_SnowDepth;
 		QAction *acView_FrzRainCateg;
 		QAction *acView_CAPEsfc;
-		QAction *acView_CINsfc;
-		QAction *acView_ThetaEColors;
+        QAction *acView_CINsfc;
+        // added by david
+        QAction *acView_ReflectColors;
+        QAction *acView_ThetaEColors;
 		
     QMenu   *menuSeaState;
     QMenu   *menuWavesArrows;

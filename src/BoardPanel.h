@@ -95,6 +95,8 @@ class BoardPanel : public QDockWidget
 		BoardPanelCell *cellIsotherm0;
 		BoardPanelCell *cellSnowDepth;
 		BoardPanelCell *cellCAPECIN;
+        // added by david
+        BoardPanelCell *cellReflect;
 		BoardPanelCell *cellAltitude;
 		BoardPanelCell *cellWaves;
 
@@ -120,6 +122,8 @@ class BoardPanel : public QDockWidget
 		QLabel     lbSnowCateg;
 		QLabel     lbCAPEsfc;
 		QLabel     lbCINsfc;
+        // added by david
+        QLabel     lbReflect;
 		QLabel     lbGUSTsfc;
 		
 		QLabel     lbWindTitle;

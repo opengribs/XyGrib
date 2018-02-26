@@ -1,5 +1,5 @@
-CONFIG += qt release c++11
-# CONFIG += qt debug c++11
+#CONFIG += qt release c++11
+CONFIG += qt debug c++11
 
 QT += widgets xml
 QT += printsupport
@@ -15,10 +15,11 @@ INCLUDEPATH += . util map GUI curvedrawer qwt-6.1.3/src g2clib
 # ----------------------------------------------------
 win32 {
 	INCLUDEPATH += C:/libs/include/
-	INCLUDEPATH += C:/mingw/include/
-	LIBS += -LC:/libs/lib/ -LC:/mingw/lib/
+#	INCLUDEPATH += C:/mingw/include/
+        LIBS += -LC:/libs/lib/
+# -LC:/mingw/lib/
 	DESTDIR = release
-	RC_FILE += resource.rc
+        RC_FILE += ../data/img/resource.rc
 }
 else {
 macx {

@@ -529,6 +529,10 @@ int MeteoTableDialog::SYLK_addData_gen (SylkFile &slk, int lig,int col, DataCode
 				case GRB_CIN 		  : 
 					txt = Util::formatCAPEsfc (val, false); 
 					break;
+                //added by david
+                case GRB_COMP_REFL    :
+                    txt = Util::formatReflect(val, false);
+                    break;
 				case GRB_WIND_GUST	  : 
 					txt = Util::formatSpeed_Wind (val, false); 
 					break;

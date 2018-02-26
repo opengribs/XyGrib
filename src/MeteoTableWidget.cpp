@@ -288,10 +288,14 @@ void MeteoTableWidget::createTable()
 		else if (dataType==GRB_CAPE && levelType==LV_GND_SURF && levelValue==0){
 			addLine_CAPEsfc (lig++);
 		}
-		else if (dataType==GRB_CIN && levelType==LV_GND_SURF && levelValue==0){
-			addLine_CINsfc (lig++);
-		}
-		else if (dataType==GRB_TEMP && levelType==LV_ATMOS_ALL && levelValue==0){
+        else if (dataType==GRB_CIN && levelType==LV_GND_SURF && levelValue==0){
+            addLine_CINsfc (lig++);
+        }
+        // added by david
+        else if (dataType==GRB_COMP_REFL && levelType==LV_ATMOS_ALL && levelValue==0){
+            addLine_Reflectivity (lig++);
+        }
+        else if (dataType==GRB_TEMP && levelType==LV_ATMOS_ALL && levelValue==0){
 			addLine_SkewT (lig++);
 		}
 		else if (dataType==GRB_WIND_GUST && levelType==LV_GND_SURF && levelValue==0){
@@ -772,26 +776,50 @@ void MeteoTableWidget::addLine_CAPEsfc (int lig)
 //-----------------------------------------------------------------
 void MeteoTableWidget::addLine_CINsfc (int lig)
 {
-	std::vector <DataPointInfo *>::iterator iter;
-	QColor    bgColor = Qt::white;
-	QString   txt;
-	int col = 0;
-	addCell_title_dataline (tr("CIN (surface)"), true, lig,col);
-	col ++;
-	for (iter=lspinfos.begin(); iter!=lspinfos.end(); iter++, col++)
-	{
-		DataPointInfo * pinfo = *iter;
-		txt = "";
-		if (pinfo->hasCINsfc()) {
-			double v = pinfo->CINsfc;
-			txt.sprintf("%d ", qRound(v));
-			txt += tr("J/kg");
-			bgColor = QColor(plotter->getCINColor(v, true));
-		}
-		else
-			bgColor = Qt::white;
-		addCell_content (txt, layout,lig,col, 1,1, bgColor);
-	}
+    std::vector <DataPointInfo *>::iterator iter;
+    QColor    bgColor = Qt::white;
+    QString   txt;
+    int col = 0;
+    addCell_title_dataline (tr("CIN (surface)"), true, lig,col);
+    col ++;
+    for (iter=lspinfos.begin(); iter!=lspinfos.end(); iter++, col++)
+    {
+        DataPointInfo * pinfo = *iter;
+        txt = "";
+        if (pinfo->hasCINsfc()) {
+            double v = pinfo->CINsfc;
+            txt.sprintf("%d ", qRound(v));
+            txt += tr("J/kg");
+            bgColor = QColor(plotter->getCINColor(v, true));
+        }
+        else
+            bgColor = Qt::white;
+        addCell_content (txt, layout,lig,col, 1,1, bgColor);
+    }
+}
+//------- added by david --------------------------------------------
+void MeteoTableWidget::addLine_Reflectivity (int lig)
+{
+    std::vector <DataPointInfo *>::iterator iter;
+    QColor    bgColor = Qt::white;
+    QString   txt;
+    int col = 0;
+    addCell_title_dataline (tr("Reflectivity (entire atmos)"), true, lig,col);
+    col ++;
+    for (iter=lspinfos.begin(); iter!=lspinfos.end(); iter++, col++)
+    {
+        DataPointInfo * pinfo = *iter;
+        txt = "";
+        if (pinfo->hasCompReflect()) {
+            double v = pinfo->compReflect;
+            txt.sprintf("%d ", qRound(v));
+            txt += tr("dBZ");
+            bgColor = QColor(plotter->getReflectColor(v, true));
+        }
+        else
+            bgColor = Qt::white;
+        addCell_content (txt, layout,lig,col, 1,1, bgColor);
+    }
 }
 //-----------------------------------------------------------------
 void MeteoTableWidget::addLine_Rain(int lig)
