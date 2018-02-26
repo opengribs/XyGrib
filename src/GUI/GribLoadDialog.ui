@@ -1,0 +1,219 @@
+<ui version="4.0" >
+ <class>GribLoadDialog</class>
+ <widget class="QDialog" name="GribLoadDialog" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>510</width>
+    <height>410</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Réglages des Météotables</string>
+  </property>
+  <widget class="QFrame" name="frame" >
+   <property name="geometry" >
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>441</width>
+     <height>223</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground" >
+    <bool>false</bool>
+   </property>
+   <property name="frameShape" >
+    <enum>QFrame::Box</enum>
+   </property>
+   <property name="frameShadow" >
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QCheckBox" name="cbWind" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>55</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Vent</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cbRain" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>70</y>
+      <width>108</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Précipitations</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cbClouds" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>100</y>
+      <width>90</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Nébulosité</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cbTemperature" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>130</y>
+      <width>101</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Température</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cbPressure" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>160</y>
+      <width>80</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Pression</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cbDewPoint" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>190</y>
+      <width>141</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Point de rosée</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cbDiffDewPointTemperature" >
+    <property name="geometry" >
+     <rect>
+      <x>200</x>
+      <y>40</y>
+      <width>231</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Ecart température-point de rosée</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cbIsotherm0" >
+    <property name="geometry" >
+     <rect>
+      <x>200</x>
+      <y>70</y>
+      <width>231</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Isotherme 0°C</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cbSnowRisk" >
+    <property name="geometry" >
+     <rect>
+      <x>200</x>
+      <y>100</y>
+      <width>231</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Neige (chute possible)</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cbSnowDepth" >
+    <property name="geometry" >
+     <rect>
+      <x>200</x>
+      <y>130</y>
+      <width>231</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Neige (hauteur)</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cbFrozenRainRisk" >
+    <property name="geometry" >
+     <rect>
+      <x>200</x>
+      <y>160</y>
+      <width>231</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Pluie verglaçante (chute possible)</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="cbDiffDewPointTemperature_2" >
+    <property name="geometry" >
+     <rect>
+      <x>200</x>
+      <y>190</y>
+      <width>231</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Température potentielle</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="layoutWidget" >
+   <property name="geometry" >
+    <rect>
+     <x>60</x>
+     <y>290</y>
+     <width>334</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" >
+    <item>
+     <widget class="QPushButton" name="btOK" >
+      <property name="text" >
+       <string>Valider</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btCancel" >
+      <property name="text" >
+       <string>Annuler</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

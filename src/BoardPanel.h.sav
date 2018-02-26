@@ -1,0 +1,83 @@
+/**********************************************************************
+zyGrib: meteorological GRIB file viewer
+Copyright (C) 2008-2012 - Jacques Zaninetti - http://www.zygrib.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+***********************************************************************/
+
+#ifndef BOARDTOOLBAR_H
+#define BOARDTOOLBAR_H
+
+#include <QApplication>
+#include <QToolBar>
+#include <QLabel>
+#include <QHBoxLayout>
+#include <QAction>
+#include <QToolButton>
+#include <QMenu>
+#include <QDockWidget>
+
+#include "DataPointInfo.h"
+#include "Util.h"
+
+
+
+class BoardPanel : public QDockWidget
+{ Q_OBJECT
+	public:
+		BoardPanel(QWidget *parent);
+		
+		void showDataPointInfo (const DataPointInfo &pf, const Altitude &windAlt);
+		void updateLabelsSizes ();
+
+	//------------------------------------------------------------------------
+	private:        
+		void     createInterface();
+		void     addWidget (QWidget *widget);
+		void     addSeparator ();
+		
+		QFrame      *mainFrame;
+		QVBoxLayout *mainFrameLay;
+		
+		QLabel     lbLon;
+		QLabel     lbLat;
+		QLabel     lbPres;
+		QLabel     lbTemp;
+		QLabel     lbTempPot;
+		QLabel     lbTempMin;
+		QLabel     lbTempMax;
+		QLabel     lbWindDir;
+		QLabel     lbWindSpeed;
+		QLabel     lbWindBf;
+		QLabel     lbRain;
+		QLabel     lbCloud;
+		QLabel     lbHumid;
+		QLabel     lbDewPoint;
+		QLabel     lbIsotherm0HGT;
+		QLabel     lbSnowDepth;
+		QLabel     lbSnowCateg;
+		QLabel     lbCAPEsfc;
+		QLabel     lbGUSTsfc;
+		
+		QLabel     lbWindTitle;
+		QLabel     lbTempTitle;
+		QLabel     lbAltTitle;
+		QLabel     lb850;
+		QLabel     lb700;
+		QLabel     lb500;
+		QLabel     lb300;	
+		QLabel     lb200;	
+};
+
+#endif

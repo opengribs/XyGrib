@@ -1,0 +1,222 @@
+Regionally Accessible Nested Global Shorelines
+
+Rainer Feistel
+
+Institut für Ostseeforschung, Warnemünde
+
+ 
+
+Overview
+
+Regionally Accessible Nested Global Shorelines (RANGS) are based on the Global Self-consistent Hierarchical High-resolution Shorelines (GSHHS) data set computed by Wessel and Smith (1996). Processed here is their version 1.1, from April 30, 1996, downloaded in January 1997 from their ftp internet site ftp://kiawe.soest.hawaii.edu/pub/wessel/gshhs/.
+
+Details about these files can be obtained from their article mentioned above and the www site mentioned at the end.
+
+GSHHS have been derived by Wessel and Smith (1996) from the widely used World Vector Shoreline (WVS) data set combined with additional CIA data. WVS was originally provided by the US Defense Mapping Agency (DMA) , now National Imagery and Mapping Agency (NIMA), see e.g. Soluri and Woodson (1990), DMA (1988). WVS data are organized in 1° x 1° cells covering the entire globe surface, which contain either only water or only land or coast lines. The lines consist of fractions of different length, i.e. sequences of coordinate pairs. They resolve structures smaller than 100m in size. Vertex coordinates are given on a 0.1" raster (or 3m), while their absolute accuracy is 500m. Although not officially stated for WVS we will assume its resolution in the following as 100m. The 64,800 cells of Earth's surface are grouped in ten different ocean basin area files.
+
+Wessel and Smith have merged the separate WVS files and concatinated the various line fractions to closed polygon sequences, assigning its own ID number to each. They have assigned hierarchy level indices to these polygon tracks in order to distinguish ocean shore from lakes on land, islands in lakes etc. Using the Douglas-Peucker (1973) algorithm they derived lower resolution versions (full resolution = 0.1, high = 0.2, intermediate = 1.0 , low = 5.0 and crude = 25 km) of the polygon sets. They called their corresponding files gshhs_f_, gshhs_h_, gshhs_i_, gshhs_l_, gshhs_c_. Their coordinates are expressed in integer micro-degree numbers (thus resolving 0.1m, theoretically).
+
+Compared to WVS, these GSHHS data are of significant advantage in software applications for graphic visualization using masking or rendering methods. However, they still have two important shortcomings:
+
+(i) Their mutual topological relations are not specified, i.e. it is not indicated whether two given polygons are disjunct or one is inside the other.
+
+(ii) There is no local access to polygon parts as it was with WVS in cell bins. As an example, the Warnemünde Baltic Sea Research Institute is located at a shoreline polygon that starts from the Baltic, continues around the Iberian Peninsula, the Mediterranean, Africa, Arabia, India, China, Siberia, Scandinavia and eventually returns into the Baltic, all that with about 100m spatial resolution. Moreover, for drawing say an island in the Baltic the program has to process the full GSHHS file because there is no indication of whether or not any of the polygons intersects the given cell(s). Numerical processing or even only drawing of such huge polygons is very time and memory consuming, especially if software applications in interactive graphical user surfaces are considered.
+
+Regionally Accessible Nested Global Shorelines (RANGS) have been developed to overcome these disadvantages while preserving the benefits of GSHHS. Like WVS, RANGS is composed of 1°x 1° cells covering the globe. For each cell, the conjunction polygon between the GSHHS polygon and the cell square is computed. All these local RANGS polygons keep a reference to their global GSHHS parent polygons. RANGS polygons then were nested, i.e. it is determined and stored which polygon is the surrounding polygon of a given one, and which polygons are located in the interior of a given polygon. RANGS polygons are stored as additionally generated vertices in conjunction with pointers into GSHHS files. GSHHS itself is only slightly modified, as described below, compared to the original data given by Wessel and Smith.
+
+ 
+
+Processing of GSHHS files
+
+The construction of RANGS polygons required some preparation and modification steps applied to the original GSHHS files.
+
+1. Byte reversion GSHHS comes in Unix/Mac number format (Motorola processor). For use on Windows PC (Intel processor) the byte sequence of the binary numbers need to be reversed. Because we could not get the byte reversion program working which was provided by Wessel and Smith we used an own program written for this purpose.
+
+2. Rim rotation: For all GSHHS polygons not confined to a single cell the polygon rim points have been moved forward within the file while the resulting excess points have been appended at the end until the first and the last point of the polygon became located in different cells.
+
+3. Cleaning: Restrict longitude coordinates to values between x>=0 and x<360. All duplicate vertices have been removed.
+
+4.Correcting levels: Four polygons have been found to have wrong level index, ID 3087 in gshhs_f_ is level 2 but indicated was 1, ID 47992 in gshhs_f_ is level 2 but indicated was 3, ID 2418 in gshhs_h_ is level 2 but indicated was 1, ID 490 in gshhs_i_ is level 2 but indicated was 3.
+
+5.Renaming: The processed GSHHS files gshhs_f_, gshhs_h_, gshhs_i_, gshhs_l_, gshhs_c_ have been named then to gshhs(0).rim, gshhs(1).rim, gshhs(2).rim, gshhs(3).rim, gshhs(4).rim.
+
+ 
+
+Structure of GSHHS.RIM files
+
+The file structure of the modified gshhs(?).rim files is identical with that described by Wessel and Smith(1996) for Version 1.1, April 30, 1996.
+
+The files contain several successive logical blocks of the form
+
+gshhs header
+
+gshhs points
+
+Each gshhs header consist of the following variables:
+
+int id; /* Unique polygon id number, starting at 0 */
+
+int n; /* Number of points in this polygon */
+
+int level; /* 1 land, 2 lake, 3 island_in_lake, 4 pond_in_island_in_lake */
+
+int west, east, south, north; /* min/max extent in micro-degrees */
+
+int area; /* Area of polygon in 1/10 km^2 */
+
+short int greenwich; /* Greenwich is 1 if Greenwich is crossed */
+
+short int source; /* 0 = CIA WDBII, 1 = WVS */
+
+Here, int is 4-byte integers and short means 2-byte integers.
+
+The gshhs points are stored as n successive records of the form
+
+int x; /* longitude of a point in micro-degrees */
+
+int y; /* latitude of a point in micro-degrees */
+
+ 
+
+Processing of RANGS files
+
+Assigning polygon parts to one-degree cells, reconnecting these fractions to polygons again and nesting the small polygons has been carried out in a number of subsequent processing steps.
+
+1. Cell segments. For each 1°x1° cell, the rim segments of all polygons inside this cell have been determined. (A given polygon can lie entirely inside a cell, or it can enter and exit the same cell one or several times, it can touch the cell border with one or more vertices without really crossing it, and it can cross the cell without having a single vertex within the cell). For polygons passing more than one cell, all entry and exit vertices on the cell border have been computed and stored. Address and number of points in GSHHS.RIM of sequences inside the cell have been stored (number can be zero). For polygons not passing the cell's border, the first polygon point is used as entry and exit vertex, its address is noted and the number of its points, and a 'closed-loop' flag is set indicating that entry/exit need not to be on the cell border. For all such segments described this way by entry point, rim segment address, rim segment length and exit point, the rotation sense (clockwise./counterclockwise) of the original entire polygon is computed and flagged. Together with the parity of the polygon level index, this flag tells whether on the right or on the left hand side along the sequence we find land or water.
+
+2.Cell polygons: Cell segments must be concatinated to form little polygons ("cell polygons"), the conjunctions of the global parent polygons with the cell. For this purpose, fractions of the cell border (with or without cell corner points) must be inserted in between the isolated polygon rim segments.
+
+3. Polygon Nesting: For each cell polygon of a given cell it has to be determined which of them is inside which other cell polygon. This is done by checking all rim points of one polygon for being in the interior of another polygon.
+
+4. Cell Nesting: For each cell it must be determined whether it is at least partially in the world ocean or entirely inside one global polygon. For all cell borders lines not crossed by shore lines its surrounding polygon must be found. This can be done, knowing that the north pole is ocean and the south pole is land, by handing over the information of a given cell to its adjacent cells.
+
+ 
+
+Structure of RANGS files
+
+There are two different kinds of RANGS files, rangs(?).cat and rangs(?).cel, where the question mark is placeholder for 0,1,2,3,4 denoting the different resolution levels.
+
+The Cell Address Table rangs(?).cat contains one long (4 byte) integer for each cell of the globe's surface. Its value is the address of description in the rangs(?).cel file.
+
+Note that for all addresses here and in the following address means byte address starting with 1 for the first byte in the file.
+
+If lon (0 to 359) is the longitude and lat (89 to -90) the latitude of the lower left corner of the cell, then addr = 1 + 4 * ((89 - lat) * 360 + lon) is the address of this cell in rangs(?).cel.
+
+The Cell Extraction List rangs(?).cel contains pointers to all gshhs shoreline segments belonging to a particular cell together with information how these segments are to be connected to form a closed, simple (non-self-crossing) cell polygon, and how these polygons with different ID numbers are nested inside each other.
+
+The outmost polygon, where the pointer of the rangs(?).cat file points to, is always the cell border square with 4 vertices and polygon ID -1. Whether it is embedded in ocean or land is specified in its SegmentByte (see below). If a cell does not contain any shoreline then this cell border is the only description of that cell.
+
+There is a recursive data structure PolygonList at each address in rangs(?).cel where the rangs(?).cat file points to:
+
+PolygonList:=
+
+PolygonByte (= 1 or 2)
+
+SegmentLoop
+
+PolygonList
+
+PolygonList
+
+...
+
+PolygonList
+
+PolygonByte (= 0)
+
+Here the values of the byte PolygonByte have the meaning
+
+1 = Begin_Polygon_CCW (Counterclockwise)
+
+2 = Begin_Polygon_CW (Clockwise)
+
+0 = End_PolygonList
+
+SegmentLoop describes a single polygon. It is immediately followed by the set of all polygons (PolygonList) it directly encloses (the "holes" in the polygon).
+
+SegmentLoop :=
+
+PolygonID
+
+SegmentByte
+
+SegmentData
+
+SegmentByte
+
+SegmentData
+
+...
+
+SegmentData
+
+SegmentByte (with End_SegmentLoop flagged)
+
+PolygonID is the 4 byte integer gshhs header ID number of the original GSHHS polygon we refer to in gshhs(?).rim.
+
+SegmentByte is a single byte composed as follows
+
+SegmentByte = DataType + 8 * Clockwise + 16 * Interior
+
+DataType = 0 End_SegmentLoop
+
+= 1..6 = n SegmentData is an n-vertex cell border segment
+
+= 7 SegmentData is a rim segment
+
+Clockwise = 1 clockwise polygon, interior is on the right
+
+= 0 counterclockwise polygon
+
+Interior = 0 inside is ocean
+
+1 inside is land
+
+2 inside is lake on land
+
+3 inside is island in lake
+
+4 inside is pond on island
+
+SegmentData can be one of two possibilities depending on DataType:
+
+a) A cell border segment with n vertices consists of 1 to 6 vertices on the cell border. The first and the last vertex are the polygon exit point and the polygon entry point (which may be just one point if the border is touched but not crossed), in between are 0 to 4 corner points of the cell square. Each vertex is explicitly given as a pair (lon, lat) of coordinates in microdegrees (4 byte integers). This SegmentData is 8n bytes long. Interior and exterior are the same.
+
+b) A rim segment is 8 bytes long and consists of a 4 byte integer segment address in gshhs(?).rim and a 4 byte integer segment length (number of vertices). The exterior is one less the interior.
+
+ 
+
+References:
+
+Douglas, D.H. and T K. Peucker, 1973, Algorithms for the Reduction of the Number of Points Required to Represent a Digitized Line or Its Caricature,
+
+The Canadian Cartographer 10(2), 112-122
+
+Soluri, E.A. and V.A. Woodson, 1990, World Vector Shoreline. International Hydrographic Review, LXVII(1), 27-36,
+
+DMA 1988, Defense Mapping Agency Product Specifications for World Vector Shoreline, PS/2GC/030, First Edition, May 1988, DMA Hydrographic / Topographic Center, Washington DC 20315-0030
+
+Wessel, P., and W. H. F. Smith, 1996, A global self-consistent, hierarchical, high-resolution shoreline database, Journal of Geophysical.Research, 101, 8741-8743.
+
+ 
+
+Related Internet addresses:
+
+Information about WVS data can be found at
+
+http://crusty.er.usgs.gov/coast/wvs.html
+
+and
+
+http://www.ngdc.noaa.gov/mgg/fliers/93mgg01.html
+
+and about GSHHS files at
+
+http://www.soest.hawaii.edu/wessel/gshhs/gshhs.html
+
+RANGS can be downloaded from
+
+http://www.io-warnemuende.de/public/phy/rfeistel/index.htm
+
+ 
+

@@ -1,0 +1,251 @@
+<ui version="4.0" >
+ <class>AngleConverterWidget</class>
+ <widget class="QWidget" name="AngleConverterWidget" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>368</width>
+    <height>180</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Angle</string>
+  </property>
+  <layout class="QGridLayout" >
+   <item row="0" column="0" >
+    <widget class="QFrame" name="frame" >
+     <property name="autoFillBackground" >
+      <bool>false</bool>
+     </property>
+     <property name="frameShape" >
+      <enum>QFrame::Box</enum>
+     </property>
+     <property name="frameShadow" >
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QGridLayout" >
+      <item row="0" column="0" >
+       <widget class="QLabel" name="label" >
+        <property name="font" >
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text" >
+         <string>ddd° mm' ss"</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" >
+       <layout class="QHBoxLayout" >
+        <item>
+         <widget class="QSpinBox" name="dddmmss_deg" >
+          <property name="suffix" >
+           <string> °</string>
+          </property>
+          <property name="minimum" >
+           <number>0</number>
+          </property>
+          <property name="maximum" >
+           <number>10000000</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="dddmmss_min" >
+          <property name="suffix" >
+           <string> '</string>
+          </property>
+          <property name="minimum" >
+           <number>0</number>
+          </property>
+          <property name="maximum" >
+           <number>59</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDoubleSpinBox" name="dddmmss_sec" >
+          <property name="suffix" >
+           <string> "</string>
+          </property>
+          <property name="decimals" >
+           <number>4</number>
+          </property>
+          <property name="maximum" >
+           <double>60.000000000000000</double>
+          </property>
+          <property name="singleStep" >
+           <double>0.100000000000000</double>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="0" >
+       <widget class="QLabel" name="label_2" >
+        <property name="font" >
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text" >
+         <string>ddd° mm.mm'</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" >
+       <layout class="QHBoxLayout" >
+        <item>
+         <widget class="QSpinBox" name="dddmm_deg" >
+          <property name="suffix" >
+           <string> °</string>
+          </property>
+          <property name="minimum" >
+           <number>0</number>
+          </property>
+          <property name="maximum" >
+           <number>10000000</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDoubleSpinBox" name="dddmm_min" >
+          <property name="suffix" >
+           <string> '</string>
+          </property>
+          <property name="decimals" >
+           <number>6</number>
+          </property>
+          <property name="maximum" >
+           <double>60.000000000000000</double>
+          </property>
+          <property name="singleStep" >
+           <double>0.100000000000000</double>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="2" column="0" >
+       <widget class="QLabel" name="label_3" >
+        <property name="font" >
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text" >
+         <string>ddd.dddd°</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1" >
+       <widget class="QDoubleSpinBox" name="ddd_deg" >
+        <property name="suffix" >
+         <string> °</string>
+        </property>
+        <property name="decimals" >
+         <number>8</number>
+        </property>
+        <property name="minimum" >
+         <double>0.000000000000000</double>
+        </property>
+        <property name="maximum" >
+         <double>10000000.000000000000000</double>
+        </property>
+        <property name="singleStep" >
+         <double>0.100000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" >
+       <widget class="QLabel" name="label_4" >
+        <property name="font" >
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text" >
+         <string>radians</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1" >
+       <widget class="QDoubleSpinBox" name="ddd_rad" >
+        <property name="suffix" >
+         <string> rd</string>
+        </property>
+        <property name="decimals" >
+         <number>8</number>
+        </property>
+        <property name="minimum" >
+         <double>0.000000000000000</double>
+        </property>
+        <property name="maximum" >
+         <double>10000000.000000000000000</double>
+        </property>
+        <property name="singleStep" >
+         <double>0.100000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0" >
+       <widget class="QLabel" name="label_5" >
+        <property name="font" >
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text" >
+         <string>grades</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1" >
+       <widget class="QDoubleSpinBox" name="ddd_grad" >
+        <property name="suffix" >
+         <string> gr</string>
+        </property>
+        <property name="decimals" >
+         <number>8</number>
+        </property>
+        <property name="minimum" >
+         <double>0.000000000000000</double>
+        </property>
+        <property name="maximum" >
+         <double>10000000.000000000000000</double>
+        </property>
+        <property name="singleStep" >
+         <double>0.100000000000000</double>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

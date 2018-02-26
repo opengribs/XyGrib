@@ -1,0 +1,528 @@
+/**********************************************************************
+zyGrib: meteorological GRIB file viewer
+Copyright (C) 2008-2012 - Jacques Zaninetti - http://www.zygrib.org
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+***********************************************************************/
+
+#include <QResizeEvent>
+
+#include "BoardPanel.h"
+#include "Font.h"
+#include "DataQString.h"
+
+//=====================================================================
+void BoardPanel::showDataPointInfo (
+						const DataPointInfo &pf, const Altitude &windAlt)
+{
+    QString s;
+
+    lbLon.setText(Util::formatLongitude(pf.x));
+    lbLat.setText(Util::formatLatitude(pf.y));
+
+	if (windAlt.levelType != LV_TYPE_NOT_DEFINED) {
+		lbWindTitle.setText (tr("Wind")+"\n"+ AltitudeStr::toStringShort (windAlt));
+	}
+	else {
+		lbWindTitle.setText (tr("Wind")+"\n");
+	}
+
+    if (pf.hasPressureMSL())
+        lbPres.setText (Util::formatPressure (pf.pressureMSL));
+    else
+        lbPres.setText("");
+	
+	//------------------------------------------------------------
+	lbWindDir.setText("");
+	lbWindSpeed.setText("");
+	lbWindBf.setText("");
+	float v, dir;
+	if (pf.getWindValues (windAlt, &v, &dir)) {
+		lbWindDir.setText (s.sprintf("%.0f ", dir)+tr("°"));
+		lbWindBf.setText  (s.sprintf("%2d ", Util::msToBeaufort(v))+tr("Bf"));
+		lbWindSpeed.setText (Util::formatSpeed(v) );
+	}
+	else {
+		lbWindDir.setText ("");
+		lbWindBf.setText  ("");
+		lbWindSpeed.setText ("");
+	}
+	//------------------------------------------------------------
+    if (pf.hasRain())
+        lbRain.setText (Util::formatRain (pf.rain));
+    else
+        lbRain.setText("");
+
+    if (pf.hasTemp())
+        lbTemp.setText (Util::formatTemperature(pf.temp));
+    else
+        lbTemp.setText("");
+
+//     if (pf.hasTempPot())
+//         lbTempPot.setText(Util::formatTemperature(pf.tempPot));
+//     else
+//         lbTempPot.setText("");
+
+    if (pf.hasTempMin())
+        lbTempMin.setText(Util::formatTemperature(pf.tempMin));
+    else
+        lbTempMin.setText("");
+
+    if (pf.hasTempMax())
+        lbTempMax.setText(Util::formatTemperature(pf.tempMax));
+    else
+        lbTempMax.setText("");
+
+    if (pf.hasCloudTotal())
+        lbCloud.setText(Util::formatPercentValue(pf.cloudTotal));
+    else
+        lbCloud.setText("");
+
+	if (pf.hasHumidRel())
+        lbHumid.setText(Util::formatPercentValue(pf.humidRel));
+    else
+        lbHumid.setText("");
+
+    if (pf.hasDewPoint())
+        lbDewPoint.setText(Util::formatTemperature(pf.dewPoint));
+    else
+        lbDewPoint.setText("");
+
+    if (pf.hasIsotherm0HGT())
+        lbIsotherm0HGT.setText(Util::formatGeopotAltitude(pf.isotherm0HGT));
+    else
+        lbIsotherm0HGT.setText("");
+
+    if (pf.hasSnowDepth())
+        lbSnowDepth.setText(Util::formatSnowDepth(pf.snowDepth));
+    else
+        lbSnowDepth.setText("");
+
+    if (pf.hasCAPEsfc())
+        lbCAPEsfc.setText (Util::formatCAPEsfc (pf.CAPEsfc));
+    else
+        lbCAPEsfc.setText("");
+
+    if (pf.hasGUSTsfc())
+        lbGUSTsfc.setText (Util::formatSpeed (pf.GUSTsfc));
+    else
+        lbGUSTsfc.setText("");
+
+	//------------------------------------------------
+	// Data in altitude
+	//------------------------------------------------
+	if (pf.hasAltitudeData) {
+		QString sv[5];
+		QString shpa, sgeopot, stemp, shumidrel, sthetae;
+		for (int i=0; i<5; i++)
+		{
+			int P = GEOPOThgt(i);	// 850 700 500 300 200
+			shpa.sprintf("%3d", P);
+			if (pf.hGeopot[i] != GRIB_NOTDEF) {
+				sgeopot = QString("%1")
+						.arg(Util::formatGeopotAltitude (pf.hGeopot[i],true), 9);
+			}
+			else
+				sgeopot = QString("%1").arg(" ", 9);
+			
+			if (pf.hTemp[i] != GRIB_NOTDEF) {
+				stemp = QString("%1")
+						.arg(Util::formatTemperature (pf.hTemp[i],true), 7);
+			}
+			else
+				stemp = QString("%1").arg(" ", 7);
+			
+			if (pf.hHumidRel[i] != GRIB_NOTDEF) {
+				shumidrel = QString("%1%")
+						.arg(Util::formatPercentValue (pf.hHumidRel[i],false), 3);
+			}
+			else
+				shumidrel = QString("%1").arg(" ", 4);
+			
+			if (pf.hThetae[i] != GRIB_NOTDEF) {
+				sthetae = QString("%1")
+						.arg(Util::formatTemperature (pf.hThetae[i],true), 7);
+			}
+			else
+				sthetae = QString("%1").arg(" ", 7);
+			
+			sv[i] = QString("%1 %2 %3 %4 %5")
+								.arg(shpa).arg(sgeopot).arg(stemp).arg(shumidrel).arg(sthetae);
+
+			if (i>0 && pf.hThetae[i]!=GRIB_NOTDEF && pf.hThetae[i-1]!=GRIB_NOTDEF) {
+				QString delta;
+				delta.sprintf(" (%+.1f)", pf.hThetae[i]-pf.hThetae[i-1]);
+				sv[i] += delta;
+			}
+		}
+        lbAltTitle.setText("hPa   altitude   temp  rh    θe");
+		lb850.setText (sv[0]);
+		lb700.setText (sv[1]);
+		lb500.setText (sv[2]);
+		lb300.setText (sv[3]);
+		lb200.setText (sv[4]);
+	}
+	else {
+        lbAltTitle.setText("");
+        lb850.setText("");
+        lb700.setText("");
+        lb500.setText("");
+        lb300.setText("");
+        lb200.setText("");
+	}
+}
+
+//===================================================================================
+//===================================================================================
+BoardPanel::BoardPanel(QWidget *parent)
+    : QDockWidget(parent)
+{
+	this->setAllowedAreas (Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+	this->setWindowTitle (tr("Weather data"));
+
+	updateLabelsSizes();
+    	// "0" to have correct widget height on construct
+        lbPres.setText("0");
+        lbWindDir.setText("0");
+        lbWindSpeed.setText("0");
+        lbWindBf.setText("0");
+        lbRain.setText("0");
+        lbTemp.setText("0");
+        lbTempPot.setText("0");
+        lbTempMin.setText("0");
+        lbTempMax.setText("0");
+        lbCloud.setText("0");
+        lbHumid.setText("0");
+        lbDewPoint.setText("0");
+        lbIsotherm0HGT.setText("0");
+        lbSnowDepth.setText("0");
+        lbCAPEsfc.setText("0");
+        lbGUSTsfc.setText("0");
+        lbAltTitle.setText("0");
+        lb850.setText("0");
+        lb700.setText("0");
+        lb500.setText("0");
+        lb300.setText("0");
+        lb200.setText("0");
+
+	createInterface();
+
+    	// Clear "0"
+        lbPres.setText("");
+        lbWindDir.setText("");
+        lbWindSpeed.setText("");
+        lbWindBf.setText("");
+        lbRain.setText("");
+        lbTemp.setText("");
+        lbTempPot.setText("");
+        lbTempMin.setText("");
+        lbTempMax.setText("");
+        lbCloud.setText("");
+        lbHumid.setText("");
+        lbDewPoint.setText("");
+        lbIsotherm0HGT.setText("");
+        lbSnowDepth.setText("");
+        lbCAPEsfc.setText("");
+        lbGUSTsfc.setText("");
+        lbAltTitle.setText("");
+        lb850.setText("");
+        lb700.setText("");
+        lb500.setText("");
+        lb300.setText("");
+        lb200.setText("");
+}
+//---------------------------------------------------------------
+void BoardPanel::updateLabelsSizes()
+{
+    QFontMetrics fmt(qApp->font());
+    int style = QFrame::Panel | QFrame::Sunken;
+
+    lbLon.setMinimumWidth( fmt.width("X888X88X00XX-") );
+    lbLon.setFrameStyle(style);
+    lbLat.setMinimumWidth( fmt.width("X888X88X00XX-") );
+    lbLat.setFrameStyle(style);
+
+    lbWindDir.setMinimumWidth( fmt.width("888XX-.") );
+    lbWindDir.setFrameStyle(style);
+    lbWindBf.setMinimumWidth( fmt.width("8888Bf-") );
+    lbWindBf.setFrameStyle(style);
+	
+    lbWindSpeed.setMinimumWidth( fmt.width("888XXXXXkm/h-") );
+    lbWindSpeed.setFrameStyle(style);
+	
+    lbGUSTsfc.setFrameStyle(style);
+    lbGUSTsfc.setMinimumWidth( fmt.width("888XXXXXkm/h-") );
+
+    QString strlong = "888888888888";
+    lbPres.setMinimumWidth( fmt.width(strlong) );
+    lbPres.setFrameStyle(style);
+    lbRain.setMinimumWidth( fmt.width(strlong) );
+    lbRain.setFrameStyle(style);
+    lbTemp.setMinimumWidth( fmt.width(strlong) );
+    lbTemp.setFrameStyle(style);
+    lbTempPot.setMinimumWidth( fmt.width(strlong) );
+    lbTempPot.setFrameStyle(style);
+    lbTempMin.setMinimumWidth( fmt.width(strlong) );
+    lbTempMin.setFrameStyle(style);
+    lbTempMax.setMinimumWidth( fmt.width(strlong) );
+    lbTempMax.setFrameStyle(style);
+    lbCloud.setMinimumWidth( fmt.width(strlong) );
+    lbCloud.setFrameStyle(style);
+    lbHumid.setMinimumWidth( fmt.width(strlong) );
+    lbHumid.setFrameStyle(style);
+    lbDewPoint.setMinimumWidth( fmt.width(strlong) );
+    lbDewPoint.setFrameStyle(style);
+    lbIsotherm0HGT.setMinimumWidth( fmt.width(strlong) );
+    lbIsotherm0HGT.setFrameStyle(style);
+    lbSnowDepth.setFrameStyle(style);
+    lbSnowDepth.setMinimumWidth( fmt.width(strlong) );
+    lbSnowCateg.setFrameStyle(style);
+    lbSnowCateg.setMinimumWidth( fmt.width(strlong) );
+    lbCAPEsfc.setFrameStyle(style);
+    lbCAPEsfc.setMinimumWidth( fmt.width(strlong) );
+	
+	// Altitude : hPa Geopot Temp Theta-e
+    strlong = " 850 hPa ";
+	lbWindTitle.setMinimumWidth( fmt.width(strlong) );
+	
+	QFont fontAlt = Font::getFont(FONT_AltitudeLabel);
+	QFont fontAltTitle = Font::getFont(FONT_AltitudeLabelTitle);
+
+	// Font size: 80 % of general font size
+	int sz = (int)(0.8*(qApp->font().pointSize()+0.5));
+	fontAlt.setPointSize (sz);
+	fontAltTitle.setPointSize (sz);
+	//DBG("%d %d", qApp->font().pointSize(),sz);	
+	
+	lbAltTitle.setFont (fontAltTitle);
+	lb850.setFont (fontAlt);
+	lb700.setFont (fontAlt);
+	lb500.setFont (fontAlt);
+	lb300.setFont (fontAlt);
+	lb200.setFont (fontAlt);
+	
+    QFontMetrics fmtAlt (fontAlt);
+    QFontMetrics fmtAltTitle (fontAltTitle);
+    
+	strlong = "hPa  altitude   temp     θe";
+	lbAltTitle.setMinimumWidth (fmtAltTitle.width(strlong));
+	
+    strlong = "999 99999 gpft -99.9°C 100% 99.9°C (-99.9)";
+	int wmin = fmtAlt.width(strlong);
+	lb850.setMinimumWidth (wmin);
+	lb700.setMinimumWidth (wmin);
+	lb500.setMinimumWidth (wmin);
+	lb300.setMinimumWidth (wmin);
+	lb200.setMinimumWidth (wmin);
+}
+
+//---------------------------------------------------------------
+void BoardPanel::addWidget (QWidget *widget)
+{
+	mainFrameLay->addWidget (widget);
+}
+//---------------------------------------------------------------
+void BoardPanel::addSeparator ()
+{
+	QFrame *frame = new QFrame(this); 
+	assert (frame);
+	frame->setFrameShape (QFrame::HLine); 
+	frame->setStyleSheet ("color:#AAAAAA");
+	mainFrameLay->addWidget (frame);
+}
+//---------------------------------------------------------------
+void BoardPanel::createInterface()
+{
+    QFrame *frm;
+    QHBoxLayout *hlay;
+	int vsp = 1;	// vertical spacing
+    
+	//--------------------------
+    mainFrame = new QFrame (this);
+    assert (mainFrame);
+    mainFrameLay = new QVBoxLayout();
+    assert (mainFrameLay);
+	mainFrameLay->setSpacing(0);
+	mainFrame->setLayout (mainFrameLay);
+    this->setWidget (mainFrame);
+	
+    //--------------------------
+    this->addSeparator();
+    //--------------------------
+    frm = new QFrame(this);
+    assert(frm);
+    hlay = new QHBoxLayout();
+    assert(hlay);
+	hlay->setContentsMargins (0,vsp,0,vsp);
+        hlay->addWidget(&lbLat, 0, Qt::AlignRight);
+        hlay->addWidget(&lbLon, 0, Qt::AlignRight);
+        frm->setLayout(hlay);
+    this->addWidget(frm);
+    //--------------------------
+    this->addSeparator();
+    //--------------------------
+    frm = new QFrame(this);
+    assert(frm);
+    hlay = new QHBoxLayout();
+    assert(hlay);
+	hlay->setContentsMargins (0,vsp,0,vsp);
+		lbWindTitle.setText (tr("Wind")+"\n"+"10 m");
+        hlay->addWidget(&lbWindTitle, 0, Qt::AlignRight);
+        hlay->addWidget(&lbWindDir, 0, Qt::AlignRight);
+        hlay->addWidget(&lbWindBf, 0, Qt::AlignRight);
+        hlay->addWidget(&lbWindSpeed, 0, Qt::AlignRight);
+        frm->setLayout(hlay);
+    this->addWidget(frm);
+
+    frm = new QFrame(this);
+    assert(frm);
+    hlay = new QHBoxLayout();
+    assert(hlay);
+	hlay->setContentsMargins (0,vsp,0,vsp);
+        hlay->addWidget(new QLabel(tr("Wind gust")), 10, Qt::AlignRight);
+        hlay->addWidget(&lbGUSTsfc, 0, Qt::AlignRight);
+        frm->setLayout(hlay);
+    this->addWidget(frm);
+
+    //--------------------------
+    this->addSeparator();
+    //--------------------------
+    frm = new QFrame(this);
+    assert(frm);
+    hlay = new QHBoxLayout();
+	hlay->setContentsMargins (0,vsp,0,vsp);
+    assert(hlay);
+        hlay->addWidget(new QLabel(tr("Pressure")+" (MSL)"), 10, Qt::AlignRight);
+        hlay->addWidget(&lbPres, 0, Qt::AlignRight);
+        frm->setLayout(hlay);
+    this->addWidget(frm);
+
+    //--------------------------
+    this->addSeparator();
+    //--------------------------
+    frm = new QFrame(this);
+    assert(frm);
+    hlay = new QHBoxLayout();
+    assert(hlay);
+	hlay->setContentsMargins (0,vsp,0,vsp);
+		lbTempTitle.setText (tr("Temperature")+" (2 m)");
+        hlay->addWidget(&lbTempTitle, 10, Qt::AlignRight);
+        hlay->addWidget(&lbTemp, 0, Qt::AlignRight);
+        frm->setLayout(hlay);
+    this->addWidget(frm);
+
+    frm = new QFrame(this);
+    assert(frm);
+    hlay = new QHBoxLayout();
+    assert(hlay);
+	hlay->setContentsMargins (0,vsp,0,vsp);
+        hlay->addWidget(new QLabel(tr("Dew point")+" (2 m)"), 10, Qt::AlignRight);
+        hlay->addWidget(&lbDewPoint, 0, Qt::AlignRight);
+        frm->setLayout(hlay);
+    this->addWidget(frm);
+
+    frm = new QFrame(this);
+    assert(frm);
+    hlay = new QHBoxLayout();
+    assert(hlay);
+	hlay->setContentsMargins (0,vsp,0,vsp);
+        hlay->addWidget(new QLabel(tr("Min")), 0, Qt::AlignRight);
+        hlay->addWidget(&lbTempMin, 0, Qt::AlignRight);
+        hlay->addWidget(new QLabel(tr("Max")), 0, Qt::AlignRight);
+        hlay->addWidget(&lbTempMax, 0, Qt::AlignRight);
+        frm->setLayout(hlay);
+    this->addWidget(frm);
+
+	//--------------------------
+    this->addSeparator();
+    //--------------------------
+    frm = new QFrame(this);
+    assert(frm);
+    hlay = new QHBoxLayout();
+    assert(hlay);
+	hlay->setContentsMargins (0,vsp,0,vsp);
+        hlay->addWidget(new QLabel(tr("Precipitation")), 10, Qt::AlignRight);
+        hlay->addWidget(&lbRain, 0, Qt::AlignRight);
+        frm->setLayout(hlay);
+    this->addWidget(frm);
+
+    frm = new QFrame(this);
+    assert(frm);
+    hlay = new QHBoxLayout();
+    assert(hlay);
+	hlay->setContentsMargins (0,vsp,0,vsp);
+        hlay->addWidget(new QLabel(tr("Cloud cover")), 10, Qt::AlignRight);
+        hlay->addWidget(&lbCloud, 0, Qt::AlignRight);
+        frm->setLayout(hlay);
+    this->addWidget(frm);
+
+    frm = new QFrame(this);
+    assert(frm);
+    hlay = new QHBoxLayout();
+    assert(hlay);
+	hlay->setContentsMargins (0,vsp,0,vsp);
+        hlay->addWidget(new QLabel(tr("Relative humidity")+" (2 m)"), 10, Qt::AlignRight);
+        hlay->addWidget(&lbHumid, 0, Qt::AlignRight);
+        frm->setLayout(hlay);
+    this->addWidget(frm);
+
+    frm = new QFrame(this);
+    assert(frm);
+    hlay = new QHBoxLayout();
+    assert(hlay);
+	hlay->setContentsMargins (0,vsp,0,vsp);
+        hlay->addWidget(new QLabel(tr("Isotherm 0°C")), 10, Qt::AlignRight);
+        hlay->addWidget(&lbIsotherm0HGT, 0, Qt::AlignRight);
+        frm->setLayout(hlay);
+    this->addWidget(frm);
+
+    frm = new QFrame(this);
+    assert(frm);
+    hlay = new QHBoxLayout();
+    assert(hlay);
+	hlay->setContentsMargins (0,vsp,0,vsp);
+        hlay->addWidget(new QLabel(tr("Snow depth")), 10, Qt::AlignRight);
+        hlay->addWidget(&lbSnowDepth, 0, Qt::AlignRight);
+        frm->setLayout(hlay);
+    this->addWidget(frm);
+
+    frm = new QFrame(this);
+    assert(frm);
+    hlay = new QHBoxLayout();
+    assert(hlay);
+	hlay->setContentsMargins (0,vsp,0,vsp);
+        hlay->addWidget(new QLabel(tr("CAPE (surface)")), 10, Qt::AlignRight);
+        hlay->addWidget(&lbCAPEsfc, 0, Qt::AlignRight);
+        frm->setLayout(hlay);
+    this->addWidget(frm);
+
+    //--------------------------
+    this->addSeparator();
+    //--------------------------
+    this->addWidget (&lbAltTitle);
+    this->addWidget (&lb850);
+    this->addWidget (&lb700);
+    this->addWidget (&lb500);
+    this->addWidget (&lb300);
+    this->addWidget (&lb200);
+	
+	//-------------------------------------
+	// End with a stretch spacer
+	mainFrameLay->addStretch (0);
+}
+
+
+
+
+
