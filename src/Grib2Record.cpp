@@ -32,11 +32,12 @@ Grib2Record::~Grib2Record ()
 Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate)
 		: GribRecord ()
 {
-	if (gfld->locallen != 0) {
-		DBG ("Unsupported local content : locallen=%ld", gfld->locallen);
-        ok = false;
-        return;
-	}
+// changed by david to allow ICON gribs
+//    if (gfld->locallen != 0) {
+//		DBG ("Unsupported local content : locallen=%ld", gfld->locallen);
+//        ok = false;
+//        return;
+//	}
 	if (!(gfld->griddef==0 && gfld->igdtnum==0 && gfld->igdtlen>=19)) {
 		// ! Latitude/Longitude grid
 		DBG ("Unsupported grid type: %ld", gfld->igdtnum);
