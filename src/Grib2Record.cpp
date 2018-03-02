@@ -485,6 +485,11 @@ int Grib2Record::analyseProductType ()
 			else if (paramnumber==195)
 				return GRB_SNOW_CATEG;
 		}
+        // added by david to enable ICON gust field
+        else if (paramcat==2) {
+            if (paramnumber==22)
+                return GRB_WIND_GUST;
+        }
 		else if (paramcat==6) {//TABLE 4.2-0-6
 			if (paramnumber==1)
 				return GRB_CLOUD_TOT;

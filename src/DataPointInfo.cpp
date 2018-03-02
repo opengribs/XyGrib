@@ -143,8 +143,11 @@ DataPointInfo::DataPointInfo (
             : reader->getDateInterpolatedValue (DataCode(GRB_COMP_REFL,LV_ATMOS_ALL,0), x,y,date);
     GUSTsfc = reader==NULL ? GRIB_NOTDEF
             : reader->getDateInterpolatedValue (DataCode(GRB_WIND_GUST,LV_GND_SURF,0), x,y,date);
-//    GUSTsfc = reader==NULL ? GRIB_NOTDEF
-//            : reader->getDateInterpolatedValue (DataCode(GRB_WIND_GUST,LV_ABOV_GND,10), x,y,date);
+    // added by david to enable gust fields both sfc and at 10m assuming that only one
+    // option exists in grib file
+    if (GUSTsfc == GRIB_NOTDEF) // gust at sfc not found - try at 10m
+        GUSTsfc = reader==NULL ? GRIB_NOTDEF
+                : reader->getDateInterpolatedValue (DataCode(GRB_WIND_GUST,LV_ABOV_GND,10), x,y,date);
     //-----------------------------------------
 	// Wind 10m
 	//-----------------------------------------
