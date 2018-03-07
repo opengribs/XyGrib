@@ -21,10 +21,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 #define ZYGRIB_VERSION_NUM   "8.1.0"
-#define ZYGRIB_VERSION_DATE  "2018-03-09"
+#define ZYGRIB_VERSION_DATE  "2018-03-08"
 
 #if defined(Q_OS_WIN32)
-    #define ZYGRIB_APP_NAME   "x-zyGrib_win"
+    #define ZYGRIB_APP_NAME   "zyGrib_win"
 #elif defined(Q_OS_MAC)
 	#define ZYGRIB_APP_NAME   "zyGrib_mac"
 #else
