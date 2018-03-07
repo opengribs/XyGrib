@@ -64,7 +64,8 @@ class Grib2Record : public GribRecord
 {
 	public:
 		Grib2Record ();
-		Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate);
+        // changed by david for discipline
+        Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate, int dscpl);
 		~Grib2Record ();
 		
 		Grib2RecordMarker getGrib2RecordMarker ()
@@ -81,6 +82,8 @@ class Grib2Record : public GribRecord
 		int pdtnum;      // = Product Definition Template Number(see Code Table 4.0)
 		int paramcat;    // Parameter category (see Code table 4.1)
 		int paramnumber; //Parameter number (see Code table 4.2)
+        // added by david
+        int discipline;   //Discipline (see Code table 0.0
 
 };
 

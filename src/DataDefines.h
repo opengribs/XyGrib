@@ -37,6 +37,7 @@ enum DataCenterModel {
 	COAMPS_C_AM,
 	NOGAPS,
 	SKIRON,
+    DWD_ICON,
 	OTHER_DATA_CENTER
 };
 //--------------------------------------------------------

@@ -148,14 +148,21 @@ void  GribRecord::translateDataType ()
 	{
 		dataCenterModel = FNMOC_WW3_EQAM;
 	}
-	//----------------------------------------------
-	// SKIRON Model  http://wild-silk.org/en
-	//----------------------------------------------
-	else if (idCenter==7 && idModel==31 && idGrid==255)
-	{
-		dataCenterModel = SKIRON;
-	}
-	//----------------------------------------------
+    //----------------------------------------------
+    // SKIRON Model  http://openskiron.org/en
+    //----------------------------------------------
+    else if (idCenter==7 && idModel==31 && idGrid==255)
+    {
+        dataCenterModel = SKIRON;
+    }
+    //----------------------------------------------
+    // DWD ICON & EWAM Model
+    //----------------------------------------------
+    else if (idCenter==78 )
+    {
+        dataCenterModel = DWD_ICON;
+    }
+    //----------------------------------------------
 	// FNMOC WW3
 	//----------------------------------------------
 	else if (idCenter==58 && idModel==110 && idGrid==240)

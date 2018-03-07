@@ -34,6 +34,10 @@ QString DataCodeStr::toString (const DataCenterModel &dcm)
 			return "FNMOC-WW3-MEDIT";
 		case NORWAY_METNO :
 			return "NORWAY-MET";
+        case SKIRON :
+            return "OPENSKIRON";
+        case DWD_ICON :
+            return "DWD-ICON";
 		case OTHER_DATA_CENTER :
 		default:
 			return "";

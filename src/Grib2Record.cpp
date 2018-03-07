@@ -29,7 +29,8 @@ Grib2Record::~Grib2Record ()
 {	
 }
 //----------------------------------------
-Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate)
+// david added discipline
+Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate, int dscpl)
 		: GribRecord ()
 {
 // changed by david to allow ICON gribs
@@ -47,6 +48,9 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 	//------------------------------------------------
 	// General infos
 	//------------------------------------------------
+    // changed by david
+    this->discipline = dscpl;
+
 	this->id = id;
 	this->idCenter = idCenter;
 	this->refDate = refDate;
@@ -393,7 +397,28 @@ int Grib2Record::analyseProductType ()
 		pdtnum = -1;
 		return GRB_TYPE_NOT_DEFINED;
 	}
-	if (pdtnum==0) {
+    // added by david to manage wave data in g2
+    if (discipline==10){// TABLE 4.10.0
+        if (paramcat==0){
+            if (paramnumber==3)
+                return GRB_WAV_SIG_HT;
+            if (paramnumber==4)
+                return GRB_WAV_WND_DIR;
+            if (paramnumber==5)
+                return GRB_WAV_WND_HT;
+            if (paramnumber==6)
+                return GRB_WAV_WND_PER;
+            if (paramnumber==7)
+                return GRB_WAV_SWL_DIR;
+            if (paramnumber==8)
+                return GRB_WAV_SWL_HT;
+            if (paramnumber==9)
+                return GRB_WAV_SWL_PER;
+        }
+    }
+
+
+    if (pdtnum==0) {
 		if (paramcat==0) {//TABLE 4.2-0-0
 			if (paramnumber==0)
 				return GRB_TEMP;
@@ -495,11 +520,11 @@ int Grib2Record::analyseProductType ()
 				return GRB_CLOUD_TOT;
 		}
 	}
-// 	DBG("Unknown product: pdtnum=%d paramcat=%d paramnumber=%d alt=%s", 
-// 				pdtnum, paramcat, paramnumber, 
+// 	DBG("Unknown product: pdtnum=%d paramcat=%d paramnumber=%d alt=%s",
+// 				pdtnum, paramcat, paramnumber,
 // 				qPrintable(AltitudeStr::toStringShort(Altitude(levelType,levelValue)))
 // 			);
-	return GRB_TYPE_NOT_DEFINED;
+    return GRB_TYPE_NOT_DEFINED;
 }
 //---------------------------------------------
 void Grib2Record::print (const char *title)

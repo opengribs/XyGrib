@@ -130,7 +130,7 @@ void Grib2Reader::readGrib2FileContent (int nbrecs)
 		qApp->processEvents ();
 		seekgb_zu (file, iseek, 64*1024, &lskip, &lgrib);
 		taskProgress->setValue ((int)(100.0*idrec/nbrecs));
-		//DBG("READ FIELD : idrec=%d lskip=%ld lgrib=%ld", idrec, lskip, lgrib);
+        //DBG("READ FIELD : idrec=%d lskip=%ld lgrib=%ld", idrec, lskip, lgrib);
 		if (lgrib == 0) break;    // end loop at EOF or problem
 		iseek = lskip + lgrib;
 
@@ -142,6 +142,9 @@ void Grib2Reader::readGrib2FileContent (int nbrecs)
 			ierr = g2_info (cgrib,listsec0,listsec1,&numfields,&numlocal);
 			if (ierr == 0) {
 				// analyse values returned by g2_info
+                // added by david to handle discipling
+                int dicipline = listsec0[0];
+
 				int idCenter = listsec1[0];
 				int refyear  = listsec1[5];
 				int refmonth = listsec1[6];
@@ -159,10 +162,10 @@ void Grib2Reader::readGrib2FileContent (int nbrecs)
 					ierr = g2_getfld (cgrib, n+1, unpack, expand, &gfld);
 					if (ierr == 0) {
 						idrec++;
-						//DBG("LOAD FIELD idrec=%d/%d field=%ld/%ld numlocal=%ld",idrec,nbrecs, n+1,numfields, numlocal);
-						Grib2Record *rec = new Grib2Record (gfld, idrec, idCenter, refDate);
+                        //DBG("LOAD FIELD idrec=%d/%d field=%ld/%ld numlocal=%ld",idrec,nbrecs, n+1,numfields, numlocal);
+                        Grib2Record *rec = new Grib2Record (gfld, idrec, idCenter, refDate, dicipline);
 						if (rec->isOk()) {
-							//DBG("storeRecordInMap %d", rec->getId());
+                            //DBG("storeRecordInMap %d", rec->getId());
 							storeRecordInMap (rec);
 						}
 						else {
