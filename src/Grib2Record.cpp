@@ -414,6 +414,11 @@ int Grib2Record::analyseProductType ()
                 return GRB_WAV_SWL_HT;
             if (paramnumber==9)
                 return GRB_WAV_SWL_PER;
+        } else if (paramcat==1){
+            if (paramnumber==2)
+                return GRB_CUR_VX;
+            if (paramnumber==3)
+                return GRB_CUR_VY;
         }
     }
 
