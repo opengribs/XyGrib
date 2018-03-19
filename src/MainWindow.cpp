@@ -689,7 +689,7 @@ void MainWindow::openMeteoDataFile (QString fileName)
 	bool ok,ok2,ok3,ok4,ok5,ok6,ok7,ok8,ok9,ok10,ok11;
 	FileDataType meteoFileType = DATATYPE_NONE;
 	colorScaleWidget->setColorScale (NULL, DataCode());
-	dateChooser->reset ();
+    dateChooser->reset ();
 	if (QFile::exists(fileName))
 	{
 		// 	DBG ("open file %s", qPrintable(fileName));	
