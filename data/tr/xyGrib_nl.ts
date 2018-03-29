@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="nl_NL">
-<defaultcodec>UTF-8</defaultcodec>
+<TS version="2.1" language="nl_NL">
 <context>
     <name>AltitudeStr</name>
     <message>
@@ -14,7 +13,7 @@
     </message>
     <message>
         <source>s%1</source>
-        <translation>s%1</translation>
+        <translation type="vanished">s%1</translation>
     </message>
     <message>
         <source>sfc</source>
@@ -71,6 +70,30 @@
     <message>
         <source>sigma %1</source>
         <translation>sigma %1</translation>
+    </message>
+    <message>
+        <source>%1 m above mean sea level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 m ab.MSL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sigma%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>lowCldLay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>midCldLay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>higCldLay</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -303,6 +326,14 @@
         <source>J/Kg</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Reflectivity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Composite Reflectivity</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ColorEditorWidget</name>
@@ -419,15 +450,15 @@ Point outside GRIB area.</source>
         <translation type="unfinished">Bewolking</translation>
     </message>
     <message>
-        <source>Percipitation Rate</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Percipitation Total</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>distance [nm]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Precipitation Rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Precipitation Total</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -652,6 +683,46 @@ Point outside GRIB area.</source>
         <source>Wind (jet stream)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Wind (direction)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wind (speed)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cloud cover (low)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cloud cover (middle)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cloud cover (high)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Composite Reflectivity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wind gust (Vx)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wind gust (VY)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current direction</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current</source>
+        <translation type="unfinished">Stroming</translation>
+    </message>
 </context>
 <context>
     <name>DegreeMinuteEditor</name>
@@ -743,7 +814,11 @@ Point outside GRIB area.</source>
     </message>
     <message>
         <source>Chgoice of fonts</source>
-        <translation>Lettertype</translation>
+        <translation type="vanished">Lettertype</translation>
+    </message>
+    <message>
+        <source>Choice of fonts</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1518,6 +1593,10 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
         <source>Theta-e (400 hPa)</source>
         <translation>Theta-e (400 hPa)</translation>
     </message>
+    <message>
+        <source>Composite Reflectivity (atm)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DialogProxy</name>
@@ -1626,10 +1705,6 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     <message>
         <source>ok</source>
         <translation>ok</translation>
-    </message>
-    <message>
-        <source>METEOBLUE-NMM</source>
-        <translation></translation>
     </message>
     <message>
         <source>Error</source>
@@ -1852,7 +1927,7 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     </message>
     <message>
         <source>Current hour seen by zygrib with those parameters :</source>
-        <translation>De actuele tijd, die zyGrib berekend heeft, is :</translation>
+        <translation type="vanished">De actuele tijd, die zyGrib berekend heeft, is :</translation>
     </message>
     <message>
         <source>decameter (dam)</source>
@@ -1884,6 +1959,10 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     </message>
     <message>
         <source>gft (≈ foot)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current hour seen by xygrib with those parameters :</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2345,11 +2424,11 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     </message>
     <message>
         <source>zyGrib : GRIB files visualization</source>
-        <translation>zyGrib : Visualisatie van GRIB bestanden</translation>
+        <translation type="vanished">zyGrib : Visualisatie van GRIB bestanden</translation>
     </message>
     <message>
         <source>http://www.zygrib.org</source>
-        <translation>http://www.zygrib.org</translation>
+        <translation type="vanished">http://www.zygrib.org</translation>
     </message>
     <message>
         <source>Warning</source>
@@ -2408,6 +2487,14 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
 Unselected by left click in map holding shift at the same time</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>xyGrib : GRIB files visualization</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>http://OpenGribs.org</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MapDrawer</name>
@@ -2433,7 +2520,7 @@ Unselected by left click in map holding shift at the same time</source>
     </message>
     <message>
         <source>zyGrib</source>
-        <translation>zyGrib</translation>
+        <translation type="vanished">zyGrib</translation>
     </message>
     <message>
         <source>Isotherms 0°C</source>
@@ -2466,6 +2553,10 @@ Unselected by left click in map holding shift at the same time</source>
     <message>
         <source>Theta-e</source>
         <translation type="unfinished">Theta-e</translation>
+    </message>
+    <message>
+        <source>xyGrib</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2800,7 +2891,7 @@ Unselected by left click in map holding shift at the same time</source>
     </message>
     <message>
         <source>About zyGrib</source>
-        <translation>Over zyGrib</translation>
+        <translation type="vanished">Over zyGrib</translation>
     </message>
     <message>
         <source>Geopotential altitude 200 hpa</source>
@@ -3339,10 +3430,6 @@ Unselected by left click in map holding shift at the same time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Open a new zyGrib instance</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Weather map</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3476,6 +3563,18 @@ Unselected by left click in map holding shift at the same time</source>
     </message>
     <message>
         <source>Ctrl+Shift+K</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new xyGrib instance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reflectivity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About xyGrib</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3678,6 +3777,14 @@ geen GRIB bestand geopend.</translation>
     </message>
     <message>
         <source>Moon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reflectivity (entire atmos)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>dBZ</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4113,6 +4220,10 @@ Are you sure ?</source>
     <message>
         <source>dd°mm,mm&apos;</source>
         <translation>dd°mm,mm&apos;</translation>
+    </message>
+    <message>
+        <source>dBZ</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

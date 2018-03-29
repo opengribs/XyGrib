@@ -1,5 +1,5 @@
 /**********************************************************************
-zyGrib: meteorological GRIB file viewer
+xyGrib: meteorological GRIB file viewer
 Copyright (C) 2008-2012 - Jacques Zaninetti - http://www.zygrib.org
 
 This program is free software: you can redistribute it and/or modify
@@ -20,15 +20,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define VERSION_H
 
 
-#define ZYGRIB_VERSION_NUM   "8.1.0"
-#define ZYGRIB_VERSION_DATE  "2018-03-08"
+#define XYGRIB_VERSION_NUM   "1.0.0"
+#define XYGRIB_VERSION_DATE  "2018-03-30"
+
+#if defined(Q_OS_WIN32)
+    #define XYGRIB_APP_NAME   "xyGrib_win"
+#elif defined(Q_OS_MAC)
+    #define XYGRIB_APP_NAME   "xyGrib_mac"
+#else
+    #define XYGRIB_APP_NAME   "xyGrib_unx"
+#endif
+
+// kept for backward compatibility with zGrib
+#define ZYGRIB_VERSION_NUM   "8.0.1"
+#define ZYGRIB_VERSION_DATE  "2016-11-09"
 
 #if defined(Q_OS_WIN32)
     #define ZYGRIB_APP_NAME   "zyGrib_win"
 #elif defined(Q_OS_MAC)
-	#define ZYGRIB_APP_NAME   "zyGrib_mac"
+    #define ZYGRIB_APP_NAME   "zyGrib_mac"
 #else
-	#define ZYGRIB_APP_NAME   "zyGrib_unx"
+    #define ZYGRIB_APP_NAME   "zyGrib_unx"
 #endif
 
 
@@ -37,19 +49,32 @@ class Version {
 
     public:
         static QString getVersion() {
-            return QString(ZYGRIB_VERSION_NUM);
+            return QString(XYGRIB_VERSION_NUM);
         }
         static QString getAppName() {
-            return QString(ZYGRIB_APP_NAME);
+            return QString(XYGRIB_APP_NAME);
         }
         static QString getDate() {
-            return QString(ZYGRIB_VERSION_DATE);
+            return QString(XYGRIB_VERSION_DATE);
         }
         static QString getShortName() {
-            return QString( "zyGrib-"+getVersion() );
+            return QString( "xyGrib-"+getVersion() );
         }
         static QString getCompleteName() {
             return QString( getAppName()+"-"+getVersion() );
+        }
+
+        //
+        // for back compatibility with zyGrib
+        //
+        static QString getZVersion() {
+            return QString(ZYGRIB_VERSION_NUM);
+        }
+        static QString getAppZName() {
+            return QString(ZYGRIB_APP_NAME);
+        }
+        static QString getCompleteZName() {
+            return QString( getAppZName()+"-"+getZVersion() );
         }
 };
 

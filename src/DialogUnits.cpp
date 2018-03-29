@@ -1,5 +1,5 @@
 /**********************************************************************
-zyGrib: meteorological GRIB file viewer
+xyGrib: meteorological GRIB file viewer
 Copyright (C) 2008-2012 - Jacques Zaninetti - http://www.zygrib.org
 
 This program is free software: you can redistribute it and/or modify
@@ -300,7 +300,7 @@ void DialogUnits::slotTimeZoneChanged(int index)
 		  + tr("Conversion UTC/Local time depends of the parameters ") +"\n"
 		  + tr("of your computer. ")
 		  +"\n"
-		  + tr("Current hour seen by zygrib with those parameters :")+"\n"
+          + tr("Current hour seen by xygrib with those parameters :")+"\n"
 		  + "      " + tutc + tr(" : UTC")+"\n"
 		  + "      " + tloc + tr(" : Local")+"\n"
 		  + "\n"

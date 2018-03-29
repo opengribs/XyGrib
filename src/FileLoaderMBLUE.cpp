@@ -1,5 +1,5 @@
 /**********************************************************************
-zyGrib: meteorological GRIB file viewer
+xyGrib: meteorological GRIB file viewer
 Copyright (C) 2008-2012 - Jacques Zaninetti - http://www.zygrib.org
 
 This program is free software: you can redistribute it and/or modify
@@ -157,7 +157,7 @@ void FileLoaderMBLUE::getMblueFile(
                            << "&par=" << parameters
                            << "&l=" << zygriblog
                            << "&m=" << zygribpwd
-                           << "&client=" << Version::getCompleteName()
+                           << "&client=" << Version::getCompleteZName()
                            ;
 		QNetworkRequest request = Util::makeNetworkRequest ("http://"+Util::getServerName()+page,x0,y0,x1,y1);
 		reply_step1 = networkManager->get (request);

@@ -1,5 +1,5 @@
 /**********************************************************************
-zyGrib: meteorological GRIB file viewer
+xyGrib: meteorological GRIB file viewer
 Copyright (C) 2008-2012 - Jacques Zaninetti - http://www.zygrib.org
 
 This program is free software: you can redistribute it and/or modify
@@ -458,7 +458,7 @@ mb->acMap_SelectMETARs->setVisible (false);	// TODO
 MainWindow::MainWindow (int w, int h, bool withmblue, QWidget *parent)
     : QMainWindow (parent)
 {
-	setWindowIcon (QIcon (Util::pathImg("zyGrib_32.xpm")));
+    setWindowIcon (QIcon (Util::pathImg("xyGrib_32.xpm")));
 
     menuBar = new MenuBar(this, withmblue);
     assert(menuBar);
@@ -1452,12 +1452,12 @@ void MainWindow::slotHelp_APropos()
 {
     QMessageBox::information (this,
             tr("About"),
-            tr("zyGrib : GRIB files visualization")
+            tr("xyGrib : GRIB files visualization")
             +"\n"+
             tr("Version : ")+Version::getVersion()
                     +"      "+Version::getDate()
             +"\n"+ tr("Licence : GNU GPL v3")
-            +"\n"+ tr("http://www.zygrib.org")
+            +"\n"+ tr("http://OpenGribs.org")
         );
 }
 //-------------------------------------------------

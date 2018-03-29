@@ -1,6 +1,6 @@
 /*
  *  CustomQwtClasses.cpp
- *  zyGrib
+ *  xyGrib
  *
  *  Created by Tim Holtschneider on 25.11.10.
  *
