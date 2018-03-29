@@ -1,5 +1,5 @@
 /**********************************************************************
-zyGrib: meteorological GRIB file viewer
+xyGrib: meteorological GRIB file viewer
 Copyright (C) 2008-2012 - Jacques Zaninetti - http://www.zygrib.org
 
 This program is free software: you can redistribute it and/or modify
@@ -86,7 +86,7 @@ class Util : public QObject
 	static QString pathStuff ()  {return pathData()+"data/stuff/";}
 	
 	static QString pathImg (const char *fname) {return pathData()+"data/img/"+fname;}
-	static QString pathTr  (QString lang)   {return pathData()+"data/tr/zyGrib_"+lang;}
+    static QString pathTr  (QString lang)   {return pathData()+"data/tr/xyGrib_"+lang;}
 	static QString getServerName ();
 
     static void     setSetting (const QString &key, const QVariant &value);

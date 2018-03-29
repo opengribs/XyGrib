@@ -1,6 +1,6 @@
 /*
  *  CurveDrawer.h
- *  zyGrib
+ *  xyGrib
  *
  *  Created by Tim Holtschneider on 29.05.10.
  *  Copyright 2010. All rights reserved.

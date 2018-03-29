@@ -1,6 +1,6 @@
 /*
  *  CurveDrawer.cpp
- *  zyGrib
+ *  xyGrib
  *
  *  Created by Tim Holtschneider on 29.05.10.
  *  Copyright 2010. All rights reserved.
@@ -26,7 +26,7 @@ CurveDrawer::CurveDrawer( GriddedPlotter *plotter,
 {
 	setProperty ("objectType", "CurveDrawer");
 	setFocusPolicy(Qt::StrongFocus);
-	setWindowIcon (QIcon (Util::pathImg("zyGrib_32.xpm")));
+    setWindowIcon (QIcon (Util::pathImg("xyGrib_32.xpm")));
 	initObj();
 
 	this->plotter	= plotter;

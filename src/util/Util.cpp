@@ -1,5 +1,5 @@
 /**********************************************************************
-zyGrib: meteorological GRIB file viewer
+xyGrib: meteorological GRIB file viewer
 Copyright (C) 2008-2012 - Jacques Zaninetti - http://www.zygrib.org
 
 This program is free software: you can redistribute it and/or modify
@@ -152,7 +152,7 @@ QNetworkRequest Util::makeNetworkRequest (QString url,double x0,double y0,double
  		request.setRawHeader ("Accept","text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
 	}
 	else
-		request.setRawHeader ("User-Agent",qPrintable(Version::getAppName()+"/"+Version::getVersion()) );
+        request.setRawHeader ("User-Agent",qPrintable(Version::getAppZName()+"/"+Version::getZVersion()) );
 	request.setUrl (QUrl(url));
 	validArea (request,x0,y0,x1,y1);
 	return request;

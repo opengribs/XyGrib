@@ -1,5 +1,5 @@
 /**********************************************************************
-zyGrib: meteorological GRIB file viewer
+xyGrib: meteorological GRIB file viewer
 Copyright (C) 2008-2012 - Jacques Zaninetti - http://www.zygrib.org
 
 This program is free software: you can redistribute it and/or modify
@@ -70,13 +70,13 @@ void FileLoaderIAC::getFile (FileModeIAC IACmode)
 	if (IACmode == ANALYSE_FILE) {
 		QTextStream(&page) << "/noaa/getNoaaIacFile.php?"
 						<< "but=analyse"
-						<< "&client=" << Version::getCompleteName()
+                        << "&client=" << Version::getCompleteZName()
 						;
 	}
 	else {   // if (IACmode == FORECAST_FILE) {
 		QTextStream(&page) << "/noaa/getNoaaIacFile.php?"
 						<< "but=forecast"
-						<< "&client=" << Version::getCompleteName()
+                        << "&client=" << Version::getCompleteZName()
 						;
 	}
 //page="/headers.php";

@@ -961,7 +961,7 @@ void  SkewT::draw_comments (QPainter &pnt)
 	QString dat = tr("Date: ")+curdate;
 	pnt.drawText (W/2, 2*fh, dat);
 	//-------------------------------------------------------
-	pnt.drawText (W-fmet.width("zyGrib")-5, H-5, "zyGrib");
+    pnt.drawText (W-fmet.width("xyGrib")-5, H-5, "xyGrib");
 	//-------------------------------------------------------
 	QFont font = pnt.font();
 	font.setFamily ("times");
@@ -978,7 +978,7 @@ void  SkewT::draw_comments (QPainter &pnt)
 	pnt.rotate (-30);
 	pnt.translate (-W/2, -H/2);
 	QPainterPath pat;
-	pat.addText (W/6, 3*H/5, font, "zyGrib");
+    pat.addText (W/6, 3*H/5, font, "xyGrib");
 	pnt.drawPath (pat);
 	
 	pnt.restore ();

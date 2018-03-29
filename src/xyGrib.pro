@@ -1,11 +1,11 @@
-#CONFIG += qt release c++11
-CONFIG += qt debug c++11
+CONFIG += qt release c++11
+#CONFIG += qt debug c++11
 
 QT += widgets xml
 QT += printsupport
 
 TEMPLATE = app
-TARGET   = zyGrib
+TARGET   = xyGrib
 
 DEPENDPATH  += . util map GUI
 INCLUDEPATH += . util map GUI curvedrawer qwt-6.1.3/src g2clib
@@ -28,7 +28,7 @@ macx {
 	DESTDIR = ..
 	LIBS += -L/opt/local/lib
 	CONFIG += i386
-	ICON = ../data/img/zyGrib.icns
+	ICON = ../data/img/xyGrib.icns
 }
 else {
 # linux
@@ -56,17 +56,17 @@ QT += network xml
 
 CODECFORTR = UTF-8
 CODECFORSRC = UTF-8
-TRANSLATIONS =  ../data/tr/zyGrib_fr.ts \
-				../data/tr/zyGrib_cz.ts \
-				../data/tr/zyGrib_de.ts \
-				../data/tr/zyGrib_fi.ts \
-				../data/tr/zyGrib_it.ts \
-				../data/tr/zyGrib_nl.ts \
-				../data/tr/zyGrib_pt.ts \
-				../data/tr/zyGrib_ru.ts \
-				../data/tr/zyGrib_ar.ts \
-				../data/tr/zyGrib_gr.ts \
-				../data/tr/zyGrib_es.ts
+TRANSLATIONS =  ../data/tr/xyGrib_fr.ts \
+				../data/tr/xyGrib_cz.ts \
+				../data/tr/xyGrib_de.ts \
+				../data/tr/xyGrib_fi.ts \
+				../data/tr/xyGrib_it.ts \
+				../data/tr/xyGrib_nl.ts \
+				../data/tr/xyGrib_pt.ts \
+				../data/tr/xyGrib_ru.ts \
+				../data/tr/xyGrib_ar.ts \
+				../data/tr/xyGrib_gr.ts \
+				../data/tr/xyGrib_es.ts
 
 !win32 {
 	# conditional, because uic dont work in my cross compilator environment.
@@ -161,7 +161,8 @@ HEADERS += \
            Therm.h \
            util/Util.h \
            Version.h \
-           util/zuFile.h
+           util/zuFile.h \
+    stylesheet.h
 
 SOURCES += \
 			 GUI/PositionEditorWidget.cpp \
