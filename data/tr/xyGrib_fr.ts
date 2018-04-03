@@ -26,7 +26,7 @@
     <message>
         <location filename="../../src/DataQString.cpp" line="70"/>
         <source>%1 m above mean sea level</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 au dessus du niveau de la mer</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="73"/>
@@ -83,7 +83,7 @@
     <message>
         <location filename="../../src/DataQString.cpp" line="122"/>
         <source>%1 m ab.MSL</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 m au-dessus du niveau moyen de la mer</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="128"/>
@@ -93,22 +93,22 @@
     <message>
         <location filename="../../src/DataQString.cpp" line="131"/>
         <source>sigma%1</source>
-        <translation type="unfinished"></translation>
+        <translation>sigma%1</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="137"/>
         <source>lowCldLay</source>
-        <translation type="unfinished"></translation>
+        <translation>nuages bas</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="140"/>
         <source>midCldLay</source>
-        <translation type="unfinished"></translation>
+        <translation>nuages moyens</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="143"/>
         <source>higCldLay</source>
-        <translation type="unfinished"></translation>
+        <translation>nuages hauts</translation>
     </message>
     <message>
         <source>s%1</source>
@@ -403,7 +403,7 @@
     <message>
         <location filename="../../src/BoardPanel.cpp" line="557"/>
         <source>Reflectivity</source>
-        <translation type="unfinished"></translation>
+        <translation>réflectivité</translation>
     </message>
     <message>
         <location filename="../../src/BoardPanel.cpp" line="559"/>
@@ -428,7 +428,7 @@
     <message>
         <location filename="../../src/BoardPanel.cpp" line="711"/>
         <source>Composite Reflectivity</source>
-        <translation type="unfinished"></translation>
+        <translation>réflectivité composite</translation>
     </message>
     <message>
         <location filename="../../src/BoardPanel.cpp" line="553"/>
@@ -526,12 +526,12 @@
     <message>
         <location filename="../../src/curvedrawer/CurveDrawer.cpp" line="777"/>
         <source>Precipitation Rate</source>
-        <translation type="unfinished"></translation>
+        <translation>taux de précipitation</translation>
     </message>
     <message>
         <location filename="../../src/curvedrawer/CurveDrawer.cpp" line="778"/>
         <source>Precipitation Total</source>
-        <translation type="unfinished"></translation>
+        <translation>précipitation totale</translation>
     </message>
     <message>
         <location filename="../../src/curvedrawer/CurveDrawer.cpp" line="796"/>
@@ -797,12 +797,12 @@ Point en dehors de la zone GRIB.</translation>
     <message>
         <location filename="../../src/DataQString.cpp" line="172"/>
         <source>Wind (direction)</source>
-        <translation type="unfinished"></translation>
+        <translation>vent (direction)</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="173"/>
         <source>Wind (speed)</source>
-        <translation type="unfinished"></translation>
+        <translation>vent (vitesse)</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="174"/>
@@ -837,17 +837,17 @@ Point en dehors de la zone GRIB.</translation>
     <message>
         <location filename="../../src/DataQString.cpp" line="180"/>
         <source>Cloud cover (low)</source>
-        <translation type="unfinished"></translation>
+        <translation>couverture nuage (basse)</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="181"/>
         <source>Cloud cover (middle)</source>
-        <translation type="unfinished"></translation>
+        <translation>couverture nuageuse (moyenne)</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="182"/>
         <source>Cloud cover (high)</source>
-        <translation type="unfinished"></translation>
+        <translation>couverture nuageuse (haute)</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="183"/>
@@ -872,7 +872,7 @@ Point en dehors de la zone GRIB.</translation>
     <message>
         <location filename="../../src/DataQString.cpp" line="188"/>
         <source>Composite Reflectivity</source>
-        <translation type="unfinished"></translation>
+        <translation>réflectivité composite</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="190"/>
@@ -897,22 +897,22 @@ Point en dehors de la zone GRIB.</translation>
     <message>
         <location filename="../../src/DataQString.cpp" line="195"/>
         <source>Wind gust (Vx)</source>
-        <translation type="unfinished"></translation>
+        <translation>rafale de vent (Vx)</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="196"/>
         <source>Wind gust (VY)</source>
-        <translation type="unfinished"></translation>
+        <translation>rafale de vent (Vy)</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="197"/>
         <source>Current direction</source>
-        <translation type="unfinished"></translation>
+        <translation>direction du courant</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="198"/>
         <source>Current</source>
-        <translation type="unfinished">Courant</translation>
+        <translation>courant</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="220"/>
@@ -1130,7 +1130,7 @@ Point en dehors de la zone GRIB.</translation>
     <message>
         <location filename="../../src/DialogFonts.cpp" line="93"/>
         <source>Choice of fonts</source>
-        <translation type="unfinished"></translation>
+        <translation>choix de la police</translation>
     </message>
     <message>
         <location filename="../../src/DialogFonts.cpp" line="183"/>
@@ -2003,7 +2003,7 @@ Actualisation 4 fois par jour.
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="274"/>
         <source>Composite Reflectivity (atm)</source>
-        <translation type="unfinished"></translation>
+        <translation>réflectivité composite (atm)</translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="275"/>
@@ -2301,17 +2301,17 @@ Actualisation 4 fois par jour.
     <message>
         <location filename="../../src/DialogProxy.cpp" line="230"/>
         <source>Forum login :</source>
-        <translation>Identifiant du forum</translation>
+        <translation>Identifiant du forum :</translation>
     </message>
     <message>
         <location filename="../../src/DialogProxy.cpp" line="237"/>
         <source>Forum password :</source>
-        <translation>Mot de passe du forum</translation>
+        <translation>Mot de passe du forum :</translation>
     </message>
     <message>
         <location filename="../../src/DialogProxy.cpp" line="245"/>
         <source>You must have a valid account on www.zygrib.org forum.</source>
-        <translation type="unfinished">Vous devez avoir un compte valide sur le forum de www.zygrib.org.</translation>
+        <translation>Vous devez avoir un compte valide sur le forum de www.zygrib.org.</translation>
     </message>
 </context>
 <context>
@@ -2674,7 +2674,7 @@ Actualisation 4 fois par jour.
     <message>
         <location filename="../../src/DialogUnits.cpp" line="303"/>
         <source>Current hour seen by xygrib with those parameters :</source>
-        <translation type="unfinished"></translation>
+        <translation>Heure actuelle vue par xyGrib avec ces paramètres :</translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="304"/>
@@ -2699,7 +2699,7 @@ Actualisation 4 fois par jour.
     <message>
         <location filename="../../src/DialogUnits.cpp" line="309"/>
         <source>or choose display in UTC time zone.</source>
-        <translation type="unfinished">ou choisir l&apos;affichage en temps universel UTC de xyGrib.</translation>
+        <translation>ou choisir l&apos;affichage en temps universel UTC de xyGrib.</translation>
     </message>
 </context>
 <context>
@@ -2824,7 +2824,7 @@ Actualisation 4 fois par jour.
     <message>
         <location filename="../../src/GUI/GraphicsParamsDialog.ui" line="52"/>
         <source>Isotherms (altitude) :</source>
-        <translation>Isothermes (altitude)</translation>
+        <translation>Isothermes (altitude) :</translation>
     </message>
     <message>
         <location filename="../../src/GUI/GraphicsParamsDialog.ui" line="74"/>
@@ -3058,7 +3058,7 @@ Actualisation 4 fois par jour.
         <location filename="../../src/MainWindow.cpp" line="813"/>
         <location filename="../../src/MainWindow.cpp" line="922"/>
         <source>File :</source>
-        <translation>Fichier : </translation>
+        <translation>Fichier :</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="815"/>
@@ -3101,7 +3101,7 @@ Actualisation 4 fois par jour.
     <message>
         <location filename="../../src/MainWindow.cpp" line="1439"/>
         <source>Reference :</source>
-        <translation>Référence : </translation>
+        <translation>Référence :</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="996"/>
@@ -3142,7 +3142,7 @@ Actualisation 4 fois par jour.
     <message>
         <location filename="../../src/MainWindow.cpp" line="1454"/>
         <source>About</source>
-        <translation>A propos</translation>
+        <translation>à propos</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1457"/>
@@ -3177,12 +3177,12 @@ Actualisation 4 fois par jour.
     <message>
         <location filename="../../src/MainWindow.cpp" line="1455"/>
         <source>xyGrib : GRIB files visualization</source>
-        <translation type="unfinished"></translation>
+        <translation>XyGrib : outil de visualisation des fichiers GRIB</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1460"/>
         <source>http://OpenGribs.org</source>
-        <translation type="unfinished"></translation>
+        <translation>http://OpenGribs.org</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1515"/>
@@ -3387,7 +3387,7 @@ Désélection: Maj + clic gauche sur la carte en même temps</translation>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1698"/>
         <source>Area :</source>
-        <translation>Etendue : </translation>
+        <translation>Etendue :</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1624"/>
@@ -3452,13 +3452,13 @@ Désélection: Maj + clic gauche sur la carte en même temps</translation>
     <message>
         <location filename="../../src/MapDrawer.cpp" line="702"/>
         <source>Current arrows</source>
-        <translation>Flèches du courant :</translation>
+        <translation>Flèches du courant</translation>
     </message>
     <message>
         <location filename="../../src/MapDrawer.cpp" line="784"/>
         <location filename="../../src/MapDrawer.cpp" line="908"/>
         <source>xyGrib</source>
-        <translation type="unfinished"></translation>
+        <translation>XyGrib</translation>
     </message>
     <message>
         <source>zyGrib</source>
@@ -3924,7 +3924,7 @@ Désélection: Maj + clic gauche sur la carte en même temps</translation>
     <message>
         <location filename="../../src/MenuBar.cpp" line="134"/>
         <source>Reflectivity</source>
-        <translation type="unfinished"></translation>
+        <translation>réflectivité</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="135"/>
@@ -4245,7 +4245,7 @@ Désélection: Maj + clic gauche sur la carte en même temps</translation>
     <message>
         <location filename="../../src/MenuBar.cpp" line="432"/>
         <source>About xyGrib</source>
-        <translation type="unfinished"></translation>
+        <translation>A propos de XyGrib</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="486"/>
@@ -4398,7 +4398,7 @@ Désélection: Maj + clic gauche sur la carte en même temps</translation>
     <message>
         <location filename="../../src/MenuBar.cpp" line="77"/>
         <source>Open a new xyGrib instance</source>
-        <translation type="unfinished"></translation>
+        <translation>ouvrir une nouvelle instance XyGrib</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="126"/>
@@ -5045,12 +5045,12 @@ Point en dehors de la zone couverte par le fichier GRIB.</translation>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="807"/>
         <source>Reflectivity (entire atmos)</source>
-        <translation type="unfinished"></translation>
+        <translation>réflectivité (toute l&apos;atmosphère)</translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="816"/>
         <source>dBZ</source>
-        <translation type="unfinished"></translation>
+        <translation>dBZ</translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="939"/>
@@ -5696,7 +5696,7 @@ Etes-vous sûr ?</translation>
     <message>
         <location filename="../../src/util/Util.cpp" line="382"/>
         <source>dBZ</source>
-        <translation type="unfinished"></translation>
+        <translation>dBZ</translation>
     </message>
     <message>
         <location filename="../../src/util/Util.cpp" line="387"/>
