@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "Util.h"
 #include "DataMeteoAbstract.h"
 #include "ColorScale.h"
-//#include "stylesheet.h"
+#include "stylesheet.h"
 
 //===========================================================
 int main (int argc, char *argv[])
@@ -39,7 +39,7 @@ int main (int argc, char *argv[])
 	qsrand(QTime::currentTime().msec());
 
 // for testing a new skin
-//    app.setStyleSheet(styleSheetDef);
+    app.setStyleSheet(menuStyleSheetDef);
 
 #ifdef Q_OS_MACX
     if ( QSysInfo::MacintoshVersion > QSysInfo::MV_10_8 )
@@ -267,8 +267,8 @@ int main (int argc, char *argv[])
 			y = 0;
 		win->move (x, y);
 	}
-
 	//---------------------
+    win->setStyleSheet(styleSheetDef);
     win->show();
 	//-------------------------------------------------------------------
     // Open file (command line parameter or last open)

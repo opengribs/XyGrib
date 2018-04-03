@@ -47,7 +47,7 @@ QWidget *MeteoTableDialog::createDataTable ()
 	scrollArea->setWidget (meteoTableWidget);
 	scrollArea->setVerticalScrollBarPolicy   (Qt::ScrollBarAsNeeded);
 	scrollArea->setHorizontalScrollBarPolicy (Qt::ScrollBarAlwaysOn);
-	
+
 	//-------------------------------------
 	// Headers area
 	dataTable = new QWidget (this);
@@ -181,7 +181,7 @@ MeteoTableDialog::MeteoTableDialog (
         hlay->addWidget(btOptions);
         hlay->addWidget(btExport);
         framebts->setLayout(hlay);
-        
+
 	connect(btClose, SIGNAL(clicked()), this, SLOT(reject()));
 	connect(btOptions, SIGNAL(clicked()), this, SLOT(slotBtOptions()));
 	connect(btExport, SIGNAL(clicked()), this, SLOT(slotBtExport()));
@@ -191,7 +191,7 @@ MeteoTableDialog::MeteoTableDialog (
 	mainLayout->addWidget (lbdate);
 	mainLayout->addWidget (dataTable);	
 	mainLayout->addWidget (framebts, 0, Qt::AlignHCenter);
-	
+
 	// taille par défaut pour la 1ère ouverture
 	adjustSize();
 	int w = 800;
