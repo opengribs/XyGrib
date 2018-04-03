@@ -21,12 +21,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 QString styleSheetDef =
         "QStatusBar,"
         "QDialog,"
-/*        "QFrame,"*/
-/*        "QMainWindow, "*/
-        "QMenu, "
+        "QMainWindow,"
+        "QMenu,"
         "QFrame,"
         "QMenuBar"
-/*        "QAbstractScrollArea"*/
 /*        "QDockWidget "*/
         "{color: #cccccc; background: #555555}"
         "QMenuBar::item:selected, QMenu::item::selected {color: #555555; background-color: #cccccc;}"
@@ -38,6 +36,11 @@ QString styleSheetDef =
         "QProgressBar::chunk{background-color: #ff6600; width: 10px; margin: 0.5px;}"
         "QCheckBox{color: #cccccc;}"
         "QToolBar::separator{width: 2px; background: #aaaaaa;}"
+        ;
+
+QString menuStyleSheetDef =
+        "QMenu,QMenuBar{color: #cccccc; background: #555555}"
+        "QMenuBar::item:selected, QMenu::item::selected {color: #555555; background-color: #cccccc;}"
         ;
 
 
