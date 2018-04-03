@@ -7,5 +7,5 @@ So far modifications to the last zyGrib version include:
 - Addition of Grib2 handling for wave data
 - Enabling of Gusts at both surface or 10 meters
 - Name change of the application to XyGrib
-
+- Inclusion of Norwegian Meteorological Institute and NRK Gribs
 
