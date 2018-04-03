@@ -5,7 +5,7 @@ QT += widgets xml
 QT += printsupport
 
 TEMPLATE = app
-TARGET   = xyGrib
+TARGET   = XyGrib
 
 DEPENDPATH  += . util map GUI
 INCLUDEPATH += . util map GUI curvedrawer qwt-6.1.3/src g2clib
