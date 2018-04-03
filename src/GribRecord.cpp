@@ -97,7 +97,7 @@ void  GribRecord::translateDataType ()
 	// CEP navimail
 	//------------------------
 	else if (   
-			    (idCenter==85 && idModel==1 && idGrid==255)
+                (idCenter==85 && idModel==1 && idGrid==255)
 	) {
 		dataCenterModel = NORWAY_METNO;
 	}
@@ -108,8 +108,9 @@ void  GribRecord::translateDataType ()
 			    (idCenter==88 && idModel==255 && idGrid==255)
 			 || (idCenter==88 && idModel==230 && idGrid==255)
 			 || (idCenter==88 && idModel==200 && idGrid==255)
-			 || (idCenter==88 && idModel==67 && idGrid==255)
-	) {
+             || (idCenter==88 && idModel==67 && idGrid==255)
+             || (idCenter==88 && idModel==127 && idGrid==255)
+    ) {
 		dataCenterModel = NORWAY_METNO;
 	}
 	//------------------------
