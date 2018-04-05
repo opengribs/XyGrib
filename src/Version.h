@@ -24,11 +24,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define XYGRIB_VERSION_DATE  "2018-04-03"
 
 #if defined(Q_OS_WIN32)
-    #define XYGRIB_APP_NAME   "xyGrib_win"
+    #define XYGRIB_APP_NAME   "XyGrib_win"
 #elif defined(Q_OS_MAC)
-    #define XYGRIB_APP_NAME   "xyGrib_mac"
+    #define XYGRIB_APP_NAME   "XyGrib_mac"
 #else
-    #define XYGRIB_APP_NAME   "xyGrib_unx"
+    #define XYGRIB_APP_NAME   "XyGrib_unx"
 #endif
 
 // kept for backward compatibility with zGrib
@@ -58,7 +58,7 @@ class Version {
             return QString(XYGRIB_VERSION_DATE);
         }
         static QString getShortName() {
-            return QString( "xyGrib-"+getVersion() );
+            return QString( "XyGrib-"+getVersion() );
         }
         static QString getCompleteName() {
             return QString( getAppName()+"-"+getVersion() );
