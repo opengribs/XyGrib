@@ -9,7 +9,7 @@
 MAKEFILE      = Makefile
 
 first: make_first
-QMAKE         = /home/jzaninet/Qt5.7.0/5.7/gcc_64/bin/qmake
+QMAKE         = /usr/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
 MKDIR         = mkdir -p
