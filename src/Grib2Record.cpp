@@ -352,6 +352,9 @@ void Grib2Record::readAltitude (gribfield *gfld)
 		levelType = LV_CLOUD_HIG_TOP;
 	else if (surfaceType1==234)
 		levelType = LV_CLOUD_HIG_LAYER;
+    // current levels below sea surface
+    else if (surfaceType1==160)
+        levelType = LV_BLW_SURF;
 	// Ignored level types
 	else if (surfaceType1==106)
 		levelType = LV_TYPE_NOT_DEFINED;  // Depth Below Land Surface

@@ -251,7 +251,7 @@ class GriddedPlotter :
         int    currentArrowSpaceOnGrid;  // distance mini entre flèches si affichage sur grille
 
         void    drawWindArrow (QPainter &pnt, int i, int j, double vx, double vy);
-        void    drawWaveArrow (QPainter &pnt, int i, int j, double dir, double period);
+        void    drawWaveArrow (QPainter &pnt, int i, int j, double dir);
         void    drawCurrentArrow (QPainter &pnt, int i, int j, double vx, double vy);
 
 		//-----------------------------------------------------------------

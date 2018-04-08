@@ -441,10 +441,22 @@ void MapDrawer::draw_MeteoData_Gridded
 
 	if (showCurrentArrows) {
 		hasCurrentForArrows = true;
-		if (plotter->hasData (DataCode(GRB_PRV_CUR_XY2D, LV_GND_SURF,0))) {
-			currentArrowsAltitude = Altitude (LV_GND_SURF,0);
-		}
-		else {
+        if (plotter->hasData (DataCode(GRB_PRV_CUR_XY2D, LV_GND_SURF,0))) {
+            currentArrowsAltitude = Altitude (LV_GND_SURF,0);
+        } else if (plotter->hasData (DataCode(GRB_PRV_CUR_XY2D, LV_BLW_SURF,1))) {
+            currentArrowsAltitude = Altitude (LV_BLW_SURF,1);
+            colorMapData.levelType = LV_BLW_SURF;
+            colorMapData.levelValue = 1;
+        } else if (plotter->hasData (DataCode(GRB_PRV_CUR_XY2D, LV_BLW_SURF,2))) {
+            currentArrowsAltitude = Altitude (LV_BLW_SURF,2);
+            colorMapData.levelType = LV_BLW_SURF;
+            colorMapData.levelValue = 2;
+        } else if (plotter->hasData (DataCode(GRB_PRV_CUR_XY2D, LV_BLW_SURF,3))) {
+            currentArrowsAltitude = Altitude (LV_BLW_SURF,3);
+            colorMapData.levelType = LV_BLW_SURF;
+            colorMapData.levelValue = 3;
+        }
+        else {
 			hasCurrentForArrows = false;
 		}
 	}

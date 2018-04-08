@@ -98,8 +98,10 @@ void GriddedPlotter::drawTransformedLine( QPainter &pnt,
         pnt.drawLine(ii, jj, kk, ll);
 }
 //-----------------------------------------------------------------------------
-void GriddedPlotter::drawWaveArrow (QPainter &pnt, 
-			int i, int j, double dir, double /*period*/)
+//void GriddedPlotter::drawWaveArrow (QPainter &pnt,
+//			int i, int j, double dir, double /*period*/)
+void GriddedPlotter::drawWaveArrow (QPainter &pnt,
+            int i, int j, double dir)
 {
     double ang = (dir-90)/180.0*M_PI;
     double si=sin(ang),  co=cos(ang);

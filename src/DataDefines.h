@@ -116,6 +116,7 @@ enum DataCenterModel {
 // Levels types (altitude reference)
 //--------------------------------------------------------
 #define LV_GND_SURF    1
+#define LV_BLW_SURF  160
 #define LV_ISOTHERM0   4
 #define LV_ISOBARIC  100    // hPa
 #define LV_MSL       102

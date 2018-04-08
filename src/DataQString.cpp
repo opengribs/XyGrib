@@ -121,6 +121,9 @@ QString AltitudeStr::toStringShort (const Altitude &alt)
 			else
 				res = tr("%1 m ab.MSL").arg(alt.levelValue);
 			break;
+        case  LV_BLW_SURF:
+            res = tr("-%1 m").arg(alt.levelValue);
+            break;
 		case  LV_ABOV_GND:
 			if (alt.levelValue == 0)
 				res = tr("sfc");
