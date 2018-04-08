@@ -432,32 +432,33 @@ void GribPlot::draw_WAVES_Arrows (
     GribRecord *recDir, *recPer;
 	if (dtc.dataType == GRB_PRV_WAV_PRIM) {
 		recDir = gribReader->getRecord (DataCode(GRB_WAV_PRIM_DIR,LV_GND_SURF,0), currentDate);
-		recPer = gribReader->getRecord (DataCode(GRB_WAV_PRIM_PER,LV_GND_SURF,0), currentDate);
+//		recPer = gribReader->getRecord (DataCode(GRB_WAV_PRIM_PER,LV_GND_SURF,0), currentDate);
 	}
 	else if (dtc.dataType == GRB_PRV_WAV_SCDY) {
 		recDir = gribReader->getRecord (DataCode(GRB_WAV_SCDY_DIR,LV_GND_SURF,0), currentDate);
-		recPer = gribReader->getRecord (DataCode(GRB_WAV_SCDY_PER,LV_GND_SURF,0), currentDate);
+//		recPer = gribReader->getRecord (DataCode(GRB_WAV_SCDY_PER,LV_GND_SURF,0), currentDate);
 	}
 	else if (dtc.dataType == GRB_PRV_WAV_MAX) {
 		recDir = gribReader->getRecord (DataCode(GRB_WAV_MAX_DIR,LV_GND_SURF,0), currentDate);
-		recPer = gribReader->getRecord (DataCode(GRB_WAV_MAX_PER,LV_GND_SURF,0), currentDate);
+//		recPer = gribReader->getRecord (DataCode(GRB_WAV_MAX_PER,LV_GND_SURF,0), currentDate);
 	}
 	else if (dtc.dataType == GRB_PRV_WAV_SWL) {
 		recDir = gribReader->getRecord (DataCode(GRB_WAV_SWL_DIR,LV_GND_SURF,0), currentDate);
-		recPer = gribReader->getRecord (DataCode(GRB_WAV_SWL_PER,LV_GND_SURF,0), currentDate);
+//		recPer = gribReader->getRecord (DataCode(GRB_WAV_SWL_PER,LV_GND_SURF,0), currentDate);
 	}
 	else if (dtc.dataType == GRB_PRV_WAV_WND) {
 		recDir = gribReader->getRecord (DataCode(GRB_WAV_WND_DIR,LV_GND_SURF,0), currentDate);
-		recPer = gribReader->getRecord (DataCode(GRB_WAV_WND_PER,LV_GND_SURF,0), currentDate);
+//		recPer = gribReader->getRecord (DataCode(GRB_WAV_WND_PER,LV_GND_SURF,0), currentDate);
 	}
 	else {
 		recDir = recPer = NULL;
 	}
-    if (recDir==NULL || recPer==NULL)
-        return;        
+//    if (recDir==NULL || recPer==NULL)
+    if (recDir==NULL)
+        return;
 	
     int i, j;
-    double x, y, vx, vy;
+    double x, y, vxy, vy;
     int W = proj->getW();
     int H = proj->getH();
     
@@ -487,12 +488,14 @@ void GribPlot::draw_WAVES_Arrows (
 							if (true || abs(j-oldj)>=space)
 							{
 								oldj = j;
-								vx = recDir->getInterpolatedValue(x, y, mustInterpolateValues);
-								vy = recPer->getInterpolatedValue(x, y, mustInterpolateValues);
-								if (vx != GRIB_NOTDEF && vy != GRIB_NOTDEF)
-								{
-									drawWaveArrow (pnt, i,j, vx,vy);
-								}
+                                vxy = recDir->getInterpolatedValue(x, y, mustInterpolateValues);
+//                                vy = recPer->getInterpolatedValue(x, y, mustInterpolateValues);
+//                                if (vxy != GRIB_NOTDEF && vy != GRIB_NOTDEF)
+                                if (vxy != GRIB_NOTDEF)
+                                {
+//                                    drawWaveArrow (pnt, i,j, vxy,vy);
+                                    drawWaveArrow (pnt, i,j, vxy);
+                                }
 							}
 						}
 				}
@@ -510,12 +513,13 @@ void GribPlot::draw_WAVES_Arrows (
 				if (! recDir->isXInMap(x))
 					x += 360.0;   // tour du monde ?
 				if (recDir->isPointInMap(x,y)) {
-					vx = recDir->getInterpolatedValue(x, y, mustInterpolateValues);
-					vy = recPer->getInterpolatedValue(x, y, mustInterpolateValues);
-					if (vx != GRIB_NOTDEF && vy != GRIB_NOTDEF)
+                    vxy = recDir->getInterpolatedValue(x, y, mustInterpolateValues);
+//                    vy = recPer->getInterpolatedValue(x, y, mustInterpolateValues);
+                    if (vxy != GRIB_NOTDEF)
 					{
-						drawWaveArrow (pnt, i,j, vx,vy);
-					}
+//                        drawWaveArrow (pnt, i,j, vx,vy);
+                        drawWaveArrow (pnt, i,j, vxy);
+                    }
 				}
 				//----------------------------------------------------------------------    			
 			}

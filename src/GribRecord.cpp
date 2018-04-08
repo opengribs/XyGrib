@@ -105,11 +105,12 @@ void  GribRecord::translateDataType ()
 	// http://retro.met.no/data/maritim/DNMI-NEurope.grb
 	//------------------------
 	else if (   
-			    (idCenter==88 && idModel==255 && idGrid==255)
-			 || (idCenter==88 && idModel==230 && idGrid==255)
-			 || (idCenter==88 && idModel==200 && idGrid==255)
-             || (idCenter==88 && idModel==67 && idGrid==255)
-             || (idCenter==88 && idModel==127 && idGrid==255)
+//			    (idCenter==88 && idModel==255 && idGrid==255)
+//			 || (idCenter==88 && idModel==230 && idGrid==255)
+//			 || (idCenter==88 && idModel==200 && idGrid==255)
+//             || (idCenter==88 && idModel==67 && idGrid==255)
+//             || (idCenter==88 && idModel==127 && idGrid==255)
+             (idCenter==88 && idGrid==255)
     ) {
 		dataCenterModel = NORWAY_METNO;
 	}
@@ -216,8 +217,9 @@ void  GribRecord::translateDataType ()
 	 || (idCenter==58 && idModel==22 && idGrid==179) // COAMPS
 	 || (idCenter==58 && idModel==22 && idGrid==158) // COAMPS
 	 || (idCenter==58 && idModel==22 && idGrid==255) // COAMPS via Saildocs
-	 || (idCenter==54 && idModel==47 && idGrid==255) // Canada GEM
-	) {
+     || (idCenter==54 && idModel==47 && idGrid==255) // Canada GEM
+     || (idCenter==0 && idModel==0 && idGrid==255) // German Hydrographic Office
+    ) {
 	}
 	//------------------------
 	// Unknown center

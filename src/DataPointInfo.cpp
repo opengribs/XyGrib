@@ -183,13 +183,33 @@ DataPointInfo::DataPointInfo (
 		windDir_gnd = GRIB_NOTDEF;
 	}
 	//-----------------------------------------
-	// Current surface
+    // Current
 	//-----------------------------------------
-	cx = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_CUR_VX,LV_GND_SURF,0), x,y,date);
-	cy = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_CUR_VY,LV_GND_SURF,0), x,y,date);
-	if (cx!=GRIB_NOTDEF && cy!=GRIB_NOTDEF) {
+    cx = reader==NULL ? GRIB_NOTDEF
+            : reader->getDateInterpolatedValue (DataCode(GRB_CUR_VX,LV_GND_SURF,0), x,y,date);
+    if (cx==GRIB_NOTDEF) // if not at surface try at -1m
+        cx = reader==NULL ? GRIB_NOTDEF
+                : reader->getDateInterpolatedValue (DataCode(GRB_CUR_VX,LV_BLW_SURF,1), x,y,date);
+    if (cx==GRIB_NOTDEF) // if not at surface try at -2m
+        cx = reader==NULL ? GRIB_NOTDEF
+                : reader->getDateInterpolatedValue (DataCode(GRB_CUR_VX,LV_BLW_SURF,2), x,y,date);
+    if (cx==GRIB_NOTDEF) // if not at surface try at -3m
+        cx = reader==NULL ? GRIB_NOTDEF
+                : reader->getDateInterpolatedValue (DataCode(GRB_CUR_VX,LV_BLW_SURF,3), x,y,date);
+
+    cy = reader==NULL ? GRIB_NOTDEF
+            : reader->getDateInterpolatedValue (DataCode(GRB_CUR_VY,LV_GND_SURF,0), x,y,date);
+    if (cy==GRIB_NOTDEF) // if not at surface try at -1m
+        cy = reader==NULL ? GRIB_NOTDEF
+                : reader->getDateInterpolatedValue (DataCode(GRB_CUR_VY,LV_BLW_SURF,1), x,y,date);
+    if (cy==GRIB_NOTDEF) // if not at surface try at -2m
+        cy = reader==NULL ? GRIB_NOTDEF
+                : reader->getDateInterpolatedValue (DataCode(GRB_CUR_VY,LV_BLW_SURF,2), x,y,date);
+    if (cy==GRIB_NOTDEF) // if not at surface try at -3m
+        cy = reader==NULL ? GRIB_NOTDEF
+                : reader->getDateInterpolatedValue (DataCode(GRB_CUR_VY,LV_BLW_SURF,3), x,y,date);
+
+    if (cx!=GRIB_NOTDEF && cy!=GRIB_NOTDEF) {
 		currentSpeed = sqrt (cx*cx + cy*cy);
 		currentDir = - atan2 (-cx, cy) *180.0/M_PI;
 		if (currentDir < 0)    currentDir += 360.0;

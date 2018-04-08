@@ -2003,8 +2003,10 @@ void MainWindow::slot_GroupColorMap (QAction *act)
 		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
 			dtc = dtctmp;
 	}
+    // TODO this needs to be fixed there are a number of levels of current
     else if (act == mb->acView_CurrentColors)
     	dtc.set (GRB_PRV_CUR_XY2D,LV_GND_SURF,0);
+
     else if (act == mb->acView_RainColors)
     	dtc.set (GRB_PRECIP_TOT,LV_GND_SURF,0);
     else if (act == mb->acView_CloudColors)
