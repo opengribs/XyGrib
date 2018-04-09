@@ -164,7 +164,6 @@ HEADERS += \
            util/Util.h \
            Version.h \
            util/zuFile.h \
-    stylesheet.h \
     DialogLoadGribMeteoFrance.h \
     MeteoFranceModel.h
 
