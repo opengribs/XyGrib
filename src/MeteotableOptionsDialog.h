@@ -50,6 +50,7 @@ class MeteotableOptionItem
 		bool visible;
 		int  pos;
 		int  interncode;
+
 		
 		static bool lessThan_byPos (MeteotableOptionItem* &a,
 								    MeteotableOptionItem* &b)
@@ -96,6 +97,15 @@ class DialogMeteotableOptions
 		void addData (QString title, 
 					uchar grbtype, uchar leveltype, uint level,
 					bool defaultvis, int defaultpos );
+
+        QString dmoStyleSheet =
+                "QDialog, QFrame, QScrollBar {color: #dddddd; background-color: #555555;} "
+                "QPushButton {background-color: #555555; border-style: outset; border-width: 2px;"
+                            "border-color: #777777; padding: 6px;min-width: 6em; color: #eeeeee;}"
+                "QPushButton:pressed {border-width: 2px; border-style: inset;}"
+                ;
+
+
 };
 
 

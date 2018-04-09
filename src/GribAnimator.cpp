@@ -378,7 +378,9 @@ GribAnimator::GribAnimator (Terrain *terre)
 {
 	setModal(false); 
     setWindowTitle(tr("Animation"));
-	
+    setWindowIcon (QIcon (Util::pathImg("xyGrib_32.xpm")));
+    this->setStyleSheet(animStyleSheet);
+
 	this->terre = terre;
 	this->gribplot = terre->getGriddedPlotter();
 	

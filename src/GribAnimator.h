@@ -139,7 +139,12 @@ class GribAnimator : public QDialog
         int 	nbImages;
         int		speed;
         bool	autoLoop;
-        
+        QString animStyleSheet =
+                "QMainWindow, QFrame, QDialog, QScrollBar {color: #eeeeee; background: #555555}"
+                "QCheckBox{color: #eeeeee;}"
+                "QToolBar::separator{width: 1px; background: #aaaaaa;}"
+                ;
+
         QFrame 			*frameGui;
         QVBoxLayout 	*frameLayout;
         QStackedWidget 	*stackWidgets;

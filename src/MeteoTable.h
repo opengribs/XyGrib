@@ -28,6 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "MeteotableOptionsDialog.h"
 #include "SylkFile.h"
 
+
 //===================================================================
 // MeteoTable : dialog + MeteoTableWidget
 //===================================================================
@@ -59,6 +60,19 @@ class MeteoTableDialog : public QWidget
      	QPushButton *btOptions;
 		
      	QPushButton *btExport;
+
+        QString mtStyleSheet =
+                "#mtd, QScrollBar {color: #cccccc; background-color: #555555;} "
+                 "#mtw {background-color: rgba(255,255,255,0)} "
+                "#lbpos, #lbdate {color: #eeeeee;} "
+                "QPushButton {background-color: #555555; border-style: outset; border-width: 2px;"
+                            "border-color: #777777; padding: 6px;min-width: 6em; color: #eeeeee;}"
+                "QPushButton:pressed {border-width: 2px; border-style: inset;}"
+                ;
+
+
+
+
 		void closeEvent(QCloseEvent *) {delete this;};
 		
 		int  SYLK_addData_gen   (SylkFile &slk, int lig,int col, DataCode dtc);

@@ -486,8 +486,8 @@ QMenu * MenuBar::createPopupBtRight(QWidget *parent)
 	ac_showSkewtDiagram = addAction (popup, tr("SkewT-LogP diagram"),"","","");
 
 	
-	// added by Tim Holtschneider, 05.2010
- 	ac_OpenCurveDrawer = addAction (popup, tr("Plot Data"),"","","");
+    // added by Tim Holtschneider, 05.2010
+    ac_OpenCurveDrawer = addAction (popup, tr("Plot Data"),"","","");
 
 	return popup;
 }

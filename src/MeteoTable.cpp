@@ -39,6 +39,7 @@ QWidget *MeteoTableDialog::createDataTable ()
 	
 	meteoTableWidget = new MeteoTableWidget (plotter, lon,lat, locationName, this);
 	assert (meteoTableWidget);
+    meteoTableWidget->setObjectName("mtw");
 
 	//-------------------------------------
 	// scrollarea containing data area
@@ -108,6 +109,8 @@ MeteoTableDialog::MeteoTableDialog (
 	this->locationName = locationName;
 	optionsDialog = NULL;
 	dataTable = NULL;
+    this->setObjectName("mtd");
+    this->setStyleSheet(mtStyleSheet);
     
     if (!plotter || !plotter->isReaderOk()) {
         QMessageBox::critical (this,
@@ -148,7 +151,7 @@ MeteoTableDialog::MeteoTableDialog (
 		setWindowTitle(locationName);
 		lbpos = new QLabel(tr("Location: <b>") +locationName + "</b> : " + position);
 	}
-	
+    lbpos->setObjectName("lbpos");
 	//------------------------------------------------------------
 	// Dates of the forecast (meteo center dependent)
 	//------------------------------------------------------------
@@ -165,7 +168,7 @@ MeteoTableDialog::MeteoTableDialog (
 					+ Util::formatDateTimeLong(reader->getRefDateForDataCenter(dcm));
 	}
 	QLabel *lbdate = new QLabel(srefdates);
-	
+    lbdate->setObjectName("lbdate");
 	//-------------------------------
 	btClose   = new QPushButton(tr("Close"));
 	btOptions = new QPushButton(tr("Options"));
@@ -197,7 +200,9 @@ MeteoTableDialog::MeteoTableDialog (
 	int w = 800;
 	int h = this->height()+80;
     resize( Util::getSetting("meteoTableDialogSize", QSize(w,h)).toSize() );
-	show();	
+//    this->setStyleSheet(mtStyleSheet);
+    show();
+
 }
 //-----------------------------------------
 MeteoTableDialog::~MeteoTableDialog()

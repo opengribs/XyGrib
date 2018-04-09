@@ -30,7 +30,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "Util.h"
 #include "DataMeteoAbstract.h"
 #include "ColorScale.h"
-#include "stylesheet.h"
+
+#include "Stylesheet.h"
 
 //===========================================================
 int main (int argc, char *argv[])
