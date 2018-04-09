@@ -594,9 +594,9 @@ void MainWindow::createToolBar (bool withmblue)
     toolBar->addSeparator();
     toolBar->addAction(menuBar->acFile_Load_GRIB);
     toolBar->addAction(menuBar->acFile_Load_GRIB_MeteoFrance);
-    toolBar->addSeparator();
 	if (withmblue)
 		toolBar->addAction(menuBar->acMBlueSwiss_Load);
+    toolBar->addSeparator();
     toolBar->addAction(menuBar->acFile_GribServerStatus);
     toolBar->addAction(menuBar->acFile_Info_GRIB);
     toolBar->addSeparator();
