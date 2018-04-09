@@ -17,6 +17,7 @@ win32 {
 	INCLUDEPATH += C:/libs/include/
 #	INCLUDEPATH += C:/mingw/include/
         LIBS += -LC:/libs/lib/
+        LIBS += -Lqwt-6.1.3/lib/ -lqwt
 # -LC:/mingw/lib/
 	DESTDIR = release
         RC_FILE += ../data/img/resource.rc
@@ -24,9 +25,10 @@ win32 {
 else {
 macx {
 	QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.8
-	INCLUDEPATH += /opt/local/include/
+        INCLUDEPATH += /usr/local/include/
 	DESTDIR = ..
-	LIBS += -L/opt/local/lib
+        LIBS += -L/usr/local/lib
+        LIBS += -F/usr/local/lib -framework qwt
 	CONFIG += i386
 	ICON = ../data/img/xyGrib.icns
 }
@@ -36,7 +38,7 @@ else {
 }
 }
 
-LIBS += -lbz2 -lz -lproj -lnova -Lqwt-6.1.3/lib/ -lqwt
+LIBS += -lbz2 -lz -lproj -lnova
 LIBS +=  -Lg2clib -lg2c -lpng -ljasper  # respect order!
 
 # ----------------------------------------------------
