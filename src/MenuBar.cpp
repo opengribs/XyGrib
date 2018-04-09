@@ -59,7 +59,7 @@ MenuBar::MenuBar (QWidget *parent, bool withmblue)
     : QMenuBar (parent)
 {
 #if defined (Q_OS_UNIX)
-	bool native = Util::getSetting("systemNativeMenuBar", false).toBool();
+    bool native = Util::getSetting("systemNativeMenuBar", true).toBool();
 	setNativeMenuBar (native);    // bug with some versions of ubuntu 
 #endif
 
