@@ -1,2 +1,12 @@
-build-xyGrib-Desktop_Qt_5_9_4_MinGW_32bit-Debug
-build-xyGrib-Desktop_Qt_5_9_4_MinGW_32bit-Release
+build-xyGrib*
+cscope.files
+tags
+index.sh
+build
+cscope.out
+*~
+*.kdev*
+*.patch
+.DS_Store
+XyGrib.app
+data/config
