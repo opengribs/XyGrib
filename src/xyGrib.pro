@@ -1,5 +1,5 @@
-CONFIG += qt release c++11
-#CONFIG += qt debug c++11
+#CONFIG += qt release c++11
+CONFIG += qt debug c++11
 
 QT += widgets xml
 QT += printsupport
@@ -166,6 +166,7 @@ HEADERS += \
            util/zuFile.h \
     DialogLoadGribMeteoFrance.h \
     MeteoFranceModel.h
+    Stylesheet.h
 
 SOURCES += \
 			 GUI/PositionEditorWidget.cpp \

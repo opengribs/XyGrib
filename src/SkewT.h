@@ -185,6 +185,13 @@ class SkewTWindow : public QMainWindow
 		QAction *acExit, *acPrint, *acSaveImage, *acExportData;
 		QComboBox *cbTempMax, *cbHpaMin, *cbSizeH, *cbSizeW, *cbConvBase;
 		QCheckBox *chkShowConv;
+
+        QString stStyleSheet =
+                "QMainWindow, QFrame, QDialog, QScrollBar {color: #eeeeee; background: #555555}"
+                "QCheckBox{color: #eeeeee;}"
+                "QToolBar::separator{width: 1px; background: #aaaaaa;}"
+                ;
+
 		
 		void createToolBar ();
 		void resizeEvent (QResizeEvent *);

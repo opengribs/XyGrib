@@ -43,12 +43,12 @@ class CurveDrawerButtonBar : public QToolBar
 public:
 	CurveDrawerButtonBar(QWidget *parent, bool);
 	
-	inline void setChkCurrent(bool btCheck) { acCurrent->setChecked(btCheck); };
+    inline void setChkCurrent(bool btCheck) { acCurrent->setChecked(btCheck); };
 	
 signals:
 	void signalExitClicked();
 	void signalCurrentChecked(bool);
-	void signalFileSelector();
+    void signalFileSelector();
 	
 private:
 	
@@ -125,7 +125,7 @@ private:
 	void	initInterface();
 	bool	privateConstructor();
 	
-	void	closeEvent(QCloseEvent *) {delete this;};
+    void	closeEvent(QCloseEvent *) {delete this;};
     
 	QString	getPlotUnit( const int & );
 	float   convertData( const int&, const float& );
