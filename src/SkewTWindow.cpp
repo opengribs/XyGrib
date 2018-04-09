@@ -5,6 +5,7 @@
 SkewTWindow::SkewTWindow (SkewT *skewt)
 {
 	this->skewt = skewt;
+    this->setStyleSheet(stStyleSheet);
 	createToolBar ();
 	
 	QScrollArea *scrollarea = new QScrollArea (this);
@@ -24,6 +25,8 @@ SkewTWindow::SkewTWindow (SkewT *skewt)
 	
 	skewt->setFocus (Qt::PopupFocusReason);
 	setWindowTitle ("SkewT - "+skewt->getLocation());
+    setWindowIcon (QIcon (Util::pathImg("xyGrib_32.xpm")));
+
 }
 //------------------------------------------------------
 SkewTWindow::~SkewTWindow ()

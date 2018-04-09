@@ -35,6 +35,8 @@ DialogMeteotableOptions::DialogMeteotableOptions()
 {
 	setupUi(this);
 	initInterface();
+
+    this->setStyleSheet(dmoStyleSheet);
     
     connect(btCancel, SIGNAL(clicked()), this, SLOT(slotBtCancel()));
     connect(btOK, SIGNAL(clicked()), this, SLOT(slotBtOK()));

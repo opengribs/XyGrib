@@ -19,28 +19,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define STYLESHEET_H
 
 QString styleSheetDef =
-        "QStatusBar,"
-        "QDialog,"
-        "QMainWindow,"
-        "QMenu,"
-        "QFrame,"
-        "QMenuBar"
-/*        "QDockWidget "*/
-        "{color: #cccccc; background: #555555}"
-        "QMenuBar::item:selected, QMenu::item::selected {color: #555555; background-color: #cccccc;}"
-        "QMenu::separator {height: 2px; background: #777777; margin-left: 10px; margin-right: 5px;}"
+        "QStatusBar, QDialog,QMainWindow, QFrame {color: #eeeeee; background: #555555}"
         "QPushButton {background-color: #555555; border-style: outset; border-width: 2px;"
-                    "border-color: #777777; padding: 6px;min-width: 6em; color: #cccccc;}"
+                    "border-color: #777777; padding: 6px;min-width: 6em; color: #eeeeee;}"
         "QPushButton:pressed {border-width: 2px; border-style: inset;}"
         "QProgressBar{border: 2px solid grey; border-radius: 5px; text-align: center;}"
         "QProgressBar::chunk{background-color: #ff6600; width: 10px; margin: 0.5px;}"
-        "QCheckBox{color: #cccccc;}"
+        "QCheckBox, QRadioButton{color: #eeeeee;}"
         "QToolBar::separator{width: 2px; background: #aaaaaa;}"
         ;
 
 QString menuStyleSheetDef =
-        "QMenu,QMenuBar{color: #cccccc; background: #555555}"
-        "QMenuBar::item:selected, QMenu::item::selected {color: #555555; background-color: #cccccc;}"
+        "QMenu,QMenuBar{color: #eeeeee; background: #555555}"
+        "QMenuBar::item:selected, QMenu::item::selected {color: #555555; background-color: #dddddd;}"
+        "QMenu::item:disabled {color: #aaaaaa;}"
         ;
 
 

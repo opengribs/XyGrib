@@ -421,15 +421,16 @@ void BoardPanel::updateLabelsSizes()
     lbSnowCateg.setFrameStyle(style);
     lbSnowCateg.setMinimumWidth( fmt.width(strlong) );
 
+    //added by david
+    lbReflect.setFrameStyle(style);
+    lbReflect.setMinimumWidth( fmt.width(strlong) );
+
     strlong = "888888";
     lbCAPEsfc.setFrameStyle(style);
     lbCAPEsfc.setMinimumWidth( fmt.width(strlong) );
     lbCINsfc.setFrameStyle(style);
     lbCINsfc.setMinimumWidth( fmt.width(strlong) );
 
-    //added by david
-    lbReflect.setFrameStyle(style);
-    lbReflect.setMinimumWidth( fmt.width(strlong) );
 
 	
 	// Altitude : hPa Geopot Temp Theta-e
@@ -617,9 +618,9 @@ void BoardPanel::createInterface ()
 	cellHumidRel = new BoardPanelCell (mainFrame, mainFrameLay);
 	cellIsotherm0 = new BoardPanelCell (mainFrame, mainFrameLay);
 	cellSnowDepth = new BoardPanelCell (mainFrame, mainFrameLay);
-	cellCAPECIN = new BoardPanelCell (mainFrame, mainFrameLay);
     // added by david
     cellReflect = new BoardPanelCell (mainFrame, mainFrameLay);
+    cellCAPECIN = new BoardPanelCell (mainFrame, mainFrameLay);
 	cellAltitude = new BoardPanelCell (mainFrame, mainFrameLay);
 	cellWaves = new BoardPanelCell (mainFrame, mainFrameLay);
 		
@@ -697,6 +698,12 @@ void BoardPanel::createInterface ()
         hlay->addWidget(&lbSnowDepth, 0, Qt::AlignRight);
         cellSnowDepth->setLayout(hlay);
 
+    // added by david
+    hlay = newQHBoxLayout ();
+        hlay->addWidget(new QLabel(tr("Composite Reflectivity")), 10, Qt::AlignRight);
+        hlay->addWidget(&lbReflect, 0, Qt::AlignRight);
+        cellReflect->setLayout(hlay);
+
     hlay = newQHBoxLayout ();
 		hlay->addStretch (100);
         hlay->addWidget(new QLabel(tr("CAPE")), 10, Qt::AlignRight);
@@ -705,12 +712,6 @@ void BoardPanel::createInterface ()
         hlay->addWidget(&lbCINsfc, 0, Qt::AlignRight);
         hlay->addWidget(new QLabel(tr("J/Kg")), 10, Qt::AlignRight);
         cellCAPECIN->setLayout(hlay);
-
-    // added by david
-    hlay = newQHBoxLayout ();
-        hlay->addWidget(new QLabel(tr("Composite Reflectivity")), 10, Qt::AlignRight);
-        hlay->addWidget(&lbReflect, 0, Qt::AlignRight);
-        cellReflect->setLayout(hlay);
 
 
     //--------------------------

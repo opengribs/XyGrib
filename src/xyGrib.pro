@@ -1,5 +1,5 @@
-CONFIG += qt release c++11
-#CONFIG += qt debug c++11
+#CONFIG += qt release c++11
+CONFIG += qt debug c++11
 
 QT += widgets xml
 QT += printsupport
@@ -162,7 +162,7 @@ HEADERS += \
            util/Util.h \
            Version.h \
            util/zuFile.h \
-    stylesheet.h
+    Stylesheet.h
 
 SOURCES += \
 			 GUI/PositionEditorWidget.cpp \
