@@ -164,7 +164,9 @@ HEADERS += \
            util/Util.h \
            Version.h \
            util/zuFile.h \
-    stylesheet.h
+    stylesheet.h \
+    DialogLoadGribMeteoFrance.h \
+    MeteoFranceModel.h
 
 SOURCES += \
 			 GUI/PositionEditorWidget.cpp \
@@ -244,6 +246,11 @@ SOURCES += \
            Terrain.cpp \
            Therm.cpp \
            util/Util.cpp \
-           util/zuFile.cpp
+           util/zuFile.cpp \
+    DialogLoadGribMeteoFrance.cpp \
+    MeteoFranceModel.cpp
+
+FORMS += \
+    GUI/LoadGribMeteoFranceDialog.ui
 
 
