@@ -172,7 +172,9 @@ void MainWindow::InitActionsStatus ()
 
     menuBar->acView_CurrentArrowsOnGribGrid->setChecked(Util::getSetting("currentArrowsOnGribGrid", false).toBool());
 
-	menuBar->acOptions_DateChooser->setChecked(Util::getSetting("showDateChooser", true).toBool());
+    menuBar->acOptions_DateChooser->setChecked(Util::getSetting("showDateChooser", true).toBool());
+
+    menuBar->acOptions_DarkSkin->setChecked(Util::getSetting("showDarkSkin", true).toBool());
 
     //----------------------------------------------------------------------
 	// Set map quality
@@ -407,6 +409,8 @@ mb->acMap_SelectMETARs->setVisible (false);	// TODO
     connect(mb->acOptions_Language, SIGNAL(triggered()),
             this, SLOT(slotOptions_Language()));
 
+    connect(mb->acOptions_DarkSkin, SIGNAL(triggered(bool)), this, SLOT(slotChangeSkin(bool)));
+
     //-------------------------------------------------------
     connect(mb->acHelp_Help, SIGNAL(triggered()), this, SLOT(slotHelp_Help()));
     connect(mb->acHelp_APropos, SIGNAL(triggered()), this, SLOT(slotHelp_APropos()));
@@ -447,8 +451,8 @@ mb->acMap_SelectMETARs->setVisible (false);	// TODO
     //-----------------------------------------------------------
 	// added by Tim Holtschneider, 05.2010
 	// extra context menu for data plot
-	if (mb->ac_OpenCurveDrawer)
- 		connect(mb->ac_OpenCurveDrawer, SIGNAL(triggered()), this, SLOT(slotOpenCurveDrawer()));
+//	if (mb->ac_OpenCurveDrawer)
+// 		connect(mb->ac_OpenCurveDrawer, SIGNAL(triggered()), this, SLOT(slotOpenCurveDrawer()));
 	
 }
 
@@ -1143,23 +1147,23 @@ void MainWindow::slotOpenMeteotable ()
 //-------------------------------------------------
 // added by Tim Holtschneider, 05.2010
 // slot for extra context menu entry to plot data in a graph
-void MainWindow::slotOpenCurveDrawer()
-{
-	double lon, lat;
-	if( GLOB_listSelectedPOI.empty() ) {
-		proj->screen2map(mouseClicX, mouseClicY, &lon, &lat);
-		new CurveDrawer( terre->getGriddedPlotter(), lon, lat);
-	} else if( GLOB_listSelectedPOI.size() == 1 ) {
-		new CurveDrawer( terre->getGriddedPlotter(), GLOB_listSelectedPOI.first()->getLongitude(),
-													 GLOB_listSelectedPOI.first()->getLatitude());
-	} else  if( GLOB_listSelectedPOI.size() >= 2 ) {
-		// OpenCPN
-//		new CurveDrawer( terre->getGriddedPlotter(), this );		
-	} else {
-		QMessageBox::warning( this, tr("Currently it is only possible to select 1 POI for data plot.\nUnselected by left click in map holding shift at the same time"), 
-									tr("Currently it is only possible to select 1 POI for data plot.\nUnselected by left click in map holding shift at the same time") );
-	}
-}
+//void MainWindow::slotOpenCurveDrawer()
+//{
+//	double lon, lat;
+//	if( GLOB_listSelectedPOI.empty() ) {
+//		proj->screen2map(mouseClicX, mouseClicY, &lon, &lat);
+//		new CurveDrawer( terre->getGriddedPlotter(), lon, lat);
+//	} else if( GLOB_listSelectedPOI.size() == 1 ) {
+//		new CurveDrawer( terre->getGriddedPlotter(), GLOB_listSelectedPOI.first()->getLongitude(),
+//													 GLOB_listSelectedPOI.first()->getLatitude());
+//	} else  if( GLOB_listSelectedPOI.size() >= 2 ) {
+//		// OpenCPN
+////		new CurveDrawer( terre->getGriddedPlotter(), this );
+//	} else {
+//		QMessageBox::warning( this, tr("Currently it is only possible to select 1 POI for data plot.\nUnselected by left click in map holding shift at the same time"),
+//									tr("Currently it is only possible to select 1 POI for data plot.\nUnselected by left click in map holding shift at the same time") );
+//	}
+//}
 //-------------------------------------------------
 void MainWindow::slotOpenAngleConverter()
 {
@@ -1750,8 +1754,8 @@ void MainWindow::slotDateChooserChanged (time_t date, bool isMoving)
 //-------------------------------------------------
 void MainWindow::slotShowDateChooser (bool b)
 {
-	dateChooser->setVisible (b);
-	Util::setSetting ("showDateChooser", b);
+    dateChooser->setVisible (b);
+    Util::setSetting ("showDateChooser", b);
 }
 //-------------------------------------------------
 void MainWindow::slotShowColorScale (bool b)
@@ -1774,6 +1778,18 @@ void MainWindow::slotWindArrows(bool b)
 {
     // pas de barbules sans flèches
     menuBar->acView_Barbules->setEnabled(b);
+}
+//-------------------------------------------------
+void MainWindow::slotChangeSkin(bool b)
+{
+    if (b){
+        Util::setSetting("showDarkSkin", true);
+    } else {
+        Util::setSetting("showDarkSkin", false);
+    }
+    QMessageBox::information(this,tr("Change Skin"),
+                             tr("For skin change to take effect XyGrib needs to be restarted"));
+
 }
 //-------------------------------------------------
 void MainWindow::statusBar_showSelectedZone()

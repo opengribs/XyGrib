@@ -61,6 +61,11 @@ DialogServerStatus::DialogServerStatus
     btOK     = new QPushButton(tr("Ok"), this);
     layout->addWidget( btOK,    lig,0);
 
+    if (Util::getSetting("showDarkSkin", true).toBool())
+        this->setStyleSheet(sstStyleSheet);
+
+
+
 	//===============================================================
     connect(btOK, SIGNAL(clicked()), this, SLOT(slotBtOK()));
     //===============================================================

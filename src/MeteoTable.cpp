@@ -110,7 +110,8 @@ MeteoTableDialog::MeteoTableDialog (
 	optionsDialog = NULL;
 	dataTable = NULL;
     this->setObjectName("mtd");
-    this->setStyleSheet(mtStyleSheet);
+    if (Util::getSetting("showDarkSkin", true).toBool())
+        this->setStyleSheet(mtStyleSheet);
     
     if (!plotter || !plotter->isReaderOk()) {
         QMessageBox::critical (this,
@@ -200,7 +201,6 @@ MeteoTableDialog::MeteoTableDialog (
 	int w = 800;
 	int h = this->height()+80;
     resize( Util::getSetting("meteoTableDialogSize", QSize(w,h)).toSize() );
-//    this->setStyleSheet(mtStyleSheet);
     show();
 
 }

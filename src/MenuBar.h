@@ -76,7 +76,7 @@ public:
     // Elements de l'interface (public c'est plus pratique)
     //---------------------------------------------------------
     QAction *ac_OpenMeteotable;
-	QAction *ac_OpenCurveDrawer;	// added by Tim Holtschneider, 05.2010
+//	QAction *ac_OpenCurveDrawer;	// added by Tim Holtschneider, 05.2010
     QAction *ac_CreatePOI;
     QAction *ac_CreateAnimation;
     QAction *ac_ExportImage;
@@ -300,6 +300,9 @@ public:
     QAction *acOptions_Units;
     QAction *acOptions_DateChooser;
     QAction *acOptions_Fonts;
+    // for dark skin
+    QAction *acOptions_DarkSkin;
+
     QAction *acOptions_GraphicsParams;
     QAction *acOptions_Language;
 

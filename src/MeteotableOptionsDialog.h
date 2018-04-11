@@ -99,10 +99,12 @@ class DialogMeteotableOptions
 					bool defaultvis, int defaultpos );
 
         QString dmoStyleSheet =
-                "QDialog, QFrame, QScrollBar {color: #dddddd; background-color: #555555;} "
-                "QPushButton {background-color: #555555; border-style: outset; border-width: 2px;"
-                            "border-color: #777777; padding: 6px;min-width: 6em; color: #eeeeee;}"
+                "QDialog, QFrame, QScrollBar {color: #dddddd; background-color: #666666;} "
+                "QPushButton {background-color: #666666; border-style: outset; border-width: 2px;"
+                            "border-color: #777777; padding: 6px;min-width: 6em; color: #ffffff;}"
                 "QPushButton:pressed {border-width: 2px; border-style: inset;}"
+                "QListView {background-color: #777777;}"
+                "QCheckBox, QRadioButton{color: #ffffff; background-color: #666666}"
                 ;
 
 

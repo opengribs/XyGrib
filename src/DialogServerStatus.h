@@ -79,6 +79,14 @@ class DialogServerStatus : public  DialogBoxBase
         
         QLabel *lbMessage;
         QFrame * createFrameGui(QWidget *parent);
+
+        QString sstStyleSheet =
+                "QDialog, QFrame, QScrollBar {color: #dddddd; background-color: #666666;} "
+                "QPushButton {background-color: #666666; border-style: outset; border-width: 2px;"
+                            "border-color: #777777; padding: 6px;min-width: 6em; color: #ffffff;}"
+                "QPushButton:pressed {border-width: 2px; border-style: inset;}"
+                ;
+
 };
 
 
