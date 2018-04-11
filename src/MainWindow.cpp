@@ -40,7 +40,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "Version.h"
 #include "AngleConverterDialog.h"
 #include "DataQString.h"
-#include "CurveDrawer.h"
+//#include "CurveDrawer.h"
 
 
 //-----------------------------------------------------------
