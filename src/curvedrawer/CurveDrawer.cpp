@@ -27,7 +27,7 @@ CurveDrawer::CurveDrawer( GriddedPlotter *plotter,
 	setProperty ("objectType", "CurveDrawer");
 	setFocusPolicy(Qt::StrongFocus);
     setWindowIcon (QIcon (Util::pathImg("xyGrib_32.xpm")));
-	initObj();
+    initObj();
 
 	this->plotter	= plotter;
 	this->lonStart	= lon;
@@ -897,7 +897,7 @@ CurveDrawerButtonBar::CurveDrawerButtonBar(QWidget *parent, bool bSingle)
 : QToolBar(parent)
 {
 	this->setFloatable( false );
-	this->setMovable( false );
+    this->setMovable( false );
 	
     acExit = new QAction(this);
     acExit->setToolTip (tr("Close the window"));

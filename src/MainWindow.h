@@ -74,7 +74,7 @@ class MainWindow: public QMainWindow
 		void slotGenericAction ();
 		
         void slotOpenMeteotable ();
- 		void slotOpenCurveDrawer ();		// added by Tim Holtschneider, 05.2010
+// 		void slotOpenCurveDrawer ();		// added by Tim Holtschneider, 05.2010
         void slotCreatePOI ();
         void slotCreateAnimation ();
         void slotExportImage ();
@@ -127,6 +127,9 @@ class MainWindow: public QMainWindow
 		void updateGraphicsParameters ();
         void slotWindArrows (bool b);
         void slotChangeFonts ();
+
+        void slotChangeSkin (bool b);
+
 		void slotShowDateChooser (bool b);
 		void slotShowColorScale (bool b);
 		void slotShowBoardPanel (bool b);

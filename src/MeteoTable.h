@@ -62,11 +62,11 @@ class MeteoTableDialog : public QWidget
      	QPushButton *btExport;
 
         QString mtStyleSheet =
-                "#mtd, QScrollBar {color: #cccccc; background-color: #555555;} "
+                "#mtd, QScrollBar {color: #cccccc; background-color: #666666;} "
                  "#mtw {background-color: rgba(255,255,255,0)} "
-                "#lbpos, #lbdate {color: #eeeeee;} "
-                "QPushButton {background-color: #555555; border-style: outset; border-width: 2px;"
-                            "border-color: #777777; padding: 6px;min-width: 6em; color: #eeeeee;}"
+                "#lbpos, #lbdate {color: #ffffff;} "
+                "QPushButton {background-color: #666666; border-style: outset; border-width: 2px;"
+                            "border-color: #777777; padding: 6px;min-width: 6em; color: #ffffff;}"
                 "QPushButton:pressed {border-width: 2px; border-style: inset;}"
                 ;
 

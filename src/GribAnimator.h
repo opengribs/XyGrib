@@ -140,9 +140,11 @@ class GribAnimator : public QDialog
         int		speed;
         bool	autoLoop;
         QString animStyleSheet =
-                "QMainWindow, QFrame, QDialog, QScrollBar {color: #eeeeee; background: #555555}"
-                "QCheckBox{color: #eeeeee;}"
+                "QMainWindow, QFrame, QDialog, QScrollBar {color: #ffffff; background: #666666}"
+                "QCheckBox{color: #ffffff;}"
                 "QToolBar::separator{width: 1px; background: #aaaaaa;}"
+                "QProgressBar{border: 2px solid grey; border-radius: 5px; text-align: center;}"
+                "QProgressBar::chunk{background-color: #ff6600; width: 10px; margin: 0.5px;}"
                 ;
 
         QFrame 			*frameGui;

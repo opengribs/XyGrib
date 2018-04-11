@@ -5,7 +5,9 @@
 SkewTWindow::SkewTWindow (SkewT *skewt)
 {
 	this->skewt = skewt;
-    this->setStyleSheet(stStyleSheet);
+    //dark skin?
+    if (Util::getSetting("showDarkSkin", true).toBool())
+        this->setStyleSheet(stStyleSheet);
 	createToolBar ();
 	
 	QScrollArea *scrollarea = new QScrollArea (this);

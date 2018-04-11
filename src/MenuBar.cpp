@@ -414,7 +414,10 @@ MenuBar::MenuBar (QWidget *parent, bool withmblue)
         acOptions_Units = addAction (menuOptions,
         				tr("Units"), tr("Ctrl+U"), "","");
         acOptions_Fonts = addAction (menuOptions,
-        				tr("Fonts"), tr("Ctrl+E"), "","");
+                        tr("Fonts"), tr("Ctrl+E"), "","");
+        // for dark skin selection
+        acOptions_DarkSkin = addActionCheck (menuOptions,
+                        tr("Dark Skin"), "", "","");
         acOptions_GraphicsParams = addAction (menuOptions,
 						tr("Graphical parameters"), tr("Ctrl+G"), "","");
 		//----------------------------------------------------
@@ -487,7 +490,7 @@ QMenu * MenuBar::createPopupBtRight(QWidget *parent)
 
 	
     // added by Tim Holtschneider, 05.2010
-    ac_OpenCurveDrawer = addAction (popup, tr("Plot Data"),"","","");
+//    ac_OpenCurveDrawer = addAction (popup, tr("Plot Data"),"","","");
 
 	return popup;
 }
