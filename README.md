@@ -9,4 +9,7 @@ Changes this far since forking:
 - Name change of the application to XyGrib
 - Inclusion of Norwegian Meteorological Institute and NRK Gribs
 - Inclusion of German Hydrographic Office current gribs
+- Switchable dark/light skin (in Options menu)
+- Help points to Wiki (WIP)
+
 
