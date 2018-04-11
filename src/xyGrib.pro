@@ -89,9 +89,6 @@ HEADERS += \
 			GUI/TextStyleEditorWidget.h \
 		 	GUI/AngleConverterWidget.h \
 		 	GUI/AngleConverterDialog.h \
-			curvedrawer/BoatSpeed.h \
-			curvedrawer/CurveDrawer.h \
-			curvedrawer/CustomQwtClasses.h \
 		   Astro.h \
            BoardPanel.h \
 		   ColorScale.h \
@@ -171,9 +168,6 @@ SOURCES += \
 			 GUI/TextStyleEditorWidget.cpp \
 		 	 GUI/AngleConverterWidget.cpp \
 		 	 GUI/AngleConverterDialog.cpp \
-				curvedrawer/BoatSpeed.cpp \
-				curvedrawer/CurveDrawer.cpp \
-				curvedrawer/CustomQwtClasses.cpp \
 		Astro.cpp \
         MbzFile.cpp \
 		MblueRecord.cpp \
