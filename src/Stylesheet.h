@@ -1,5 +1,5 @@
 /**********************************************************************
-xyGrib: meteorological GRIB file viewer
+XyGrib: meteorological GRIB file viewer
 Created by David Gal
 
 This program is free software: you can redistribute it and/or modify

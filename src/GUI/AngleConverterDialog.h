@@ -1,5 +1,5 @@
 /**********************************************************************
-xyGrib: meteorological GRIB file viewer
+XyGrib: meteorological GRIB file viewer
 Copyright (C) 2008 - Jacques Zaninetti - http://www.zygrib.org
 
 This program is free software: you can redistribute it and/or modify

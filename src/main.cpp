@@ -1,5 +1,5 @@
 /**********************************************************************
-xyGrib: meteorological GRIB file viewer
+XyGrib: meteorological GRIB file viewer
 Copyright (C) 2008-2012 - Jacques Zaninetti - http://www.zygrib.org
 
 This program is free software: you can redistribute it and/or modify
@@ -132,7 +132,7 @@ int main (int argc, char *argv[])
     QString lang = Util::getSetting("appLanguage", "").toString();
     if (lang == "") {
 		//----------------------------------------------------------
-        // first call of xyGrib : choice language
+        // first call of XyGrib : choice language
 		//----------------------------------------------------------
 		DialogChooseLang langChooser (NULL, "");
 		langChooser.exec ();
