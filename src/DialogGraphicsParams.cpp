@@ -1,5 +1,5 @@
 /**********************************************************************
-xyGrib: meteorological GRIB file viewer
+XyGrib: meteorological GRIB file viewer
 Copyright (C) 2008-2012 - Jacques Zaninetti - http://www.zygrib.org
 
 This program is free software: you can redistribute it and/or modify
@@ -32,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //===========================================================================
 DialogChooseLang::DialogChooseLang (QWidget *parent, QString defaultlang)
 		: DialogBoxColumn ( parent, 1, 
-                            "Welcome to xyGrib",
+                            "Welcome to XyGrib",
 						    "Choose your language",   
 						   1 )
 {

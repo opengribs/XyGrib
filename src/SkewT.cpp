@@ -961,7 +961,7 @@ void  SkewT::draw_comments (QPainter &pnt)
 	QString dat = tr("Date: ")+curdate;
 	pnt.drawText (W/2, 2*fh, dat);
 	//-------------------------------------------------------
-    pnt.drawText (W-fmet.width("xyGrib")-5, H-5, "xyGrib");
+    pnt.drawText (W-fmet.width("XyGrib")-5, H-5, "XyGrib");
 	//-------------------------------------------------------
 	QFont font = pnt.font();
 	font.setFamily ("times");

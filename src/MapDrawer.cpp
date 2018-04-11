@@ -1,5 +1,5 @@
 /**********************************************************************
-xyGrib: meteorological GRIB file viewer
+XyGrib: meteorological GRIB file viewer
 Copyright (C) 2008-2012 - Jacques Zaninetti - http://www.zygrib.org
 
 This program is free software: you can redistribute it and/or modify
@@ -791,9 +791,9 @@ void MapDrawer::draw_Cartouche_Gridded
 			}
 		}
 		//--------------------------------------------------
-        // Signature xyGrib (coin bas droite)
+        // Signature XyGrib (coin bas droite)
 		//--------------------------------------------------
-        QString sign = tr("xyGrib");
+        QString sign = tr("XyGrib");
         pnt.setFont(fontsign);
 		w = fmsign.width(sign)+5;
 		dy = fontsign.pointSize()+1;
@@ -915,9 +915,9 @@ void MapDrawer::draw_Cartouche_IAC (QPainter &pnt, const Projection *proj, IacPl
         	pnt.drawText(x+3, y+3*dy+2, lig3);	// type of color map
 		}
 		//--------------------------------------------------
-        // Signature xyGrib (coin bas droite)
+        // Signature XyGrib (coin bas droite)
 		//--------------------------------------------------
-        lig1 = tr("xyGrib");
+        lig1 = tr("XyGrib");
         pnt.setFont(fontsign);
         w = fmsign.width(lig1)+5;
 		dy = fontsign.pointSize()+1;

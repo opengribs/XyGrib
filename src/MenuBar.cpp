@@ -1,5 +1,5 @@
 /**********************************************************************
-xyGrib: meteorological GRIB file viewer
+XyGrib: meteorological GRIB file viewer
 Copyright (C) 2008-2012 - Jacques Zaninetti - http://www.zygrib.org
 
 This program is free software: you can redistribute it and/or modify
@@ -432,7 +432,7 @@ MenuBar::MenuBar (QWidget *parent, bool withmblue)
         acHelp_Help = addAction (menuHelp,
         				tr("Help"), tr("Ctrl+H"),
         				"",Util::pathImg("help.png"));
-        acHelp_APropos = addAction (menuHelp, tr("About xyGrib"),"","","");
+        acHelp_APropos = addAction (menuHelp, tr("About XyGrib"),"","","");
         acHelp_AProposQT = addAction (menuHelp, tr("About QT"),"","","");
 
     //======================================================================

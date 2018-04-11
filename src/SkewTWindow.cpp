@@ -257,7 +257,7 @@ void SkewTWindow::actionsCommonSlot ()
 		{
 			if (! fileName.endsWith(".slk", Qt::CaseInsensitive))
 				fileName += ".slk";
-            SylkFile slk (fileName, "xyGrib");
+            SylkFile slk (fileName, "XyGrib");
 			if (slk.isOk()) {
 				Util::setSetting("slkFilePath", slk.getFileInfo().absolutePath() );
 				saveFileSYLK (slk);
@@ -276,7 +276,7 @@ void SkewTWindow::saveFileSYLK (SylkFile &slk)
 {
 	int lig, col;
 	lig = 1;
-    slk.addCell (lig++, 1, "xyGrib - SkewT data");
+    slk.addCell (lig++, 1, "XyGrib - SkewT data");
 	if (! skewt) {
 		slk.addCell (lig++, 1, "No data");
 		return;

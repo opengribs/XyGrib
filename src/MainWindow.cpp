@@ -1,5 +1,5 @@
 /**********************************************************************
-xyGrib: meteorological GRIB file viewer
+XyGrib: meteorological GRIB file viewer
 Copyright (C) 2008-2012 - Jacques Zaninetti - http://www.zygrib.org
 
 This program is free software: you can redistribute it and/or modify
@@ -27,6 +27,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QComboBox>
+#include <QDesktopServices>
+#include <QUrl>
 
 #include "MainWindow.h"
 #include "MeteoTable.h"
@@ -1431,32 +1433,25 @@ void MainWindow::slotGroupLinesThetaE (QAction *ac)
 
 //-------------------------------------------------
 void MainWindow::slotHelp_Help() {
-    QMessageBox::question (this,
-            tr("Help"),
-            tr("Any question ?"));
 
-    QString coderand = QDateTime::currentDateTime().toString("yyyymmsszzz");
+    QString link = "https://github.com/opengribs/XyGrib/wiki/XyGrib-User-Manual";
+    QDesktopServices::openUrl(QUrl(link));
+
+    return;
 
     QMessageBox::information (this,
             tr("Help"),
-            tr("Congratulation, your request has been registred.\n")
-            +tr("Reference :") + coderand
-            +"\n\n"
-            +tr("We will contact you as soon as possible... perhaps.")
-            +"\n\n"
-            +tr("In the meantime, try to press randomly keys of the keyboard, ")
-            +tr("or move the mouse and from time to time ")
-            +tr("press one button, ")
-            +tr("either anything of the other one, ")
-            +tr("and you will see what happens...")
-            );
+            tr("Help is available at "
+               "https://github.com/opengribs/XyGrib/wiki/XyGrib-User-Manual"
+               ));
+
 }
 //-------------------------------------------------
 void MainWindow::slotHelp_APropos()
 {
     QMessageBox::information (this,
             tr("About"),
-            tr("xyGrib : GRIB files visualization")
+            tr("XyGrib : GRIB files visualization")
             +"\n"+
             tr("Version : ")+Version::getVersion()
                     +"      "+Version::getDate()

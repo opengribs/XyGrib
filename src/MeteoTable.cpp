@@ -1,5 +1,5 @@
 /**********************************************************************
-xyGrib: meteorological GRIB file viewer
+XyGrib: meteorological GRIB file viewer
 Copyright (C) 2008-2012 - Jacques Zaninetti - http://www.zygrib.org
 
 This program is free software: you can redistribute it and/or modify
@@ -247,7 +247,7 @@ void MeteoTableDialog::slotBtExport ()
     {
 		if (! fileName.endsWith(".slk", Qt::CaseInsensitive))
 			fileName += ".slk";
-        SylkFile slk (fileName, "xyGrib");
+        SylkFile slk (fileName, "XyGrib");
 		if (slk.isOk()) {
 			Util::setSetting("slkFilePath", slk.getFileInfo().absolutePath() );
 			saveFileSYLK (slk);
@@ -278,7 +278,7 @@ void MeteoTableDialog::saveFileSYLK (SylkFile &slk)
 	pinfo = *(lspinfos.begin());
 	slk.addCell (2, 1, Util::formatPosition (pinfo->x,pinfo->y));
 	slk.addCell (2, 2, locationName);
-    slk.addCell (1, 1, "xyGrib");
+    slk.addCell (1, 1, "XyGrib");
 	//-----------------------------------------------------------------------
 	// Dates
 	dl = 2;

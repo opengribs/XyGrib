@@ -1,5 +1,5 @@
 /**********************************************************************
-xyGrib: meteorological GRIB file viewer
+XyGrib: meteorological GRIB file viewer
 Copyright (C) 2008-2012 - Jacques Zaninetti - http://www.zygrib.org
 
 This program is free software: you can redistribute it and/or modify
@@ -743,9 +743,11 @@ void BoardPanel::createInterface ()
 // 		vlay->addWidget (&lbWaves_pek);
 		
 		vlay->addWidget (&lbWaves_wcap);
+        vlay->setSpacing(2);
+        vlay->setContentsMargins(5,5,5,5);
 
 		cellWaves->setLayout (vlay);
-	
+
 	//-------------------------------------
 	// End with a stretch spacer
 	mainFrameLay->addStretch (100);
