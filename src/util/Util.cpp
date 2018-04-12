@@ -100,6 +100,47 @@ QString Util::getServerName ()
 {
 	return "www.zygrib.org";
 }
+
+//------------------------------------------------------------
+QString Util::pathData()
+{
+    /* Quick fix
+     * ----------
+     * This fix is to solve the issue that occurs (at least on MacOS
+     * when user copy the app bundle to his /Application folder,
+     * XyGrib is not capable of findings the data folder that can be
+     * located in ~/.xygrib or in a specific XyGrib folder.
+    */
+
+    // First try if data folder is present in XyGrib folder
+    QDir dir = QDir::current();
+    QString pathDir("");
+
+    if (dir.exists("./data/maps"))
+    {
+        if (Util::isDirWritable(dir))
+            pathDir = ".";
+    }
+
+    // Then, try if data folder is present
+    // in the home folder of the user
+    if (pathDir == "")
+    {
+        #ifdef Q_OS_UNIX
+            dir = QDir( QDir::homePath()+"/.xygrib/" );
+        #else
+            dir = QDir( QDir::homePath()+"/xygrib/" );
+        #endif
+
+        if (!dir.exists())
+            dir.mkpath(dir.absolutePath());
+
+        if (Util::isDirWritable(dir))
+            pathDir = QDir::current().relativeFilePath(dir.absolutePath());
+    }
+    return pathDir + "/";
+}
+
 //------------------------------------------------------------
 void Util::setApplicationProxy ()
 {

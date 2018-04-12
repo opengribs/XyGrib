@@ -77,7 +77,7 @@ class Util : public QObject
 	static QString getOpenFileName (QWidget *parent, const QString &caption, 
 							const QString &dir, const QString &filter=QString());
 		
-	static QString pathData ()   {return "./";};
+    static QString pathData ();
 	static QString pathColors () {return pathData()+"data/colors/";}
 	static QString pathConfig () {return pathData()+"data/config/";}
 	static QString pathFonts ()  {return pathData()+"data/fonts/";}
