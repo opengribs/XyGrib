@@ -26,7 +26,7 @@
     <message>
         <location filename="../../src/DataQString.cpp" line="70"/>
         <source>%1 m above mean sea level</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 m sobre el nivel medio del mar</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="73"/>
@@ -83,7 +83,7 @@
     <message>
         <location filename="../../src/DataQString.cpp" line="122"/>
         <source>%1 m ab.MSL</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 m sb MSL</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="128"/>
@@ -93,26 +93,26 @@
     <message>
         <location filename="../../src/DataQString.cpp" line="131"/>
         <source>sigma%1</source>
-        <translation type="unfinished"></translation>
+        <translation>sigma%1</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="137"/>
         <source>lowCldLay</source>
-        <translation type="unfinished"></translation>
+        <translation>CapNubBaj</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="140"/>
         <source>midCldLay</source>
-        <translation type="unfinished"></translation>
+        <translation>CapNubMed</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="143"/>
         <source>higCldLay</source>
-        <translation type="unfinished"></translation>
+        <translation>CapNubAlt</translation>
     </message>
     <message>
         <source>s%1</source>
-        <translation type="vanished">s%1</translation>
+        <translation>s%1</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="134"/>
@@ -365,7 +365,7 @@
     <message>
         <location filename="../../src/BoardPanel.cpp" line="557"/>
         <source>Reflectivity</source>
-        <translation type="unfinished"></translation>
+        <translation>Reflectividad</translation>
     </message>
     <message>
         <location filename="../../src/BoardPanel.cpp" line="559"/>
@@ -390,7 +390,7 @@
     <message>
         <location filename="../../src/BoardPanel.cpp" line="711"/>
         <source>Composite Reflectivity</source>
-        <translation type="unfinished"></translation>
+        <translation>Reflectividad Compuesta</translation>
     </message>
     <message>
         <source>J/Kg (surface)</source>
@@ -609,20 +609,20 @@ Puento fuera del área GRIB.</translation>
     <message>
         <location filename="../../src/curvedrawer/CurveDrawer.cpp" line="777"/>
         <source>Precipitation Rate</source>
-        <translation type="unfinished"></translation>
+        <translation>Ritmo de precipitación</translation>
     </message>
     <message>
         <location filename="../../src/curvedrawer/CurveDrawer.cpp" line="778"/>
         <source>Precipitation Total</source>
-        <translation type="unfinished"></translation>
+        <translation>Precipitación total</translation>
     </message>
     <message>
         <source>Percipitation Rate</source>
-        <translation type="vanished">Ritmo de precipitación</translation>
+        <translation>Ritmo de precipitación</translation>
     </message>
     <message>
         <source>Percipitation Total</source>
-        <translation type="vanished">Precipitación Total</translation>
+        <translation>Precipitación Total</translation>
     </message>
     <message>
         <location filename="../../src/curvedrawer/CurveDrawer.cpp" line="796"/>
@@ -753,12 +753,12 @@ Puento fuera del área GRIB.</translation>
     <message>
         <location filename="../../src/DataQString.cpp" line="172"/>
         <source>Wind (direction)</source>
-        <translation type="unfinished"></translation>
+        <translation>Viento (dirección)</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="173"/>
         <source>Wind (speed)</source>
-        <translation type="unfinished"></translation>
+        <translation>Viento (velocidad)</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="174"/>
@@ -793,22 +793,22 @@ Puento fuera del área GRIB.</translation>
     <message>
         <location filename="../../src/DataQString.cpp" line="180"/>
         <source>Cloud cover (low)</source>
-        <translation type="unfinished"></translation>
+        <translation>Nubosidad (baja)</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="181"/>
         <source>Cloud cover (middle)</source>
-        <translation type="unfinished"></translation>
+        <translation>Nubosidad (media)</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="182"/>
         <source>Cloud cover (high)</source>
-        <translation type="unfinished"></translation>
+        <translation>Nubosidad (alta)</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="183"/>
         <source>Frozen rain possible</source>
-        <translation>Aguanieve posible</translation>
+        <translation>Lluvia engelante posible</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="184"/>
@@ -828,7 +828,7 @@ Puento fuera del área GRIB.</translation>
     <message>
         <location filename="../../src/DataQString.cpp" line="188"/>
         <source>Composite Reflectivity</source>
-        <translation type="unfinished"></translation>
+        <translation>Reflectividad Compuesta</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="190"/>
@@ -853,22 +853,22 @@ Puento fuera del área GRIB.</translation>
     <message>
         <location filename="../../src/DataQString.cpp" line="195"/>
         <source>Wind gust (Vx)</source>
-        <translation type="unfinished"></translation>
+        <translation>Racha de viento (Vx)</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="196"/>
         <source>Wind gust (VY)</source>
-        <translation type="unfinished"></translation>
+        <translation>Racha de viento (Vy)</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="197"/>
         <source>Current direction</source>
-        <translation type="unfinished"></translation>
+        <translation>Dirección de la corriente</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="198"/>
         <source>Current</source>
-        <translation type="unfinished">Corriente</translation>
+        <translation>Corriente</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="201"/>
@@ -959,7 +959,7 @@ Puento fuera del área GRIB.</translation>
     <message>
         <location filename="../../src/DataQString.cpp" line="191"/>
         <source>Wind (jet stream)</source>
-        <translation type="unfinished"></translation>
+        <translation>Viento (corriente de chorro)</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="217"/>
@@ -1012,7 +1012,7 @@ Puento fuera del área GRIB.</translation>
     </message>
     <message>
         <source>Chgoice of fonts</source>
-        <translation type="vanished">Elección de tipo de letra</translation>
+        <translation>Elección de tipo de letra</translation>
     </message>
     <message>
         <location filename="../../src/DialogFonts.cpp" line="107"/>
@@ -1082,7 +1082,7 @@ Puento fuera del área GRIB.</translation>
     <message>
         <location filename="../../src/DialogFonts.cpp" line="93"/>
         <source>Choice of fonts</source>
-        <translation type="unfinished"></translation>
+        <translation>Elección de fuentes</translation>
     </message>
     <message>
         <location filename="../../src/DialogFonts.cpp" line="183"/>
@@ -1533,7 +1533,7 @@ Puento fuera del área GRIB.</translation>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="743"/>
         <source>Frozen rain (rainfall possible)</source>
-        <translation>Lluvia helada (posibilidad)</translation>
+        <translation>Lluvia engelante (posibilidad)</translation>
     </message>
     <message>
         <source>CAPE (surface)</source>
@@ -1775,7 +1775,7 @@ Solo una zona : Europa + Atlántico Norte-Este
     <message>
         <location filename="../../src/DialogLoadMBLUE.cpp" line="624"/>
         <source>Frozen rain (rainfall possible)</source>
-        <translation>Lluvia helada (posibilidad)</translation>
+        <translation>Lluvia engelante (posibilidad)</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadMBLUE.cpp" line="626"/>
@@ -1939,7 +1939,7 @@ Solo una zona : Europa + Atlántico Norte-Este
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="274"/>
         <source>Composite Reflectivity (atm)</source>
-        <translation type="unfinished"></translation>
+        <translation>Reflectividad Compuesta (atm)</translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="275"/>
@@ -2134,7 +2134,7 @@ Solo una zona : Europa + Atlántico Norte-Este
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="270"/>
         <source>Frozen rain possible</source>
-        <translation>Lluvia helada (posibilidad)</translation>
+        <translation>Lluvia engelante (posibilidad)</translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="107"/>
@@ -2341,7 +2341,7 @@ Solo una zona : Europa + Atlántico Norte-Este
     </message>
     <message>
         <source>METEOBLUE-NMM</source>
-        <translation type="vanished">METEOBLUE-NMM</translation>
+        <translation>METEOBLUE-NMM</translation>
     </message>
     <message>
         <source>invalid format</source>
@@ -2491,7 +2491,7 @@ Solo una zona : Europa + Atlántico Norte-Este
     </message>
     <message>
         <source>Current hour seen by zygrib with those parameters :</source>
-        <translation type="vanished">Hora actual vista por zyGrib con esos parámetros :</translation>
+        <translation>Hora actual vista por zyGrib con esos parámetros :</translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="196"/>
@@ -2579,7 +2579,7 @@ Solo una zona : Europa + Atlántico Norte-Este
     <message>
         <location filename="../../src/DialogUnits.cpp" line="255"/>
         <source>Geopotential altitudes:</source>
-        <translation>Altura geopotencial :</translation>
+        <translation>Alturas geopotenciales :</translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="265"/>
@@ -2614,7 +2614,7 @@ Solo una zona : Europa + Atlántico Norte-Este
     <message>
         <location filename="../../src/DialogUnits.cpp" line="303"/>
         <source>Current hour seen by xygrib with those parameters :</source>
-        <translation type="unfinished"></translation>
+        <translation>Hora actual para xygrib con esos parámetros:</translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="304"/>
@@ -2934,12 +2934,12 @@ Solo una zona : Europa + Atlántico Norte-Este
     <message>
         <location filename="../../src/ImageWriter.cpp" line="71"/>
         <source>Display date cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar cursor de fecha</translation>
     </message>
     <message>
         <location filename="../../src/ImageWriter.cpp" line="72"/>
         <source>Display color scale</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar escala de colores</translation>
     </message>
     <message>
         <source>Show date cursor</source>
@@ -3113,12 +3113,12 @@ Elimina selección presionando el botón izquierdo en el mapa pulsando mayúscul
     <message>
         <location filename="../../src/MainWindow.cpp" line="1455"/>
         <source>xyGrib : GRIB files visualization</source>
-        <translation type="unfinished"></translation>
+        <translation>xyGrib: visualización de archivos GRIB</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1460"/>
         <source>http://OpenGribs.org</source>
-        <translation type="unfinished"></translation>
+        <translation>http://OpenGribs.org</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1515"/>
@@ -3192,7 +3192,7 @@ Elimina selección presionando el botón izquierdo en el mapa pulsando mayúscul
     </message>
     <message>
         <source>zyGrib : GRIB files visualization</source>
-        <translation type="vanished">zyGrib : visualizador de archivos GRIB</translation>
+        <translation>zyGrib : visualizador de archivos GRIB</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1583"/>
@@ -3310,7 +3310,7 @@ Elimina selección presionando el botón izquierdo en el mapa pulsando mayúscul
     </message>
     <message>
         <source>http://www.zygrib.org</source>
-        <translation type="vanished">http://www.zygrib.org</translation>
+        <translation>http://www.zygrib.org</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1698"/>
@@ -3386,11 +3386,11 @@ Elimina selección presionando el botón izquierdo en el mapa pulsando mayúscul
         <location filename="../../src/MapDrawer.cpp" line="784"/>
         <location filename="../../src/MapDrawer.cpp" line="908"/>
         <source>xyGrib</source>
-        <translation type="unfinished"></translation>
+        <translation>xyGrib</translation>
     </message>
     <message>
         <source>zyGrib</source>
-        <translation type="vanished">zyGrib</translation>
+        <translation>zyGrib</translation>
     </message>
     <message>
         <location filename="../../src/MapDrawer.cpp" line="873"/>
@@ -3484,7 +3484,7 @@ Elimina selección presionando el botón izquierdo en el mapa pulsando mayúscul
     <message>
         <location filename="../../src/MenuBar.cpp" line="77"/>
         <source>Open a new xyGrib instance</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir nueva ventana xyGrib</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="139"/>
@@ -3828,7 +3828,7 @@ Elimina selección presionando el botón izquierdo en el mapa pulsando mayúscul
     </message>
     <message>
         <source>Open a new zyGrib instance</source>
-        <translation type="vanished">Abrir una nueva sesión zyGrib</translation>
+        <translation>Abrir una nueva sesión zyGrib</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="119"/>
@@ -3863,7 +3863,7 @@ Elimina selección presionando el botón izquierdo en el mapa pulsando mayúscul
     <message>
         <location filename="../../src/MenuBar.cpp" line="134"/>
         <source>Reflectivity</source>
-        <translation type="unfinished"></translation>
+        <translation>Reflectividad</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="135"/>
@@ -3878,12 +3878,13 @@ Elimina selección presionando el botón izquierdo en el mapa pulsando mayúscul
     <message>
         <location filename="../../src/MenuBar.cpp" line="163"/>
         <source>Jet stream colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Colores corriente de chorro</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="163"/>
         <source>Ctrl+Shift+J</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Ctrl+Mayús+J</translatorcomment>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="184"/>
@@ -3936,7 +3937,7 @@ Elimina selección presionando el botón izquierdo en el mapa pulsando mayúscul
         <location filename="../../src/MenuBar.cpp" line="253"/>
         <location filename="../../src/MenuBar.cpp" line="277"/>
         <source>600 hpa</source>
-        <translation type="unfinished">200 hPa {600 ?}</translation>
+        <translation>600 hPa</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="233"/>
@@ -3950,7 +3951,7 @@ Elimina selección presionando el botón izquierdo en el mapa pulsando mayúscul
         <location filename="../../src/MenuBar.cpp" line="255"/>
         <location filename="../../src/MenuBar.cpp" line="279"/>
         <source>400 hpa</source>
-        <translation type="unfinished">200 hPa {400 ?}</translation>
+        <translation>400 hPa</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="235"/>
@@ -4083,7 +4084,7 @@ Elimina selección presionando el botón izquierdo en el mapa pulsando mayúscul
     <message>
         <location filename="../../src/MenuBar.cpp" line="336"/>
         <source>Ctrl+Shift+K</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Mayús+K</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="340"/>
@@ -4184,7 +4185,7 @@ Elimina selección presionando el botón izquierdo en el mapa pulsando mayúscul
     <message>
         <location filename="../../src/MenuBar.cpp" line="432"/>
         <source>About xyGrib</source>
-        <translation type="unfinished"></translation>
+        <translation>A cerca de xyGrib</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="486"/>
@@ -4441,7 +4442,7 @@ Elimina selección presionando el botón izquierdo en el mapa pulsando mayúscul
     </message>
     <message>
         <source>About zyGrib</source>
-        <translation type="vanished">Sobre zyGrib</translation>
+        <translation>Sobre zyGrib</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="433"/>
@@ -4692,7 +4693,7 @@ Elimina selección presionando el botón izquierdo en el mapa pulsando mayúscul
     <message>
         <location filename="../../src/MenuBar.cpp" line="130"/>
         <source>Frozen rain (rainfall possible)</source>
-        <translation>Lluvia helada (posibilidad)</translation>
+        <translation>Lluvia engelante (posibilidad)</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="150"/>
@@ -4965,12 +4966,12 @@ Punto fuera del área GRIB.</translation>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="807"/>
         <source>Reflectivity (entire atmos)</source>
-        <translation type="unfinished"></translation>
+        <translation>Reflectividad (toda la atmósf.)</translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="816"/>
         <source>dBZ</source>
-        <translation type="unfinished"></translation>
+        <translation>dBZ</translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="939"/>
@@ -4985,7 +4986,7 @@ Punto fuera del área GRIB.</translation>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="882"/>
         <source>Frozen rain possible</source>
-        <translation>Lluvia helada posible</translation>
+        <translation>Lluvia engelante posible</translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="885"/>
@@ -5335,17 +5336,17 @@ Are you sure ?</source>
     <message>
         <location filename="../../src/SkewT.cpp" line="929"/>
         <source>Model:</source>
-        <translation type="unfinished"></translation>
+        <translation>Modelo:</translation>
     </message>
     <message>
         <location filename="../../src/SkewT.cpp" line="941"/>
         <source>Approx levels:</source>
-        <translation type="unfinished"></translation>
+        <translation>Niveles aprox:</translation>
     </message>
     <message>
         <location filename="../../src/SkewT.cpp" line="945"/>
         <source>Approx.indices:</source>
-        <translation type="unfinished"></translation>
+        <translation>Índices aprox:</translation>
     </message>
     <message>
         <location filename="../../src/SkewT.cpp" line="955"/>
@@ -5388,7 +5389,7 @@ Are you sure ?</source>
     <message>
         <location filename="../../src/SkewTWindow.cpp" line="75"/>
         <source>Export data (spreadsheet file)</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar datos (hoja de cálculo)</translation>
     </message>
     <message>
         <location filename="../../src/SkewTWindow.cpp" line="82"/>
@@ -5428,37 +5429,37 @@ Are you sure ?</source>
     <message>
         <location filename="../../src/SkewTWindow.cpp" line="250"/>
         <source>Save SYLK file</source>
-        <translation type="unfinished">Guardar archivo SYLK</translation>
+        <translation>Guardar archivo SYLK</translation>
     </message>
     <message>
         <location filename="../../src/SkewTWindow.cpp" line="263"/>
         <source>Error</source>
-        <translation type="unfinished">Error</translation>
+        <translation>Error</translation>
     </message>
     <message>
         <location filename="../../src/SkewTWindow.cpp" line="263"/>
         <source>Can&apos;t write file.</source>
-        <translation type="unfinished">Imposible escribir archivo.</translation>
+        <translation>Imposible escribir archivo.</translation>
     </message>
     <message>
         <location filename="../../src/SkewTWindow.cpp" line="346"/>
         <source>Temperature</source>
-        <translation type="unfinished">Temperatura</translation>
+        <translation>Temperatura</translation>
     </message>
     <message>
         <location filename="../../src/SkewTWindow.cpp" line="347"/>
         <source>Dew point</source>
-        <translation type="unfinished">Punto de rocío</translation>
+        <translation>Punto de rocío</translation>
     </message>
     <message>
         <location filename="../../src/SkewTWindow.cpp" line="348"/>
         <source>Wind speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Velocidad del viento</translation>
     </message>
     <message>
         <location filename="../../src/SkewTWindow.cpp" line="349"/>
         <source>Wind direction</source>
-        <translation type="unfinished"></translation>
+        <translation>Dirección del viento</translation>
     </message>
 </context>
 <context>
@@ -5608,7 +5609,7 @@ Are you sure ?</source>
     <message>
         <location filename="../../src/util/Util.cpp" line="382"/>
         <source>dBZ</source>
-        <translation type="unfinished"></translation>
+        <translation>dBZ</translation>
     </message>
     <message>
         <location filename="../../src/util/Util.cpp" line="387"/>
