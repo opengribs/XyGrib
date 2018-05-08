@@ -20,8 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define VERSION_H
 
 
-#define XYGRIB_VERSION_NUM   "1.0.1"
-#define XYGRIB_VERSION_DATE  "2018-04-11"
+#define XYGRIB_VERSION_NUM   "1.0.2"
+#define XYGRIB_VERSION_DATE  "2018-04-25"
 
 #if defined(Q_OS_WIN32)
     #define XYGRIB_APP_NAME   "XyGrib_win"

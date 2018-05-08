@@ -210,7 +210,7 @@ void Grib2Record::analyseProductDefinitionTemplate (gribfield  *gfld)
 	//-----------------------------------
 	this->idModel = gfld->ipdtmpl[4];
 	pdtnum = gfld->ipdtnum; // = Product Definition Template Number(see Code Table 4.0)
-	if (pdtnum!=0 && pdtnum!=8) {
+    if (pdtnum!=0 && pdtnum!=2 && pdtnum!=8) {
 		DBG ("id=%d: unknown pdtnum: %d", id, pdtnum);
 		pdtnum = -1;
 		ok = false;
@@ -417,6 +417,10 @@ int Grib2Record::analyseProductType ()
                 return GRB_WAV_SWL_HT;
             if (paramnumber==9)
                 return GRB_WAV_SWL_PER;
+            if (paramnumber==10)
+                return GRB_WAV_PRIM_DIR;
+            if (paramnumber==11)
+                return GRB_WAV_PRIM_PER;
         } else if (paramcat==1){
             if (paramnumber==2)
                 return GRB_CUR_VX;
@@ -468,9 +472,13 @@ int Grib2Record::analyseProductType ()
 				return GRB_PRESSURE;
 			else if (paramnumber==1)
 				return GRB_PRESSURE_MSL;
-			else if (paramnumber==5)
-				return GRB_GEOPOT_HGT;
-		}
+            else if (paramnumber==4)
+                return GRB_GEOPOT; // added by david
+            else if (paramnumber==5)
+                return GRB_GEOPOT_HGT;
+            else if (paramnumber==6)
+                return GRB_GEOPOT_HGT; // david, use DIST geometric height as geopotential height (icon hzerocl)
+        }
 		else if (paramcat==6) {//TABLE 4.2-0-6
 			if (paramnumber==1)
 				return GRB_CLOUD_TOT;
