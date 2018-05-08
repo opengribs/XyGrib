@@ -35,6 +35,7 @@ enum DataCenterModel {
 	COAMPS_W_ATL,
 	COAMPS_E_PAC,
 	COAMPS_C_AM,
+    COAMPS,
 	NOGAPS,
 	SKIRON,
     DWD_ICON,
@@ -45,6 +46,7 @@ enum DataCenterModel {
 //--------------------------------------------------------
 #define GRB_PRESSURE        1   /* Pa     */
 #define GRB_PRESSURE_MSL    2   /* Pa     */
+#define GRB_GEOPOT          6   /* m2/s2  */
 #define GRB_GEOPOT_HGT      7   /* gpm    */
 #define GRB_TEMP           11   /* K      */
 #define GRB_TEMP_POT       13   /* K      */

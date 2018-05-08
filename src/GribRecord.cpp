@@ -64,8 +64,9 @@ void  GribRecord::translateDataType ()
 			 || (idCenter==7 && idModel==124 && idGrid==253)  // enp.all.grb
 			 || (idCenter==7 && idModel==123 && idGrid==244)  // nah.all.grb
 			 || (idCenter==7 && idModel==125 && idGrid==253)  // nph.all.grb
-			 || (idCenter==7 && idModel==88 && idGrid==233)   // nwww3.all.grb
-			 || (idCenter==7 && idModel==121 && idGrid==238)  // wna.all.grb
+             || (idCenter==7 && idModel==88 && idGrid==233)   // nwww3.all.grb
+             || (idCenter==7 && idModel==10 && idGrid==0)    // ww3.mean
+             || (idCenter==7 && idModel==121 && idGrid==238)  // wna.all.grb
 			 || (idCenter==7 && idModel==88 && idGrid==255)   // saildocs
 	) {
 		dataCenterModel = NOAA_NCEP_WW3;
@@ -171,6 +172,13 @@ void  GribRecord::translateDataType ()
 	{
 		dataCenterModel = FNMOC_WW3_GLB;
 	}
+    // ---------------------------------------------
+    // COAMPS
+    else if (idCenter==58 && idModel==13 && idGrid==255)
+    {
+        dataCenterModel = COAMPS;
+    }
+
 	//----------------------------------------------
 	// Meteorem (Scannav)
 	//----------------------------------------------
@@ -216,7 +224,7 @@ void  GribRecord::translateDataType ()
 	 || (idCenter==7   && idModel==45  && idGrid==255) // saildocs.com RTOFS GulfStream
 	 || (idCenter==58 && idModel==22 && idGrid==179) // COAMPS
 	 || (idCenter==58 && idModel==22 && idGrid==158) // COAMPS
-	 || (idCenter==58 && idModel==22 && idGrid==255) // COAMPS via Saildocs
+     || (idCenter==58 && idModel==22 && idGrid==255) // COAMPS via Saildocs
      || (idCenter==54 && idModel==47 && idGrid==255) // Canada GEM
      || (idCenter==0 && idModel==0 && idGrid==255) // German Hydrographic Office
     ) {
@@ -226,9 +234,11 @@ void  GribRecord::translateDataType ()
 	//------------------------
 	else
 	{
-		this->print("translateDataType() : Unknown Center GribRecord");
-		this->knownData = false;
-	}
+//        this->print("translateDataType() : Unknown Center GribRecord");
+//		this->knownData = false;
+        dataCenterModel = OTHER_DATA_CENTER;
+        this->knownData = true;
+    }
 	
 	//===================================================================
 	if (this->knownData) {
