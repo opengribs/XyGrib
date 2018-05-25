@@ -24,7 +24,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 enum DataCenterModel {
 	NOAA_GFS,
+    DWD_ICON_GLOBAL,
+    MF_ARPEGE_GLOBAL,
 	NOAA_NCEP_WW3,
+    DWD_GWAM,
+    DWD_EWAM,
 	NOAA_NCEP_SST,
 	METEOBLUE_NMM4,
 	FNMOC_WW3_GLB,

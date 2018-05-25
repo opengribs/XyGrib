@@ -83,7 +83,7 @@ DialogLoadGRIB::DialogLoadGRIB (QNetworkAccessManager *netManager, QWidget *pare
     CAPEsfc = true;
     CINsfc = true;
     GUSTsfc = true;
-    SUNSDsfc = false;
+//    SUNSDsfc = false;
 
     QGridLayout  *lay = new QGridLayout(this);
     assert(lay);
@@ -100,11 +100,14 @@ DialogLoadGRIB::DialogLoadGRIB (QNetworkAccessManager *netManager, QWidget *pare
     connect(sbSouth, SIGNAL(valueChanged(double)), this,  SLOT(slotParameterUpdated()));
     connect(sbWest, SIGNAL(valueChanged(double)), this,  SLOT(slotParameterUpdated()));
     connect(sbEast, SIGNAL(valueChanged(double)), this,  SLOT(slotParameterUpdated()));
-            
+
+    connect(cbModel, SIGNAL(activated(int)), this,  SLOT(slotParameterUpdated()));
+    connect(cbWvModel, SIGNAL(activated(int)), this,  SLOT(slotParameterUpdated()));
+
     connect(cbResolution, SIGNAL(activated(int)), this,  SLOT(slotParameterUpdated()));
     connect(cbInterval, SIGNAL(activated(int)), this,  SLOT(slotParameterUpdated()));
     connect(cbDays, SIGNAL(activated(int)), this,  SLOT(slotParameterUpdated()));
-    connect(cbRunGFS, SIGNAL(activated(int)), this,  SLOT(slotParameterUpdated()));
+    connect(cbRunCycle, SIGNAL(activated(int)), this,  SLOT(slotParameterUpdated()));
     
     connect(chkWind, SIGNAL(stateChanged(int)), 	this,  SLOT(slotParameterUpdated()));
     connect(chkPressure, SIGNAL(stateChanged(int)), this,  SLOT(slotParameterUpdated()));
@@ -123,7 +126,7 @@ DialogLoadGRIB::DialogLoadGRIB (QNetworkAccessManager *netManager, QWidget *pare
     connect(chkCAPEsfc, SIGNAL(stateChanged(int)), 	this, SLOT(slotParameterUpdated()));
     connect(chkCINsfc, SIGNAL(stateChanged(int)), 	this, SLOT(slotParameterUpdated()));
     connect(chkGUSTsfc, SIGNAL(stateChanged(int)), 	this, SLOT(slotParameterUpdated()));
-    connect(chkSUNSDsfc, SIGNAL(stateChanged(int)), this, SLOT(slotParameterUpdated()));
+//    connect(chkSUNSDsfc, SIGNAL(stateChanged(int)), this, SLOT(slotParameterUpdated()));
 	
     connect(chkAltitude_All, SIGNAL(stateChanged(int)), this, SLOT(slotAltitude_All()));
     connect(chkAltitude200, SIGNAL(stateChanged(int)), this, SLOT(slotParameterUpdated()));
@@ -136,17 +139,17 @@ DialogLoadGRIB::DialogLoadGRIB (QNetworkAccessManager *netManager, QWidget *pare
     connect(chkAltitude925, SIGNAL(stateChanged(int)), this, SLOT(slotParameterUpdated()));
     connect(chkAltitude_SkewT, SIGNAL(stateChanged(int)), this, SLOT(slotParameterUpdated()));
 	
-	connect(chkFnmocWW3_All, SIGNAL(stateChanged(int)), this, SLOT(slotFnmocWW3_All()));
-    connect(chkFnmocWW3_sig, SIGNAL(stateChanged(int)),this, SLOT(slotParameterUpdated()));
-    connect(chkFnmocWW3_max, SIGNAL(stateChanged(int)),this, SLOT(slotParameterUpdated()));
-    connect(chkFnmocWW3_swl, SIGNAL(stateChanged(int)),this, SLOT(slotParameterUpdated()));
-    connect(chkFnmocWW3_wnd, SIGNAL(stateChanged(int)),this, SLOT(slotParameterUpdated()));
-    connect(chkFnmocWW3_prim, SIGNAL(stateChanged(int)),this, SLOT(slotParameterUpdated()));
-    connect(chkFnmocWW3_scdy, SIGNAL(stateChanged(int)),this, SLOT(slotParameterUpdated()));
-    connect(chkFnmocWW3_wcap, SIGNAL(stateChanged(int)),this, SLOT(slotParameterUpdated()));
+//    connect(chkWindAll, SIGNAL(stateChanged(int)), this, SLOT(slotFnmocWW3_All()));
+    connect(chkWaveSig, SIGNAL(stateChanged(int)),this, SLOT(slotParameterUpdated()));
+//    connect(chkWaveMax, SIGNAL(stateChanged(int)),this, SLOT(slotParameterUpdated()));
+    connect(chkWaveSwell, SIGNAL(stateChanged(int)),this, SLOT(slotParameterUpdated()));
+    connect(chkWaveWind, SIGNAL(stateChanged(int)),this, SLOT(slotParameterUpdated()));
+//    connect(chkFnmocWW3_prim, SIGNAL(stateChanged(int)),this, SLOT(slotParameterUpdated()));
+//    connect(chkFnmocWW3_scdy, SIGNAL(stateChanged(int)),this, SLOT(slotParameterUpdated()));
+//    connect(chkFnmocWW3_wcap, SIGNAL(stateChanged(int)),this, SLOT(slotParameterUpdated()));
 	
-    connect(bt_FNMOC_WW3_GLB, SIGNAL(clicked()),this, SLOT(slotParameterUpdated()));
-    connect(bt_FNMOC_WW3_MED, SIGNAL(clicked()),this, SLOT(slotParameterUpdated()));
+//    connect(bt_FNMOC_WW3_GLB, SIGNAL(clicked()),this, SLOT(slotParameterUpdated()));
+//    connect(bt_FNMOC_WW3_MED, SIGNAL(clicked()),this, SLOT(slotParameterUpdated()));
 }
 //-------------------------------------------------------------------------------
 void DialogLoadGRIB::slotAltitude_All ()
@@ -162,17 +165,17 @@ void DialogLoadGRIB::slotAltitude_All ()
 	chkAltitude925->setChecked (check);
 }
 //-------------------------------------------------------------------------------
-void DialogLoadGRIB::slotFnmocWW3_All ()
-{
-	bool check = chkFnmocWW3_All->isChecked ();
-	chkFnmocWW3_sig->setChecked (check);
-	chkFnmocWW3_max->setChecked (check);
-	chkFnmocWW3_swl->setChecked (check);
-	chkFnmocWW3_wnd->setChecked (check);
-	chkFnmocWW3_prim->setChecked (check);
-	chkFnmocWW3_scdy->setChecked (check);
-	chkFnmocWW3_wcap->setChecked (check);
-}
+//void DialogLoadGRIB::slotFnmocWW3_All ()
+//{
+//    bool check = chkWindAll->isChecked ();
+//    chkWaveSig->setChecked (check);
+//    chkWaveMax->setChecked (check);
+//    chkWaveSwell->setChecked (check);
+//    chkWaveWind->setChecked (check);
+//	chkFnmocWW3_prim->setChecked (check);
+//	chkFnmocWW3_scdy->setChecked (check);
+//	chkFnmocWW3_wcap->setChecked (check);
+//}
 
 //-------------------------------------------------------------------------------
 DialogLoadGRIB::~DialogLoadGRIB()
@@ -195,7 +198,8 @@ void DialogLoadGRIB::slotGribDataReceived (QByteArray *content, QString fileName
 	else
 		path += "/";
 	savedFileName = "";
-	QFileInfo fi (fileName + ".bz2");
+//    QFileInfo fi (fileName + ".bz2");
+    QFileInfo fi (fileName);
     fileName = Util::getSaveFileName (NULL,
                  tr("Save GRIB file"), path+fi.fileName());
 	if (fileName != "")
@@ -285,10 +289,13 @@ void DialogLoadGRIB::slotGribReadProgress(int step, int done, int total)
 //-------------------------------------------------------------------------------
 void DialogLoadGRIB::saveParametersSettings ()
 {
-	Util::setSetting("downloadIndResolution", cbResolution->currentIndex());
-	Util::setSetting("downloadIndInterval",  cbInterval->currentIndex());
+    Util::setSetting("downloadIndModel", cbModel->currentIndex());
+    Util::setSetting("downloadIndWaveModel", cbWvModel->currentIndex());
+
+    Util::setSetting("downloadIndResolution", cbResolution->currentIndex());
+    Util::setSetting("downloadIndInterval",  cbInterval->currentIndex());
 	Util::setSetting("downloadIndNbDays",  cbDays->currentIndex());
-	Util::setSetting("downloadRunGFS",  cbRunGFS->itemData(cbRunGFS->currentIndex()));
+    Util::setSetting("downloadRunCycle",  cbRunCycle->itemData(cbRunCycle->currentIndex()));
 	
 	Util::setSetting("downloadWind",  wind);
 	Util::setSetting("downloadPressure", pressure);
@@ -307,7 +314,7 @@ void DialogLoadGRIB::saveParametersSettings ()
 	Util::setSetting("downloadCAPEsfc", CAPEsfc);
 	Util::setSetting("downloadCINsfc", CINsfc);
 	Util::setSetting("downloadGUSTsfc", GUSTsfc);
-	Util::setSetting("downloadSUNSDsfc", SUNSDsfc);
+//	Util::setSetting("downloadSUNSDsfc", SUNSDsfc);
 	
 	Util::setSetting("downloadAltitudeData200",  chkAltitude200->isChecked());
 	Util::setSetting("downloadAltitudeData300",  chkAltitude300->isChecked());
@@ -319,25 +326,27 @@ void DialogLoadGRIB::saveParametersSettings ()
 	Util::setSetting("downloadAltitudeData925",  chkAltitude925->isChecked());
 	Util::setSetting("downloadSkewtData",  chkAltitude_SkewT->isChecked());
 	
-	Util::setSetting("downloadFnmocWW3_sig",  chkFnmocWW3_sig->isChecked());
-	Util::setSetting("downloadFnmocWW3_max",  chkFnmocWW3_max->isChecked());
-	Util::setSetting("downloadFnmocWW3_swl",  chkFnmocWW3_swl->isChecked());
-	Util::setSetting("downloadFnmocWW3_wnd",  chkFnmocWW3_wnd->isChecked());
-	Util::setSetting("downloadFnmocWW3_prim", chkFnmocWW3_prim->isChecked());
-	Util::setSetting("downloadFnmocWW3_scdy", chkFnmocWW3_scdy->isChecked());
-	Util::setSetting("downloadFnmocWW3_wcap", chkFnmocWW3_wcap->isChecked());
-	Util::setSetting ("downloadFnmocWW3_DataModel", waveDataModel);
+    Util::setSetting("downoadWaveSig",  chkWaveSig->isChecked());
+//	Util::setSetting("downloadFnmocWW3_max",  chkWaveMax->isChecked());
+    Util::setSetting("downloadWaveSwell",  chkWaveSwell->isChecked());
+    Util::setSetting("downloadWaveWind",  chkWaveWind->isChecked());
+//	Util::setSetting("downloadFnmocWW3_prim", chkFnmocWW3_prim->isChecked());
+//	Util::setSetting("downloadFnmocWW3_scdy", chkFnmocWW3_scdy->isChecked());
+//	Util::setSetting("downloadFnmocWW3_wcap", chkFnmocWW3_wcap->isChecked());
+//	Util::setSetting ("downloadIndWaveModel", waveDataModel);
 }
 //-------------------------------------------------------------------------------
 void DialogLoadGRIB::updateParameters ()
 {
     double tmp, xm, ym;
     
-    ymin = sbNorth->cleanText().toDouble();
-    ymax = sbSouth->cleanText().toDouble();
+    ymax = sbNorth->cleanText().toDouble();
+    ymin = sbSouth->cleanText().toDouble();
     xmin = sbWest->cleanText().toDouble();
     xmax = sbEast->cleanText().toDouble();
 
+    atmosphericModel = cbModel->currentText();
+    waveModel = cbWvModel->currentText();
     resolution = cbResolution->currentText().toDouble();
     interval   = cbInterval->currentText().toInt();
     days       = cbDays->currentText().toInt();
@@ -345,16 +354,16 @@ void DialogLoadGRIB::updateParameters ()
     if (xmin > xmax) {
         tmp = xmin;   xmin = xmax;   xmax = tmp;
     }
-    if (ymin < ymax) {    // échelle Y inversée (90=nord)
+    if (ymin > ymax) {    // inverted Y scale (90 = north) ???
         tmp = ymin;   ymin = ymax;   ymax = tmp;
     }
-    // trop grand ?
+    // too big ?
     if (fabs(xmax-xmin) >=360)
         xmax = xmin+359.9;
     if (fabs(ymin-ymax) >=180)
         ymin = ymax+179.9;
     
-    // trop petit ?
+    // too small ?
     if (fabs(xmax-xmin) < 2*resolution) {
         xm = (xmin+xmax)/2;
         xmin = xm - 2*resolution;
@@ -384,12 +393,12 @@ void DialogLoadGRIB::updateParameters ()
     CAPEsfc      = chkCAPEsfc->isChecked();
     CINsfc      = chkCINsfc->isChecked();
     GUSTsfc      = chkGUSTsfc->isChecked();
-    SUNSDsfc     = chkSUNSDsfc->isChecked();
+//    SUNSDsfc     = chkSUNSDsfc->isChecked();
 	
-	if (bt_FNMOC_WW3_GLB->isChecked())
-		waveDataModel = FNMOC_WW3_GLB;
-	else
-		waveDataModel = FNMOC_WW3_MED;
+//	if (bt_FNMOC_WW3_GLB->isChecked())
+//		waveDataModel = FNMOC_WW3_GLB;
+//	else
+//		waveDataModel = FNMOC_WW3_MED;
 	
 }
 
@@ -430,7 +439,7 @@ void DialogLoadGRIB::slotParameterUpdated ()
     int nbCAPEsfc  = CAPEsfc ?  nbrec : 0;
     int nbCINsfc  = CINsfc ?  nbrec : 0;
     int nbGUSTsfc  = GUSTsfc ?  nbrec : 0;
-    int nbSUNSDsfc  = SUNSDsfc ?  nbrec : 0;
+//    int nbSUNSDsfc  = SUNSDsfc ?  nbrec : 0;
     
     int head = 84;
     int estime = 0;
@@ -462,7 +471,7 @@ void DialogLoadGRIB::slotParameterUpdated ()
     estime += nbCINsfc*(head+(nbits*npts)/8+2 );
     nbits = 7;
     estime += nbGUSTsfc*(head+(nbits*npts)/8+2 );
-    estime += nbSUNSDsfc*(head+(nbits*npts)/8+2 );
+//    estime += nbSUNSDsfc*(head+(nbits*npts)/8+2 );
 
 	int nbalt = 0;
 	if (chkAltitude200->isChecked()) nbalt++;
@@ -482,13 +491,13 @@ void DialogLoadGRIB::slotParameterUpdated ()
 	estime += nbrec*nbskewt*(head+(nbits*npts)/8+2 );
 
 	int nbwave = 0;
-	if (chkFnmocWW3_sig->isChecked()) nbwave++;
-	if (chkFnmocWW3_max->isChecked()) nbwave++;
-	if (chkFnmocWW3_swl->isChecked()) nbwave++;
-	if (chkFnmocWW3_wnd->isChecked()) nbwave++;
-	if (chkFnmocWW3_prim->isChecked()) nbwave++;
-	if (chkFnmocWW3_scdy->isChecked()) nbwave++;
-	if (chkFnmocWW3_wcap->isChecked()) nbwave++;
+    if (chkWaveSig->isChecked()) nbwave++;
+//    if (chkWaveMax->isChecked()) nbwave++;
+    if (chkWaveSwell->isChecked()) nbwave++;
+    if (chkWaveWind->isChecked()) nbwave++;
+//	if (chkFnmocWW3_prim->isChecked()) nbwave++;
+//	if (chkFnmocWW3_scdy->isChecked()) nbwave++;
+//	if (chkFnmocWW3_wcap->isChecked()) nbwave++;
 	nbits = 6;
 	estime += nbrec*nbwave*(head+(nbits*npts)/8+2 );
 
@@ -531,8 +540,8 @@ void DialogLoadGRIB::slotBtOK()
             this,  SLOT(slotGribMessage(QString)));
     connect(loadgrib, SIGNAL(signalGribStartLoadData()),
             this,  SLOT(slotGribStartLoadData()));
-    loadgrib->getGribFile (
-					xmin,ymin, xmax,ymax,
+    loadgrib->getGribFile (atmosphericModel,
+                    xmin, xmax, ymin, ymax,
 					resolution, interval, days,
 					wind, pressure, rain, cloud, temp, humid, isotherm0,
 					tempMin, tempMax, snowDepth, snowCateg, frzRainCateg,
@@ -546,9 +555,12 @@ void DialogLoadGRIB::slotBtOK()
 					chkAltitude850->isChecked(),
 					chkAltitude925->isChecked(),
 					chkAltitude_SkewT->isChecked(),
-					cloudLayers,
 					GUSTsfc,
-					SUNSDsfc
+                    waveModel,
+                    chkWaveSig->isChecked(),
+                    chkWaveSwell->isChecked(),
+                    chkWaveWind->isChecked()
+
 				);
 }
 //-------------------------------------------------------------------------------
@@ -585,8 +597,8 @@ QString DialogLoadGRIB::createStringParameters ()
         parameters += "i;";
     if (GUSTsfc)
         parameters += "G;";
-    if (SUNSDsfc)
-        parameters += "D;";
+//    if (SUNSDsfc)
+//        parameters += "D;";
 	
 	return parameters;
 }
@@ -623,10 +635,10 @@ void DialogLoadGRIB::setZone (double x0, double y0, double x1, double y1)
 {
 	double tmp;
 	if (x0 > x1)  { tmp=x0; x0=x1; x1=tmp; }
-	if (y1 > y0)  { tmp=y0; y0=y1; y1=tmp; }	
+    if (y0 > y1)  { tmp=y0; y0=y1; y1=tmp; }
 	
-    sbNorth->setValue ( ceil (y0) );
-    sbSouth->setValue ( floor(y1) );
+    sbNorth->setValue ( ceil (y1) );
+    sbSouth->setValue ( floor(y0) );
     sbWest->setValue  ( floor(x0) );
     sbEast->setValue  ( ceil (x1) );
 	
@@ -673,16 +685,38 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
     sbEast->setMinimum(-360);
     sbEast->setMaximum(360);
     sbEast->setSuffix(tr(" °E"));
-	//------------------------------------------------
+
+    //model combobox
+    cbModel = new QComboBox(this);
+    assert(cbModel);
+    cbModel->addItems(QStringList()<< "GFS"<< "ICON" << "Arpege"  );
+    cbModel->setMinimumWidth (sizemin);
+    ind = Util::getSetting("downloadIndModel", 0).toInt();
+    ind = Util::inRange(ind, 0, cbModel->count()-1);
+    cbModel->setCurrentIndex(ind);
+
+    //Wave model combobox
+    cbWvModel = new QComboBox(this);
+    assert(cbWvModel);
+    cbWvModel->addItems(QStringList()<< "None" << "WW3"<< "GWAM" << "EWAM"  );
+    cbWvModel->setMinimumWidth (sizemin);
+    ind = Util::getSetting("downloadIndWaveModel", 0).toInt();
+    ind = Util::inRange(ind, 0, cbWvModel->count()-1);
+    cbWvModel->setCurrentIndex(ind);
+
+
+    //------------------------------------------------
 	// Résolution, intervalle, durée
 	//------------------------------------------------
     cbResolution = new QComboBox(this);
     assert(cbResolution);
-    cbResolution->addItems(QStringList()<< "0.25"<< "0.5" << "1" << "2");
+    cbResolution->addItems(QStringList()<< "0.25"<< "0.5" << "1.0");
+    //gfs_p25_, gfs_p50_, gfs_1p0_, icon_p25_, arpege
     cbResolution->setMinimumWidth (sizemin);
 	ind = Util::getSetting("downloadIndResolution", 0).toInt();
 	ind = Util::inRange(ind, 0, cbResolution->count()-1);
     cbResolution->setCurrentIndex(ind);
+
     
     cbInterval = new QComboBox(this);
     assert(cbInterval);
@@ -700,22 +734,22 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
 	ind = Util::inRange(ind, 0, cbDays->count()-1);
     cbDays->setCurrentIndex(ind);
     
-    cbRunGFS = new QComboBox(this);
-    assert(cbRunGFS);
+    cbRunCycle = new QComboBox(this);
+    assert(cbRunCycle);
 	ind = 0;
-	cbRunGFS->insertItem (ind++, tr("Last"), "last");
-	cbRunGFS->insertItem (ind++, tr("0 hr"), "00");
-	cbRunGFS->insertItem (ind++, tr("6 hr"), "06");
-	cbRunGFS->insertItem (ind++, tr("12 hr"), "12");
-	cbRunGFS->insertItem (ind++, tr("18 hr"), "18");
-    cbRunGFS->setMinimumWidth (sizemin);
-	QString data = Util::getSetting("downloadRunGFS", "").toString();	
-	ind = cbRunGFS->findData (data);
-	ind = Util::inRange(ind, 0, cbRunGFS->count()-1);
-    cbRunGFS->setCurrentIndex (ind);
+    cbRunCycle->insertItem (ind++, tr("Last"), "last");
+    cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
+    cbRunCycle->insertItem (ind++, tr("6 hr"), "06");
+    cbRunCycle->insertItem (ind++, tr("12 hr"), "12");
+    cbRunCycle->insertItem (ind++, tr("18 hr"), "18");
+    cbRunCycle->setMinimumWidth (sizemin);
+    QString data = Util::getSetting("downloadRunCycle", "").toString();
+    ind = cbRunCycle->findData (data);
+    ind = Util::inRange(ind, 0, cbRunCycle->count()-1);
+    cbRunCycle->setCurrentIndex (ind);
 
 	//------------------------------------------------
-	// Choix des données météo
+    // Choice of weather data
 	//------------------------------------------------
     chkWind     = new QCheckBox(tr("Wind (10 m)"));
     assert(chkWind);
@@ -750,8 +784,8 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
     assert(chkCINsfc);
     chkGUSTsfc     = new QCheckBox(tr("Wind gust (surface)"));
     assert(chkGUSTsfc);
-    chkSUNSDsfc     = new QCheckBox(tr("Sunshine duration"));
-    assert(chkSUNSDsfc);
+//    chkSUNSDsfc     = new QCheckBox(tr("Sunshine duration"));
+//    assert(chkSUNSDsfc);
 	
     //--------------------------------------------------------------------------------
     chkWind->setChecked    (Util::getSetting("downloadWind", true).toBool());
@@ -771,7 +805,7 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
     chkCAPEsfc->setChecked  (Util::getSetting("downloadCAPEsfc", true).toBool());
     chkCINsfc->setChecked  (Util::getSetting("downloadCINsfc", true).toBool());
     chkGUSTsfc->setChecked  (Util::getSetting("downloadGUSTsfc", true).toBool());
-    chkSUNSDsfc->setChecked (Util::getSetting("downloadSUNSDsfc", false).toBool());
+//    chkSUNSDsfc->setChecked (Util::getSetting("downloadSUNSDsfc", false).toBool());
 	//----------------------------------------------------------------
     chkAltitude925  = new QCheckBox ("925 "+tr("hPa"));
     assert (chkAltitude925);
@@ -814,48 +848,51 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
 	//----------------------------------------------------------------
 	// Waves
 	//----------------------------------------------------------------
-    chkFnmocWW3_sig  = new QCheckBox (tr("Significant height"));
-    assert (chkFnmocWW3_sig);
-    chkFnmocWW3_max  = new QCheckBox (tr("Maximum waves"));
-    assert (chkFnmocWW3_max);
-    chkFnmocWW3_swl  = new QCheckBox (tr("Swell"));
-    assert (chkFnmocWW3_swl);
-    chkFnmocWW3_wnd  = new QCheckBox (tr("Wind waves"));
-    assert (chkFnmocWW3_wnd);
-    chkFnmocWW3_prim  = new QCheckBox (tr("Primary waves"));
-    assert (chkFnmocWW3_prim);
-    chkFnmocWW3_scdy  = new QCheckBox (tr("Secondary waves"));
-    assert (chkFnmocWW3_scdy);
-    chkFnmocWW3_wcap  = new QCheckBox (tr("Whitecap probability"));
-    assert (chkFnmocWW3_wcap);
+    chkWaveSig  = new QCheckBox (tr("Significant height"));
+    assert (chkWaveSig);
+//    chkWaveMax  = new QCheckBox (tr("Maximum waves"));
+//    assert (chkWaveMax);
+    chkWaveSwell  = new QCheckBox (tr("Swell"));
+    assert (chkWaveSwell);
+    chkWaveWind  = new QCheckBox (tr("Wind waves"));
+    assert (chkWaveWind);
+//    chkFnmocWW3_prim  = new QCheckBox (tr("Primary waves"));
+//    assert (chkFnmocWW3_prim);
+//    chkFnmocWW3_scdy  = new QCheckBox (tr("Secondary waves"));
+//    assert (chkFnmocWW3_scdy);
+//    chkFnmocWW3_wcap  = new QCheckBox (tr("Whitecap probability"));
+//    assert (chkFnmocWW3_wcap);
 	
-    chkFnmocWW3_sig->setChecked  (Util::getSetting("downloadFnmocWW3_sig", false).toBool());
-    chkFnmocWW3_max->setChecked  (Util::getSetting("downloadFnmocWW3_max", false).toBool());
-    chkFnmocWW3_swl->setChecked  (Util::getSetting("downloadFnmocWW3_swl", false).toBool());
-    chkFnmocWW3_wnd->setChecked  (Util::getSetting("downloadFnmocWW3_wnd", false).toBool());
-    chkFnmocWW3_prim->setChecked (Util::getSetting("downloadFnmocWW3_prim", false).toBool());
-    chkFnmocWW3_scdy->setChecked (Util::getSetting("downloadFnmocWW3_scdy", false).toBool());
-    chkFnmocWW3_wcap->setChecked (Util::getSetting("downloadFnmocWW3_wcap", false).toBool());
+    chkWaveSig->setChecked  (Util::getSetting("downoadWaveSig", false).toBool());
+//    chkWaveMax->setChecked  (Util::getSetting("downloadFnmocWW3_max", false).toBool());
+    chkWaveSwell->setChecked  (Util::getSetting("downloadWaveSwell", false).toBool());
+    chkWaveWind->setChecked  (Util::getSetting("downloadWaveWind", false).toBool());
+//    chkFnmocWW3_prim->setChecked (Util::getSetting("downloadFnmocWW3_prim", false).toBool());
+//    chkFnmocWW3_scdy->setChecked (Util::getSetting("downloadFnmocWW3_scdy", false).toBool());
+//    chkFnmocWW3_wcap->setChecked (Util::getSetting("downloadFnmocWW3_wcap", false).toBool());
 	
-    chkFnmocWW3_All = new QCheckBox (tr("All"));
-    assert (chkFnmocWW3_All);
-	chkFnmocWW3_All->setChecked  (
-		      chkFnmocWW3_sig->isChecked() && chkFnmocWW3_max->isChecked() 
-		   && chkFnmocWW3_swl->isChecked() && chkFnmocWW3_wnd->isChecked() 
-		   && chkFnmocWW3_prim->isChecked() && chkFnmocWW3_scdy->isChecked() 
-		   && chkFnmocWW3_wcap->isChecked()
-		);
+//    chkWindAll = new QCheckBox (tr("All"));
+//    assert (chkWindAll);
+//    chkWindAll->setChecked  (
+//              chkWaveSig->isChecked() && chkWaveSwell->isChecked()
+//                && chkWaveWind->isChecked()
+//		);
 	
-	waveDataModel = (DataCenterModel)(Util::getSetting("downloadFnmocWW3_DataModel", FNMOC_WW3_MED).toInt());
-	bt_FNMOC_WW3_GLB = new QRadioButton 
-		(tr("FNMOC-WW3-GLOBAL: all oceans (7 days, 1°x1°)"));
-	bt_FNMOC_WW3_MED  = new QRadioButton 
-		(tr("FNMOC-WW3-MEDIT: Mediterranean Sea, Atlantic NE (3 days, 0.2°x0.2°)"));
+
+
+
+
+//    waveDataModel = (DataCenterModel)(Util::getSetting("downloadIndWaveModel", FNMOC_WW3_MED).toInt());
+
+//    bt_FNMOC_WW3_GLB = new QRadioButton
+//		(tr("FNMOC-WW3-GLOBAL: all oceans (7 days, 1°x1°)"));
+//	bt_FNMOC_WW3_MED  = new QRadioButton
+//		(tr("FNMOC-WW3-MEDIT: Mediterranean Sea, Atlantic NE (3 days, 0.2°x0.2°)"));
 	
-	if (waveDataModel == FNMOC_WW3_MED)
-		bt_FNMOC_WW3_MED->setChecked (true);
-	else
-		bt_FNMOC_WW3_GLB->setChecked (true);
+//	if (waveDataModel == FNMOC_WW3_MED)
+//		bt_FNMOC_WW3_MED->setChecked (true);
+//	else
+//		bt_FNMOC_WW3_GLB->setChecked (true);
 	
 	//----------------------------------------------------------------
     btOK     = new QPushButton(tr("Download"), this);
@@ -873,23 +910,48 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
     QLayout  *tlay, *vlay;
     QGridLayout  *tgrid;
 	//------------------------------------------------
-	// Disposition des widgets
+    // Layout of widgets
 	//------------------------------------------------
 	ftmp = new QFrame(this);
     tgrid = new QGridLayout(ftmp);
     assert(tgrid);
 	tgrid->setContentsMargins (0,0,0,0);
 		tgrid->addWidget( new QLabel(tr("Latitude min :")), 0, 0, Qt::AlignRight);
-		tgrid->addWidget( sbNorth, 0, 1);
+        tgrid->addWidget( sbSouth, 0, 1);
 		tgrid->addWidget( new QLabel(tr("Latitude max :")), 0, 2, Qt::AlignRight);
-		tgrid->addWidget( sbSouth, 0, 3);
+        tgrid->addWidget( sbNorth, 0, 3);
 		tgrid->addWidget( new QLabel(tr("Longitude min :")), 1, 0, Qt::AlignRight);
 		tgrid->addWidget( sbWest, 1, 1);
 		tgrid->addWidget( new QLabel(tr("Longitude max :")), 1, 2, Qt::AlignRight);
 		tgrid->addWidget( sbEast, 1, 3);
     lay->addWidget( ftmp);
     //-------------------------
-    addSeparator (lay, 'H'); 
+    addSeparator (lay, 'H');
+
+
+    ftmp = new QFrame(this);
+    tgrid = new QGridLayout(ftmp);
+    assert(tgrid);
+    tgrid->setContentsMargins (0,0,0,0);
+    tgrid->addWidget( new QLabel(tr("Atmospheric Model :")), 0, 0, Qt::AlignRight);
+    tgrid->addWidget( cbModel, 0, 1);
+    //-------------------------
+//    addSeparator (tlay, 'V');
+    //-------------------------
+    tgrid->addWidget( new QLabel(tr("Wave Model :")), 0, 2, Qt::AlignRight);
+    tgrid->addWidget( cbWvModel, 0, 3);
+    lay->addWidget( ftmp);
+
+//    ftmp = new QFrame(this);
+//    tlay = new QHBoxLayout(ftmp);
+//    assert(tlay);
+//    tlay->setContentsMargins (0,0,0,0);
+//    tlay->addWidget( new QLabel(tr("Wave Model:")));
+//    tlay->addWidget( cbWvModel);
+//    lay->addWidget( ftmp);
+
+
+    addSeparator (lay, 'H');
     //-------------------------
 	ftmp = new QFrame(this);
     tlay = new QHBoxLayout(ftmp);
@@ -913,8 +975,8 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
 		//-------------------------
 		addSeparator (tlay, 'V'); 
 		//-------------------------
-		tlay->addWidget( new QLabel(tr("GFS run:")));
-		tlay->addWidget( cbRunGFS);
+        tlay->addWidget( new QLabel(tr("Run cycle:")));
+        tlay->addWidget( cbRunCycle);
     lay->addWidget( ftmp);
     //-------------------------
     addSeparator (lay, 'H'); 
@@ -930,7 +992,7 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
     assert (tgrid);
 	tgrid->setContentsMargins (4,2,4,2);
 	tgrid->setSpacing (2);
-    	// Colonne 1
+        // Column 1
     	col = 0;
     	lig = 0;
 		tgrid->addWidget( chkWind ,      lig++, col, Qt::AlignLeft);
@@ -958,7 +1020,7 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
 		tgrid->addWidget( chkSnowCateg ,  lig++, col, Qt::AlignLeft);
 		tgrid->addWidget( chkSnowDepth ,  lig++, col, Qt::AlignLeft);
 		tgrid->addWidget( chkFrzRainCateg , lig++, col, Qt::AlignLeft);
-    tabWidget->addTab (ftmp, tr("NOAA-GFS")+" "+tr("standard"));
+    tabWidget->addTab (ftmp, tr("Surface Data"));
 	//-------------------------------------------
 	// Altitude TAB
 	//-------------------------------------------
@@ -969,7 +1031,7 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
 	vlay->addWidget (new QLabel (
 			tr("Atmosphere: geopotential altitude, wind, temperature, theta-e, relative humidity.") 
 			+"\n"+
-			tr("Warning : these data increase strongly the size of the GRIB file.")
+            tr("Warning: Selecting this data significantly increases the size of the GRIB file.")
 		));
 		ftmp = new QFrame(this);
 		assert (ftmp);
@@ -996,7 +1058,7 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
 		addSeparator (tlay, 'V'); 
 		tlay->addWidget (chkAltitude_SkewT);
 	vlay->addWidget (ftmp);
-    tabWidget->addTab (tabbox, tr("NOAA-GFS")+" "+tr("altitude"));
+    tabWidget->addTab (tabbox, tr("Altitude Data"));
 	//-------------------------------------------
 	// Waves TAB
 	//-------------------------------------------
@@ -1005,28 +1067,30 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
     tgrid = new QGridLayout (tabbox);
     assert (tgrid);
 	tgrid->setContentsMargins (4,2,4,2);
-	tgrid->setSpacing (2);
+    tgrid->setSpacing (1);
     	// Colonne 1
     	col = 0;
     	lig = 0;
-		tgrid->addWidget (chkFnmocWW3_sig, lig++, col, Qt::AlignLeft);
-		tgrid->addWidget (chkFnmocWW3_max, lig++, col, Qt::AlignLeft);
-		tgrid->addWidget (chkFnmocWW3_swl, lig++, col, Qt::AlignLeft);
-		tgrid->addWidget (chkFnmocWW3_wnd, lig++, col, Qt::AlignLeft);
+        tgrid->addWidget (chkWaveSig, lig++, col, Qt::AlignLeft);
+//        tgrid->addWidget (chkWaveMax, lig++, col, Qt::AlignLeft);
+        tgrid->addWidget (chkWaveSwell, lig++, col, Qt::AlignLeft);
+        // Colonne 2
+//        col = 1;
+//        lig = 0;
+        tgrid->addWidget (chkWaveWind, lig++, col, Qt::AlignLeft);
 		
-		tgrid->addWidget (newSeparator ('H'), lig++, 0, 1, 2);
-		tgrid->addWidget (chkFnmocWW3_All, lig++, 0, 1, 2, Qt::AlignCenter);
-		tgrid->addWidget (newSeparator ('H'), lig++, 0, 1, 2);
+//		tgrid->addWidget (newSeparator ('H'), lig++, 0, 1, 2);
+//        tgrid->addWidget (chkWindAll, lig++, 0, 1, 2, Qt::AlignCenter);
+//		tgrid->addWidget (newSeparator ('H'), lig++, 0, 1, 2);
 		
-		tgrid->addWidget (bt_FNMOC_WW3_GLB, lig++, 0, 1, 2);
-		tgrid->addWidget (bt_FNMOC_WW3_MED, lig++, 0, 1, 2);
-    	// Colonne 2
-    	col = 1;
-    	lig = 0;
-		tgrid->addWidget (chkFnmocWW3_prim, lig++, col, Qt::AlignLeft);
-		tgrid->addWidget (chkFnmocWW3_scdy, lig++, col, Qt::AlignLeft);
-		tgrid->addWidget (chkFnmocWW3_wcap, lig++, col, Qt::AlignLeft);
-    tabWidget->addTab (tabbox, tr("FNMOC-WW3")+" "+tr("waves"));
+//		tgrid->addWidget (bt_FNMOC_WW3_GLB, lig++, 0, 1, 2);
+//		tgrid->addWidget (bt_FNMOC_WW3_MED, lig++, 0, 1, 2);
+
+//		tgrid->addWidget (chkFnmocWW3_prim, lig++, col, Qt::AlignLeft);
+//		tgrid->addWidget (chkFnmocWW3_scdy, lig++, col, Qt::AlignLeft);
+//		tgrid->addWidget (chkFnmocWW3_wcap, lig++, col, Qt::AlignLeft);
+
+    tabWidget->addTab (tabbox, tr("Wave Data"));
 	
     //-------------------------
     addSeparator (lay, 'H'); 

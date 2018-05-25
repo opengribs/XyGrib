@@ -458,7 +458,8 @@ void GribPlot::draw_WAVES_Arrows (
         return;
 	
     int i, j;
-    double x, y, vxy, vy;
+    double x, y, vxy;
+//    double x, y, vxy, vy;
     int W = proj->getW();
     int H = proj->getH();
     
