@@ -608,7 +608,7 @@ bool  Terrain::getSelectedRectangle(double *x0, double *y0, double *x1, double *
             *x0 = selX0;
             *x1 = selX1;
         }
-        if (selY0 > selY1) {
+        if (selY0 < selY1) {
             *y0 = selY0;
             *y1 = selY1;
         }

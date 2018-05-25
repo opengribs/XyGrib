@@ -139,7 +139,7 @@ void LonLatGrid::drawLonLatGrid (QPainter &pnt, Projection *proj)
 void LonLatGrid::drawLabel(QPainter &pnt, const Projection *proj,
 				double value, int i, int j)
 {
-    int   a,b,c,d;
+//    int   a,b,c,d;
     QString label;
 	QColor couleur(10,10,10);
 
@@ -148,7 +148,7 @@ void LonLatGrid::drawLabel(QPainter &pnt, const Projection *proj,
     QPen penText(couleur);
     QFont fontText = Font::getFont(FONT_LonLatGridLabel);
     QFontMetrics fmet(fontText);
-    QRect rect = fmet.boundingRect(label);
+//    QRect rect = fmet.boundingRect(label);
     pnt.setPen(penText);
     pnt.setFont(fontText);
 

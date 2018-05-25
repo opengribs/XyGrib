@@ -58,7 +58,7 @@ class DialogLoadGRIB : public DialogBoxBase
         void slotGribStartLoadData();
         void slotParameterUpdated();
         void slotAltitude_All ();
-        void slotFnmocWW3_All ();
+//        void slotFnmocWW3_All ();
 		void slotFinished (int result);
 
     private:
@@ -76,9 +76,11 @@ class DialogLoadGRIB : public DialogBoxBase
         QDoubleSpinBox *sbEast;
         
         QComboBox *cbResolution;
+        QComboBox *cbModel;
+        QComboBox *cbWvModel;
         QComboBox *cbInterval;
         QComboBox *cbDays;
-        QComboBox *cbRunGFS;
+        QComboBox *cbRunCycle;
 
         QCheckBox *chkWind;
         QCheckBox *chkPressure;
@@ -96,7 +98,7 @@ class DialogLoadGRIB : public DialogBoxBase
         QCheckBox *chkCAPEsfc;
         QCheckBox *chkCINsfc;
         QCheckBox *chkGUSTsfc;
-        QCheckBox *chkSUNSDsfc;
+//        QCheckBox *chkSUNSDsfc;
 		
         QCheckBox *chkAltitude_SkewT;
         QCheckBox *chkAltitude_All;
@@ -109,18 +111,18 @@ class DialogLoadGRIB : public DialogBoxBase
         QCheckBox *chkAltitude850;
         QCheckBox *chkAltitude925;
 		
-        QCheckBox *chkFnmocWW3_All;
-        QCheckBox *chkFnmocWW3_sig;
-        QCheckBox *chkFnmocWW3_max;
-        QCheckBox *chkFnmocWW3_swl;
-        QCheckBox *chkFnmocWW3_wnd;
-        QCheckBox *chkFnmocWW3_prim;
-        QCheckBox *chkFnmocWW3_scdy;
-        QCheckBox *chkFnmocWW3_wcap;
+//        QCheckBox *chkWindAll;
+        QCheckBox *chkWaveSig;
+//        QCheckBox *chkWaveMax;
+        QCheckBox *chkWaveSwell;
+        QCheckBox *chkWaveWind;
+//        QCheckBox *chkFnmocWW3_prim;
+//        QCheckBox *chkFnmocWW3_scdy;
+//        QCheckBox *chkFnmocWW3_wcap;
 		
-		DataCenterModel waveDataModel;
-		QRadioButton *bt_FNMOC_WW3_GLB;
-		QRadioButton *bt_FNMOC_WW3_MED;
+//		DataCenterModel waveDataModel;
+//		QRadioButton *bt_FNMOC_WW3_GLB;
+//		QRadioButton *bt_FNMOC_WW3_MED;
         
         QPushButton *btOK;
         QPushButton *btCancel;
@@ -132,6 +134,8 @@ class DialogLoadGRIB : public DialogBoxBase
         
         QFrame *createFrameButtonsZone(QWidget *parent);
         
+        QString atmosphericModel;
+        QString waveModel;
         double   xmin,ymin,xmax,ymax,resolution;
         int     interval,days;
         
@@ -139,7 +143,7 @@ class DialogLoadGRIB : public DialogBoxBase
         bool	tempMin, tempMax, snowDepth, snowCateg, frzRainCateg;
         bool 	CAPEsfc, CINsfc, cloudLayers;
 		bool 	GUSTsfc;
-		bool 	SUNSDsfc;
+//		bool 	SUNSDsfc;
 		
         void    updateParameters();
 		void    saveParametersSettings ();

@@ -28,6 +28,7 @@ Download GRIB File on zygrib server
 #include <QObject>
 #include <QtNetwork>
 #include <QBuffer>
+#include <QJsonDocument>
 
 #include "FileLoader.h"
 #include "Util.h"
@@ -38,7 +39,7 @@ class FileLoaderGRIB : public QObject, FileLoader
         FileLoaderGRIB (QNetworkAccessManager *manager, QWidget *parent);
         ~FileLoaderGRIB();
         
-        void getGribFile(
+        void getGribFile( QString atmModel,
 				float x0, float y0, float x1, float y1,
 				float resolution, int interval, int days,
 				bool wind, bool pressure, bool rain,
@@ -55,10 +56,12 @@ class FileLoaderGRIB : public QObject, FileLoader
 				bool altitudeData850,
 				bool altitudeData925,
 				bool skewTData,
-				bool cloudLayers,
 				bool GUSTsfc,
-				bool SUNSDsfc
-			);
+                QString wvModel,
+                bool sgwh,
+                bool swell,
+                bool wwav
+            );
         void stop();
         
     private:

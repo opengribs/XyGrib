@@ -37,7 +37,7 @@ FileLoaderGRIB::FileLoaderGRIB (QNetworkAccessManager *manager, QWidget *parent)
 	downloadError = false;
 	reply_step1 = NULL;
 	reply_step2 = NULL;
-	scriptpath = "/noaa/";
+    scriptpath = "/";
 	scriptstock = "313O562/";
     zygriblog = "a07622b82b18524d2088c9b272bb3feeb0eb1737";
     zygribpwd = "61c9b2b17db77a27841bbeeabff923448b0f6388";
@@ -70,7 +70,8 @@ void FileLoaderGRIB::stop ()
 
 //-------------------------------------------------------------------------------
 void FileLoaderGRIB::getGribFile(
-        float x0, float y0, float x1, float y1,
+        QString atmModel,
+        float x0, float x1, float y0, float y1,
         float resolution, int interval, int days,
         bool wind, bool pressure, bool rain,
         bool cloud, bool temp, bool humid, bool isotherm0,
@@ -86,16 +87,19 @@ void FileLoaderGRIB::getGribFile(
 		bool altitudeData850,
 		bool altitudeData925,
 		bool skewTData,
-		bool cloudLayers,
 		bool GUSTsfc,
-		bool SUNSDsfc
+        QString wvModel,
+        bool sgwh,
+        bool swell,
+        bool wwav
 	)
 {
     QString page;
 	step = 0;
     //----------------------------------------------------------------
-    // Etape 1 : Demande la création du fichier Grib (nom en retour)
+    // Step 1: Request the creation of the Grib file (status, name, size & checksum in return)
     //----------------------------------------------------------------
+    // build the parameter string
     QString parameters = "";
     if (wind) {
         parameters += "W;";
@@ -142,9 +146,9 @@ void FileLoaderGRIB::getGribFile(
     if (GUSTsfc) {
         parameters += "G;";
     }
-    if (SUNSDsfc) {
-        parameters += "D;";
-    }
+//    if (SUNSDsfc) { // not currently used
+//        parameters += "D;";
+//    }
 	
     if (altitudeData200) parameters += "2;";
     if (altitudeData300) parameters += "3;";
@@ -154,34 +158,49 @@ void FileLoaderGRIB::getGribFile(
     if (altitudeData700) parameters += "7;";
     if (altitudeData850) parameters += "8;";
     if (altitudeData925) parameters += "9;";
-    if (cloudLayers) parameters += "L;";
+//    if (cloudLayers) parameters += "L;";
 	if (skewTData)  parameters += "skewt;";
 	
-    if (Util::getSetting("downloadFnmocWW3_sig", false).toBool())
-		parameters += "w3sh;";
-    if (Util::getSetting("downloadFnmocWW3_max", false).toBool())
-		parameters += "w3mx;"; 
-    if (Util::getSetting("downloadFnmocWW3_swl", false).toBool())
-		parameters += "w3sw;";
-    if (Util::getSetting("downloadFnmocWW3_wnd", false).toBool())
-		parameters += "w3wn;"; 
-    if (Util::getSetting("downloadFnmocWW3_wcap", false).toBool())
-		parameters += "w3wc;";
-    if (Util::getSetting("downloadFnmocWW3_prim", false).toBool())
-		parameters += "w3pr;"; 
-    if (Util::getSetting("downloadFnmocWW3_scdy", false).toBool())
-		parameters += "w3sc;"; 
-	if (parameters.contains("w3")) {
-		DataCenterModel waveDataModel = (DataCenterModel)(Util::getSetting("downloadFnmocWW3_DataModel", FNMOC_WW3_MED).toInt());
-		if (waveDataModel == FNMOC_WW3_MED)
-			parameters += "w3med;"; 
-		else if (waveDataModel == FNMOC_WW3_GLB)
-			parameters += "w3glb;"; 
-		else if (waveDataModel == NOAA_NCEP_WW3)
-			parameters += "w3ncp;"; 
-	}
-	
-	QString runGFS = Util::getSetting("downloadRunGFS", "").toString();
+
+    // wave parameters have their own string
+    QString waveParams = "";
+    if (sgwh) {
+        waveParams += "s;";
+    }
+    if (swell) {
+        waveParams += "H;D;P;";
+    }
+    if (wwav) {
+        waveParams += "h;d;p;";
+    }
+
+    // model identifier (combines resolution)
+    QString amod = "";
+    if (atmModel == "GFS" && resolution == 0.25 ){
+        amod = "gfs_p25_";
+    } else if (atmModel == "GFS" && resolution == 0.50 ){
+        amod = "gfs_p50_";
+    } else if (atmModel == "GFS" && resolution == 1.0 ){
+        amod = "gfs_1p0_";
+    } else if (atmModel == "ICON"){
+        amod = "icon_p25_";
+    } else if (atmModel == "Arpege"){
+        amod = "arpege_p50_";
+    }
+
+    // wave model identifier
+    QString wmod = "";
+    if (wvModel == "WW3"){
+        wmod = "ww3_p50_";
+    } else if (wvModel == "GWAM" ){
+        wmod = "gwam_p25_";
+    } else if (wvModel == "EWAM"){
+        wmod = "ewam_p05_";
+    } else if (wvModel == "None"){
+        wmod = "none";
+    }
+
+    QString runCycle = Util::getSetting("downloadRunCycle", "last").toString().toLower();
 	strbuf.clear();
 	if (parameters != "")
     {
@@ -189,26 +208,27 @@ void FileLoaderGRIB::getGribFile(
         emit signalGribSendMessage(
         		tr("Make file on server... Please wait..."));
         emit signalGribReadProgress(step, 0, 0);
-		
+
+
 		QString phpfilename;
-		phpfilename = scriptpath+"getzygribfile08a.php?";
+        phpfilename = scriptpath+ "getmygribs.php?";
 		QString now = QTime::currentTime().toString("HHmmss");
         QTextStream(&page) << phpfilename
-                           << "but=prepfile"
+                           << "model=" << amod
                            << "&la1=" << floor(y0)
                            << "&la2=" << ceil(y1)
                            << "&lo1=" << floor(x0)
                            << "&lo2=" << ceil(x1)
-                           << "&res=" << resolution
-                           << "&hrs=" << interval
-                           << "&jrs=" << days
+                           << "&intv=" << interval
+                           << "&days=" << days
+                           << "&cyc=" << runCycle
                            << "&par=" << parameters
-                           << "&rungfs=" << runGFS
-                           << "&l=" << zygriblog
-                           << "&m=" << zygribpwd
-                           << "&client=" << Version::getCompleteZName()
+                           << "&wmdl=" << wmod
+                           << "&wpar=" << waveParams
                            ;
-		QNetworkRequest request = Util::makeNetworkRequest ("http://"+Util::getServerName()+page,-50,80,40,35);
+//                            << "&client=" << Version::getCompleteName()
+
+        QNetworkRequest request = Util::makeNetworkRequest ("http://"+Util::getServerName()+page);
 		reply_step1 = networkManager->get (request);
 		connect (reply_step1, SIGNAL(downloadProgress (qint64,qint64)), 
 				 this, SLOT(downloadProgress (qint64,qint64)));
@@ -246,52 +266,44 @@ void FileLoaderGRIB::downloadProgress (qint64 done, qint64 total)
 //-------------------------------------------------------------------------------
 void FileLoaderGRIB::slotFinished_step1 ()
 {
-// DBG("slotFinished_step1");	
+DBG("slotFinished_step1");
 	if (!downloadError) {
 		//-------------------------------------------
-		// Retour de l'étape 1 : préparation du fichier
+        // Back from step 1: preparing the file
 		//-------------------------------------------
 		xserv=reply_step1->rawHeader("XServer");
 		strbuf.append(xserv);
 		QByteArray data = reply_step1->readAll ();
-		strbuf.append(data);
-		QStringList lsbuf = strbuf.split("\n");
-		QString status="";
-		if (xserv.size()>=2) {
-			for (int i=0; i < lsbuf.size(); i++)
-			{
-				QStringList lsval = lsbuf.at(i).split(":");
-				if (lsval.size() >= 2) {
-					if (lsval.at(0) == "status")
-						status = lsval.at(1);
-					else if (lsval.at(0) == "file") 
-						fileName = QString(lsval.at(1)).replace(".grb","%20");
-					else if (lsval.at(0) == "size")
-						fileSize = lsval.at(1).toInt();
-					else if (lsval.at(0) == "checksum")
-						checkSumSHA1 = lsval.at(1);
-					else if (lsval.at(0) == "message") {
-						QString m = QUrl::fromPercentEncoding (lsval.at(1).toUtf8());
-						QMessageBox::warning (parent, tr("Information"), m);
-					}
-				}
-			}
-		}
+
+        QJsonDocument jsondoc = QJsonDocument::fromJson(data);
+        QJsonObject jsondata = jsondoc.object();
+
+        bool status = jsondata["status"].toBool();
+        // if the result is valid the status is true and the message contains object
+        // with name, size and checksum
+        if (status) {
+            QJsonObject msg = jsondata["message"].toObject();
+            fileName = msg["url"].toString();
+            fileSize = msg["size"].toInt();
+            checkSumSHA1 = msg["sha1"].toString();
+
+        }else{ // message contains only the error message
+            QString m = jsondata["message"].toString();
+            QMessageBox::warning(parent, tr("Information"), m);
+        }
+
 		//-------------------------------------------------------------
-		// Lance l'étape 2 : Demande le contenu du fichier Grib
+        // Start Step 2: Request the contents of the Grib file
 		//-------------------------------------------------------------
-		if (status == "ok") {
-			QString page;
+        if (status) {
             step = 2;
             QString s;
-            s = tr("Total size : ") + QString("%1 ko").arg(fileSize/1024, 0);
+            s = tr("Total size : ") + QString("%1 kb").arg(fileSize/1024, 0);
             emit signalGribSendMessage(s);
-            QTextStream(&page) << scriptpath
-			<<"313O562/"<<fileName;
             emit signalGribStartLoadData();            
 			QNetworkRequest request;
-			request.setUrl (QUrl("http://"+Util::getServerName()+page) );
-			reply_step2 = networkManager->get (request);
+            request.setUrl (QUrl(fileName));
+            reply_step2 = networkManager->get (request);
 			connect (reply_step2, SIGNAL(downloadProgress (qint64,qint64)), 
 					 this, SLOT(downloadProgress (qint64,qint64)));
 			connect (reply_step2, SIGNAL(error(QNetworkReply::NetworkError)),
@@ -315,12 +327,12 @@ void FileLoaderGRIB::slotFinished_step2 ()
 			emit signalGribLoadError (tr("Empty file."));
 			return;
 		}
-		arrayContent[xserv[0]-32]=arrayContent[xserv[0]-32]^xserv[1];
 		emit signalGribSendMessage(tr("CheckSum control"));
 		if (Util::sha1 (arrayContent) == checkSumSHA1)
 		{
 			emit signalGribSendMessage(tr("Finish")
-							+ QString(" %1 ko").arg(arrayContent.size()/1024.0,0,'f',1));
+                            + QString(" %1 kb").arg(arrayContent.size()/1024.0,0,'f',1));
+            // TODO not sure about the .grb thing here
 			emit signalGribDataReceived(&arrayContent, fileName.replace("%20",".grb"));
 		}
 		else {

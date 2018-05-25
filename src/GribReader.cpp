@@ -816,7 +816,7 @@ double 	GribReader::get2GribsInterpolatedValueByDate (
 }
 
 //---------------------------------------------------
-// Rectangle de la zone couverte par les données
+// Rectangle of the area covered by the data
 bool GribReader::getZoneExtension (double *x0,double *y0, double *x1,double *y1)
 {
     if (ok) {
