@@ -43,7 +43,7 @@ class DialogProxy : public DialogBoxBase
 
     private slots:
         void slotUseProxyChanged();
-        void slotTrueHttpDownloadChanged();
+//        void slotTrueHttpDownloadChanged();
 		
     private:
         QFrame *frameGui;
@@ -61,13 +61,13 @@ class DialogProxy : public DialogBoxBase
         QLineEdit    *lineProxyUserName;
         QLineEdit    *lineProxyUserPassword;
 		
-        QRadioButton *btStandardDownload;
-        QRadioButton *btStrictHttpDownload;
-        QLineEdit    *lineZygribForumUserName;
-        QLineEdit    *lineZygribForumUserPassword;
+//        QRadioButton *btStandardDownload;
+//        QRadioButton *btStrictHttpDownload;
+//        QLineEdit    *lineZygribForumUserName;
+//        QLineEdit    *lineZygribForumUserPassword;
 		
 		QList <QLabel*> listProxyLabels;
-		QList <QLabel*> listDownloadLabels;
+//		QList <QLabel*> listDownloadLabels;
 
         QFrame * createFrameGui(QWidget *parent);
 };

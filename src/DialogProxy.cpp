@@ -26,6 +26,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 //-------------------------------------------------------------------------------
+// TODO - file needs to be cleaned up
+
 DialogProxy::DialogProxy (QWidget *parent) : DialogBoxBase (parent)
 {
     QLabel *label;
@@ -67,19 +69,19 @@ DialogProxy::DialogProxy (QWidget *parent) : DialogBoxBase (parent)
     btDontUseProxy->setChecked (!usep);
     slotUseProxyChanged ();
 
-    lineZygribForumUserName->setText (Util::decode(Util::getSetting("zyGribForumUserName", "").toString()));
-    lineZygribForumUserPassword->setText (Util::decode(Util::getSetting("zyGribForumUserPassword", "").toString()));
+//    lineZygribForumUserName->setText (Util::decode(Util::getSetting("zyGribForumUserName", "").toString()));
+//    lineZygribForumUserPassword->setText (Util::decode(Util::getSetting("zyGribForumUserPassword", "").toString()));
 	
-    usep = Util::getSetting ("strictHttpDownload", false).toBool(); 
-    btStrictHttpDownload->setChecked (usep);
-    btStandardDownload->setChecked (!usep);
-    slotTrueHttpDownloadChanged ();
+//    usep = Util::getSetting ("strictHttpDownload", false).toBool();
+//    btStrictHttpDownload->setChecked (usep);
+//    btStandardDownload->setChecked (!usep);
+//    slotTrueHttpDownloadChanged ();
 
 	//===============================================================
     connect(btUseProxy,     SIGNAL(clicked()), this, SLOT(slotUseProxyChanged()));
     connect(btDontUseProxy, SIGNAL(clicked()), this, SLOT(slotUseProxyChanged()));
-    connect(btStandardDownload, SIGNAL(clicked()), this, SLOT(slotTrueHttpDownloadChanged()));
-    connect(btStrictHttpDownload, SIGNAL(clicked()), this, SLOT(slotTrueHttpDownloadChanged()));
+//    connect(btStandardDownload, SIGNAL(clicked()), this, SLOT(slotTrueHttpDownloadChanged()));
+//    connect(btStrictHttpDownload, SIGNAL(clicked()), this, SLOT(slotTrueHttpDownloadChanged()));
     connect(btCancel, SIGNAL(clicked()), this, SLOT(slotBtCancel()));
     connect(btOK, SIGNAL(clicked()), this, SLOT(slotBtOK()));
 }
@@ -98,15 +100,15 @@ void DialogProxy::slotUseProxyChanged ()
 	}
 }
 //-------------------------------------------------------------------------------
-void DialogProxy::slotTrueHttpDownloadChanged ()
-{
-    bool usep = btStrictHttpDownload->isChecked();
-    lineZygribForumUserName->setEnabled (usep);
-    lineZygribForumUserPassword->setEnabled (usep);
-	for (int i=0; i < listDownloadLabels.size(); i++) {
-		listDownloadLabels[i]->setEnabled (usep);
-	}
-}
+//void DialogProxy::slotTrueHttpDownloadChanged ()
+//{
+//    bool usep = btStrictHttpDownload->isChecked();
+//    lineZygribForumUserName->setEnabled (usep);
+//    lineZygribForumUserPassword->setEnabled (usep);
+//	for (int i=0; i < listDownloadLabels.size(); i++) {
+//		listDownloadLabels[i]->setEnabled (usep);
+//	}
+//}
 
 //-------------------------------------------------------------------------------
 void DialogProxy::slotBtOK()
@@ -120,9 +122,9 @@ void DialogProxy::slotBtOK()
 					 cbProxyType->itemData (cbProxyType->currentIndex() ).toInt() );
 	Util::setApplicationProxy ();
 
-    Util::setSetting("strictHttpDownload", btStrictHttpDownload->isChecked());
-    Util::setSetting("zyGribForumUserName", Util::encode(lineZygribForumUserName->text()));
-    Util::setSetting("zyGribForumUserPassword", Util::encode(lineZygribForumUserPassword->text()));
+//    Util::setSetting("strictHttpDownload", btStrictHttpDownload->isChecked());
+//    Util::setSetting("zyGribForumUserName", Util::encode(lineZygribForumUserName->text()));
+//    Util::setSetting("zyGribForumUserPassword", Util::encode(lineZygribForumUserPassword->text()));
 	
     accept();
 }
@@ -138,7 +140,7 @@ void DialogProxy::slotBtCancel()
 QFrame *DialogProxy::createFrameGui(QWidget *parent)
 {
     QFrame * frm = new QFrame(parent);
-    QFrame * ftmp;
+//    QFrame * ftmp;
     QLabel * label;
     QGridLayout  *lay = new QGridLayout(frm);
 	lay->setContentsMargins (0,0,0,0);
@@ -212,39 +214,39 @@ QFrame *DialogProxy::createFrameGui(QWidget *parent)
     //-------------------------------------------
 	// Strict HTTP Connection or standard
     //-------------------------------------------
-    lig ++;
-    ftmp = new QFrame(frm); ftmp->setFrameShape(QFrame::HLine); lay->addWidget( ftmp, lig,0, 1, -1);
-    //-------------------------
-    QButtonGroup *grp2 = new QButtonGroup (frm);
-	btStandardDownload = new QRadioButton (tr("Standard download"));
-    grp2->addButton (btStandardDownload);
-	btStrictHttpDownload = new QRadioButton (tr("Strict HTTP download"));
-    grp2->addButton (btStrictHttpDownload);
-    ltmp = new QHBoxLayout ();
-	ltmp->addWidget (btStandardDownload);
-	ltmp->addWidget (btStrictHttpDownload);
-    lig ++;
-    lay->addLayout (ltmp, lig,0,   1, 2);	
-    //-------------------------
-    lig ++;
-    label = new QLabel(tr("Forum login :"), frm);
-	listDownloadLabels.push_back (label);
-    lay->addWidget( label,    lig,0, Qt::AlignRight);
-    lineZygribForumUserName = new QLineEdit(frm);
-    lineZygribForumUserName->setFixedWidth(320);
-    lay->addWidget( lineZygribForumUserName, lig,1, Qt::AlignLeft);
-    lig ++;
-    label = new QLabel(tr("Forum password :"), frm);
-	listDownloadLabels.push_back (label);
-    lay->addWidget( label,    lig,0, Qt::AlignRight);
-    lineZygribForumUserPassword = new QLineEdit(frm);
-    lineZygribForumUserPassword->setFixedWidth(320);
-    lineZygribForumUserPassword->setEchoMode(QLineEdit::Password);
-    lay->addWidget( lineZygribForumUserPassword, lig,1, Qt::AlignLeft);
-    lig ++;
-    label = new QLabel(tr("You must have a valid account on www.zygrib.org forum."), frm);
-	listDownloadLabels.push_back (label);
-    lay->addWidget( label,    lig,0, 1,2, Qt::AlignLeft);
+//    lig ++;
+//    ftmp = new QFrame(frm); ftmp->setFrameShape(QFrame::HLine); lay->addWidget( ftmp, lig,0, 1, -1);
+//    //-------------------------
+//    QButtonGroup *grp2 = new QButtonGroup (frm);
+//	btStandardDownload = new QRadioButton (tr("Standard download"));
+//    grp2->addButton (btStandardDownload);
+//	btStrictHttpDownload = new QRadioButton (tr("Strict HTTP download"));
+//    grp2->addButton (btStrictHttpDownload);
+//    ltmp = new QHBoxLayout ();
+//	ltmp->addWidget (btStandardDownload);
+//	ltmp->addWidget (btStrictHttpDownload);
+//    lig ++;
+//    lay->addLayout (ltmp, lig,0,   1, 2);
+//    //-------------------------
+//    lig ++;
+//    label = new QLabel(tr("Forum login :"), frm);
+//	listDownloadLabels.push_back (label);
+//    lay->addWidget( label,    lig,0, Qt::AlignRight);
+//    lineZygribForumUserName = new QLineEdit(frm);
+//    lineZygribForumUserName->setFixedWidth(320);
+//    lay->addWidget( lineZygribForumUserName, lig,1, Qt::AlignLeft);
+//    lig ++;
+//    label = new QLabel(tr("Forum password :"), frm);
+//	listDownloadLabels.push_back (label);
+//    lay->addWidget( label,    lig,0, Qt::AlignRight);
+//    lineZygribForumUserPassword = new QLineEdit(frm);
+//    lineZygribForumUserPassword->setFixedWidth(320);
+//    lineZygribForumUserPassword->setEchoMode(QLineEdit::Password);
+//    lay->addWidget( lineZygribForumUserPassword, lig,1, Qt::AlignLeft);
+//    lig ++;
+//    label = new QLabel(tr("You must have a valid account on www.zygrib.org forum."), frm);
+//	listDownloadLabels.push_back (label);
+//    lay->addWidget( label,    lig,0, 1,2, Qt::AlignLeft);
 	
     return frm;
 }
