@@ -56,6 +56,8 @@ class DialogLoadGRIB : public DialogBoxBase
         void slotGribFileError(QString error);
         void slotGribMessage(QString msg);
         void slotGribStartLoadData();
+        void slotAtmModelSettings();
+        void slotWaveModelSettings();
         void slotParameterUpdated();
         void slotAltitude_All ();
 //        void slotFnmocWW3_All ();
@@ -90,8 +92,8 @@ class DialogLoadGRIB : public DialogBoxBase
         QCheckBox *chkTemp;
         QCheckBox *chkHumid;
         QCheckBox *chkIsotherm0;
-        QCheckBox *chkTempMin;
-        QCheckBox *chkTempMax;
+//        QCheckBox *chkTempMin;
+//        QCheckBox *chkTempMax;
         QCheckBox *chkSnowCateg;
         QCheckBox *chkFrzRainCateg;
         QCheckBox *chkSnowDepth;
@@ -140,7 +142,8 @@ class DialogLoadGRIB : public DialogBoxBase
         int     interval,days;
         
         bool    rain, cloud, pressure, wind, temp, humid, isotherm0;
-        bool	tempMin, tempMax, snowDepth, snowCateg, frzRainCateg;
+//        bool	tempMin, tempMax, snowDepth, snowCateg, frzRainCateg;
+        bool	snowDepth, snowCateg, frzRainCateg;
         bool 	CAPEsfc, CINsfc, cloudLayers;
 		bool 	GUSTsfc;
 //		bool 	SUNSDsfc;

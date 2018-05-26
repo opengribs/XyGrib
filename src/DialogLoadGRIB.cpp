@@ -34,7 +34,12 @@ QString DialogLoadGRIB::getFile (QNetworkAccessManager *netManager, QWidget *par
 						double x0, double y0, double x1, double y1)
 {
 	if (!globalDial)
+    {
+        qDebug() << "creating first globalDial";
 		globalDial = new DialogLoadGRIB(netManager,parent);
+        globalDial->slotAtmModelSettings();
+        globalDial->slotWaveModelSettings();
+    }
 	globalDial->setZone (x0, y0, x1, y1);
 	globalDial->exec ();
 	globalDial->saveParametersSettings ();
@@ -76,8 +81,8 @@ DialogLoadGRIB::DialogLoadGRIB (QNetworkAccessManager *netManager, QWidget *pare
     temp  = true;
     humid = true;
     isotherm0 = true;
-    tempMin = true;
-    tempMax = true;
+//    tempMin = true;
+//    tempMax = true;
     snowDepth = true;
     snowCateg = true;
     CAPEsfc = true;
@@ -101,8 +106,8 @@ DialogLoadGRIB::DialogLoadGRIB (QNetworkAccessManager *netManager, QWidget *pare
     connect(sbWest, SIGNAL(valueChanged(double)), this,  SLOT(slotParameterUpdated()));
     connect(sbEast, SIGNAL(valueChanged(double)), this,  SLOT(slotParameterUpdated()));
 
-    connect(cbModel, SIGNAL(activated(int)), this,  SLOT(slotParameterUpdated()));
-    connect(cbWvModel, SIGNAL(activated(int)), this,  SLOT(slotParameterUpdated()));
+    connect(cbModel, SIGNAL(activated(int)), this,  SLOT(slotAtmModelSettings()));
+    connect(cbWvModel, SIGNAL(activated(int)), this,  SLOT(slotWaveModelSettings()));
 
     connect(cbResolution, SIGNAL(activated(int)), this,  SLOT(slotParameterUpdated()));
     connect(cbInterval, SIGNAL(activated(int)), this,  SLOT(slotParameterUpdated()));
@@ -118,8 +123,8 @@ DialogLoadGRIB::DialogLoadGRIB (QNetworkAccessManager *netManager, QWidget *pare
     connect(chkHumid, SIGNAL(stateChanged(int)), 	this,  SLOT(slotParameterUpdated()));
     connect(chkIsotherm0, SIGNAL(stateChanged(int)), this,  SLOT(slotParameterUpdated()));
                 
-    connect(chkTempMin, SIGNAL(stateChanged(int)), 	this, SLOT(slotParameterUpdated()));
-    connect(chkTempMax, SIGNAL(stateChanged(int)), 	this, SLOT(slotParameterUpdated()));
+//    connect(chkTempMin, SIGNAL(stateChanged(int)), 	this, SLOT(slotParameterUpdated()));
+//    connect(chkTempMax, SIGNAL(stateChanged(int)), 	this, SLOT(slotParameterUpdated()));
     connect(chkSnowCateg, SIGNAL(stateChanged(int)), 	this, SLOT(slotParameterUpdated()));
     connect(chkFrzRainCateg, SIGNAL(stateChanged(int)), this, SLOT(slotParameterUpdated()));
     connect(chkSnowDepth, SIGNAL(stateChanged(int)), 	this, SLOT(slotParameterUpdated()));
@@ -306,8 +311,8 @@ void DialogLoadGRIB::saveParametersSettings ()
 	Util::setSetting("downloadHumid", humid);
 	Util::setSetting("downloadIsotherm0", isotherm0);
 	
-	Util::setSetting("downloadTempMin",  tempMin);
-	Util::setSetting("downloadTempMax",  tempMax);
+//	Util::setSetting("downloadTempMin",  tempMin);
+//	Util::setSetting("downloadTempMax",  tempMax);
 	Util::setSetting("downloadSnowDepth", snowDepth);
 	Util::setSetting("downloadSnowCateg", snowCateg);
 	Util::setSetting("downloadFrzRainCateg", frzRainCateg);
@@ -385,8 +390,8 @@ void DialogLoadGRIB::updateParameters ()
     humid    = chkHumid->isChecked();
     isotherm0    = chkIsotherm0->isChecked();
 	
-    tempMin     = chkTempMin->isChecked();
-    tempMax     = chkTempMax->isChecked();
+//    tempMin     = chkTempMin->isChecked();
+//    tempMax     = chkTempMax->isChecked();
     snowDepth   = chkSnowDepth->isChecked();
     snowCateg   = chkSnowCateg->isChecked();
     frzRainCateg = chkFrzRainCateg->isChecked();
@@ -403,11 +408,107 @@ void DialogLoadGRIB::updateParameters ()
 }
 
 //-------------------------------------------------------------------------------
+// sets allowed meta data values in dialog and activates relevent parameter choices
+void DialogLoadGRIB::slotAtmModelSettings()
+{
+    QString amod = cbModel->currentText();
+    int ind = 0;
+    if (amod == "GFS")
+    {
+        // set res, days, cyc options
+
+        cbResolution->clear();
+        cbResolution->addItems(QStringList()<< "0.25"<< "0.5" << "1.0");
+        cbDays->clear();
+        cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4"<<"5"<<"6"<<"7"<<"8"<<"9"<<"10");
+        cbRunCycle->clear();
+        cbRunCycle->insertItem (ind++, tr("Last"), "last");
+        cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
+        cbRunCycle->insertItem (ind++, tr("6 hr"), "06");
+        cbRunCycle->insertItem (ind++, tr("12 hr"), "12");
+        cbRunCycle->insertItem (ind++, tr("18 hr"), "18");
+        // reactivate parameters that may have been disabled
+        chkSnowCateg->setCheckable(true);
+        chkFrzRainCateg->setCheckable(true);
+        chkCINsfc->setCheckable(true);
+        chkIsotherm0->setCheckable(true);
+        chkSnowDepth->setCheckable(true);
+
+    }
+    else if (amod == "ICON")
+    {
+        cbResolution->clear();
+        cbResolution->addItem("0.25");
+        cbDays->clear();
+        cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4"<<"5"<<"6"<<"7"<<"8");
+        cbRunCycle->clear();
+        cbRunCycle->insertItem (ind++, tr("Last"), "last");
+        cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
+        cbRunCycle->insertItem (ind++, tr("12 hr"), "12");
+        // deactivate unvalid parameters
+        chkSnowCateg->setCheckable(false); chkSnowCateg->repaint();
+        chkFrzRainCateg->setCheckable(false); chkFrzRainCateg->repaint();
+        chkCINsfc->setCheckable(false); chkCINsfc->repaint();
+
+    }
+    else if (amod == "Arpege")
+    {
+        cbResolution->clear();
+        cbResolution->addItem("0.5");
+        cbDays->clear();
+        cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4");
+        cbRunCycle->clear();
+        cbRunCycle->insertItem (ind++, tr("Last"), "last");
+        cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
+        cbRunCycle->insertItem (ind++, tr("12 hr"), "12");
+        // deactivate unvalid parameters
+        chkSnowCateg->setCheckable(false); chkSnowCateg->repaint();
+        chkFrzRainCateg->setCheckable(false); chkFrzRainCateg->repaint();
+        chkCINsfc->setCheckable(false); chkCINsfc->repaint();
+        chkIsotherm0->setCheckable(false); chkIsotherm0->repaint();
+        chkSnowDepth->setCheckable(false); chkSnowDepth->repaint();
+
+    }
+
+    // propagate the change
+    slotParameterUpdated ();
+
+}
+
+//-------------------------------------------------------------------------------
+// activates or deactivates wave parameter options
+void DialogLoadGRIB::slotWaveModelSettings()
+{
+    QString wmod = cbWvModel->currentText();
+
+    if (wmod == "None")
+    {
+        // deactivate the parameter check boxes
+        chkWaveSig->setCheckable(false); chkWaveSig->repaint();
+        chkWaveSwell->setCheckable(false); chkWaveSwell->repaint();
+        chkWaveWind->setCheckable(false); chkWaveWind->repaint();
+    }
+    else
+    {
+        // activate all of them
+        chkWaveSig->setCheckable(true);
+        chkWaveSwell->setCheckable(true);
+        chkWaveWind->setCheckable(true);
+    }
+
+
+}
+
+//-------------------------------------------------------------------------------
 void DialogLoadGRIB::slotParameterUpdated ()
 {
+
     updateParameters();
 	int npts = (int) (  ceil(fabs(xmax-xmin)/resolution)
                        * ceil(fabs(ymax-ymin)/resolution) );
+    // TODO - estimated size calculation needs to be completely redone
+    // including adding the model parameters
+
     // Nombre de GribRecords
     int nbrec;
 
@@ -431,8 +532,8 @@ void DialogLoadGRIB::slotParameterUpdated ()
     int nbHumid = humid    ?  nbrec   : 0;
     int nbIsotherm0 = isotherm0    ?  nbrec   : 0;
     
-    int nbTempMin  = tempMin ?  nbrec-1  : 0;
-    int nbTempMax  = tempMax ?  nbrec-1  : 0;
+//    int nbTempMin  = tempMin ?  nbrec-1  : 0;
+//    int nbTempMax  = tempMax ?  nbrec-1  : 0;
     int nbSnowDepth  = snowDepth ?  nbrec  : 0;
     int nbSnowCateg  = snowCateg ?  nbrec-1  : 0;
     int nbFrzRainCateg = frzRainCateg ?  nbrec-1  : 0;
@@ -449,8 +550,8 @@ void DialogLoadGRIB::slotParameterUpdated ()
     estime += nbWind*(head+(nbits*npts)/8+2 );
     nbits = 11;
     estime += nbTemp*(head+(nbits*npts)/8+2 );
-    estime += nbTempMin*(head+(nbits*npts)/8+2 );
-    estime += nbTempMax*(head+(nbits*npts)/8+2 );
+//    estime += nbTempMin*(head+(nbits*npts)/8+2 );
+//    estime += nbTempMax*(head+(nbits*npts)/8+2 );
     nbits = 4;
     estime += nbRain*(head+(nbits*npts)/8+2 );
     nbits = 15;
@@ -544,7 +645,7 @@ void DialogLoadGRIB::slotBtOK()
                     xmin, xmax, ymin, ymax,
 					resolution, interval, days,
 					wind, pressure, rain, cloud, temp, humid, isotherm0,
-					tempMin, tempMax, snowDepth, snowCateg, frzRainCateg,
+                    snowDepth, snowCateg, frzRainCateg,
 					CAPEsfc, CINsfc,
 					chkAltitude200->isChecked(),
 					chkAltitude300->isChecked(),
@@ -564,6 +665,7 @@ void DialogLoadGRIB::slotBtOK()
 				);
 }
 //-------------------------------------------------------------------------------
+// TODO - Appears to be unused! can be removed
 QString DialogLoadGRIB::createStringParameters ()
 {
     QString parameters = "";
@@ -581,10 +683,10 @@ QString DialogLoadGRIB::createStringParameters ()
         parameters += "H;";
 	if (isotherm0)
 		parameters += "I;";
-    if (tempMin)
-        parameters += "m;";
-    if (tempMax)
-        parameters += "M;";
+//    if (tempMin)
+//        parameters += "m;";
+//    if (tempMax)
+//        parameters += "M;";
     if (snowDepth)
         parameters += "S;";
     if (snowCateg)
@@ -666,25 +768,26 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
     sbNorth->setDecimals(0);
     sbNorth->setMinimum(-90);
     sbNorth->setMaximum(90);
-    sbNorth->setSuffix(tr(" °N"));
+    // TODO suffix needs to be part of value. i.e. -25N is not acceptable
+//    sbNorth->setSuffix(tr(" °N"));
     sbSouth = new QDoubleSpinBox(this);
     assert(sbSouth);
     sbSouth->setDecimals(0);
     sbSouth->setMinimum(-90);
     sbSouth->setMaximum(90);
-    sbSouth->setSuffix(tr(" °N"));
+//    sbSouth->setSuffix(tr(" °N"));
     sbWest = new QDoubleSpinBox(this);
     assert(sbWest);
     sbWest->setDecimals(0);
     sbWest->setMinimum(-360);
     sbWest->setMaximum(360);
-    sbWest->setSuffix(tr(" °E"));
+//    sbWest->setSuffix(tr(" °E"));
     sbEast = new QDoubleSpinBox(this);
     assert(sbEast);
     sbEast->setDecimals(0);
     sbEast->setMinimum(-360);
     sbEast->setMaximum(360);
-    sbEast->setSuffix(tr(" °E"));
+//    sbEast->setSuffix(tr(" °E"));
 
     //model combobox
     cbModel = new QComboBox(this);
@@ -768,10 +871,10 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
     chkIsotherm0    = new QCheckBox(tr("Isotherm 0°C"));
     assert(chkIsotherm0);
     
-    chkTempMin     = new QCheckBox(tr("Temperature min (2 m)"));
-    assert(chkTempMin);
-    chkTempMax     = new QCheckBox(tr("Temperature max (2 m)"));
-    assert(chkTempMax);
+//    chkTempMin     = new QCheckBox(tr("Temperature min (2 m)"));
+//    assert(chkTempMin);
+//    chkTempMax     = new QCheckBox(tr("Temperature max (2 m)"));
+//    assert(chkTempMax);
     chkSnowCateg     = new QCheckBox(tr("Snow (snowfall possible)"));
     assert(chkSnowCateg);
     chkFrzRainCateg     = new QCheckBox(tr("Frozen rain (rainfall possible)"));
@@ -797,8 +900,8 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
     chkHumid->setChecked   (Util::getSetting("downloadHumid", true).toBool());
     chkIsotherm0->setChecked  (Util::getSetting("downloadIsotherm0", true).toBool());
     	
-    chkTempMin->setChecked    (Util::getSetting("downloadTempMin", false).toBool());
-    chkTempMax->setChecked    (Util::getSetting("downloadTempMax", false).toBool());
+//    chkTempMin->setChecked    (Util::getSetting("downloadTempMin", false).toBool());
+//    chkTempMax->setChecked    (Util::getSetting("downloadTempMax", false).toBool());
     chkSnowDepth->setChecked  (Util::getSetting("downloadSnowDepth", true).toBool());
     chkSnowCateg->setChecked  (Util::getSetting("downloadSnowCateg", true).toBool());
     chkFrzRainCateg->setChecked  (Util::getSetting("downloadFrzRainCateg", true).toBool());
@@ -996,10 +1099,11 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
     	col = 0;
     	lig = 0;
 		tgrid->addWidget( chkWind ,      lig++, col, Qt::AlignLeft);
-		tgrid->addWidget( chkPressure ,  lig++, col, Qt::AlignLeft);
+        tgrid->addWidget( chkGUSTsfc , lig++, col, Qt::AlignLeft);
+        tgrid->addWidget( chkPressure ,  lig++, col, Qt::AlignLeft);
 		tgrid->addWidget( chkTemp ,      lig++, col, Qt::AlignLeft);
-		tgrid->addWidget( chkTempMin ,   lig++, col, Qt::AlignLeft);
-		tgrid->addWidget( chkTempMax ,   lig++, col, Qt::AlignLeft);
+//		tgrid->addWidget( chkTempMin ,   lig++, col, Qt::AlignLeft);
+//		tgrid->addWidget( chkTempMax ,   lig++, col, Qt::AlignLeft);
 		tgrid->addWidget( chkIsotherm0 , lig++, col, Qt::AlignLeft);
 		// CAPE + CIN in the same frame
 		ftmp2 = new QFrame(this);
@@ -1013,7 +1117,6 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
     	// Colonne 2
     	col = 1;
     	lig = 0;
-		tgrid->addWidget( chkGUSTsfc , lig++, col, Qt::AlignLeft);
 		tgrid->addWidget( chkCloud ,   lig++, col, Qt::AlignLeft);
 		tgrid->addWidget( chkHumid ,   lig++, col, Qt::AlignLeft);
 		tgrid->addWidget( chkRain ,    lig++, col, Qt::AlignLeft);

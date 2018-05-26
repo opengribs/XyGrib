@@ -75,7 +75,7 @@ void FileLoaderGRIB::getGribFile(
         float resolution, int interval, int days,
         bool wind, bool pressure, bool rain,
         bool cloud, bool temp, bool humid, bool isotherm0,
-		bool tempMin, bool tempMax, bool snowDepth,
+        bool snowDepth,
 		bool snowCateg, bool frzRainCateg,
 		bool CAPEsfc, bool CINsfc,
 		bool altitudeData200,
@@ -122,12 +122,12 @@ void FileLoaderGRIB::getGribFile(
 	if (isotherm0) {
 		parameters += "I;";
     }    
-    if (tempMin) {
-        parameters += "m;";
-    }
-    if (tempMax) {
-        parameters += "M;";
-    }
+//    if (tempMin) {
+//        parameters += "m;";
+//    }
+//    if (tempMax) {
+//        parameters += "M;";
+//    }
     if (snowDepth) {
         parameters += "S;";
     }
