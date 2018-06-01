@@ -42,6 +42,7 @@ class FileLoaderGRIB : public QObject, FileLoader
         void getGribFile( QString atmModel,
 				float x0, float y0, float x1, float y1,
 				float resolution, int interval, int days,
+                QString cycle,
 				bool wind, bool pressure, bool rain,
 				bool cloud, bool temp, bool humid, bool isotherm0,
                 bool snowDepth,
