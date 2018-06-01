@@ -140,6 +140,7 @@ class DialogLoadGRIB : public DialogBoxBase
         QString waveModel;
         double   xmin,ymin,xmax,ymax,resolution;
         int     interval,days;
+        QString cycle;
         
         bool    rain, cloud, pressure, wind, temp, humid, isotherm0;
 //        bool	tempMin, tempMax, snowDepth, snowCateg, frzRainCateg;

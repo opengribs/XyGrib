@@ -73,6 +73,7 @@ void FileLoaderGRIB::getGribFile(
         QString atmModel,
         float x0, float x1, float y0, float y1,
         float resolution, int interval, int days,
+        QString cycle,
         bool wind, bool pressure, bool rain,
         bool cloud, bool temp, bool humid, bool isotherm0,
         bool snowDepth,
@@ -200,13 +201,13 @@ void FileLoaderGRIB::getGribFile(
         wmod = "none";
     }
 
-    QString runCycle = Util::getSetting("downloadRunCycle", "last").toString().toLower();
+//    QString runCycle = Util::getSetting("downloadRunCycle", "last").toString().toLower();
 	strbuf.clear();
 	if (parameters != "")
     {
         step = 1;
         emit signalGribSendMessage(
-        		tr("Make file on server... Please wait..."));
+                tr("Preparing file on server... Please wait..."));
         emit signalGribReadProgress(step, 0, 0);
 
 
@@ -221,7 +222,7 @@ void FileLoaderGRIB::getGribFile(
                            << "&lo2=" << ceil(x1)
                            << "&intv=" << interval
                            << "&days=" << days
-                           << "&cyc=" << runCycle
+                           << "&cyc=" << cycle
                            << "&par=" << parameters
                            << "&wmdl=" << wmod
                            << "&wpar=" << waveParams
@@ -290,6 +291,8 @@ DBG("slotFinished_step1");
         }else{ // message contains only the error message
             QString m = jsondata["message"].toString();
             QMessageBox::warning(parent, tr("Information"), m);
+            downloadError = true;
+            reply_step1->close();
         }
 
 		//-------------------------------------------------------------

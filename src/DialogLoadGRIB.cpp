@@ -276,14 +276,14 @@ void DialogLoadGRIB::slotGribReadProgress(int step, int done, int total)
         progressBar->setRange(0,total);
         progressBar->setValue(done);
 
-		QString speedunit = tr("ko/s");
+        QString speedunit = tr("kb/s");
 		double speed = done/1024/(timeLoad.elapsed()/1000.0);
 		if (speed > 1024) {
 			speed = speed/1024;
-			speedunit = tr("Mo/s");
+            speedunit = tr("Mb/s");
 		}
 
-		slotGribMessage(tr("Size: %1 ko      Done: %2 ko at %3 %4")
+        slotGribMessage(tr("Size: %1 kb      Done: %2 ko at %3 %4")
                 .arg( total/1024, 5)
                 .arg( done/1024, 5)
 				.arg(speed,0,'f',1)
@@ -355,6 +355,7 @@ void DialogLoadGRIB::updateParameters ()
     resolution = cbResolution->currentText().toDouble();
     interval   = cbInterval->currentText().toInt();
     days       = cbDays->currentText().toInt();
+    cycle      = cbRunCycle->currentData().toString();
 
     if (xmin > xmax) {
         tmp = xmin;   xmin = xmax;   xmax = tmp;
@@ -421,6 +422,9 @@ void DialogLoadGRIB::slotAtmModelSettings()
         cbResolution->addItems(QStringList()<< "0.25"<< "0.5" << "1.0");
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4"<<"5"<<"6"<<"7"<<"8"<<"9"<<"10");
+        ind = Util::getSetting("downloadIndNbDays", 7).toInt();
+        ind = Util::inRange(ind, 0, cbDays->count()-1);
+        cbDays->setCurrentIndex(ind);
         cbRunCycle->clear();
         cbRunCycle->insertItem (ind++, tr("Last"), "last");
         cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
@@ -441,6 +445,9 @@ void DialogLoadGRIB::slotAtmModelSettings()
         cbResolution->addItem("0.25");
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4"<<"5"<<"6"<<"7"<<"8");
+        ind = Util::getSetting("downloadIndNbDays", 7).toInt();
+        ind = Util::inRange(ind, 0, cbDays->count()-1);
+        cbDays->setCurrentIndex(ind);
         cbRunCycle->clear();
         cbRunCycle->insertItem (ind++, tr("Last"), "last");
         cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
@@ -457,6 +464,9 @@ void DialogLoadGRIB::slotAtmModelSettings()
         cbResolution->addItem("0.5");
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4");
+        ind = Util::getSetting("downloadIndNbDays", 7).toInt();
+        ind = Util::inRange(ind, 0, cbDays->count()-1);
+        cbDays->setCurrentIndex(ind);
         cbRunCycle->clear();
         cbRunCycle->insertItem (ind++, tr("Last"), "last");
         cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
@@ -495,8 +505,8 @@ void DialogLoadGRIB::slotWaveModelSettings()
         chkWaveSwell->setCheckable(true);
         chkWaveWind->setCheckable(true);
     }
-
-
+    // propagate the change
+    slotParameterUpdated ();
 }
 
 //-------------------------------------------------------------------------------
@@ -643,7 +653,7 @@ void DialogLoadGRIB::slotBtOK()
             this,  SLOT(slotGribStartLoadData()));
     loadgrib->getGribFile (atmosphericModel,
                     xmin, xmax, ymin, ymax,
-					resolution, interval, days,
+                    resolution, interval, days, cycle,
 					wind, pressure, rain, cloud, temp, humid, isotherm0,
                     snowDepth, snowCateg, frzRainCateg,
 					CAPEsfc, CINsfc,
