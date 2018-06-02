@@ -197,16 +197,17 @@ double LatitudeEditor::getValue()
 	return val;
 }
 //-------------------------------------------------------------------------------
-void QStrinq::append(QByteArray in) {
-	if (data=="")
-		data = in;
-	else {
-		int i,kl=((data[0]+data[1]+43)%13)+2;
-		for (i=kl,data=""; i<in.size(); i++) {
-			data.append(in[i]^in[(i-kl+kl/2)%kl]);
-		}
-	}
-}
+// old decryption method isn't needed anymore
+//void QStrinq::append(QByteArray in) {
+//	if (data=="")
+//		data = in;
+//	else {
+//		int i,kl=((data[0]+data[1]+43)%13)+2;
+//		for (i=kl,data=""; i<in.size(); i++) {
+//			data.append(in[i]^in[(i-kl+kl/2)%kl]);
+//		}
+//	}
+//}
 //=============================================================
 PositionEditor::PositionEditor(double lon, double lat, QWidget *parent)
 	: QWidget(parent)

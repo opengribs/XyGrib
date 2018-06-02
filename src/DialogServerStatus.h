@@ -40,6 +40,7 @@ class DialogServerStatus : public  DialogBoxBase
         void slotBtOK();
         void slotBtCancel();
         void downloadProgress_step1 (qint64 done, qint64 total);
+        void slotFinished_step1();
 		void slotNetworkError (QNetworkReply::NetworkError);
     
     private:
@@ -61,21 +62,23 @@ class DialogServerStatus : public  DialogBoxBase
         
         QTime   timeLoad;
         QLabel *lbResponseStatus;
-        QLabel *lbRunDate;
-        QLabel *lbCurrentJob;
-        QLabel *lbGfsUpdateTime;
+
+        QLabel* ar_lbRunDate[6];
+        QLabel* ar_lbCurrentJob[6];
+        QLabel* ar_lbUpdateTime[6];
+        QHash <QString, QString> ar_statuses;
 		
-        QLabel *lbFnmocWW3_RunDate;
-        QLabel *lbFnmocWW3_UpdateTime;
-        QLabel *lbFnmocWW3_CurrentJob;
+//        QLabel *lbFnmocWW3_RunDate;
+//        QLabel *lbFnmocWW3_UpdateTime;
+//        QLabel *lbFnmocWW3_CurrentJob;
 		
-        QLabel *lbFnmocWW3_Med_RunDate;
-        QLabel *lbFnmocWW3_Med_UpdateTime;
-        QLabel *lbFnmocWW3_Med_CurrentJob;
+//        QLabel *lbFnmocWW3_Med_RunDate;
+//        QLabel *lbFnmocWW3_Med_UpdateTime;
+//        QLabel *lbFnmocWW3_Med_CurrentJob;
 		
-        QLabel *lbMblueNMM4RunDate;
-        QLabel *lbMblueNMM4UpdateTime;
-        QLabel *lbMblueNMM4CurrentJob;
+//        QLabel *lbMblueNMM4RunDate;
+//        QLabel *lbMblueNMM4UpdateTime;
+//        QLabel *lbMblueNMM4CurrentJob;
         
         QLabel *lbMessage;
         QFrame * createFrameGui(QWidget *parent);

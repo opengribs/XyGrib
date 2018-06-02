@@ -202,7 +202,7 @@ void FileLoaderGRIB::getGribFile(
     }
 
 //    QString runCycle = Util::getSetting("downloadRunCycle", "last").toString().toLower();
-	strbuf.clear();
+    //strbuf.clear();
 	if (parameters != "")
     {
         step = 1;
@@ -272,10 +272,9 @@ DBG("slotFinished_step1");
 		//-------------------------------------------
         // Back from step 1: preparing the file
 		//-------------------------------------------
-		xserv=reply_step1->rawHeader("XServer");
-		strbuf.append(xserv);
+        //xserv=reply_step1->rawHeader("XServer");
+        //strbuf.append(xserv);
 		QByteArray data = reply_step1->readAll ();
-
         QJsonDocument jsondoc = QJsonDocument::fromJson(data);
         QJsonObject jsondata = jsondoc.object();
 

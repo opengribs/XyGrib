@@ -76,8 +76,8 @@ class FileLoaderGRIB : public QObject, FileLoader
         QString checkSumSHA1;
         int     step;
         int     fileSize;
-		QStrinq strbuf;
-		QByteArray xserv;
+        //QStrinq strbuf;
+        //QByteArray xserv;
 		
         QString zygriblog;
         QString zygribpwd;
