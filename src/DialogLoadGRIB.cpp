@@ -70,7 +70,7 @@ DialogLoadGRIB::DialogLoadGRIB (QNetworkAccessManager *netManager, QWidget *pare
     loadgrib = NULL;
 	networkManager = netManager;
 	savedFileName = "";
-    setWindowTitle(tr("Download - GRIB"));
+    setWindowTitle(tr("Downxxxload - GRIB"));
     loadInProgress = false;
     QFrame * frameButtonsZone = createFrameButtonsZone(this);
 

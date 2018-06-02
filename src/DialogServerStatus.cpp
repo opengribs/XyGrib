@@ -32,7 +32,7 @@ DialogServerStatus::DialogServerStatus
 	QString page;
 	downloadError = false;
 	reply_step1 = NULL;
-	page = "/noaa/getGfsRunLog.php";
+    page = "/getstatus.php";
     setWindowTitle (tr("Server"));
     QFrame *ftmp;
     QLabel *label;
@@ -76,6 +76,8 @@ DialogServerStatus::DialogServerStatus
 					this, SLOT(downloadProgress_step1 (qint64,qint64)));
 	connect (reply_step1, SIGNAL(error(QNetworkReply::NetworkError)),
 					this, SLOT(slotNetworkError (QNetworkReply::NetworkError)));
+    connect (reply_step1, SIGNAL(finished()),
+             this, SLOT(slotFinished_step1 ()));
 }
 //-------------------------------------------------------------------------------
 DialogServerStatus::~DialogServerStatus() {
@@ -89,7 +91,7 @@ DialogServerStatus::~DialogServerStatus() {
 void DialogServerStatus::slotNetworkError (QNetworkReply::NetworkError /*err*/)
 {
 	if (!downloadError) {
-		downloadError = true;
+        downloadError = true;
 		errorMessage = reply_step1->errorString();
 		QMessageBox::critical (this, tr("Error"), errorMessage);
 	}
@@ -97,6 +99,9 @@ void DialogServerStatus::slotNetworkError (QNetworkReply::NetworkError /*err*/)
 
 //-------------------------------------------------------------------------------
 void DialogServerStatus::downloadProgress_step1 (qint64 done, qint64 total)
+{
+}
+void DialogServerStatus::slotFinished_step1()
 {
 	QString strDur; 
     int tp = timeLoad.elapsed();
@@ -106,39 +111,59 @@ void DialogServerStatus::downloadProgress_step1 (qint64 done, qint64 total)
         lbResponseStatus->setText (tr("error")+" ("+strDur+")");
         lbMessage->setText("Error: "+errorMessage);
     }
-    else if (done == total)
+    else //if (done == total)
     {
         lbResponseStatus->setText (tr("ok")+" ("+strDur+")");
-        
-		QByteArray data = reply_step1->readAll ();
-		QHash <QString,QString> allNoaa = readData (data);
-		QString sdate, shour;
-		//------------------------------------------------------
-		sdate = getData (allNoaa, "gfs_run_date");
-		shour = getData (allNoaa, "gfs_run_hour");
-        lbRunDate->setText (sdate+"     "+shour);
-        lbGfsUpdateTime->setText (getData (allNoaa, "gfs_update_time"));
-        lbCurrentJob->setText (getData (allNoaa, "current_job"));
-		//------------------------------------------------------
-		sdate = getData (allNoaa, "FNMOC-WW3_run_date");
-		shour = getData (allNoaa, "FNMOC-WW3_run_hour");
-        lbFnmocWW3_RunDate->setText (sdate+"     "+shour);
-        lbFnmocWW3_UpdateTime->setText (getData (allNoaa, "FNMOC-WW3_update_time"));
-        lbFnmocWW3_CurrentJob->setText (getData (allNoaa, "FNMOC-WW3_current_job"));
-		//------------------------------------------------------
-		sdate = getData (allNoaa, "FNMOC-WW3-MED_run_date");
-		shour = getData (allNoaa, "FNMOC-WW3-MED_run_hour");
-        lbFnmocWW3_Med_RunDate->setText (sdate+"     "+shour);
-        lbFnmocWW3_Med_UpdateTime->setText (getData (allNoaa, "FNMOC-WW3-MED_update_time"));
-        lbFnmocWW3_Med_CurrentJob->setText (getData (allNoaa, "FNMOC-WW3-MED_current_job"));
-		//------------------------------------------------------
+
+        QByteArray data = reply_step1->readAll ();
+        QJsonDocument jsondoc = QJsonDocument::fromJson(data);
+        QJsonObject jsondata = jsondoc.object();
+
+        QString sdate, shour;
+
+        for ( int i=0; i< ar_statuses.count(); i++)
+        {
+
+            QJsonObject srvstat_x = jsondata[ ar_statuses.keys()[i]  ].toObject();
+            sdate = srvstat_x["reference"].toString();
+            shour = srvstat_x["last_cycle"].toString();
+            ar_lbRunDate[i]->setText (sdate+"     "+shour);
+            ar_lbUpdateTime[i]->setText (srvstat_x["posted_at"].toString());
+            ar_lbCurrentJob[i]->setText (srvstat_x["status"].toString());
+        }
+
+
+//        //------------------------------------------------------
+//        QJsonObject srvstat_gfs = jsondata["gfs"].toObject();
+//        sdate = srvstat_gfs["reference"].toString();
+//        shour = srvstat_gfs["last_cycle"].toString();
+//        lbRunDate->setText (sdate+"     "+shour);
+//        lbGfsUpdateTime->setText (srvstat_gfs["posted_at"].toString());
+//        lbCurrentJob->setText (srvstat_gfs["status"].toString());
+//        //------------------------------------------------------
+//        QJsonObject srvstat_ico = jsondata["ico"].toObject();
+//        sdate = srvstat_ico["reference"].toString();
+//        shour = srvstat_ico["last_cycle"].toString();
+//        lbFnmocWW3_RunDate->setText (sdate+"     "+shour);
+//        lbFnmocWW3_UpdateTime->setText (srvstat_ico["posted_at"].toString());
+//        lbFnmocWW3_CurrentJob->setText (srvstat_ico["status"].toString());
+//        //------------------------------------------------------
+//        QJsonObject srvstat_arp = jsondata["ico"].toObject();
+//        sdate = srvstat_arp["reference"].toString();
+//        shour = srvstat_arp["last_cycle"].toString();
+//        lbFnmocWW3_Med_RunDate->setText (sdate+"     "+shour);
+//        lbFnmocWW3_Med_UpdateTime->setText (srvstat_arp["posted_at"].toString());
+//        lbFnmocWW3_Med_CurrentJob->setText (srvstat_arp["status"].toString());
+        //------------------------------------------------------
 // 		sdate = getData (allNoaa, "MBLUE-NMM4_run_date");
 // 		shour = getData (allNoaa, "MBLUE-NMM4_run_hour");
 //         lbMblueNMM4RunDate->setText (sdate+"     "+shour);
 //         lbMblueNMM4UpdateTime->setText (getData (allNoaa, "MBLUE-NMM4_update_time"));
 //         lbMblueNMM4CurrentJob->setText (getData (allNoaa, "MBLUE-NMM4_current_job"));
-		//------------------------------------------------------
-		lbMessage->setText (allNoaa.value ("message"));
+        //------------------------------------------------------
+
+
+        //lbMessage->setText (allNoaa.value ("message"));
     }
 }
 
@@ -292,90 +317,140 @@ QFrame *DialogServerStatus::createFrameGui(QWidget *parent)
     lay->addWidget( label,    lig,0, Qt::AlignRight);
     lbResponseStatus = new QLabel("", frm);
     lay->addWidget( lbResponseStatus, lig,1, Qt::AlignLeft);
-    //-------------------------
-	// NOAAA-GFS
-    //-------------------------
-    lig ++;
-    ftmp = new QFrame(this); ftmp->setFrameShape(QFrame::HLine); lay->addWidget( ftmp, lig,0, 1, -1);
-    //-------------------------
-    lig ++;
-    label = new QLabel(tr("NOAA-GFS"), frm);
-	label->setFont (fontBold);
-    lay->addWidget( label,    lig,0, Qt::AlignLeft);
-    //-------------------------
-    lig ++;
-    label = new QLabel(tr("Forecast date :"), frm);
-    lay->addWidget( label,    lig,0, Qt::AlignRight);
-    lbRunDate = new QLabel("", frm);
-    lay->addWidget( lbRunDate, lig,1, Qt::AlignLeft);
-    //-------------------------
-    lig ++;
-    label = new QLabel (tr("Update time :"), frm);
-    lay->addWidget (label,    lig,0, Qt::AlignRight);
-    lbGfsUpdateTime = new QLabel ("", frm);
-    lay->addWidget (lbGfsUpdateTime, lig,1, Qt::AlignLeft);
-    //-------------------------
-    lig ++;
-    label = new QLabel(tr("Activity :"), frm);
-    lay->addWidget( label,    lig,0, Qt::AlignRight);
-    lbCurrentJob = new QLabel("", frm);
-    lay->addWidget( lbCurrentJob, lig,1, Qt::AlignLeft);
-    //-------------------------
-	// FNMOC-WW3
-    //-------------------------
-    lig ++;
-    ftmp = new QFrame(this); ftmp->setFrameShape(QFrame::HLine); lay->addWidget( ftmp, lig,0, 1, -1);
-    //-------------------------
-    lig ++;
-    label = new QLabel (tr("FNMOC-WW3: Oceans"), frm);
-	label->setFont (fontBold);
-    lay->addWidget (label,    lig,0, Qt::AlignLeft);
-    //-------------------------
-    lig ++;
-    label = new QLabel (tr("Forecast date :"), frm);
-    lay->addWidget (label,    lig,0, Qt::AlignRight);
-    lbFnmocWW3_RunDate = new QLabel ("", frm);
-    lay->addWidget (lbFnmocWW3_RunDate, lig,1, Qt::AlignLeft);
-    //-------------------------
-    lig ++;
-    label = new QLabel (tr("Update time :"), frm);
-    lay->addWidget (label,    lig,0, Qt::AlignRight);
-    lbFnmocWW3_UpdateTime = new QLabel ("", frm);
-    lay->addWidget (lbFnmocWW3_UpdateTime, lig,1, Qt::AlignLeft);
-    //-------------------------
-    lig ++;
-    label = new QLabel(tr("Activity :"), frm);
-    lay->addWidget( label,    lig,0, Qt::AlignRight);
-    lbFnmocWW3_CurrentJob = new QLabel("", frm);
-    lay->addWidget (lbFnmocWW3_CurrentJob, lig,1, Qt::AlignLeft);
-    //-------------------------
-	// FNMOC-WW3-MED
-    //-------------------------
-    lig ++;
-    ftmp = new QFrame(this); ftmp->setFrameShape(QFrame::HLine); lay->addWidget( ftmp, lig,0, 1, -1);
-    //-------------------------
-    lig ++;
-    label = new QLabel (tr("FNMOC-WW3: Mediterranean"), frm);
-	label->setFont (fontBold);
-    lay->addWidget (label,    lig,0, Qt::AlignLeft);
-    //-------------------------
-    lig ++;
-    label = new QLabel (tr("Forecast date :"), frm);
-    lay->addWidget (label,    lig,0, Qt::AlignRight);
-    lbFnmocWW3_Med_RunDate = new QLabel ("", frm);
-    lay->addWidget (lbFnmocWW3_Med_RunDate, lig,1, Qt::AlignLeft);
-    //-------------------------
-    lig ++;
-    label = new QLabel (tr("Update time :"), frm);
-    lay->addWidget (label,    lig,0, Qt::AlignRight);
-    lbFnmocWW3_Med_UpdateTime = new QLabel ("", frm);
-    lay->addWidget (lbFnmocWW3_Med_UpdateTime, lig,1, Qt::AlignLeft);
-    //-------------------------
-    lig ++;
-    label = new QLabel(tr("Activity :"), frm);
-    lay->addWidget( label,    lig,0, Qt::AlignRight);
-    lbFnmocWW3_Med_CurrentJob = new QLabel("", frm);
-    lay->addWidget (lbFnmocWW3_Med_CurrentJob, lig,1, Qt::AlignLeft);
+
+
+    //ar_statuses = new QHash <QString,const QString>();
+    ar_statuses.insert("gfs", "NOAA-GFS");
+    ar_statuses.insert("ico", "icoicoicoico");
+    ar_statuses.insert("arp", "arparparparp");
+    ar_statuses.insert("ww3", "ww3ww3ww3ww3");
+    ar_statuses.insert("gwa", "gwagwagwagwa");
+    ar_statuses.insert("ewa", "ewaewaewaewa");
+
+
+    QHash<QString, QString>::iterator x;
+    int i=0;
+    for (x = ar_statuses.begin(); x != ar_statuses.end(); ++x)
+    //var ix = ar_statuses.begin();
+    //foreach ( a in ar_statuses.Iterator )
+    //for ( int i=0; i< ar_statuses.count(); i++)
+    {
+        QString key = x.key();// ar_statuses.keys()[i];
+        lig ++;
+        ftmp = new QFrame(this); ftmp->setFrameShape(QFrame::HLine); lay->addWidget( ftmp, lig,0, 1, -1);
+        //-------------------------
+        lig ++;
+        label = new QLabel(x.value(), frm);
+        label->setFont (fontBold);
+        lay->addWidget( label,    lig,0, Qt::AlignLeft);
+        //-------------------------
+        lig ++;
+        label = new QLabel(tr("Forecast date :"), frm);
+        lay->addWidget( label,    lig,0, Qt::AlignRight);
+        ar_lbRunDate[i] = new QLabel("", frm);
+        lay->addWidget( ar_lbRunDate[i], lig,1, Qt::AlignLeft);
+        //-------------------------
+        lig ++;
+        label = new QLabel (tr("Update time :"), frm);
+        lay->addWidget (label,    lig,0, Qt::AlignRight);
+        ar_lbUpdateTime[i] = new QLabel ("", frm);
+        lay->addWidget (ar_lbUpdateTime[i], lig,1, Qt::AlignLeft);
+        //-------------------------
+        lig ++;
+        label = new QLabel(tr("Activity :"), frm);
+        lay->addWidget( label,    lig,0, Qt::AlignRight);
+        ar_lbCurrentJob[i] = new QLabel("", frm);
+        lay->addWidget( ar_lbCurrentJob[i], lig,1, Qt::AlignLeft);
+
+        i++;
+    }
+
+//    //-------------------------
+//	// NOAAA-GFS
+//    //-------------------------
+//    lig ++;
+//    ftmp = new QFrame(this); ftmp->setFrameShape(QFrame::HLine); lay->addWidget( ftmp, lig,0, 1, -1);
+//    //-------------------------
+//    lig ++;
+//    label = new QLabel(tr("NOAA-GFS"), frm);
+//	label->setFont (fontBold);
+//    lay->addWidget( label,    lig,0, Qt::AlignLeft);
+//    //-------------------------
+//    lig ++;
+//    label = new QLabel(tr("Forecast date :"), frm);
+//    lay->addWidget( label,    lig,0, Qt::AlignRight);
+//    lbRunDate = new QLabel("", frm);
+//    lay->addWidget( lbRunDate, lig,1, Qt::AlignLeft);
+//    //-------------------------
+//    lig ++;
+//    label = new QLabel (tr("Update time :"), frm);
+//    lay->addWidget (label,    lig,0, Qt::AlignRight);
+//    lbGfsUpdateTime = new QLabel ("", frm);
+//    lay->addWidget (lbGfsUpdateTime, lig,1, Qt::AlignLeft);
+//    //-------------------------
+//    lig ++;
+//    label = new QLabel(tr("Activity :"), frm);
+//    lay->addWidget( label,    lig,0, Qt::AlignRight);
+//    lbCurrentJob = new QLabel("", frm);
+//    lay->addWidget( lbCurrentJob, lig,1, Qt::AlignLeft);
+//    //-------------------------
+//	// FNMOC-WW3
+//    //-------------------------
+//    lig ++;
+//    ftmp = new QFrame(this); ftmp->setFrameShape(QFrame::HLine); lay->addWidget( ftmp, lig,0, 1, -1);
+//    //-------------------------
+//    lig ++;
+//    label = new QLabel (tr("FNMOC-WW3: Oceans"), frm);
+//	label->setFont (fontBold);
+//    lay->addWidget (label,    lig,0, Qt::AlignLeft);
+//    //-------------------------
+//    lig ++;
+//    label = new QLabel (tr("Forecast date :"), frm);
+//    lay->addWidget (label,    lig,0, Qt::AlignRight);
+//    lbFnmocWW3_RunDate = new QLabel ("", frm);
+//    lay->addWidget (lbFnmocWW3_RunDate, lig,1, Qt::AlignLeft);
+//    //-------------------------
+//    lig ++;
+//    label = new QLabel (tr("Update time :"), frm);
+//    lay->addWidget (label,    lig,0, Qt::AlignRight);
+//    lbFnmocWW3_UpdateTime = new QLabel ("", frm);
+//    lay->addWidget (lbFnmocWW3_UpdateTime, lig,1, Qt::AlignLeft);
+//    //-------------------------
+//    lig ++;
+//    label = new QLabel(tr("Activity :"), frm);
+//    lay->addWidget( label,    lig,0, Qt::AlignRight);
+//    lbFnmocWW3_CurrentJob = new QLabel("", frm);
+//    lay->addWidget (lbFnmocWW3_CurrentJob, lig,1, Qt::AlignLeft);
+//    //-------------------------
+//	// FNMOC-WW3-MED
+//    //-------------------------
+//    lig ++;
+//    ftmp = new QFrame(this); ftmp->setFrameShape(QFrame::HLine); lay->addWidget( ftmp, lig,0, 1, -1);
+//    //-------------------------
+//    lig ++;
+//    label = new QLabel (tr("FNMOC-WW3: Mediterranean"), frm);
+//	label->setFont (fontBold);
+//    lay->addWidget (label,    lig,0, Qt::AlignLeft);
+//    //-------------------------
+//    lig ++;
+//    label = new QLabel (tr("Forecast date :"), frm);
+//    lay->addWidget (label,    lig,0, Qt::AlignRight);
+//    lbFnmocWW3_Med_RunDate = new QLabel ("", frm);
+//    lay->addWidget (lbFnmocWW3_Med_RunDate, lig,1, Qt::AlignLeft);
+//    //-------------------------
+//    lig ++;
+//    label = new QLabel (tr("Update time :"), frm);
+//    lay->addWidget (label,    lig,0, Qt::AlignRight);
+//    lbFnmocWW3_Med_UpdateTime = new QLabel ("", frm);
+//    lay->addWidget (lbFnmocWW3_Med_UpdateTime, lig,1, Qt::AlignLeft);
+//    //-------------------------
+//    lig ++;
+//    label = new QLabel(tr("Activity :"), frm);
+//    lay->addWidget( label,    lig,0, Qt::AlignRight);
+//    lbFnmocWW3_Med_CurrentJob = new QLabel("", frm);
+//    lay->addWidget (lbFnmocWW3_Med_CurrentJob, lig,1, Qt::AlignLeft);
+
+
     //-------------------------
 	// MBLUE-NMM4
     //-------------------------
