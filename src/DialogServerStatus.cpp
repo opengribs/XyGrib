@@ -321,11 +321,11 @@ QFrame *DialogServerStatus::createFrameGui(QWidget *parent)
 
     //ar_statuses = new QHash <QString,const QString>();
     ar_statuses.insert("gfs", "NOAA-GFS");
-    ar_statuses.insert("ico", "icoicoicoico");
-    ar_statuses.insert("arp", "arparparparp");
-    ar_statuses.insert("ww3", "ww3ww3ww3ww3");
-    ar_statuses.insert("gwa", "gwagwagwagwa");
-    ar_statuses.insert("ewa", "ewaewaewaewa");
+    ar_statuses.insert("ico", "ICO");
+    ar_statuses.insert("arp", "ARP");
+    ar_statuses.insert("ww3", "WW3");
+    ar_statuses.insert("gwa", "GWA");
+    ar_statuses.insert("ewa", "EWA");
 
 
     QHash<QString, QString>::iterator x;
