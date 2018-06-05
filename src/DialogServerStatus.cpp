@@ -320,6 +320,14 @@ QFrame *DialogServerStatus::createFrameGui(QWidget *parent)
 
 
     //ar_statuses = new QHash <QString,const QString>();
+
+    ar_statuses_keys.append("gfs");
+    ar_statuses_keys.append("ico");
+    ar_statuses_keys.append("arp");
+    ar_statuses_keys.append("ww3");
+    ar_statuses_keys.append("gwa");
+    ar_statuses_keys.append("ewa");
+
     ar_statuses.insert("gfs", "NOAA-GFS");
     ar_statuses.insert("ico", "ICO");
     ar_statuses.insert("arp", "ARP");
@@ -328,19 +336,20 @@ QFrame *DialogServerStatus::createFrameGui(QWidget *parent)
     ar_statuses.insert("ewa", "EWA");
 
 
-    QHash<QString, QString>::iterator x;
-    int i=0;
-    for (x = ar_statuses.begin(); x != ar_statuses.end(); ++x)
+    //QHash<QString, QString>::iterator x;
+    //int i=0;
+    //for (x = ar_statuses.begin(); x != ar_statuses.end(); ++x)
     //var ix = ar_statuses.begin();
     //foreach ( a in ar_statuses.Iterator )
-    //for ( int i=0; i< ar_statuses.count(); i++)
+    for ( int i=0; i< ar_statuses.count(); i++)
     {
-        QString key = x.key();// ar_statuses.keys()[i];
+        QString key = ar_statuses_keys.at(i);//  x.key();// ar_statuses.keys()[i];
         lig ++;
         ftmp = new QFrame(this); ftmp->setFrameShape(QFrame::HLine); lay->addWidget( ftmp, lig,0, 1, -1);
         //-------------------------
         lig ++;
-        label = new QLabel(x.value(), frm);
+
+        label = new QLabel(ar_statuses.value(key), frm);
         label->setFont (fontBold);
         lay->addWidget( label,    lig,0, Qt::AlignLeft);
         //-------------------------
@@ -362,7 +371,7 @@ QFrame *DialogServerStatus::createFrameGui(QWidget *parent)
         ar_lbCurrentJob[i] = new QLabel("", frm);
         lay->addWidget( ar_lbCurrentJob[i], lig,1, Qt::AlignLeft);
 
-        i++;
+        //i++;
     }
 
 //    //-------------------------
