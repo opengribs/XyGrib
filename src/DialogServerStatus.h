@@ -67,7 +67,8 @@ class DialogServerStatus : public  DialogBoxBase
         QLabel* ar_lbCurrentJob[6];
         QLabel* ar_lbUpdateTime[6];
         QHash <QString, QString> ar_statuses;
-		
+        QList <QString> ar_statuses_keys;
+
 //        QLabel *lbFnmocWW3_RunDate;
 //        QLabel *lbFnmocWW3_UpdateTime;
 //        QLabel *lbFnmocWW3_CurrentJob;
