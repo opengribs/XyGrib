@@ -70,7 +70,7 @@ DialogServerStatus::DialogServerStatus
     connect(btOK, SIGNAL(clicked()), this, SLOT(slotBtOK()));
     //===============================================================
     timeLoad.start();
-	QNetworkRequest request = Util::makeNetworkRequest ("http://"+Util::getServerName()+page);
+    QNetworkRequest request = Util::makeNetworkRequest ("http://"+Util::getServerName()+page);
 	reply_step1 = manager->get (request);
 	connect (reply_step1, SIGNAL(downloadProgress (qint64,qint64)), 
 					this, SLOT(downloadProgress_step1 (qint64,qint64)));
@@ -98,6 +98,7 @@ void DialogServerStatus::slotNetworkError (QNetworkReply::NetworkError /*err*/)
 }	
 
 //-------------------------------------------------------------------------------
+// TODO - this slot can be removed. Not used any more
 void DialogServerStatus::downloadProgress_step1 (qint64 done, qint64 total)
 {
 }
@@ -113,7 +114,7 @@ void DialogServerStatus::slotFinished_step1()
     }
     else //if (done == total)
     {
-        lbResponseStatus->setText (tr("ok")+" ("+strDur+")");
+        lbResponseStatus->setText (tr("OK")+" ("+strDur+")");
 
         QByteArray data = reply_step1->readAll ();
         QJsonDocument jsondoc = QJsonDocument::fromJson(data);
@@ -168,6 +169,7 @@ void DialogServerStatus::slotFinished_step1()
 }
 
 //-------------------------------------------------------------------------------
+// TODO - this method can be removed. Not used any more
 QString DialogServerStatus::getData (const QHash <QString,QString> &data, const QString &key)
 {
     QString rep = data.value (key, "");
@@ -177,6 +179,7 @@ QString DialogServerStatus::getData (const QHash <QString,QString> &data, const 
 }
 
 //-------------------------------------------------------------------------------
+// TODO - this method can be removed. Not used any more
 QHash <QString,QString> DialogServerStatus::readData (const QByteArray &data)
 {
 	QHash <QString,QString> result;
@@ -329,11 +332,11 @@ QFrame *DialogServerStatus::createFrameGui(QWidget *parent)
     ar_statuses_keys.append("ewa");
 
     ar_statuses.insert("gfs", "NOAA-GFS");
-    ar_statuses.insert("ico", "ICO");
-    ar_statuses.insert("arp", "ARP");
+    ar_statuses.insert("ico", "ICON Global");
+    ar_statuses.insert("arp", "Arpege Global");
     ar_statuses.insert("ww3", "WW3");
-    ar_statuses.insert("gwa", "GWA");
-    ar_statuses.insert("ewa", "EWA");
+    ar_statuses.insert("gwa", "GWAM");
+    ar_statuses.insert("ewa", "EWAM");
 
 
     //QHash<QString, QString>::iterator x;
