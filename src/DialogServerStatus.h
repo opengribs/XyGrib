@@ -39,8 +39,7 @@ class DialogServerStatus : public  DialogBoxBase
     public slots:
         void slotBtOK();
         void slotBtCancel();
-        void downloadProgress_step1 (qint64 done, qint64 total);
-        void slotFinished_step1();
+        void slotFinished();
 		void slotNetworkError (QNetworkReply::NetworkError);
     
     private:
@@ -69,18 +68,6 @@ class DialogServerStatus : public  DialogBoxBase
         QHash <QString, QString> ar_statuses;
         QList <QString> ar_statuses_keys;
 
-//        QLabel *lbFnmocWW3_RunDate;
-//        QLabel *lbFnmocWW3_UpdateTime;
-//        QLabel *lbFnmocWW3_CurrentJob;
-		
-//        QLabel *lbFnmocWW3_Med_RunDate;
-//        QLabel *lbFnmocWW3_Med_UpdateTime;
-//        QLabel *lbFnmocWW3_Med_CurrentJob;
-		
-//        QLabel *lbMblueNMM4RunDate;
-//        QLabel *lbMblueNMM4UpdateTime;
-//        QLabel *lbMblueNMM4CurrentJob;
-        
         QLabel *lbMessage;
         QFrame * createFrameGui(QWidget *parent);
 
