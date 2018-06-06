@@ -62,6 +62,8 @@ class DialogLoadGRIB : public DialogBoxBase
         void slotAltitude_All ();
 //        void slotFnmocWW3_All ();
 		void slotFinished (int result);
+        void slotAltSelections();
+        void slotAltSkew();
 
     private:
         FileLoaderGRIB    *loadgrib;
@@ -151,6 +153,7 @@ class DialogLoadGRIB : public DialogBoxBase
 		
         void    updateParameters();
 		void    saveParametersSettings ();
+
         void    addSeparator (QLayout *layout, char orientation);	// 'H' or 'V'
         QFrame *newSeparator (char orientation);	// 'H' or 'V'
         QString createStringParameters ();
