@@ -131,30 +131,21 @@ DialogLoadGRIB::DialogLoadGRIB (QNetworkAccessManager *netManager, QWidget *pare
     connect(chkCAPEsfc, SIGNAL(stateChanged(int)), 	this, SLOT(slotParameterUpdated()));
     connect(chkCINsfc, SIGNAL(stateChanged(int)), 	this, SLOT(slotParameterUpdated()));
     connect(chkGUSTsfc, SIGNAL(stateChanged(int)), 	this, SLOT(slotParameterUpdated()));
-//    connect(chkSUNSDsfc, SIGNAL(stateChanged(int)), this, SLOT(slotParameterUpdated()));
 	
     connect(chkAltitude_All, SIGNAL(stateChanged(int)), this, SLOT(slotAltitude_All()));
-    connect(chkAltitude200, SIGNAL(stateChanged(int)), this, SLOT(slotParameterUpdated()));
-    connect(chkAltitude300, SIGNAL(stateChanged(int)), this, SLOT(slotParameterUpdated()));
-    connect(chkAltitude400, SIGNAL(stateChanged(int)), this, SLOT(slotParameterUpdated()));
-    connect(chkAltitude500, SIGNAL(stateChanged(int)), this, SLOT(slotParameterUpdated()));
-    connect(chkAltitude600, SIGNAL(stateChanged(int)), this, SLOT(slotParameterUpdated()));
-    connect(chkAltitude700, SIGNAL(stateChanged(int)), this, SLOT(slotParameterUpdated()));
-    connect(chkAltitude850, SIGNAL(stateChanged(int)), this, SLOT(slotParameterUpdated()));
-    connect(chkAltitude925, SIGNAL(stateChanged(int)), this, SLOT(slotParameterUpdated()));
-    connect(chkAltitude_SkewT, SIGNAL(stateChanged(int)), this, SLOT(slotParameterUpdated()));
+    connect(chkAltitude200, SIGNAL(stateChanged(int)), this, SLOT(slotAltSelections()));
+    connect(chkAltitude300, SIGNAL(stateChanged(int)), this, SLOT(slotAltSelections()));
+    connect(chkAltitude400, SIGNAL(stateChanged(int)), this, SLOT(slotAltSelections()));
+    connect(chkAltitude500, SIGNAL(stateChanged(int)), this, SLOT(slotAltSelections()));
+    connect(chkAltitude600, SIGNAL(stateChanged(int)), this, SLOT(slotAltSelections()));
+    connect(chkAltitude700, SIGNAL(stateChanged(int)), this, SLOT(slotAltSelections()));
+    connect(chkAltitude850, SIGNAL(stateChanged(int)), this, SLOT(slotAltSelections()));
+    connect(chkAltitude925, SIGNAL(stateChanged(int)), this, SLOT(slotAltSelections()));
+    connect(chkAltitude_SkewT, SIGNAL(stateChanged(int)), this, SLOT(slotAltSkew()));
 	
-//    connect(chkWindAll, SIGNAL(stateChanged(int)), this, SLOT(slotFnmocWW3_All()));
     connect(chkWaveSig, SIGNAL(stateChanged(int)),this, SLOT(slotParameterUpdated()));
-//    connect(chkWaveMax, SIGNAL(stateChanged(int)),this, SLOT(slotParameterUpdated()));
     connect(chkWaveSwell, SIGNAL(stateChanged(int)),this, SLOT(slotParameterUpdated()));
     connect(chkWaveWind, SIGNAL(stateChanged(int)),this, SLOT(slotParameterUpdated()));
-//    connect(chkFnmocWW3_prim, SIGNAL(stateChanged(int)),this, SLOT(slotParameterUpdated()));
-//    connect(chkFnmocWW3_scdy, SIGNAL(stateChanged(int)),this, SLOT(slotParameterUpdated()));
-//    connect(chkFnmocWW3_wcap, SIGNAL(stateChanged(int)),this, SLOT(slotParameterUpdated()));
-	
-//    connect(bt_FNMOC_WW3_GLB, SIGNAL(clicked()),this, SLOT(slotParameterUpdated()));
-//    connect(bt_FNMOC_WW3_MED, SIGNAL(clicked()),this, SLOT(slotParameterUpdated()));
 }
 //-------------------------------------------------------------------------------
 void DialogLoadGRIB::slotAltitude_All ()
@@ -170,6 +161,44 @@ void DialogLoadGRIB::slotAltitude_All ()
 	chkAltitude925->setChecked (check);
 }
 //-------------------------------------------------------------------------------
+void DialogLoadGRIB::slotAltSelections()
+// individual altitude selection boxes need to be mutually exclusive
+// with skewt selection box
+{
+     if ( chkAltitude200->isChecked()
+          || chkAltitude300->isChecked()
+          || chkAltitude400->isChecked()
+          || chkAltitude500->isChecked()
+          || chkAltitude600->isChecked()
+          || chkAltitude700->isChecked()
+          || chkAltitude850->isChecked()
+          || chkAltitude925->isChecked()
+             )
+    {
+        chkAltitude_SkewT->setChecked(false);
+    }
+     slotParameterUpdated();
+
+}
+void DialogLoadGRIB::slotAltSkew()
+// individual altitude selection boxes need to be mutually exclusive
+// with skewt selection box
+{
+    if (chkAltitude_SkewT->isChecked())
+    {
+        chkAltitude200->setChecked(false);
+        chkAltitude300->setChecked(false);
+        chkAltitude400->setChecked(false);
+        chkAltitude500->setChecked(false);
+        chkAltitude600->setChecked(false);
+        chkAltitude700->setChecked(false);
+        chkAltitude850->setChecked(false);
+        chkAltitude925->setChecked(false);
+        chkAltitude_All->setChecked(false);
+    }
+    slotParameterUpdated();
+
+}
 //void DialogLoadGRIB::slotFnmocWW3_All ()
 //{
 //    bool check = chkWindAll->isChecked ();
@@ -512,26 +541,18 @@ void DialogLoadGRIB::slotWaveModelSettings()
 //-------------------------------------------------------------------------------
 void DialogLoadGRIB::slotParameterUpdated ()
 {
-
+    // propage the change
     updateParameters();
+
+    // then start to calculate the size of the request
+
+    // number of points according to atmospheric resolution
 	int npts = (int) (  ceil(fabs(xmax-xmin)/resolution)
                        * ceil(fabs(ymax-ymin)/resolution) );
-    // TODO - estimated size calculation needs to be completely redone
-    // including adding the model parameters
 
-    // Nombre de GribRecords
-    int nbrec;
 
-	if (resolution < 0.5) {
-		if (days<=5)
-			nbrec = (int) days*24/interval +1;
-		else
-			nbrec = (int) ( 5*24/interval 
-						+ (days-5)*24/interval/4) +1;
-	}
-	else {
-		nbrec = (int) days*24/interval +1;
-	}
+    // Number of GribRecords
+    int nbrec = (int) days*24/interval +1;
 	
     int nbPress = pressure ?  nbrec   : 0;
     int nbWind  = wind     ?  2*nbrec : 0;
@@ -552,35 +573,47 @@ void DialogLoadGRIB::slotParameterUpdated ()
     int nbGUSTsfc  = GUSTsfc ?  nbrec : 0;
 //    int nbSUNSDsfc  = SUNSDsfc ?  nbrec : 0;
     
-    int head = 84;
+    int head = 179;
     int estime = 0;
-    int nbits;
+    int nbits;  // this can vary when c3 packing is used. Average numbers are used here
     
-    nbits = 13;
+    nbits = 12;
     estime += nbWind*(head+(nbits*npts)/8+2 );
-    nbits = 11;
+
+    nbits = 9;
     estime += nbTemp*(head+(nbits*npts)/8+2 );
+
 //    estime += nbTempMin*(head+(nbits*npts)/8+2 );
 //    estime += nbTempMax*(head+(nbits*npts)/8+2 );
-    nbits = 4;
-    estime += nbRain*(head+(nbits*npts)/8+2 );
-    nbits = 15;
+
+    nbits = 9;
+    estime += nbRain*(head+24+(nbits*npts)/8+2 );
+
+    nbits = 14;
     estime += nbPress*(head+(nbits*npts)/8+2 );
-    nbits = 4;
-    estime += nbCloud*(head+(nbits*npts)/8+2 );
+
+    nbits = 7;
+    estime += nbCloud*(head+24+(nbits*npts)/8+2 );
     estime += 9*nbCloudLayers*(head+(nbits*npts)/8+2 );
-    nbits = 1;
+
+    nbits = 8;
     estime += nbSnowDepth*(head+(nbits*npts)/8+2 );
-    estime += nbSnowCateg*(head+(nbits*npts)/8+2 );
-    estime += nbFrzRainCateg*(head+(nbits*npts)/8+2 );
+    estime += nbSnowCateg*(head+24+(nbits*npts)/8+2 );
+    estime += nbFrzRainCateg*(head+24+(nbits*npts)/8+2 );
+
     nbits = 10;
     estime += nbHumid*(head+(nbits*npts)/8+2 );
-    nbits = 15;
+
+    nbits = 14;
     estime += nbIsotherm0*(head+(nbits*npts)/8+2 );
-    nbits = 5;
+
+    nbits = 12;
     estime += nbCAPEsfc*(head+(nbits*npts)/8+2 );
+
+    nbits = 11;
     estime += nbCINsfc*(head+(nbits*npts)/8+2 );
-    nbits = 7;
+
+    nbits = 9;
     estime += nbGUSTsfc*(head+(nbits*npts)/8+2 );
 //    estime += nbSUNSDsfc*(head+(nbits*npts)/8+2 );
 
@@ -593,35 +626,78 @@ void DialogLoadGRIB::slotParameterUpdated ()
 	if (chkAltitude700->isChecked()) nbalt++;
 	if (chkAltitude850->isChecked()) nbalt++;
 	if (chkAltitude925->isChecked()) nbalt++;
-	nbits = 10;
+    nbits = 11;
 	estime += nbrec*nbalt*5*(head+(nbits*npts)/8+2 );
 	
 	int nbskewt = 0;
 	if (chkAltitude_SkewT->isChecked())
-		nbskewt = 32;
+        nbskewt = 69;
 	estime += nbrec*nbskewt*(head+(nbits*npts)/8+2 );
 
-	int nbwave = 0;
-    if (chkWaveSig->isChecked()) nbwave++;
-//    if (chkWaveMax->isChecked()) nbwave++;
-    if (chkWaveSwell->isChecked()) nbwave++;
-    if (chkWaveWind->isChecked()) nbwave++;
-//	if (chkFnmocWW3_prim->isChecked()) nbwave++;
-//	if (chkFnmocWW3_scdy->isChecked()) nbwave++;
-//	if (chkFnmocWW3_wcap->isChecked()) nbwave++;
-	nbits = 6;
-	estime += nbrec*nbwave*(head+(nbits*npts)/8+2 );
+    // and now the wave estimate
 
-	double estimeko = estime/1024.0;	// size in ko
+    // recalculate number of points based on which model is used
+    if (waveModel == "WW3") // 0.5 deg
+    {
+        npts = (int) (  ceil(fabs(xmax-xmin)/0.5)
+                               * ceil(fabs(ymax-ymin)/0.5) );
+        nbrec = (int) fmin(6,days)*24/interval +1;
+    }
+    if (waveModel == "GWAM") // 0.25 deg
+    {
+        npts = (int) (  ceil(fabs(xmax-xmin)/0.25)
+                               * ceil(fabs(ymax-ymin)/0.25) );
+        nbrec = (int) fmin(6,days)*24/interval +1;
+    }
+    if (waveModel == "EWAM") // 0.1 x 0.05 deg
+    {
+        npts = (int) (  ceil(fabs(xmax-xmin)/0.1)
+                               * ceil(fabs(ymax-ymin)/0.05) );
+        nbrec = (int) fmin(2,days)*24/interval +1;
+    }
+
+
+    if (chkWaveSig->isChecked())
+    {
+        nbits = 9;
+        estime += nbrec*(head+(nbits*npts)/8+2);
+    }
+
+
+    if (chkWaveSwell->isChecked())
+    {
+        nbits = 15;
+        estime += nbrec*(head+(nbits*npts)/8+2);
+        nbits = 9;
+        estime += nbrec*(head+(nbits*npts)/8+2);
+        nbits = 10;
+        estime += nbrec*(head+(nbits*npts)/8+2);
+
+    }
+    if (chkWaveWind->isChecked())
+    {
+        nbits = 15;
+        estime += nbrec*(head+(nbits*npts)/8+2);
+        nbits = 8;
+        estime += nbrec*(head+(nbits*npts)/8+2);
+        nbits = 10;
+        estime += nbrec*(head+(nbits*npts)/8+2);
+
+    }
+
+
+
+
+    double estimeko = estime/1024.0;	// size in kb
 	QString ssz;
 	if (estimeko <= 100)
-		ssz = QString("%1 Ko").arg(estimeko,0,'f',2);
+        ssz = QString("%1 KB").arg(estimeko,0,'f',2);
 	else if (estimeko <= 1024)
-		ssz = QString("%1 Ko").arg(estimeko,0,'f',1);
+        ssz = QString("%1 KB").arg(estimeko,0,'f',1);
 	else
-		ssz = QString("%1 Mo").arg(estimeko/1024.0,0,'f',1);
+        ssz = QString("%1 MB").arg(estimeko/1024.0,0,'f',1);
 	
-    slotGribMessage(tr("Size: ≃ ") + ssz + tr(" (max 100 Mo)"));
+    slotGribMessage(tr("Size: ≃ ") + ssz + tr(" (max 100 MB)"));
     
     if (estime == 0)
         btOK->setEnabled(false);

@@ -203,7 +203,7 @@ void FileLoaderGRIB::getGribFile(
 
 //    QString runCycle = Util::getSetting("downloadRunCycle", "last").toString().toLower();
     //strbuf.clear();
-	if (parameters != "")
+    if (!(parameters == "" && waveParams == ""))
     {
         step = 1;
         emit signalGribSendMessage(
@@ -237,6 +237,10 @@ void FileLoaderGRIB::getGribFile(
 				 this, SLOT(slotNetworkError (QNetworkReply::NetworkError)));
 		connect (reply_step1, SIGNAL(finished()),
 				 this, SLOT(slotFinished_step1 ()));
+    }
+    else
+    {
+        QMessageBox::warning(parent, tr("Bad Request"), tr("No atmospheric or wave parameters were selected"));
     }
 }
 //-------------------------------------------------------------------------------
