@@ -416,6 +416,7 @@ mb->acMap_SelectMETARs->setVisible (false);	// TODO
     //-------------------------------------------------------
     connect(mb->acHelp_Help, SIGNAL(triggered()), this, SLOT(slotHelp_Help()));
     connect(mb->acHelp_APropos, SIGNAL(triggered()), this, SLOT(slotHelp_APropos()));
+    connect(mb->acCheckForUpdates, SIGNAL(triggered()), this, SLOT(slotCheckForUpdates()));
     connect(mb->acHelp_AProposQT, SIGNAL(triggered()), this, SLOT(slotHelp_AProposQT()));
 
     //-------------------------------------
@@ -1441,9 +1442,9 @@ void MainWindow::slotHelp_Help() {
 
     QMessageBox::information (this,
             tr("Help"),
-            tr("Help is available at "
-               "https://github.com/opengribs/XyGrib/wiki/XyGrib-User-Manual"
-               ));
+            tr("Help is available at")
+               +" https://github.com/opengribs/XyGrib/wiki/XyGrib-User-Manual"
+               );
 
 }
 //-------------------------------------------------
@@ -2377,9 +2378,113 @@ void MainWindow::slotGenericAction ()
 			t->start();
 	}
 }
+// ----------------------------------------------------
+void MainWindow::checkUpdates()
+{
+    startCheckUpdateFlag = true;
+    slotCheckForUpdates();
+}
+//-----------------------------------------------------
+void MainWindow::slotCheckForUpdates()
+{
+    QObject::sender();
+    QString page = "/getversion.php";
+    QNetworkRequest request = Util::makeNetworkRequest("http://"+Util::getServerName()+page);
+    reply = networkManager->get(request);
+    connect (reply, SIGNAL(error(QNetworkReply::NetworkError)),
+                    this, SLOT(slotNetworkError (QNetworkReply::NetworkError)));
+    connect (reply, SIGNAL(finished()),
+             this, SLOT(slotFinished ()));
 
+}
 
+//-----------------------------------------------------
+void MainWindow::slotFinished()
+{
+    QByteArray data = reply->readAll ();
+    QJsonDocument jsondoc = QJsonDocument::fromJson(data);
+    QJsonObject jsondata = jsondoc.object();
+    QString newVer = jsondata["version"].toString();
+    QString thisVer = Version::getVersion();
 
+    int result = versionCompare(newVer, thisVer);
+
+    if (result == 1) // new version available
+    {
+        QMessageBox mbox(this);
+        mbox.setWindowTitle(tr("An updated version is available"));
+        mbox.setTextFormat(Qt::RichText);
+        mbox.setStyleSheet("background:lightgrey;color:black;");
+        mbox.setText(tr("A new version")+": "+newVer+" "
+                     +tr("is available for download.")+"<br><br>"
+                     +"<a href='https://opengribs.org/en/downloads'>https://opengribs.org/en/downloads</a>");
+        mbox.exec();
+
+    }
+    else
+    {
+        if (!startCheckUpdateFlag)
+            QMessageBox::information(this,tr("Version is up to date"),
+                                     tr("You have version") +" " +thisVer+" "
+                                     +tr("which is the most current version"));
+
+    }
+    startCheckUpdateFlag = false;
+}
+
+//-----------------------------------------------------
+void MainWindow::slotNetworkError(QNetworkReply::NetworkError)
+{
+    if (!downloadError) {
+        downloadError = true;
+        if (false)
+        {
+            errorMessage = reply->errorString();
+            QMessageBox::critical (this, tr("Network Error"), errorMessage);
+
+        }
+    }
+
+}
+//----------------------------------------------------------
+//  Method to compare two versions. Returns 1 if v2 is
+// smaller, -1 if v1 is smaller, 0 if equal
+int MainWindow::versionCompare(QString v1, QString v2)
+{
+    //  vnum stores each numeric part of version
+    int vnum1 = 0, vnum2 = 0;
+
+    //  loop untill both string are processed
+    for (int i=0,j=0; (i<v1.length() || j<v2.length()); )
+    {
+        //  storing numeric part of version 1 in vnum1
+        while (i < v1.length() && v1[i] != '.')
+        {
+//            vnum1 = vnum1 * 10 + (v1[i] - '0');
+            vnum1 = vnum1 * 10 + (v1[i].digitValue());
+            i++;
+        }
+
+        //  storing numeric part of version 2 in vnum2
+        while (j < v2.length() && v2[j] != '.')
+        {
+            vnum2 = vnum2 * 10 + (v2[j].digitValue());
+            j++;
+        }
+
+        if (vnum1 > vnum2)
+            return 1;
+        if (vnum2 > vnum1)
+            return -1;
+
+        //  if equal, reset variables and go for next numeric
+        // part
+        vnum1 = vnum2 = 0;
+        i++;
+        j++;
+    }
+    return 0;
+}
 
 
 

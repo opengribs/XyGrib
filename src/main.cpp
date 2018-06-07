@@ -39,9 +39,6 @@ int main (int argc, char *argv[])
     QApplication app(argc, argv);
 	qsrand(QTime::currentTime().msec());
 
-// do we want a dark skin
-//    if (Util::getSetting("showDarkSkin", true).toBool())
-//        app.setStyleSheet(menuStyleSheetDef);
 
 #ifdef Q_OS_MACX
     if ( QSysInfo::MacintoshVersion > QSysInfo::MV_10_8 )
@@ -306,7 +303,10 @@ int main (int argc, char *argv[])
 		{
 			win->openMeteoDataFile (filename);
 		}
+
 	}
     //====================================================
+    win->checkUpdates();
+
 	return app.exec();
 }
