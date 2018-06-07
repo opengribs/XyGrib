@@ -308,6 +308,7 @@ public:
 
     QAction *acHelp_Help;
     QAction *acHelp_APropos;
+    QAction *acCheckForUpdates;
     QAction *acHelp_AProposQT;
 
     //-------------------------------------

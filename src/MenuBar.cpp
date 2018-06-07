@@ -433,6 +433,7 @@ MenuBar::MenuBar (QWidget *parent, bool withmblue)
         				tr("Help"), tr("Ctrl+H"),
         				"",Util::pathImg("help.png"));
         acHelp_APropos = addAction (menuHelp, tr("About XyGrib"),"","","");
+        acCheckForUpdates = addAction (menuHelp, tr("Check for updates"),"","","");
         acHelp_AProposQT = addAction (menuHelp, tr("About QT"),"","","");
 
     //======================================================================

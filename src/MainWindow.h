@@ -47,6 +47,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "SkewT.h"
 
 
+
 //--------------------------------------------
 class ThreadNewInstance : public QThread
 {
@@ -69,6 +70,7 @@ class MainWindow: public QMainWindow
 									 GriddedReader *reader = NULL, 
 									 time_t date = 0
 									);
+        void checkUpdates();
 
     public slots:
 		void slotGenericAction ();
@@ -140,6 +142,11 @@ class MainWindow: public QMainWindow
         void slotHelp_AProposQT ();
 		void slotUseJetStreamColorMap  (bool);
 
+        void slotCheckForUpdates();
+        void slotNetworkError(QNetworkReply::NetworkError);
+        void slotFinished();
+
+
     signals:
         void signalMapQuality (int quality);
 
@@ -167,6 +174,12 @@ class MainWindow: public QMainWindow
         QStatusBar   *statusBar;
 		DateChooser  *dateChooser;
 		ColorScaleWidget *colorScaleWidget;
+
+        QString errorMessage;
+        QNetworkReply *reply;
+        bool downloadError;
+        bool startCheckUpdateFlag = false;
+
 
         QMenu    *menuPopupBtRight;
         
@@ -204,6 +217,7 @@ class MainWindow: public QMainWindow
 		void resizeEvent(QResizeEvent *event);
 		void createToolBar (bool withmblue = false);
 		void autoClose ();
+        int versionCompare(QString v1, QString v2);
 };
 
 #endif

@@ -156,7 +156,7 @@ class DialogLoadGRIB : public DialogBoxBase
 
         void    addSeparator (QLayout *layout, char orientation);	// 'H' or 'V'
         QFrame *newSeparator (char orientation);	// 'H' or 'V'
-        QString createStringParameters ();
+//        QString createStringParameters ();
                 
         void    closeEvent (QCloseEvent *event);
 };
