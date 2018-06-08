@@ -138,29 +138,11 @@ void Util::setApplicationProxy ()
 	}
 }
 //-------------------------------------------------------------------------------
-QNetworkRequest Util::makeNetworkRequest (QString url,double x0,double y0,double x1,double y1)
+QNetworkRequest Util::makeNetworkRequest (QString url)
 {
 	QNetworkRequest request;
-    // TODO - need to clean this up including unused parameters
-
-//	QString now = QTime::currentTime().toString("HHmmss");
-//	if (url.contains('?'))
-//		url += "&tm="+now;
-//	else
-//		url += "?tm="+now;
-
-//	if (Util::getSetting ("strictHttpDownload", false).toBool()) {
-//		QString zl = Util::encode(Util::decode(Util::getSetting("zyGribForumUserName", "").toString()),now);
-//		QString zp = Util::encode(Util::decode(Util::getSetting("zyGribForumUserPassword", "").toString()),now);
-//		url += "&zl="+zl+"&zp="+zp+"&md=h";
-//		request.setRawHeader ("User-Agent","Mozilla/5.0 (Windows NT 5.1; rv:8.0) Gecko/20100101 Firefox/8.0");
-// 		request.setRawHeader ("Accept","text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
-//	}
-//	else
-
-    request.setRawHeader ("User-Agent",qPrintable(Version::getAppName()+"/"+Version::getVersion()) );
+     request.setRawHeader ("User-Agent",qPrintable(Version::getAppName()+"/"+Version::getVersion()) );
 	request.setUrl (QUrl(url));
-//	validArea (request,x0,y0,x1,y1);
 	return request;
 }
 //======================================================================
@@ -797,16 +779,6 @@ QDateTime Util::applyTimeZone (time_t t, QString *suffix)
 	}
     
     return dt;
-}
-//-------------------------------------------------------------------------------
-// TODO - need to remove this
-void Util::validArea (QNetworkRequest &request,double x0,double y0,double x1,double y1)
-{
-	int c1 = (int)floor(fabs((17.6*x0+89.23*x1-7.23*y0)*y1));
-	int c2 = (int)ceil(fabs((37.12*x0-53.2*x1+7.23)*y0*y1));
-	QString formatrange;
-	QTextStream(&formatrange)<<c1<<"-"<<c2;
-//	request.setRawHeader ("Range", qPrintable(formatrange));
 }
 //============================================================================
 double Util::distancePointSegment (double a,double b,     // point

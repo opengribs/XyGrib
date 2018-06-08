@@ -159,7 +159,7 @@ void FileLoaderMBLUE::getMblueFile(
                            << "&m=" << zygribpwd
                            << "&client=" << Version::getCompleteZName()
                            ;
-		QNetworkRequest request = Util::makeNetworkRequest ("http://"+Util::getServerName()+page,x0,y0,x1,y1);
+        QNetworkRequest request = Util::makeNetworkRequest ("http://"+Util::getServerName()+page);
 		reply_step1 = networkManager->get (request);
 		connect (reply_step1, SIGNAL(downloadProgress (qint64,qint64)), 
 				 this, SLOT(downloadProgress (qint64,qint64)));

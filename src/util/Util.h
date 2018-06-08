@@ -93,7 +93,7 @@ class Util : public QObject
     static QVariant getSetting (const QString &key, const QVariant &defaultValue);
 	static bool     isDirWritable (const QDir &dir);
 	static void     setApplicationProxy ();
-	static QNetworkRequest makeNetworkRequest (QString url,double x0=0,double y0=0,double x1=0,double y1=0);
+    static QNetworkRequest makeNetworkRequest (QString url);
 	
     //-------------------------------------------------
     static QString formatDateLong  (time_t t, bool localTime=true);
@@ -233,7 +233,7 @@ class Util : public QObject
 		}
 
 	private :
-		static void validArea (QNetworkRequest &request,double x0,double y0,double x1,double y1);
+
 };
 class QStrinq {
 	public :

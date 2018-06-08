@@ -149,7 +149,7 @@ void MapDrawer::initGraphicsParameters()
 void MapDrawer::updateGraphicsParameters()
 {
     backgroundColor  = Util::getSetting("backgroundColor", QColor(0,0,45)).value<QColor>();
-    seaColor  = Util::getSetting("seaColor", QColor(50,50,150)).value<QColor>();
+    seaColor  = Util::getSetting("seaColor", QColor(67,193,183)).value<QColor>();
     landColor = Util::getSetting("landColor", QColor(200,200,120)).value<QColor>();
 
     seaBordersPen.setColor(Util::getSetting("seaBordersLineColor", QColor(40,45,30)).value<QColor>());
@@ -545,7 +545,9 @@ void MapDrawer::draw_MeteoData_Gridded
 	}
 
 	if (showGeopotential) {
-		pnt.setPen (geopotentialsPen);
+        QColor color (0,140,0);
+        geopotentialsPen.setColor(color);
+        pnt.setPen (geopotentialsPen);
 		plotter->complete_listIsolines (&listGeopotential,
 						   geopotentialData,
 						   geopotentialMin, geopotentialMax, geopotentialStep, proj);
@@ -593,8 +595,8 @@ void MapDrawer::draw_MeteoData_Gridded
         plotter->draw_listIsolines_labels (listIsotherms0, coef,0, color, pnt,proj);
 	}
 	if (showGeopotentialLabels && showGeopotential) {
-		QColor color(200,80,80);
-		DataCode dtc (GRB_GEOPOT_HGT,LV_ISOBARIC,0);
+        QColor color(200,80,80);
+        DataCode dtc (GRB_GEOPOT_HGT,LV_ISOBARIC,0);
 		addUsedDataCenterModel (dtc, plotter);
 		double coef = Util::getDataCoef (dtc);
         plotter->draw_listIsolines_labels (listGeopotential, coef,0, color, pnt,proj);
