@@ -136,8 +136,9 @@ void LonLatGrid::drawLonLatGrid (QPainter &pnt, Projection *proj)
 
 
 //---------------------------------------------------------------
-void LonLatGrid::drawLabel(QPainter &pnt, const Projection *proj,
-				double value, int i, int j)
+// TODO appears to be never used
+void LonLatGrid::drawLabel(QPainter &pnt,
+                double value)
 {
 //    int   a,b,c,d;
     QString label;

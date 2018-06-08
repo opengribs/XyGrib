@@ -41,7 +41,7 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 //	}
 	if (!(gfld->griddef==0 && gfld->igdtnum==0 && gfld->igdtlen>=19)) {
 		// ! Latitude/Longitude grid
-		DBG ("Unsupported grid type: %ld", gfld->igdtnum);
+//		DBG ("Unsupported grid type: %ld", gfld->igdtnum);
 		ok = false;
 		return;
 	}	
@@ -194,7 +194,7 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 void Grib2Record::analyseProductDefinitionTemplate (gribfield  *gfld)
 {
 	if (gfld->ipdtlen < 15) {
-		DBG ("Missing parameters: ipdtlen=%ld", gfld->ipdtlen);
+//		DBG ("Missing parameters: ipdtlen=%ld", gfld->ipdtlen);
 		ok = false;
 		return;
 	}
@@ -297,7 +297,7 @@ void Grib2Record::readAltitude (gribfield *gfld)
 	// cf. table 4.5
 	if (   surfaceType1<0 || surfaceType1>255
 	) {
-		DBG("Id=%d Altitude: surfaceType1=%lld surfaceScale1=%lld surfaceValue1=%lld",id,surfaceType1 ,surfaceScale1, surfaceValue1);
+//		DBG("Id=%d Altitude: surfaceType1=%lld surfaceScale1=%lld surfaceValue1=%lld",id,surfaceType1 ,surfaceScale1, surfaceValue1);
 		levelType = LV_TYPE_NOT_DEFINED;
 		levelValue = 0;
 		return;
@@ -382,7 +382,7 @@ void Grib2Record::readAltitude (gribfield *gfld)
 		levelType = LV_TYPE_NOT_DEFINED;  // Highest tropospheric freezing level
 	// Unknown level types
 	else {
-		DBG("Unknown altitude: surfaceType1=%lld surfaceScale1=%lld surfaceValue1=%lld",surfaceType1 ,surfaceScale1, surfaceValue1);
+//        DBG("Unknown altitude: surfaceType1=%lld surfaceScale1=%lld surfaceValue1=%ld",surfaceType1 ,surfaceScale1, surfaceValue1);
 		levelType = LV_TYPE_NOT_DEFINED;
 		levelValue = 0;
 	}

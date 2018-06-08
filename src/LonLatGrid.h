@@ -36,8 +36,8 @@ private:
 	void drawLatitude (QPainter &pnt, Projection *proj);
 	double  computeDeltaGrid(int *min, double pixperdeg);
 	
-	void    drawLabel(QPainter &pnt, const Projection *proj,
-				double value, int i, int j);
+    void    drawLabel(QPainter &pnt,
+                double value);
 
 
 };

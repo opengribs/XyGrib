@@ -176,8 +176,8 @@ void DialogGraphicsParams::initInterface()
 	inputBgColor->setColor(Util::getSetting("backgroundColor", QColor(0,0,45)).value<QColor>());
 	inputBgColor->setDefaultColor(QColor(0,0,45));
 
-	inputSeaColor->setColor(Util::getSetting("seaColor", QColor(50,50,150)).value<QColor>());
-	inputSeaColor->setDefaultColor(QColor(50,50,150));
+    inputSeaColor->setColor(Util::getSetting("seaColor", QColor(67,193,183)).value<QColor>());
+    inputSeaColor->setDefaultColor(QColor(67,193,183));
 	
 	inputLandColor->setColor(Util::getSetting("landColor", QColor(200,200,120)).value<QColor>());
 	inputLandColor->setDefaultColor(QColor(200,200,120));

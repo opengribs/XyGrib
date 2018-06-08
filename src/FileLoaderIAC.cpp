@@ -80,7 +80,7 @@ void FileLoaderIAC::getFile (FileModeIAC IACmode)
 						;
 	}
 //page="/headers.php";
-	QNetworkRequest request = Util::makeNetworkRequest ("http://"+Util::getServerName()+page,-50,80,40,35);
+    QNetworkRequest request = Util::makeNetworkRequest ("http://"+Util::getServerName()+page);
 	reply_step1 = networkManager->get (request);
 	connect (reply_step1, SIGNAL(downloadProgress (qint64,qint64)), 
 					this, SLOT(downloadProgress (qint64,qint64)));
