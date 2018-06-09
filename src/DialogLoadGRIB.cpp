@@ -199,17 +199,6 @@ void DialogLoadGRIB::slotAltSkew()
     slotParameterUpdated();
 
 }
-//void DialogLoadGRIB::slotFnmocWW3_All ()
-//{
-//    bool check = chkWindAll->isChecked ();
-//    chkWaveSig->setChecked (check);
-//    chkWaveMax->setChecked (check);
-//    chkWaveSwell->setChecked (check);
-//    chkWaveWind->setChecked (check);
-//	chkFnmocWW3_prim->setChecked (check);
-//	chkFnmocWW3_scdy->setChecked (check);
-//	chkFnmocWW3_wcap->setChecked (check);
-//}
 
 //-------------------------------------------------------------------------------
 DialogLoadGRIB::~DialogLoadGRIB()
@@ -448,6 +437,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
 
         cbResolution->clear();
         cbResolution->addItems(QStringList()<< "0.25"<< "0.5" << "1.0");
+        cbResolution->setMinimumWidth (50);
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4"<<"5"<<"6"<<"7"<<"8"<<"9"<<"10");
         ind = Util::getSetting("downloadIndNbDays", 7).toInt();
@@ -494,6 +484,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
     {
         cbResolution->clear();
         cbResolution->addItem("0.25");
+        cbResolution->setMinimumWidth (50);
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4"<<"5"<<"6"<<"7"<<"8");
         ind = Util::getSetting("downloadIndNbDays", 7).toInt();
@@ -540,6 +531,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
     {
         cbResolution->clear();
         cbResolution->addItem("0.5");
+        cbResolution->setMinimumWidth (50);
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4");
         ind = Util::getSetting("downloadIndNbDays", 7).toInt();
@@ -659,6 +651,7 @@ void DialogLoadGRIB::setWaveSelectors ()
     {
         cbResolution->clear();
         cbResolution->addItem("0.25");
+        cbResolution->setMinimumWidth (50);
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4"<<"5"<<"6"<<"7"<<"8");
         ind = Util::getSetting("downloadIndNbDays", 7).toInt();
@@ -675,6 +668,7 @@ void DialogLoadGRIB::setWaveSelectors ()
     {
         cbResolution->clear();
         cbResolution->addItem("0.1");
+        cbResolution->setMinimumWidth (50);
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4");
         ind = Util::getSetting("downloadIndNbDays", 3).toInt();
@@ -691,6 +685,7 @@ void DialogLoadGRIB::setWaveSelectors ()
     {
         cbResolution->clear();
         cbResolution->addItem("0.5");
+        cbResolution->setMinimumWidth (50);
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4"<<"5"<<"6"<<"7"<<"8");
         ind = Util::getSetting("downloadIndNbDays", 7).toInt();
@@ -806,6 +801,8 @@ void DialogLoadGRIB::slotParameterUpdated ()
         if (atmosphericModel == "Arpege") nbskewt = 66;
         estimate += nbrec*nbskewt*(head+(nbits*npts)/8+2 );
     }
+    // keep a record of the atmosphere estimate. if 0 nothing was selected
+    int atmEstimate = estimate;
 
     // and now the wave estimate
     // recalculate number of points based on which model is used
@@ -868,8 +865,12 @@ void DialogLoadGRIB::slotParameterUpdated ()
         ssz = QString("%1 KB").arg(estKB,0,'f',1);
 	else
         ssz = QString("%1 MB").arg(estKB/1024.0,0,'f',1);
-	
-    slotGribMessage(tr("Size: ≃ ") + ssz + tr(" (max 50 MB)"));
+
+    //message if atm model selected but no parameters set
+    if (atmEstimate == 0 && cbModel->currentIndex() != 0)
+        slotGribMessage(tr("Size: ≃ ") + ssz + tr(" (max 50 MB) - NOTE: No sfc. or alt. parameters are selected!"));
+    else
+        slotGribMessage(tr("Size: ≃ ") + ssz + tr(" (max 50 MB)"));
     
     if (estimate == 0 || estKB > 51200)
         btOK->setEnabled(false);
