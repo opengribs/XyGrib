@@ -26,7 +26,7 @@
     <message>
         <location filename="../../src/DataQString.cpp" line="70"/>
         <source>%1 m above mean sea level</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 м над средним уровнем моря</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="73"/>
@@ -78,12 +78,12 @@
         <location filename="../../src/DataQString.cpp" line="116"/>
         <location filename="../../src/DataQString.cpp" line="120"/>
         <source>MSL</source>
-        <translation>MSL</translation>
+        <translation>УМ</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="122"/>
         <source>%1 m ab.MSL</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 м над УМ</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="128"/>
@@ -93,22 +93,22 @@
     <message>
         <location filename="../../src/DataQString.cpp" line="131"/>
         <source>sigma%1</source>
-        <translation type="unfinished"></translation>
+        <translation>сигма%1</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="137"/>
         <source>lowCldLay</source>
-        <translation type="unfinished"></translation>
+        <translation>нижОблСл</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="140"/>
         <source>midCldLay</source>
-        <translation type="unfinished"></translation>
+        <translation>срОблСл</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="143"/>
         <source>higCldLay</source>
-        <translation type="unfinished"></translation>
+        <translation>верОблСл</translation>
     </message>
     <message>
         <source>s%1</source>
@@ -405,7 +405,7 @@
     <message>
         <location filename="../../src/BoardPanel.cpp" line="557"/>
         <source>Reflectivity</source>
-        <translation type="unfinished"></translation>
+        <translation>Отражательная способность</translation>
     </message>
     <message>
         <location filename="../../src/BoardPanel.cpp" line="702"/>
@@ -425,7 +425,7 @@
     <message>
         <location filename="../../src/BoardPanel.cpp" line="711"/>
         <source>Composite Reflectivity</source>
-        <translation type="unfinished"></translation>
+        <translation>Композитная отражательная способность</translation>
     </message>
     <message>
         <location filename="../../src/BoardPanel.cpp" line="558"/>
@@ -498,12 +498,12 @@
     <message>
         <location filename="../../src/curvedrawer/CurveDrawer.cpp" line="777"/>
         <source>Precipitation Rate</source>
-        <translation type="unfinished"></translation>
+        <translation>Интенсивность осадков</translation>
     </message>
     <message>
         <location filename="../../src/curvedrawer/CurveDrawer.cpp" line="778"/>
         <source>Precipitation Total</source>
-        <translation type="unfinished"></translation>
+        <translation>Осадков всего</translation>
     </message>
     <message>
         <location filename="../../src/curvedrawer/CurveDrawer.cpp" line="796"/>
@@ -769,12 +769,12 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/DataQString.cpp" line="172"/>
         <source>Wind (direction)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ветер (направление)</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="173"/>
         <source>Wind (speed)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ветер (скорость)</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="174"/>
@@ -809,17 +809,17 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/DataQString.cpp" line="180"/>
         <source>Cloud cover (low)</source>
-        <translation type="unfinished"></translation>
+        <translation>Облачное покрытие (низ)</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="181"/>
         <source>Cloud cover (middle)</source>
-        <translation type="unfinished"></translation>
+        <translation>Облачное покрытие (сред)</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="182"/>
         <source>Cloud cover (high)</source>
-        <translation type="unfinished"></translation>
+        <translation>Облачное покрытие (выс)</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="183"/>
@@ -844,7 +844,7 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/DataQString.cpp" line="188"/>
         <source>Composite Reflectivity</source>
-        <translation type="unfinished"></translation>
+        <translation>Композитная отражательная способность</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="190"/>
@@ -869,22 +869,22 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/DataQString.cpp" line="195"/>
         <source>Wind gust (Vx)</source>
-        <translation type="unfinished"></translation>
+        <translation>Порывы ветра (Vx)</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="196"/>
         <source>Wind gust (VY)</source>
-        <translation type="unfinished"></translation>
+        <translation>Порывы ветра (VY)</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="197"/>
         <source>Current direction</source>
-        <translation type="unfinished"></translation>
+        <translation>Текущее направление</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="198"/>
         <source>Current</source>
-        <translation type="unfinished">Текущий</translation>
+        <translation>Текущий</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="201"/>
@@ -975,7 +975,7 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/DataQString.cpp" line="191"/>
         <source>Wind (jet stream)</source>
-        <translation type="unfinished"></translation>
+        <translation>Вертер (струйное течение)</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="217"/>
@@ -1102,7 +1102,7 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/DialogFonts.cpp" line="93"/>
         <source>Choice of fonts</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбор шрифтов</translation>
     </message>
     <message>
         <location filename="../../src/DialogFonts.cpp" line="183"/>
@@ -1224,7 +1224,7 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="710"/>
         <source>18 hr</source>
-        <translation>18 час </translation>
+        <translation>18 час</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="720"/>
@@ -1434,7 +1434,7 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="504"/>
         <source>Size: ≃ </source>
-        <translation>Размер: ≃</translation>
+        <translation>Размер: ≃ </translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="504"/>
@@ -1619,7 +1619,7 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/DialogLoadIAC.cpp" line="159"/>
         <source>Size: %1 ko      Done: %2 ko     </source>
-        <translation>Размер : %1 кб    Получено : %2 кб    </translation>
+        <translation>Размер : %1 кб    Получено : %2 кб     </translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadIAC.cpp" line="186"/>
@@ -1713,7 +1713,7 @@ Only one zone : Europe + Atlantic North-East
     <message>
         <location filename="../../src/DialogLoadMBLUE.cpp" line="375"/>
         <source>Size: %1 ko approx</source>
-        <translation>Размер: примерно %1 кб </translation>
+        <translation>Размер: примерно %1 кб</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadMBLUE.cpp" line="415"/>
@@ -1970,7 +1970,7 @@ Only one zone : Europe + Atlantic North-East
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="274"/>
         <source>Composite Reflectivity (atm)</source>
-        <translation type="unfinished"></translation>
+        <translation>Композитная отражательная способность (атм)</translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="275"/>
@@ -2207,7 +2207,7 @@ Only one zone : Europe + Atlantic North-East
     <message>
         <location filename="../../src/DialogProxy.cpp" line="161"/>
         <source>Proxy type: </source>
-        <translation>Тип прокси:</translation>
+        <translation>Тип прокси: </translation>
     </message>
     <message>
         <location filename="../../src/DialogProxy.cpp" line="165"/>
@@ -2614,7 +2614,7 @@ Only one zone : Europe + Atlantic North-East
     <message>
         <location filename="../../src/DialogUnits.cpp" line="295"/>
         <source>WARNING: You have choose local time.</source>
-        <translation> ВНИМАНИЕ: вы выбрали локальное время.</translation>
+        <translation>ВНИМАНИЕ: вы выбрали локальное время.</translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="297"/>
@@ -2624,7 +2624,7 @@ Only one zone : Europe + Atlantic North-East
     <message>
         <location filename="../../src/DialogUnits.cpp" line="298"/>
         <source>the time of a point on the map.</source>
-        <translation>der Zeit eines Punktes der Karte.</translation>
+        <translation>время на точке карты.</translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="300"/>
@@ -2639,7 +2639,7 @@ Only one zone : Europe + Atlantic North-East
     <message>
         <location filename="../../src/DialogUnits.cpp" line="303"/>
         <source>Current hour seen by xygrib with those parameters :</source>
-        <translation type="unfinished"></translation>
+        <translation>Текущее время было получено xygrib с текущими значениями:</translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="304"/>
@@ -3218,12 +3218,12 @@ Unselected by left click in map holding shift at the same time</source>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1455"/>
         <source>xyGrib : GRIB files visualization</source>
-        <translation type="unfinished"></translation>
+        <translation>xyGrib: визуализация файлов GRIB</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1460"/>
         <source>http://OpenGribs.org</source>
-        <translation type="unfinished"></translation>
+        <translation>http://OpenGribs.org</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1515"/>
@@ -3356,7 +3356,7 @@ Unselected by left click in map holding shift at the same time</source>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1698"/>
         <source>Area :</source>
-        <translation>Распространение : </translation>
+        <translation>Распространение :</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1785"/>
@@ -3441,7 +3441,7 @@ Unselected by left click in map holding shift at the same time</source>
         <location filename="../../src/MapDrawer.cpp" line="784"/>
         <location filename="../../src/MapDrawer.cpp" line="908"/>
         <source>xyGrib</source>
-        <translation type="unfinished"></translation>
+        <translation>xyGrib</translation>
     </message>
     <message>
         <location filename="../../src/MapDrawer.cpp" line="873"/>
@@ -3498,7 +3498,7 @@ Unselected by left click in map holding shift at the same time</source>
     <message>
         <location filename="../../src/MenuBar.cpp" line="77"/>
         <source>Open a new xyGrib instance</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть ещё один экземпляр xyGrib</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="80"/>
@@ -4175,7 +4175,7 @@ Unselected by left click in map holding shift at the same time</source>
     <message>
         <location filename="../../src/MenuBar.cpp" line="134"/>
         <source>Reflectivity</source>
-        <translation type="unfinished"></translation>
+        <translation>Отражательная способность</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="135"/>
@@ -4190,12 +4190,12 @@ Unselected by left click in map holding shift at the same time</source>
     <message>
         <location filename="../../src/MenuBar.cpp" line="163"/>
         <source>Jet stream colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Цвета струйного течения</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="163"/>
         <source>Ctrl+Shift+J</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+J</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="184"/>
@@ -4511,7 +4511,7 @@ Unselected by left click in map holding shift at the same time</source>
     <message>
         <location filename="../../src/MenuBar.cpp" line="336"/>
         <source>Ctrl+Shift+K</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+K</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="340"/>
@@ -4647,7 +4647,7 @@ Unselected by left click in map holding shift at the same time</source>
     <message>
         <location filename="../../src/MenuBar.cpp" line="432"/>
         <source>About xyGrib</source>
-        <translation type="unfinished"></translation>
+        <translation>О xyGrib</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="486"/>
@@ -4687,7 +4687,7 @@ Unselected by left click in map holding shift at the same time</source>
     <message>
         <location filename="../../src/MenuBar.cpp" line="413"/>
         <source>Date selector</source>
-        <translation>Выбор даты </translation>
+        <translation>Выбор даты</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="415"/>
@@ -5063,12 +5063,12 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="807"/>
         <source>Reflectivity (entire atmos)</source>
-        <translation type="unfinished"></translation>
+        <translation>Композитная отражательная способность (вся атм)</translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="816"/>
         <source>dBZ</source>
-        <translation type="unfinished"></translation>
+        <translation>dBZ</translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="882"/>
@@ -5476,12 +5476,12 @@ Are you sure ?</source>
     <message>
         <location filename="../../src/SkewT.cpp" line="958"/>
         <source>Reference: </source>
-        <translation>Ссылка:</translation>
+        <translation>Ссылка: </translation>
     </message>
     <message>
         <location filename="../../src/SkewT.cpp" line="961"/>
         <source>Date: </source>
-        <translation>Дата:</translation>
+        <translation>Дата: </translation>
     </message>
 </context>
 <context>
@@ -5514,12 +5514,12 @@ Are you sure ?</source>
     <message>
         <location filename="../../src/SkewTWindow.cpp" line="82"/>
         <source>T max: </source>
-        <translation>T макс:</translation>
+        <translation>T макс: </translation>
     </message>
     <message>
         <location filename="../../src/SkewTWindow.cpp" line="92"/>
         <source>P min: </source>
-        <translation>P мин:</translation>
+        <translation>P мин: </translation>
     </message>
     <message>
         <location filename="../../src/SkewTWindow.cpp" line="102"/>
@@ -5729,7 +5729,7 @@ Are you sure ?</source>
     <message>
         <location filename="../../src/util/Util.cpp" line="382"/>
         <source>dBZ</source>
-        <translation type="unfinished"></translation>
+        <translation>dBZ</translation>
     </message>
     <message>
         <location filename="../../src/util/Util.cpp" line="387"/>
