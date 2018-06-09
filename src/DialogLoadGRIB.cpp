@@ -374,8 +374,16 @@ void DialogLoadGRIB::updateParameters ()
     xmin = sbWest->cleanText().toDouble();
     xmax = sbEast->cleanText().toDouble();
 
-    atmosphericModel = cbModel->currentText();
-    waveModel = cbWvModel->currentText();
+    if (cbModel->currentIndex() == 0)
+        atmosphericModel = "None";
+    else
+        atmosphericModel = cbModel->currentText();
+
+    if (cbWvModel->currentIndex() == 0)
+        waveModel = "None";
+    else
+        waveModel = cbWvModel->currentText();
+
     resolution = cbResolution->currentText().toDouble();
     interval   = cbInterval->currentText().toInt();
     days       = cbDays->currentText().toInt();
@@ -425,10 +433,6 @@ void DialogLoadGRIB::updateParameters ()
     GUSTsfc      = chkGUSTsfc->isChecked();
 //    SUNSDsfc     = chkSUNSDsfc->isChecked();
 	
-//	if (bt_FNMOC_WW3_GLB->isChecked())
-//		waveDataModel = FNMOC_WW3_GLB;
-//	else
-//		waveDataModel = FNMOC_WW3_MED;
 	
 }
 
@@ -450,21 +454,40 @@ void DialogLoadGRIB::slotAtmModelSettings()
         ind = Util::inRange(ind, 0, cbDays->count()-1);
         cbDays->setCurrentIndex(ind);
         cbRunCycle->clear();
+        ind = 0;
         cbRunCycle->insertItem (ind++, tr("Last"), "last");
         cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
         cbRunCycle->insertItem (ind++, tr("6 hr"), "06");
         cbRunCycle->insertItem (ind++, tr("12 hr"), "12");
         cbRunCycle->insertItem (ind++, tr("18 hr"), "18");
+
         // reactivate parameters that may have been disabled
-        chkSnowCateg->setCheckable(true);
-        chkFrzRainCateg->setCheckable(true);
-        chkCINsfc->setCheckable(true);
+        chkWind->setCheckable(true);
+        chkGUSTsfc->setCheckable(true);
+        chkPressure->setCheckable(true);
+        chkTemp->setCheckable(true);
         chkIsotherm0->setCheckable(true);
+        chkCAPEsfc->setCheckable(true);
+        chkCINsfc->setCheckable(true);
+        chkCloud->setCheckable(true);
+        chkHumid->setCheckable(true);
+        chkRain->setCheckable(true);
+        chkSnowCateg->setCheckable(true);
         chkSnowDepth->setCheckable(true);
+        chkFrzRainCateg->setCheckable(true);
+
         chkAltitude200->setCheckable(true);
+        chkAltitude300->setCheckable(true);
         chkAltitude400->setCheckable(true);
+        chkAltitude500->setCheckable(true);
         chkAltitude600->setCheckable(true);
+        chkAltitude700->setCheckable(true);
+        chkAltitude850->setCheckable(true);
         chkAltitude925->setCheckable(true);
+
+        chkAltitude_All->setCheckable(true);
+        chkAltitude_SkewT->setCheckable(true);
+
 
     }
     else if (amod == "ICON")
@@ -476,10 +499,33 @@ void DialogLoadGRIB::slotAtmModelSettings()
         ind = Util::getSetting("downloadIndNbDays", 7).toInt();
         ind = Util::inRange(ind, 0, cbDays->count()-1);
         cbDays->setCurrentIndex(ind);
+        ind = 0;
         cbRunCycle->clear();
         cbRunCycle->insertItem (ind++, tr("Last"), "last");
         cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
         cbRunCycle->insertItem (ind++, tr("12 hr"), "12");
+
+        // activate what might have been off
+        chkWind->setCheckable(true);
+        chkGUSTsfc->setCheckable(true);
+        chkPressure->setCheckable(true);
+        chkTemp->setCheckable(true);
+        chkIsotherm0->setCheckable(true);
+        chkCAPEsfc->setCheckable(true);
+        chkCloud->setCheckable(true);
+        chkHumid->setCheckable(true);
+        chkRain->setCheckable(true);
+        chkSnowDepth->setCheckable(true);
+
+        chkAltitude300->setCheckable(true);
+        chkAltitude500->setCheckable(true);
+        chkAltitude700->setCheckable(true);
+        chkAltitude850->setCheckable(true);
+
+        chkAltitude_All->setCheckable(true);
+        chkAltitude_SkewT->setCheckable(true);
+
+
         // deactivate unvalid parameters
         chkSnowCateg->setCheckable(false); chkSnowCateg->repaint();
         chkFrzRainCateg->setCheckable(false); chkFrzRainCateg->repaint();
@@ -499,21 +545,74 @@ void DialogLoadGRIB::slotAtmModelSettings()
         ind = Util::getSetting("downloadIndNbDays", 7).toInt();
         ind = Util::inRange(ind, 0, cbDays->count()-1);
         cbDays->setCurrentIndex(ind);
+        ind = 0;
         cbRunCycle->clear();
         cbRunCycle->insertItem (ind++, tr("Last"), "last");
         cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
         cbRunCycle->insertItem (ind++, tr("12 hr"), "12");
+
+        // reactivate what might have been off
+        chkWind->setCheckable(true);
+        chkGUSTsfc->setCheckable(true);
+        chkPressure->setCheckable(true);
+        chkTemp->setCheckable(true);
+        chkCAPEsfc->setCheckable(true);
+        chkCloud->setCheckable(true);
+        chkHumid->setCheckable(true);
+        chkRain->setCheckable(true);
+
+        chkAltitude200->setCheckable(true);
+        chkAltitude300->setCheckable(true);
+        chkAltitude400->setCheckable(true);
+        chkAltitude500->setCheckable(true);
+        chkAltitude600->setCheckable(true);
+        chkAltitude700->setCheckable(true);
+        chkAltitude850->setCheckable(true);
+        chkAltitude925->setCheckable(true);
+
+        chkAltitude_All->setCheckable(true);
+        chkAltitude_SkewT->setCheckable(true);
+
         // deactivate unvalid parameters
         chkSnowCateg->setCheckable(false); chkSnowCateg->repaint();
         chkFrzRainCateg->setCheckable(false); chkFrzRainCateg->repaint();
         chkCINsfc->setCheckable(false); chkCINsfc->repaint();
         chkIsotherm0->setCheckable(false); chkIsotherm0->repaint();
         chkSnowDepth->setCheckable(false); chkSnowDepth->repaint();
-        chkAltitude200->setCheckable(true);
-        chkAltitude400->setCheckable(true);
-        chkAltitude600->setCheckable(true);
-        chkAltitude925->setCheckable(true);
 
+    }
+    // check also for "None" by index (translatable text)
+    else if (cbModel->currentIndex() == 0)
+    {
+        //set all atmos chkboxes off
+        chkWind->setCheckable(false); chkWind->repaint();
+        chkGUSTsfc->setCheckable(false); chkGUSTsfc->repaint();
+        chkPressure->setCheckable(false); chkPressure->repaint();
+        chkTemp->setCheckable(false); chkTemp->repaint();
+        chkIsotherm0->setCheckable(false); chkIsotherm0->repaint();
+        chkCAPEsfc->setCheckable(false); chkCAPEsfc->repaint();
+        chkCINsfc->setCheckable(false); chkCINsfc->repaint();
+        chkCloud->setCheckable(false); chkCloud->repaint();
+        chkHumid->setCheckable(false); chkHumid->repaint();
+        chkRain->setCheckable(false); chkRain->repaint();
+        chkSnowCateg->setCheckable(false); chkSnowCateg->repaint();
+        chkSnowDepth->setCheckable(false); chkSnowDepth->repaint();
+        chkFrzRainCateg->setCheckable(false); chkFrzRainCateg->repaint();
+
+        chkAltitude200->setCheckable(false); chkAltitude200->repaint();
+        chkAltitude300->setCheckable(false); chkAltitude300->repaint();
+        chkAltitude400->setCheckable(false); chkAltitude400->repaint();
+        chkAltitude500->setCheckable(false); chkAltitude500->repaint();
+        chkAltitude600->setCheckable(false); chkAltitude600->repaint();
+        chkAltitude700->setCheckable(false); chkAltitude700->repaint();
+        chkAltitude850->setCheckable(false); chkAltitude850->repaint();
+        chkAltitude925->setCheckable(false); chkAltitude925->repaint();
+
+        chkAltitude_All->setCheckable(false); chkAltitude_All->repaint();
+        chkAltitude_SkewT->setCheckable(false); chkAltitude_SkewT->repaint();
+
+        // set appropriate settings for wave mode if selected
+        setWaveSelectors();
     }
 
     // propagate the change
@@ -525,9 +624,8 @@ void DialogLoadGRIB::slotAtmModelSettings()
 // activates or deactivates wave parameter options
 void DialogLoadGRIB::slotWaveModelSettings()
 {
-    QString wmod = cbWvModel->currentText();
 
-    if (wmod == "None")
+    if (cbWvModel->currentIndex() == 0) // none
     {
         // deactivate the parameter check boxes
         chkWaveSig->setCheckable(false); chkWaveSig->repaint();
@@ -541,10 +639,73 @@ void DialogLoadGRIB::slotWaveModelSettings()
         chkWaveSwell->setCheckable(true);
         chkWaveWind->setCheckable(true);
     }
+
+    // if we are wave only then set selectors according to wave models
+    if (cbModel->currentIndex() == 0) // none for atm model
+    {
+        // set appropriate settings for wave mode if selected
+        setWaveSelectors();
+
+    }
     // propagate the change
     slotParameterUpdated ();
 }
+//-------------------------------------------------------------------------------
+void DialogLoadGRIB::setWaveSelectors ()
+{
+    int ind = 0;
 
+    if (cbWvModel->currentText() == "GWAM" )
+    {
+        cbResolution->clear();
+        cbResolution->addItem("0.25");
+        cbDays->clear();
+        cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4"<<"5"<<"6"<<"7"<<"8");
+        ind = Util::getSetting("downloadIndNbDays", 7).toInt();
+        ind = Util::inRange(ind, 0, cbDays->count()-1);
+        cbDays->setCurrentIndex(ind);
+        ind = 0;
+        cbRunCycle->clear();
+        cbRunCycle->insertItem (ind++, tr("Last"), "last");
+        cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
+        cbRunCycle->insertItem (ind++, tr("12 hr"), "12");
+
+    }
+    else if (cbWvModel->currentText() == "EWAM")
+    {
+        cbResolution->clear();
+        cbResolution->addItem("0.1");
+        cbDays->clear();
+        cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4");
+        ind = Util::getSetting("downloadIndNbDays", 3).toInt();
+        ind = Util::inRange(ind, 0, cbDays->count()-1);
+        cbDays->setCurrentIndex(ind);
+        ind = 0;
+        cbRunCycle->clear();
+        cbRunCycle->insertItem (ind++, tr("Last"), "last");
+        cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
+        cbRunCycle->insertItem (ind++, tr("12 hr"), "12");
+
+    }
+    else if (cbWvModel->currentText() == "WW3")
+    {
+        cbResolution->clear();
+        cbResolution->addItem("0.5");
+        cbDays->clear();
+        cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4"<<"5"<<"6"<<"7"<<"8");
+        ind = Util::getSetting("downloadIndNbDays", 7).toInt();
+        ind = Util::inRange(ind, 0, cbDays->count()-1);
+        cbDays->setCurrentIndex(ind);
+        cbRunCycle->clear();
+        ind = 0;
+        cbRunCycle->insertItem (ind++, tr("Last"), "last");
+        cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
+        cbRunCycle->insertItem (ind++, tr("6 hr"), "06");
+        cbRunCycle->insertItem (ind++, tr("12 hr"), "12");
+        cbRunCycle->insertItem (ind++, tr("18 hr"), "18");
+
+    }
+}
 //-------------------------------------------------------------------------------
 void DialogLoadGRIB::slotParameterUpdated ()
 {
@@ -652,19 +813,19 @@ void DialogLoadGRIB::slotParameterUpdated ()
     {
         npts = (int) (  ceil(fabs(xmax-xmin)/0.5)
                                * ceil(fabs(ymax-ymin)/0.5) );
-        nbrec = (int) fmin(6,days)*24/interval +1;
+        nbrec = (int) fmin(8,days)*24/interval +1;
     }
     if (waveModel == "GWAM") // 0.25 deg
     {
         npts = (int) (  ceil(fabs(xmax-xmin)/0.25)
                                * ceil(fabs(ymax-ymin)/0.25) );
-        nbrec = (int) fmin(6,days)*24/interval +1;
+        nbrec = (int) fmin(8,days)*24/interval +1;
     }
     if (waveModel == "EWAM") // 0.1 x 0.05 deg
     {
-        npts = (int) (  ceil(fabs(xmax-xmin)/0.1)
-                               * ceil(fabs(ymax-ymin)/0.05) );
-        nbrec = (int) fmin(2,days)*24/interval +1;
+        npts = (int) (  ceil(fabs(xmax-xmin)/0.05)
+                               * ceil(fabs(ymax-ymin)/0.1) );
+        nbrec = (int) fmin(4,days)*24/interval +1;
     }
 
 
@@ -761,46 +922,7 @@ void DialogLoadGRIB::slotBtOK()
 
 				);
 }
-//-------------------------------------------------------------------------------
-// TODO - Appears to be unused! can be removed
-//QString DialogLoadGRIB::createStringParameters ()
-//{
-//    QString parameters = "";
-//    if (wind)
-//        parameters += "W;";
-//    if (pressure)
-//        parameters += "P;";
-//    if (rain)
-//        parameters += "R;";
-//    if (cloud)
-//        parameters += "C;";
-//    if (temp)
-//        parameters += "T;";
-//    if (humid)
-//        parameters += "H;";
-//	if (isotherm0)
-//		parameters += "I;";
-////    if (tempMin)
-////        parameters += "m;";
-////    if (tempMax)
-////        parameters += "M;";
-//    if (snowDepth)
-//        parameters += "S;";
-//    if (snowCateg)
-//        parameters += "s;";
-//    if (frzRainCateg)
-//        parameters += "Z;";
-//    if (CAPEsfc)
-//        parameters += "c;";
-//    if (CINsfc)
-//        parameters += "i;";
-//    if (GUSTsfc)
-//        parameters += "G;";
-////    if (SUNSDsfc)
-////        parameters += "D;";
-	
-//	return parameters;
-//}
+
 //-------------------------------------------------------------------------------
 void DialogLoadGRIB::slotBtServerStatus ()
 {
@@ -889,7 +1011,7 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
     //model combobox
     cbModel = new QComboBox(this);
     assert(cbModel);
-    cbModel->addItems(QStringList()<< "GFS"<< "ICON" << "Arpege"  );
+    cbModel->addItems(QStringList()<< tr("None") << "GFS"<< "ICON" << "Arpege"  );
     cbModel->setMinimumWidth (sizemin);
     ind = Util::getSetting("downloadIndModel", 0).toInt();
     ind = Util::inRange(ind, 0, cbModel->count()-1);
@@ -898,7 +1020,7 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
     //Wave model combobox
     cbWvModel = new QComboBox(this);
     assert(cbWvModel);
-    cbWvModel->addItems(QStringList()<< "None" << "WW3"<< "GWAM" << "EWAM"  );
+    cbWvModel->addItems(QStringList()<< tr("None") << "WW3"<< "GWAM" << "EWAM"  );
     cbWvModel->setMinimumWidth (sizemin);
     ind = Util::getSetting("downloadIndWaveModel", 0).toInt();
     ind = Util::inRange(ind, 0, cbWvModel->count()-1);
@@ -912,7 +1034,7 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
     assert(cbResolution);
     cbResolution->addItems(QStringList()<< "0.25"<< "0.5" << "1.0");
     //gfs_p25_, gfs_p50_, gfs_1p0_, icon_p25_, arpege
-    cbResolution->setMinimumWidth (sizemin);
+    cbResolution->setMinimumWidth (50);
 	ind = Util::getSetting("downloadIndResolution", 0).toInt();
 	ind = Util::inRange(ind, 0, cbResolution->count()-1);
     cbResolution->setCurrentIndex(ind);
@@ -920,7 +1042,7 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
     
     cbInterval = new QComboBox(this);
     assert(cbInterval);
-    cbInterval->addItems(QStringList()<< "3" << "6" << "12" << "24");
+    cbInterval->addItems(QStringList()<< "3" << "6" << "12");
     cbInterval->setMinimumWidth (sizemin);
 	ind = Util::getSetting("downloadIndInterval", 0).toInt();
 	ind = Util::inRange(ind, 0, cbInterval->count()-1);
@@ -1007,30 +1129,33 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
     chkGUSTsfc->setChecked  (Util::getSetting("downloadGUSTsfc", true).toBool());
 //    chkSUNSDsfc->setChecked (Util::getSetting("downloadSUNSDsfc", false).toBool());
 	//----------------------------------------------------------------
-    chkAltitude925  = new QCheckBox ("925 "+tr("hPa"));
+    chkAltitude925  = new QCheckBox ("925 "+tr("mb"));
     assert (chkAltitude925);
     chkAltitude925->setChecked  (Util::getSetting("downloadAltitudeData925", false).toBool());
-    chkAltitude850  = new QCheckBox ("850 "+tr("hPa"));
+
+    chkAltitude850  = new QCheckBox ("850 "+tr("mb"));
     assert (chkAltitude850);
     chkAltitude850->setChecked  (Util::getSetting("downloadAltitudeData850", false).toBool());
-    chkAltitude700  = new QCheckBox ("700 "+tr("hPa"));
+    chkAltitude700  = new QCheckBox ("700 "+tr("mb"));
     assert (chkAltitude700);
     chkAltitude700->setChecked  (Util::getSetting("downloadAltitudeData700", false).toBool());
 	
-    chkAltitude400  = new QCheckBox ("400 "+tr("hPa"));
-    assert (chkAltitude400);
-    chkAltitude400->setChecked  (Util::getSetting("downloadAltitudeData400", false).toBool());
-    chkAltitude500  = new QCheckBox ("500 "+tr("hPa"));
-    assert (chkAltitude500);
-    chkAltitude500->setChecked  (Util::getSetting("downloadAltitudeData500", false).toBool());
-    chkAltitude600  = new QCheckBox ("600 "+tr("hPa"));
+    chkAltitude600  = new QCheckBox ("600 "+tr("mb"));
     assert (chkAltitude600);
     chkAltitude600->setChecked  (Util::getSetting("downloadAltitudeData600", false).toBool());
+
+    chkAltitude500  = new QCheckBox ("500 "+tr("mb"));
+    assert (chkAltitude500);
+    chkAltitude500->setChecked  (Util::getSetting("downloadAltitudeData500", false).toBool());
 	
-    chkAltitude300  = new QCheckBox ("300 "+tr("hPa"));
+    chkAltitude400  = new QCheckBox ("400 "+tr("mb"));
+    assert (chkAltitude400);
+    chkAltitude400->setChecked  (Util::getSetting("downloadAltitudeData400", false).toBool());
+
+    chkAltitude300  = new QCheckBox ("300 "+tr("mb"));
     assert (chkAltitude300);
     chkAltitude300->setChecked  (Util::getSetting("downloadAltitudeData300", false).toBool());
-    chkAltitude200  = new QCheckBox ("200 "+tr("hPa"));
+    chkAltitude200  = new QCheckBox ("200 "+tr("mb"));
     assert (chkAltitude200);
     chkAltitude200->setChecked  (Util::getSetting("downloadAltitudeData200", false).toBool());
 
@@ -1098,12 +1223,18 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
     tgrid = new QGridLayout(ftmp);
     assert(tgrid);
     tgrid->setContentsMargins (0,0,0,0);
-    tgrid->addWidget( new QLabel(tr("Atmospheric Model :")), 0, 0, Qt::AlignRight);
+    QLabel* atmLabel = new QLabel;
+    atmLabel->setText(tr("Atmospheric Model :"));
+    atmLabel->setStyleSheet("font-weight: bold; color:orange;");
+    tgrid->addWidget( atmLabel, 0, 0, Qt::AlignRight);
     tgrid->addWidget( cbModel, 0, 1);
     //-------------------------
 //    addSeparator (tlay, 'V');
     //-------------------------
-    tgrid->addWidget( new QLabel(tr("Wave Model :")), 0, 2, Qt::AlignRight);
+    QLabel* wvLabel = new QLabel;
+    wvLabel->setText(tr("Wave Model :"));
+    wvLabel->setStyleSheet("font-weight: bold; color:orange;");
+    tgrid->addWidget( wvLabel, 0, 2, Qt::AlignRight);
     tgrid->addWidget( cbWvModel, 0, 3);
     lay->addWidget( ftmp);
 
@@ -1205,8 +1336,8 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
 			gtmp->addWidget (chkAltitude700, 0,2);
 			gtmp->addWidget (chkAltitude600, 0,3);
 			
-			gtmp->addWidget (chkAltitude500, 1,1);
-			gtmp->addWidget (chkAltitude400, 1,0);
+            gtmp->addWidget (chkAltitude400, 1,0);
+            gtmp->addWidget (chkAltitude500, 1,1);
 			gtmp->addWidget (chkAltitude300, 1,2);
 			gtmp->addWidget (chkAltitude200, 1,3);
 		tlay->addWidget (fgrid);

@@ -68,7 +68,7 @@ class FileLoaderGRIB : public QObject, FileLoader
     private:
 		QString scriptpath;
 		QString scriptname;
-		QString scriptstock;
+//		QString scriptstock;
         QByteArray arrayContent;
         QWidget *parent;
         
@@ -79,8 +79,8 @@ class FileLoaderGRIB : public QObject, FileLoader
         //QStrinq strbuf;
         //QByteArray xserv;
 		
-        QString zygriblog;
-        QString zygribpwd;
+//        QString zygriblog;
+//        QString zygribpwd;
 
 		QNetworkReply *reply_step1;
 		QNetworkReply *reply_step2;

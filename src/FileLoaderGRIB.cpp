@@ -38,9 +38,9 @@ FileLoaderGRIB::FileLoaderGRIB (QNetworkAccessManager *manager, QWidget *parent)
 	reply_step1 = NULL;
 	reply_step2 = NULL;
     scriptpath = "/";
-	scriptstock = "313O562/";
-    zygriblog = "a07622b82b18524d2088c9b272bb3feeb0eb1737";
-    zygribpwd = "61c9b2b17db77a27841bbeeabff923448b0f6388";
+//	scriptstock = "313O562/";
+//    zygriblog = "a07622b82b18524d2088c9b272bb3feeb0eb1737";
+//    zygribpwd = "61c9b2b17db77a27841bbeeabff923448b0f6388";
 }
 //-------------------------------------------------------------------------------
 FileLoaderGRIB::~FileLoaderGRIB () 
@@ -187,6 +187,8 @@ void FileLoaderGRIB::getGribFile(
         amod = "icon_p25_";
     } else if (atmModel == "Arpege"){
         amod = "arpege_p50_";
+    } else if (atmModel == "None"){
+        amod = "none";
     }
 
     // wave model identifier

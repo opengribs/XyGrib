@@ -2412,12 +2412,13 @@ void MainWindow::slotFinished()
     if (result == 1) // new version available
     {
         QMessageBox mbox(this);
+        mbox.setIcon(QMessageBox::Information);
         mbox.setWindowTitle(tr("An updated version is available"));
         mbox.setTextFormat(Qt::RichText);
-        mbox.setStyleSheet("background:lightgrey;color:black;");
+//        mbox.setStyleSheet("background:lightgrey;color:black;");
         mbox.setText(tr("A new version")+": "+newVer+" "
                      +tr("is available for download.")+"<br><br>"
-                     +"<a href='https://opengribs.org/en/downloads'>https://opengribs.org/en/downloads</a>");
+                     +"<a style=\"color:lightblue;\" href=\"https://opengribs.org/en/downloads\">https://opengribs.org/en/downloads</a>");
         mbox.exec();
 
     }
