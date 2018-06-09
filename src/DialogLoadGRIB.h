@@ -120,13 +120,6 @@ class DialogLoadGRIB : public DialogBoxBase
 //        QCheckBox *chkWaveMax;
         QCheckBox *chkWaveSwell;
         QCheckBox *chkWaveWind;
-//        QCheckBox *chkFnmocWW3_prim;
-//        QCheckBox *chkFnmocWW3_scdy;
-//        QCheckBox *chkFnmocWW3_wcap;
-		
-//		DataCenterModel waveDataModel;
-//		QRadioButton *bt_FNMOC_WW3_GLB;
-//		QRadioButton *bt_FNMOC_WW3_MED;
         
         QPushButton *btOK;
         QPushButton *btCancel;
@@ -153,6 +146,7 @@ class DialogLoadGRIB : public DialogBoxBase
 		
         void    updateParameters();
 		void    saveParametersSettings ();
+        void    setWaveSelectors();
 
         void    addSeparator (QLayout *layout, char orientation);	// 'H' or 'V'
         QFrame *newSeparator (char orientation);	// 'H' or 'V'
