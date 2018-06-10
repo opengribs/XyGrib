@@ -452,31 +452,31 @@ void DialogLoadGRIB::slotAtmModelSettings()
         cbRunCycle->insertItem (ind++, tr("18 hr"), "18");
 
         // reactivate parameters that may have been disabled
-        chkWind->setCheckable(true);
-        chkGUSTsfc->setCheckable(true);
-        chkPressure->setCheckable(true);
-        chkTemp->setCheckable(true);
-        chkIsotherm0->setCheckable(true);
-        chkCAPEsfc->setCheckable(true);
-        chkCINsfc->setCheckable(true);
-        chkCloud->setCheckable(true);
-        chkHumid->setCheckable(true);
-        chkRain->setCheckable(true);
-        chkSnowCateg->setCheckable(true);
-        chkSnowDepth->setCheckable(true);
-        chkFrzRainCateg->setCheckable(true);
+        chkWind->setEnabled(true);
+        chkGUSTsfc->setEnabled(true);
+        chkPressure->setEnabled(true);
+        chkTemp->setEnabled(true);
+        chkIsotherm0->setEnabled(true);
+        chkCAPEsfc->setEnabled(true);
+        chkCINsfc->setEnabled(true);
+        chkCloud->setEnabled(true);
+        chkHumid->setEnabled(true);
+        chkRain->setEnabled(true);
+        chkSnowCateg->setEnabled(true);
+        chkSnowDepth->setEnabled(true);
+        chkFrzRainCateg->setEnabled(true);
 
-        chkAltitude200->setCheckable(true);
-        chkAltitude300->setCheckable(true);
-        chkAltitude400->setCheckable(true);
-        chkAltitude500->setCheckable(true);
-        chkAltitude600->setCheckable(true);
-        chkAltitude700->setCheckable(true);
-        chkAltitude850->setCheckable(true);
-        chkAltitude925->setCheckable(true);
+        chkAltitude200->setEnabled(true);
+        chkAltitude300->setEnabled(true);
+        chkAltitude400->setEnabled(true);
+        chkAltitude500->setEnabled(true);
+        chkAltitude600->setEnabled(true);
+        chkAltitude700->setEnabled(true);
+        chkAltitude850->setEnabled(true);
+        chkAltitude925->setEnabled(true);
 
-        chkAltitude_All->setCheckable(true);
-        chkAltitude_SkewT->setCheckable(true);
+        chkAltitude_All->setEnabled(true);
+        chkAltitude_SkewT->setEnabled(true);
 
 
     }
@@ -497,34 +497,34 @@ void DialogLoadGRIB::slotAtmModelSettings()
         cbRunCycle->insertItem (ind++, tr("12 hr"), "12");
 
         // activate what might have been off
-        chkWind->setCheckable(true);
-        chkGUSTsfc->setCheckable(true);
-        chkPressure->setCheckable(true);
-        chkTemp->setCheckable(true);
-        chkIsotherm0->setCheckable(true);
-        chkCAPEsfc->setCheckable(true);
-        chkCloud->setCheckable(true);
-        chkHumid->setCheckable(true);
-        chkRain->setCheckable(true);
-        chkSnowDepth->setCheckable(true);
+        chkWind->setEnabled(true);
+        chkGUSTsfc->setEnabled(true);
+        chkPressure->setEnabled(true);
+        chkTemp->setEnabled(true);
+        chkIsotherm0->setEnabled(true);
+        chkCAPEsfc->setEnabled(true);
+        chkCloud->setEnabled(true);
+        chkHumid->setEnabled(true);
+        chkRain->setEnabled(true);
+        chkSnowDepth->setEnabled(true);
 
-        chkAltitude300->setCheckable(true);
-        chkAltitude500->setCheckable(true);
-        chkAltitude700->setCheckable(true);
-        chkAltitude850->setCheckable(true);
+        chkAltitude300->setEnabled(true);
+        chkAltitude500->setEnabled(true);
+        chkAltitude700->setEnabled(true);
+        chkAltitude850->setEnabled(true);
 
-        chkAltitude_All->setCheckable(true);
-        chkAltitude_SkewT->setCheckable(true);
+        chkAltitude_All->setEnabled(true);
+        chkAltitude_SkewT->setEnabled(true);
 
 
         // deactivate unvalid parameters
-        chkSnowCateg->setCheckable(false); chkSnowCateg->repaint();
-        chkFrzRainCateg->setCheckable(false); chkFrzRainCateg->repaint();
-        chkCINsfc->setCheckable(false); chkCINsfc->repaint();
-        chkAltitude200->setCheckable(false); chkAltitude200->repaint();
-        chkAltitude400->setCheckable(false); chkAltitude400->repaint();
-        chkAltitude600->setCheckable(false); chkAltitude600->repaint();
-        chkAltitude925->setCheckable(false); chkAltitude925->repaint();
+        chkSnowCateg->setEnabled(false); chkSnowCateg->setChecked(false);
+        chkFrzRainCateg->setEnabled(false); chkFrzRainCateg->setChecked(false);
+        chkCINsfc->setEnabled(false); chkCINsfc->setChecked(false);
+        chkAltitude200->setEnabled(false); chkAltitude200->setChecked(false);
+        chkAltitude400->setEnabled(false); chkAltitude400->setChecked(false);
+        chkAltitude600->setEnabled(false); chkAltitude600->setChecked(false);
+        chkAltitude925->setEnabled(false); chkAltitude925->setChecked(false);
 
     }
     else if (amod == "Arpege")
@@ -544,64 +544,64 @@ void DialogLoadGRIB::slotAtmModelSettings()
         cbRunCycle->insertItem (ind++, tr("12 hr"), "12");
 
         // reactivate what might have been off
-        chkWind->setCheckable(true);
-        chkGUSTsfc->setCheckable(true);
-        chkPressure->setCheckable(true);
-        chkTemp->setCheckable(true);
-        chkCAPEsfc->setCheckable(true);
-        chkCloud->setCheckable(true);
-        chkHumid->setCheckable(true);
-        chkRain->setCheckable(true);
+        chkWind->setEnabled(true);
+        chkGUSTsfc->setEnabled(true);
+        chkPressure->setEnabled(true);
+        chkTemp->setEnabled(true);
+        chkCAPEsfc->setEnabled(true);
+        chkCloud->setEnabled(true);
+        chkHumid->setEnabled(true);
+        chkRain->setEnabled(true);
 
-        chkAltitude200->setCheckable(true);
-        chkAltitude300->setCheckable(true);
-        chkAltitude400->setCheckable(true);
-        chkAltitude500->setCheckable(true);
-        chkAltitude600->setCheckable(true);
-        chkAltitude700->setCheckable(true);
-        chkAltitude850->setCheckable(true);
-        chkAltitude925->setCheckable(true);
+        chkAltitude200->setEnabled(true);
+        chkAltitude300->setEnabled(true);
+        chkAltitude400->setEnabled(true);
+        chkAltitude500->setEnabled(true);
+        chkAltitude600->setEnabled(true);
+        chkAltitude700->setEnabled(true);
+        chkAltitude850->setEnabled(true);
+        chkAltitude925->setEnabled(true);
 
-        chkAltitude_All->setCheckable(true);
-        chkAltitude_SkewT->setCheckable(true);
+        chkAltitude_All->setEnabled(true);
+        chkAltitude_SkewT->setEnabled(true);
 
         // deactivate unvalid parameters
-        chkSnowCateg->setCheckable(false); chkSnowCateg->repaint();
-        chkFrzRainCateg->setCheckable(false); chkFrzRainCateg->repaint();
-        chkCINsfc->setCheckable(false); chkCINsfc->repaint();
-        chkIsotherm0->setCheckable(false); chkIsotherm0->repaint();
-        chkSnowDepth->setCheckable(false); chkSnowDepth->repaint();
+        chkSnowCateg->setEnabled(false); chkSnowCateg->setChecked(false);
+        chkFrzRainCateg->setEnabled(false); chkFrzRainCateg->setChecked(false);
+        chkCINsfc->setEnabled(false); chkCINsfc->setChecked(false);
+        chkIsotherm0->setEnabled(false); chkIsotherm0->setChecked(false);
+        chkSnowDepth->setEnabled(false); chkSnowDepth->setChecked(false);
 
     }
     // check also for "None" by index (translatable text)
     else if (cbModel->currentIndex() == 0)
     {
         //set all atmos chkboxes off
-        chkWind->setCheckable(false); chkWind->repaint();
-        chkGUSTsfc->setCheckable(false); chkGUSTsfc->repaint();
-        chkPressure->setCheckable(false); chkPressure->repaint();
-        chkTemp->setCheckable(false); chkTemp->repaint();
-        chkIsotherm0->setCheckable(false); chkIsotherm0->repaint();
-        chkCAPEsfc->setCheckable(false); chkCAPEsfc->repaint();
-        chkCINsfc->setCheckable(false); chkCINsfc->repaint();
-        chkCloud->setCheckable(false); chkCloud->repaint();
-        chkHumid->setCheckable(false); chkHumid->repaint();
-        chkRain->setCheckable(false); chkRain->repaint();
-        chkSnowCateg->setCheckable(false); chkSnowCateg->repaint();
-        chkSnowDepth->setCheckable(false); chkSnowDepth->repaint();
-        chkFrzRainCateg->setCheckable(false); chkFrzRainCateg->repaint();
+        chkWind->setEnabled(false); chkWind->setChecked(false);
+        chkGUSTsfc->setEnabled(false); chkGUSTsfc->setChecked(false);
+        chkPressure->setEnabled(false); chkPressure->setChecked(false);
+        chkTemp->setEnabled(false); chkTemp->setChecked(false);
+        chkIsotherm0->setEnabled(false); chkIsotherm0->setChecked(false);
+        chkCAPEsfc->setEnabled(false); chkCAPEsfc->setChecked(false);
+        chkCINsfc->setEnabled(false); chkCINsfc->setChecked(false);
+        chkCloud->setEnabled(false); chkCloud->setChecked(false);
+        chkHumid->setEnabled(false); chkHumid->setChecked(false);
+        chkRain->setEnabled(false); chkRain->setChecked(false);
+        chkSnowCateg->setEnabled(false); chkSnowCateg->setChecked(false);
+        chkSnowDepth->setEnabled(false); chkSnowDepth->setChecked(false);
+        chkFrzRainCateg->setEnabled(false); chkFrzRainCateg->setChecked(false);
 
-        chkAltitude200->setCheckable(false); chkAltitude200->repaint();
-        chkAltitude300->setCheckable(false); chkAltitude300->repaint();
-        chkAltitude400->setCheckable(false); chkAltitude400->repaint();
-        chkAltitude500->setCheckable(false); chkAltitude500->repaint();
-        chkAltitude600->setCheckable(false); chkAltitude600->repaint();
-        chkAltitude700->setCheckable(false); chkAltitude700->repaint();
-        chkAltitude850->setCheckable(false); chkAltitude850->repaint();
-        chkAltitude925->setCheckable(false); chkAltitude925->repaint();
+        chkAltitude200->setEnabled(false); chkAltitude200->setChecked(false);
+        chkAltitude300->setEnabled(false); chkAltitude300->setChecked(false);
+        chkAltitude400->setEnabled(false); chkAltitude400->setChecked(false);
+        chkAltitude500->setEnabled(false); chkAltitude500->setChecked(false);
+        chkAltitude600->setEnabled(false); chkAltitude600->setChecked(false);
+        chkAltitude700->setEnabled(false); chkAltitude700->setChecked(false);
+        chkAltitude850->setEnabled(false); chkAltitude850->setChecked(false);
+        chkAltitude925->setEnabled(false); chkAltitude925->setChecked(false);
 
-        chkAltitude_All->setCheckable(false); chkAltitude_All->repaint();
-        chkAltitude_SkewT->setCheckable(false); chkAltitude_SkewT->repaint();
+        chkAltitude_All->setEnabled(false); chkAltitude_All->setChecked(false);
+        chkAltitude_SkewT->setEnabled(false); chkAltitude_SkewT->setChecked(false);
 
         // set appropriate settings for wave mode if selected
         setWaveSelectors();
@@ -620,16 +620,16 @@ void DialogLoadGRIB::slotWaveModelSettings()
     if (cbWvModel->currentIndex() == 0) // none
     {
         // deactivate the parameter check boxes
-        chkWaveSig->setCheckable(false); chkWaveSig->repaint();
-        chkWaveSwell->setCheckable(false); chkWaveSwell->repaint();
-        chkWaveWind->setCheckable(false); chkWaveWind->repaint();
+        chkWaveSig->setEnabled(false); chkWaveSig->setChecked(false);
+        chkWaveSwell->setEnabled(false); chkWaveSwell->setChecked(false);
+        chkWaveWind->setEnabled(false); chkWaveWind->setChecked(false);
     }
     else
     {
         // activate all of them
-        chkWaveSig->setCheckable(true);
-        chkWaveSwell->setCheckable(true);
-        chkWaveWind->setCheckable(true);
+        chkWaveSig->setEnabled(true);
+        chkWaveSwell->setEnabled(true);
+        chkWaveWind->setEnabled(true);
     }
 
     // if we are wave only then set selectors according to wave models
@@ -667,8 +667,8 @@ void DialogLoadGRIB::setWaveSelectors ()
     else if (cbWvModel->currentText() == "EWAM")
     {
         cbResolution->clear();
-        cbResolution->addItem("0.1");
-        cbResolution->setMinimumWidth (50);
+        cbResolution->addItem("0.05");
+        cbResolution->setMinimumWidth (60);
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4");
         ind = Util::getSetting("downloadIndNbDays", 3).toInt();
