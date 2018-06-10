@@ -105,7 +105,6 @@ HEADERS += \
            DialogGraphicsParams.h \
            DialogLoadGRIB.h \
            DialogLoadIAC.h \
-           DialogLoadMBLUE.h \
            DialogProxy.h \
            DialogSelectMetar.h \
            DialogServerStatus.h \
@@ -113,7 +112,6 @@ HEADERS += \
            FileLoader.h \
            FileLoaderGRIB.h \
            FileLoaderIAC.h \
-           FileLoaderMBLUE.h \
            util/Font.h \
            map/GshhsRangsReader.h \
            map/GshhsReader.h \
@@ -135,10 +133,6 @@ HEADERS += \
            IsoLine.h \
 		   LongTaskProgress.h \
            LonLatGrid.h \
-           MbzFile.h \
-           MbluePlot.h \
-           MblueReader.h \
-           MblueRecord.h \
            Metar.h \
            MeteoTable.h \
            MeteoTableWidget.h \
@@ -169,10 +163,6 @@ SOURCES += \
 		 	 GUI/AngleConverterWidget.cpp \
 		 	 GUI/AngleConverterDialog.cpp \
 		Astro.cpp \
-        MbzFile.cpp \
-		MblueRecord.cpp \
-		MblueReader.cpp \
-		MbluePlot.cpp \
            BoardPanel.cpp \
 		   ColorScale.cpp \
 		   ColorScaleWidget.cpp \
@@ -186,14 +176,12 @@ SOURCES += \
            DialogGraphicsParams.cpp \
            DialogLoadGRIB.cpp \
            DialogLoadIAC.cpp \
-           DialogLoadMBLUE.cpp \
            DialogProxy.cpp \
            DialogSelectMetar.cpp \
            DialogServerStatus.cpp \
            DialogUnits.cpp \
            FileLoaderGRIB.cpp \
            FileLoaderIAC.cpp \
-           FileLoaderMBLUE.cpp \
            util/Font.cpp \
 		   GriddedPlotter.cpp \
 		   GriddedReader.cpp \
