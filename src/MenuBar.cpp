@@ -55,7 +55,7 @@ void ZeroOneActionGroup::setCheckedAction (QAction *act, bool val, bool emitSign
 }
 
 //===================================================================================
-MenuBar::MenuBar (QWidget *parent, bool withmblue)
+MenuBar::MenuBar (QWidget *parent)
     : QMenuBar (parent)
 {
 #if defined (Q_OS_UNIX)
@@ -87,19 +87,6 @@ MenuBar::MenuBar (QWidget *parent, bool withmblue)
         	tr("IAC fleetcode NOAA"), tr("Ctrl+L"),
 			tr("Download current IAC file (fleetcode) from NOAA - Analyse or Forecast +24h - Europe"), "");
 
-		QMenu *menutmp = new QMenu (tr("Meteoblue"));
-			acMBlue_fastInterpolation = addActionCheck (menutmp,
-					tr("Fast interpolation"), tr(""),
-					tr("Use a faster but a little less accurate interpolation"), "");
-			acMBlueSwiss_Load = addAction (menutmp,
-					tr("Load Meteoblue file : Swiss"), tr("Ctrl+B"),
-					tr("Download Meteoblue file (Swiss)"), Util::pathImg("meteoblue.png"));
-			acMBlueSwiss_ShowArea = addActionCheck (menutmp, 
-					tr("Show area : Swiss"), "",
-					tr("Show Meteoblue area (Swiss)"));
-		if (withmblue)
-			menuFile->addMenu (menutmp);
-			
         menuFile->addSeparator();
         acFile_Info_GRIB = addAction (menuFile,
         			tr("File information"), tr("Ctrl+I"),
@@ -244,7 +231,7 @@ MenuBar::MenuBar (QWidget *parent, bool withmblue)
         acView_Isotherms_Labels = addActionCheck (menuIsolines, tr("Isotherms labels"), "",  "");
         //--------------------------------
         menuIsolines->addSeparator();
-		menutmp = new QMenu (tr("Geopotential altitude"));
+		QMenu *menutmp = new QMenu (tr("Geopotential altitude"));
 		menuIsolines->addMenu (menutmp);
 		acAlt_GroupGeopotLine = new ZeroOneActionGroup (menutmp);
 			acAlt_GeopotLine_925hpa = addGroup (acAlt_GroupGeopotLine, menutmp, tr("925 hpa"), "", "");

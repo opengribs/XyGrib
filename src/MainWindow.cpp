@@ -210,13 +210,6 @@ void MainWindow::InitActionsStatus ()
 							Util::getSetting ("specialZone_x1", 0).toDouble(),
 							Util::getSetting ("specialZone_y1", 0).toDouble() );
 							
-	bool showZone_Swiss = Util::getSetting ("MBshowZone_Swiss", false).toBool();
-	menuBar->acMBlueSwiss_ShowArea->setChecked (showZone_Swiss);
-	terre->showSpecialZone (showZone_Swiss);
-							
-	bool fast = Util::getSetting ("MBfastInterpolation", true).toBool();
-	menuBar->acMBlue_fastInterpolation->setChecked (fast);
-	terre->setMBlueFastInterpolation (fast);
 	//-----------------------------------------
 	updateGriddedData ();
 }
@@ -250,11 +243,6 @@ void MainWindow::connectSignals()
     connect(mb->acFile_NewInstance, SIGNAL(triggered()), this, SLOT(slotGenericAction()));
     connect(mb->acFile_Load_GRIB, SIGNAL(triggered()), this, SLOT(slotFile_Load_GRIB()));
     connect(mb->acFile_Load_IAC, SIGNAL(triggered()), this, SLOT(slotFile_Load_IAC()));
-
-	connect(mb->acMBlueSwiss_Load, SIGNAL(triggered()), this, SLOT(slotFile_MBLUE_Load()));
-	connect(mb->acMBlueSwiss_ShowArea, SIGNAL(triggered()), this, SLOT(slotFile_MBLUE_ShowArea()));
-    connect(mb->acMBlue_fastInterpolation, SIGNAL(triggered(bool)),
-				terre,  SLOT(setMBlueFastInterpolation(bool)));
 
     connect(mb->acFile_GribServerStatus, SIGNAL(triggered()), this, SLOT(slotFile_GribServerStatus()));
     connect(mb->acFile_Info_GRIB, SIGNAL(triggered()), this, SLOT(slotFile_Info_GRIB()));
@@ -462,12 +450,12 @@ mb->acMap_SelectMETARs->setVisible (false);	// TODO
 //===========================================================================
 //===========================================================================
 //===========================================================================
-MainWindow::MainWindow (int w, int h, bool withmblue, QWidget *parent)
+MainWindow::MainWindow (int w, int h, QWidget *parent)
     : QMainWindow (parent)
 {
     setWindowIcon (QIcon (Util::pathImg("xyGrib_32.xpm")));
 
-    menuBar = new MenuBar(this, withmblue);
+    menuBar = new MenuBar(this);
     assert(menuBar);
     //---------------------------------------------------
 	// Projection
@@ -517,7 +505,7 @@ MainWindow::MainWindow (int w, int h, bool withmblue, QWidget *parent)
 	assert (dialogGraphicsParams);
 
     //--------------------------------------------------
-	createToolBar (withmblue);
+	createToolBar ();
     statusBar =new QStatusBar(this);
 	assert (statusBar);
     statusBar->setFont (Font::getFont(FONT_StatusBar));
@@ -569,7 +557,7 @@ MainWindow::~MainWindow()
     Util::setSetting("mainWindowState", this->saveState ());
 }
 //-----------------------------------------------
-void MainWindow::createToolBar (bool withmblue)
+void MainWindow::createToolBar ()
 {
     toolBar = addToolBar(tr("Tools"));
 	assert (toolBar);
@@ -595,8 +583,6 @@ void MainWindow::createToolBar (bool withmblue)
     toolBar->addAction(menuBar->acMap_Go_Down);
     toolBar->addSeparator();
     toolBar->addAction(menuBar->acFile_Load_GRIB);
-	if (withmblue)
-		toolBar->addAction(menuBar->acMBlueSwiss_Load);
     toolBar->addAction(menuBar->acFile_GribServerStatus);
     toolBar->addAction(menuBar->acFile_Info_GRIB);
     toolBar->addSeparator();
@@ -829,50 +815,6 @@ void MainWindow::openMeteoDataFile (QString fileName)
 				);
 			}
 		}
-		//------------------------------------------------
-		else if (meteoFileType == DATATYPE_MBLUE) 
-		//------------------------------------------------
-		{
-			//DBG("DATATYPE_MBLUE");
-			gribFileName = fileName;
-			setWindowTitle(Version::getShortName()+" - "+ QFileInfo(fileName).fileName());
-			menuBar->updateListeDates (plotter->getListDates(),
-									   plotter->getCurrentDate() );
-			menuBar->menuColorMap->setEnabled (true);
-			menuBar->menuIsolines->setEnabled (true);
-			ok = true;
-			menuBar->acView_TempColors->setEnabled(ok);
-			menuBar->acView_TemperatureLabels->setEnabled(ok);
-			menuBar->acView_RainColors->setEnabled(ok);
-			menuBar->acView_CloudColors->setEnabled(ok);
-			menuBar->acView_HumidColors->setEnabled(ok);
-			menuBar->acView_DeltaDewpointColors->setEnabled(ok);
-			menuBar->acView_Isobars->setEnabled(ok);
-			menuBar->acView_IsobarsLabels->setEnabled(ok);
-			menuBar->acView_PressureMinMax->setEnabled(ok);
-			menuBar->menuIsobarsStep->setEnabled(ok);
-			menuBar->acView_WindColors->setEnabled(ok);
-			menuBar->acView_WindArrow->setEnabled(ok);
-			menuBar->acView_Barbules->setEnabled(ok);
-			menuBar->acView_ThinWindArrows->setEnabled(ok);
-			menuBar->menuIsotherms->setEnabled(ok);
-			menuBar->acView_Isotherms_Labels->setEnabled(ok);
-			menuBar->menuIsotherms_Step->setEnabled(ok);
-			ok = false;
-			menuBar->acView_SnowCateg->setEnabled(ok);
-			menuBar->acView_SnowDepth->setEnabled(ok);
-			menuBar->acView_FrzRainCateg->setEnabled(ok);
-			menuBar->acView_CAPEsfc->setEnabled(ok);
-            menuBar->acView_CINsfc->setEnabled(ok);
-            // added by david
-            menuBar->acView_ReflectColors->setEnabled(ok);
-            menuBar->acView_ThetaEColors->setEnabled(ok);
-			menuBar->acView_Isotherms0->setEnabled(ok);
-			menuBar->acView_Isotherms0Labels->setEnabled(ok);
-			menuBar->acView_GroupIsotherms0Step->setEnabled(ok);
-			menuBar->menuIsotherms0Step->setEnabled(ok);
-			menuBar->acView_DuplicateFirstCumulativeRecord->setEnabled(ok);
-		}
 		//------------------------------------------------------
 		// Common actions to all gridded data file
 		//------------------------------------------------------
@@ -1001,10 +943,7 @@ void MainWindow::slotCreateAnimation()
                 + tr("no GRIB file loaded.")
         );
 	}
-	else if (
-			   plotter->getReader()->getReaderFileDataType() != DATATYPE_GRIB
-			&& plotter->getReader()->getReaderFileDataType() != DATATYPE_MBLUE
-		  )
+	else if (plotter->getReader()->getReaderFileDataType() != DATATYPE_GRIB)
 	{
         QMessageBox::critical (this,
             tr("Error"),
@@ -1495,53 +1434,6 @@ void MainWindow::slotFile_Load_IAC()
 	QString fname = DialogLoadIAC::getFile (networkManager, this);
 	if (fname != "") {
 		openMeteoDataFile (fname);
-	}
-}
-//---------------------------------------------
-void MainWindow::slotFile_MBLUE_Load ()
-{
-    double x0, y0, x1, y1;
-    if ( terre->getSelectedRectangle (&x0,&y0, &x1,&y1)
-		 || terre->getGribFileRectangle (&x0,&y0, &x1,&y1) )
-    {
-		QString fname = DialogLoadMBLUE::getFile (MBLUE_SWISS, 
-												  networkManager, this, x0,y0,x1,y1);
-		if (fname != "") {
-			openMeteoDataFile (fname);
-		}
-    }
-    else {
-        QMessageBox::warning (this,
-            tr("Download a Meteoblue file"),
-            tr("Please select an area on the map."));
-    }
-}
-//---------------------------------------------
-void MainWindow::slotFile_MBLUE_ShowArea ()
-{
-	QAction *bt = (QAction *) sender();
-
-	if (bt == menuBar->acMBlueSwiss_ShowArea) {
-		if (bt->isChecked()) {
-			double x0,y0, x1,y1;
-			if (MblueReader::getMeteoblueTotalArea 
-									(MBLUE_SWISS, &x0,&y0,&x1,&y1) ) 
-			{
-				terre->setSpecialZone  (x0,y0, x1,y1);
-				terre->showSpecialZone (true);
-				terre->zoomOnZone (x0,y0, x1,y1);
-			}
-			Util::setSetting ("MBshowZone_Swiss", true);
-			Util::setSetting ("specialZone_x0", x0);
-			Util::setSetting ("specialZone_x1", x1);
-			Util::setSetting ("specialZone_y0", y0);
-			Util::setSetting ("specialZone_y1", y1);
-		}
-		else {
-			Util::setSetting ("MBshowZone_Swiss", false);
-			terre->showSpecialZone (false);
-			terre->slotMustRedraw ();
-		}
 	}
 }
 

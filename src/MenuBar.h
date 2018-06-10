@@ -49,7 +49,7 @@ class MenuBar : public QMenuBar
 {
     Q_OBJECT
 public:
-    MenuBar (QWidget *parent, bool withmblue=false);
+    MenuBar (QWidget *parent);
 	
 	void updateFonts ();
 
@@ -88,10 +88,6 @@ public:
     QAction *acFile_Load_GRIB;
     QAction *acFile_Load_IAC;
     
-	QAction *acMBlue_fastInterpolation;
-	QAction *acMBlueSwiss_Load;
-	QAction *acMBlueSwiss_ShowArea;
-	
     QAction *acFile_GribServerStatus;
     QAction *acFile_Info_GRIB;
     QAction *acFile_Quit;

@@ -71,7 +71,6 @@ Terrain::Terrain (QWidget *parent, Projection *proj, GshhsReader *gshhsReader)
     interpolateValues = Util::getSetting("interpolateValues", true).toBool();
     windArrowsOnGribGrid = Util::getSetting("windArrowsOnGribGrid", false).toBool();
     currentArrowsOnGribGrid = Util::getSetting("currentArrowsOnGribGrid", false).toBool();
-	fastInterpolation_MBlue = Util::getSetting ("MBfastInterpolation", true).toBool();
     
     isEarthMapValid = false;
     mustRedraw = true;
@@ -714,24 +713,6 @@ FileDataType Terrain::loadMeteoDataFile (QString fileName, bool zoom)
 			griddedPlot_Temp = NULL;
 		}
 	}
-	if (!ok && taskProgress->continueDownload) {	// try to load a MBLUE file
-		//DBG("try to load a MBLUE file");
-		taskProgress->setWindowTitle (tr("Open file")+" MBLUE");
-		taskProgress->setVisible (true);
-		taskProgress->setValue (0);
-		griddedPlot_Temp = new MbluePlot ();
-		assert(griddedPlot_Temp);
-		griddedPlot_Temp->loadFile (fileName, taskProgress);    // MBLUE file ?
-		if (griddedPlot_Temp->isReaderOk()) {
-			griddedPlot_Temp->setFastInterpolation (fastInterpolation_MBlue);
-			currentFileType = DATATYPE_MBLUE;
-			ok = true;
-		}
-		else {
-			delete griddedPlot_Temp;
-			griddedPlot_Temp = NULL;
-		}
-	}
 	if (!ok && taskProgress->continueDownload) {	// try to load a IAC file
 		//DBG("try to load a IAC file");
 		iacPlot = new IacPlot ();
@@ -758,14 +739,6 @@ FileDataType Terrain::loadMeteoDataFile (QString fileName, bool zoom)
 				griddedPlot_Temp->setCurrentArrowsOnGrid  (currentArrowsOnGribGrid);
 				griddedPlot_Temp->duplicateFirstCumulativeRecord (duplicateFirstCumulativeRecord);
 				griddedPlot_Temp->duplicateMissingWaveRecords (duplicateMissingWaveRecords);
-				griddedPlot_Temp->setCurrentDateClosestFromNow ();
-				griddedPlot_Temp->setUseJetStreamColorMap (
-								Util::getSetting("useJetStreamColorMap", false).toBool());
-				break;
-			case DATATYPE_MBLUE :
-				griddedPlot_Temp->setInterpolateValues (interpolateValues);
-				griddedPlot_Temp->setWindArrowsOnGrid  (windArrowsOnGribGrid);
-				griddedPlot_Temp->setCurrentArrowsOnGrid  (currentArrowsOnGribGrid);
 				griddedPlot_Temp->setCurrentDateClosestFromNow ();
 				griddedPlot_Temp->setUseJetStreamColorMap (
 								Util::getSetting("useJetStreamColorMap", false).toBool());
@@ -802,9 +775,7 @@ FileDataType Terrain::loadMeteoDataFile (QString fileName, bool zoom)
 //---------------------------------------------------------
 GriddedPlotter *Terrain::getGriddedPlotter ()
 {
-    if (   currentFileType == DATATYPE_GRIB
-		|| currentFileType == DATATYPE_MBLUE
-	) {
+    if (currentFileType == DATATYPE_GRIB) {
 		return griddedPlot;
     }
 	else {
@@ -833,9 +804,7 @@ void Terrain::zoomOnFileZone ()
 {
 	double x0,y0, x1,y1;
 	bool ok = false;
-    if (   currentFileType == DATATYPE_GRIB
-		|| currentFileType == DATATYPE_MBLUE
-    ) {
+    if (currentFileType == DATATYPE_GRIB) {
 		if (griddedPlot!=NULL && griddedPlot->isReaderOk()) {
 			ok = griddedPlot->getReader()->getZoneExtension(&x0,&y0, &x1,&y1);
 		}
@@ -1106,7 +1075,6 @@ void Terrain::paintEvent(QPaintEvent *)
         
         switch (currentFileType) {
 			case DATATYPE_GRIB :
-			case DATATYPE_MBLUE :
 				drawer->draw_GSHHS_and_GriddedData 
 					(pnt, mustRedraw, isEarthMapValid, proj, griddedPlot, drawCartouche);
 				break;
@@ -1145,7 +1113,6 @@ void Terrain::paintEvent(QPaintEvent *)
     else {
         switch (currentFileType) {
 			case DATATYPE_GRIB :
-			case DATATYPE_MBLUE :
 				drawer->draw_GSHHS_and_GriddedData 
 						(pnt, false, true, proj, griddedPlot);
 				break;
@@ -1193,7 +1160,6 @@ time_t Terrain::getCurrentDate()
 {
 	switch (currentFileType) {
 		case DATATYPE_GRIB :
-		case DATATYPE_MBLUE :
 			if (griddedPlot && griddedPlot->isReaderOk() )
 				return griddedPlot->getCurrentDate();
 			break;
@@ -1221,7 +1187,6 @@ QPixmap * Terrain::createPixmap (time_t date, int width, int height)
 		scaledproj->setVisibleArea (x0,y0, x1,y1);
 		switch (currentFileType) {
 			case DATATYPE_GRIB :
-			case DATATYPE_MBLUE :
 				if (griddedPlot && griddedPlot->isReaderOk() )
 				{
 					pixmap = scaleddrawer->createPixmap_GriddedData ( 
@@ -1373,19 +1338,6 @@ void Terrain::setGeopotentialStep (int step)
 		mustRedraw = true;
 		update();
     }
-}
-//-------------------------------------------------------
-void Terrain::setMBlueFastInterpolation (bool b)
-{
-	if (b != fastInterpolation_MBlue) {
-		Util::setSetting ("MBfastInterpolation", b);
-		fastInterpolation_MBlue = b;
-		if (griddedPlot) {
-			griddedPlot->setFastInterpolation (fastInterpolation_MBlue);
-			mustRedraw = true;
-			update();
-		}
-	}
 }
 //-------------------------------------------------------
 DataCode Terrain::getColorMapData ()

@@ -32,7 +32,6 @@ enum FileDataType
 	DATATYPE_CANCELLED,
 	DATATYPE_GRIB,
 	DATATYPE_IAC,
-	DATATYPE_MBLUE,
 };
 
 //--------------------------------------------------------

@@ -34,7 +34,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "GribPlot.h"
 #include "Grib2Plot.h"
 #include "IacPlot.h"
-#include "MbluePlot.h"
 #include "LongTaskProgress.h"
 
 
@@ -95,7 +94,6 @@ public slots :
     void setCountriesNames  (bool);
     void slotTemperatureLabels (bool);
     void setMapQuality (int q);
-	void setMBlueFastInterpolation (bool b);
 	
     void slot_Zoom_In  ();
     void slot_Zoom_Out ();
@@ -174,7 +172,6 @@ private:
     bool        mustRedraw;
     bool    	isResizing;
     bool    	firstDrawingIsDone;
-    bool		fastInterpolation_MBlue;
 	int 		lastMouseX, lastMouseY;
 	
 	LongTaskProgress *taskProgress;
