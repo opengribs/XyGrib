@@ -45,8 +45,9 @@ DialogChooseLang::DialogChooseLang (QWidget *parent, QString defaultlang)
 	bt_en = addLanguage ("English",   Util::pathImg("drapeau_en.png"));
 	bt_es = addLanguage ("Español",   Util::pathImg("drapeau_es.png"));
 	bt_fi = addLanguage ("Finnish",   Util::pathImg("drapeau_fi.png"));
-	bt_fr = addLanguage ("Français",  Util::pathImg("drapeau_fr.png"));
-	bt_it = addLanguage ("Italiano",  Util::pathImg("drapeau_it.png"));
+    bt_fr = addLanguage ("Français",  Util::pathImg("drapeau_fr.png"));
+    bt_he = addLanguage ("עברית",  Util::pathImg("drapeau_he.png"));
+    bt_it = addLanguage ("Italiano",  Util::pathImg("drapeau_it.png"));
 	bt_nl = addLanguage ("Dutch",     Util::pathImg("drapeau_nl.png"));
 	bt_pt = addLanguage ("Português (Brasil)", Util::pathImg("drapeau_pt.png"));
 	bt_ru = addLanguage ("Русско",    Util::pathImg("drapeau_ru.png"));
@@ -60,9 +61,11 @@ DialogChooseLang::DialogChooseLang (QWidget *parent, QString defaultlang)
 		bt_es->setChecked (true);
 	else if (defaultlang == "fi")
 		bt_fi->setChecked (true);
-	else if (defaultlang == "fr")
-		bt_fr->setChecked (true);
-	else if (defaultlang == "it")
+    else if (defaultlang == "fr")
+        bt_fr->setChecked (true);
+    else if (defaultlang == "he")
+        bt_he->setChecked (true);
+    else if (defaultlang == "it")
 		bt_it->setChecked (true);
 	else if (defaultlang == "nl")
 		bt_nl->setChecked (true);
@@ -91,9 +94,11 @@ QString DialogChooseLang::getLanguage ()
 		return "es";
 	else if (bt_fi->isChecked())
 		return "fi";
-	else if (bt_fr->isChecked())
-		return "fr";
-	else if (bt_it->isChecked())
+    else if (bt_fr->isChecked())
+        return "fr";
+    else if (bt_he->isChecked())
+        return "he";
+    else if (bt_it->isChecked())
 		return "it";
 	else if (bt_nl->isChecked())
 		return "nl";

@@ -225,13 +225,20 @@ int main (int argc, char *argv[])
         app.installTranslator(&trXygrib);
         app.installTranslator(&trSystem);
     }
+    else if (lang == "he") {
+        QLocale::setDefault(QLocale("he_IL"));
+        trSystem.load( QString("qt_he"), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+        trXygrib.load( Util::pathTr(lang));
+        app.installTranslator(&trXygrib);
+        app.installTranslator(&trSystem);
+    }
     else { 	// e=English = default
         QLocale::setDefault(QLocale("en_US"));
     }
     //-----------------------------------------------
 	// Set layout orientation
     //-----------------------------------------------
-	if (lang == "ar") {
+    if (lang == "ar" ) {
 		app.setLayoutDirection (Qt::RightToLeft);
 	}
 	else {

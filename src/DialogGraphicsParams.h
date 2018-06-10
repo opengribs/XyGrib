@@ -49,8 +49,9 @@ class DialogChooseLang : public DialogBoxColumn
 		QRadioButton *bt_en;
 		QRadioButton *bt_es;
 		QRadioButton *bt_fi;
-		QRadioButton *bt_fr;
-		QRadioButton *bt_it;
+        QRadioButton *bt_fr;
+        QRadioButton *bt_he;
+        QRadioButton *bt_it;
 		QRadioButton *bt_nl;
 		QRadioButton *bt_pt;
 		QRadioButton *bt_ru;
