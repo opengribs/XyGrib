@@ -95,6 +95,10 @@
         <source>higCldLay</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>-%1 m</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AngleConverterDialog</name>
@@ -356,141 +360,51 @@
 <context>
     <name>CurveDrawer</name>
     <message>
-        <source>hours from now</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>degree</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Wind Gust</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Temp Min</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Choose a boat parameter file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Wind Deviation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>deg/h</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Wind Direction</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>hPa</source>
-        <translation type="unfinished">hPa</translation>
-    </message>
-    <message>
-        <source>Percent [%]</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">hPa</translation>
     </message>
     <message>
         <source>mm/h</source>
-        <translation type="unfinished">mm/u</translation>
-    </message>
-    <message>
-        <source>Plot data of chosen point</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">mm/u</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished">Fout</translation>
-    </message>
-    <message>
-        <source>Can&apos;t create dataplot:
-
-No GRIB file opened.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Can&apos;t create dataplot
-
-GRIB area undefined.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Can&apos;t create dataplot:
-
-Point outside GRIB area.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Wind Speed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Temp Max</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Fout</translation>
     </message>
     <message>
         <source>Wind</source>
-        <translation type="unfinished">Wind</translation>
+        <translation type="obsolete">Wind</translation>
     </message>
     <message>
         <source>Pressure</source>
-        <translation type="unfinished">Luchtdruk</translation>
+        <translation type="obsolete">Luchtdruk</translation>
     </message>
     <message>
         <source>Temperature</source>
-        <translation type="unfinished">Temperatuur</translation>
+        <translation type="obsolete">Temperatuur</translation>
     </message>
     <message>
         <source>Cloud cover</source>
-        <translation type="unfinished">Bewolking</translation>
-    </message>
-    <message>
-        <source>distance [nm]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Precipitation Rate</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Precipitation Total</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Bewolking</translation>
     </message>
 </context>
 <context>
     <name>CurveDrawerButtonBar</name>
     <message>
         <source>Close the window</source>
-        <translation type="unfinished">Venster afsluiten</translation>
+        <translation type="obsolete">Venster afsluiten</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation type="unfinished">Ctrl+Q</translation>
-    </message>
-    <message>
-        <source>Display hours from now or date view</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Choose File for Boat Parameters</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Ctrl+Q</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation type="unfinished">Ctrl+O</translation>
+        <translation type="obsolete">Ctrl+O</translation>
     </message>
     <message>
         <source>Data</source>
-        <translation type="unfinished">Data</translation>
-    </message>
-    <message>
-        <source>Waypoints</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Data</translation>
     </message>
 </context>
 <context>
@@ -665,7 +579,7 @@ Point outside GRIB area.</source>
     </message>
     <message>
         <source>Geopotential</source>
-        <translation>Geopotential</translation>
+        <translation type="vanished">Geopotential</translation>
     </message>
     <message>
         <source>Maximum wave</source>
@@ -722,6 +636,10 @@ Point outside GRIB area.</source>
     <message>
         <source>Current</source>
         <translation type="unfinished">Stroming</translation>
+    </message>
+    <message>
+        <source>Geopotential height</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -840,11 +758,11 @@ Point outside GRIB area.</source>
     </message>
     <message>
         <source> °E</source>
-        <translation> °O</translation>
+        <translation type="vanished"> °O</translation>
     </message>
     <message>
         <source> °N</source>
-        <translation> °N</translation>
+        <translation type="vanished"> °N</translation>
     </message>
     <message>
         <source>All</source>
@@ -852,11 +770,11 @@ Point outside GRIB area.</source>
     </message>
     <message>
         <source>hPa</source>
-        <translation>hPa</translation>
+        <translation type="vanished">hPa</translation>
     </message>
     <message>
         <source>Mo/s</source>
-        <translation>Mb/s</translation>
+        <translation type="vanished">Mb/s</translation>
     </message>
     <message>
         <source>Stop</source>
@@ -864,7 +782,7 @@ Point outside GRIB area.</source>
     </message>
     <message>
         <source>ko/s</source>
-        <translation>kb/s</translation>
+        <translation type="vanished">kb/s</translation>
     </message>
     <message>
         <source> days</source>
@@ -884,11 +802,11 @@ Point outside GRIB area.</source>
     </message>
     <message>
         <source>waves</source>
-        <translation>golven</translation>
+        <translation type="vanished">golven</translation>
     </message>
     <message>
         <source>Secondary waves</source>
-        <translation>Secondaire golven</translation>
+        <translation type="vanished">Secondaire golven</translation>
     </message>
     <message>
         <source>Can&apos;t write file.</source>
@@ -900,11 +818,7 @@ Point outside GRIB area.</source>
     </message>
     <message>
         <source>Sunshine duration</source>
-        <translation>Zonneschijn-duur</translation>
-    </message>
-    <message>
-        <source>FNMOC-WW3</source>
-        <translation></translation>
+        <translation type="vanished">Zonneschijn-duur</translation>
     </message>
     <message>
         <source> hours</source>
@@ -912,15 +826,11 @@ Point outside GRIB area.</source>
     </message>
     <message>
         <source>Temperature max (2 m)</source>
-        <translation>Temperatuur max (2 m)</translation>
+        <translation type="vanished">Temperatuur max (2 m)</translation>
     </message>
     <message>
         <source>Wind (10 m)</source>
         <translation>Wind (10 m)</translation>
-    </message>
-    <message>
-        <source>NOAA-GFS</source>
-        <translation></translation>
     </message>
     <message>
         <source>Longitude min :</source>
@@ -932,7 +842,7 @@ Point outside GRIB area.</source>
     </message>
     <message>
         <source>altitude</source>
-        <translation>hoogte</translation>
+        <translation type="vanished">hoogte</translation>
     </message>
     <message>
         <source>Mean sea level pressure</source>
@@ -940,7 +850,7 @@ Point outside GRIB area.</source>
     </message>
     <message>
         <source>Size: %1 ko      Done: %2 ko at %3 %4</source>
-        <translation>Grootte: %1 kb      Klaar: %2 kb     %3 %4</translation>
+        <translation type="vanished">Grootte: %1 kb      Klaar: %2 kb     %3 %4</translation>
     </message>
     <message>
         <source>Atmosphere: geopotential altitude, wind, temperature, theta-e, relative humidity.</source>
@@ -952,7 +862,7 @@ Point outside GRIB area.</source>
     </message>
     <message>
         <source>Warning : these data increase strongly the size of the GRIB file.</source>
-        <translation>Let op : het GRIB bestand wordt hierdoor erg groot.</translation>
+        <translation type="vanished">Let op : het GRIB bestand wordt hierdoor erg groot.</translation>
     </message>
     <message>
         <source>Connection</source>
@@ -988,11 +898,11 @@ Point outside GRIB area.</source>
     </message>
     <message>
         <source>FNMOC-WW3-MEDIT: Mediterranean Sea, Atlantic NE (3 days, 0.2°x0.2°)</source>
-        <translation>FNMOC-WW3-MEDIT: Middelllands Zee, NO Atlantische Oceaan (3 dg, 0.2°x0.2°)</translation>
+        <translation type="vanished">FNMOC-WW3-MEDIT: Middelllands Zee, NO Atlantische Oceaan (3 dg, 0.2°x0.2°)</translation>
     </message>
     <message>
         <source>Temperature min (2 m)</source>
-        <translation>Temperatuur min (2 m)</translation>
+        <translation type="vanished">Temperatuur min (2 m)</translation>
     </message>
     <message>
         <source>Resolution :</source>
@@ -1012,7 +922,7 @@ Point outside GRIB area.</source>
     </message>
     <message>
         <source>standard</source>
-        <translation>standaard</translation>
+        <translation type="vanished">standaard</translation>
     </message>
     <message>
         <source>CAPE (surface)</source>
@@ -1020,7 +930,7 @@ Point outside GRIB area.</source>
     </message>
     <message>
         <source>Whitecap probability</source>
-        <translation>Kans op brekers</translation>
+        <translation type="vanished">Kans op brekers</translation>
     </message>
     <message>
         <source>Snow (depth)</source>
@@ -1052,15 +962,15 @@ Point outside GRIB area.</source>
     </message>
     <message>
         <source>Primary waves</source>
-        <translation>Primaire golven</translation>
+        <translation type="vanished">Primaire golven</translation>
     </message>
     <message>
         <source>Maximum waves</source>
-        <translation>Piekgolven</translation>
+        <translation type="vanished">Piekgolven</translation>
     </message>
     <message>
         <source>FNMOC-WW3-GLOBAL: all oceans (7 days, 1°x1°)</source>
-        <translation>FNMOC-WW3-GLOBAL: alle oceanen (7 dg, 1°x1°)</translation>
+        <translation type="vanished">FNMOC-WW3-GLOBAL: alle oceanen (7 dg, 1°x1°)</translation>
     </message>
     <message>
         <source>Wind gust (surface)</source>
@@ -1100,10 +1010,6 @@ Point outside GRIB area.</source>
     </message>
     <message>
         <source>Size: ≃ </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> (max 100 Mo)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1151,7 +1057,59 @@ Point outside GRIB area.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>GFS run:</source>
+        <source>kb/s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mb/s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Size: %1 kb      Done: %2 ko at %3 %4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> (max 50 MB) - NOTE: No sfc. or alt. parameters are selected!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> (max 50 MB)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished">Geen</translation>
+    </message>
+    <message>
+        <source>mb</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Atmospheric Model :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wave Model :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Run cycle:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Surface Data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Warning: Selecting this data significantly increases the size of the GRIB file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Altitude Data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wave Data</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1220,175 +1178,175 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     <name>DialogLoadMBLUE</name>
     <message>
         <source> °E</source>
-        <translation> °O</translation>
+        <translation type="vanished"> °O</translation>
     </message>
     <message>
         <source> °N</source>
-        <translation> °N</translation>
+        <translation type="vanished"> °N</translation>
     </message>
     <message>
         <source>All</source>
-        <translation>Alle</translation>
+        <translation type="vanished">Alle</translation>
     </message>
     <message>
         <source>hPa</source>
-        <translation>hPa</translation>
+        <translation type="vanished">hPa</translation>
     </message>
     <message>
         <source>Mo/s</source>
-        <translation>Mb/s</translation>
+        <translation type="vanished">Mb/s</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation>Stop</translation>
+        <translation type="vanished">Stop</translation>
     </message>
     <message>
         <source>ko/s</source>
-        <translation>kb/s</translation>
+        <translation type="vanished">kb/s</translation>
     </message>
     <message>
         <source> days</source>
-        <translation> dagen</translation>
+        <translation type="vanished"> dagen</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation>Fout</translation>
+        <translation type="vanished">Fout</translation>
     </message>
     <message>
         <source>Download - Meteoblue - Swiss area</source>
-        <translation>Download-Meteoblue-Zwitserland</translation>
+        <translation type="vanished">Download-Meteoblue-Zwitserland</translation>
     </message>
     <message>
         <source>Can&apos;t write file.</source>
-        <translation>Kan het bestand niet opslaan.</translation>
+        <translation type="vanished">Kan het bestand niet opslaan.</translation>
     </message>
     <message>
         <source>Size: %1 ko approx</source>
-        <translation>Grootte : ± %1 kb </translation>
+        <translation type="vanished">Grootte : ± %1 kb </translation>
     </message>
     <message>
         <source> hours</source>
-        <translation>uren</translation>
+        <translation type="vanished">uren</translation>
     </message>
     <message>
         <source>Temperature max (2 m)</source>
-        <translation>Temperatuur max (2 m)</translation>
+        <translation type="vanished">Temperatuur max (2 m)</translation>
     </message>
     <message>
         <source>Wind (10 m)</source>
-        <translation>Wind (10 m)</translation>
+        <translation type="vanished">Wind (10 m)</translation>
     </message>
     <message>
         <source>Longitude min :</source>
-        <translation>Lengte min :</translation>
+        <translation type="vanished">Lengte min :</translation>
     </message>
     <message>
         <source>Longitude max :</source>
-        <translation>Lengte max :</translation>
+        <translation type="vanished">Lengte max :</translation>
     </message>
     <message>
         <source>Mean sea level pressure</source>
-        <translation>Luchtdruk op zeeniveau</translation>
+        <translation type="vanished">Luchtdruk op zeeniveau</translation>
     </message>
     <message>
         <source>Size: %1 ko      Done: %2 ko at %3 %4</source>
-        <translation>Grootte: %1 kb      Klaar: %2 kb     %3 %4</translation>
+        <translation type="vanished">Grootte: %1 kb      Klaar: %2 kb     %3 %4</translation>
     </message>
     <message>
         <source>Wind gust</source>
-        <translation>Windvlaag</translation>
+        <translation type="vanished">Windvlaag</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Annuleren</translation>
+        <translation type="vanished">Annuleren</translation>
     </message>
     <message>
         <source>Snow (snowfall possible)</source>
-        <translation>Sneeuw (kans)</translation>
+        <translation type="vanished">Sneeuw (kans)</translation>
     </message>
     <message>
         <source>File size max: </source>
-        <translation>Bestandsgrootte max:</translation>
+        <translation type="vanished">Bestandsgrootte max:</translation>
     </message>
     <message>
         <source>Cloud cover</source>
-        <translation>Bewolking</translation>
+        <translation type="vanished">Bewolking</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation>Download</translation>
+        <translation type="vanished">Download</translation>
     </message>
     <message>
         <source>Temperature min (2 m)</source>
-        <translation>Temperatuur min (2 m)</translation>
+        <translation type="vanished">Temperatuur min (2 m)</translation>
     </message>
     <message>
         <source>Frozen rain (rainfall possible)</source>
-        <translation>Hagel (kans op regen)</translation>
+        <translation type="vanished">Hagel (kans op regen)</translation>
     </message>
     <message>
         <source>Isotherm 0°C</source>
-        <translation>Isotherm 0°C</translation>
+        <translation type="vanished">Isotherm 0°C</translation>
     </message>
     <message>
         <source>The selected area doesn&apos;t contain Meteoblue data.</source>
-        <translation>Er zijn geen  Meteoblue data van het geselcteerde gebied.</translation>
+        <translation type="vanished">Er zijn geen  Meteoblue data van het geselcteerde gebied.</translation>
     </message>
     <message>
         <source>Relative humidity (2 m)</source>
-        <translation>Relatieve vochtigheid (2 m)</translation>
+        <translation type="vanished">Relatieve vochtigheid (2 m)</translation>
     </message>
     <message>
         <source>CAPE (surface)</source>
-        <translation>CAPE (bodem)</translation>
+        <translation type="vanished">CAPE (bodem)</translation>
     </message>
     <message>
         <source>Snow (depth)</source>
-        <translation>Sneeuw (diepte)</translation>
+        <translation type="vanished">Sneeuw (diepte)</translation>
     </message>
     <message>
         <source>Temperature (2 m)</source>
-        <translation>Temperatuur (2 m)</translation>
+        <translation type="vanished">Temperatuur (2 m)</translation>
     </message>
     <message>
         <source>Total precipitation</source>
-        <translation>Totale neerslag</translation>
+        <translation type="vanished">Totale neerslag</translation>
     </message>
     <message>
         <source>Period :</source>
-        <translation>Periode :</translation>
+        <translation type="vanished">Periode :</translation>
     </message>
     <message>
         <source>Error: </source>
-        <translation>Fout: </translation>
+        <translation type="vanished">Fout: </translation>
     </message>
     <message>
         <source>Interval :</source>
-        <translation>Interval :</translation>
+        <translation type="vanished">Interval :</translation>
     </message>
     <message>
         <source>Atmosphere: wind, temperature, relative humidity.</source>
-        <translation>Atmosfeer: wind, temepratuur, relatieve vochtigheid.</translation>
+        <translation type="vanished">Atmosfeer: wind, temepratuur, relatieve vochtigheid.</translation>
     </message>
     <message>
         <source>Save Meteoblue file</source>
-        <translation>Meteoblue bestand oplsaan</translation>
+        <translation type="vanished">Meteoblue bestand oplsaan</translation>
     </message>
     <message>
         <source>Server status</source>
-        <translation>Server status</translation>
+        <translation type="vanished">Server status</translation>
     </message>
     <message>
         <source>Latitude max :</source>
-        <translation>Breedte max :</translation>
+        <translation type="vanished">Breedte max :</translation>
     </message>
     <message>
         <source>Latitude min :</source>
-        <translation>Breedte min :</translation>
+        <translation type="vanished">Breedte min :</translation>
     </message>
     <message>
         <source>Connection</source>
-        <translation type="unfinished">Verbinding</translation>
+        <translation type="obsolete">Verbinding</translation>
     </message>
 </context>
 <context>
@@ -1606,15 +1564,15 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     </message>
     <message>
         <source>Strict HTTP download</source>
-        <translation>HTTP download</translation>
+        <translation type="vanished">HTTP download</translation>
     </message>
     <message>
         <source>Forum password :</source>
-        <translation>Forum wachtwoord</translation>
+        <translation type="vanished">Forum wachtwoord</translation>
     </message>
     <message>
         <source>You must have a valid account on www.zygrib.org forum.</source>
-        <translation>U moet een geldige account hebben bij www.zygrib.org forum</translation>
+        <translation type="vanished">U moet een geldige account hebben bij www.zygrib.org forum</translation>
     </message>
     <message>
         <source>HTTP proxy</source>
@@ -1654,7 +1612,7 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     </message>
     <message>
         <source>Standard download</source>
-        <translation>Standaard download</translation>
+        <translation type="vanished">Standaard download</translation>
     </message>
     <message>
         <source>System default proxy</source>
@@ -1671,10 +1629,6 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     <message>
         <source>Connection with a proxy</source>
         <translation>Verbinden met een proxy</translation>
-    </message>
-    <message>
-        <source>Forum login :</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1704,7 +1658,7 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     </message>
     <message>
         <source>ok</source>
-        <translation>ok</translation>
+        <translation type="vanished">ok</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1720,11 +1674,7 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     </message>
     <message>
         <source>FNMOC-WW3: Oceans</source>
-        <translation>FNMOC-WWC3: Oceanen</translation>
-    </message>
-    <message>
-        <source>NOAA-GFS</source>
-        <translation></translation>
+        <translation type="vanished">FNMOC-WWC3: Oceanen</translation>
     </message>
     <message>
         <source>Server</source>
@@ -1740,7 +1690,7 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     </message>
     <message>
         <source>FNMOC-WW3: Mediterranean</source>
-        <translation>FNMOC-WWC3: Middellandse Zee</translation>
+        <translation type="vanished">FNMOC-WWC3: Middellandse Zee</translation>
     </message>
     <message>
         <source>Connection :</source>
@@ -1749,6 +1699,18 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     <message>
         <source>Forecast date :</source>
         <translation>Actuele voorspelling:</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Working</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Waiting</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1970,7 +1932,7 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     <name>FileLoaderGRIB</name>
     <message>
         <source>Make file on server... Please wait...</source>
-        <translation>Maakt een bestand... geduld a.u.b...</translation>
+        <translation type="vanished">Maakt een bestand... geduld a.u.b...</translation>
     </message>
     <message>
         <source>Total size : </source>
@@ -1995,6 +1957,18 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     <message>
         <source>Empty file.</source>
         <translation>Leeg bestand.</translation>
+    </message>
+    <message>
+        <source>Preparing file on server... Please wait...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bad Request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No atmospheric or wave parameters were selected</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2020,31 +1994,31 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     <name>FileLoaderMBLUE</name>
     <message>
         <source>Make file on server... Please wait...</source>
-        <translation>Maakt een bestand... geduld a.u.b...</translation>
+        <translation type="vanished">Maakt een bestand... geduld a.u.b...</translation>
     </message>
     <message>
         <source>Total size : </source>
-        <translation>Totale grootte : </translation>
+        <translation type="vanished">Totale grootte : </translation>
     </message>
     <message>
         <source>Bad checksum.</source>
-        <translation>Foute checksum.</translation>
+        <translation type="vanished">Foute checksum.</translation>
     </message>
     <message>
         <source>CheckSum control</source>
-        <translation>CheckSum controle</translation>
+        <translation type="vanished">CheckSum controle</translation>
     </message>
     <message>
         <source>Finish</source>
-        <translation>Klaar</translation>
+        <translation type="vanished">Klaar</translation>
     </message>
     <message>
         <source>Information</source>
-        <translation>Informatie</translation>
+        <translation type="vanished">Informatie</translation>
     </message>
     <message>
         <source>Empty file.</source>
-        <translation>Leeg bestand.</translation>
+        <translation type="vanished">Leeg bestand.</translation>
     </message>
 </context>
 <context>
@@ -2276,12 +2250,12 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     </message>
     <message>
         <source>In the meantime, try to press randomly keys of the keyboard, </source>
-        <translation>Ondertussen... doe wat nuttigs, </translation>
+        <translation type="vanished">Ondertussen... doe wat nuttigs, </translation>
     </message>
     <message>
         <source>Congratulation, your request has been registred.
 </source>
-        <translation>Gefeliciteerd, uw verzoek is geregistreed.
+        <translation type="vanished">Gefeliciteerd, uw verzoek is geregistreed.
 </translation>
     </message>
     <message>
@@ -2324,7 +2298,7 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     </message>
     <message>
         <source>and you will see what happens...</source>
-        <translation>misschien gebeurt er wat...</translation>
+        <translation type="vanished">misschien gebeurt er wat...</translation>
     </message>
     <message>
         <source>Despite efforts to interpret it, output may be incorrect.</source>
@@ -2380,7 +2354,7 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     </message>
     <message>
         <source>Reference :</source>
-        <translation>Uw ref.nummer is :</translation>
+        <translation type="vanished">Uw ref.nummer is :</translation>
     </message>
     <message>
         <source>Version : </source>
@@ -2388,7 +2362,7 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     </message>
     <message>
         <source>either anything of the other one, </source>
-        <translation>of kiijk eens naar buiten, </translation>
+        <translation type="vanished">of kiijk eens naar buiten, </translation>
     </message>
     <message>
         <source>%1 dates:
@@ -2412,7 +2386,7 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     </message>
     <message>
         <source>Download a Meteoblue file</source>
-        <translation>Download een Meteoblue bestand</translation>
+        <translation type="vanished">Download een Meteoblue bestand</translation>
     </message>
     <message>
         <source>Grid : %1x%2=%3 points</source>
@@ -2436,7 +2410,7 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     </message>
     <message>
         <source>We will contact you as soon as possible... perhaps.</source>
-        <translation> We zullen u zo snel mogelijk benaderen... misschien.</translation>
+        <translation type="vanished"> We zullen u zo snel mogelijk benaderen... misschien.</translation>
     </message>
     <message>
         <source>Download a GRIB file</source>
@@ -2452,11 +2426,11 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     </message>
     <message>
         <source>or move the mouse and from time to time </source>
-        <translation>maar zit niet aan uw neus, </translation>
+        <translation type="vanished">maar zit niet aan uw neus, </translation>
     </message>
     <message>
         <source>press one button, </source>
-        <translation>druk op een toets...., druk op een andere toets </translation>
+        <translation type="vanished">druk op een toets...., druk op een andere toets </translation>
     </message>
     <message>
         <source>Grid %1</source>
@@ -2468,7 +2442,7 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     </message>
     <message>
         <source>Any question ?</source>
-        <translation>vragen?</translation>
+        <translation type="vanished">vragen?</translation>
     </message>
     <message>
         <source>Please inform the supplier of this file that the GDS section of the file header is ambiguous, particularly about data position.</source>
@@ -2483,16 +2457,51 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
         <translation>(Grootcirkel afstand:</translation>
     </message>
     <message>
-        <source>Currently it is only possible to select 1 POI for data plot.
-Unselected by left click in map holding shift at the same time</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>xyGrib : GRIB files visualization</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>http://OpenGribs.org</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Help is available at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>XyGrib : GRIB files visualization</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change Skin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>For skin change to take effect XyGrib needs to be restarted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An updated version is available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A new version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>is available for download.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Version is up to date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>which is the most current version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network Error</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2555,7 +2564,7 @@ Unselected by left click in map holding shift at the same time</source>
         <translation type="unfinished">Theta-e</translation>
     </message>
     <message>
-        <source>xyGrib</source>
+        <source>XyGrib</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2839,7 +2848,7 @@ Unselected by left click in map holding shift at the same time</source>
     </message>
     <message>
         <source>Download Meteoblue file (Swiss)</source>
-        <translation>Donwnload Meteoblue bestand (Zwitserland)</translation>
+        <translation type="vanished">Donwnload Meteoblue bestand (Zwitserland)</translation>
     </message>
     <message>
         <source>Next forecast [page down]</source>
@@ -2900,10 +2909,6 @@ Unselected by left click in map holding shift at the same time</source>
     <message>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
-    </message>
-    <message>
-        <source>Ctrl+B</source>
-        <translation></translation>
     </message>
     <message>
         <source>Ctrl+D</source>
@@ -3031,7 +3036,7 @@ Unselected by left click in map holding shift at the same time</source>
     </message>
     <message>
         <source>Show Meteoblue area (Swiss)</source>
-        <translation>Toon Meteoblue-gebied (Zwitserland)</translation>
+        <translation type="vanished">Toon Meteoblue-gebied (Zwitserland)</translation>
     </message>
     <message>
         <source>ZyGrib</source>
@@ -3079,7 +3084,7 @@ Unselected by left click in map holding shift at the same time</source>
     </message>
     <message>
         <source>Load Meteoblue file : Swiss</source>
-        <translation>Download Meteoblue bestand: Zwitserland</translation>
+        <translation type="vanished">Download Meteoblue bestand: Zwitserland</translation>
     </message>
     <message>
         <source>Show rivers</source>
@@ -3175,7 +3180,7 @@ Unselected by left click in map holding shift at the same time</source>
     </message>
     <message>
         <source>Show area : Swiss</source>
-        <translation>Toon gebied : Zwitserland</translation>
+        <translation type="vanished">Toon gebied : Zwitserland</translation>
     </message>
     <message>
         <source>GRIB server status</source>
@@ -3183,11 +3188,7 @@ Unselected by left click in map holding shift at the same time</source>
     </message>
     <message>
         <source>Fast interpolation</source>
-        <translation>Snelle interpolatie</translation>
-    </message>
-    <message>
-        <source>Meteoblue</source>
-        <translation></translation>
+        <translation type="vanished">Snelle interpolatie</translation>
     </message>
     <message>
         <source>Surface</source>
@@ -3267,7 +3268,7 @@ Unselected by left click in map holding shift at the same time</source>
     </message>
     <message>
         <source>Use a faster but a little less accurate interpolation</source>
-        <translation>Gebruik een snellere maar minder nauwkeurige interpolatie</translation>
+        <translation type="vanished">Gebruik een snellere maar minder nauwkeurige interpolatie</translation>
     </message>
     <message>
         <source>Temperature</source>
@@ -3359,10 +3360,6 @@ Unselected by left click in map holding shift at the same time</source>
     </message>
     <message>
         <source>200 hPa (≈ 11800 m)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Plot Data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3574,7 +3571,15 @@ Unselected by left click in map holding shift at the same time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>About xyGrib</source>
+        <source>Dark Skin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About XyGrib</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check for updates</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

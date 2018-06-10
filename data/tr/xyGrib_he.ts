@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ar_SA" sourcelanguage="en">
+<TS version="2.1" language="he_IL">
 <context>
     <name>AltitudeStr</name>
     <message>
         <location filename="../../src/DataQString.cpp" line="52"/>
         <source>surface</source>
-        <translation>السطح</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="55"/>
         <source>isotherm 0°C</source>
-        <translation>خط تساوي الحرارة 0 درجة مئوية </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="64"/>
         <source>%1 hPa</source>
-        <translation>%1 هيكتوباسكال</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="67"/>
         <source>sea level</source>
-        <translation>سطح البحر</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="70"/>
@@ -31,55 +31,54 @@
     <message>
         <location filename="../../src/DataQString.cpp" line="73"/>
         <source>%1 m above ground</source>
-        <translation>%1 متر فوق سطح الأرض</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="76"/>
         <source>sigma %1</source>
-        <translation>سيجما %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="79"/>
         <source>atmosphere</source>
-        <translation>الغلاف الجوي</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="82"/>
         <source>low cloud layer</source>
-        <translation>طبقة غيوم رقيقة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="85"/>
         <source>middle cloud layer</source>
-        <translation>طبقة غيوم متوسطة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="88"/>
         <source>high cloud layer</source>
-        <translation>طبقة غيوم كثيفة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="101"/>
         <location filename="../../src/DataQString.cpp" line="129"/>
         <source>sfc</source>
-        <translation>السطح</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="104"/>
         <source>iso0°C</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation>iso0°C</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="113"/>
         <source>%1hpa</source>
-        <translation>%1 هيكتوباسكال</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="116"/>
         <location filename="../../src/DataQString.cpp" line="120"/>
         <source>MSL</source>
-        <translation>مستوى سطح البحر MSL</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="122"/>
@@ -94,12 +93,16 @@
     <message>
         <location filename="../../src/DataQString.cpp" line="131"/>
         <source>%1 m</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation>%1 m</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="134"/>
         <source>sigma%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DataQString.cpp" line="137"/>
+        <source>atm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -117,24 +120,13 @@
         <source>higCldLay</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>s%1</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation type="vanished">s%1</translation>
-    </message>
-    <message>
-        <location filename="../../src/DataQString.cpp" line="137"/>
-        <source>atm</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation>atm</translation>
-    </message>
 </context>
 <context>
     <name>AngleConverterDialog</name>
     <message>
         <location filename="../../src/GUI/AngleConverterDialog.cpp" line="33"/>
         <source>Close</source>
-        <translation>غلق</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -142,65 +134,60 @@
     <message>
         <location filename="../../src/GUI/AngleConverterWidget.ui" line="14"/>
         <source>Angle</source>
-        <translation>الزاوية</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/AngleConverterWidget.ui" line="41"/>
         <source>ddd° mm&apos; ss&quot;</source>
-        <translatorcomment>I suggest to keep this with no translation</translatorcomment>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/AngleConverterWidget.ui" line="53"/>
         <location filename="../../src/GUI/AngleConverterWidget.ui" line="115"/>
         <location filename="../../src/GUI/AngleConverterWidget.ui" line="162"/>
         <source> °</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/AngleConverterWidget.ui" line="66"/>
         <location filename="../../src/GUI/AngleConverterWidget.ui" line="128"/>
         <source> &apos;</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/AngleConverterWidget.ui" line="79"/>
         <source> &quot;</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/AngleConverterWidget.ui" line="103"/>
         <source>ddd° mm.mm&apos;</source>
-        <translatorcomment>I suggest to keep this with no tarnslation (درجة° دقيقة.دقيقة&apos;)</translatorcomment>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/AngleConverterWidget.ui" line="152"/>
         <source>ddd.dddd°</source>
-        <translatorcomment>This as well (درجة.درجة°)</translatorcomment>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/AngleConverterWidget.ui" line="187"/>
         <source>radians</source>
-        <translation>راديانز</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/AngleConverterWidget.ui" line="197"/>
         <source> rd</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/AngleConverterWidget.ui" line="222"/>
         <source>grades</source>
-        <translation>درجات</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/AngleConverterWidget.ui" line="232"/>
         <source> gr</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -208,43 +195,42 @@
     <message>
         <location filename="../../src/GribAnimator.cpp" line="50"/>
         <source>Close the window</source>
-        <translation>أغلق النافذة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GribAnimator.cpp" line="56"/>
         <source>Save all images</source>
-        <translation>احفظ كافة الصور</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GribAnimator.cpp" line="64"/>
         <source>Restart animation</source>
-        <translation>إعادة تشغيل الصور المتحركة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GribAnimator.cpp" line="70"/>
         <source>Start animation</source>
-        <translation>تشغيل الصور المتحركة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GribAnimator.cpp" line="76"/>
         <source>Stop animation</source>
-        <translation>إيقاف الصور المتحركة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GribAnimator.cpp" line="84"/>
         <source>Play in loop</source>
-        <translatorcomment>Not sure of the translation - Please explain</translatorcomment>
-        <translation>التشغيل ضمن المنظومة </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GribAnimator.cpp" line="98"/>
         <source>Speed</source>
-        <translation>السرعة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GribAnimator.cpp" line="110"/>
         <source>Current image</source>
-        <translation>الصورة الحالية</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -255,42 +241,18 @@
         <location filename="../../src/BoardPanel.cpp" line="544"/>
         <location filename="../../src/BoardPanel.cpp" line="635"/>
         <source>Wind</source>
-        <translation>الرياح</translation>
+        <translation>רוח</translation>
     </message>
     <message>
         <location filename="../../src/BoardPanel.cpp" line="62"/>
         <location filename="../../src/BoardPanel.cpp" line="76"/>
         <source>°</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/BoardPanel.cpp" line="63"/>
         <source>Bf</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>Bft</translation>
-    </message>
-    <message>
-        <location filename="../../src/BoardPanel.cpp" line="302"/>
-        <source>Weather data</source>
-        <translation>بيانات الطقس</translation>
-    </message>
-    <message>
-        <location filename="../../src/BoardPanel.cpp" line="543"/>
-        <source>Location</source>
-        <translation>الموقع</translation>
-    </message>
-    <message>
-        <location filename="../../src/BoardPanel.cpp" line="545"/>
-        <location filename="../../src/BoardPanel.cpp" line="643"/>
-        <source>Wind gust</source>
-        <translation>هبوب الرياح</translation>
-    </message>
-    <message>
-        <location filename="../../src/BoardPanel.cpp" line="547"/>
-        <location filename="../../src/BoardPanel.cpp" line="654"/>
-        <source>Pressure</source>
-        <translation>الضغط</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/BoardPanel.cpp" line="105"/>
@@ -300,7 +262,7 @@
         <location filename="../../src/BoardPanel.cpp" line="550"/>
         <location filename="../../src/BoardPanel.cpp" line="659"/>
         <source>Temperature</source>
-        <translation>درجة الحرارة</translation>
+        <translation>טמפרטורה</translation>
     </message>
     <message>
         <location filename="../../src/BoardPanel.cpp" line="251"/>
@@ -346,57 +308,79 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../src/BoardPanel.cpp" line="302"/>
+        <source>Weather data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/BoardPanel.cpp" line="543"/>
+        <source>Location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/BoardPanel.cpp" line="545"/>
+        <location filename="../../src/BoardPanel.cpp" line="643"/>
+        <source>Wind gust</source>
+        <translation>משבים</translation>
+    </message>
+    <message>
         <location filename="../../src/BoardPanel.cpp" line="546"/>
         <location filename="../../src/BoardPanel.cpp" line="648"/>
         <source>Current</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../src/BoardPanel.cpp" line="547"/>
+        <location filename="../../src/BoardPanel.cpp" line="654"/>
+        <source>Pressure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/BoardPanel.cpp" line="549"/>
         <location filename="../../src/BoardPanel.cpp" line="665"/>
         <source>Dew point</source>
-        <translation>درجة الندى</translation>
+        <translation>נקודת הטל</translation>
     </message>
     <message>
         <location filename="../../src/BoardPanel.cpp" line="550"/>
         <location filename="../../src/BoardPanel.cpp" line="670"/>
         <source>Min</source>
-        <translation>الصغرى</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/BoardPanel.cpp" line="550"/>
         <location filename="../../src/BoardPanel.cpp" line="672"/>
         <source>Max</source>
-        <translation>العظمى</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/BoardPanel.cpp" line="551"/>
         <location filename="../../src/BoardPanel.cpp" line="677"/>
         <source>Precipitation</source>
-        <translation>الهطول</translation>
+        <translation>משקעים</translation>
     </message>
     <message>
         <location filename="../../src/BoardPanel.cpp" line="552"/>
         <location filename="../../src/BoardPanel.cpp" line="682"/>
         <source>Cloud cover</source>
-        <translation>تغطية الغيوم</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/BoardPanel.cpp" line="553"/>
         <location filename="../../src/BoardPanel.cpp" line="687"/>
         <source>Relative humidity</source>
-        <translation>نسبة الرطوبة </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/BoardPanel.cpp" line="554"/>
         <location filename="../../src/BoardPanel.cpp" line="692"/>
         <source>Isotherm 0°C</source>
-        <translation>خط تساوي الحرارة 0 درجة مئوية </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/BoardPanel.cpp" line="555"/>
         <source>Snow (depth)</source>
-        <translation>ثلوج (العمق)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/BoardPanel.cpp" line="556"/>
@@ -409,10 +393,29 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../src/BoardPanel.cpp" line="559"/>
+        <source>Altitude</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/BoardPanel.cpp" line="560"/>
+        <source>Waves</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/BoardPanel.cpp" line="697"/>
+        <source>Snow depth</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/BoardPanel.cpp" line="703"/>
+        <source>Composite Reflectivity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/BoardPanel.cpp" line="709"/>
         <source>CAPE</source>
-        <translatorcomment>Translated into Arabic and kept English abbreviation as well-Suggest to keep it abbreviation</translatorcomment>
-        <translation>حمل الطاقة الممكنة المتوفرة CAPE</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/BoardPanel.cpp" line="711"/>
@@ -424,43 +427,18 @@
         <source>J/Kg</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../../src/BoardPanel.cpp" line="703"/>
-        <source>Composite Reflectivity</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/BoardPanel.cpp" line="559"/>
-        <source>Altitude</source>
-        <translation>ارتفاع</translation>
-    </message>
-    <message>
-        <location filename="../../src/BoardPanel.cpp" line="560"/>
-        <source>Waves</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/BoardPanel.cpp" line="697"/>
-        <source>Snow depth</source>
-        <translation>عمق الثلوج</translation>
-    </message>
-    <message>
-        <source>CAPE (surface)</source>
-        <translatorcomment>No translation for CAPE</translatorcomment>
-        <translation type="obsolete">CAPE (السطح)</translation>
-    </message>
 </context>
 <context>
     <name>ColorEditorWidget</name>
     <message>
         <location filename="../../src/GUI/ColorEditorWidget.ui" line="14"/>
         <source>Form</source>
-        <translation>الشكل</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/ColorEditorWidget.ui" line="141"/>
         <source>Reset</source>
-        <translation type="unfinished">إعادة ضبط</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -468,163 +446,7 @@
     <message>
         <location filename="../../src/ColorScaleWidget.cpp" line="128"/>
         <source>Colors</source>
-        <translation>الألوان</translation>
-    </message>
-</context>
-<context>
-    <name>CurveDrawer</name>
-    <message>
-        <source>Warning</source>
-        <translation type="obsolete">تحذير</translation>
-    </message>
-    <message>
-        <source>No sufficient wind to travel waypoint route!</source>
-        <translation type="obsolete">لا تتوفر رياح كافية للإبحار في مسار نقطة الطريق</translation>
-    </message>
-    <message>
-        <source>hours from now</source>
-        <translation type="obsolete">ساعات من الآن</translation>
-    </message>
-    <message>
-        <source>distance [nm]</source>
-        <translation type="obsolete">مسافة (ميل بحري)</translation>
-    </message>
-    <message>
-        <source>degree</source>
-        <translation type="obsolete">درجة</translation>
-    </message>
-    <message>
-        <source>Wind Deviation</source>
-        <translation type="obsolete">انحراف اتجاه الرياح</translation>
-    </message>
-    <message>
-        <source>deg/h</source>
-        <translation type="obsolete">درجة/ساعة</translation>
-    </message>
-    <message>
-        <source>Wind Direction</source>
-        <translation type="obsolete">اتجاه الرياح</translation>
-    </message>
-    <message>
-        <source>hPa</source>
-        <translation type="obsolete">هيكتوباسكال</translation>
-    </message>
-    <message>
-        <source>Percent [%]</source>
-        <translation type="obsolete">بالمئة %</translation>
-    </message>
-    <message>
-        <source>mm/h</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation type="obsolete">mm/h</translation>
-    </message>
-    <message>
-        <source>Plot data of chosen point</source>
-        <translatorcomment>Plot data is translated into Arabic but left in English as well as it is a computer program</translatorcomment>
-        <translation type="obsolete">البيانات الرئيسية Plot data لنقطة معينة</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation type="obsolete">خطأ</translation>
-    </message>
-    <message>
-        <source>Can&apos;t create dataplot:
-
-No GRIB file opened.</source>
-        <translation type="obsolete">لا يمكن إنشاء بيانات رئيسية (Dataplot)
-
-لا يتوفر ملف (GRIP)</translation>
-    </message>
-    <message>
-        <source>Can&apos;t create dataplot
-
-GRIB area undefined.</source>
-        <translation type="obsolete">لا يمكن إنشاء بيانات رئيسية (Dataplot)
-
-منطقة  (GRIP) غير محددة</translation>
-    </message>
-    <message>
-        <source>Can&apos;t create dataplot:
-
-Point outside GRIB area.</source>
-        <translation type="obsolete">لا يمكن إنشاء بيانات رئيسية (Dataplot)
-
-النقطة خارج منطقة (GRIP)</translation>
-    </message>
-    <message>
-        <source>Wind Speed</source>
-        <translation type="obsolete">سرعة الرياح</translation>
-    </message>
-    <message>
-        <source>Temp Min</source>
-        <translation type="obsolete">درجة الحرارة الصغرى</translation>
-    </message>
-    <message>
-        <source>Temp Max</source>
-        <translation type="obsolete">درجة الحرارة العظمى</translation>
-    </message>
-    <message>
-        <source>Wind</source>
-        <translation type="obsolete">الرياح</translation>
-    </message>
-    <message>
-        <source>Pressure</source>
-        <translation type="obsolete">الضغط</translation>
-    </message>
-    <message>
-        <source>Temperature</source>
-        <translation type="obsolete">درجة الحرارة</translation>
-    </message>
-    <message>
-        <source>Cloud cover</source>
-        <translation type="obsolete">تغطية الغيوم</translation>
-    </message>
-    <message>
-        <source>Percipitation Rate</source>
-        <translation type="obsolete">معدل الهطول</translation>
-    </message>
-    <message>
-        <source>Percipitation Total</source>
-        <translation type="obsolete">مجموع الهطول</translation>
-    </message>
-</context>
-<context>
-    <name>CurveDrawerButtonBar</name>
-    <message>
-        <source>Close the window</source>
-        <translation type="obsolete">أغلق النافذة</translation>
-    </message>
-    <message>
-        <source>Ctrl+Q</source>
-        <translation type="obsolete">Ctrl+Q</translation>
-    </message>
-    <message>
-        <source>Ctrl+O</source>
-        <translation type="obsolete">Ctrl+O</translation>
-    </message>
-    <message>
-        <source>Data</source>
-        <translation type="obsolete">البيانات</translation>
-    </message>
-</context>
-<context>
-    <name>CurveDrawerDialog</name>
-    <message>
-        <source>Data Plot</source>
-        <translatorcomment>Prefer to keep &quot;Dataplot&quot; with the Arabic as it is a term</translatorcomment>
-        <translation type="obsolete">البيانات الرئيسية (Dataplot)</translation>
-    </message>
-    <message>
-        <source>Data</source>
-        <translation type="obsolete">البيانات</translation>
-    </message>
-    <message>
-        <source>Current TimeView</source>
-        <translation type="obsolete">الوقت الحالي</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <translation type="obsolete">خروج</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -633,17 +455,12 @@ Point outside GRIB area.</source>
         <location filename="../../src/DataQString.cpp" line="163"/>
         <location filename="../../src/DataQString.cpp" line="164"/>
         <source>Pressure</source>
-        <translation>الضغط</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="164"/>
         <source>MSL</source>
-        <translation>مستوى سطح البحر MSL</translation>
-    </message>
-    <message>
-        <source>Geopotential</source>
-        <translatorcomment>Translated into Arabic but it is recommended to keep the English as well</translatorcomment>
-        <translation type="vanished">جهد أرضي كامن Geopotential</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="165"/>
@@ -653,27 +470,27 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/DataQString.cpp" line="166"/>
         <source>Temperature</source>
-        <translation>درجة الحرارة</translation>
+        <translation type="unfinished">טמפרטורה</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="167"/>
         <source>Potential temperature</source>
-        <translation>درجة الحرارة المتوقعة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="168"/>
         <source>Temperature max</source>
-        <translation>درجة الحرارة العظمى</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="169"/>
         <source>Temperature min</source>
-        <translation>درجة الحرارة الصغرى</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="170"/>
         <source>Dew point</source>
-        <translation>درجة الندى</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="171"/>
@@ -688,12 +505,12 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/DataQString.cpp" line="173"/>
         <source>Wind (Vx)</source>
-        <translation>الرياح Vx</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="174"/>
         <source>Wind (Vy)</source>
-        <translation>الرياح Vy</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="175"/>
@@ -708,32 +525,32 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/DataQString.cpp" line="177"/>
         <source>Specific humidity</source>
-        <translation>نسبة الرطوبة المحددة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="178"/>
         <source>Relative humidity</source>
-        <translation>نسبة الرطوبة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="179"/>
         <source>Precipitation rate</source>
-        <translation>معدل الهطول</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="180"/>
         <source>Total precipitation</source>
-        <translation>مجموع الهطول</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="181"/>
         <source>Snow (depth)</source>
-        <translation>ثلوج (العمق)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="182"/>
         <source>Cloud cover</source>
-        <translation>تغطية الغيوم</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="183"/>
@@ -753,18 +570,17 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/DataQString.cpp" line="186"/>
         <source>Frozen rain possible</source>
-        <translation>إمكانية تجمد المطر</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="187"/>
         <source>Snowfall possible</source>
-        <translation>إمكانية تساقط الثلوج</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="188"/>
         <source>CAPE</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation>CAPE</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="189"/>
@@ -779,7 +595,7 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/DataQString.cpp" line="193"/>
         <source>Wind</source>
-        <translation>الرياح</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="194"/>
@@ -789,18 +605,17 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/DataQString.cpp" line="195"/>
         <source>Gap temperature-dew point</source>
-        <translation>الفجوة بين درجة الحرارة ودرجة الندى</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="196"/>
         <source>Theta-e</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation>Theta-e</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="197"/>
         <source>Wind gust</source>
-        <translation>هبوب الرياح</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="198"/>
@@ -929,14 +744,12 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/map/PositionEditor.cpp" line="43"/>
         <source> °</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/map/PositionEditor.cpp" line="49"/>
         <source> &apos;</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -944,12 +757,12 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/DialogBoxColumn.cpp" line="83"/>
         <source>Ok</source>
-        <translation>موافق</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogBoxColumn.cpp" line="85"/>
         <source>Cancel</source>
-        <translation>إلغاء</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -957,12 +770,7 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/DialogFonts.cpp" line="82"/>
         <source>Fonts</source>
-        <translation>أنواع الخطوط</translation>
-    </message>
-    <message>
-        <source>Chgoice of fonts</source>
-        <translatorcomment>The word choice is mistyped in English - There is extra g - FYI</translatorcomment>
-        <translation type="vanished">اختيار الخطوط</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogFonts.cpp" line="93"/>
@@ -972,78 +780,77 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/DialogFonts.cpp" line="107"/>
         <source>Ok</source>
-        <translation>موافق</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogFonts.cpp" line="108"/>
         <source>Cancel</source>
-        <translation>إلغاء</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogFonts.cpp" line="153"/>
         <source>Main font</source>
-        <translation>نوع الخط الرئيسي</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogFonts.cpp" line="158"/>
         <source>Dates list</source>
-        <translation>قائمة التواريخ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogFonts.cpp" line="163"/>
         <source>Menus</source>
-        <translation>القوائم</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogFonts.cpp" line="168"/>
         <source>Status bar</source>
-        <translation>شريط الحالة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogFonts.cpp" line="173"/>
         <source>Temperature</source>
-        <translation>درجة الحرارة</translation>
+        <translation type="unfinished">טמפרטורה</translation>
     </message>
     <message>
         <location filename="../../src/DialogFonts.cpp" line="178"/>
         <source>Isobars</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation>الآيسوبارز</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogFonts.cpp" line="183"/>
         <source>Pressure H/L</source>
-        <translation>الضغط عالي/منخفض</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogFonts.cpp" line="194"/>
         <source>Cities (level 1)</source>
-        <translation>المدن (المستوى 1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogFonts.cpp" line="199"/>
         <source>Cities (level 2)</source>
-        <translation>المدن (المستوى 2)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogFonts.cpp" line="204"/>
         <source>Cities (level 3)</source>
-        <translation>المدن (المستوى 3)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogFonts.cpp" line="209"/>
         <source>Cities (level 4)</source>
-        <translation>المدن (المستوى 4)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogFonts.cpp" line="214"/>
         <source>Cities (level 5)</source>
-        <translation>المدن (المستوى 5)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogFonts.cpp" line="219"/>
         <source>Countries names</source>
-        <translation>أسماء الدول</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1051,12 +858,12 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/DialogGraphicsParams.cpp" line="219"/>
         <source>100 % -&gt; white</source>
-        <translation>100 % -&gt; واضح</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogGraphicsParams.cpp" line="220"/>
         <source>100 % -&gt; dark</source>
-        <translation>100 % -&gt; معتم</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1064,12 +871,12 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="73"/>
         <source>Download - GRIB</source>
-        <translation>تنزيل GRIB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="227"/>
         <source>Save GRIB file</source>
-        <translation>حفظ الملف GRIB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="244"/>
@@ -1078,62 +885,23 @@ Point outside GRIB area.</source>
         <location filename="../../src/DialogLoadGRIB.cpp" line="946"/>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1191"/>
         <source>Cancel</source>
-        <translation>إلغاء</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="251"/>
         <location filename="../../src/DialogLoadGRIB.cpp" line="271"/>
         <source>Error</source>
-        <translation>خطأ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="252"/>
         <source>Can&apos;t write file.</source>
-        <translation>لا يمكن نسخ الملف</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="272"/>
         <source>Error: </source>
-        <translation>خطأ:</translation>
-    </message>
-    <message>
-        <source>ko/s</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation type="vanished">ko/s</translation>
-    </message>
-    <message>
-        <source>Mo/s</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation type="vanished">Mo/s</translation>
-    </message>
-    <message>
-        <source>Size: %1 ko      Done: %2 ko at %3 %4</source>
-        <translation type="vanished">الحجم: %1 ko      تم: %2 ko بواقع %3 %4</translation>
-    </message>
-    <message>
-        <source>Size: %1 ko approx</source>
-        <translation type="obsolete">الحجم: %1 ko تقريباً</translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="871"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="873"/>
-        <source>Size: ≃ </source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="884"/>
-        <source>Stop</source>
-        <translation>قف</translation>
-    </message>
-    <message>
-        <source> °N</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation type="vanished"> °N</translation>
-    </message>
-    <message>
-        <source> °E</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation type="vanished">°E</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="297"/>
@@ -1199,6 +967,12 @@ Point outside GRIB area.</source>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="871"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="873"/>
+        <source>Size: ≃ </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="871"/>
         <source> (max 50 MB) - NOTE: No sfc. or alt. parameters are selected!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1208,56 +982,76 @@ Point outside GRIB area.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="884"/>
+        <source>Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1015"/>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1024"/>
         <source>None</source>
-        <translation type="unfinished">لا يوجد</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1077"/>
         <source>Wind (10 m)</source>
-        <translation>الرياح (10 متر)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1079"/>
         <source>Mean sea level pressure</source>
-        <translation>متوسط ضغط مستوى سطح البحر</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1081"/>
         <source>Total precipitation</source>
-        <translation>مجموع الهطول</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1083"/>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1085"/>
         <source>Cloud cover</source>
-        <translation>تغطية الغيوم</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1083"/>
         <source>total</source>
-        <translation>المجموع</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1085"/>
         <source>layers</source>
-        <translation>الطبقات</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1087"/>
         <source>Temperature (2 m)</source>
-        <translation>درجة الحرارة (2 m)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1089"/>
         <source>Relative humidity (2 m)</source>
-        <translation>نسبة الرطوبة (2 m)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1091"/>
         <source>Isotherm 0°C</source>
-        <translation>خط تساوي الحرارة 0 درجة مئوية</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1098"/>
+        <source>Snow (snowfall possible)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1100"/>
+        <source>Frozen rain (rainfall possible)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1102"/>
+        <source>Snow (depth)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1104"/>
@@ -1268,11 +1062,16 @@ Point outside GRIB area.</source>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1104"/>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1106"/>
         <source>surface</source>
-        <translation type="unfinished">السطح</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1106"/>
         <source>CIN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1108"/>
+        <source>Wind gust (surface)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1293,13 +1092,58 @@ Point outside GRIB area.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1167"/>
+        <source>All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1177"/>
+        <source>Significant height</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1179"/>
+        <source>Swell</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1181"/>
+        <source>Wind waves</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1189"/>
         <source>Download</source>
-        <translation type="unfinished">تنزيل</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1193"/>
+        <source>Server status</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1195"/>
         <source>Connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1210"/>
+        <source>Latitude min :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1212"/>
+        <source>Latitude max :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1214"/>
+        <source>Longitude min :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1216"/>
+        <source>Longitude max :</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1320,7 +1164,7 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1251"/>
         <source>°</source>
-        <translation type="unfinished">°</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1255"/>
@@ -1353,6 +1197,11 @@ Point outside GRIB area.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1321"/>
+        <source>Atmosphere: geopotential altitude, wind, temperature, theta-e, relative humidity.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1323"/>
         <source>Warning: Selecting this data significantly increases the size of the GRIB file.</source>
         <translation type="unfinished"></translation>
@@ -1367,160 +1216,29 @@ Point outside GRIB area.</source>
         <source>Wave Data</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Potential temperature (sigma 995)</source>
-        <translation type="obsolete">درجة الحرارة المتوقعة (سيجما 995)</translation>
-    </message>
-    <message>
-        <source>Temperature min (2 m)</source>
-        <translation type="vanished">درجة الحرارة الصغرى (2 m)</translation>
-    </message>
-    <message>
-        <source>Temperature max (2 m)</source>
-        <translation type="vanished">درجة الحرارة العظمى (2 m)</translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1098"/>
-        <source>Snow (snowfall possible)</source>
-        <translation>الثلوج (إمكانية تساقط الثلوج)</translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1100"/>
-        <source>Frozen rain (rainfall possible)</source>
-        <translation>تجمد المطر (إمكانية هطول الأمطار)</translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1102"/>
-        <source>Snow (depth)</source>
-        <translation>ثلوج (العمق)</translation>
-    </message>
-    <message>
-        <source>CAPE (surface)</source>
-        <translation type="obsolete">CAPE ( السطح)</translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1108"/>
-        <source>Wind gust (surface)</source>
-        <translation>هبوب الرياح (السطح)</translation>
-    </message>
-    <message>
-        <source>Sunshine duration</source>
-        <translation type="vanished">مدة سطوع الشمس</translation>
-    </message>
-    <message>
-        <source>hPa</source>
-        <translation type="vanished">هيكتوباسكال</translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1167"/>
-        <source>All</source>
-        <translation>الكل</translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1177"/>
-        <source>Significant height</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1179"/>
-        <source>Swell</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1181"/>
-        <source>Wind waves</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Download GRIB file</source>
-        <translation type="obsolete">تنزيل الملف GRIB</translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1193"/>
-        <source>Server status</source>
-        <translation>حالة السيرفر</translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1210"/>
-        <source>Latitude min :</source>
-        <translation>زاوية العرض الصغرى</translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1212"/>
-        <source>Latitude max :</source>
-        <translation>زاوية العرض العظمى</translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1214"/>
-        <source>Longitude min :</source>
-        <translation>زاوية الطول الصغرى</translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1216"/>
-        <source>Longitude max :</source>
-        <translation>زاوية الطول العظمى</translation>
-    </message>
-    <message>
-        <source>Resolution :</source>
-        <translation type="obsolete">الوضوح:</translation>
-    </message>
-    <message>
-        <source> °</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation type="obsolete"> °</translation>
-    </message>
-    <message>
-        <source>Interval :</source>
-        <translation type="obsolete">فاصل:</translation>
-    </message>
-    <message>
-        <source> hours</source>
-        <translation type="obsolete">ساعات</translation>
-    </message>
-    <message>
-        <source>Period :</source>
-        <translation type="obsolete">فترة :</translation>
-    </message>
-    <message>
-        <source> days</source>
-        <translation type="obsolete">أيام</translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1321"/>
-        <source>Atmosphere: geopotential altitude, wind, temperature, theta-e, relative humidity.</source>
-        <translation>الغلاف الجوي: جهد أرضي كامن geopotentia: الرياح: درجة الحرارة:  theta-e: نسبة الرطوبة</translation>
-    </message>
-    <message>
-        <source>Warning : these data increase strongly the size of the GRIB file.</source>
-        <translation type="vanished">تحذير: هذه البيانات تعمل على زيادة حجم المف GRIB بشكل كبير</translation>
-    </message>
-    <message>
-        <source>File size max: </source>
-        <translation type="obsolete">الحد الأقصى لحجم الملف:</translation>
-    </message>
 </context>
 <context>
     <name>DialogLoadIAC</name>
     <message>
         <location filename="../../src/DialogLoadIAC.cpp" line="59"/>
         <source>Download - IAC fleetcode</source>
-        <translation>تنزيل - رمز IAC Fleet</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadIAC.cpp" line="96"/>
         <source>Save IAC file : %1 octets</source>
-        <translation>احفظ الملف IAC : %1 أوكتيت</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadIAC.cpp" line="118"/>
         <location filename="../../src/DialogLoadIAC.cpp" line="138"/>
         <source>Error</source>
-        <translation>خطأ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadIAC.cpp" line="119"/>
         <source>Can&apos;t write file.</source>
-        <translation>لا يمكن نسخ الملف.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadIAC.cpp" line="127"/>
@@ -1528,32 +1246,32 @@ Point outside GRIB area.</source>
         <location filename="../../src/DialogLoadIAC.cpp" line="204"/>
         <location filename="../../src/DialogLoadIAC.cpp" line="229"/>
         <source>Cancel</source>
-        <translation>إلغاء</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadIAC.cpp" line="139"/>
         <source>Error: </source>
-        <translation>خطأ:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadIAC.cpp" line="159"/>
         <source>Size: %1 ko      Done: %2 ko     </source>
-        <translation>الحجم: %1 ko      تم: %2 ko     </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadIAC.cpp" line="186"/>
         <source>Stop</source>
-        <translation>قف</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadIAC.cpp" line="225"/>
         <source>Current analyse</source>
-        <translation>التحليل الحالي</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadIAC.cpp" line="227"/>
         <source>Forecast +24h</source>
-        <translation>التنبؤ + 24 ساعة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadIAC.cpp" line="240"/>
@@ -1565,196 +1283,7 @@ Only one zone : Europe + Atlantic North-East
 4 runs in a day.
 
 </source>
-        <translation>الملف IAC (رمز الأسطول) من NOAA
-
-تحليل (الضغط الجوي، الآيسوبار، الجبهات الهوائية) والحالة الجوية المتوقعة في ال 24 ساعة القادمة
-
-فقط منطقة واحدة: أوروبا+الأطلسي الشمالي الشرقي
-
-4 مرات في اليوم</translation>
-    </message>
-</context>
-<context>
-    <name>DialogLoadMBLUE</name>
-    <message>
-        <source>Download - Meteoblue - Swiss area</source>
-        <translation type="vanished">تنزيل - بيانات الطقس - سويسرا</translation>
-    </message>
-    <message>
-        <source>Save Meteoblue file</source>
-        <translation type="vanished">حفظ ملف بيانات الطقس Meteoblue</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">إلغاء</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation type="vanished">خطأ</translation>
-    </message>
-    <message>
-        <source>Can&apos;t write file.</source>
-        <translation type="vanished">لا يمكن نسخ الملف.</translation>
-    </message>
-    <message>
-        <source>Error: </source>
-        <translation type="vanished">خطأ:</translation>
-    </message>
-    <message>
-        <source>ko/s</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation type="vanished">ko/s</translation>
-    </message>
-    <message>
-        <source>Mo/s</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation type="vanished">Mo/s</translation>
-    </message>
-    <message>
-        <source>Size: %1 ko      Done: %2 ko at %3 %4</source>
-        <translation type="vanished">الحجم: %1 ko      تم: %2 ko بواقع %3 %4</translation>
-    </message>
-    <message>
-        <source>Size: %1 ko approx</source>
-        <translation type="vanished">الحجم: %1 ko تقريباً</translation>
-    </message>
-    <message>
-        <source>The selected area doesn&apos;t contain Meteoblue data.</source>
-        <translation type="vanished">المنطقة المختارة لا تحتوي على بيانات  Meteoblue</translation>
-    </message>
-    <message>
-        <source>Stop</source>
-        <translation type="vanished">إيقاف</translation>
-    </message>
-    <message>
-        <source> °N</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation type="vanished"> °N</translation>
-    </message>
-    <message>
-        <source> °E</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation type="vanished"> °E</translation>
-    </message>
-    <message>
-        <source>Wind (10 m)</source>
-        <translation type="vanished">الرياح (10 م)</translation>
-    </message>
-    <message>
-        <source>Mean sea level pressure</source>
-        <translation type="vanished">متوسط ضغط مستوى سطح البحر</translation>
-    </message>
-    <message>
-        <source>Total precipitation</source>
-        <translation type="vanished">مجموع الهطول</translation>
-    </message>
-    <message>
-        <source>Cloud cover</source>
-        <translation type="vanished">تغطية الغيوم</translation>
-    </message>
-    <message>
-        <source>Temperature (2 m)</source>
-        <translation type="vanished">درجة الحرارة (2 m)</translation>
-    </message>
-    <message>
-        <source>Relative humidity (2 m)</source>
-        <translation type="vanished">نسبة الرطوبة (2 m)</translation>
-    </message>
-    <message>
-        <source>Isotherm 0°C</source>
-        <translation type="vanished">خط تساوي الحرارة 0 درجة مئوية</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="obsolete">تنزيل</translation>
-    </message>
-    <message>
-        <source>Potential temperature (sigma 995)</source>
-        <translation type="obsolete">درجة الحرارة المتوقعة (سيجما 995)</translation>
-    </message>
-    <message>
-        <source>Temperature min (2 m)</source>
-        <translation type="vanished">درجة الحرارة الصغرى (2 م)</translation>
-    </message>
-    <message>
-        <source>Temperature max (2 m)</source>
-        <translation type="vanished">درجة الحرارة العظمى (2 م)</translation>
-    </message>
-    <message>
-        <source>Snow (snowfall possible)</source>
-        <translation type="vanished">الثلوج (إمكانية تساقط الثلوج)</translation>
-    </message>
-    <message>
-        <source>Frozen rain (rainfall possible)</source>
-        <translation type="vanished">تجمد المطر (إمكانية هطول الأمطار)</translation>
-    </message>
-    <message>
-        <source>Snow (depth)</source>
-        <translation type="vanished">ثلوج (العمق)</translation>
-    </message>
-    <message>
-        <source>CAPE (surface)</source>
-        <translation type="vanished">CAPE (السطح)</translation>
-    </message>
-    <message>
-        <source>Wind gust</source>
-        <translation type="vanished">هبوب الرياح</translation>
-    </message>
-    <message>
-        <source>hPa</source>
-        <translation type="vanished">هيكتوباسكال</translation>
-    </message>
-    <message>
-        <source>All</source>
-        <translation type="vanished">الكل</translation>
-    </message>
-    <message>
-        <source>Download Meteoblue file</source>
-        <translation type="obsolete">تنزيل الملف Meteoblue</translation>
-    </message>
-    <message>
-        <source>Server status</source>
-        <translation type="vanished">حالة السيرفر</translation>
-    </message>
-    <message>
-        <source>Latitude min :</source>
-        <translation type="vanished">زاوية العرض الصغرى :</translation>
-    </message>
-    <message>
-        <source>Latitude max :</source>
-        <translation type="vanished">زاوية العرض العظمى :</translation>
-    </message>
-    <message>
-        <source>Longitude min :</source>
-        <translation type="vanished">زاوية الطول الصغرى :</translation>
-    </message>
-    <message>
-        <source>Longitude max :</source>
-        <translation type="vanished">زاوية الطول العظمى :</translation>
-    </message>
-    <message>
-        <source>Interval :</source>
-        <translation type="vanished">فاصل:</translation>
-    </message>
-    <message>
-        <source> hours</source>
-        <translation type="vanished">ساعات</translation>
-    </message>
-    <message>
-        <source>Period :</source>
-        <translation type="vanished">فترة :</translation>
-    </message>
-    <message>
-        <source> days</source>
-        <translation type="vanished">أيام</translation>
-    </message>
-    <message>
-        <source>Atmosphere: wind, temperature, relative humidity.</source>
-        <translation type="vanished">الغلاف الجوي: الرياح، درجة الحرارة، نسبة الرطوبة</translation>
-    </message>
-    <message>
-        <source>File size max: </source>
-        <translation type="vanished">الحد الأقصى لحجم الملف:</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1762,22 +1291,22 @@ Only one zone : Europe + Atlantic North-East
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="110"/>
         <source>100 % -&gt; white</source>
-        <translation>100 % -&gt; واضح</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="111"/>
         <source>100 % -&gt; dark</source>
-        <translation>100 % -&gt; معتم</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="254"/>
         <source>Wind (10 m)</source>
-        <translation>الرياح (10 م)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="255"/>
         <source>Wind gust</source>
-        <translation>هبوب الرياح</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="256"/>
@@ -1787,72 +1316,72 @@ Only one zone : Europe + Atlantic North-East
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="257"/>
         <source>Cloud cover</source>
-        <translation>تغطية الغيوم</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="258"/>
         <source>Total precipitation</source>
-        <translation>مجموع الهطول</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="259"/>
         <source>Temperature (2 m)</source>
-        <translation>درجة الحرارة (2 m)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="260"/>
         <source>Gap temperature-dew point (2 m)</source>
-        <translation>الفجوة بين درجة الحرارة ودرجة الندى (2م)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="261"/>
         <source>Isotherm 0°C</source>
-        <translation>خط تساوي الحرارة 0 درجة مئوية </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="262"/>
         <source>Mean sea level pressure</source>
-        <translation>متوسط ضغط مستوى سطح البحر</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="266"/>
         <source>Dew point (2 m)</source>
-        <translation>درجة الندى (2م)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="267"/>
         <source>Relative humidity (2 m)</source>
-        <translation>نسبة الرطوبة (2 m)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="269"/>
         <source>Temperature min (2 m)</source>
-        <translation>درجة الحرارة الصغرى (2 m)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="270"/>
         <source>Temperature max (2 m)</source>
-        <translation>درجة الحرارة العظمى (2 m)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="271"/>
         <source>Snowfall possible</source>
-        <translation>إمكانية تساقط الثلوج</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="272"/>
         <source>Snow (depth)</source>
-        <translation>ثلوج (العمق)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="273"/>
         <source>Frozen rain possible</source>
-        <translation>إمكانية تجمد المطر</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="274"/>
         <source>CAPE (surface)</source>
-        <translation>CAPE (السطح)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="275"/>
@@ -1872,132 +1401,132 @@ Only one zone : Europe + Atlantic North-East
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="280"/>
         <source>Wind</source>
-        <translation type="unfinished">الرياح</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="280"/>
         <source>surface</source>
-        <translation type="unfinished">السطح</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="281"/>
         <source>Wind (925 hPa)</source>
-        <translation type="unfinished">الرياح (200 هيكتوباسكال) {925 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="282"/>
         <source>Wind (850 hPa)</source>
-        <translation>الرياح (850 هيكتوباسكال)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="283"/>
         <source>Wind (700 hPa)</source>
-        <translation>الرياح (700 هيكتوباسكال)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="284"/>
         <source>Wind (600 hPa)</source>
-        <translation type="unfinished">الرياح (200 هيكتوباسكال) {600 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="285"/>
         <source>Wind (500 hPa)</source>
-        <translation>الرياح (500 هيكتوباسكال)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="286"/>
         <source>Wind (400 hPa)</source>
-        <translation type="unfinished">الرياح (200 هيكتوباسكال) {400 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="287"/>
         <source>Wind (300 hPa)</source>
-        <translation>الرياح (300 هيكتوباسكال)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="288"/>
         <source>Wind (200 hPa)</source>
-        <translation>الرياح (200 هيكتوباسكال)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="289"/>
         <source>Temperature (925 hPa)</source>
-        <translation type="unfinished">درجة الحرارة (200 هيكتوباسكال) {925 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="290"/>
         <source>Temperature (850 hPa)</source>
-        <translation>درجة الحرارة (850 هيكتوباسكال)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="291"/>
         <source>Temperature (700 hPa)</source>
-        <translation>درجة الحرارة (700 هيكتوباسكال)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="292"/>
         <source>Temperature (600 hPa)</source>
-        <translation type="unfinished">درجة الحرارة (200 هيكتوباسكال) {600 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="293"/>
         <source>Temperature (500 hPa)</source>
-        <translation>درجة الحرارة (500 هيكتوباسكال)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="294"/>
         <source>Temperature (400 hPa)</source>
-        <translation type="unfinished">درجة الحرارة (200 هيكتوباسكال) {400 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="295"/>
         <source>Temperature (300 hPa)</source>
-        <translation>درجة الحرارة (300 هيكتوباسكال)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="296"/>
         <source>Temperature (200 hPa)</source>
-        <translation>درجة الحرارة (200 هيكتوباسكال)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="297"/>
         <source>Theta-e (925 hPa)</source>
-        <translation type="unfinished">Theta-e (200 هيكتوباسكال) {925 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="298"/>
         <source>Theta-e (850 hPa)</source>
-        <translation>Theta-e (850 هيكتوباسكال)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="299"/>
         <source>Theta-e (700 hPa)</source>
-        <translation>Theta-e (700 هيكتوباسكال)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="300"/>
         <source>Theta-e (600 hPa)</source>
-        <translation type="unfinished">Theta-e (200 هيكتوباسكال) {600 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="301"/>
         <source>Theta-e (500 hPa)</source>
-        <translation>Theta-e (500 هيكتوباسكال)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="302"/>
         <source>Theta-e (400 hPa)</source>
-        <translation type="unfinished">Theta-e (200 هيكتوباسكال) {400 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="303"/>
         <source>Theta-e (300 hPa)</source>
-        <translation>Theta-e (300 هيكتوباسكال)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="304"/>
         <source>Theta-e (200 hPa)</source>
-        <translation>Theta-e (200 هيكتوباسكال)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="305"/>
@@ -2009,7 +1538,7 @@ Only one zone : Europe + Atlantic North-East
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="311"/>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="312"/>
         <source>Relative humidity</source>
-        <translation>نسبة الرطوبة </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="313"/>
@@ -2021,7 +1550,7 @@ Only one zone : Europe + Atlantic North-East
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="319"/>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="320"/>
         <source>Geopotential altitude</source>
-        <translation>ارتفاع الجهد الأرضي الكامن</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="323"/>
@@ -2040,72 +1569,72 @@ Only one zone : Europe + Atlantic North-East
     <message>
         <location filename="../../src/DialogProxy.cpp" line="43"/>
         <source>Type of internet connection</source>
-        <translation>نوع الاتصال بالإنترنت</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogProxy.cpp" line="56"/>
         <source>Ok</source>
-        <translation>موافق</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogProxy.cpp" line="57"/>
         <source>Cancel</source>
-        <translation>إلغاء</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogProxy.cpp" line="152"/>
         <source>Direct connection to internet</source>
-        <translation>اتصال مباشر بالإنترنت</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogProxy.cpp" line="154"/>
         <source>Connection with a proxy</source>
-        <translation>اتصال من خلال بروكسي</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogProxy.cpp" line="163"/>
         <source>Proxy type: </source>
-        <translation>نوع البروكسي:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogProxy.cpp" line="167"/>
         <source>System default proxy</source>
-        <translation>بروكسي ملحق بالنظام</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogProxy.cpp" line="168"/>
         <source>HTTP proxy</source>
-        <translation>بروكسي HTTP</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogProxy.cpp" line="169"/>
         <source>SOCKS5 proxy</source>
-        <translation>بروكسي SOCKS5</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogProxy.cpp" line="177"/>
         <source>Proxy server: </source>
-        <translation>سيرفر بروكسي:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogProxy.cpp" line="185"/>
         <source>Port number :</source>
-        <translation>رقم المنفذ:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogProxy.cpp" line="195"/>
         <source>User * :</source>
-        <translation>اسم المستخدم * :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogProxy.cpp" line="202"/>
         <source>Password * :</source>
-        <translation>كلمة المرور * :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogProxy.cpp" line="210"/>
         <source>(* if needed)</source>
-        <translation>(*عند الحاجة)</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2119,7 +1648,7 @@ Only one zone : Europe + Atlantic North-East
     <message>
         <location filename="../../src/DialogSelectMetar.cpp" line="57"/>
         <source>Ok</source>
-        <translation type="unfinished">موافق</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogSelectMetar.cpp" line="125"/>
@@ -2129,7 +1658,7 @@ Only one zone : Europe + Atlantic North-East
     <message>
         <location filename="../../src/DialogSelectMetar.cpp" line="125"/>
         <source>Name</source>
-        <translation type="unfinished">الاسم</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2137,22 +1666,22 @@ Only one zone : Europe + Atlantic North-East
     <message>
         <location filename="../../src/DialogServerStatus.cpp" line="36"/>
         <source>Server</source>
-        <translation>سيرفر</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogServerStatus.cpp" line="48"/>
         <source>File server status</source>
-        <translation>حالة سيرفر الملف</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogServerStatus.cpp" line="61"/>
         <source>Ok</source>
-        <translation>موافق</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogServerStatus.cpp" line="96"/>
         <source>Error</source>
-        <translation>خطأ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogServerStatus.cpp" line="108"/>
@@ -2175,8 +1704,14 @@ Only one zone : Europe + Atlantic North-East
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>ok</source>
-        <translation type="vanished">موافق</translation>
+        <location filename="../../src/DialogServerStatus.cpp" line="168"/>
+        <source>Connection :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DialogServerStatus.cpp" line="204"/>
+        <source>Forecast date :</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogServerStatus.cpp" line="210"/>
@@ -2188,32 +1723,6 @@ Only one zone : Europe + Atlantic North-East
         <source>Activity :</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>invalid format</source>
-        <translation type="obsolete">شكل غير صحيح</translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogServerStatus.cpp" line="168"/>
-        <source>Connection :</source>
-        <translation>اتصال :</translation>
-    </message>
-    <message>
-        <source>Response time :</source>
-        <translation type="obsolete">وقت الرد :</translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogServerStatus.cpp" line="204"/>
-        <source>Forecast date :</source>
-        <translation>تاريخ التنبؤ :</translation>
-    </message>
-    <message>
-        <source>Hour :</source>
-        <translation type="obsolete">ساعة :</translation>
-    </message>
-    <message>
-        <source>Current job :</source>
-        <translation type="obsolete">المهمة الحالية :</translation>
-    </message>
 </context>
 <context>
     <name>DialogUnits</name>
@@ -2221,42 +1730,40 @@ Only one zone : Europe + Atlantic North-East
         <location filename="../../src/DialogUnits.cpp" line="32"/>
         <location filename="../../src/DialogUnits.cpp" line="43"/>
         <source>Units</source>
-        <translation>وحدات</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="56"/>
         <source>Ok</source>
-        <translation>موافق</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="57"/>
         <source>Cancel</source>
-        <translation>إلغاء</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="166"/>
         <source>Wind speed :</source>
-        <translation>سرعة الرياح :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="169"/>
         <location filename="../../src/DialogUnits.cpp" line="179"/>
         <source>m/s</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation>m/s</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="170"/>
         <location filename="../../src/DialogUnits.cpp" line="180"/>
         <source>km/h</source>
-        <translation>كم/ساعة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="171"/>
         <location filename="../../src/DialogUnits.cpp" line="181"/>
         <source>kts</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation>kts</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="176"/>
@@ -2266,120 +1773,119 @@ Only one zone : Europe + Atlantic North-East
     <message>
         <location filename="../../src/DialogUnits.cpp" line="186"/>
         <source>Temperature :</source>
-        <translation>درجة الحرارة :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="189"/>
         <source>°C</source>
-        <translation>درجة مئوية</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="190"/>
         <source>°F</source>
-        <translation>درجة فهرنهايت</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="191"/>
         <source>°K</source>
-        <translation>درجة كيلفن</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="196"/>
         <source>Distances :</source>
-        <translation>المسافات :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="199"/>
         <source>Nautical Mile</source>
-        <translation>ميل بحري</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="200"/>
         <source>km</source>
-        <translation>كم</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="205"/>
         <source>Coordinates :</source>
-        <translation>الإحداثيات</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="208"/>
         <source>dd°mm&apos;ss&quot;</source>
-        <translation>درجة° دقيقة&apos; ثانية&quot;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="209"/>
         <source>dd°mm,mm&apos;</source>
-        <translation>درجة°دقيقة,دقيقة&apos;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="210"/>
         <source>dd,dd°</source>
-        <translation>درجة,درجة°</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="216"/>
         <source>Longitudes :</source>
-        <translation>خطوط الطول :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="219"/>
         <location filename="../../src/DialogUnits.cpp" line="229"/>
         <source>Auto</source>
-        <translation>آلي</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="220"/>
         <source>East positive</source>
-        <translation>الشرق</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="221"/>
         <source>West positive</source>
-        <translation>الغرب</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="226"/>
         <source>Latitudes :</source>
-        <translation>دوائر العرض :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="230"/>
         <source>North positive</source>
-        <translation>الشمال</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="231"/>
         <source>South positive</source>
-        <translation>الجنوب</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="236"/>
         <source>Time zone :</source>
-        <translation>نطاق الوقت :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="239"/>
         <source>UTC time</source>
-        <translation>التوقيت العالمي</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="240"/>
         <location filename="../../src/DialogUnits.cpp" line="294"/>
         <source>Local time</source>
-        <translation>التوقيت المحلي</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="248"/>
         <source>Fixed time </source>
-        <translation>التوقيت المحدد</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="255"/>
         <source>Geopotential altitudes:</source>
-        <translatorcomment>Translated and left the English as well</translatorcomment>
-        <translation>خطوط عرض الجهد الأرضي الكامنaltitudes Geopotential:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="258"/>
@@ -2397,103 +1903,83 @@ Only one zone : Europe + Atlantic North-East
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../src/DialogUnits.cpp" line="265"/>
+        <source>Isotherm 0°C :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DialogUnits.cpp" line="268"/>
+        <source>meter (m)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DialogUnits.cpp" line="269"/>
+        <source>decameter (dam)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DialogUnits.cpp" line="270"/>
+        <source>foot (ft)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DialogUnits.cpp" line="295"/>
+        <source>WARNING: You have choose local time.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DialogUnits.cpp" line="297"/>
+        <source>The local time is the time of your computer, it&apos;s not</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DialogUnits.cpp" line="298"/>
+        <source>the time of a point on the map.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DialogUnits.cpp" line="300"/>
+        <source>Conversion UTC/Local time depends of the parameters </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DialogUnits.cpp" line="301"/>
+        <source>of your computer. </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/DialogUnits.cpp" line="303"/>
         <source>Current hour seen by xygrib with those parameters :</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>gm (˜ meter)</source>
-        <translation type="obsolete">gm (˜متر)</translation>
-    </message>
-    <message>
-        <source>gdm (˜ decameter)</source>
-        <translation type="obsolete">gdm (˜ ديكامتر)</translation>
-    </message>
-    <message>
-        <source>gft (˜ foot)</source>
-        <translation type="obsolete">gft (˜ قدم)</translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogUnits.cpp" line="265"/>
-        <source>Isotherm 0°C :</source>
-        <translation>خط تساوي الحرارة 0 درجة مئوية </translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogUnits.cpp" line="268"/>
-        <source>meter (m)</source>
-        <translation>متر (م)</translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogUnits.cpp" line="269"/>
-        <source>decameter (dam)</source>
-        <translation>ديكامتر (dam)</translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogUnits.cpp" line="270"/>
-        <source>foot (ft)</source>
-        <translation>قدم</translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogUnits.cpp" line="295"/>
-        <source>WARNING: You have choose local time.</source>
-        <translation>تحذير: لقد اخترت التوقيت المحلي</translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogUnits.cpp" line="297"/>
-        <source>The local time is the time of your computer, it&apos;s not</source>
-        <translation>التوقيت المحلي هو التوقيت المثبت على جهازك الحاسب، وليس..</translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogUnits.cpp" line="298"/>
-        <source>the time of a point on the map.</source>
-        <translation>وقت منطقة معينة على الخريطة</translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogUnits.cpp" line="300"/>
-        <source>Conversion UTC/Local time depends of the parameters </source>
-        <translation>تحويل التوقيت العالمي/المحلي يعتمد على الإعدادات</translation>
-    </message>
-    <message>
-        <location filename="../../src/DialogUnits.cpp" line="301"/>
-        <source>of your computer. </source>
-        <translation>الخاصة بجهازك الحاسب</translation>
-    </message>
-    <message>
-        <source>Current hour seen by zygrib with those parameters :</source>
-        <translation type="vanished">الساعة الحالية  التي يمكن رؤيتها من قبل zygrib بواسطة هذه الإعدادات</translation>
-    </message>
-    <message>
         <location filename="../../src/DialogUnits.cpp" line="304"/>
         <source> : UTC</source>
-        <translation>التوقيت العالمي :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="305"/>
         <source> : Local</source>
-        <translation>المحلي :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="307"/>
         <source>If these values are bad, you must update the </source>
-        <translation>إذا كانت هذه القيم خاطئة فعليك تحديث ال</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="308"/>
         <source>configuration of your computeur (time zone),</source>
-        <translation>إعداد جهازك الحاسب (نطاق الوقت)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogUnits.cpp" line="309"/>
         <source>or choose display in UTC time zone.</source>
-        <translation>أو اختر عرض بالتوقيت العالمي UTC</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>FileLoaderGRIB</name>
-    <message>
-        <source>Make file on server... Please wait...</source>
-        <translation type="vanished">إنشاء ملف على السيرفر .. يرجى الانتظار...</translation>
-    </message>
     <message>
         <location filename="../../src/FileLoaderGRIB.cpp" line="212"/>
         <source>Preparing file on server... Please wait...</source>
@@ -2512,32 +1998,32 @@ Only one zone : Europe + Atlantic North-East
     <message>
         <location filename="../../src/FileLoaderGRIB.cpp" line="298"/>
         <source>Information</source>
-        <translation>معلومات</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/FileLoaderGRIB.cpp" line="309"/>
         <source>Total size : </source>
-        <translation>الحجم الكلي :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/FileLoaderGRIB.cpp" line="335"/>
         <source>Empty file.</source>
-        <translation>ملف فارغ.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/FileLoaderGRIB.cpp" line="338"/>
         <source>CheckSum control</source>
-        <translation>فحص حدوث الأخطاء في الإرسال CheckSum</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/FileLoaderGRIB.cpp" line="341"/>
         <source>Finish</source>
-        <translation>انتهاء</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/FileLoaderGRIB.cpp" line="347"/>
         <source>Bad checksum.</source>
-        <translation>فحص سيء لحدوث الأخطاء في الإرسال</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2545,53 +2031,22 @@ Only one zone : Europe + Atlantic North-East
     <message>
         <location filename="../../src/FileLoaderIAC.cpp" line="66"/>
         <source>Make file on server</source>
-        <translation>إنشاء ملف على السيرفر</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/FileLoaderIAC.cpp" line="121"/>
         <source>Empty file.</source>
-        <translation>ملف فارغ.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/FileLoaderIAC.cpp" line="130"/>
         <source>Information</source>
-        <translation>معلومات</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/FileLoaderIAC.cpp" line="147"/>
         <source>Finish</source>
-        <translation>انتهاء</translation>
-    </message>
-</context>
-<context>
-    <name>FileLoaderMBLUE</name>
-    <message>
-        <source>Make file on server... Please wait...</source>
-        <translation type="vanished">إنشاء ملف على السيرفر... يرجى الانتظار...</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation type="vanished">معلومات</translation>
-    </message>
-    <message>
-        <source>Total size : </source>
-        <translation type="vanished">الحجم الكلي :</translation>
-    </message>
-    <message>
-        <source>Empty file.</source>
-        <translation type="vanished">ملف فارغ .</translation>
-    </message>
-    <message>
-        <source>CheckSum control</source>
-        <translation type="vanished">فحص حدوث الأخطاء في الإرسال CheckSum</translation>
-    </message>
-    <message>
-        <source>Finish</source>
-        <translation type="vanished">انتهاء</translation>
-    </message>
-    <message>
-        <source>Bad checksum.</source>
-        <translation type="vanished">فحص سيء لحدوث الأخطاء في الإرسال</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2599,12 +2054,12 @@ Only one zone : Europe + Atlantic North-East
     <message>
         <location filename="../../src/DialogFonts.cpp" line="45"/>
         <source>Reset</source>
-        <translation>إعادة ضبط</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogFonts.cpp" line="69"/>
         <source>Choose a font</source>
-        <translation>اختر نوع الخط</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2612,7 +2067,7 @@ Only one zone : Europe + Atlantic North-East
     <message>
         <location filename="../../src/GUI/GraphicsParamsDialog.ui" line="20"/>
         <source>Graphical parameters</source>
-        <translation>باراميتر بياني</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/GraphicsParamsDialog.ui" line="52"/>
@@ -2622,37 +2077,37 @@ Only one zone : Europe + Atlantic North-East
     <message>
         <location filename="../../src/GUI/GraphicsParamsDialog.ui" line="74"/>
         <source>Background color :</source>
-        <translation>لون الخلفية :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/GraphicsParamsDialog.ui" line="106"/>
         <source>Sea color :</source>
-        <translation>لون البحر:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/GraphicsParamsDialog.ui" line="132"/>
         <source>Land color :</source>
-        <translation>لون البر:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/GraphicsParamsDialog.ui" line="158"/>
         <source>Sea border lines :</source>
-        <translation>خطوط الحدود البحرية :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/GraphicsParamsDialog.ui" line="190"/>
         <source>Boundaries :</source>
-        <translation>الحدود :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/GraphicsParamsDialog.ui" line="222"/>
         <source>Rivers :</source>
-        <translation>الأنهار :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/GraphicsParamsDialog.ui" line="254"/>
         <source>Isobars :</source>
-        <translation>الآيسوبارز :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/GraphicsParamsDialog.ui" line="286"/>
@@ -2660,13 +2115,9 @@ Only one zone : Europe + Atlantic North-East
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Isotherm 0°C :</source>
-        <translation type="obsolete">خط تساوي الحرارة 0 درجة مئوية :</translation>
-    </message>
-    <message>
         <location filename="../../src/GUI/GraphicsParamsDialog.ui" line="328"/>
         <source>Cloud cover :</source>
-        <translation>تغطية الغيوم:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/GraphicsParamsDialog.ui" line="377"/>
@@ -2676,12 +2127,12 @@ Only one zone : Europe + Atlantic North-East
     <message>
         <location filename="../../src/GUI/GraphicsParamsDialog.ui" line="453"/>
         <source>Ok</source>
-        <translation>موافق</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/GraphicsParamsDialog.ui" line="460"/>
         <source>Cancel</source>
-        <translation>إلغاء</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2689,32 +2140,32 @@ Only one zone : Europe + Atlantic North-East
     <message>
         <location filename="../../src/GribAnimator.cpp" line="196"/>
         <source>Image %1/%2 : %3</source>
-        <translation>الصورة %1/%2 : %3</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GribAnimator.cpp" line="298"/>
         <source>Making animation : image %1/%2 : %3</source>
-        <translation>تحريك الصورة : الصورة %1/%2 : %3</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GribAnimator.cpp" line="320"/>
         <source>Error</source>
-        <translation>خطأ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GribAnimator.cpp" line="321"/>
         <source>Need more memory.</source>
-        <translation>تحتاج إلى ذاكرة أكبر.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GribAnimator.cpp" line="354"/>
         <source>Making animation</source>
-        <translation>تحريك الصورة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GribAnimator.cpp" line="380"/>
         <source>Animation</source>
-        <translation>صورة متحركة</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2722,33 +2173,33 @@ Only one zone : Europe + Atlantic North-East
     <message>
         <location filename="../../src/ImageWriter.cpp" line="193"/>
         <source>Save JPEG image</source>
-        <translation>احفظ صورة JPEG</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/ImageWriter.cpp" line="195"/>
         <location filename="../../src/ImageWriter.cpp" line="250"/>
         <source>Images (*.jpg *.jpeg)</source>
-        <translation>الصور (*.jpg *.jpeg)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/ImageWriter.cpp" line="248"/>
         <source>Save all images (JPEG)</source>
-        <translation>حفظ كافة الصور (JPEG)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/ImageWriter.cpp" line="264"/>
         <source>Save all images</source>
-        <translation>حفظ كافة الصور</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/ImageWriter.cpp" line="265"/>
         <source>This operation will create %1 files :</source>
-        <translation>سوف تعمل هذه الخطوة على إنشاء ملفات %1 :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/ImageWriter.cpp" line="269"/>
         <source>Warning: existing files will be deleted !</source>
-        <translation>تحذير: سيتم حذف الملفات الموجودة !</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2757,32 +2208,32 @@ Only one zone : Europe + Atlantic North-East
         <location filename="../../src/ImageWriter.cpp" line="35"/>
         <location filename="../../src/ImageWriter.cpp" line="36"/>
         <source>Image parameters</source>
-        <translation>باراميتر الصور</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/ImageWriter.cpp" line="66"/>
         <source>Current size</source>
-        <translation>الحجم الحالي</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/ImageWriter.cpp" line="67"/>
         <source>Width</source>
-        <translation>العرض</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/ImageWriter.cpp" line="68"/>
         <source>Height</source>
-        <translation>الارتفاع</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/ImageWriter.cpp" line="69"/>
         <source>Quality</source>
-        <translation>النوعية</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/ImageWriter.cpp" line="70"/>
         <source>Resize after</source>
-        <translation>إعادة ضبط الحجم بعد</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/ImageWriter.cpp" line="71"/>
@@ -2800,12 +2251,12 @@ Only one zone : Europe + Atlantic North-East
     <message>
         <location filename="../../src/GUI/LineEditorWidget.ui" line="14"/>
         <source>Form</source>
-        <translation>الشكل</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/LineEditorWidget.ui" line="160"/>
         <source>Reset</source>
-        <translation type="unfinished">إعادة ضبط</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2813,7 +2264,7 @@ Only one zone : Europe + Atlantic North-East
     <message>
         <location filename="../../src/LongTaskProgress.cpp" line="41"/>
         <source>Open file</source>
-        <translation>فتح ملف</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2824,185 +2275,99 @@ Only one zone : Europe + Atlantic North-East
         <location filename="../../src/MainWindow.cpp" line="941"/>
         <location filename="../../src/MainWindow.cpp" line="949"/>
         <source>Error</source>
-        <translation>خطأ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="200"/>
         <source>Maps not found.
 
 </source>
-        <translation>لم يتم العثور على الخرائط.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="201"/>
         <source>Check program installation.</source>
-        <translation>تحقق من تركيب البرنامج.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="562"/>
         <source>Tools</source>
-        <translation>الأدوات</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="805"/>
         <source>Warning</source>
-        <translation>تحذير</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="806"/>
         <location filename="../../src/MainWindow.cpp" line="871"/>
         <source>File :</source>
-        <translation>ملف :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="808"/>
         <source>The header of this GRIB file do not respect standard format.</source>
-        <translation>لا تراعي ترويسة  هذا الملف GRIB قواعد التنسيق</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="810"/>
         <source>Despite efforts to interpret it, output may be incorrect.</source>
-        <translation>رغم الجهود لشرحها، قد تكون المخرجات غير صحيحة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="812"/>
         <source>Please inform the supplier of this file that the GDS section of the file header is ambiguous, particularly about data position.</source>
-        <translation>يرجى إبلاغ مرسل هذا الملف بأن قسم ال GDS لترويسة هذا الملف غير واضحة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="872"/>
         <source>Can&apos;t open file.</source>
-        <translation>لا يمكن فتح الملف.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="873"/>
         <source>It&apos;s not a GRIB file,</source>
-        <translation>هذا ليس ملف GRIB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="874"/>
         <source>or it contains unrecognized data,</source>
-        <translation>أو يحتوي على بيانات غير معروفة،</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="875"/>
         <source>or...</source>
-        <translation>أو....</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="942"/>
         <source>Can&apos;t create animation :</source>
-        <translation>لا يمكن إنشاء صور متحركة :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="943"/>
         <source>no GRIB file loaded.</source>
-        <translation>لم يتم تحميل ملف GRIB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="950"/>
         <source>Can&apos;t create animation.</source>
-        <translation>لا يمكن إنشاء صور متحركة.</translation>
-    </message>
-    <message>
-        <source>Currently it is only possible to select 1 POI for data plot.
-Unselected by left click in map holding shift at the same time</source>
-        <translation type="obsolete">حالياً يمكن فقط اختيار نقطة اهتمام POI واحدة لـ Dataplot.
-لإلغاء الاختيار اضغط زر الماوس الأيسر فوق الخريطة مع الضغط على الزر shift بنفس الوقت</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1383"/>
         <source>Help</source>
-        <translation>للمساعدة</translation>
-    </message>
-    <message>
-        <source>Any question ?</source>
-        <translation type="vanished">أية أسئلة؟</translation>
-    </message>
-    <message>
-        <source>Congratulation, your request has been registred.
-</source>
-        <translation type="vanished">مبروك، لقد تم تسجيل طلبك.</translation>
-    </message>
-    <message>
-        <source>Reference :</source>
-        <translation type="vanished">المرجع :</translation>
-    </message>
-    <message>
-        <source>We will contact you as soon as possible... perhaps.</source>
-        <translation type="vanished">سوف أتصل بك في أقرب وقت ممكن.. ربما.</translation>
-    </message>
-    <message>
-        <source>In the meantime, try to press randomly keys of the keyboard, </source>
-        <translation type="vanished">حتى ذلك الحين، حاول أن تضغط على أزرار لوحة المفاتيح عشوائياً.</translation>
-    </message>
-    <message>
-        <source>or move the mouse and from time to time </source>
-        <translation type="vanished">أو حرك الماوس من وقت إلى آخر</translation>
-    </message>
-    <message>
-        <source>press one button, </source>
-        <translation type="vanished">اضغط زراً واحداً،</translation>
-    </message>
-    <message>
-        <source>either anything of the other one, </source>
-        <translation type="vanished">إما أي شيء من الأخرى</translation>
-    </message>
-    <message>
-        <source>and you will see what happens...</source>
-        <translation type="vanished">وسوف ترى ما سيحدث</translation>
-    </message>
-    <message>
-        <location filename="../../src/MainWindow.cpp" line="1393"/>
-        <source>About</source>
-        <translation>حول</translation>
-    </message>
-    <message>
-        <location filename="../../src/MainWindow.cpp" line="1399"/>
-        <source>http://OpenGribs.org</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>zyGrib : GRIB files visualization</source>
-        <translation type="vanished">zyGrib :صورة إلى  GRIB ملفات تحويل</translation>
-    </message>
-    <message>
-        <location filename="../../src/MainWindow.cpp" line="1396"/>
-        <source>Version : </source>
-        <translation>النسخة :</translation>
-    </message>
-    <message>
-        <location filename="../../src/MainWindow.cpp" line="1398"/>
-        <source>Licence : GNU GPL v3</source>
-        <translation>الرخصة: GNU GPL v3</translation>
-    </message>
-    <message>
-        <source>http://www.zygrib.org</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation type="vanished">http://www.zygrib.org</translation>
-    </message>
-    <message>
-        <location filename="../../src/MainWindow.cpp" line="1419"/>
-        <source>Choose a GRIB file</source>
-        <translation>اختر ملف GRIP</translation>
-    </message>
-    <message>
-        <source>Download a Meteoblue file</source>
-        <translation type="vanished">تنزيل الملف Meteoblue</translation>
-    </message>
-    <message>
-        <location filename="../../src/MainWindow.cpp" line="1455"/>
-        <source>Please select an area on the map.</source>
-        <translation>وقت منطقة معينة على الخريطة.</translation>
-    </message>
-    <message>
-        <location filename="../../src/MainWindow.cpp" line="1454"/>
-        <source>Download a GRIB file</source>
-        <translation>تنزيل الملف GRIB</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1384"/>
         <source>Help is available at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="1393"/>
+        <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3011,112 +2376,142 @@ Unselected by left click in map holding shift at the same time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../src/MainWindow.cpp" line="1396"/>
+        <source>Version : </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="1398"/>
+        <source>Licence : GNU GPL v3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="1399"/>
+        <source>http://OpenGribs.org</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="1419"/>
+        <source>Choose a GRIB file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="1454"/>
+        <source>Download a GRIB file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="1455"/>
+        <source>Please select an area on the map.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/MainWindow.cpp" line="1475"/>
         <location filename="../../src/MainWindow.cpp" line="1492"/>
         <source>yes</source>
-        <translation>نعم</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1479"/>
         <location filename="../../src/MainWindow.cpp" line="1496"/>
         <source>no</source>
-        <translation>لا</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1484"/>
         <source>no (computed with Magnus-Tetens formula)</source>
-        <translation>لا (محسوبة بمعادلة Magnus-Tetens)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1507"/>
         <location filename="../../src/MainWindow.cpp" line="1515"/>
         <source>File information</source>
-        <translation>معلومات الملف</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1508"/>
         <source>File not loaded.</source>
-        <translation>لم يتم تحميل الملف.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1516"/>
         <source>Data error.</source>
-        <translation>خطأ في البيانات.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1520"/>
         <source>File : %1
 </source>
-        <translation>ملف : %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1521"/>
         <source>Size : %1 bytes
 </source>
-        <translation>الحجم : %1 بايت</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1523"/>
         <source>Weather center %1</source>
-        <translation>مركز الطقس %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1524"/>
         <source>Model %1</source>
-        <translation>نموذج %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1525"/>
         <source>Grid %1</source>
-        <translation>الشبكة %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1529"/>
         <source>%1 dates:
 </source>
-        <translation>%1 التواريخ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1532"/>
         <source>    from %1
 </source>
-        <translation>    من %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1533"/>
         <source>    to %1
 </source>
-        <translation>    إلى %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1536"/>
         <source>Avalaible data :</source>
-        <translation>البيانات المتوفرة :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1569"/>
         <source>Grid : %1x%2=%3 points</source>
-        <translation>الشبكة : %1x%2=%3 نقاط</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1578"/>
         <source>Grid : %1 points</source>
-        <translation>الشبكة : %1 نقاط</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1590"/>
         <source>Area :</source>
-        <translation>المنطقة :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1596"/>
         <source>Reference date: %1</source>
-        <translation>تاريخ المرجع: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1601"/>
         <source>GRIB file information</source>
-        <translation>معلومات الملف GRIB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1678"/>
@@ -3131,18 +2526,17 @@ Unselected by left click in map holding shift at the same time</source>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1689"/>
         <source>Selected area: </source>
-        <translation>المنطقة المختارة:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1697"/>
         <source>(great circle dist:</source>
-        <translation>(مسافة الدائرة العظمى:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1699"/>
         <source>  init.dir: %1°</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation>  init.dir: %1°</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="2308"/>
@@ -3187,21 +2581,17 @@ Unselected by left click in map holding shift at the same time</source>
         <location filename="../../src/MapDrawer.cpp" line="888"/>
         <location filename="../../src/MapDrawer.cpp" line="897"/>
         <source>Data: </source>
-        <translation>البيانات:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MapDrawer.cpp" line="694"/>
         <source>Isobars MSL (hPa)</source>
-        <translation>الآيسوبارز مستوى سطح البحر MSL (هيكتوباسكال)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MapDrawer.cpp" line="696"/>
         <source>Isotherms 0°C</source>
-        <translation>خط تساوي الحرارة 0 درجة مئوية </translation>
-    </message>
-    <message>
-        <source>Isotherms 2m (°C)</source>
-        <translation type="obsolete">خط تساوي الحرارة 2م (درجة مئوية)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MapDrawer.cpp" line="700"/>
@@ -3217,22 +2607,22 @@ Unselected by left click in map holding shift at the same time</source>
     <message>
         <location filename="../../src/MapDrawer.cpp" line="702"/>
         <source>Theta-e</source>
-        <translation type="unfinished">Theta-e</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MapDrawer.cpp" line="704"/>
         <source>Temperature</source>
-        <translation>درجة الحرارة</translation>
+        <translation type="unfinished">טמפרטורה</translation>
     </message>
     <message>
         <location filename="../../src/MapDrawer.cpp" line="707"/>
         <source>Geopotential</source>
-        <translation>جهد أرضي كامن Geopotential</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MapDrawer.cpp" line="713"/>
         <source>Wind arrows</source>
-        <translation>الأسهم التي تشير للرياح</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MapDrawer.cpp" line="716"/>
@@ -3246,19 +2636,14 @@ Unselected by left click in map holding shift at the same time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>zyGrib</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation type="vanished">zyGrib</translation>
-    </message>
-    <message>
         <location filename="../../src/MapDrawer.cpp" line="887"/>
         <source>IAC fleetcode : Analyse</source>
-        <translation>IAC fleetcode : تحليل</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MapDrawer.cpp" line="896"/>
         <source>IAC fleetcode : Forecast</source>
-        <translation>IAC fleetcode : تنبؤ</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3266,735 +2651,33 @@ Unselected by left click in map holding shift at the same time</source>
     <message>
         <location filename="../../src/MenuBar.cpp" line="67"/>
         <source>File</source>
-        <translation>ملف</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="70"/>
         <source>Open</source>
-        <translation>فتح</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="70"/>
         <source>Ctrl+O</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation>Ctrl+O</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="71"/>
         <source>Open a GRIB file</source>
-        <translation>فتح ملف GRIB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="73"/>
         <location filename="../../src/MenuBar.cpp" line="74"/>
         <source>Close</source>
-        <translation>غلق</translation>
+        <translation>סגור</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="73"/>
         <source>Ctrl+W</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation>Ctrl+W</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="77"/>
-        <source>Open a new xyGrib instance</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="80"/>
-        <source>Download GRIB</source>
-        <translation>تنزيل GRIB</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="80"/>
-        <source>Ctrl+D</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation>Ctrl+D</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="81"/>
-        <source>Download</source>
-        <translation>تنزيل</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="83"/>
-        <source>GRIB server status</source>
-        <translation>حالة سيرفر GRIB</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="83"/>
-        <source>Ctrl+R</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>Ctrl+R</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="84"/>
-        <source>GRIB file server status</source>
-        <translation>حالة سيرفر ملفات GRIB</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="87"/>
-        <source>IAC fleetcode NOAA</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>IAC fleetcode NOAA</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="87"/>
-        <source>Ctrl+L</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>Ctrl+L</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="88"/>
-        <source>Download current IAC file (fleetcode) from NOAA - Analyse or Forecast +24h - Europe</source>
-        <translation>تنزيل الملف IAC (رمز الأسطول) من NOAA- تحليل أو توقعات الطقس + 24 ساعة - أوروبا</translation>
-    </message>
-    <message>
-        <source>Meteoblue</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation type="vanished">Meteoblue</translation>
-    </message>
-    <message>
-        <source>Fast interpolation</source>
-        <translation type="vanished">إدخال سريع</translation>
-    </message>
-    <message>
-        <source>Use a faster but a little less accurate interpolation</source>
-        <translation type="vanished">استخدم إدخال أسرع لكن أقل دقة بقليل</translation>
-    </message>
-    <message>
-        <source>Load Meteoblue file : Swiss</source>
-        <translation type="vanished">تحميل الملف Meteoblue : سويسرا</translation>
-    </message>
-    <message>
-        <source>Ctrl+B</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation type="vanished">Ctrl+B</translation>
-    </message>
-    <message>
-        <source>Download Meteoblue file (Swiss)</source>
-        <translation type="vanished">تنزيل الملف Meteoblue (سويسرا)</translation>
-    </message>
-    <message>
-        <source>Show area : Swiss</source>
-        <translation type="vanished">عرض المنطقة : سويسرا</translation>
-    </message>
-    <message>
-        <source>Show Meteoblue area (Swiss)</source>
-        <translation type="vanished">عرض منطقة ال Meteoblue (سويسرا)</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="92"/>
-        <source>File information</source>
-        <translation>معلومات الملف</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="92"/>
-        <source>Ctrl+I</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>Ctrl+I</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="93"/>
-        <source>GRIB file information</source>
-        <translation>معلومات الملف GRIB</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="96"/>
-        <source>Create animation</source>
-        <translation>إنشار صور متحركة</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="96"/>
-        <source>Ctrl+A</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>Ctrl+A</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="97"/>
-        <source>Create animation with GRIB data</source>
-        <translation>إنشاء صور متحركة مع بيانات GRIB</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="99"/>
-        <source>Save current image</source>
-        <translation>حفظ الصورة الحالية</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="99"/>
-        <source>Ctrl+S</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>Ctrl+S</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="102"/>
-        <source>Quit</source>
-        <translation>خروج</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="102"/>
-        <source>Ctrl+Q</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>Ctrl+Q</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="103"/>
-        <source>Bye</source>
-        <translation>مع السلامة</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="158"/>
-        <source>Altitude</source>
-        <translation>ارتفاع</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="161"/>
-        <source>Sea level</source>
-        <translation>سطح البحر</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="162"/>
-        <source>Surface</source>
-        <translation>السطح</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="163"/>
-        <source>Sigma 995</source>
-        <translation>سيجما 995</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="164"/>
-        <source>1 m above ground</source>
-        <translation>1 متر فوق سطح الأرض</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="165"/>
-        <source>2 m above ground</source>
-        <translation>2 متر فوق سطح الأرض</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="166"/>
-        <source>3 m above ground</source>
-        <translation>3 متر فوق سطح الأرض</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="167"/>
-        <source>10 m above ground</source>
-        <translation>10 متر فوق سطح الأرض</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="168"/>
-        <source>925 hPa (≈ 760 m)</source>
-        <translation>200 هيكتوباسكال (≈ 11800 م) {925 ?} {760 ?}</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="169"/>
-        <source>850 hPa (≈ 1460 m)</source>
-        <translation>850 هيكتوباسكال (≈ 1460 م)</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="170"/>
-        <source>700 hPa (≈ 3000 m)</source>
-        <translation>700 هيكتوباسكال (≈ 3000 م)</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="172"/>
-        <source>500 hPa (≈ 5600 m)</source>
-        <translation>500 هيكتوباسكال (≈ 5600 م)</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="174"/>
-        <source>300 hPa (≈ 9200 m)</source>
-        <translation>300 هيكتوباسكال (≈ 9200 م)</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="175"/>
-        <source>200 hPa (≈ 11800 m)</source>
-        <translation>200 هيكتوباسكال (≈ 11800 م)</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="176"/>
-        <source>Atmosphere</source>
-        <translation>الغلاف الجوي</translation>
-    </message>
-    <message>
-        <source>Geopotential altitude 925 hpa</source>
-        <translation type="obsolete">ارتفاع الجهد الأرضي الكامن 200 هيكتوباسكال {925 ?}</translation>
-    </message>
-    <message>
-        <source>Geopotential altitude 850 hpa</source>
-        <translation type="obsolete">ارتفاع الجهد الأرضي الكامن 850 هيكتوباسكال</translation>
-    </message>
-    <message>
-        <source>Geopotential altitude 700 hpa</source>
-        <translation type="obsolete">ارتفاع الجهد الأرضي الكامن 700 هيكتوباسكال</translation>
-    </message>
-    <message>
-        <source>Geopotential altitude 500 hpa</source>
-        <translation type="obsolete">ارتفاع الجهد الأرضي الكامن 500 هيكتوباسكال</translation>
-    </message>
-    <message>
-        <source>Geopotential altitude 300 hpa</source>
-        <translation type="obsolete">ارتفاع الجهد الأرضي الكامن 300 هيكتوباسكال</translation>
-    </message>
-    <message>
-        <source>Geopotential altitude 200 hpa</source>
-        <translation type="obsolete">ارتفاع الجهد الأرضي الكامن 200 هيكتوباسكال</translation>
-    </message>
-    <message>
-        <source>Spacing (m)</source>
-        <translation type="obsolete">المسافة البينية (م)</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="185"/>
-        <location filename="../../src/MenuBar.cpp" line="226"/>
-        <location filename="../../src/MenuBar.cpp" line="247"/>
-        <location filename="../../src/MenuBar.cpp" line="271"/>
-        <source>1</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>1</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="186"/>
-        <location filename="../../src/MenuBar.cpp" line="227"/>
-        <location filename="../../src/MenuBar.cpp" line="248"/>
-        <location filename="../../src/MenuBar.cpp" line="272"/>
-        <source>2</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>2</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="189"/>
-        <location filename="../../src/MenuBar.cpp" line="228"/>
-        <location filename="../../src/MenuBar.cpp" line="249"/>
-        <location filename="../../src/MenuBar.cpp" line="273"/>
-        <source>5</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>5</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="192"/>
-        <location filename="../../src/MenuBar.cpp" line="202"/>
-        <location filename="../../src/MenuBar.cpp" line="229"/>
-        <location filename="../../src/MenuBar.cpp" line="250"/>
-        <location filename="../../src/MenuBar.cpp" line="274"/>
-        <source>10</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>10</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="203"/>
-        <location filename="../../src/MenuBar.cpp" line="251"/>
-        <source>20</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>20</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="204"/>
-        <location filename="../../src/MenuBar.cpp" line="252"/>
-        <source>50</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>50</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="205"/>
-        <location filename="../../src/MenuBar.cpp" line="253"/>
-        <source>100</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>100</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="255"/>
-        <source>Geopotentials labels</source>
-        <translation>علامات الجهد الأرضي الكامن</translation>
-    </message>
-    <message>
-        <source>Data</source>
-        <translation type="obsolete">البيانات</translation>
-    </message>
-    <message>
-        <source>Wind map</source>
-        <translation type="obsolete">خريطة الرياح</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="360"/>
-        <source>Waves arrows</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="362"/>
-        <source>Maximum wave</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="363"/>
-        <source>Swell</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="364"/>
-        <source>Wind wave</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="365"/>
-        <source>Primary wave</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="366"/>
-        <source>Secondary wave</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="373"/>
-        <source>Current map</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="477"/>
-        <source>SkewT-LogP diagram</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Precipitation map</source>
-        <translation type="obsolete">خريطة الهطول</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="111"/>
-        <source>Cloud cover</source>
-        <translation>تغطية الغيوم</translation>
-    </message>
-    <message>
-        <source>Relative humidity map</source>
-        <translation type="obsolete">خريطة نسبة الرطوبة</translation>
-    </message>
-    <message>
-        <source>Temperature map</source>
-        <translation type="obsolete">خريطة درجة الحرارة</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="114"/>
-        <source>Gap temperature-dew point</source>
-        <translation>الفجوة بين درجة الحرارة ودرجة الندى</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="115"/>
-        <source>Snow (snowfall possible)</source>
-        <translation>الثلوج (إمكانية تساقط الثلوج)</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="116"/>
-        <source>Snow (depth)</source>
-        <translation>ثلوج (العمق)</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="117"/>
-        <source>Frozen rain (rainfall possible)</source>
-        <translation>تجمد المطر (إمكانية هطول الأمطار)</translation>
-    </message>
-    <message>
-        <source>CAPE (surface)</source>
-        <translation type="obsolete">CAPE (السطح)</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="357"/>
-        <source>Significant wave height</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="358"/>
-        <source>Maximum wave height</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="359"/>
-        <source>Whitecap probability</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="125"/>
-        <source>Wind arrows</source>
-        <translation>الأسهم التي تشير للرياح</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="125"/>
-        <source>Ctrl+J</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="126"/>
-        <source>Show wind arrows</source>
-        <translation>عرض الأسهم التي تشير للرياح</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="374"/>
-        <source>Current arrows</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="375"/>
-        <source>Show current arrows</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="180"/>
-        <source>Isobars (MSL)</source>
-        <translation>الآيسوبارز (مستوى سطح البحر)</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="194"/>
-        <source>Pressure Low High</source>
-        <translation>الضغط منخفض عالي</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="195"/>
-        <source>Show Low (L) and Hight (H) pressure points</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="146"/>
-        <source>Thin wind arrows</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="322"/>
-        <source>METAR: show stations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="322"/>
-        <source>Ctrl+K</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="322"/>
-        <source>Display METAR stations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="323"/>
-        <source>METAR: select stations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="323"/>
-        <source>Select METAR stations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="394"/>
-        <source>Internet parameters</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Afficher les points de pression mini et maxi</source>
-        <translatorcomment>French Language but translated into Arabic</translatorcomment>
-        <translation type="obsolete">عرض نقاط الضغط الصغرى والعظمى</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="113"/>
-        <location filename="../../src/MenuBar.cpp" line="128"/>
-        <source>Temperature</source>
-        <translation>درجة الحرارة</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="128"/>
-        <source>Ctrl+T</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>Ctrl+T</translation>
-    </message>
-    <message>
-        <source>Isotherms (temperature 0°C)</source>
-        <translation type="obsolete">خط تساوي الحرارة (درجة الحرارة 0 درجة مئوية)</translation>
-    </message>
-    <message>
-        <source>Isotherms (altitude 2m)</source>
-        <translation type="obsolete">خط تساوي الحرارة (ارتفاع 2م)</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="132"/>
-        <location filename="../../src/MenuBar.cpp" line="392"/>
-        <source>Options</source>
-        <translation>خيارات</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="182"/>
-        <source>Isobars spacing (hPa)</source>
-        <translation>المسافات البينية بين الآيسوبارز (هيكتوباسكال)</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="187"/>
-        <source>3</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>3</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="188"/>
-        <source>4</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>4</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="190"/>
-        <source>6</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>6</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="191"/>
-        <source>8</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>8</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="199"/>
-        <source>Isotherms 0°C spacing (m)</source>
-        <translation>خط تساوي الحرارة 0 درجة مئوية المسافات البينية (م)</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="206"/>
-        <source>200</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>200</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="207"/>
-        <source>500</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>500</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="208"/>
-        <source>1000</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>1000</translation>
-    </message>
-    <message>
-        <source>Isotherms 2m spacing (°C)</source>
-        <translation type="obsolete">خط تساوي الحرارة 2م المسافات البينية (درجة مئوية)</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="193"/>
-        <source>Isobars labels</source>
-        <translation>علامات الآيسوبارز</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="209"/>
-        <source>Isotherms 0°C labels</source>
-        <translation>علامات خط تساوي الحرارة 0 درجة مئوية </translation>
-    </message>
-    <message>
-        <source>Isotherms 2m labels</source>
-        <translation type="obsolete">علامات خط تساوي الحرارة 2م</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="137"/>
-        <source>Duplicate first cumulative record</source>
-        <translation>سجل تراكمي أولي مكرر</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="137"/>
-        <source>NOAA-GFS</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="354"/>
-        <source>Sea</source>
-        <translation>بحر</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="370"/>
-        <source>FNMOC-WW3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="370"/>
-        <source>Duplicate missing wave records</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="139"/>
-        <source>Numerical data interpolation</source>
-        <translation>إدخال بيانات رقمية</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="141"/>
-        <source>Smooth colors</source>
-        <translation>ألوان سلسة</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="141"/>
-        <source>Ctrl+F</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>Ctrl+F</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="144"/>
-        <source>Wind barbs</source>
-        <translation>رموز الرياح</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="145"/>
-        <source>Show barbs on wind arrows</source>
-        <translation>عرض الرموز على الأسهم التي تشير للرياح</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="148"/>
-        <source>Wind arrows on Grib grid</source>
-        <translation>الأسهم التي تشير للرياح على شبكة GRIB</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="377"/>
-        <source>Current arrows on Grib grid</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="153"/>
-        <source>Show Grib grid</source>
-        <translation>عرض شبكة GRIB</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="154"/>
-        <source>Ctrl+X</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>Ctrl+X</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="154"/>
-        <source>Show GRIB grid</source>
-        <translatorcomment>Repeated</translatorcomment>
-        <translation>عرض شبكة GRIB</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="155"/>
-        <location filename="../../src/MenuBar.cpp" line="156"/>
-        <source>Show color scale</source>
-        <translation>عرض درجات اللون</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="156"/>
-        <source>Ctrl+Y</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>Ctrl+Y</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="395"/>
-        <location filename="../../src/MenuBar.cpp" line="396"/>
-        <source>Show values panel</source>
-        <translation>عرض شريط القيم</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="396"/>
-        <source>Ctrl+V</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>Ctrl+V</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="279"/>
-        <source>Earth</source>
-        <translation>الأرض</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="76"/>
@@ -4007,6 +2690,111 @@ Unselected by left click in map holding shift at the same time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../src/MenuBar.cpp" line="77"/>
+        <source>Open a new xyGrib instance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="80"/>
+        <source>Download GRIB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="80"/>
+        <source>Ctrl+D</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="81"/>
+        <source>Download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="83"/>
+        <source>GRIB server status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="83"/>
+        <source>Ctrl+R</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="84"/>
+        <source>GRIB file server status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="87"/>
+        <source>IAC fleetcode NOAA</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="87"/>
+        <source>Ctrl+L</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="88"/>
+        <source>Download current IAC file (fleetcode) from NOAA - Analyse or Forecast +24h - Europe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="92"/>
+        <source>File information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="92"/>
+        <source>Ctrl+I</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="93"/>
+        <source>GRIB file information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="96"/>
+        <source>Create animation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="96"/>
+        <source>Ctrl+A</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="97"/>
+        <source>Create animation with GRIB data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="99"/>
+        <source>Save current image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="99"/>
+        <source>Ctrl+S</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="102"/>
+        <source>Quit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="102"/>
+        <source>Ctrl+Q</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="103"/>
+        <source>Bye</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/MenuBar.cpp" line="106"/>
         <source>Weather map</source>
         <translation type="unfinished"></translation>
@@ -4014,16 +2802,47 @@ Unselected by left click in map holding shift at the same time</source>
     <message>
         <location filename="../../src/MenuBar.cpp" line="109"/>
         <source>Wind</source>
-        <translation type="unfinished">الرياح</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="110"/>
         <source>Precipitation</source>
-        <translation type="unfinished">الهطول</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="111"/>
+        <source>Cloud cover</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="112"/>
         <source>Relative humidity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="113"/>
+        <location filename="../../src/MenuBar.cpp" line="128"/>
+        <source>Temperature</source>
+        <translation type="unfinished">טמפרטורה</translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="114"/>
+        <source>Gap temperature-dew point</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="115"/>
+        <source>Snow (snowfall possible)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="116"/>
+        <source>Snow (depth)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="117"/>
+        <source>Frozen rain (rainfall possible)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4044,11 +2863,82 @@ Unselected by left click in map holding shift at the same time</source>
     <message>
         <location filename="../../src/MenuBar.cpp" line="122"/>
         <source>Theta-e</source>
-        <translation type="unfinished">Theta-e</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="122"/>
         <source>Equivalent potential temperature</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="125"/>
+        <source>Wind arrows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="125"/>
+        <source>Ctrl+J</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="126"/>
+        <source>Show wind arrows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="128"/>
+        <source>Ctrl+T</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="132"/>
+        <location filename="../../src/MenuBar.cpp" line="392"/>
+        <source>Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="137"/>
+        <source>NOAA-GFS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="137"/>
+        <source>Duplicate first cumulative record</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="139"/>
+        <source>Numerical data interpolation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="141"/>
+        <source>Smooth colors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="141"/>
+        <source>Ctrl+F</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="144"/>
+        <source>Wind barbs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="145"/>
+        <source>Show barbs on wind arrows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="146"/>
+        <source>Thin wind arrows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="148"/>
+        <source>Wind arrows on Grib grid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4062,14 +2952,115 @@ Unselected by left click in map holding shift at the same time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../src/MenuBar.cpp" line="153"/>
+        <source>Show Grib grid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="154"/>
+        <source>Ctrl+X</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="154"/>
+        <source>Show GRIB grid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="155"/>
+        <location filename="../../src/MenuBar.cpp" line="156"/>
+        <source>Show color scale</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="156"/>
+        <source>Ctrl+Y</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="158"/>
+        <source>Altitude</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="161"/>
+        <source>Sea level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="162"/>
+        <source>Surface</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="163"/>
+        <source>Sigma 995</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="164"/>
+        <source>1 m above ground</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="165"/>
+        <source>2 m above ground</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="166"/>
+        <source>3 m above ground</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="167"/>
+        <source>10 m above ground</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="168"/>
+        <source>925 hPa (≈ 760 m)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="169"/>
+        <source>850 hPa (≈ 1460 m)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="170"/>
+        <source>700 hPa (≈ 3000 m)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/MenuBar.cpp" line="171"/>
         <source>600 hPa (≈ 4200 m)</source>
-        <translation type="unfinished">200 هيكتوباسكال (≈ 11800 م) {600 ?} {4200 ?}</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="172"/>
+        <source>500 hPa (≈ 5600 m)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="173"/>
         <source>400 hPa (≈ 7200 m)</source>
-        <translation type="unfinished">200 هيكتوباسكال (≈ 11800 م) {400 ?} {7200 ?}</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="174"/>
+        <source>300 hPa (≈ 9200 m)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="175"/>
+        <source>200 hPa (≈ 11800 m)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="176"/>
+        <source>Atmosphere</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="178"/>
@@ -4077,9 +3068,130 @@ Unselected by left click in map holding shift at the same time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../src/MenuBar.cpp" line="180"/>
+        <source>Isobars (MSL)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="182"/>
+        <source>Isobars spacing (hPa)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="185"/>
+        <location filename="../../src/MenuBar.cpp" line="226"/>
+        <location filename="../../src/MenuBar.cpp" line="247"/>
+        <location filename="../../src/MenuBar.cpp" line="271"/>
+        <source>1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="186"/>
+        <location filename="../../src/MenuBar.cpp" line="227"/>
+        <location filename="../../src/MenuBar.cpp" line="248"/>
+        <location filename="../../src/MenuBar.cpp" line="272"/>
+        <source>2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="187"/>
+        <source>3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="188"/>
+        <source>4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="189"/>
+        <location filename="../../src/MenuBar.cpp" line="228"/>
+        <location filename="../../src/MenuBar.cpp" line="249"/>
+        <location filename="../../src/MenuBar.cpp" line="273"/>
+        <source>5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="190"/>
+        <source>6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="191"/>
+        <source>8</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="192"/>
+        <location filename="../../src/MenuBar.cpp" line="202"/>
+        <location filename="../../src/MenuBar.cpp" line="229"/>
+        <location filename="../../src/MenuBar.cpp" line="250"/>
+        <location filename="../../src/MenuBar.cpp" line="274"/>
+        <source>10</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="193"/>
+        <source>Isobars labels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="194"/>
+        <source>Pressure Low High</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="195"/>
+        <source>Show Low (L) and Hight (H) pressure points</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/MenuBar.cpp" line="198"/>
         <source>Isotherms 0°C</source>
-        <translation type="unfinished">خط تساوي الحرارة 0 درجة مئوية </translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="199"/>
+        <source>Isotherms 0°C spacing (m)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="203"/>
+        <location filename="../../src/MenuBar.cpp" line="251"/>
+        <source>20</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="204"/>
+        <location filename="../../src/MenuBar.cpp" line="252"/>
+        <source>50</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="205"/>
+        <location filename="../../src/MenuBar.cpp" line="253"/>
+        <source>100</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="206"/>
+        <source>200</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="207"/>
+        <source>500</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="208"/>
+        <source>1000</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="209"/>
+        <source>Isotherms 0°C labels</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="212"/>
@@ -4160,11 +3272,16 @@ Unselected by left click in map holding shift at the same time</source>
     <message>
         <location filename="../../src/MenuBar.cpp" line="234"/>
         <source>Geopotential altitude</source>
-        <translation type="unfinished">ارتفاع الجهد الأرضي الكامن</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="245"/>
         <source>Geopotentials spacing (m)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="255"/>
+        <source>Geopotentials labels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4183,14 +3300,19 @@ Unselected by left click in map holding shift at the same time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../src/MenuBar.cpp" line="279"/>
+        <source>Earth</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/MenuBar.cpp" line="281"/>
         <source>Map quality</source>
-        <translation>جودة الخريطة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="283"/>
         <source>Resolution 1 (25 km)</source>
-        <translation>الوضوح 1 (25كم)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="283"/>
@@ -4199,69 +3321,67 @@ Unselected by left click in map holding shift at the same time</source>
         <location filename="../../src/MenuBar.cpp" line="286"/>
         <location filename="../../src/MenuBar.cpp" line="287"/>
         <source>Niveau de détail de la carte</source>
-        <translatorcomment>French Language but translated into Arabic</translatorcomment>
-        <translation>مستوى تفاصيل الخريطة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="284"/>
         <source>Resolution 2 (5 km)</source>
-        <translation>الوضوح 2 (5كم)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="285"/>
         <source>Resolution 3 (1 km)</source>
-        <translation>الوضوح 3 (1كم)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="286"/>
         <source>Resolution 4 (200 m)</source>
-        <translation>الوضوح 4 (200م)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="287"/>
         <source>Resolution 5 (100 m)</source>
-        <translation>الوضوح 5 (100م)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="290"/>
         <source>Projection</source>
-        <translation>إسقاط</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="292"/>
         <source>ZyGrib</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>ZyGrib</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="293"/>
         <source>Mercator</source>
-        <translation>ميركاتور</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="294"/>
         <source>Miller</source>
-        <translation>ميلر</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="295"/>
         <source>Central Cylindric</source>
-        <translation>وسط اسطواني (سنترال سيلندريكال)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="296"/>
         <source>Equal cylindric</source>
-        <translation>اسطواني متساو</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="300"/>
         <source>Great circle distance</source>
-        <translation>إنشاء مسافة دائرية</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="301"/>
         <source>Longitudes-latitudes grid</source>
-        <translation>شبكة خطوط الطول ودوائر العرض</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="302"/>
@@ -4276,89 +3396,108 @@ Unselected by left click in map holding shift at the same time</source>
     <message>
         <location filename="../../src/MenuBar.cpp" line="306"/>
         <source>Boundaries</source>
-        <translation>الحدود</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="306"/>
         <source>Show boundaries</source>
-        <translation>عرض الحدود</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="307"/>
         <source>Rivers</source>
-        <translation>الأنهار </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="307"/>
         <source>Show rivers</source>
-        <translation>عرض الأنهار</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="308"/>
         <source>Countries names</source>
-        <translation>أسماء الدول</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="308"/>
         <source>Display countries names</source>
-        <translation>عرض أسماء الدول</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="310"/>
         <source>Cities names</source>
-        <translation>أسماء المدن</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="312"/>
         <location filename="../../src/MenuBar.cpp" line="361"/>
         <source>None</source>
-        <translation>لا يوجد</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="313"/>
         <source>Level 1</source>
-        <translation>المستوى 1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="314"/>
         <source>Level 2</source>
-        <translation>المستوى 2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="315"/>
         <source>Level 3</source>
-        <translation>المستوى 3</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="316"/>
         <source>Level 4</source>
-        <translation>المستوى 4</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="317"/>
         <source>Level 5</source>
-        <translation>المستوى 5</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="319"/>
         <source>Find a city...</source>
-        <translation>جد مدينة...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="320"/>
         <source>Point of interest</source>
-        <translation>نقطة اهتمام POI</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="320"/>
         <source>Ctrl+N</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>Ctrl+N</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="320"/>
         <source>Display Points of interest</source>
-        <translation>عرض نقاط الاهتمام POIs</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="322"/>
+        <source>METAR: show stations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="322"/>
+        <source>Ctrl+K</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="322"/>
+        <source>Display METAR stations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="323"/>
+        <source>METAR: select stations</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="323"/>
@@ -4366,66 +3505,67 @@ Unselected by left click in map holding shift at the same time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../src/MenuBar.cpp" line="323"/>
+        <source>Select METAR stations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/MenuBar.cpp" line="327"/>
         <location filename="../../src/MenuBar.cpp" line="328"/>
         <source>Increase map scale</source>
-        <translation>زيادة مقياس رسم الخريطة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="327"/>
         <source>+</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>+</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="330"/>
         <location filename="../../src/MenuBar.cpp" line="331"/>
         <source>Reduce map scale</source>
-        <translation>خفض مقياس رسم الخريطة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="330"/>
         <source>-</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>-</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="333"/>
         <source>Zoom (selected zone or Grib file)</source>
-        <translation>تكبير (اختر منطقة أو ملف GRIB)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="333"/>
         <source>Ctrl+Z</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>Ctrl+Z</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="334"/>
         <source>Zoom on the selected zone or on the Grib file area</source>
-        <translation>تكبير المنطقة المختارة أو منطقة الملف GRIB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="337"/>
         <location filename="../../src/MenuBar.cpp" line="338"/>
         <source>Show whole map</source>
-        <translation>عرض كل الخريطة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="337"/>
         <source>Ctrl+M</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>Ctrl+M</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="341"/>
         <source>Left</source>
-        <translation>يسار</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="341"/>
         <source>LEFT</source>
-        <translation>يسار</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="342"/>
@@ -4433,37 +3573,194 @@ Unselected by left click in map holding shift at the same time</source>
         <location filename="../../src/MenuBar.cpp" line="348"/>
         <location filename="../../src/MenuBar.cpp" line="351"/>
         <source>Move</source>
-        <translation>تحريك</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="344"/>
         <source>Right</source>
-        <translation>يمين</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="344"/>
         <source>RIGHT</source>
-        <translation>يمين</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="347"/>
         <source>Top</source>
-        <translation>أعلى</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="347"/>
         <source>UP</source>
-        <translation>أعلى</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="350"/>
         <source>Down</source>
-        <translation>أسفل</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="350"/>
         <source>DOWN</source>
-        <translation>أسفل</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="354"/>
+        <source>Sea</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="357"/>
+        <source>Significant wave height</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="358"/>
+        <source>Maximum wave height</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="359"/>
+        <source>Whitecap probability</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="360"/>
+        <source>Waves arrows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="362"/>
+        <source>Maximum wave</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="363"/>
+        <source>Swell</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="364"/>
+        <source>Wind wave</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="365"/>
+        <source>Primary wave</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="366"/>
+        <source>Secondary wave</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="370"/>
+        <source>FNMOC-WW3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="370"/>
+        <source>Duplicate missing wave records</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="373"/>
+        <source>Current map</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="374"/>
+        <source>Current arrows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="375"/>
+        <source>Show current arrows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="377"/>
+        <source>Current arrows on Grib grid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="394"/>
+        <source>Internet parameters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="395"/>
+        <location filename="../../src/MenuBar.cpp" line="396"/>
+        <source>Show values panel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="396"/>
+        <source>Ctrl+V</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="398"/>
+        <source>Angle converter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="400"/>
+        <source>Date selector</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="402"/>
+        <source>Units</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="402"/>
+        <source>Ctrl+U</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="404"/>
+        <source>Fonts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="404"/>
+        <source>Ctrl+E</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="407"/>
+        <source>Dark Skin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="409"/>
+        <source>Graphical parameters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="409"/>
+        <source>Ctrl+G</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="414"/>
+        <source>Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="417"/>
+        <location filename="../../src/MenuBar.cpp" line="420"/>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="420"/>
+        <source>Ctrl+H</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="422"/>
@@ -4476,120 +3773,44 @@ Unselected by left click in map holding shift at the same time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Proxy Internet</source>
-        <translation type="obsolete">أنترنت بروكسي</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="398"/>
-        <source>Angle converter</source>
-        <translation>تحويل الزاوية</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="400"/>
-        <source>Date selector</source>
-        <translation>اختيار التاريخ</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="402"/>
-        <source>Units</source>
-        <translation>الوحدات</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="402"/>
-        <source>Ctrl+U</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>Ctrl+U</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="404"/>
-        <source>Fonts</source>
-        <translation>أنواع الخطوط</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="404"/>
-        <source>Ctrl+E</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>Ctrl+E</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="407"/>
-        <source>Dark Skin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="409"/>
-        <source>Graphical parameters</source>
-        <translation>باراميتر بياني</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="409"/>
-        <source>Ctrl+G</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>Ctrl+G</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="414"/>
-        <source>Language</source>
-        <translation>اللغة</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="417"/>
-        <location filename="../../src/MenuBar.cpp" line="420"/>
-        <source>Help</source>
-        <translation>للمساعدة</translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="420"/>
-        <source>Ctrl+H</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>Ctrl+H</translation>
-    </message>
-    <message>
-        <source>About zyGrib</source>
-        <translation type="vanished">نبذة عن zyGrib</translation>
-    </message>
-    <message>
         <location filename="../../src/MenuBar.cpp" line="424"/>
         <source>About QT</source>
-        <translation>نبذة عن QT</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="439"/>
         <source>Last forecast [page up]</source>
-        <translation>آخر عملية تنبؤ (PgUp)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="439"/>
         <source>PgUp</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>PgUp</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="441"/>
         <source>Next forecast [page down]</source>
-        <translation>عملية التنبؤ التالية (PgDown)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="441"/>
         <source>PgDown</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>PgDown</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="475"/>
         <source>Meteotable</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>Meteotable</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="476"/>
         <source>Mark Point Of Interest</source>
-        <translation>وضع علامة على نقطة الاهتمام</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Plot Data</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation type="obsolete">Plot Data</translation>
+        <location filename="../../src/MenuBar.cpp" line="477"/>
+        <source>SkewT-LogP diagram</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4600,99 +3821,92 @@ Unselected by left click in map holding shift at the same time</source>
         <location filename="../../src/MeteoTable.cpp" line="132"/>
         <location filename="../../src/MeteoTable.cpp" line="258"/>
         <source>Error</source>
-        <translation>خطأ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTable.cpp" line="118"/>
         <source>Can&apos;t create Meteotable:
 
 No GRIB file opened.</source>
-        <translation>لا يمكن إنشاء Meteotable:
-
-لا يوجد ملف GRIB مفتوح.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTable.cpp" line="125"/>
         <source>Can&apos;t create Meteotable
 
 GRIB area undefined.</source>
-        <translation>لا يمكن إنشاء Meteotable:
-
-منطقة ملف GRIB غير معروفة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTable.cpp" line="132"/>
         <source>Can&apos;t create Meteotable:
 
 Point outside GRIB area.</source>
-        <translation>لا يمكن إنشاء Meteotable:
-
-النقطة تقع خارج منطقة GRIB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTable.cpp" line="149"/>
         <source>Location: </source>
-        <translation>الموقع:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTable.cpp" line="153"/>
         <source>Location: &lt;b&gt;</source>
-        <translation>الموقع : &lt;b&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTable.cpp" line="166"/>
         <source>Reference date: </source>
-        <translation>تاريخ المرجع:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTable.cpp" line="174"/>
         <source>Close</source>
-        <translation>غلق</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTable.cpp" line="175"/>
         <source>Options</source>
-        <translation>خيارات</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTable.cpp" line="176"/>
         <source>Save</source>
-        <translation>حفظ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTable.cpp" line="245"/>
         <source>Save SYLK file</source>
-        <translation>حفظ الملف SYLK</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTable.cpp" line="258"/>
         <source>Can&apos;t write file.</source>
-        <translation>لا يمكن نسخ الملف.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTable.cpp" line="425"/>
         <location filename="../../src/MeteoTable.cpp" line="430"/>
         <source>Wind</source>
-        <translation>الرياح</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTable.cpp" line="425"/>
         <location filename="../../src/MeteoTable.cpp" line="458"/>
         <source>speed</source>
-        <translation>السرعة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTable.cpp" line="430"/>
         <location filename="../../src/MeteoTable.cpp" line="463"/>
         <source>direction</source>
-        <translation>الاتجاه</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTable.cpp" line="432"/>
         <location filename="../../src/MeteoTable.cpp" line="465"/>
         <source>°</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>°</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTable.cpp" line="458"/>
@@ -4721,35 +3935,33 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="475"/>
         <source>Isotherm 0°C</source>
-        <translation>خط تساوي الحرارة 0 درجة مئوية </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="497"/>
         <source>Geopotential altitude</source>
-        <translation>ارتفاع الجهد الأرضي الكامن</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="520"/>
         <source>Pressure</source>
-        <translation>الضغط</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="543"/>
         <source>Wind</source>
-        <translation>الرياح</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="555"/>
         <location filename="../../src/MeteoTableWidget.cpp" line="590"/>
         <source> °</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation> °</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="560"/>
         <source> Bf</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>Bft</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="578"/>
@@ -4759,60 +3971,58 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="607"/>
         <source>Wind gust</source>
-        <translation>هبوب الرياح</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="631"/>
         <source>Relative humidity</source>
-        <translation>نسبة الرطوبة </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="660"/>
         <source>Theta-e</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>Theta-e</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="662"/>
         <source>Temperature</source>
-        <translation>درجة الحرارة</translation>
+        <translation type="unfinished">טמפרטורה</translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="664"/>
         <source>Temp. min</source>
-        <translation>درجة الحرارة الصغرى</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="666"/>
         <source>Temp. max</source>
-        <translation>درجة الحرارة العظمى</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="668"/>
         <source>Temp. pot</source>
-        <translation>درجة الحرارة المتوقعة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="704"/>
         <source>Gap temp-dew point</source>
-        <translation>الفجوة بين درجة الحرارة ودرجة الندى</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="735"/>
         <source>Dew point</source>
-        <translation>درجة الندى</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="759"/>
         <source>CAPE (surface)</source>
-        <translation>CAPE (السطح)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="768"/>
         <location filename="../../src/MeteoTableWidget.cpp" line="792"/>
         <source>J/kg</source>
-        <translatorcomment>No Translation or I know what J stands for so I can give translation</translatorcomment>
-        <translation>J/kg</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="783"/>
@@ -4832,32 +4042,32 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="831"/>
         <source>Precipitation</source>
-        <translation>الهطول</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="840"/>
         <source>mm/h</source>
-        <translation>مللمتر/ساعة mm/h</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="855"/>
         <source>Cloud cover</source>
-        <translation>تغطية الغيوم</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="882"/>
         <source>Frozen rain possible</source>
-        <translation>إمكانية تجمد المطر</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="885"/>
         <source>Snowfall possible</source>
-        <translation>إمكانية تساقط الثلوج</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="917"/>
         <source>Snow</source>
-        <translation>ثلوج</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MeteoTableWidget.cpp" line="939"/>
@@ -4870,7 +4080,22 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/GUI/MeteotableOptionsDialog.ui" line="20"/>
         <source>Meteotable parameters</source>
-        <translation>باراميترز الأحوال الجوية</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/GUI/MeteotableOptionsDialog.ui" line="37"/>
+        <source>Cloud cover:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/GUI/MeteotableOptionsDialog.ui" line="66"/>
+        <source>Show wind in Beauforts:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/GUI/MeteotableOptionsDialog.ui" line="112"/>
+        <source>Show wind arrows:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/MeteotableOptionsDialog.ui" line="132"/>
@@ -4878,49 +4103,34 @@ Point outside GRIB area.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/GUI/MeteotableOptionsDialog.ui" line="216"/>
-        <source>Avalaible data</source>
-        <translation>البيانات المتوفرة</translation>
-    </message>
-    <message>
-        <location filename="../../src/GUI/MeteotableOptionsDialog.ui" line="241"/>
-        <source>-&gt;</source>
-        <translation>-&gt;</translation>
-    </message>
-    <message>
-        <location filename="../../src/GUI/MeteotableOptionsDialog.ui" line="248"/>
-        <source>&lt;-</source>
-        <translation>&lt;-</translation>
-    </message>
-    <message>
-        <location filename="../../src/GUI/MeteotableOptionsDialog.ui" line="276"/>
-        <source>Visible data</source>
-        <translation>البيانات المرئية</translation>
-    </message>
-    <message>
-        <location filename="../../src/GUI/MeteotableOptionsDialog.ui" line="37"/>
-        <source>Cloud cover:</source>
-        <translation>تغطية الغيوم:</translation>
-    </message>
-    <message>
-        <location filename="../../src/GUI/MeteotableOptionsDialog.ui" line="66"/>
-        <source>Show wind in Beauforts:</source>
-        <translation>عرض الرياح بمقياس بيوفورت</translation>
-    </message>
-    <message>
-        <location filename="../../src/GUI/MeteotableOptionsDialog.ui" line="112"/>
-        <source>Show wind arrows:</source>
-        <translation>عرض الأسهم التي تشير للرياح</translation>
-    </message>
-    <message>
         <location filename="../../src/GUI/MeteotableOptionsDialog.ui" line="171"/>
         <source>Ok</source>
-        <translation>موافق</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/MeteotableOptionsDialog.ui" line="178"/>
         <source>Cancel</source>
-        <translation>إلغاء</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/GUI/MeteotableOptionsDialog.ui" line="216"/>
+        <source>Avalaible data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/GUI/MeteotableOptionsDialog.ui" line="241"/>
+        <source>-&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/GUI/MeteotableOptionsDialog.ui" line="248"/>
+        <source>&lt;-</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/GUI/MeteotableOptionsDialog.ui" line="276"/>
+        <source>Visible data</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4928,7 +4138,7 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/map/POI.cpp" line="233"/>
         <source>Point of interest: </source>
-        <translation>نقطة اهتمام POI</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4936,42 +4146,39 @@ Point outside GRIB area.</source>
     <message>
         <location filename="../../src/map/POI_Editor.cpp" line="37"/>
         <source>New Point of interest</source>
-        <translation>نقطة اهتمام جديدة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/map/POI_Editor.cpp" line="38"/>
         <source>Point %1</source>
-        <translation>النقطة %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/map/POI_Editor.cpp" line="52"/>
         <source>Point of interest: </source>
-        <translation>نقطة اهتمام POI</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/map/POI_Editor.cpp" line="103"/>
         <source>POI</source>
-        <translatorcomment>To be left as abbreviation here</translatorcomment>
-        <translation>POI</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/map/POI_Editor.cpp" line="103"/>
         <source>Error: name is required.</source>
-        <translation>خطا: يجب إدخال الاسم.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/map/POI_Editor.cpp" line="143"/>
         <source>Delete POI: %1</source>
-        <translation>حذف نقطة اهتمام POI: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/map/POI_Editor.cpp" line="144"/>
         <source>The destruction of a point of interest is definitive.
 
 Are you sure ?</source>
-        <translation>إلغاء نقطة الاهتمام بشكل نهائي.
-
-هل أنت متأكد؟</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4979,52 +4186,52 @@ Are you sure ?</source>
     <message>
         <location filename="../../src/GUI/PoiEditorDialog.ui" line="13"/>
         <source>Point of interest</source>
-        <translation>نقطة اهتمام POI</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/PoiEditorDialog.ui" line="37"/>
         <source>Name</source>
-        <translation>الاسم</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/PoiEditorDialog.ui" line="90"/>
         <source>Location</source>
-        <translation>الموقع</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/PoiEditorDialog.ui" line="154"/>
         <source>Mark color</source>
-        <translation>علامة اللون</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/PoiEditorDialog.ui" line="211"/>
         <source>Style</source>
-        <translation>الأسلوب</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/PoiEditorDialog.ui" line="257"/>
         <source>Can be moved with mouse (Ctrl+Left click)</source>
-        <translation>يمكن تحريكها بالماوس (Ctrl+الزر الأيسر)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/PoiEditorDialog.ui" line="264"/>
         <source>Display the name</source>
-        <translation>عرض الاسم</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/PoiEditorDialog.ui" line="280"/>
         <source>Ok</source>
-        <translation>موافق</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/PoiEditorDialog.ui" line="287"/>
         <source>Cancel</source>
-        <translation>إلغاء</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/PoiEditorDialog.ui" line="294"/>
         <source>Delete this POI</source>
-        <translation>حذف نقطة الاهتمام</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5032,172 +4239,103 @@ Are you sure ?</source>
     <message>
         <location filename="../../src/map/PositionEditor.cpp" line="223"/>
         <source>Latitude</source>
-        <translation>دائرة العرض</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/map/PositionEditor.cpp" line="230"/>
         <source>Longitude</source>
-        <translation>خط الطول</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PositionEditorWidget</name>
     <message>
-        <location filename="../../src/GUI/PositionEditorWidget.cpp" line="20"/>
-        <source>N</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>N</translation>
-    </message>
-    <message>
-        <location filename="../../src/GUI/PositionEditorWidget.cpp" line="21"/>
-        <source>S</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>S</translation>
-    </message>
-    <message>
-        <location filename="../../src/GUI/PositionEditorWidget.cpp" line="22"/>
-        <source>E</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>E</translation>
-    </message>
-    <message>
-        <location filename="../../src/GUI/PositionEditorWidget.cpp" line="23"/>
-        <source>W</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>W</translation>
-    </message>
-    <message>
-        <location filename="../../src/GUI/PositionEditorWidget.cpp" line="24"/>
-        <location filename="../../src/GUI/PositionEditorWidget.cpp" line="26"/>
-        <source>+</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>+</translation>
-    </message>
-    <message>
-        <location filename="../../src/GUI/PositionEditorWidget.cpp" line="25"/>
-        <location filename="../../src/GUI/PositionEditorWidget.cpp" line="27"/>
-        <source>-</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation>-</translation>
-    </message>
-    <message>
         <location filename="../../src/GUI/PositionEditorWidget.ui" line="19"/>
         <source>Form</source>
-        <translation>الشكل</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/PositionEditorWidget.ui" line="27"/>
         <source>Latitude</source>
-        <translation>دائرة العرض</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/PositionEditorWidget.ui" line="53"/>
         <location filename="../../src/GUI/PositionEditorWidget.ui" line="115"/>
         <source> °</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation type="unfinished"> °</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/PositionEditorWidget.ui" line="69"/>
         <location filename="../../src/GUI/PositionEditorWidget.ui" line="131"/>
         <source> &apos;</source>
-        <translatorcomment>No Translation</translatorcomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/PositionEditorWidget.ui" line="89"/>
         <source>Longitude</source>
-        <translation>خط الطول</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/GUI/PositionEditorWidget.cpp" line="20"/>
+        <source>N</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/GUI/PositionEditorWidget.cpp" line="21"/>
+        <source>S</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/GUI/PositionEditorWidget.cpp" line="22"/>
+        <source>E</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/GUI/PositionEditorWidget.cpp" line="23"/>
+        <source>W</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/GUI/PositionEditorWidget.cpp" line="24"/>
+        <location filename="../../src/GUI/PositionEditorWidget.cpp" line="26"/>
+        <source>+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/GUI/PositionEditorWidget.cpp" line="25"/>
+        <location filename="../../src/GUI/PositionEditorWidget.cpp" line="27"/>
+        <source>-</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
-        <source>kts</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation type="obsolete">kts</translation>
-    </message>
-    <message>
-        <source>km/h</source>
-        <translation type="obsolete">كم/ساعة</translation>
-    </message>
-    <message>
-        <source>°C</source>
-        <translation type="obsolete">درجة مئوية</translation>
-    </message>
-    <message>
-        <source>°F</source>
-        <translation type="obsolete">درجة فهرنهايت</translation>
-    </message>
-    <message>
         <location filename="../../src/LongTaskProgress.cpp" line="29"/>
         <location filename="../../src/LongTaskProgress.cpp" line="87"/>
         <source>Loading file...</source>
-        <translation>تحميل ملف</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/LongTaskProgress.cpp" line="30"/>
         <source>Cancel</source>
-        <translation>إلغاء</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/LongTaskProgress.cpp" line="90"/>
         <source>Analyse data...</source>
-        <translation>تحليل البيانات</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/LongTaskProgress.cpp" line="93"/>
         <source>Prepare maps...</source>
-        <translation>تحضير الخرائط...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/LongTaskProgress.cpp" line="96"/>
         <source>Uncompress file...</source>
-        <translation>فتح ملف مضغوط</translation>
-    </message>
-    <message>
-        <source>°K</source>
-        <translation type="obsolete">درجة كيلفن</translation>
-    </message>
-    <message>
-        <source>m/s</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation type="obsolete">m/s</translation>
-    </message>
-    <message>
-        <source>km</source>
-        <translation type="obsolete">كم</translation>
-    </message>
-    <message>
-        <source>J/kg</source>
-        <translatorcomment>See comments on the previous one</translatorcomment>
-        <translation type="obsolete">J/kg</translation>
-    </message>
-    <message>
-        <source>m</source>
-        <translatorcomment>If it is meter</translatorcomment>
-        <translation type="obsolete">م</translation>
-    </message>
-    <message>
-        <source>cm</source>
-        <translatorcomment>If it is centimeter</translatorcomment>
-        <translation type="obsolete">سم</translation>
-    </message>
-    <message>
-        <source>mm/h</source>
-        <translation type="obsolete">مللمتر/ساعة</translation>
-    </message>
-    <message>
-        <source>hPa</source>
-        <translation type="obsolete">هيكتوباسكال</translation>
-    </message>
-    <message>
-        <source>dd°mm&apos;ss&quot;</source>
-        <translation type="obsolete">درجة° دقيقة&apos; ثانية&quot;</translation>
-    </message>
-    <message>
-        <source>dd°mm,mm&apos;</source>
-        <translation type="obsolete">درجة°دقيقة,دقيقة&apos;</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5220,7 +4358,7 @@ Are you sure ?</source>
     <message>
         <location filename="../../src/SkewT.cpp" line="955"/>
         <source>Location: </source>
-        <translation type="unfinished">الموقع:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/SkewT.cpp" line="958"/>
@@ -5243,7 +4381,7 @@ Are you sure ?</source>
     <message>
         <location filename="../../src/SkewTWindow.cpp" line="62"/>
         <source>Close the window</source>
-        <translation type="unfinished">أغلق النافذة</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/SkewTWindow.cpp" line="68"/>
@@ -5253,7 +4391,7 @@ Are you sure ?</source>
     <message>
         <location filename="../../src/SkewTWindow.cpp" line="74"/>
         <source>Save current image</source>
-        <translation type="unfinished">حفظ الصورة الحالية</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/SkewTWindow.cpp" line="80"/>
@@ -5288,22 +4426,22 @@ Are you sure ?</source>
     <message>
         <location filename="../../src/SkewTWindow.cpp" line="231"/>
         <source>Save JPEG image</source>
-        <translation type="unfinished">احفظ صورة JPEG</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/SkewTWindow.cpp" line="233"/>
         <source>Images (*.jpg *.jpeg)</source>
-        <translation type="unfinished">الصور (*.jpg *.jpeg)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/SkewTWindow.cpp" line="255"/>
         <source>Save SYLK file</source>
-        <translation type="unfinished">حفظ الملف SYLK</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/SkewTWindow.cpp" line="268"/>
         <source>Error</source>
-        <translation type="unfinished">خطأ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/SkewTWindow.cpp" line="268"/>
@@ -5313,12 +4451,12 @@ Are you sure ?</source>
     <message>
         <location filename="../../src/SkewTWindow.cpp" line="351"/>
         <source>Temperature</source>
-        <translation type="unfinished">درجة الحرارة</translation>
+        <translation type="unfinished">טמפרטורה</translation>
     </message>
     <message>
         <location filename="../../src/SkewTWindow.cpp" line="352"/>
         <source>Dew point</source>
-        <translation type="unfinished">درجة الندى</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/SkewTWindow.cpp" line="353"/>
@@ -5337,12 +4475,12 @@ Are you sure ?</source>
         <location filename="../../src/Terrain.cpp" line="684"/>
         <location filename="../../src/Terrain.cpp" line="701"/>
         <source>Open file</source>
-        <translation>فتح ملف</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/Terrain.cpp" line="1150"/>
         <source>  Please wait...  </source>
-        <translation>.. يرجى الانتظار...</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5350,32 +4488,32 @@ Are you sure ?</source>
     <message>
         <location filename="../../src/GUI/TextStyleEditorWidget.ui" line="14"/>
         <source>Form</source>
-        <translation>الشكل</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/TextStyleEditorWidget.ui" line="122"/>
         <source>TextLabel</source>
-        <translation>علامة النص</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/TextStyleEditorWidget.ui" line="235"/>
         <source>Text color</source>
-        <translation type="unfinished">لون النص</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/TextStyleEditorWidget.ui" line="351"/>
         <source>Background color</source>
-        <translation type="unfinished">لون الخلفية</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/TextStyleEditorWidget.ui" line="373"/>
         <source>Default values</source>
-        <translation type="unfinished">القيم الافتراضية</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/GUI/TextStyleEditorWidget.ui" line="376"/>
         <source>Reset</source>
-        <translation>إعادة ضبط</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5388,65 +4526,62 @@ Are you sure ?</source>
         <location filename="../../src/util/Util.cpp" line="212"/>
         <location filename="../../src/util/Util.cpp" line="350"/>
         <source>°C</source>
-        <translation type="unfinished">درجة مئوية</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/util/Util.cpp" line="173"/>
         <location filename="../../src/util/Util.cpp" line="188"/>
         <location filename="../../src/util/Util.cpp" line="205"/>
         <source>°K</source>
-        <translation type="unfinished">درجة كيلفن</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/util/Util.cpp" line="176"/>
         <location filename="../../src/util/Util.cpp" line="191"/>
         <location filename="../../src/util/Util.cpp" line="208"/>
         <source>°F</source>
-        <translation type="unfinished">درجة فهرنهايت</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/util/Util.cpp" line="223"/>
+        <source>m/s</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/util/Util.cpp" line="227"/>
         <location filename="../../src/util/Util.cpp" line="238"/>
         <location filename="../../src/util/Util.cpp" line="357"/>
         <source>km/h</source>
-        <translation type="unfinished">كم/ساعة</translation>
-    </message>
-    <message>
-        <location filename="../../src/util/Util.cpp" line="223"/>
-        <source>m/s</source>
-        <translation type="unfinished">m/s</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/util/Util.cpp" line="231"/>
         <location filename="../../src/util/Util.cpp" line="244"/>
         <location filename="../../src/util/Util.cpp" line="362"/>
         <source>kts</source>
-        <translation type="unfinished">kts</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/util/Util.cpp" line="250"/>
         <location filename="../../src/util/Util.cpp" line="397"/>
         <source>°</source>
-        <translatorcomment>No translation</translatorcomment>
-        <translation type="unfinished">°</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/util/Util.cpp" line="258"/>
         <location filename="../../src/util/Util.cpp" line="261"/>
         <source>km</source>
-        <translation type="unfinished">كم</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/util/Util.cpp" line="328"/>
         <source>dam</source>
-        <translatorcomment>No Translation</translatorcomment>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/util/Util.cpp" line="330"/>
         <source>ft</source>
-        <translatorcomment>If it is foot</translatorcomment>
-        <translation>قدم</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/util/Util.cpp" line="332"/>
@@ -5458,13 +4593,12 @@ Are you sure ?</source>
         <location filename="../../src/util/Util.cpp" line="534"/>
         <location filename="../../src/util/Util.cpp" line="537"/>
         <source>m</source>
-        <translatorcomment>If it is meter</translatorcomment>
-        <translation>م</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/util/Util.cpp" line="366"/>
         <source>J/kg</source>
-        <translation type="unfinished">J/kg</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/util/Util.cpp" line="370"/>
@@ -5474,7 +4608,7 @@ Are you sure ?</source>
     <message>
         <location filename="../../src/util/Util.cpp" line="375"/>
         <source>cm</source>
-        <translation type="unfinished">سم</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/util/Util.cpp" line="380"/>
@@ -5484,7 +4618,7 @@ Are you sure ?</source>
     <message>
         <location filename="../../src/util/Util.cpp" line="383"/>
         <source>hPa</source>
-        <translation type="unfinished">هيكتوباسكال</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/util/Util.cpp" line="404"/>
@@ -5501,12 +4635,12 @@ Are you sure ?</source>
         <location filename="../../src/util/Util.cpp" line="557"/>
         <location filename="../../src/util/Util.cpp" line="570"/>
         <source>dd°mm&apos;ss&quot;</source>
-        <translation type="unfinished">درجة° دقيقة&apos; ثانية&quot;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/util/Util.cpp" line="560"/>
         <source>dd°mm,mm&apos;</source>
-        <translation type="unfinished">درجة°دقيقة,دقيقة&apos;</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

@@ -1,5 +1,5 @@
-CONFIG += qt release c++11
-#CONFIG += qt debug c++11
+#CONFIG += qt release c++11
+CONFIG += qt debug c++11
 
 QT += widgets xml
 QT += printsupport
@@ -57,16 +57,17 @@ QT += network xml
 CODECFORTR = UTF-8
 CODECFORSRC = UTF-8
 TRANSLATIONS =  ../data/tr/xyGrib_fr.ts \
-				../data/tr/xyGrib_cz.ts \
-				../data/tr/xyGrib_de.ts \
-				../data/tr/xyGrib_fi.ts \
-				../data/tr/xyGrib_it.ts \
-				../data/tr/xyGrib_nl.ts \
-				../data/tr/xyGrib_pt.ts \
-				../data/tr/xyGrib_ru.ts \
-				../data/tr/xyGrib_ar.ts \
-				../data/tr/xyGrib_gr.ts \
-				../data/tr/xyGrib_es.ts
+                ../data/tr/xyGrib_cz.ts \
+                ../data/tr/xyGrib_de.ts \
+                ../data/tr/xyGrib_fi.ts \
+                ../data/tr/xyGrib_it.ts \
+                ../data/tr/xyGrib_nl.ts \
+                ../data/tr/xyGrib_pt.ts \
+                ../data/tr/xyGrib_ru.ts \
+                ../data/tr/xyGrib_ar.ts \
+                ../data/tr/xyGrib_gr.ts \
+                ../data/tr/xyGrib_es.ts \
+                ../data/tr/xyGrib_he.ts
 
 !win32 {
 	# conditional, because uic dont work in my cross compilator environment.
