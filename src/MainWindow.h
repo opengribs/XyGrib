@@ -34,7 +34,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "DialogLoadGRIB.h"
 #include "DialogLoadIAC.h"
-#include "DialogLoadMBLUE.h"
 #include "DialogServerStatus.h"
 #include "DialogProxy.h"
 #include "DialogUnits.h"
@@ -61,7 +60,7 @@ class MainWindow: public QMainWindow
     Q_OBJECT
     
     public:
-        MainWindow (int w, int h, bool withmblue, QWidget *parent = 0);
+        MainWindow (int w, int h, QWidget *parent = 0);
         ~MainWindow();
 
         void openMeteoDataFile (QString fileName);
@@ -90,8 +89,6 @@ class MainWindow: public QMainWindow
         void slotFile_Close ();
         void slotFile_Load_GRIB ();
         void slotFile_Load_IAC ();
-        void slotFile_MBLUE_Load ();
-        void slotFile_MBLUE_ShowArea ();
 		
         void slotFile_GribServerStatus ();
         void slotFile_Info_GRIB ();
@@ -215,7 +212,7 @@ class MainWindow: public QMainWindow
 		void closeEvent (QCloseEvent *) {QApplication::quit();}
 		void moveEvent  (QMoveEvent *event);
 		void resizeEvent(QResizeEvent *event);
-		void createToolBar (bool withmblue = false);
+		void createToolBar ();
 		void autoClose ();
         int versionCompare(QString v1, QString v2);
 };
