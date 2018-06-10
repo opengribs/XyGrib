@@ -241,10 +241,9 @@ int main (int argc, char *argv[])
     //====================================================
     // Open main window
     //====================================================
-	bool withmblue = false;
 	Util::setApplicationProxy ();
 
-	MainWindow *win = new MainWindow (800, 600, withmblue);
+	MainWindow *win = new MainWindow (800, 600);
 	assert (win);
 	//-----------------------------------------------------
 	if (shiftsWindow) {
