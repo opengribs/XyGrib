@@ -8,7 +8,7 @@ TEMPLATE = app
 TARGET   = XyGrib
 
 DEPENDPATH  += . util map GUI
-INCLUDEPATH += . util map GUI curvedrawer qwt-6.1.3/src g2clib
+INCLUDEPATH += . util map GUI g2clib
 
 # ----------------------------------------------------
 # platform specific
@@ -36,7 +36,7 @@ else {
 }
 }
 
-LIBS += -lbz2 -lz -lproj -lnova -Lqwt-6.1.3/lib/ -lqwt
+LIBS += -lbz2 -lz -lproj -lnova
 LIBS +=  -Lg2clib -lg2c -lpng -ljasper  # respect order!
 
 # ----------------------------------------------------
