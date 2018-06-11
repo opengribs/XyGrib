@@ -1,10 +1,18 @@
 # XyGrib a fork of zyGrib
 Fork of zyGrib-8.0.1 under a new name and a new home https://opengribs.org
 
-Changes in version 1.1.0
-- Addition of OpenGribs own on-the-fly grib server with multiple models to choose from
-- Opened the filter logic of reading only gribs from recognized sources. Any valid grib file can now be read.
-- More work in progress....
+Changes in version 1.0.99 (beta candidate for 1.1.0 release)
+- Interactive GRIB downloads is now from the OpenGribs' on-the-fly grib server with 
+  multiple models to choose from. These include: GFS, ICON and Arpege Global model 
+  and WW3, GWAM and EWAM wave models.
+- Opened the filter logic of accepting only gribs from recognized sources. 
+  Now any valid grib file can be read.
+- Improvements in the use of alternate parameters for the same result such as
+  Total Precipitation and Precipitation Rate.
+- A startup check for new versions is now build-in. This can also be performed
+  from the help menu group.
+- Significant cleaning up of the code
+- Hebrew language was added
 
 
 Changes in version 1.0.1 since forking:
