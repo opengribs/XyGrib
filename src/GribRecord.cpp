@@ -213,6 +213,31 @@ void  GribRecord::translateDataType ()
 		}
 	}
 	//------------------------------------------
+	// PredictWind EMCWF grib1
+    //------------------------
+    else if (idCenter==98 && idModel==148 && idGrid==255)
+    {
+        dataCenterModel = OTHER_DATA_CENTER;
+        if (getDataType() == GRB_PRECIP_RATE) {      // mm/s -> mm/h
+            // dataType=59 levelType=1 levelValue=0
+            multiplyAllData( 3600.0 );
+        }
+        else if (getDataType()==GRB_CLOUD_TOT
+            && getLevelType()==LV_GND_SURF
+            && getLevelValue()==0)
+        {
+            //dataType=71 levelType=1 levelValue=0
+            levelType = LV_ATMOS_ALL;
+        }
+        else if (getDataType()==GRB_PRESSURE_MSL
+            && getLevelType()==LV_GND_SURF
+            && getLevelValue()==0)
+        {
+            // dataType=2 levelType=1 levelValue=0
+            levelType = LV_MSL;
+        }
+    }
+	//------------------------------------------
 	// Others recognized grib suppliers
 	//------------------------------------------
 	else if (
