@@ -83,10 +83,6 @@ MenuBar::MenuBar (QWidget *parent)
         			tr("GRIB server status"), tr("Ctrl+R"),
                     tr("GRIB file server status"), Util::pathImg("connect_no.png"));
 
-        acFile_Load_IAC = addAction (menuFile,
-        	tr("IAC fleetcode NOAA"), tr("Ctrl+L"),
-			tr("Download current IAC file (fleetcode) from NOAA - Analyse or Forecast +24h - Europe"), "");
-
         menuFile->addSeparator();
         acFile_Info_GRIB = addAction (menuFile,
         			tr("File information"), tr("Ctrl+I"),

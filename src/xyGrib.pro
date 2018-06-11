@@ -105,14 +105,12 @@ HEADERS += \
            DialogFonts.h \
            DialogGraphicsParams.h \
            DialogLoadGRIB.h \
-           DialogLoadIAC.h \
            DialogProxy.h \
            DialogSelectMetar.h \
            DialogServerStatus.h \
            DialogUnits.h \
            FileLoader.h \
            FileLoaderGRIB.h \
-           FileLoaderIAC.h \
            util/Font.h \
            map/GshhsRangsReader.h \
            map/GshhsReader.h \
@@ -127,8 +125,6 @@ HEADERS += \
 		   GriddedPlotter.h \
 		   GriddedRecord.h \
 		   GriddedReader.h \
-           IacPlot.h \
-           IacReader.h \
            ImageWriter.h \
 		   IrregularGridded.h \
            IsoLine.h \
@@ -176,13 +172,11 @@ SOURCES += \
            DialogFonts.cpp \
            DialogGraphicsParams.cpp \
            DialogLoadGRIB.cpp \
-           DialogLoadIAC.cpp \
            DialogProxy.cpp \
            DialogSelectMetar.cpp \
            DialogServerStatus.cpp \
            DialogUnits.cpp \
            FileLoaderGRIB.cpp \
-           FileLoaderIAC.cpp \
            util/Font.cpp \
 		   GriddedPlotter.cpp \
 		   GriddedReader.cpp \
@@ -197,9 +191,6 @@ SOURCES += \
            Grib2Reader.cpp \
            GribRecord.cpp \
            Grib2Record.cpp \
-           IacPlot.cpp \
-           IacReader.cpp \
-           IacReaderUtil.cpp \
            ImageWriter.cpp \
 		   IrregularGridded.cpp \
            IsoLine.cpp \

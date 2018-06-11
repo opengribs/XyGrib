@@ -31,7 +31,6 @@ enum FileDataType
 	DATATYPE_NONE,
 	DATATYPE_CANCELLED,
 	DATATYPE_GRIB,
-	DATATYPE_IAC,
 };
 
 //--------------------------------------------------------

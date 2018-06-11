@@ -50,10 +50,6 @@ enum FontCode
 	FONT_GRIB_Temp,
 	FONT_GRIB_PressHL,
 	
-	FONT_IAC_Isobar,
-	FONT_IAC_PressHLVal,
-	FONT_IAC_PressHL,
-	
 	FONT_AltitudeLabel,
 	FONT_AltitudeLabelTitle,
 	
