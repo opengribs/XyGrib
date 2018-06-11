@@ -210,7 +210,8 @@ void DataColors::setColorDataTypeFunction (const DataCode &dtc)
 			function_getColor = &DataColors::getCloudColor;
 			break;
 		case GRB_PRECIP_TOT :
-			function_getColor = &DataColors::getRainColor;
+        case GRB_PRECIP_RATE  :
+            function_getColor = &DataColors::getRainColor;
 			break;
 		case GRB_HUMID_REL :
 			function_getColor = &DataColors::getHumidColor;
@@ -273,7 +274,8 @@ QRgb DataColors::getDataCodeColor (const DataCode &dtc, double v, bool smooth)
 		case GRB_CLOUD_TOT : 
 			return DataColors::getCloudColor (v, smooth);
 		case GRB_PRECIP_TOT :
-			return DataColors::getRainColor (v, smooth);
+        case GRB_PRECIP_RATE  :
+            return DataColors::getRainColor (v, smooth);
 		case GRB_HUMID_REL :
 			return DataColors::getHumidColor (v, smooth);
 		case GRB_TEMP :
@@ -326,7 +328,8 @@ ColorScale *DataColors::getColorScale (const DataCode &dtc)
 			else
 				return &colors_CloudsBlack;
 		case GRB_PRECIP_TOT :
-			return &colors_Rain;
+        case GRB_PRECIP_RATE  :
+            return &colors_Rain;
 		case GRB_HUMID_REL :
 			return &colors_HumidRel;
 		case GRB_TEMP :

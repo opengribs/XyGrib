@@ -25,7 +25,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 enum DataCenterModel {
 	NOAA_GFS,
     DWD_ICON_GLOBAL,
+    DWD_ICON_EU,
     MF_ARPEGE_GLOBAL,
+    MF_ARPEGE,
 	NOAA_NCEP_WW3,
     DWD_GWAM,
     DWD_EWAM,
@@ -43,6 +45,8 @@ enum DataCenterModel {
 	NOGAPS,
 	SKIRON,
     DWD_ICON,
+    ECMWF,
+    ECMWF_WAVE,
 	OTHER_DATA_CENTER
 };
 //--------------------------------------------------------

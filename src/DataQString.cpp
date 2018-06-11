@@ -38,7 +38,23 @@ QString DataCodeStr::toString (const DataCenterModel &dcm)
             return "OPENSKIRON";
         case DWD_ICON :
             return "DWD-ICON";
-		case OTHER_DATA_CENTER :
+        case DWD_ICON_EU :
+            return "DWD-ICON_EU Nest";
+        case ECMWF :
+            return "ECMWF";
+        case ECMWF_WAVE :
+            return "ECMWF-WAVE";
+        case DWD_ICON_GLOBAL :
+            return "DWD-ICON-Global";
+        case DWD_GWAM :
+            return "DWD-GWAM";
+        case DWD_EWAM :
+            return "DWD-EWAM";
+        case MF_ARPEGE_GLOBAL :
+            return "Arepege-Global";
+        case MF_ARPEGE :
+            return "Arpege";
+        case OTHER_DATA_CENTER :
 		default:
 			return "";
 	}

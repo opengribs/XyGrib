@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 //-------------------------------------------------------------------------------
 // Adjust data type from different meteo center
+// and identify the grib source
 //-------------------------------------------------------------------------------
 void  GribRecord::translateDataType ()
 {
@@ -66,6 +67,7 @@ void  GribRecord::translateDataType ()
 			 || (idCenter==7 && idModel==125 && idGrid==253)  // nph.all.grb
              || (idCenter==7 && idModel==88 && idGrid==233)   // nwww3.all.grb
              || (idCenter==7 && idModel==10 && idGrid==0)    // ww3.mean
+             || (idCenter==7 && idModel==11 && idGrid==0)    // ww3 opengribs
              || (idCenter==7 && idModel==121 && idGrid==238)  // wna.all.grb
 			 || (idCenter==7 && idModel==88 && idGrid==255)   // saildocs
 	) {
@@ -74,9 +76,8 @@ void  GribRecord::translateDataType ()
 	//------------------------
 	// Meteo France Arome/Arpege
 	//------------------------
-	else if (   
-			    (idCenter==84 && idModel==204 && idGrid==255)
-	) {
+    else if (idCenter==84 && idModel==204 && idGrid==255) {
+
 		if ( (getDataType()==GRB_PRESSURE)
 			&& getLevelType()==LV_MSL
 			&& getLevelValue()==0) {
@@ -88,11 +89,11 @@ void  GribRecord::translateDataType ()
 				levelType  = LV_ATMOS_ALL;
 				levelValue = 0;
 		}
+        dataCenterModel = MF_ARPEGE;
+
 	}
-	else if (   
-			    (idCenter==84 && idModel==211 && idGrid==255)
-	) {
-		
+    else if (idCenter==84 && idModel==211 && idGrid==255){
+        dataCenterModel = MF_ARPEGE_GLOBAL;
 	}
 	//------------------------
 	// CEP navimail
@@ -159,11 +160,25 @@ void  GribRecord::translateDataType ()
         dataCenterModel = SKIRON;
     }
     //----------------------------------------------
-    // DWD ICON & EWAM Model
+    // DWD ICON-EU nest
     //----------------------------------------------
-    else if (idCenter==78 )
+    else if (idCenter==78 && idModel==2 && idGrid==255 )
     {
-        dataCenterModel = DWD_ICON;
+        dataCenterModel = DWD_ICON_EU;
+    }
+    //----------------------------------------------
+    // DWD EWAM
+    //----------------------------------------------
+    else if (idCenter==78 && idModel==202 && idGrid==255)
+    {
+        dataCenterModel = DWD_EWAM;
+    }
+    //----------------------------------------------
+    // DWD GWAM
+    //----------------------------------------------
+    else if (idCenter==78 && idModel==199 && idGrid==255)
+    {
+        dataCenterModel = DWD_GWAM;
     }
     //----------------------------------------------
 	// FNMOC WW3
@@ -214,10 +229,11 @@ void  GribRecord::translateDataType ()
 	}
 	//------------------------------------------
 	// PredictWind EMCWF grib1
+    // contributed by did-g
     //------------------------
-    else if (idCenter==98 && idModel==148 && idGrid==255)
+    else if (idCenter==98 && (idModel==148 || idModel==149) && idGrid==255)
     {
-        dataCenterModel = OTHER_DATA_CENTER;
+        dataCenterModel = ECMWF;
         if (getDataType() == GRB_PRECIP_RATE) {      // mm/s -> mm/h
             // dataType=59 levelType=1 levelValue=0
             multiplyAllData( 3600.0 );
@@ -236,6 +252,10 @@ void  GribRecord::translateDataType ()
             // dataType=2 levelType=1 levelValue=0
             levelType = LV_MSL;
         }
+    }
+    else if (idCenter==98 && idModel==114 && idGrid==255)
+    {
+        dataCenterModel = ECMWF_WAVE;
     }
 	//------------------------------------------
 	// Others recognized grib suppliers

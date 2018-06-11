@@ -93,7 +93,8 @@ QString ColorScaleGraph::formatValue (double v)
 		case GRB_CLOUD_TOT : 
 			return Util::formatPercentValue (v, false);
 		case GRB_PRECIP_TOT :
-			return QString("%1").arg(v,0,'f',2);
+        case GRB_PRECIP_RATE  :
+            return QString("%1").arg(v,0,'f',2);
 		case GRB_HUMID_REL :
 			return Util::formatPercentValue (v, false);
 		case GRB_TEMP :

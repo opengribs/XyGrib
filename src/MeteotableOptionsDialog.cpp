@@ -255,6 +255,7 @@ void DialogMeteotableOptions::createDataLists()
     addData (tr("Wind gust"), GRB_WIND_GUST,LV_GND_SURF,0, defaultvis,defaultpos++);
     addData (tr("Current"), GRB_PRV_CUR_XY2D,LV_GND_SURF,0, defaultvis,defaultpos++);
     addData (tr("Cloud cover"),  GRB_CLOUD_TOT,LV_ATMOS_ALL,0, defaultvis,defaultpos++);
+    //TODO need to deal with prec RATE
     addData (tr("Total precipitation"), GRB_PRECIP_TOT,LV_GND_SURF,0, defaultvis,defaultpos++);
     addData (tr("Temperature (2 m)"), 		GRB_TEMP,LV_ABOV_GND,2, defaultvis,defaultpos++);
     addData (tr("Gap temperature-dew point (2 m)"), GRB_PRV_DIFF_TEMPDEW,LV_ABOV_GND,2, defaultvis,defaultpos++);

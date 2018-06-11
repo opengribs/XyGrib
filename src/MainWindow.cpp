@@ -731,9 +731,12 @@ void MainWindow::openMeteoDataFile (QString fileName)
 			menuBar->acView_Barbules->setEnabled(ok);
 			menuBar->acView_ThinWindArrows->setEnabled(ok);
 
-			ok = plotter->hasDataType (GRB_PRECIP_TOT);
-			menuBar->acView_RainColors->setEnabled(ok);
-			ok = plotter->hasDataType (GRB_CLOUD_TOT);
+            ok = plotter->hasDataType (GRB_PRECIP_TOT);
+            menuBar->acView_RainColors->setEnabled(ok);
+            if (!ok)
+                ok = plotter->hasDataType (GRB_PRECIP_RATE);
+            menuBar->acView_RainColors->setEnabled(ok);
+            ok = plotter->hasDataType (GRB_CLOUD_TOT);
 			menuBar->acView_CloudColors->setEnabled(ok);
 			ok = plotter->hasDataType (GRB_HUMID_REL);
 			menuBar->acView_HumidColors->setEnabled(ok);
@@ -1800,6 +1803,7 @@ void MainWindow::setMenubarColorMapData (const DataCode &dtc, bool trigAction)
 			act = mb->acView_CurrentColors;
 			break;
 		case GRB_PRECIP_TOT :
+        case GRB_PRECIP_RATE :
 			act = mb->acView_RainColors;
 			break;
 		case GRB_CLOUD_TOT :
@@ -1911,8 +1915,18 @@ void MainWindow::slot_GroupColorMap (QAction *act)
     else if (act == mb->acView_CurrentColors)
     	dtc.set (GRB_PRV_CUR_XY2D,LV_GND_SURF,0);
 
-    else if (act == mb->acView_RainColors)
-    	dtc.set (GRB_PRECIP_TOT,LV_GND_SURF,0);
+    else if (act == mb->acView_RainColors){
+        dtctmp.set (GRB_PRECIP_TOT,LV_GND_SURF,0);
+        if (reader->hasData(dtctmp)){
+            dtc.set (GRB_PRECIP_TOT,LV_GND_SURF,0);
+        } else {
+            dtctmp.set (GRB_PRECIP_RATE,LV_GND_SURF,0);
+            if (reader->hasData(dtctmp))
+                dtc.set (GRB_PRECIP_RATE,LV_GND_SURF,0);
+        }
+
+
+    }
     else if (act == mb->acView_CloudColors)
     	dtc.set (GRB_CLOUD_TOT,LV_ATMOS_ALL,0);
     else if (act == mb->acView_HumidColors)

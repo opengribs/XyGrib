@@ -490,7 +490,8 @@ void MapDrawer::draw_MeteoData_Gridded
 			currentArrowsColor.setRgb(100, 80, 80);
 			break;
 		case GRB_PRECIP_TOT :
-		case GRB_SNOW_DEPTH :
+        case GRB_PRECIP_RATE :
+        case GRB_SNOW_DEPTH :
 		case GRB_SNOW_CATEG :
 		case GRB_FRZRAIN_CATEG :
 			windArrowsColor.setRgb(140, 120, 100);
