@@ -397,7 +397,8 @@ void GribPlot::draw_ColoredMapPlain (
 		case GRB_TEMP :
 		case GRB_CLOUD_TOT : 
 		case GRB_PRECIP_TOT :
-		case GRB_HUMID_REL :
+        case GRB_PRECIP_RATE :
+        case GRB_HUMID_REL :
 		case GRB_TEMP_POT :
 		case GRB_DEWPOINT :
 		case GRB_SNOW_DEPTH :

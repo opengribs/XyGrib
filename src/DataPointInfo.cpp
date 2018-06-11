@@ -49,6 +49,10 @@ DataPointInfo::DataPointInfo (
 			: reader->getDateInterpolatedValue (DataCode(GRB_TMAX,LV_ABOV_GND,2), x,y,date);
 	rain    = reader==NULL ? GRIB_NOTDEF
 			: reader->getDateInterpolatedValue (DataCode(GRB_PRECIP_TOT,LV_GND_SURF,0), x,y,date);
+    if (rain == GRIB_NOTDEF) // try for precipitation rate
+        rain = reader==NULL ? GRIB_NOTDEF
+            : reader->getDateInterpolatedValue (DataCode(GRB_PRECIP_RATE,LV_GND_SURF,0), x,y,date);
+
 	pressureMSL = reader==NULL ? GRIB_NOTDEF
 			: reader->getDateInterpolatedValue (DataCode(GRB_PRESSURE_MSL,LV_MSL,0), x,y,date);
 	//----------------------------------------
@@ -286,9 +290,8 @@ float DataPointInfo::getDataValue (const DataCode &dtc) const
 		case GRB_PRESSURE_MSL : 
 			return pressureMSL;
 		case GRB_PRECIP_TOT   : 
-			return rain;
-		case GRB_PRECIP_RATE  : 
-			return rain;
+        case GRB_PRECIP_RATE  :
+            return rain;
 		case GRB_CLOUD_TOT    : 
 			return cloudTotal;
 		case GRB_SNOW_CATEG   : 

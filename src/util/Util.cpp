@@ -446,6 +446,7 @@ QString Util::formatGeopotAltitude (float meter, bool withUnit)
 //----------------------------------------------------------------
 QString Util::formatRain (float mmh, bool withUnit)
 {
+    // TODO - need to handle prec RATE too
     QString unite = Util::getDataUnit (DataCode(GRB_PRECIP_TOT,LV_GND_SURF,0));
     QString r;
 	if (mmh<10)

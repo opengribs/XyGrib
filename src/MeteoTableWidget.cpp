@@ -234,10 +234,13 @@ void MeteoTableWidget::createTable()
 		else if (dataType==GRB_CLOUD_TOT && levelType==LV_ATMOS_ENT && levelValue==0){
 			addLine_CloudCover (lig++);
 		}
-		else if (dataType==GRB_PRECIP_TOT && levelType==LV_GND_SURF && levelValue==0){
-			addLine_Rain (lig++);
-		}
-		else if (dataType==GRB_PRV_THETA_E) {
+        else if (dataType==GRB_PRECIP_TOT && levelType==LV_GND_SURF && levelValue==0){
+            addLine_Rain (lig++);
+        }
+        else if (dataType==GRB_PRECIP_RATE && levelType==LV_GND_SURF && levelValue==0){
+            addLine_Rain (lig++);
+        }
+        else if (dataType==GRB_PRV_THETA_E) {
 			Altitude alt (levelType, levelValue);
 			addLine_Temperature (alt, GRB_PRV_THETA_E, lig++);
 		}
@@ -451,9 +454,11 @@ void MeteoTableWidget::createListVisibleGribData ()
     				DataCode(GRB_PRV_WIND_XY2D,LV_ABOV_GND,10).toInt32(), pos++) );
     	listVisibleData.append( new MTGribData (
     				DataCode(GRB_CLOUD_TOT,LV_ATMOS_ALL,0).toInt32(), pos++) );
-    	listVisibleData.append( new MTGribData (
-    				DataCode(GRB_PRECIP_TOT,LV_GND_SURF,0).toInt32(), pos++) );
-    	listVisibleData.append( new MTGribData (
+        listVisibleData.append( new MTGribData (
+                    DataCode(GRB_PRECIP_TOT,LV_GND_SURF,0).toInt32(), pos++) );
+        listVisibleData.append( new MTGribData (
+                    DataCode(GRB_PRECIP_RATE,LV_GND_SURF,0).toInt32(), pos++) );
+        listVisibleData.append( new MTGribData (
     				DataCode(GRB_TEMP,LV_ABOV_GND,2).toInt32(), pos++) );
     	listVisibleData.append( new MTGribData (
     				DataCode(GRB_PRV_DIFF_TEMPDEW,LV_ABOV_GND,2).toInt32(), pos++) );
