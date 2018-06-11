@@ -242,7 +242,6 @@ void MainWindow::connectSignals()
     connect(mb->acFile_Close, SIGNAL(triggered()), this, SLOT(slotFile_Close()));
     connect(mb->acFile_NewInstance, SIGNAL(triggered()), this, SLOT(slotGenericAction()));
     connect(mb->acFile_Load_GRIB, SIGNAL(triggered()), this, SLOT(slotFile_Load_GRIB()));
-    connect(mb->acFile_Load_IAC, SIGNAL(triggered()), this, SLOT(slotFile_Load_IAC()));
 
     connect(mb->acFile_GribServerStatus, SIGNAL(triggered()), this, SLOT(slotFile_GribServerStatus()));
     connect(mb->acFile_Info_GRIB, SIGNAL(triggered()), this, SLOT(slotFile_Info_GRIB()));
@@ -848,24 +847,6 @@ void MainWindow::openMeteoDataFile (QString fileName)
 		updateGriddedData ();
 	}
 	//------------------------------------------------
-	else if (meteoFileType == DATATYPE_IAC) 
-	//------------------------------------------------
-	{
-		//DBG("DATATYPE_IAC");
-		std::set<time_t> setDatesEmpty;
-		setWindowTitle(Version::getShortName()+" - "+ QFileInfo(fileName).fileName());
-		gribFileName = fileName;
-
-		menuBar->updateListeDates(&setDatesEmpty, 0);
-		menuBar->menuColorMap->setEnabled (false);
-		menuBar->menuIsolines->setEnabled (false);
-		menuBar->acDatesGrib_prev->setEnabled (false);
-		menuBar->acDatesGrib_next->setEnabled (false);
-		menuBar->cbDatesGrib->setEnabled (false);
-		dateChooser->setGriddedPlotter (NULL);
-		dateChooser->setVisible (false);
-	}
-	//------------------------------------------------
 	else  
 	{
 		if (meteoFileType != DATATYPE_CANCELLED) {
@@ -1429,15 +1410,6 @@ void MainWindow::slotFile_Open()
     	Util::setSetting("gribFilePath",  gribFilePath);
         openMeteoDataFile (fileName);
     }
-}
-
-//========================================================================
-void MainWindow::slotFile_Load_IAC()
-{
-	QString fname = DialogLoadIAC::getFile (networkManager, this);
-	if (fname != "") {
-		openMeteoDataFile (fname);
-	}
 }
 
 //---------------------------------------------

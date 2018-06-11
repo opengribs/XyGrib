@@ -33,7 +33,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "MapDrawer.h"
 #include "GribPlot.h"
 #include "Grib2Plot.h"
-#include "IacPlot.h"
 #include "LongTaskProgress.h"
 
 
@@ -58,7 +57,6 @@ public:
 
 	//--------------------------------------------------------
 	GriddedPlotter  *getGriddedPlotter ();
-	IacPlot     *getIacPlot ()    {return iacPlot;}
 	//--------------------------------------------------------
 	
     void  indicateWaitingMap();    // Affiche un message d'attente
@@ -166,7 +164,6 @@ private:
     GisReader   *gisReader;
 
     GriddedPlotter  *griddedPlot;
-    IacPlot         *iacPlot;
     
     bool        isEarthMapValid;
     bool        mustRedraw;
