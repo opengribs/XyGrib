@@ -160,6 +160,14 @@ void  GribRecord::translateDataType ()
         dataCenterModel = SKIRON;
     }
     //----------------------------------------------
+    // DWD ICON Global
+    //----------------------------------------------
+    else if (idCenter==78 && idModel==1 && idGrid==255 )
+    {
+        dataCenterModel = DWD_ICON_GLOBAL;
+    }
+    //----------------------------------------------
+    //----------------------------------------------
     // DWD ICON-EU nest
     //----------------------------------------------
     else if (idCenter==78 && idModel==2 && idGrid==255 )
