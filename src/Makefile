@@ -12,10 +12,10 @@ MAKEFILE      = Makefile
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_NO_DEBUG -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
-CFLAGS        = -m64 -pipe -O2 -D_REENTRANT -Wall -W -fPIC $(DEFINES)
-CXXFLAGS      = -m64 -pipe -O3 -std=gnu++11 -D_REENTRANT -Wall -W -fPIC $(DEFINES)
-INCPATH       = -I. -I. -Iutil -Imap -IGUI -Icurvedrawer -Iqwt-6.1.3/src -Ig2clib -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtXml -isystem /usr/include/x86_64-linux-gnu/qt5/QtNetwork -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -Iobjs -isystem /usr/include/libdrm -IGUI -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64
+DEFINES       = -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
+CFLAGS        = -m64 -pipe -g -D_REENTRANT -Wall -W -fPIC $(DEFINES)
+CXXFLAGS      = -m64 -pipe -g -std=gnu++11 -D_REENTRANT -Wall -W -fPIC $(DEFINES)
+INCPATH       = -I. -I. -Iutil -Imap -IGUI -Ig2clib -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtXml -isystem /usr/include/x86_64-linux-gnu/qt5/QtNetwork -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -Iobjs -isystem /usr/include/libdrm -IGUI -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64
 QMAKE         = /usr/lib/x86_64-linux-gnu/qt5/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -35,10 +35,10 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = XyGrib1.0.0
-DISTDIR = /home/dominique/dev/git/DHA/XyGrib/src/objs/XyGrib1.0.0
+DISTDIR = /home/dominique/dev/XyGrib/src/objs/XyGrib1.0.0
 LINK          = g++
-LFLAGS        = -m64 -Wl,-O1 -O3
-LIBS          = $(SUBLIBS) -L/usr/X11R6/lib64 -lbz2 -lz -lproj -lnova -Lqwt-6.1.3/lib/ -lqwt -Lg2clib -lg2c -lpng -ljasper -lQt5PrintSupport -lQt5Widgets -lQt5Gui -lQt5Xml -lQt5Network -lQt5Core -lGL -lpthread 
+LFLAGS        = -m64
+LIBS          = $(SUBLIBS) -L/usr/X11R6/lib64 -lbz2 -lz -lproj -lnova -Lg2clib -lg2c -lpng -ljasper -lQt5PrintSupport -lQt5Widgets -lQt5Gui -lQt5Xml -lQt5Network -lQt5Core -lGL -lpthread 
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -57,10 +57,6 @@ SOURCES       = GUI/PositionEditorWidget.cpp \
 		GUI/AngleConverterWidget.cpp \
 		GUI/AngleConverterDialog.cpp \
 		Astro.cpp \
-		MbzFile.cpp \
-		MblueRecord.cpp \
-		MblueReader.cpp \
-		MbluePlot.cpp \
 		BoardPanel.cpp \
 		ColorScale.cpp \
 		ColorScaleWidget.cpp \
@@ -74,14 +70,12 @@ SOURCES       = GUI/PositionEditorWidget.cpp \
 		DialogGraphicsParams.cpp \
 		DialogLoadGRIB.cpp \
 		DialogLoadIAC.cpp \
-		DialogLoadMBLUE.cpp \
 		DialogProxy.cpp \
 		DialogSelectMetar.cpp \
 		DialogServerStatus.cpp \
 		DialogUnits.cpp \
 		FileLoaderGRIB.cpp \
 		FileLoaderIAC.cpp \
-		FileLoaderMBLUE.cpp \
 		util/Font.cpp \
 		GriddedPlotter.cpp \
 		GriddedReader.cpp \
@@ -139,14 +133,12 @@ SOURCES       = GUI/PositionEditorWidget.cpp \
 		objs/moc_DialogGraphicsParams.cpp \
 		objs/moc_DialogLoadGRIB.cpp \
 		objs/moc_DialogLoadIAC.cpp \
-		objs/moc_DialogLoadMBLUE.cpp \
 		objs/moc_DialogProxy.cpp \
 		objs/moc_DialogSelectMetar.cpp \
 		objs/moc_DialogServerStatus.cpp \
 		objs/moc_DialogUnits.cpp \
 		objs/moc_FileLoaderGRIB.cpp \
 		objs/moc_FileLoaderIAC.cpp \
-		objs/moc_FileLoaderMBLUE.cpp \
 		objs/moc_GribAnimator.cpp \
 		objs/moc_ImageWriter.cpp \
 		objs/moc_LongTaskProgress.cpp \
@@ -171,10 +163,6 @@ OBJECTS       = objs/PositionEditorWidget.o \
 		objs/AngleConverterWidget.o \
 		objs/AngleConverterDialog.o \
 		objs/Astro.o \
-		objs/MbzFile.o \
-		objs/MblueRecord.o \
-		objs/MblueReader.o \
-		objs/MbluePlot.o \
 		objs/BoardPanel.o \
 		objs/ColorScale.o \
 		objs/ColorScaleWidget.o \
@@ -188,14 +176,12 @@ OBJECTS       = objs/PositionEditorWidget.o \
 		objs/DialogGraphicsParams.o \
 		objs/DialogLoadGRIB.o \
 		objs/DialogLoadIAC.o \
-		objs/DialogLoadMBLUE.o \
 		objs/DialogProxy.o \
 		objs/DialogSelectMetar.o \
 		objs/DialogServerStatus.o \
 		objs/DialogUnits.o \
 		objs/FileLoaderGRIB.o \
 		objs/FileLoaderIAC.o \
-		objs/FileLoaderMBLUE.o \
 		objs/Font.o \
 		objs/GriddedPlotter.o \
 		objs/GriddedReader.o \
@@ -254,14 +240,12 @@ OBJECTS       = objs/PositionEditorWidget.o \
 		objs/moc_DialogGraphicsParams.o \
 		objs/moc_DialogLoadGRIB.o \
 		objs/moc_DialogLoadIAC.o \
-		objs/moc_DialogLoadMBLUE.o \
 		objs/moc_DialogProxy.o \
 		objs/moc_DialogSelectMetar.o \
 		objs/moc_DialogServerStatus.o \
 		objs/moc_DialogUnits.o \
 		objs/moc_FileLoaderGRIB.o \
 		objs/moc_FileLoaderIAC.o \
-		objs/moc_FileLoaderMBLUE.o \
 		objs/moc_GribAnimator.o \
 		objs/moc_ImageWriter.o \
 		objs/moc_LongTaskProgress.o \
@@ -375,7 +359,6 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		DialogGraphicsParams.h \
 		DialogLoadGRIB.h \
 		DialogLoadIAC.h \
-		DialogLoadMBLUE.h \
 		DialogProxy.h \
 		DialogSelectMetar.h \
 		DialogServerStatus.h \
@@ -383,7 +366,6 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		FileLoader.h \
 		FileLoaderGRIB.h \
 		FileLoaderIAC.h \
-		FileLoaderMBLUE.h \
 		util/Font.h \
 		map/GshhsRangsReader.h \
 		map/GshhsReader.h \
@@ -405,10 +387,6 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		IsoLine.h \
 		LongTaskProgress.h \
 		LonLatGrid.h \
-		MbzFile.h \
-		MbluePlot.h \
-		MblueReader.h \
-		MblueRecord.h \
 		Metar.h \
 		MeteoTable.h \
 		MeteoTableWidget.h \
@@ -436,10 +414,6 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		GUI/AngleConverterWidget.cpp \
 		GUI/AngleConverterDialog.cpp \
 		Astro.cpp \
-		MbzFile.cpp \
-		MblueRecord.cpp \
-		MblueReader.cpp \
-		MbluePlot.cpp \
 		BoardPanel.cpp \
 		ColorScale.cpp \
 		ColorScaleWidget.cpp \
@@ -453,14 +427,12 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		DialogGraphicsParams.cpp \
 		DialogLoadGRIB.cpp \
 		DialogLoadIAC.cpp \
-		DialogLoadMBLUE.cpp \
 		DialogProxy.cpp \
 		DialogSelectMetar.cpp \
 		DialogServerStatus.cpp \
 		DialogUnits.cpp \
 		FileLoaderGRIB.cpp \
 		FileLoaderIAC.cpp \
-		FileLoaderMBLUE.cpp \
 		util/Font.cpp \
 		GriddedPlotter.cpp \
 		GriddedReader.cpp \
@@ -693,10 +665,10 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents GUI/PositionEditorWidget.h GUI/ColorEditorWidget.h GUI/LineEditorWidget.h GUI/TextStyleEditorWidget.h GUI/AngleConverterWidget.h GUI/AngleConverterDialog.h Astro.h BoardPanel.h ColorScale.h ColorScaleWidget.h DataDefines.h DataColors.h DataQString.h DataMeteoAbstract.h DataPointInfo.h DateChooser.h DialogBoxBase.h DialogBoxColumn.h DialogFonts.h DialogGraphicsParams.h DialogLoadGRIB.h DialogLoadIAC.h DialogLoadMBLUE.h DialogProxy.h DialogSelectMetar.h DialogServerStatus.h DialogUnits.h FileLoader.h FileLoaderGRIB.h FileLoaderIAC.h FileLoaderMBLUE.h util/Font.h map/GshhsRangsReader.h map/GshhsReader.h map/GisReader.h GribAnimator.h GribPlot.h Grib2Plot.h GribReader.h Grib2Reader.h GribRecord.h Grib2Record.h GriddedPlotter.h GriddedRecord.h GriddedReader.h IacPlot.h IacReader.h ImageWriter.h IrregularGridded.h IsoLine.h LongTaskProgress.h LonLatGrid.h MbzFile.h MbluePlot.h MblueReader.h MblueRecord.h Metar.h MeteoTable.h MeteoTableWidget.h MeteotableOptionsDialog.h MainWindow.h MapDrawer.h MenuBar.h util/Orthodromie.h map/POI.h map/POI_Editor.h map/PositionEditor.h map/Projection.h util/Settings.h SkewT.h util/SylkFile.h Terrain.h Therm.h util/Util.h Version.h util/zuFile.h Stylesheet.h $(DISTDIR)/
-	$(COPY_FILE) --parents GUI/PositionEditorWidget.cpp GUI/ColorEditorWidget.cpp GUI/LineEditorWidget.cpp GUI/TextStyleEditorWidget.cpp GUI/AngleConverterWidget.cpp GUI/AngleConverterDialog.cpp Astro.cpp MbzFile.cpp MblueRecord.cpp MblueReader.cpp MbluePlot.cpp BoardPanel.cpp ColorScale.cpp ColorScaleWidget.cpp DataColors.cpp DataQString.cpp DataMeteoAbstract.cpp DataPointInfo.cpp DateChooser.cpp DialogBoxColumn.cpp DialogFonts.cpp DialogGraphicsParams.cpp DialogLoadGRIB.cpp DialogLoadIAC.cpp DialogLoadMBLUE.cpp DialogProxy.cpp DialogSelectMetar.cpp DialogServerStatus.cpp DialogUnits.cpp FileLoaderGRIB.cpp FileLoaderIAC.cpp FileLoaderMBLUE.cpp util/Font.cpp GriddedPlotter.cpp GriddedReader.cpp GriddedRecord.cpp map/GshhsRangsReader.cpp map/GshhsReader.cpp GribAnimator.cpp GribPlot.cpp Grib2Plot.cpp map/GisReader.cpp GribReader.cpp Grib2Reader.cpp GribRecord.cpp Grib2Record.cpp IacPlot.cpp IacReader.cpp IacReaderUtil.cpp ImageWriter.cpp IrregularGridded.cpp IsoLine.cpp LongTaskProgress.cpp LonLatGrid.cpp main.cpp MainWindow.cpp MapDrawer.cpp MenuBar.cpp Metar.cpp MeteoTable.cpp MeteoTableWidget.cpp MeteotableOptionsDialog.cpp util/Orthodromie.cpp map/POI.cpp map/POI_Editor.cpp map/PositionEditor.cpp map/Projection.cpp map/Projection_libproj.cpp util/Settings.cpp SkewT.cpp SkewTWindow.cpp Terrain.cpp Therm.cpp util/Util.cpp util/zuFile.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents GUI/PositionEditorWidget.h GUI/ColorEditorWidget.h GUI/LineEditorWidget.h GUI/TextStyleEditorWidget.h GUI/AngleConverterWidget.h GUI/AngleConverterDialog.h Astro.h BoardPanel.h ColorScale.h ColorScaleWidget.h DataDefines.h DataColors.h DataQString.h DataMeteoAbstract.h DataPointInfo.h DateChooser.h DialogBoxBase.h DialogBoxColumn.h DialogFonts.h DialogGraphicsParams.h DialogLoadGRIB.h DialogLoadIAC.h DialogProxy.h DialogSelectMetar.h DialogServerStatus.h DialogUnits.h FileLoader.h FileLoaderGRIB.h FileLoaderIAC.h util/Font.h map/GshhsRangsReader.h map/GshhsReader.h map/GisReader.h GribAnimator.h GribPlot.h Grib2Plot.h GribReader.h Grib2Reader.h GribRecord.h Grib2Record.h GriddedPlotter.h GriddedRecord.h GriddedReader.h IacPlot.h IacReader.h ImageWriter.h IrregularGridded.h IsoLine.h LongTaskProgress.h LonLatGrid.h Metar.h MeteoTable.h MeteoTableWidget.h MeteotableOptionsDialog.h MainWindow.h MapDrawer.h MenuBar.h util/Orthodromie.h map/POI.h map/POI_Editor.h map/PositionEditor.h map/Projection.h util/Settings.h SkewT.h util/SylkFile.h Terrain.h Therm.h util/Util.h Version.h util/zuFile.h Stylesheet.h $(DISTDIR)/
+	$(COPY_FILE) --parents GUI/PositionEditorWidget.cpp GUI/ColorEditorWidget.cpp GUI/LineEditorWidget.cpp GUI/TextStyleEditorWidget.cpp GUI/AngleConverterWidget.cpp GUI/AngleConverterDialog.cpp Astro.cpp BoardPanel.cpp ColorScale.cpp ColorScaleWidget.cpp DataColors.cpp DataQString.cpp DataMeteoAbstract.cpp DataPointInfo.cpp DateChooser.cpp DialogBoxColumn.cpp DialogFonts.cpp DialogGraphicsParams.cpp DialogLoadGRIB.cpp DialogLoadIAC.cpp DialogProxy.cpp DialogSelectMetar.cpp DialogServerStatus.cpp DialogUnits.cpp FileLoaderGRIB.cpp FileLoaderIAC.cpp util/Font.cpp GriddedPlotter.cpp GriddedReader.cpp GriddedRecord.cpp map/GshhsRangsReader.cpp map/GshhsReader.cpp GribAnimator.cpp GribPlot.cpp Grib2Plot.cpp map/GisReader.cpp GribReader.cpp Grib2Reader.cpp GribRecord.cpp Grib2Record.cpp IacPlot.cpp IacReader.cpp IacReaderUtil.cpp ImageWriter.cpp IrregularGridded.cpp IsoLine.cpp LongTaskProgress.cpp LonLatGrid.cpp main.cpp MainWindow.cpp MapDrawer.cpp MenuBar.cpp Metar.cpp MeteoTable.cpp MeteoTableWidget.cpp MeteotableOptionsDialog.cpp util/Orthodromie.cpp map/POI.cpp map/POI_Editor.cpp map/PositionEditor.cpp map/Projection.cpp map/Projection_libproj.cpp util/Settings.cpp SkewT.cpp SkewTWindow.cpp Terrain.cpp Therm.cpp util/Util.cpp util/zuFile.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents GUI/PositionEditorWidget.ui GUI/PoiEditorDialog.ui GUI/ColorEditorWidget.ui GUI/LineEditorWidget.ui GUI/TextStyleEditorWidget.ui GUI/GraphicsParamsDialog.ui GUI/MeteotableOptionsDialog.ui GUI/AngleConverterWidget.ui $(DISTDIR)/
-	$(COPY_FILE) --parents ../data/tr/xyGrib_fr.ts ../data/tr/xyGrib_cz.ts ../data/tr/xyGrib_de.ts ../data/tr/xyGrib_fi.ts ../data/tr/xyGrib_it.ts ../data/tr/xyGrib_nl.ts ../data/tr/xyGrib_pt.ts ../data/tr/xyGrib_ru.ts ../data/tr/xyGrib_ar.ts ../data/tr/xyGrib_gr.ts ../data/tr/xyGrib_es.ts $(DISTDIR)/
+	$(COPY_FILE) --parents ../data/tr/xyGrib_fr.ts ../data/tr/xyGrib_cz.ts ../data/tr/xyGrib_de.ts ../data/tr/xyGrib_fi.ts ../data/tr/xyGrib_it.ts ../data/tr/xyGrib_nl.ts ../data/tr/xyGrib_pt.ts ../data/tr/xyGrib_ru.ts ../data/tr/xyGrib_ar.ts ../data/tr/xyGrib_gr.ts ../data/tr/xyGrib_es.ts ../data/tr/xyGrib_he.ts $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -726,47 +698,50 @@ compiler_moc_predefs_make_all: objs/moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) objs/moc_predefs.h
 objs/moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
-	g++ -m64 -pipe -O3 -std=gnu++11 -dM -E -o objs/moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
+	g++ -m64 -pipe -g -std=gnu++11 -dM -E -o objs/moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: objs/moc_PositionEditorWidget.cpp objs/moc_ColorEditorWidget.cpp objs/moc_LineEditorWidget.cpp objs/moc_TextStyleEditorWidget.cpp objs/moc_AngleConverterWidget.cpp objs/moc_AngleConverterDialog.cpp objs/moc_BoardPanel.cpp objs/moc_ColorScaleWidget.cpp objs/moc_DataQString.cpp objs/moc_DateChooser.cpp objs/moc_DialogBoxColumn.cpp objs/moc_DialogFonts.cpp objs/moc_DialogGraphicsParams.cpp objs/moc_DialogLoadGRIB.cpp objs/moc_DialogLoadIAC.cpp objs/moc_DialogLoadMBLUE.cpp objs/moc_DialogProxy.cpp objs/moc_DialogSelectMetar.cpp objs/moc_DialogServerStatus.cpp objs/moc_DialogUnits.cpp objs/moc_FileLoaderGRIB.cpp objs/moc_FileLoaderIAC.cpp objs/moc_FileLoaderMBLUE.cpp objs/moc_GribAnimator.cpp objs/moc_ImageWriter.cpp objs/moc_LongTaskProgress.cpp objs/moc_Metar.cpp objs/moc_MeteoTable.cpp objs/moc_MeteoTableWidget.cpp objs/moc_MeteotableOptionsDialog.cpp objs/moc_MainWindow.cpp objs/moc_MapDrawer.cpp objs/moc_MenuBar.cpp objs/moc_POI.cpp objs/moc_POI_Editor.cpp objs/moc_PositionEditor.cpp objs/moc_Projection.cpp objs/moc_SkewT.cpp objs/moc_Terrain.cpp objs/moc_Util.cpp
+compiler_moc_header_make_all: objs/moc_PositionEditorWidget.cpp objs/moc_ColorEditorWidget.cpp objs/moc_LineEditorWidget.cpp objs/moc_TextStyleEditorWidget.cpp objs/moc_AngleConverterWidget.cpp objs/moc_AngleConverterDialog.cpp objs/moc_BoardPanel.cpp objs/moc_ColorScaleWidget.cpp objs/moc_DataQString.cpp objs/moc_DateChooser.cpp objs/moc_DialogBoxColumn.cpp objs/moc_DialogFonts.cpp objs/moc_DialogGraphicsParams.cpp objs/moc_DialogLoadGRIB.cpp objs/moc_DialogLoadIAC.cpp objs/moc_DialogProxy.cpp objs/moc_DialogSelectMetar.cpp objs/moc_DialogServerStatus.cpp objs/moc_DialogUnits.cpp objs/moc_FileLoaderGRIB.cpp objs/moc_FileLoaderIAC.cpp objs/moc_GribAnimator.cpp objs/moc_ImageWriter.cpp objs/moc_LongTaskProgress.cpp objs/moc_Metar.cpp objs/moc_MeteoTable.cpp objs/moc_MeteoTableWidget.cpp objs/moc_MeteotableOptionsDialog.cpp objs/moc_MainWindow.cpp objs/moc_MapDrawer.cpp objs/moc_MenuBar.cpp objs/moc_POI.cpp objs/moc_POI_Editor.cpp objs/moc_PositionEditor.cpp objs/moc_Projection.cpp objs/moc_SkewT.cpp objs/moc_Terrain.cpp objs/moc_Util.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) objs/moc_PositionEditorWidget.cpp objs/moc_ColorEditorWidget.cpp objs/moc_LineEditorWidget.cpp objs/moc_TextStyleEditorWidget.cpp objs/moc_AngleConverterWidget.cpp objs/moc_AngleConverterDialog.cpp objs/moc_BoardPanel.cpp objs/moc_ColorScaleWidget.cpp objs/moc_DataQString.cpp objs/moc_DateChooser.cpp objs/moc_DialogBoxColumn.cpp objs/moc_DialogFonts.cpp objs/moc_DialogGraphicsParams.cpp objs/moc_DialogLoadGRIB.cpp objs/moc_DialogLoadIAC.cpp objs/moc_DialogLoadMBLUE.cpp objs/moc_DialogProxy.cpp objs/moc_DialogSelectMetar.cpp objs/moc_DialogServerStatus.cpp objs/moc_DialogUnits.cpp objs/moc_FileLoaderGRIB.cpp objs/moc_FileLoaderIAC.cpp objs/moc_FileLoaderMBLUE.cpp objs/moc_GribAnimator.cpp objs/moc_ImageWriter.cpp objs/moc_LongTaskProgress.cpp objs/moc_Metar.cpp objs/moc_MeteoTable.cpp objs/moc_MeteoTableWidget.cpp objs/moc_MeteotableOptionsDialog.cpp objs/moc_MainWindow.cpp objs/moc_MapDrawer.cpp objs/moc_MenuBar.cpp objs/moc_POI.cpp objs/moc_POI_Editor.cpp objs/moc_PositionEditor.cpp objs/moc_Projection.cpp objs/moc_SkewT.cpp objs/moc_Terrain.cpp objs/moc_Util.cpp
+	-$(DEL_FILE) objs/moc_PositionEditorWidget.cpp objs/moc_ColorEditorWidget.cpp objs/moc_LineEditorWidget.cpp objs/moc_TextStyleEditorWidget.cpp objs/moc_AngleConverterWidget.cpp objs/moc_AngleConverterDialog.cpp objs/moc_BoardPanel.cpp objs/moc_ColorScaleWidget.cpp objs/moc_DataQString.cpp objs/moc_DateChooser.cpp objs/moc_DialogBoxColumn.cpp objs/moc_DialogFonts.cpp objs/moc_DialogGraphicsParams.cpp objs/moc_DialogLoadGRIB.cpp objs/moc_DialogLoadIAC.cpp objs/moc_DialogProxy.cpp objs/moc_DialogSelectMetar.cpp objs/moc_DialogServerStatus.cpp objs/moc_DialogUnits.cpp objs/moc_FileLoaderGRIB.cpp objs/moc_FileLoaderIAC.cpp objs/moc_GribAnimator.cpp objs/moc_ImageWriter.cpp objs/moc_LongTaskProgress.cpp objs/moc_Metar.cpp objs/moc_MeteoTable.cpp objs/moc_MeteoTableWidget.cpp objs/moc_MeteotableOptionsDialog.cpp objs/moc_MainWindow.cpp objs/moc_MapDrawer.cpp objs/moc_MenuBar.cpp objs/moc_POI.cpp objs/moc_POI_Editor.cpp objs/moc_PositionEditor.cpp objs/moc_Projection.cpp objs/moc_SkewT.cpp objs/moc_Terrain.cpp objs/moc_Util.cpp
 objs/moc_PositionEditorWidget.cpp: GUI/ui_PositionEditorWidget.h \
 		GUI/PositionEditorWidget.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include GUI/PositionEditorWidget.h -o objs/moc_PositionEditorWidget.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include GUI/PositionEditorWidget.h -o objs/moc_PositionEditorWidget.cpp
 
 objs/moc_ColorEditorWidget.cpp: GUI/ui_ColorEditorWidget.h \
 		GUI/ColorEditorWidget.h \
+		GUI/ColorEditorWidget.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include GUI/ColorEditorWidget.h -o objs/moc_ColorEditorWidget.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include GUI/ColorEditorWidget.h -o objs/moc_ColorEditorWidget.cpp
 
 objs/moc_LineEditorWidget.cpp: GUI/ui_LineEditorWidget.h \
 		GUI/LineEditorWidget.h \
+		GUI/LineEditorWidget.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include GUI/LineEditorWidget.h -o objs/moc_LineEditorWidget.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include GUI/LineEditorWidget.h -o objs/moc_LineEditorWidget.cpp
 
 objs/moc_TextStyleEditorWidget.cpp: GUI/ui_TextStyleEditorWidget.h \
 		GUI/TextStyleEditorWidget.h \
+		GUI/TextStyleEditorWidget.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include GUI/TextStyleEditorWidget.h -o objs/moc_TextStyleEditorWidget.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include GUI/TextStyleEditorWidget.h -o objs/moc_TextStyleEditorWidget.cpp
 
 objs/moc_AngleConverterWidget.cpp: GUI/ui_AngleConverterWidget.h \
 		GUI/AngleConverterWidget.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include GUI/AngleConverterWidget.h -o objs/moc_AngleConverterWidget.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include GUI/AngleConverterWidget.h -o objs/moc_AngleConverterWidget.cpp
 
 objs/moc_AngleConverterDialog.cpp: GUI/AngleConverterWidget.h \
 		GUI/ui_AngleConverterWidget.h \
 		GUI/AngleConverterDialog.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include GUI/AngleConverterDialog.h -o objs/moc_AngleConverterDialog.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include GUI/AngleConverterDialog.h -o objs/moc_AngleConverterDialog.cpp
 
 objs/moc_BoardPanel.cpp: DataPointInfo.h \
 		GriddedReader.h \
@@ -779,7 +754,7 @@ objs/moc_BoardPanel.cpp: DataPointInfo.h \
 		BoardPanel.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include BoardPanel.h -o objs/moc_BoardPanel.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include BoardPanel.h -o objs/moc_BoardPanel.cpp
 
 objs/moc_ColorScaleWidget.cpp: DataDefines.h \
 		DataColors.h \
@@ -789,14 +764,14 @@ objs/moc_ColorScaleWidget.cpp: DataDefines.h \
 		ColorScaleWidget.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ColorScaleWidget.h -o objs/moc_ColorScaleWidget.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ColorScaleWidget.h -o objs/moc_ColorScaleWidget.cpp
 
 objs/moc_DataQString.cpp: util/Util.h \
 		DataDefines.h \
 		DataQString.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DataQString.h -o objs/moc_DataQString.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DataQString.h -o objs/moc_DataQString.cpp
 
 objs/moc_DateChooser.cpp: GriddedPlotter.h \
 		DataMeteoAbstract.h \
@@ -815,13 +790,13 @@ objs/moc_DateChooser.cpp: GriddedPlotter.h \
 		DateChooser.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DateChooser.h -o objs/moc_DateChooser.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DateChooser.h -o objs/moc_DateChooser.cpp
 
 objs/moc_DialogBoxColumn.cpp: DialogBoxBase.h \
 		DialogBoxColumn.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DialogBoxColumn.h -o objs/moc_DialogBoxColumn.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DialogBoxColumn.h -o objs/moc_DialogBoxColumn.cpp
 
 objs/moc_DialogFonts.cpp: DialogBoxBase.h \
 		util/Font.h \
@@ -830,15 +805,19 @@ objs/moc_DialogFonts.cpp: DialogBoxBase.h \
 		DialogFonts.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DialogFonts.h -o objs/moc_DialogFonts.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DialogFonts.h -o objs/moc_DialogFonts.cpp
 
 objs/moc_DialogGraphicsParams.cpp: GUI/ui_GraphicsParamsDialog.h \
+		GUI/ColorEditorWidget.h \
+		GUI/ui_ColorEditorWidget.h \
+		GUI/LineEditorWidget.h \
+		GUI/ui_LineEditorWidget.h \
 		DialogBoxColumn.h \
 		DialogBoxBase.h \
 		DialogGraphicsParams.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DialogGraphicsParams.h -o objs/moc_DialogGraphicsParams.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DialogGraphicsParams.h -o objs/moc_DialogGraphicsParams.cpp
 
 objs/moc_DialogLoadGRIB.cpp: DataDefines.h \
 		DialogBoxBase.h \
@@ -848,7 +827,7 @@ objs/moc_DialogLoadGRIB.cpp: DataDefines.h \
 		DialogLoadGRIB.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DialogLoadGRIB.h -o objs/moc_DialogLoadGRIB.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DialogLoadGRIB.h -o objs/moc_DialogLoadGRIB.cpp
 
 objs/moc_DialogLoadIAC.cpp: DialogBoxBase.h \
 		FileLoaderIAC.h \
@@ -856,39 +835,13 @@ objs/moc_DialogLoadIAC.cpp: DialogBoxBase.h \
 		DialogLoadIAC.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DialogLoadIAC.h -o objs/moc_DialogLoadIAC.cpp
-
-objs/moc_DialogLoadMBLUE.cpp: DialogBoxBase.h \
-		FileLoaderMBLUE.h \
-		FileLoader.h \
-		MblueReader.h \
-		IrregularGridded.h \
-		util/zuFile.h \
-		GriddedPlotter.h \
-		DataMeteoAbstract.h \
-		DataDefines.h \
-		Therm.h \
-		util/Util.h \
-		DataColors.h \
-		DataQString.h \
-		ColorScale.h \
-		GriddedReader.h \
-		GriddedRecord.h \
-		map/Projection.h \
-		IsoLine.h \
-		LongTaskProgress.h \
-		MblueRecord.h \
-		MbzFile.h \
-		DialogLoadMBLUE.h \
-		objs/moc_predefs.h \
-		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DialogLoadMBLUE.h -o objs/moc_DialogLoadMBLUE.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DialogLoadIAC.h -o objs/moc_DialogLoadIAC.cpp
 
 objs/moc_DialogProxy.cpp: DialogBoxBase.h \
 		DialogProxy.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DialogProxy.h -o objs/moc_DialogProxy.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DialogProxy.h -o objs/moc_DialogProxy.cpp
 
 objs/moc_DialogSelectMetar.cpp: DialogBoxBase.h \
 		Metar.h \
@@ -899,19 +852,19 @@ objs/moc_DialogSelectMetar.cpp: DialogBoxBase.h \
 		DialogSelectMetar.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DialogSelectMetar.h -o objs/moc_DialogSelectMetar.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DialogSelectMetar.h -o objs/moc_DialogSelectMetar.cpp
 
 objs/moc_DialogServerStatus.cpp: DialogBoxBase.h \
 		DialogServerStatus.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DialogServerStatus.h -o objs/moc_DialogServerStatus.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DialogServerStatus.h -o objs/moc_DialogServerStatus.cpp
 
 objs/moc_DialogUnits.cpp: DialogBoxBase.h \
 		DialogUnits.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DialogUnits.h -o objs/moc_DialogUnits.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DialogUnits.h -o objs/moc_DialogUnits.cpp
 
 objs/moc_FileLoaderGRIB.cpp: FileLoader.h \
 		util/Util.h \
@@ -919,19 +872,13 @@ objs/moc_FileLoaderGRIB.cpp: FileLoader.h \
 		FileLoaderGRIB.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include FileLoaderGRIB.h -o objs/moc_FileLoaderGRIB.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include FileLoaderGRIB.h -o objs/moc_FileLoaderGRIB.cpp
 
 objs/moc_FileLoaderIAC.cpp: FileLoader.h \
 		FileLoaderIAC.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include FileLoaderIAC.h -o objs/moc_FileLoaderIAC.cpp
-
-objs/moc_FileLoaderMBLUE.cpp: FileLoader.h \
-		FileLoaderMBLUE.h \
-		objs/moc_predefs.h \
-		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include FileLoaderMBLUE.h -o objs/moc_FileLoaderMBLUE.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include FileLoaderIAC.h -o objs/moc_FileLoaderIAC.cpp
 
 objs/moc_GribAnimator.cpp: DialogBoxColumn.h \
 		DialogBoxBase.h \
@@ -968,14 +915,10 @@ objs/moc_GribAnimator.cpp: DialogBoxColumn.h \
 		Grib2Reader.h \
 		Grib2Record.h \
 		g2clib/grib2.h \
-		MbluePlot.h \
-		MblueReader.h \
-		MblueRecord.h \
-		MbzFile.h \
 		GribAnimator.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include GribAnimator.h -o objs/moc_GribAnimator.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include GribAnimator.h -o objs/moc_GribAnimator.cpp
 
 objs/moc_ImageWriter.cpp: DialogBoxColumn.h \
 		DialogBoxBase.h \
@@ -1012,21 +955,17 @@ objs/moc_ImageWriter.cpp: DialogBoxColumn.h \
 		Grib2Reader.h \
 		Grib2Record.h \
 		g2clib/grib2.h \
-		MbluePlot.h \
-		MblueReader.h \
-		MblueRecord.h \
-		MbzFile.h \
 		DateChooser.h \
 		ColorScaleWidget.h \
 		ImageWriter.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ImageWriter.h -o objs/moc_ImageWriter.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ImageWriter.h -o objs/moc_ImageWriter.cpp
 
 objs/moc_LongTaskProgress.cpp: LongTaskProgress.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include LongTaskProgress.h -o objs/moc_LongTaskProgress.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include LongTaskProgress.h -o objs/moc_LongTaskProgress.cpp
 
 objs/moc_Metar.cpp: util/Util.h \
 		DataDefines.h \
@@ -1035,7 +974,7 @@ objs/moc_Metar.cpp: util/Util.h \
 		Metar.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include Metar.h -o objs/moc_Metar.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include Metar.h -o objs/moc_Metar.cpp
 
 objs/moc_MeteoTable.cpp: MeteoTableWidget.h \
 		GriddedPlotter.h \
@@ -1063,7 +1002,7 @@ objs/moc_MeteoTable.cpp: MeteoTableWidget.h \
 		MeteoTable.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include MeteoTable.h -o objs/moc_MeteoTable.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include MeteoTable.h -o objs/moc_MeteoTable.cpp
 
 objs/moc_MeteoTableWidget.cpp: GriddedPlotter.h \
 		DataMeteoAbstract.h \
@@ -1085,7 +1024,7 @@ objs/moc_MeteoTableWidget.cpp: GriddedPlotter.h \
 		MeteoTableWidget.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include MeteoTableWidget.h -o objs/moc_MeteoTableWidget.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include MeteoTableWidget.h -o objs/moc_MeteoTableWidget.cpp
 
 objs/moc_MeteotableOptionsDialog.cpp: DialogBoxBase.h \
 		GUI/ui_MeteotableOptionsDialog.h \
@@ -1096,10 +1035,14 @@ objs/moc_MeteotableOptionsDialog.cpp: DialogBoxBase.h \
 		MeteotableOptionsDialog.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include MeteotableOptionsDialog.h -o objs/moc_MeteotableOptionsDialog.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include MeteotableOptionsDialog.h -o objs/moc_MeteotableOptionsDialog.cpp
 
 objs/moc_MainWindow.cpp: DialogGraphicsParams.h \
 		GUI/ui_GraphicsParamsDialog.h \
+		GUI/ColorEditorWidget.h \
+		GUI/ui_ColorEditorWidget.h \
+		GUI/LineEditorWidget.h \
+		GUI/ui_LineEditorWidget.h \
 		DialogBoxColumn.h \
 		DialogBoxBase.h \
 		ImageWriter.h \
@@ -1136,10 +1079,6 @@ objs/moc_MainWindow.cpp: DialogGraphicsParams.h \
 		Grib2Reader.h \
 		Grib2Record.h \
 		g2clib/grib2.h \
-		MbluePlot.h \
-		MblueReader.h \
-		MblueRecord.h \
-		MbzFile.h \
 		DateChooser.h \
 		ColorScaleWidget.h \
 		MenuBar.h \
@@ -1149,8 +1088,6 @@ objs/moc_MainWindow.cpp: DialogGraphicsParams.h \
 		FileLoader.h \
 		DialogLoadIAC.h \
 		FileLoaderIAC.h \
-		DialogLoadMBLUE.h \
-		FileLoaderMBLUE.h \
 		DialogServerStatus.h \
 		DialogProxy.h \
 		DialogUnits.h \
@@ -1163,7 +1100,7 @@ objs/moc_MainWindow.cpp: DialogGraphicsParams.h \
 		MainWindow.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include MainWindow.h -o objs/moc_MainWindow.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include MainWindow.h -o objs/moc_MainWindow.cpp
 
 objs/moc_MapDrawer.cpp: map/GshhsReader.h \
 		util/zuFile.h \
@@ -1195,40 +1132,46 @@ objs/moc_MapDrawer.cpp: map/GshhsReader.h \
 		MapDrawer.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include MapDrawer.h -o objs/moc_MapDrawer.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include MapDrawer.h -o objs/moc_MapDrawer.cpp
 
 objs/moc_MenuBar.cpp: MenuBar.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include MenuBar.h -o objs/moc_MenuBar.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include MenuBar.h -o objs/moc_MenuBar.cpp
 
 objs/moc_POI.cpp: map/Projection.h \
 		map/POI.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include map/POI.h -o objs/moc_POI.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include map/POI.h -o objs/moc_POI.cpp
 
 objs/moc_POI_Editor.cpp: map/Projection.h \
 		map/POI.h \
 		util/Util.h \
 		DataDefines.h \
 		GUI/ui_PoiEditorDialog.h \
+		GUI/ColorEditorWidget.h \
+		GUI/ui_ColorEditorWidget.h \
+		GUI/PositionEditorWidget.h \
+		GUI/ui_PositionEditorWidget.h \
+		GUI/TextStyleEditorWidget.h \
+		GUI/ui_TextStyleEditorWidget.h \
 		map/POI_Editor.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include map/POI_Editor.h -o objs/moc_POI_Editor.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include map/POI_Editor.h -o objs/moc_POI_Editor.cpp
 
 objs/moc_PositionEditor.cpp: util/Util.h \
 		DataDefines.h \
 		map/PositionEditor.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include map/PositionEditor.h -o objs/moc_PositionEditor.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include map/PositionEditor.h -o objs/moc_PositionEditor.cpp
 
 objs/moc_Projection.cpp: map/Projection.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include map/Projection.h -o objs/moc_Projection.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include map/Projection.h -o objs/moc_Projection.cpp
 
 objs/moc_SkewT.cpp: Therm.h \
 		util/Util.h \
@@ -1248,7 +1191,7 @@ objs/moc_SkewT.cpp: Therm.h \
 		SkewT.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include SkewT.h -o objs/moc_SkewT.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include SkewT.h -o objs/moc_SkewT.cpp
 
 objs/moc_Terrain.cpp: map/GshhsReader.h \
 		util/zuFile.h \
@@ -1282,20 +1225,16 @@ objs/moc_Terrain.cpp: map/GshhsReader.h \
 		Grib2Reader.h \
 		Grib2Record.h \
 		g2clib/grib2.h \
-		MbluePlot.h \
-		MblueReader.h \
-		MblueRecord.h \
-		MbzFile.h \
 		Terrain.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include Terrain.h -o objs/moc_Terrain.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include Terrain.h -o objs/moc_Terrain.cpp
 
 objs/moc_Util.cpp: DataDefines.h \
 		util/Util.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src -I/home/dominique/dev/git/DHA/XyGrib/src/util -I/home/dominique/dev/git/DHA/XyGrib/src/map -I/home/dominique/dev/git/DHA/XyGrib/src/GUI -I/home/dominique/dev/git/DHA/XyGrib/src/curvedrawer -I/home/dominique/dev/git/DHA/XyGrib/src/qwt-6.1.3/src -I/home/dominique/dev/git/DHA/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include util/Util.h -o objs/moc_Util.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include util/Util.h -o objs/moc_Util.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -1312,22 +1251,28 @@ GUI/ui_PoiEditorDialog.h: GUI/PoiEditorDialog.ui \
 		GUI/PositionEditorWidget.h \
 		GUI/TextStyleEditorWidget.h \
 		GUI/ui_ColorEditorWidget.h \
+		GUI/ColorEditorWidget.h \
 		GUI/ui_PositionEditorWidget.h \
-		GUI/ui_TextStyleEditorWidget.h
+		GUI/ui_TextStyleEditorWidget.h \
+		GUI/TextStyleEditorWidget.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic GUI/PoiEditorDialog.ui -o GUI/ui_PoiEditorDialog.h
 
 GUI/ui_ColorEditorWidget.h: GUI/ColorEditorWidget.ui \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/uic \
+		GUI/ColorEditorWidget.h \
 		GUI/ColorEditorWidget.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic GUI/ColorEditorWidget.ui -o GUI/ui_ColorEditorWidget.h
 
 GUI/ui_LineEditorWidget.h: GUI/LineEditorWidget.ui \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/uic \
+		GUI/LineEditorWidget.h \
 		GUI/LineEditorWidget.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic GUI/LineEditorWidget.ui -o GUI/ui_LineEditorWidget.h
 
 GUI/ui_TextStyleEditorWidget.h: GUI/TextStyleEditorWidget.ui \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/uic \
+		GUI/TextStyleEditorWidget.h \
+		GUI/TextStyleEditorWidget.h \
 		GUI/TextStyleEditorWidget.h \
 		GUI/TextStyleEditorWidget.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic GUI/TextStyleEditorWidget.ui -o GUI/ui_TextStyleEditorWidget.h
@@ -1337,7 +1282,9 @@ GUI/ui_GraphicsParamsDialog.h: GUI/GraphicsParamsDialog.ui \
 		GUI/ColorEditorWidget.h \
 		GUI/LineEditorWidget.h \
 		GUI/ui_ColorEditorWidget.h \
-		GUI/ui_LineEditorWidget.h
+		GUI/ColorEditorWidget.h \
+		GUI/ui_LineEditorWidget.h \
+		GUI/LineEditorWidget.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic GUI/GraphicsParamsDialog.ui -o GUI/ui_GraphicsParamsDialog.h
 
 GUI/ui_MeteotableOptionsDialog.h: GUI/MeteotableOptionsDialog.ui \
@@ -1387,74 +1334,6 @@ objs/Astro.o: Astro.cpp Astro.h \
 		util/Util.h \
 		DataDefines.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/Astro.o Astro.cpp
-
-objs/MbzFile.o: MbzFile.cpp MbzFile.h \
-		util/Util.h \
-		DataDefines.h \
-		util/zuFile.h \
-		LongTaskProgress.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/MbzFile.o MbzFile.cpp
-
-objs/MblueRecord.o: MblueRecord.cpp MblueRecord.h \
-		IrregularGridded.h \
-		util/zuFile.h \
-		GriddedPlotter.h \
-		DataMeteoAbstract.h \
-		DataDefines.h \
-		Therm.h \
-		util/Util.h \
-		DataColors.h \
-		DataQString.h \
-		ColorScale.h \
-		GriddedReader.h \
-		GriddedRecord.h \
-		map/Projection.h \
-		IsoLine.h \
-		LongTaskProgress.h \
-		MbzFile.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/MblueRecord.o MblueRecord.cpp
-
-objs/MblueReader.o: MblueReader.cpp util/Util.h \
-		DataDefines.h \
-		MblueReader.h \
-		IrregularGridded.h \
-		util/zuFile.h \
-		GriddedPlotter.h \
-		DataMeteoAbstract.h \
-		Therm.h \
-		DataColors.h \
-		DataQString.h \
-		ColorScale.h \
-		GriddedReader.h \
-		GriddedRecord.h \
-		map/Projection.h \
-		IsoLine.h \
-		LongTaskProgress.h \
-		MblueRecord.h \
-		MbzFile.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/MblueReader.o MblueReader.cpp
-
-objs/MbluePlot.o: MbluePlot.cpp MbluePlot.h \
-		util/zuFile.h \
-		IrregularGridded.h \
-		GriddedPlotter.h \
-		DataMeteoAbstract.h \
-		DataDefines.h \
-		Therm.h \
-		util/Util.h \
-		DataColors.h \
-		DataQString.h \
-		ColorScale.h \
-		GriddedReader.h \
-		GriddedRecord.h \
-		map/Projection.h \
-		IsoLine.h \
-		LongTaskProgress.h \
-		MblueReader.h \
-		MblueRecord.h \
-		MbzFile.h \
-		util/Font.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/MbluePlot.o MbluePlot.cpp
 
 objs/BoardPanel.o: BoardPanel.cpp BoardPanel.h \
 		DataPointInfo.h \
@@ -1545,6 +1424,10 @@ objs/DialogFonts.o: DialogFonts.cpp DialogFonts.h \
 
 objs/DialogGraphicsParams.o: DialogGraphicsParams.cpp DialogGraphicsParams.h \
 		GUI/ui_GraphicsParamsDialog.h \
+		GUI/ColorEditorWidget.h \
+		GUI/ui_ColorEditorWidget.h \
+		GUI/LineEditorWidget.h \
+		GUI/ui_LineEditorWidget.h \
 		DialogBoxColumn.h \
 		DialogBoxBase.h \
 		util/Util.h \
@@ -1568,32 +1451,6 @@ objs/DialogLoadIAC.o: DialogLoadIAC.cpp DialogLoadIAC.h \
 		util/Util.h \
 		DataDefines.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/DialogLoadIAC.o DialogLoadIAC.cpp
-
-objs/DialogLoadMBLUE.o: DialogLoadMBLUE.cpp DialogLoadMBLUE.h \
-		DialogBoxBase.h \
-		FileLoaderMBLUE.h \
-		FileLoader.h \
-		MblueReader.h \
-		IrregularGridded.h \
-		util/zuFile.h \
-		GriddedPlotter.h \
-		DataMeteoAbstract.h \
-		DataDefines.h \
-		Therm.h \
-		util/Util.h \
-		DataColors.h \
-		DataQString.h \
-		ColorScale.h \
-		GriddedReader.h \
-		GriddedRecord.h \
-		map/Projection.h \
-		IsoLine.h \
-		LongTaskProgress.h \
-		MblueRecord.h \
-		MbzFile.h \
-		DialogServerStatus.h \
-		DialogProxy.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/DialogLoadMBLUE.o DialogLoadMBLUE.cpp
 
 objs/DialogProxy.o: DialogProxy.cpp DialogProxy.h \
 		DialogBoxBase.h \
@@ -1638,13 +1495,6 @@ objs/FileLoaderIAC.o: FileLoaderIAC.cpp FileLoaderIAC.h \
 		DataDefines.h \
 		Version.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/FileLoaderIAC.o FileLoaderIAC.cpp
-
-objs/FileLoaderMBLUE.o: FileLoaderMBLUE.cpp FileLoaderMBLUE.h \
-		FileLoader.h \
-		util/Util.h \
-		DataDefines.h \
-		Version.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/FileLoaderMBLUE.o FileLoaderMBLUE.cpp
 
 objs/Font.o: util/Font.cpp util/Font.h \
 		util/Util.h \
@@ -1733,10 +1583,6 @@ objs/GribAnimator.o: GribAnimator.cpp GribAnimator.h \
 		Grib2Reader.h \
 		Grib2Record.h \
 		g2clib/grib2.h \
-		MbluePlot.h \
-		MblueReader.h \
-		MblueRecord.h \
-		MbzFile.h \
 		ImageWriter.h \
 		DateChooser.h \
 		ColorScaleWidget.h
@@ -1939,10 +1785,6 @@ objs/ImageWriter.o: ImageWriter.cpp ImageWriter.h \
 		Grib2Reader.h \
 		Grib2Record.h \
 		g2clib/grib2.h \
-		MbluePlot.h \
-		MblueReader.h \
-		MblueRecord.h \
-		MbzFile.h \
 		DateChooser.h \
 		ColorScaleWidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/ImageWriter.o ImageWriter.cpp
@@ -1990,6 +1832,10 @@ objs/LonLatGrid.o: LonLatGrid.cpp util/Font.h \
 objs/main.o: main.cpp MainWindow.h \
 		DialogGraphicsParams.h \
 		GUI/ui_GraphicsParamsDialog.h \
+		GUI/ColorEditorWidget.h \
+		GUI/ui_ColorEditorWidget.h \
+		GUI/LineEditorWidget.h \
+		GUI/ui_LineEditorWidget.h \
 		DialogBoxColumn.h \
 		DialogBoxBase.h \
 		ImageWriter.h \
@@ -2026,10 +1872,6 @@ objs/main.o: main.cpp MainWindow.h \
 		Grib2Reader.h \
 		Grib2Record.h \
 		g2clib/grib2.h \
-		MbluePlot.h \
-		MblueReader.h \
-		MblueRecord.h \
-		MbzFile.h \
 		DateChooser.h \
 		ColorScaleWidget.h \
 		MenuBar.h \
@@ -2039,8 +1881,6 @@ objs/main.o: main.cpp MainWindow.h \
 		FileLoader.h \
 		DialogLoadIAC.h \
 		FileLoaderIAC.h \
-		DialogLoadMBLUE.h \
-		FileLoaderMBLUE.h \
 		DialogServerStatus.h \
 		DialogProxy.h \
 		DialogUnits.h \
@@ -2058,6 +1898,10 @@ objs/main.o: main.cpp MainWindow.h \
 objs/MainWindow.o: MainWindow.cpp MainWindow.h \
 		DialogGraphicsParams.h \
 		GUI/ui_GraphicsParamsDialog.h \
+		GUI/ColorEditorWidget.h \
+		GUI/ui_ColorEditorWidget.h \
+		GUI/LineEditorWidget.h \
+		GUI/ui_LineEditorWidget.h \
 		DialogBoxColumn.h \
 		DialogBoxBase.h \
 		ImageWriter.h \
@@ -2094,10 +1938,6 @@ objs/MainWindow.o: MainWindow.cpp MainWindow.h \
 		Grib2Reader.h \
 		Grib2Record.h \
 		g2clib/grib2.h \
-		MbluePlot.h \
-		MblueReader.h \
-		MblueRecord.h \
-		MbzFile.h \
 		DateChooser.h \
 		ColorScaleWidget.h \
 		MenuBar.h \
@@ -2107,8 +1947,6 @@ objs/MainWindow.o: MainWindow.cpp MainWindow.h \
 		FileLoader.h \
 		DialogLoadIAC.h \
 		FileLoaderIAC.h \
-		DialogLoadMBLUE.h \
-		FileLoaderMBLUE.h \
 		DialogServerStatus.h \
 		DialogProxy.h \
 		DialogUnits.h \
@@ -2125,6 +1963,10 @@ objs/MainWindow.o: MainWindow.cpp MainWindow.h \
 		util/Settings.h \
 		map/POI_Editor.h \
 		GUI/ui_PoiEditorDialog.h \
+		GUI/PositionEditorWidget.h \
+		GUI/ui_PositionEditorWidget.h \
+		GUI/TextStyleEditorWidget.h \
+		GUI/ui_TextStyleEditorWidget.h \
 		util/Orthodromie.h \
 		Version.h \
 		GUI/AngleConverterDialog.h \
@@ -2251,7 +2093,13 @@ objs/POI.o: map/POI.cpp util/Settings.h \
 		util/Util.h \
 		DataDefines.h \
 		map/POI_Editor.h \
-		GUI/ui_PoiEditorDialog.h
+		GUI/ui_PoiEditorDialog.h \
+		GUI/ColorEditorWidget.h \
+		GUI/ui_ColorEditorWidget.h \
+		GUI/PositionEditorWidget.h \
+		GUI/ui_PositionEditorWidget.h \
+		GUI/TextStyleEditorWidget.h \
+		GUI/ui_TextStyleEditorWidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/POI.o map/POI.cpp
 
 objs/POI_Editor.o: map/POI_Editor.cpp util/Settings.h \
@@ -2260,7 +2108,13 @@ objs/POI_Editor.o: map/POI_Editor.cpp util/Settings.h \
 		map/POI_Editor.h \
 		util/Util.h \
 		DataDefines.h \
-		GUI/ui_PoiEditorDialog.h
+		GUI/ui_PoiEditorDialog.h \
+		GUI/ColorEditorWidget.h \
+		GUI/ui_ColorEditorWidget.h \
+		GUI/PositionEditorWidget.h \
+		GUI/ui_PositionEditorWidget.h \
+		GUI/TextStyleEditorWidget.h \
+		GUI/ui_TextStyleEditorWidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/POI_Editor.o map/POI_Editor.cpp
 
 objs/PositionEditor.o: map/PositionEditor.cpp map/PositionEditor.h \
@@ -2350,10 +2204,6 @@ objs/Terrain.o: Terrain.cpp Terrain.h \
 		Grib2Reader.h \
 		Grib2Record.h \
 		g2clib/grib2.h \
-		MbluePlot.h \
-		MblueReader.h \
-		MblueRecord.h \
-		MbzFile.h \
 		util/Orthodromie.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/Terrain.o Terrain.cpp
 
@@ -2418,9 +2268,6 @@ objs/moc_DialogLoadGRIB.o: objs/moc_DialogLoadGRIB.cpp
 objs/moc_DialogLoadIAC.o: objs/moc_DialogLoadIAC.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/moc_DialogLoadIAC.o objs/moc_DialogLoadIAC.cpp
 
-objs/moc_DialogLoadMBLUE.o: objs/moc_DialogLoadMBLUE.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/moc_DialogLoadMBLUE.o objs/moc_DialogLoadMBLUE.cpp
-
 objs/moc_DialogProxy.o: objs/moc_DialogProxy.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/moc_DialogProxy.o objs/moc_DialogProxy.cpp
 
@@ -2438,9 +2285,6 @@ objs/moc_FileLoaderGRIB.o: objs/moc_FileLoaderGRIB.cpp
 
 objs/moc_FileLoaderIAC.o: objs/moc_FileLoaderIAC.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/moc_FileLoaderIAC.o objs/moc_FileLoaderIAC.cpp
-
-objs/moc_FileLoaderMBLUE.o: objs/moc_FileLoaderMBLUE.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/moc_FileLoaderMBLUE.o objs/moc_FileLoaderMBLUE.cpp
 
 objs/moc_GribAnimator.o: objs/moc_GribAnimator.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/moc_GribAnimator.o objs/moc_GribAnimator.cpp
