@@ -448,6 +448,11 @@ MenuBar::MenuBar (QWidget *parent)
 	acDatesGrib_prev->setEnabled (true);
 	acDatesGrib_next->setEnabled (true);
 
+    acPanToggle = addActionCheck(NULL,
+                            tr("Toggle click to pan"), "", tr("Toggle click to pan"), Util::pathImg("cursor-openhand.png"));
+    acSelectToggle = addActionCheck(NULL,
+                             tr("Toggle click to select"), "", tr("Toggle click to select"), Util::pathImg("cursor-cross.png"));
+
 	updateFonts();
 }
 

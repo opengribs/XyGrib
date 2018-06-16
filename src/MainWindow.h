@@ -139,10 +139,12 @@ class MainWindow: public QMainWindow
         void slotHelp_AProposQT ();
 		void slotUseJetStreamColorMap  (bool);
 
+        void slotPanToggle();
+        void slotSelectToggle();
+
         void slotCheckForUpdates();
         void slotNetworkError(QNetworkReply::NetworkError);
         void slotFinished();
-
 
     signals:
         void signalMapQuality (int quality);
@@ -208,6 +210,9 @@ class MainWindow: public QMainWindow
         int  mouseClicX, mouseClicY;
 		void updateBoardPanel ();
 		void updateGriddedData ();
+
+        bool selectToggled; // true - select mode, false - pan mode
+        void setSelectPanToggle(bool isSelect);
 
 		void closeEvent (QCloseEvent *) {QApplication::quit();}
 		void moveEvent  (QMoveEvent *event);

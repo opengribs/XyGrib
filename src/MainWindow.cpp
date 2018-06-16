@@ -178,6 +178,9 @@ void MainWindow::InitActionsStatus ()
 
     menuBar->acOptions_DarkSkin->setChecked(Util::getSetting("showDarkSkin", true).toBool());
 
+    setSelectPanToggle(true);
+
+
     //----------------------------------------------------------------------
 	// Set map quality
 	int quality = Util::getSetting("gshhsMapQuality", 2).toInt();
@@ -420,6 +423,9 @@ mb->acMap_SelectMETARs->setVisible (false);	// TODO
     connect(dateChooser, SIGNAL(signalDateChanged (time_t,bool)),
             this, SLOT(slotDateChooserChanged(time_t,bool)));
  
+    connect(mb->acPanToggle, SIGNAL(triggered()), this, SLOT(slotPanToggle()));
+    connect(mb->acSelectToggle, SIGNAL(triggered()), this, SLOT(slotSelectToggle()));
+
     //-------------------------------------
     // Autres signaux
     //-------------------------------------
@@ -588,7 +594,9 @@ void MainWindow::createToolBar ()
     toolBar->addSeparator();
     toolBar->addAction(menuBar->ac_CreateAnimation);
     toolBar->addSeparator();
-	
+    toolBar->addAction(menuBar->acSelectToggle);
+    toolBar->addAction(menuBar->acPanToggle);
+    toolBar->addSeparator();
 }
 //-----------------------------------------------
 void MainWindow::moveEvent (QMoveEvent *)
@@ -1708,7 +1716,7 @@ void MainWindow::statusBar_showSelectedZone()
 //--------------------------------------------------------------
 void MainWindow::slotMouseClicked(QMouseEvent * e)
 {
-statusBar_showSelectedZone();
+    statusBar_showSelectedZone();
 
 	mouseClicX = e->x();
  	mouseClicY = e->y();
@@ -1724,7 +1732,7 @@ statusBar_showSelectedZone();
         }
         case Qt::MidButton :   // Centre la carte sur le point
             proj->setCentralPixel(e->x(), e->y());
-			terre->setProjection(proj);
+            terre->setProjection(proj);
             break;
 
         case Qt::RightButton :
@@ -1736,6 +1744,7 @@ statusBar_showSelectedZone();
             break;
     }
 }
+
 //----------------------------------------------------
 void MainWindow::slotMouseMoved (QMouseEvent *)
 {
@@ -2283,6 +2292,26 @@ void MainWindow::slotGenericAction ()
 		if (t)
 			t->start();
 	}
+}
+//-------------------------------------------------
+void MainWindow::setSelectPanToggle(bool isSelect)
+{
+    selectToggled = isSelect;
+
+    menuBar->acPanToggle->setChecked(!selectToggled);
+    menuBar->acSelectToggle->setChecked(selectToggled);
+
+    terre->setMouseLeftSelect(selectToggled);
+}
+
+void MainWindow::slotPanToggle()
+{
+    setSelectPanToggle(false);
+}
+
+void MainWindow::slotSelectToggle()
+{
+    setSelectPanToggle(true);
 }
 // ----------------------------------------------------
 void MainWindow::checkUpdates()
