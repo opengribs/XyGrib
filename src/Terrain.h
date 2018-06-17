@@ -65,6 +65,8 @@ public:
     
     void  getLastMousePosition (int *x, int *y) { *x = lastMouseX;
 												  *y = lastMouseY; }
+
+    void  setMouseLeftSelect(bool isSelect);
 	
     void  zoomOnZone      (double x0, double y0, double x1, double y1);
     void  setSpecialZone  (double x0, double y0, double x1, double y1);
@@ -177,6 +179,14 @@ private:
     QTimer      *timerZoomWheel;
     QCursor		myCrossCursor;
     QCursor     enterCursor;
+
+    QCursor     primaryCursor;
+    QCursor     primaryCursorClick;
+    QCursor     controlCursor;
+    QCursor     controlCursorClick;
+    QCursor     shiftCursor;
+    QCursor     shiftCursorClick;
+
 	double 		deltaZoomWheel;
         
     void  draw_OrthodromieSegment
@@ -197,7 +207,9 @@ private:
     void  wheelEvent(QWheelEvent * e) ;
     void  zoomOnFileZone();
 
+
 	//-----------------------------------------------
+    bool     isMouseLeftSelect; // true -> mouseleft=select, mouseleft+control=pan, false -> mouseleft=pan, mouselef+control=select
     bool     isSelectionZoneEnCours;
     bool     isDraggingMapEnCours;
     double   selX0, selY0, selX1, selY1;   // sélection de zone (repère carte)

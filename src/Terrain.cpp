@@ -94,6 +94,8 @@ Terrain::Terrain (QWidget *parent, Projection *proj, GshhsReader *gshhsReader)
     setFocusPolicy(Qt::StrongFocus);
 	
 	createCrossCursor ();
+
+    setMouseLeftSelect(true);
 }
 //-------------------------------------------
 void Terrain::updateGraphicsParameters()
@@ -851,7 +853,7 @@ void Terrain::setCurrentDate(time_t t)
 void Terrain::enterEvent (QEvent * /*e*/) {
 //printf("enter\n");
     enterCursor = cursor();
-    setCursor(myCrossCursor);
+    setCursor(primaryCursor);
 }
 //---------------------------------------------------------
 void Terrain::leaveEvent (QEvent * e) {
@@ -866,13 +868,13 @@ void  Terrain::keyPressEvent (QKeyEvent *e)
 //printf("Terrain::keyPressEvent\n");
 	keyModifiers = e->modifiers();
     if (keyModifiers == Qt::ControlModifier) {
-        setCursor(Qt::ClosedHandCursor);
+        setCursor(controlCursor);
     }
     else if (keyModifiers == Qt::ShiftModifier) {
-        setCursor(Qt::UpArrowCursor);
+        setCursor(shiftCursor);
     }
     else {
-        setCursor(myCrossCursor);
+        setCursor(primaryCursor);
     }
 }
 //---------------------------------------------------------
@@ -881,13 +883,13 @@ void  Terrain::keyReleaseEvent (QKeyEvent *e)
 //printf("keyReleaseEvent\n");
 	keyModifiers = e->modifiers();
     if (keyModifiers == Qt::ControlModifier) {
-        setCursor(Qt::ClosedHandCursor);
+        setCursor(controlCursor);
     }
     else if (keyModifiers == Qt::ShiftModifier) {
-        setCursor(Qt::UpArrowCursor);
+        setCursor(shiftCursor);
     }
     else {
-        setCursor(myCrossCursor);
+        setCursor(primaryCursor);
     }
 }
 //---------------------------------------------------------
@@ -925,16 +927,34 @@ void Terrain::mousePressEvent (QMouseEvent * e) {
         // Début de sélection de zone rectangulaire
 		if (e->modifiers() == Qt::ControlModifier) {
 		// TODO use  tiles to drag map
-			isDraggingMapEnCours = true;
-		}
-		else {
-			isSelectionZoneEnCours = true;
+            setCursor(controlCursorClick);
+
+            if (isMouseLeftSelect) {
+                isDraggingMapEnCours = true;
+            } else {
+                isSelectionZoneEnCours = true;
+            }
+
+        } else if (e->modifiers() == Qt::ShiftModifier) {
+            setCursor(shiftCursorClick);
+
+            isSelectionZoneEnCours = true;
+        } else {
+            setCursor(primaryCursorClick);
+
+            if (isMouseLeftSelect) {
+                isSelectionZoneEnCours = true;
+            } else {
+                isDraggingMapEnCours = true;
+            }
 		}
         proj->screen2map(e->x(),e->y(), &selX1, &selY1);
         selX0 = selX1;
         selY0 = selY1;
 		globalX0 = e->globalX();
 		globalY0 = e->globalY();
+        lastMouseX = e->x();
+        lastMouseY = e->y();
         update();
     }
 }
@@ -944,6 +964,14 @@ void Terrain::mouseReleaseEvent (QMouseEvent * e) {
     
     globalX0 = 0;
     globalY0 = 0;
+
+    if (e->modifiers() == Qt::ControlModifier) {
+        setCursor(controlCursor);
+    } else if (e->modifiers() == Qt::ShiftModifier) {
+        setCursor(shiftCursor);
+    } else {
+        setCursor(primaryCursor);
+    }
 	
     if (isDraggingMapEnCours)
     {
@@ -995,6 +1023,23 @@ void Terrain::mouseMoveEvent (QMouseEvent * e)
 	lastMouseX = e->x();
 	lastMouseY = e->y();
 	emit mouseMoved(e);
+}
+//---------------------------------------------------------
+void Terrain::setMouseLeftSelect(bool isSelect)
+{
+    // sets whether the primary (unmodified) left mouse click is select [true] or pan (drag) [false]
+    // also sets the appropriate cursors according to the isSelect value
+    // sets up shift cursor, so that all cursor setting is in one place
+
+    primaryCursor = (isSelect) ? myCrossCursor : Qt::OpenHandCursor;
+    primaryCursorClick = (isSelect) ? myCrossCursor : Qt::ClosedHandCursor;
+    controlCursor = (isSelect) ? Qt::OpenHandCursor : myCrossCursor;
+    controlCursorClick = (isSelect)? Qt::ClosedHandCursor : myCrossCursor;
+
+    shiftCursor = Qt::UpArrowCursor;
+    shiftCursorClick = Qt::UpArrowCursor;
+
+    isMouseLeftSelect = isSelect;
 }
 
 //---------------------------------------------------------
