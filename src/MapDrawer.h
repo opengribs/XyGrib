@@ -28,7 +28,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "POI.h"
 
 #include "GribPlot.h"
-#include "IacPlot.h"
 #include "IrregularGridded.h"
 
 
@@ -52,15 +51,6 @@ friend class Terrain;	// TODO (or not) getters setters
 				bool drawCartouche = true
 			);
 		
-		void draw_GSHHS_and_IAC (
-				QPainter &pntGlobal,
-				bool mustRedraw,
-				bool isEarthMapValid,
-				Projection *proj,
-				IacPlot    *iacPlot,
-				bool drawCartouche = true
-			);
-
 		void draw_GSHHS (
 				QPainter &pntGlobal,
 				bool mustRedraw,
@@ -73,9 +63,6 @@ friend class Terrain;	// TODO (or not) getters setters
 					QPainter &pnt, const Projection *proj, 
 					GriddedPlotter *gribPlot );
 						
-		void draw_Cartouche_IAC  (
-					QPainter &pnt, const Projection *proj, IacPlot *iacPlot);
-
 		DataCode getColorMapData () {return colorMapData;}
 		void setColorMapData (const DataCode &dtc) {colorMapData = dtc;}
 		
@@ -166,7 +153,6 @@ friend class Terrain;	// TODO (or not) getters setters
 		void	initGraphicsParameters  ();
 		void    addUsedDataCenterModel (const DataCode &dtc, GriddedPlotter *plotter);
 		
-		void 	draw_MeteoData_IAC   (QPainter &pnt, Projection *proj, IacPlot *iacPlot);
 		void    draw_MeteoData_Gridded 
 						( QPainter &pnt, Projection *proj,
 						GriddedPlotter   *plotter );

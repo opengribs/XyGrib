@@ -86,7 +86,6 @@ public:
     QAction *acFile_Close;
 	QAction *acFile_NewInstance;
     QAction *acFile_Load_GRIB;
-    QAction *acFile_Load_IAC;
     
     QAction *acFile_GribServerStatus;
     QAction *acFile_Info_GRIB;

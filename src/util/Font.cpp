@@ -48,9 +48,6 @@ QString Font::getFontCodeString (FontCode code) {
 		case FONT_MapCity_5 : return "FONT_MapCity_5";
 		case FONT_GRIB_Temp : return "FONT_GRIB_Temp";
 		case FONT_GRIB_PressHL : return "FONT_GRIB_PressHL";
-		case FONT_IAC_Isobar :   return "FONT_IAC_Isobar";
-		case FONT_IAC_PressHLVal : return "FONT_IAC_PressHLVal";
-		case FONT_IAC_PressHL : return "FONT_IAC_PressHL";
 		case FONT_AltitudeLabel : return "FONT_AltitudeLabel";
 		case FONT_AltitudeLabelTitle : return "FONT_AltitudeLabelTitle";
 		case FONT_DateChooser :   return "FONT_DateChooser";
@@ -83,9 +80,6 @@ QFont Font::getDefaultFont (FontCode code) {
 		case FONT_MapCity_5 : return QFont("Liberation Sans", 8, QFont::Normal, true);
 		case FONT_GRIB_Temp : return QFont("Liberation Serif", 10, QFont::Bold, true);
 		case FONT_GRIB_PressHL : return QFont("Liberation Serif", 16, QFont::Bold, true);
-		case FONT_IAC_Isobar :   return QFont("Liberation Serif", 9, QFont::Bold, true);
-		case FONT_IAC_PressHLVal : return QFont("Liberation Serif", 10, QFont::Bold, true);
-		case FONT_IAC_PressHL : return QFont("Liberation Serif", 14, QFont::Bold, true);
 		case FONT_AltitudeLabel :     return QFont("Liberation Mono", 9, QFont::Normal,false);
 		case FONT_AltitudeLabelTitle: return QFont("Liberation Mono", 9, QFont::Bold,false);
 		case FONT_DateChooser :  return QFont("Liberation Sans", 8, QFont::Bold,true);
@@ -129,10 +123,6 @@ void Font::initAppFonts ()
 	
 	initGlobalFont (FONT_GRIB_Temp);
 	initGlobalFont (FONT_GRIB_PressHL);
-	
-	initGlobalFont (FONT_IAC_Isobar);
-	initGlobalFont (FONT_IAC_PressHLVal);
-	initGlobalFont (FONT_IAC_PressHL);
 	
 	initGlobalFont (FONT_AltitudeLabel);
 	initGlobalFont (FONT_AltitudeLabelTitle);
