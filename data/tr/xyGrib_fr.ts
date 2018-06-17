@@ -88,7 +88,7 @@
     <message>
         <location filename="../../src/DataQString.cpp" line="125"/>
         <source>-%1 m</source>
-        <translation type="unfinished"></translation>
+        <translation>-%1 m</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="131"/>
@@ -969,7 +969,7 @@ Point en dehors de la zone GRIB.</translation>
     <message>
         <location filename="../../src/DataQString.cpp" line="165"/>
         <source>Geopotential height</source>
-        <translation type="unfinished"></translation>
+        <translation>hauteur géopotentielle</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="194"/>
@@ -1227,18 +1227,18 @@ Point en dehors de la zone GRIB.</translation>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="871"/>
         <source> (max 50 MB) - NOTE: No sfc. or alt. parameters are selected!</source>
-        <translation type="unfinished"></translation>
+        <translation> (max. 50 MB) - Note : aucun paramètre de surface ou d&apos;altitude sélectionné</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="873"/>
         <source> (max 50 MB)</source>
-        <translation type="unfinished"></translation>
+        <translation> (max. 50 MB)</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1015"/>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1024"/>
         <source>None</source>
-        <translation type="unfinished">Aucun</translation>
+        <translation>Aucun</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1081"/>
@@ -1297,32 +1297,32 @@ Point en dehors de la zone GRIB.</translation>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1156"/>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1159"/>
         <source>mb</source>
-        <translation type="unfinished"></translation>
+        <translation>mb</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1267"/>
         <source>Run cycle:</source>
-        <translation type="unfinished"></translation>
+        <translation>heure d&apos;exécution:</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1312"/>
         <source>Surface Data</source>
-        <translation type="unfinished"></translation>
+        <translation>Données de surface</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1323"/>
         <source>Warning: Selecting this data significantly increases the size of the GRIB file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cave at : Sélectionner ces données augmente significativement la taille du fichier grib</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1350"/>
         <source>Altitude Data</source>
-        <translation type="unfinished"></translation>
+        <translation>Données d&apos;altitude</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1368"/>
         <source>Wave Data</source>
-        <translation type="unfinished"></translation>
+        <translation>Données vagues</translation>
     </message>
     <message>
         <source>Sunshine duration</source>
@@ -1346,12 +1346,12 @@ Point en dehors de la zone GRIB.</translation>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1228"/>
         <source>Atmospheric Model :</source>
-        <translation type="unfinished"></translation>
+        <translation>Modèle athmosphérique</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1236"/>
         <source>Wave Model :</source>
-        <translation type="unfinished"></translation>
+        <translation>Modèle vagues</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1249"/>
@@ -1542,17 +1542,17 @@ Point en dehors de la zone GRIB.</translation>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="297"/>
         <source>kb/s</source>
-        <translation type="unfinished"></translation>
+        <translation>kb/s</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="301"/>
         <source>Mb/s</source>
-        <translation type="unfinished"></translation>
+        <translation>Mb/s</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="304"/>
         <source>Size: %1 kb      Done: %2 ko at %3 %4</source>
-        <translation type="unfinished"></translation>
+        <translation>Taille : %1 kb      Effectué : %2 ko à %3 %4</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1077"/>
@@ -2326,17 +2326,17 @@ Actualisation 4 fois par jour.
     <message>
         <location filename="../../src/DialogServerStatus.cpp" line="113"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../../src/DialogServerStatus.cpp" line="132"/>
         <source>Working</source>
-        <translation type="unfinished"></translation>
+        <translation>En exécution</translation>
     </message>
     <message>
         <location filename="../../src/DialogServerStatus.cpp" line="134"/>
         <source>Waiting</source>
-        <translation type="unfinished"></translation>
+        <translation>En attente</translation>
     </message>
     <message>
         <source>ok</source>
@@ -2654,17 +2654,17 @@ Actualisation 4 fois par jour.
     <message>
         <location filename="../../src/FileLoaderGRIB.cpp" line="212"/>
         <source>Preparing file on server... Please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Préparation du fichier sur le serveur... Veuillez patienter...</translation>
     </message>
     <message>
         <location filename="../../src/FileLoaderGRIB.cpp" line="245"/>
         <source>Bad Request</source>
-        <translation type="unfinished"></translation>
+        <translation>Mauvaise demande</translation>
     </message>
     <message>
         <location filename="../../src/FileLoaderGRIB.cpp" line="245"/>
         <source>No atmospheric or wave parameters were selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Aucun paramètre athmospéhérique ou de vagues n&apos;a été sélectionné</translation>
     </message>
     <message>
         <location filename="../../src/FileLoaderGRIB.cpp" line="298"/>
@@ -3184,37 +3184,37 @@ Actualisation 4 fois par jour.
     <message>
         <location filename="../../src/MainWindow.cpp" line="2308"/>
         <source>An updated version is available</source>
-        <translation type="unfinished"></translation>
+        <translation>Une nouvelle version est disponible</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="2311"/>
         <source>A new version</source>
-        <translation type="unfinished"></translation>
+        <translation>Une nouvelle version</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="2312"/>
         <source>is available for download.</source>
-        <translation type="unfinished"></translation>
+        <translation>est disponible pour téléchargement</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="2320"/>
         <source>Version is up to date</source>
-        <translation type="unfinished"></translation>
+        <translation>Version à jour</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="2321"/>
         <source>You have version</source>
-        <translation type="unfinished"></translation>
+        <translation>Vous avez une version</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="2322"/>
         <source>which is the most current version</source>
-        <translation type="unfinished"></translation>
+        <translation>qui est la version la plus récente</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="2336"/>
         <source>Network Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur de réseau</translation>
     </message>
     <message>
         <source>zyGrib - </source>
@@ -3309,22 +3309,22 @@ Désélection: Maj + clic gauche sur la carte en même temps</translation>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1384"/>
         <source>Help is available at</source>
-        <translation type="unfinished"></translation>
+        <translation>Une aide est disponible sur</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1394"/>
         <source>XyGrib : GRIB files visualization</source>
-        <translation type="unfinished"></translation>
+        <translation>XyGrib : outil de visualisation des fichiers GRIB</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1678"/>
         <source>Change Skin</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifier l&apos;apparence</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1679"/>
         <source>For skin change to take effect XyGrib needs to be restarted</source>
-        <translation type="unfinished"></translation>
+        <translation>Pour que l&apos;apparence prenne effet, il est nécessaire de redémarrer XyGrib</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1689"/>
@@ -3452,7 +3452,7 @@ Désélection: Maj + clic gauche sur la carte en même temps</translation>
         <location filename="../../src/MapDrawer.cpp" line="798"/>
         <location filename="../../src/MapDrawer.cpp" line="922"/>
         <source>XyGrib</source>
-        <translation type="unfinished"></translation>
+        <translation>XyGrib</translation>
     </message>
     <message>
         <source>xyGrib</source>
@@ -3514,7 +3514,7 @@ Désélection: Maj + clic gauche sur la carte en même temps</translation>
     <message>
         <location filename="../../src/MenuBar.cpp" line="407"/>
         <source>Dark Skin</source>
-        <translation type="unfinished"></translation>
+        <translation>Apparence sombre</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="409"/>
@@ -4506,12 +4506,12 @@ Désélection: Maj + clic gauche sur la carte en même temps</translation>
     <message>
         <location filename="../../src/MenuBar.cpp" line="422"/>
         <source>About XyGrib</source>
-        <translation type="unfinished"></translation>
+        <translation>A propos de XyGrib</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="423"/>
         <source>Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Vérifier si une mise à jour est disponible</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="475"/>
