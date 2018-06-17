@@ -81,7 +81,6 @@ Terrain::Terrain (QWidget *parent, Projection *proj, GshhsReader *gshhsReader)
 	
     //---------------------------------------------------------------
 	griddedPlot = NULL;
-	iacPlot = NULL;
 	taskProgress = NULL;
 
     //---------------------------------------------------------------
@@ -642,7 +641,7 @@ bool  Terrain::getGribFileRectangle(double *x0, double *y0, double *x1, double *
 }
 
 //---------------------------------------------------------
-// Grib or IAC files or ...
+// Grib files or ...
 //---------------------------------------------------------
 FileDataType Terrain::loadMeteoDataFile (QString fileName, bool zoom)
 {
@@ -657,10 +656,6 @@ FileDataType Terrain::loadMeteoDataFile (QString fileName, bool zoom)
 	if (griddedPlot != NULL) {
 		delete griddedPlot;
 		griddedPlot = NULL;
-	}
-	if (iacPlot != NULL) {
-		delete iacPlot;
-		iacPlot = NULL;
 	}
 	taskProgress->setMessage (LTASK_OPEN_FILE);
 	taskProgress->setValue (0);
@@ -711,20 +706,6 @@ FileDataType Terrain::loadMeteoDataFile (QString fileName, bool zoom)
 		else {
 			delete griddedPlot_Temp;
 			griddedPlot_Temp = NULL;
-		}
-	}
-	if (!ok && taskProgress->continueDownload) {	// try to load a IAC file
-		//DBG("try to load a IAC file");
-		iacPlot = new IacPlot ();
-		assert(iacPlot);
-		iacPlot->loadFile (fileName);      // IAC file ?
-		if (iacPlot->isReaderOk()) {
-			currentFileType = DATATYPE_IAC;
-			ok = true;
-		}
-		else {
-			delete iacPlot;
-			iacPlot = NULL;
 		}
 	}
 	
@@ -790,10 +771,6 @@ void   Terrain::closeMeteoDataFile()
 		delete griddedPlot;
 		griddedPlot = NULL;
 	}
-	if (iacPlot != NULL) {
-		delete iacPlot;
-		iacPlot = NULL;
-	}
 	currentFileType = DATATYPE_NONE;
 	mustRedraw = true;
     update();
@@ -807,11 +784,6 @@ void Terrain::zoomOnFileZone ()
     if (currentFileType == DATATYPE_GRIB) {
 		if (griddedPlot!=NULL && griddedPlot->isReaderOk()) {
 			ok = griddedPlot->getReader()->getZoneExtension(&x0,&y0, &x1,&y1);
-		}
-    }
-    else if (currentFileType == DATATYPE_IAC) {
-		if (iacPlot!=NULL && iacPlot->isReaderOk()) {
-			ok = iacPlot->getReader()->getZoneExtension(&x0,&y0, &x1,&y1);
 		}
     }
 
@@ -1078,10 +1050,6 @@ void Terrain::paintEvent(QPaintEvent *)
 				drawer->draw_GSHHS_and_GriddedData 
 					(pnt, mustRedraw, isEarthMapValid, proj, griddedPlot, drawCartouche);
 				break;
-			case DATATYPE_IAC :
-				drawer->draw_GSHHS_and_IAC 
-					(pnt, mustRedraw, isEarthMapValid, proj, iacPlot, drawCartouche);
-				break;
 			default :
 				drawer->draw_GSHHS (pnt, mustRedraw, isEarthMapValid, proj);
         }
@@ -1115,10 +1083,6 @@ void Terrain::paintEvent(QPaintEvent *)
 			case DATATYPE_GRIB :
 				drawer->draw_GSHHS_and_GriddedData 
 						(pnt, false, true, proj, griddedPlot);
-				break;
-			case DATATYPE_IAC :
-				drawer->draw_GSHHS_and_IAC 
-						(pnt, false, true, proj, iacPlot);
 				break;
 			default :
 				drawer->draw_GSHHS (pnt, mustRedraw, isEarthMapValid, proj);
@@ -1163,10 +1127,6 @@ time_t Terrain::getCurrentDate()
 			if (griddedPlot && griddedPlot->isReaderOk() )
 				return griddedPlot->getCurrentDate();
 			break;
-		case DATATYPE_IAC :
-			DBGS("TODO: get date IAC")
-			return 0;
-			break;
 		default :
 			return 0;
 	}
@@ -1195,12 +1155,6 @@ QPixmap * Terrain::createPixmap (time_t date, int width, int height)
 										griddedPlot, 
 										scaledproj, 
 										getListPOIs() );
-				}
-				break;
-			case DATATYPE_IAC :
-				if (iacPlot && iacPlot->isReaderOk() )
-				{
-					DBGS("TODO: save image IAC")
 				}
 				break;
 			default :	// draw only map
