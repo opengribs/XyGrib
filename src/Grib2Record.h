@@ -19,7 +19,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef GRIB2RECORD_H
 #define GRIB2RECORD_H
 
-#include "g2clib/grib2.h"
+extern "C" {
+    #include <grib2.h>
+}
+
 #include "GribRecord.h"
 
 //----------------------------------------

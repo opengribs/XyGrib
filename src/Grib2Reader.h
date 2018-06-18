@@ -28,7 +28,9 @@ Lecture mise en mémoire d'un fichier GRIB
 #include "GribReader.h"
 #include "Grib2Record.h"
 #include "zuFile.h"
-#include "g2clib/grib2.h"
+extern "C" {
+    #include <grib2.h>
+}
 
 //===============================================================
 class Grib2Reader : public GribReader
