@@ -137,8 +137,9 @@ class MainWindow: public QMainWindow
         void slotHelp_AProposQT ();
 		void slotUseJetStreamColorMap  (bool);
 
-        void slotPanToggle();
-        void slotSelectToggle();
+	void slotPanSelectToggle(); // menu slot
+        void slotPanToggle();	    // toolbar slot
+        void slotSelectToggle();    // toolbar slot
 
         void slotCheckForUpdates();
         void slotNetworkError(QNetworkReply::NetworkError);
