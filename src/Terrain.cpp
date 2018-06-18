@@ -743,6 +743,9 @@ FileDataType Terrain::loadMeteoDataFile (QString fileName, bool zoom)
     if (zoom) {
         zoomOnFileZone();    // Zoom sur la zone couverte par le fichier GRIB
     }
+
+    drawer -> initGraphicsParameters(); // reset the map drawer to app settings
+
     update();
 
 	bool cancelled = ! taskProgress->continueDownload;
