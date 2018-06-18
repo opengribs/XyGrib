@@ -403,6 +403,8 @@ MenuBar::MenuBar (QWidget *parent)
                         tr("Dark Skin"), "", "","");
         acOptions_GraphicsParams = addAction (menuOptions,
 						tr("Graphical parameters"), tr("Ctrl+G"), "","");
+    acOptions_PanSelectToggle = addActionCheck (menuOptions,
+						tr("Click to Pan"), tr("Toggle click to pan"), "");
 		//----------------------------------------------------
 		QString lang = Util::getSetting("appLanguage", "").toString();
 		QString flagIconName = (lang == "") ? "" : Util::pathImg("drapeau_")+lang+".png";

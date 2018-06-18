@@ -313,8 +313,9 @@ public:
     QAction *acDatesGrib_prev;
     QAction *acDatesGrib_next;
 
-    QAction *acPanToggle;
-    QAction *acSelectToggle;
+    QAction *acOptions_PanSelectToggle; // menu toggle
+    QAction *acPanToggle;	// toolbar selector
+    QAction *acSelectToggle;	// toolbar selector
 
     QMenu *menuFile;
     QMenu *menuColorMap;
