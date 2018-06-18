@@ -59,8 +59,12 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
     : QMenuBar (parent)
 {
 #if defined (Q_OS_UNIX)
-	bool native = Util::getSetting("systemNativeMenuBar", false).toBool();
-	setNativeMenuBar (native);    // bug with some versions of ubuntu 
+    #if defined (Q_OS_MACOS)
+        bool native = Util::getSetting("systemNativeMenuBar", true).toBool();
+    #else
+        bool native = Util::getSetting("systemNativeMenuBar", false).toBool();
+    #endif
+        setNativeMenuBar (native);    // bug with some versions of ubuntu
 #endif
 
     this->maintenanceToolExists = mbe;
