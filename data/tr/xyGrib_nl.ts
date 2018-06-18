@@ -1117,27 +1117,27 @@
     <name>DialogLoadIAC</name>
     <message>
         <source>Stop</source>
-        <translation>Stop</translation>
+        <translation type="vanished">Stop</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation>Fout</translation>
+        <translation type="vanished">Fout</translation>
     </message>
     <message>
         <source>Can&apos;t write file.</source>
-        <translation>Kan het bestand niet opslaan.</translation>
+        <translation type="vanished">Kan het bestand niet opslaan.</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Annuleren</translation>
+        <translation type="vanished">Annuleren</translation>
     </message>
     <message>
         <source>Forecast +24h</source>
-        <translation>Verwachting +24h</translation>
+        <translation type="vanished">Verwachting +24h</translation>
     </message>
     <message>
         <source>Download - IAC fleetcode</source>
-        <translation>Download - IAC fleetcode</translation>
+        <translation type="vanished">Download - IAC fleetcode</translation>
     </message>
     <message>
         <source>IAC file (fleetcode) from NOAA :
@@ -1148,7 +1148,7 @@ Only one zone : Europe + Atlantic North-East
 4 runs in a day.
 
 </source>
-        <translation>IAC file (fleetcode) van NOAA :
+        <translation type="vanished">IAC file (fleetcode) van NOAA :
 analyse (luchtdruk, isobaren, fronten) en 24h verwachting.
 
 alleen voor de zone: Europe + NO Atlantische Oceaan
@@ -1159,19 +1159,19 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     </message>
     <message>
         <source>Error: </source>
-        <translation>Fout: </translation>
+        <translation type="vanished">Fout: </translation>
     </message>
     <message>
         <source>Size: %1 ko      Done: %2 ko     </source>
-        <translation>Grootte: %1 kb      Klaar: %2 kb     </translation>
+        <translation type="vanished">Grootte: %1 kb      Klaar: %2 kb     </translation>
     </message>
     <message>
         <source>Save IAC file : %1 octets</source>
-        <translation>Opslaan IAC bestand : %1 bytes</translation>
+        <translation type="vanished">Opslaan IAC bestand : %1 bytes</translation>
     </message>
     <message>
         <source>Current analyse</source>
-        <translation>Actuele analyse</translation>
+        <translation type="vanished">Actuele analyse</translation>
     </message>
 </context>
 <context>
@@ -1975,19 +1975,19 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     <name>FileLoaderIAC</name>
     <message>
         <source>Finish</source>
-        <translation>Klaar</translation>
+        <translation type="vanished">Klaar</translation>
     </message>
     <message>
         <source>Information</source>
-        <translation>Informatie</translation>
+        <translation type="vanished">Informatie</translation>
     </message>
     <message>
         <source>Make file on server</source>
-        <translation>Maakt een bestand op de server</translation>
+        <translation type="vanished">Maakt een bestand op de server</translation>
     </message>
     <message>
         <source>Empty file.</source>
-        <translation>Leeg bestand.</translation>
+        <translation type="vanished">Leeg bestand.</translation>
     </message>
 </context>
 <context>
@@ -2509,7 +2509,7 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     <name>MapDrawer</name>
     <message>
         <source>IAC fleetcode : Analyse</source>
-        <translation>IAC fleetcode : Analyse</translation>
+        <translation type="vanished">IAC fleetcode : Analyse</translation>
     </message>
     <message>
         <source>Data: </source>
@@ -2541,7 +2541,7 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     </message>
     <message>
         <source>IAC fleetcode : Forecast</source>
-        <translation>IAC fleetcode : Verwachting</translation>
+        <translation type="vanished">IAC fleetcode : Verwachting</translation>
     </message>
     <message>
         <source>Temperature</source>
@@ -2940,7 +2940,7 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     </message>
     <message>
         <source>Ctrl+L</source>
-        <translation>Ctrl+L</translation>
+        <translation type="vanished">Ctrl+L</translation>
     </message>
     <message>
         <source>Ctrl+M</source>
@@ -3168,7 +3168,7 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     </message>
     <message>
         <source>Download current IAC file (fleetcode) from NOAA - Analyse or Forecast +24h - Europe</source>
-        <translation>Download actuele IAC file (fleetcode) van NOAA - Analyse of vewachting +24u - Europa</translation>
+        <translation type="vanished">Download actuele IAC file (fleetcode) van NOAA - Analyse of vewachting +24u - Europa</translation>
     </message>
     <message>
         <source>Geopotential altitude 850 hpa</source>
@@ -3252,7 +3252,7 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     </message>
     <message>
         <source>IAC fleetcode NOAA</source>
-        <translation>IAC fleetcode NOAA</translation>
+        <translation type="vanished">IAC fleetcode NOAA</translation>
     </message>
     <message>
         <source>Longitudes-latitudes grid</source>
@@ -3581,6 +3581,18 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     <message>
         <source>Check for updates</source>
         <translation>Controleer op updates</translation>
+    </message>
+    <message>
+        <source>Click to Pan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Toggle click to pan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Toggle click to select</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
