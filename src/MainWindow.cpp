@@ -422,6 +422,7 @@ mb->acMap_SelectMETARs->setVisible (false);	// TODO
     connect(dateChooser, SIGNAL(signalDateChanged (time_t,bool)),
             this, SLOT(slotDateChooserChanged(time_t,bool)));
  
+    connect(mb->acOptions_PanSelectToggle, SIGNAL(triggered()), this, SLOT(slotPanSelectToggle()));
     connect(mb->acPanToggle, SIGNAL(triggered()), this, SLOT(slotPanToggle()));
     connect(mb->acSelectToggle, SIGNAL(triggered()), this, SLOT(slotSelectToggle()));
 
@@ -2272,8 +2273,16 @@ void MainWindow::setSelectPanToggle(bool isSelect)
 
     menuBar->acPanToggle->setChecked(!selectToggled);
     menuBar->acSelectToggle->setChecked(selectToggled);
+    menuBar->acOptions_PanSelectToggle->setChecked(!selectToggled); // checked when 'pan' is selected => !select
 
     terre->setMouseLeftSelect(selectToggled);
+}
+
+// called by selecting from menu to toggle pan or select mode
+// (different from toolbars that select the specified mode (even if already selected) and deselect the other)
+void MainWindow::slotPanSelectToggle()
+{
+    setSelectPanToggle(!selectToggled);
 }
 
 void MainWindow::slotPanToggle()
