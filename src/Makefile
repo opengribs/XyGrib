@@ -12,9 +12,9 @@ MAKEFILE      = Makefile
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
-CFLAGS        = -m64 -pipe -g -D_REENTRANT -Wall -W -fPIC $(DEFINES)
-CXXFLAGS      = -m64 -pipe -g -std=gnu++11 -D_REENTRANT -Wall -W -fPIC $(DEFINES)
+DEFINES       = -DQT_NO_DEBUG -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
+CFLAGS        = -m64 -pipe -O2 -D_REENTRANT -Wall -W -fPIC $(DEFINES)
+CXXFLAGS      = -m64 -pipe -O3 -std=gnu++11 -D_REENTRANT -Wall -W -fPIC $(DEFINES)
 INCPATH       = -I. -I. -Iutil -Imap -IGUI -Ig2clib -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtXml -isystem /usr/include/x86_64-linux-gnu/qt5/QtNetwork -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -Iobjs -isystem /usr/include/libdrm -IGUI -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64
 QMAKE         = /usr/lib/x86_64-linux-gnu/qt5/bin/qmake
 DEL_FILE      = rm -f
@@ -37,7 +37,7 @@ COMPRESS      = gzip -9f
 DISTNAME      = XyGrib1.0.0
 DISTDIR = /home/dominique/dev/XyGrib/src/objs/XyGrib1.0.0
 LINK          = g++
-LFLAGS        = -m64
+LFLAGS        = -m64 -Wl,-O1 -O3
 LIBS          = $(SUBLIBS) -L/usr/X11R6/lib64 -lbz2 -lz -lproj -lnova -Lg2clib -lg2c -lpng -ljasper -lQt5PrintSupport -lQt5Widgets -lQt5Gui -lQt5Xml -lQt5Network -lQt5Core -lGL -lpthread 
 AR            = ar cqs
 RANLIB        = 
@@ -698,7 +698,7 @@ compiler_moc_predefs_make_all: objs/moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) objs/moc_predefs.h
 objs/moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
-	g++ -m64 -pipe -g -std=gnu++11 -dM -E -o objs/moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
+	g++ -m64 -pipe -O3 -std=gnu++11 -dM -E -o objs/moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
 compiler_moc_header_make_all: objs/moc_PositionEditorWidget.cpp objs/moc_ColorEditorWidget.cpp objs/moc_LineEditorWidget.cpp objs/moc_TextStyleEditorWidget.cpp objs/moc_AngleConverterWidget.cpp objs/moc_AngleConverterDialog.cpp objs/moc_BoardPanel.cpp objs/moc_ColorScaleWidget.cpp objs/moc_DataQString.cpp objs/moc_DateChooser.cpp objs/moc_DialogBoxColumn.cpp objs/moc_DialogFonts.cpp objs/moc_DialogGraphicsParams.cpp objs/moc_DialogLoadGRIB.cpp objs/moc_DialogLoadIAC.cpp objs/moc_DialogProxy.cpp objs/moc_DialogSelectMetar.cpp objs/moc_DialogServerStatus.cpp objs/moc_DialogUnits.cpp objs/moc_FileLoaderGRIB.cpp objs/moc_FileLoaderIAC.cpp objs/moc_GribAnimator.cpp objs/moc_ImageWriter.cpp objs/moc_LongTaskProgress.cpp objs/moc_Metar.cpp objs/moc_MeteoTable.cpp objs/moc_MeteoTableWidget.cpp objs/moc_MeteotableOptionsDialog.cpp objs/moc_MainWindow.cpp objs/moc_MapDrawer.cpp objs/moc_MenuBar.cpp objs/moc_POI.cpp objs/moc_POI_Editor.cpp objs/moc_PositionEditor.cpp objs/moc_Projection.cpp objs/moc_SkewT.cpp objs/moc_Terrain.cpp objs/moc_Util.cpp
 compiler_moc_header_clean:
@@ -711,20 +711,17 @@ objs/moc_PositionEditorWidget.cpp: GUI/ui_PositionEditorWidget.h \
 
 objs/moc_ColorEditorWidget.cpp: GUI/ui_ColorEditorWidget.h \
 		GUI/ColorEditorWidget.h \
-		GUI/ColorEditorWidget.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include GUI/ColorEditorWidget.h -o objs/moc_ColorEditorWidget.cpp
 
 objs/moc_LineEditorWidget.cpp: GUI/ui_LineEditorWidget.h \
 		GUI/LineEditorWidget.h \
-		GUI/LineEditorWidget.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include GUI/LineEditorWidget.h -o objs/moc_LineEditorWidget.cpp
 
 objs/moc_TextStyleEditorWidget.cpp: GUI/ui_TextStyleEditorWidget.h \
-		GUI/TextStyleEditorWidget.h \
 		GUI/TextStyleEditorWidget.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
@@ -808,10 +805,6 @@ objs/moc_DialogFonts.cpp: DialogBoxBase.h \
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DialogFonts.h -o objs/moc_DialogFonts.cpp
 
 objs/moc_DialogGraphicsParams.cpp: GUI/ui_GraphicsParamsDialog.h \
-		GUI/ColorEditorWidget.h \
-		GUI/ui_ColorEditorWidget.h \
-		GUI/LineEditorWidget.h \
-		GUI/ui_LineEditorWidget.h \
 		DialogBoxColumn.h \
 		DialogBoxBase.h \
 		DialogGraphicsParams.h \
@@ -1039,10 +1032,6 @@ objs/moc_MeteotableOptionsDialog.cpp: DialogBoxBase.h \
 
 objs/moc_MainWindow.cpp: DialogGraphicsParams.h \
 		GUI/ui_GraphicsParamsDialog.h \
-		GUI/ColorEditorWidget.h \
-		GUI/ui_ColorEditorWidget.h \
-		GUI/LineEditorWidget.h \
-		GUI/ui_LineEditorWidget.h \
 		DialogBoxColumn.h \
 		DialogBoxBase.h \
 		ImageWriter.h \
@@ -1150,12 +1139,6 @@ objs/moc_POI_Editor.cpp: map/Projection.h \
 		util/Util.h \
 		DataDefines.h \
 		GUI/ui_PoiEditorDialog.h \
-		GUI/ColorEditorWidget.h \
-		GUI/ui_ColorEditorWidget.h \
-		GUI/PositionEditorWidget.h \
-		GUI/ui_PositionEditorWidget.h \
-		GUI/TextStyleEditorWidget.h \
-		GUI/ui_TextStyleEditorWidget.h \
 		map/POI_Editor.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
@@ -1251,28 +1234,22 @@ GUI/ui_PoiEditorDialog.h: GUI/PoiEditorDialog.ui \
 		GUI/PositionEditorWidget.h \
 		GUI/TextStyleEditorWidget.h \
 		GUI/ui_ColorEditorWidget.h \
-		GUI/ColorEditorWidget.h \
 		GUI/ui_PositionEditorWidget.h \
-		GUI/ui_TextStyleEditorWidget.h \
-		GUI/TextStyleEditorWidget.h
+		GUI/ui_TextStyleEditorWidget.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic GUI/PoiEditorDialog.ui -o GUI/ui_PoiEditorDialog.h
 
 GUI/ui_ColorEditorWidget.h: GUI/ColorEditorWidget.ui \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/uic \
-		GUI/ColorEditorWidget.h \
 		GUI/ColorEditorWidget.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic GUI/ColorEditorWidget.ui -o GUI/ui_ColorEditorWidget.h
 
 GUI/ui_LineEditorWidget.h: GUI/LineEditorWidget.ui \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/uic \
-		GUI/LineEditorWidget.h \
 		GUI/LineEditorWidget.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic GUI/LineEditorWidget.ui -o GUI/ui_LineEditorWidget.h
 
 GUI/ui_TextStyleEditorWidget.h: GUI/TextStyleEditorWidget.ui \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/uic \
-		GUI/TextStyleEditorWidget.h \
-		GUI/TextStyleEditorWidget.h \
 		GUI/TextStyleEditorWidget.h \
 		GUI/TextStyleEditorWidget.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic GUI/TextStyleEditorWidget.ui -o GUI/ui_TextStyleEditorWidget.h
@@ -1282,9 +1259,7 @@ GUI/ui_GraphicsParamsDialog.h: GUI/GraphicsParamsDialog.ui \
 		GUI/ColorEditorWidget.h \
 		GUI/LineEditorWidget.h \
 		GUI/ui_ColorEditorWidget.h \
-		GUI/ColorEditorWidget.h \
-		GUI/ui_LineEditorWidget.h \
-		GUI/LineEditorWidget.h
+		GUI/ui_LineEditorWidget.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic GUI/GraphicsParamsDialog.ui -o GUI/ui_GraphicsParamsDialog.h
 
 GUI/ui_MeteotableOptionsDialog.h: GUI/MeteotableOptionsDialog.ui \
@@ -1424,10 +1399,6 @@ objs/DialogFonts.o: DialogFonts.cpp DialogFonts.h \
 
 objs/DialogGraphicsParams.o: DialogGraphicsParams.cpp DialogGraphicsParams.h \
 		GUI/ui_GraphicsParamsDialog.h \
-		GUI/ColorEditorWidget.h \
-		GUI/ui_ColorEditorWidget.h \
-		GUI/LineEditorWidget.h \
-		GUI/ui_LineEditorWidget.h \
 		DialogBoxColumn.h \
 		DialogBoxBase.h \
 		util/Util.h \
@@ -1832,10 +1803,6 @@ objs/LonLatGrid.o: LonLatGrid.cpp util/Font.h \
 objs/main.o: main.cpp MainWindow.h \
 		DialogGraphicsParams.h \
 		GUI/ui_GraphicsParamsDialog.h \
-		GUI/ColorEditorWidget.h \
-		GUI/ui_ColorEditorWidget.h \
-		GUI/LineEditorWidget.h \
-		GUI/ui_LineEditorWidget.h \
 		DialogBoxColumn.h \
 		DialogBoxBase.h \
 		ImageWriter.h \
@@ -1898,10 +1865,6 @@ objs/main.o: main.cpp MainWindow.h \
 objs/MainWindow.o: MainWindow.cpp MainWindow.h \
 		DialogGraphicsParams.h \
 		GUI/ui_GraphicsParamsDialog.h \
-		GUI/ColorEditorWidget.h \
-		GUI/ui_ColorEditorWidget.h \
-		GUI/LineEditorWidget.h \
-		GUI/ui_LineEditorWidget.h \
 		DialogBoxColumn.h \
 		DialogBoxBase.h \
 		ImageWriter.h \
@@ -1963,10 +1926,6 @@ objs/MainWindow.o: MainWindow.cpp MainWindow.h \
 		util/Settings.h \
 		map/POI_Editor.h \
 		GUI/ui_PoiEditorDialog.h \
-		GUI/PositionEditorWidget.h \
-		GUI/ui_PositionEditorWidget.h \
-		GUI/TextStyleEditorWidget.h \
-		GUI/ui_TextStyleEditorWidget.h \
 		util/Orthodromie.h \
 		Version.h \
 		GUI/AngleConverterDialog.h \
@@ -2093,13 +2052,7 @@ objs/POI.o: map/POI.cpp util/Settings.h \
 		util/Util.h \
 		DataDefines.h \
 		map/POI_Editor.h \
-		GUI/ui_PoiEditorDialog.h \
-		GUI/ColorEditorWidget.h \
-		GUI/ui_ColorEditorWidget.h \
-		GUI/PositionEditorWidget.h \
-		GUI/ui_PositionEditorWidget.h \
-		GUI/TextStyleEditorWidget.h \
-		GUI/ui_TextStyleEditorWidget.h
+		GUI/ui_PoiEditorDialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/POI.o map/POI.cpp
 
 objs/POI_Editor.o: map/POI_Editor.cpp util/Settings.h \
@@ -2108,13 +2061,7 @@ objs/POI_Editor.o: map/POI_Editor.cpp util/Settings.h \
 		map/POI_Editor.h \
 		util/Util.h \
 		DataDefines.h \
-		GUI/ui_PoiEditorDialog.h \
-		GUI/ColorEditorWidget.h \
-		GUI/ui_ColorEditorWidget.h \
-		GUI/PositionEditorWidget.h \
-		GUI/ui_PositionEditorWidget.h \
-		GUI/TextStyleEditorWidget.h \
-		GUI/ui_TextStyleEditorWidget.h
+		GUI/ui_PoiEditorDialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/POI_Editor.o map/POI_Editor.cpp
 
 objs/PositionEditor.o: map/PositionEditor.cpp map/PositionEditor.h \
