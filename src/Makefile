@@ -69,13 +69,11 @@ SOURCES       = GUI/PositionEditorWidget.cpp \
 		DialogFonts.cpp \
 		DialogGraphicsParams.cpp \
 		DialogLoadGRIB.cpp \
-		DialogLoadIAC.cpp \
 		DialogProxy.cpp \
 		DialogSelectMetar.cpp \
 		DialogServerStatus.cpp \
 		DialogUnits.cpp \
 		FileLoaderGRIB.cpp \
-		FileLoaderIAC.cpp \
 		util/Font.cpp \
 		GriddedPlotter.cpp \
 		GriddedReader.cpp \
@@ -90,9 +88,6 @@ SOURCES       = GUI/PositionEditorWidget.cpp \
 		Grib2Reader.cpp \
 		GribRecord.cpp \
 		Grib2Record.cpp \
-		IacPlot.cpp \
-		IacReader.cpp \
-		IacReaderUtil.cpp \
 		ImageWriter.cpp \
 		IrregularGridded.cpp \
 		IsoLine.cpp \
@@ -132,13 +127,11 @@ SOURCES       = GUI/PositionEditorWidget.cpp \
 		objs/moc_DialogFonts.cpp \
 		objs/moc_DialogGraphicsParams.cpp \
 		objs/moc_DialogLoadGRIB.cpp \
-		objs/moc_DialogLoadIAC.cpp \
 		objs/moc_DialogProxy.cpp \
 		objs/moc_DialogSelectMetar.cpp \
 		objs/moc_DialogServerStatus.cpp \
 		objs/moc_DialogUnits.cpp \
 		objs/moc_FileLoaderGRIB.cpp \
-		objs/moc_FileLoaderIAC.cpp \
 		objs/moc_GribAnimator.cpp \
 		objs/moc_ImageWriter.cpp \
 		objs/moc_LongTaskProgress.cpp \
@@ -175,13 +168,11 @@ OBJECTS       = objs/PositionEditorWidget.o \
 		objs/DialogFonts.o \
 		objs/DialogGraphicsParams.o \
 		objs/DialogLoadGRIB.o \
-		objs/DialogLoadIAC.o \
 		objs/DialogProxy.o \
 		objs/DialogSelectMetar.o \
 		objs/DialogServerStatus.o \
 		objs/DialogUnits.o \
 		objs/FileLoaderGRIB.o \
-		objs/FileLoaderIAC.o \
 		objs/Font.o \
 		objs/GriddedPlotter.o \
 		objs/GriddedReader.o \
@@ -196,9 +187,6 @@ OBJECTS       = objs/PositionEditorWidget.o \
 		objs/Grib2Reader.o \
 		objs/GribRecord.o \
 		objs/Grib2Record.o \
-		objs/IacPlot.o \
-		objs/IacReader.o \
-		objs/IacReaderUtil.o \
 		objs/ImageWriter.o \
 		objs/IrregularGridded.o \
 		objs/IsoLine.o \
@@ -239,13 +227,11 @@ OBJECTS       = objs/PositionEditorWidget.o \
 		objs/moc_DialogFonts.o \
 		objs/moc_DialogGraphicsParams.o \
 		objs/moc_DialogLoadGRIB.o \
-		objs/moc_DialogLoadIAC.o \
 		objs/moc_DialogProxy.o \
 		objs/moc_DialogSelectMetar.o \
 		objs/moc_DialogServerStatus.o \
 		objs/moc_DialogUnits.o \
 		objs/moc_FileLoaderGRIB.o \
-		objs/moc_FileLoaderIAC.o \
 		objs/moc_GribAnimator.o \
 		objs/moc_ImageWriter.o \
 		objs/moc_LongTaskProgress.o \
@@ -358,14 +344,12 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		DialogFonts.h \
 		DialogGraphicsParams.h \
 		DialogLoadGRIB.h \
-		DialogLoadIAC.h \
 		DialogProxy.h \
 		DialogSelectMetar.h \
 		DialogServerStatus.h \
 		DialogUnits.h \
 		FileLoader.h \
 		FileLoaderGRIB.h \
-		FileLoaderIAC.h \
 		util/Font.h \
 		map/GshhsRangsReader.h \
 		map/GshhsReader.h \
@@ -380,8 +364,6 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		GriddedPlotter.h \
 		GriddedRecord.h \
 		GriddedReader.h \
-		IacPlot.h \
-		IacReader.h \
 		ImageWriter.h \
 		IrregularGridded.h \
 		IsoLine.h \
@@ -426,13 +408,11 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		DialogFonts.cpp \
 		DialogGraphicsParams.cpp \
 		DialogLoadGRIB.cpp \
-		DialogLoadIAC.cpp \
 		DialogProxy.cpp \
 		DialogSelectMetar.cpp \
 		DialogServerStatus.cpp \
 		DialogUnits.cpp \
 		FileLoaderGRIB.cpp \
-		FileLoaderIAC.cpp \
 		util/Font.cpp \
 		GriddedPlotter.cpp \
 		GriddedReader.cpp \
@@ -447,9 +427,6 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		Grib2Reader.cpp \
 		GribRecord.cpp \
 		Grib2Record.cpp \
-		IacPlot.cpp \
-		IacReader.cpp \
-		IacReaderUtil.cpp \
 		ImageWriter.cpp \
 		IrregularGridded.cpp \
 		IsoLine.cpp \
@@ -665,8 +642,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents GUI/PositionEditorWidget.h GUI/ColorEditorWidget.h GUI/LineEditorWidget.h GUI/TextStyleEditorWidget.h GUI/AngleConverterWidget.h GUI/AngleConverterDialog.h Astro.h BoardPanel.h ColorScale.h ColorScaleWidget.h DataDefines.h DataColors.h DataQString.h DataMeteoAbstract.h DataPointInfo.h DateChooser.h DialogBoxBase.h DialogBoxColumn.h DialogFonts.h DialogGraphicsParams.h DialogLoadGRIB.h DialogLoadIAC.h DialogProxy.h DialogSelectMetar.h DialogServerStatus.h DialogUnits.h FileLoader.h FileLoaderGRIB.h FileLoaderIAC.h util/Font.h map/GshhsRangsReader.h map/GshhsReader.h map/GisReader.h GribAnimator.h GribPlot.h Grib2Plot.h GribReader.h Grib2Reader.h GribRecord.h Grib2Record.h GriddedPlotter.h GriddedRecord.h GriddedReader.h IacPlot.h IacReader.h ImageWriter.h IrregularGridded.h IsoLine.h LongTaskProgress.h LonLatGrid.h Metar.h MeteoTable.h MeteoTableWidget.h MeteotableOptionsDialog.h MainWindow.h MapDrawer.h MenuBar.h util/Orthodromie.h map/POI.h map/POI_Editor.h map/PositionEditor.h map/Projection.h util/Settings.h SkewT.h util/SylkFile.h Terrain.h Therm.h util/Util.h Version.h util/zuFile.h Stylesheet.h $(DISTDIR)/
-	$(COPY_FILE) --parents GUI/PositionEditorWidget.cpp GUI/ColorEditorWidget.cpp GUI/LineEditorWidget.cpp GUI/TextStyleEditorWidget.cpp GUI/AngleConverterWidget.cpp GUI/AngleConverterDialog.cpp Astro.cpp BoardPanel.cpp ColorScale.cpp ColorScaleWidget.cpp DataColors.cpp DataQString.cpp DataMeteoAbstract.cpp DataPointInfo.cpp DateChooser.cpp DialogBoxColumn.cpp DialogFonts.cpp DialogGraphicsParams.cpp DialogLoadGRIB.cpp DialogLoadIAC.cpp DialogProxy.cpp DialogSelectMetar.cpp DialogServerStatus.cpp DialogUnits.cpp FileLoaderGRIB.cpp FileLoaderIAC.cpp util/Font.cpp GriddedPlotter.cpp GriddedReader.cpp GriddedRecord.cpp map/GshhsRangsReader.cpp map/GshhsReader.cpp GribAnimator.cpp GribPlot.cpp Grib2Plot.cpp map/GisReader.cpp GribReader.cpp Grib2Reader.cpp GribRecord.cpp Grib2Record.cpp IacPlot.cpp IacReader.cpp IacReaderUtil.cpp ImageWriter.cpp IrregularGridded.cpp IsoLine.cpp LongTaskProgress.cpp LonLatGrid.cpp main.cpp MainWindow.cpp MapDrawer.cpp MenuBar.cpp Metar.cpp MeteoTable.cpp MeteoTableWidget.cpp MeteotableOptionsDialog.cpp util/Orthodromie.cpp map/POI.cpp map/POI_Editor.cpp map/PositionEditor.cpp map/Projection.cpp map/Projection_libproj.cpp util/Settings.cpp SkewT.cpp SkewTWindow.cpp Terrain.cpp Therm.cpp util/Util.cpp util/zuFile.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents GUI/PositionEditorWidget.h GUI/ColorEditorWidget.h GUI/LineEditorWidget.h GUI/TextStyleEditorWidget.h GUI/AngleConverterWidget.h GUI/AngleConverterDialog.h Astro.h BoardPanel.h ColorScale.h ColorScaleWidget.h DataDefines.h DataColors.h DataQString.h DataMeteoAbstract.h DataPointInfo.h DateChooser.h DialogBoxBase.h DialogBoxColumn.h DialogFonts.h DialogGraphicsParams.h DialogLoadGRIB.h DialogProxy.h DialogSelectMetar.h DialogServerStatus.h DialogUnits.h FileLoader.h FileLoaderGRIB.h util/Font.h map/GshhsRangsReader.h map/GshhsReader.h map/GisReader.h GribAnimator.h GribPlot.h Grib2Plot.h GribReader.h Grib2Reader.h GribRecord.h Grib2Record.h GriddedPlotter.h GriddedRecord.h GriddedReader.h ImageWriter.h IrregularGridded.h IsoLine.h LongTaskProgress.h LonLatGrid.h Metar.h MeteoTable.h MeteoTableWidget.h MeteotableOptionsDialog.h MainWindow.h MapDrawer.h MenuBar.h util/Orthodromie.h map/POI.h map/POI_Editor.h map/PositionEditor.h map/Projection.h util/Settings.h SkewT.h util/SylkFile.h Terrain.h Therm.h util/Util.h Version.h util/zuFile.h Stylesheet.h $(DISTDIR)/
+	$(COPY_FILE) --parents GUI/PositionEditorWidget.cpp GUI/ColorEditorWidget.cpp GUI/LineEditorWidget.cpp GUI/TextStyleEditorWidget.cpp GUI/AngleConverterWidget.cpp GUI/AngleConverterDialog.cpp Astro.cpp BoardPanel.cpp ColorScale.cpp ColorScaleWidget.cpp DataColors.cpp DataQString.cpp DataMeteoAbstract.cpp DataPointInfo.cpp DateChooser.cpp DialogBoxColumn.cpp DialogFonts.cpp DialogGraphicsParams.cpp DialogLoadGRIB.cpp DialogProxy.cpp DialogSelectMetar.cpp DialogServerStatus.cpp DialogUnits.cpp FileLoaderGRIB.cpp util/Font.cpp GriddedPlotter.cpp GriddedReader.cpp GriddedRecord.cpp map/GshhsRangsReader.cpp map/GshhsReader.cpp GribAnimator.cpp GribPlot.cpp Grib2Plot.cpp map/GisReader.cpp GribReader.cpp Grib2Reader.cpp GribRecord.cpp Grib2Record.cpp ImageWriter.cpp IrregularGridded.cpp IsoLine.cpp LongTaskProgress.cpp LonLatGrid.cpp main.cpp MainWindow.cpp MapDrawer.cpp MenuBar.cpp Metar.cpp MeteoTable.cpp MeteoTableWidget.cpp MeteotableOptionsDialog.cpp util/Orthodromie.cpp map/POI.cpp map/POI_Editor.cpp map/PositionEditor.cpp map/Projection.cpp map/Projection_libproj.cpp util/Settings.cpp SkewT.cpp SkewTWindow.cpp Terrain.cpp Therm.cpp util/Util.cpp util/zuFile.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents GUI/PositionEditorWidget.ui GUI/PoiEditorDialog.ui GUI/ColorEditorWidget.ui GUI/LineEditorWidget.ui GUI/TextStyleEditorWidget.ui GUI/GraphicsParamsDialog.ui GUI/MeteotableOptionsDialog.ui GUI/AngleConverterWidget.ui $(DISTDIR)/
 	$(COPY_FILE) --parents ../data/tr/xyGrib_fr.ts ../data/tr/xyGrib_cz.ts ../data/tr/xyGrib_de.ts ../data/tr/xyGrib_fi.ts ../data/tr/xyGrib_it.ts ../data/tr/xyGrib_nl.ts ../data/tr/xyGrib_pt.ts ../data/tr/xyGrib_ru.ts ../data/tr/xyGrib_ar.ts ../data/tr/xyGrib_gr.ts ../data/tr/xyGrib_es.ts ../data/tr/xyGrib_he.ts $(DISTDIR)/
 
@@ -700,9 +677,9 @@ compiler_moc_predefs_clean:
 objs/moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -m64 -pipe -O3 -std=gnu++11 -dM -E -o objs/moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: objs/moc_PositionEditorWidget.cpp objs/moc_ColorEditorWidget.cpp objs/moc_LineEditorWidget.cpp objs/moc_TextStyleEditorWidget.cpp objs/moc_AngleConverterWidget.cpp objs/moc_AngleConverterDialog.cpp objs/moc_BoardPanel.cpp objs/moc_ColorScaleWidget.cpp objs/moc_DataQString.cpp objs/moc_DateChooser.cpp objs/moc_DialogBoxColumn.cpp objs/moc_DialogFonts.cpp objs/moc_DialogGraphicsParams.cpp objs/moc_DialogLoadGRIB.cpp objs/moc_DialogLoadIAC.cpp objs/moc_DialogProxy.cpp objs/moc_DialogSelectMetar.cpp objs/moc_DialogServerStatus.cpp objs/moc_DialogUnits.cpp objs/moc_FileLoaderGRIB.cpp objs/moc_FileLoaderIAC.cpp objs/moc_GribAnimator.cpp objs/moc_ImageWriter.cpp objs/moc_LongTaskProgress.cpp objs/moc_Metar.cpp objs/moc_MeteoTable.cpp objs/moc_MeteoTableWidget.cpp objs/moc_MeteotableOptionsDialog.cpp objs/moc_MainWindow.cpp objs/moc_MapDrawer.cpp objs/moc_MenuBar.cpp objs/moc_POI.cpp objs/moc_POI_Editor.cpp objs/moc_PositionEditor.cpp objs/moc_Projection.cpp objs/moc_SkewT.cpp objs/moc_Terrain.cpp objs/moc_Util.cpp
+compiler_moc_header_make_all: objs/moc_PositionEditorWidget.cpp objs/moc_ColorEditorWidget.cpp objs/moc_LineEditorWidget.cpp objs/moc_TextStyleEditorWidget.cpp objs/moc_AngleConverterWidget.cpp objs/moc_AngleConverterDialog.cpp objs/moc_BoardPanel.cpp objs/moc_ColorScaleWidget.cpp objs/moc_DataQString.cpp objs/moc_DateChooser.cpp objs/moc_DialogBoxColumn.cpp objs/moc_DialogFonts.cpp objs/moc_DialogGraphicsParams.cpp objs/moc_DialogLoadGRIB.cpp objs/moc_DialogProxy.cpp objs/moc_DialogSelectMetar.cpp objs/moc_DialogServerStatus.cpp objs/moc_DialogUnits.cpp objs/moc_FileLoaderGRIB.cpp objs/moc_GribAnimator.cpp objs/moc_ImageWriter.cpp objs/moc_LongTaskProgress.cpp objs/moc_Metar.cpp objs/moc_MeteoTable.cpp objs/moc_MeteoTableWidget.cpp objs/moc_MeteotableOptionsDialog.cpp objs/moc_MainWindow.cpp objs/moc_MapDrawer.cpp objs/moc_MenuBar.cpp objs/moc_POI.cpp objs/moc_POI_Editor.cpp objs/moc_PositionEditor.cpp objs/moc_Projection.cpp objs/moc_SkewT.cpp objs/moc_Terrain.cpp objs/moc_Util.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) objs/moc_PositionEditorWidget.cpp objs/moc_ColorEditorWidget.cpp objs/moc_LineEditorWidget.cpp objs/moc_TextStyleEditorWidget.cpp objs/moc_AngleConverterWidget.cpp objs/moc_AngleConverterDialog.cpp objs/moc_BoardPanel.cpp objs/moc_ColorScaleWidget.cpp objs/moc_DataQString.cpp objs/moc_DateChooser.cpp objs/moc_DialogBoxColumn.cpp objs/moc_DialogFonts.cpp objs/moc_DialogGraphicsParams.cpp objs/moc_DialogLoadGRIB.cpp objs/moc_DialogLoadIAC.cpp objs/moc_DialogProxy.cpp objs/moc_DialogSelectMetar.cpp objs/moc_DialogServerStatus.cpp objs/moc_DialogUnits.cpp objs/moc_FileLoaderGRIB.cpp objs/moc_FileLoaderIAC.cpp objs/moc_GribAnimator.cpp objs/moc_ImageWriter.cpp objs/moc_LongTaskProgress.cpp objs/moc_Metar.cpp objs/moc_MeteoTable.cpp objs/moc_MeteoTableWidget.cpp objs/moc_MeteotableOptionsDialog.cpp objs/moc_MainWindow.cpp objs/moc_MapDrawer.cpp objs/moc_MenuBar.cpp objs/moc_POI.cpp objs/moc_POI_Editor.cpp objs/moc_PositionEditor.cpp objs/moc_Projection.cpp objs/moc_SkewT.cpp objs/moc_Terrain.cpp objs/moc_Util.cpp
+	-$(DEL_FILE) objs/moc_PositionEditorWidget.cpp objs/moc_ColorEditorWidget.cpp objs/moc_LineEditorWidget.cpp objs/moc_TextStyleEditorWidget.cpp objs/moc_AngleConverterWidget.cpp objs/moc_AngleConverterDialog.cpp objs/moc_BoardPanel.cpp objs/moc_ColorScaleWidget.cpp objs/moc_DataQString.cpp objs/moc_DateChooser.cpp objs/moc_DialogBoxColumn.cpp objs/moc_DialogFonts.cpp objs/moc_DialogGraphicsParams.cpp objs/moc_DialogLoadGRIB.cpp objs/moc_DialogProxy.cpp objs/moc_DialogSelectMetar.cpp objs/moc_DialogServerStatus.cpp objs/moc_DialogUnits.cpp objs/moc_FileLoaderGRIB.cpp objs/moc_GribAnimator.cpp objs/moc_ImageWriter.cpp objs/moc_LongTaskProgress.cpp objs/moc_Metar.cpp objs/moc_MeteoTable.cpp objs/moc_MeteoTableWidget.cpp objs/moc_MeteotableOptionsDialog.cpp objs/moc_MainWindow.cpp objs/moc_MapDrawer.cpp objs/moc_MenuBar.cpp objs/moc_POI.cpp objs/moc_POI_Editor.cpp objs/moc_PositionEditor.cpp objs/moc_Projection.cpp objs/moc_SkewT.cpp objs/moc_Terrain.cpp objs/moc_Util.cpp
 objs/moc_PositionEditorWidget.cpp: GUI/ui_PositionEditorWidget.h \
 		GUI/PositionEditorWidget.h \
 		objs/moc_predefs.h \
@@ -711,17 +688,20 @@ objs/moc_PositionEditorWidget.cpp: GUI/ui_PositionEditorWidget.h \
 
 objs/moc_ColorEditorWidget.cpp: GUI/ui_ColorEditorWidget.h \
 		GUI/ColorEditorWidget.h \
+		GUI/ColorEditorWidget.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include GUI/ColorEditorWidget.h -o objs/moc_ColorEditorWidget.cpp
 
 objs/moc_LineEditorWidget.cpp: GUI/ui_LineEditorWidget.h \
 		GUI/LineEditorWidget.h \
+		GUI/LineEditorWidget.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include GUI/LineEditorWidget.h -o objs/moc_LineEditorWidget.cpp
 
 objs/moc_TextStyleEditorWidget.cpp: GUI/ui_TextStyleEditorWidget.h \
+		GUI/TextStyleEditorWidget.h \
 		GUI/TextStyleEditorWidget.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
@@ -805,6 +785,10 @@ objs/moc_DialogFonts.cpp: DialogBoxBase.h \
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DialogFonts.h -o objs/moc_DialogFonts.cpp
 
 objs/moc_DialogGraphicsParams.cpp: GUI/ui_GraphicsParamsDialog.h \
+		GUI/ColorEditorWidget.h \
+		GUI/ui_ColorEditorWidget.h \
+		GUI/LineEditorWidget.h \
+		GUI/ui_LineEditorWidget.h \
 		DialogBoxColumn.h \
 		DialogBoxBase.h \
 		DialogGraphicsParams.h \
@@ -821,14 +805,6 @@ objs/moc_DialogLoadGRIB.cpp: DataDefines.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DialogLoadGRIB.h -o objs/moc_DialogLoadGRIB.cpp
-
-objs/moc_DialogLoadIAC.cpp: DialogBoxBase.h \
-		FileLoaderIAC.h \
-		FileLoader.h \
-		DialogLoadIAC.h \
-		objs/moc_predefs.h \
-		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include DialogLoadIAC.h -o objs/moc_DialogLoadIAC.cpp
 
 objs/moc_DialogProxy.cpp: DialogBoxBase.h \
 		DialogProxy.h \
@@ -867,12 +843,6 @@ objs/moc_FileLoaderGRIB.cpp: FileLoader.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include FileLoaderGRIB.h -o objs/moc_FileLoaderGRIB.cpp
 
-objs/moc_FileLoaderIAC.cpp: FileLoader.h \
-		FileLoaderIAC.h \
-		objs/moc_predefs.h \
-		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) --include objs/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src -I/home/dominique/dev/XyGrib/src/util -I/home/dominique/dev/XyGrib/src/map -I/home/dominique/dev/XyGrib/src/GUI -I/home/dominique/dev/XyGrib/src/g2clib -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include FileLoaderIAC.h -o objs/moc_FileLoaderIAC.cpp
-
 objs/moc_GribAnimator.cpp: DialogBoxColumn.h \
 		DialogBoxBase.h \
 		Terrain.h \
@@ -901,8 +871,6 @@ objs/moc_GribAnimator.cpp: DialogBoxColumn.h \
 		GribReader.h \
 		GribRecord.h \
 		DataPointInfo.h \
-		IacPlot.h \
-		IacReader.h \
 		IrregularGridded.h \
 		Grib2Plot.h \
 		Grib2Reader.h \
@@ -941,8 +909,6 @@ objs/moc_ImageWriter.cpp: DialogBoxColumn.h \
 		GribReader.h \
 		GribRecord.h \
 		DataPointInfo.h \
-		IacPlot.h \
-		IacReader.h \
 		IrregularGridded.h \
 		Grib2Plot.h \
 		Grib2Reader.h \
@@ -1032,6 +998,10 @@ objs/moc_MeteotableOptionsDialog.cpp: DialogBoxBase.h \
 
 objs/moc_MainWindow.cpp: DialogGraphicsParams.h \
 		GUI/ui_GraphicsParamsDialog.h \
+		GUI/ColorEditorWidget.h \
+		GUI/ui_ColorEditorWidget.h \
+		GUI/LineEditorWidget.h \
+		GUI/ui_LineEditorWidget.h \
 		DialogBoxColumn.h \
 		DialogBoxBase.h \
 		ImageWriter.h \
@@ -1061,8 +1031,6 @@ objs/moc_MainWindow.cpp: DialogGraphicsParams.h \
 		GribReader.h \
 		GribRecord.h \
 		DataPointInfo.h \
-		IacPlot.h \
-		IacReader.h \
 		IrregularGridded.h \
 		Grib2Plot.h \
 		Grib2Reader.h \
@@ -1075,8 +1043,6 @@ objs/moc_MainWindow.cpp: DialogGraphicsParams.h \
 		DialogLoadGRIB.h \
 		FileLoaderGRIB.h \
 		FileLoader.h \
-		DialogLoadIAC.h \
-		FileLoaderIAC.h \
 		DialogServerStatus.h \
 		DialogProxy.h \
 		DialogUnits.h \
@@ -1115,8 +1081,6 @@ objs/moc_MapDrawer.cpp: map/GshhsReader.h \
 		GribReader.h \
 		GribRecord.h \
 		DataPointInfo.h \
-		IacPlot.h \
-		IacReader.h \
 		IrregularGridded.h \
 		MapDrawer.h \
 		objs/moc_predefs.h \
@@ -1139,6 +1103,12 @@ objs/moc_POI_Editor.cpp: map/Projection.h \
 		util/Util.h \
 		DataDefines.h \
 		GUI/ui_PoiEditorDialog.h \
+		GUI/ColorEditorWidget.h \
+		GUI/ui_ColorEditorWidget.h \
+		GUI/PositionEditorWidget.h \
+		GUI/ui_PositionEditorWidget.h \
+		GUI/TextStyleEditorWidget.h \
+		GUI/ui_TextStyleEditorWidget.h \
 		map/POI_Editor.h \
 		objs/moc_predefs.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
@@ -1201,8 +1171,6 @@ objs/moc_Terrain.cpp: map/GshhsReader.h \
 		GribReader.h \
 		GribRecord.h \
 		DataPointInfo.h \
-		IacPlot.h \
-		IacReader.h \
 		IrregularGridded.h \
 		Grib2Plot.h \
 		Grib2Reader.h \
@@ -1234,22 +1202,28 @@ GUI/ui_PoiEditorDialog.h: GUI/PoiEditorDialog.ui \
 		GUI/PositionEditorWidget.h \
 		GUI/TextStyleEditorWidget.h \
 		GUI/ui_ColorEditorWidget.h \
+		GUI/ColorEditorWidget.h \
 		GUI/ui_PositionEditorWidget.h \
-		GUI/ui_TextStyleEditorWidget.h
+		GUI/ui_TextStyleEditorWidget.h \
+		GUI/TextStyleEditorWidget.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic GUI/PoiEditorDialog.ui -o GUI/ui_PoiEditorDialog.h
 
 GUI/ui_ColorEditorWidget.h: GUI/ColorEditorWidget.ui \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/uic \
+		GUI/ColorEditorWidget.h \
 		GUI/ColorEditorWidget.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic GUI/ColorEditorWidget.ui -o GUI/ui_ColorEditorWidget.h
 
 GUI/ui_LineEditorWidget.h: GUI/LineEditorWidget.ui \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/uic \
+		GUI/LineEditorWidget.h \
 		GUI/LineEditorWidget.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic GUI/LineEditorWidget.ui -o GUI/ui_LineEditorWidget.h
 
 GUI/ui_TextStyleEditorWidget.h: GUI/TextStyleEditorWidget.ui \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/uic \
+		GUI/TextStyleEditorWidget.h \
+		GUI/TextStyleEditorWidget.h \
 		GUI/TextStyleEditorWidget.h \
 		GUI/TextStyleEditorWidget.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic GUI/TextStyleEditorWidget.ui -o GUI/ui_TextStyleEditorWidget.h
@@ -1259,7 +1233,9 @@ GUI/ui_GraphicsParamsDialog.h: GUI/GraphicsParamsDialog.ui \
 		GUI/ColorEditorWidget.h \
 		GUI/LineEditorWidget.h \
 		GUI/ui_ColorEditorWidget.h \
-		GUI/ui_LineEditorWidget.h
+		GUI/ColorEditorWidget.h \
+		GUI/ui_LineEditorWidget.h \
+		GUI/LineEditorWidget.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic GUI/GraphicsParamsDialog.ui -o GUI/ui_GraphicsParamsDialog.h
 
 GUI/ui_MeteotableOptionsDialog.h: GUI/MeteotableOptionsDialog.ui \
@@ -1399,6 +1375,10 @@ objs/DialogFonts.o: DialogFonts.cpp DialogFonts.h \
 
 objs/DialogGraphicsParams.o: DialogGraphicsParams.cpp DialogGraphicsParams.h \
 		GUI/ui_GraphicsParamsDialog.h \
+		GUI/ColorEditorWidget.h \
+		GUI/ui_ColorEditorWidget.h \
+		GUI/LineEditorWidget.h \
+		GUI/ui_LineEditorWidget.h \
 		DialogBoxColumn.h \
 		DialogBoxBase.h \
 		util/Util.h \
@@ -1414,14 +1394,6 @@ objs/DialogLoadGRIB.o: DialogLoadGRIB.cpp DialogLoadGRIB.h \
 		DialogServerStatus.h \
 		DialogProxy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/DialogLoadGRIB.o DialogLoadGRIB.cpp
-
-objs/DialogLoadIAC.o: DialogLoadIAC.cpp DialogLoadIAC.h \
-		DialogBoxBase.h \
-		FileLoaderIAC.h \
-		FileLoader.h \
-		util/Util.h \
-		DataDefines.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/DialogLoadIAC.o DialogLoadIAC.cpp
 
 objs/DialogProxy.o: DialogProxy.cpp DialogProxy.h \
 		DialogBoxBase.h \
@@ -1459,13 +1431,6 @@ objs/FileLoaderGRIB.o: FileLoaderGRIB.cpp FileLoaderGRIB.h \
 		DataDefines.h \
 		Version.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/FileLoaderGRIB.o FileLoaderGRIB.cpp
-
-objs/FileLoaderIAC.o: FileLoaderIAC.cpp FileLoaderIAC.h \
-		FileLoader.h \
-		util/Util.h \
-		DataDefines.h \
-		Version.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/FileLoaderIAC.o FileLoaderIAC.cpp
 
 objs/Font.o: util/Font.cpp util/Font.h \
 		util/Util.h \
@@ -1547,8 +1512,6 @@ objs/GribAnimator.o: GribAnimator.cpp GribAnimator.h \
 		GribReader.h \
 		GribRecord.h \
 		DataPointInfo.h \
-		IacPlot.h \
-		IacReader.h \
 		IrregularGridded.h \
 		Grib2Plot.h \
 		Grib2Reader.h \
@@ -1693,33 +1656,6 @@ objs/Grib2Record.o: Grib2Record.cpp Grib2Record.h \
 		LongTaskProgress.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/Grib2Record.o Grib2Record.cpp
 
-objs/IacPlot.o: IacPlot.cpp IacPlot.h \
-		DataMeteoAbstract.h \
-		DataDefines.h \
-		Therm.h \
-		util/Util.h \
-		util/zuFile.h \
-		IacReader.h \
-		map/Projection.h \
-		util/Font.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/IacPlot.o IacPlot.cpp
-
-objs/IacReader.o: IacReader.cpp IacReader.h \
-		DataMeteoAbstract.h \
-		DataDefines.h \
-		Therm.h \
-		util/Util.h \
-		util/zuFile.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/IacReader.o IacReader.cpp
-
-objs/IacReaderUtil.o: IacReaderUtil.cpp IacReader.h \
-		DataMeteoAbstract.h \
-		DataDefines.h \
-		Therm.h \
-		util/Util.h \
-		util/zuFile.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/IacReaderUtil.o IacReaderUtil.cpp
-
 objs/ImageWriter.o: ImageWriter.cpp ImageWriter.h \
 		DialogBoxColumn.h \
 		DialogBoxBase.h \
@@ -1749,8 +1685,6 @@ objs/ImageWriter.o: ImageWriter.cpp ImageWriter.h \
 		GribReader.h \
 		GribRecord.h \
 		DataPointInfo.h \
-		IacPlot.h \
-		IacReader.h \
 		IrregularGridded.h \
 		Grib2Plot.h \
 		Grib2Reader.h \
@@ -1803,6 +1737,10 @@ objs/LonLatGrid.o: LonLatGrid.cpp util/Font.h \
 objs/main.o: main.cpp MainWindow.h \
 		DialogGraphicsParams.h \
 		GUI/ui_GraphicsParamsDialog.h \
+		GUI/ColorEditorWidget.h \
+		GUI/ui_ColorEditorWidget.h \
+		GUI/LineEditorWidget.h \
+		GUI/ui_LineEditorWidget.h \
 		DialogBoxColumn.h \
 		DialogBoxBase.h \
 		ImageWriter.h \
@@ -1832,8 +1770,6 @@ objs/main.o: main.cpp MainWindow.h \
 		GribReader.h \
 		GribRecord.h \
 		DataPointInfo.h \
-		IacPlot.h \
-		IacReader.h \
 		IrregularGridded.h \
 		Grib2Plot.h \
 		Grib2Reader.h \
@@ -1846,8 +1782,6 @@ objs/main.o: main.cpp MainWindow.h \
 		DialogLoadGRIB.h \
 		FileLoaderGRIB.h \
 		FileLoader.h \
-		DialogLoadIAC.h \
-		FileLoaderIAC.h \
 		DialogServerStatus.h \
 		DialogProxy.h \
 		DialogUnits.h \
@@ -1865,6 +1799,10 @@ objs/main.o: main.cpp MainWindow.h \
 objs/MainWindow.o: MainWindow.cpp MainWindow.h \
 		DialogGraphicsParams.h \
 		GUI/ui_GraphicsParamsDialog.h \
+		GUI/ColorEditorWidget.h \
+		GUI/ui_ColorEditorWidget.h \
+		GUI/LineEditorWidget.h \
+		GUI/ui_LineEditorWidget.h \
 		DialogBoxColumn.h \
 		DialogBoxBase.h \
 		ImageWriter.h \
@@ -1894,8 +1832,6 @@ objs/MainWindow.o: MainWindow.cpp MainWindow.h \
 		GribReader.h \
 		GribRecord.h \
 		DataPointInfo.h \
-		IacPlot.h \
-		IacReader.h \
 		IrregularGridded.h \
 		Grib2Plot.h \
 		Grib2Reader.h \
@@ -1908,8 +1844,6 @@ objs/MainWindow.o: MainWindow.cpp MainWindow.h \
 		DialogLoadGRIB.h \
 		FileLoaderGRIB.h \
 		FileLoader.h \
-		DialogLoadIAC.h \
-		FileLoaderIAC.h \
 		DialogServerStatus.h \
 		DialogProxy.h \
 		DialogUnits.h \
@@ -1926,6 +1860,10 @@ objs/MainWindow.o: MainWindow.cpp MainWindow.h \
 		util/Settings.h \
 		map/POI_Editor.h \
 		GUI/ui_PoiEditorDialog.h \
+		GUI/PositionEditorWidget.h \
+		GUI/ui_PositionEditorWidget.h \
+		GUI/TextStyleEditorWidget.h \
+		GUI/ui_TextStyleEditorWidget.h \
 		util/Orthodromie.h \
 		Version.h \
 		GUI/AngleConverterDialog.h \
@@ -1958,8 +1896,6 @@ objs/MapDrawer.o: MapDrawer.cpp MapDrawer.h \
 		GribReader.h \
 		GribRecord.h \
 		DataPointInfo.h \
-		IacPlot.h \
-		IacReader.h \
 		IrregularGridded.h \
 		LonLatGrid.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/MapDrawer.o MapDrawer.cpp
@@ -2052,7 +1988,13 @@ objs/POI.o: map/POI.cpp util/Settings.h \
 		util/Util.h \
 		DataDefines.h \
 		map/POI_Editor.h \
-		GUI/ui_PoiEditorDialog.h
+		GUI/ui_PoiEditorDialog.h \
+		GUI/ColorEditorWidget.h \
+		GUI/ui_ColorEditorWidget.h \
+		GUI/PositionEditorWidget.h \
+		GUI/ui_PositionEditorWidget.h \
+		GUI/TextStyleEditorWidget.h \
+		GUI/ui_TextStyleEditorWidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/POI.o map/POI.cpp
 
 objs/POI_Editor.o: map/POI_Editor.cpp util/Settings.h \
@@ -2061,7 +2003,13 @@ objs/POI_Editor.o: map/POI_Editor.cpp util/Settings.h \
 		map/POI_Editor.h \
 		util/Util.h \
 		DataDefines.h \
-		GUI/ui_PoiEditorDialog.h
+		GUI/ui_PoiEditorDialog.h \
+		GUI/ColorEditorWidget.h \
+		GUI/ui_ColorEditorWidget.h \
+		GUI/PositionEditorWidget.h \
+		GUI/ui_PositionEditorWidget.h \
+		GUI/TextStyleEditorWidget.h \
+		GUI/ui_TextStyleEditorWidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/POI_Editor.o map/POI_Editor.cpp
 
 objs/PositionEditor.o: map/PositionEditor.cpp map/PositionEditor.h \
@@ -2144,8 +2092,6 @@ objs/Terrain.o: Terrain.cpp Terrain.h \
 		GribReader.h \
 		GribRecord.h \
 		DataPointInfo.h \
-		IacPlot.h \
-		IacReader.h \
 		IrregularGridded.h \
 		Grib2Plot.h \
 		Grib2Reader.h \
@@ -2212,9 +2158,6 @@ objs/moc_DialogGraphicsParams.o: objs/moc_DialogGraphicsParams.cpp
 objs/moc_DialogLoadGRIB.o: objs/moc_DialogLoadGRIB.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/moc_DialogLoadGRIB.o objs/moc_DialogLoadGRIB.cpp
 
-objs/moc_DialogLoadIAC.o: objs/moc_DialogLoadIAC.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/moc_DialogLoadIAC.o objs/moc_DialogLoadIAC.cpp
-
 objs/moc_DialogProxy.o: objs/moc_DialogProxy.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/moc_DialogProxy.o objs/moc_DialogProxy.cpp
 
@@ -2229,9 +2172,6 @@ objs/moc_DialogUnits.o: objs/moc_DialogUnits.cpp
 
 objs/moc_FileLoaderGRIB.o: objs/moc_FileLoaderGRIB.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/moc_FileLoaderGRIB.o objs/moc_FileLoaderGRIB.cpp
-
-objs/moc_FileLoaderIAC.o: objs/moc_FileLoaderIAC.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/moc_FileLoaderIAC.o objs/moc_FileLoaderIAC.cpp
 
 objs/moc_GribAnimator.o: objs/moc_GribAnimator.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o objs/moc_GribAnimator.o objs/moc_GribAnimator.cpp
