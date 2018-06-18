@@ -1,5 +1,5 @@
-#CONFIG += qt release c++11
-CONFIG += qt debug c++11
+CONFIG += qt release c++11
+#CONFIG += qt debug c++11
 
 QT += widgets xml
 QT += printsupport
@@ -14,12 +14,15 @@ INCLUDEPATH += . util map GUI g2clib
 # platform specific
 # ----------------------------------------------------
 win32 {
-	INCLUDEPATH += C:/libs/include/
+        INCLUDEPATH += C:/dev/include/
 #	INCLUDEPATH += C:/mingw/include/
-        LIBS += -LC:/libs/lib/
+        LIBS += -LC:/dev/lib/
 # -LC:/mingw/lib/
 	DESTDIR = release
         RC_FILE += ../data/img/resource.rc
+        LIBS += -lbz2 -lz -lproj -lnova
+        LIBS += -lg2c -lpng -ljasper  # respect order!
+
 }
 else {
 macx {
@@ -29,15 +32,18 @@ macx {
 	LIBS += -L/opt/local/lib
 	CONFIG += i386
 	ICON = ../data/img/xyGrib.icns
+        LIBS += -lbz2 -lz -lproj -lnova
+        LIBS += -lg2c -lpng  # respect order!
 }
 else {
 # linux
 	DESTDIR = .
+       LIBS += -lbz2 -lz -lproj -lnova
+       LIBS += -lg2c -lpng  # respect order!
+
 }
 }
 
-LIBS += -lbz2 -lz -lproj -lnova
-LIBS +=  -Lg2clib -lg2c -lpng -ljasper  # respect order!
 
 # ----------------------------------------------------
 CFLAGS += -std=c99 
