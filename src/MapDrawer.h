@@ -75,6 +75,8 @@ friend class Terrain;	// TODO (or not) getters setters
 						GriddedPlotter *plotter,
 						Projection *proj,
 						QList<POI*> lspois );
+
+        void	initGraphicsParameters  ();
 					
 	private:
 		QPixmap     *imgEarth;   // images précalculées pour accélérer l'affichage
@@ -150,7 +152,7 @@ friend class Terrain;	// TODO (or not) getters setters
 		QPen	riversPen;
 
 		void	updateGraphicsParameters();
-		void	initGraphicsParameters  ();
+
 		void    addUsedDataCenterModel (const DataCode &dtc, GriddedPlotter *plotter);
 		
 		void    draw_MeteoData_Gridded 
