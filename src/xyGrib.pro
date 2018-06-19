@@ -17,7 +17,7 @@ win32 {
         INCLUDEPATH += C:/dev/include/
 #	INCLUDEPATH += C:/mingw/include/
         LIBS += -LC:/dev/lib/
-# -LC:/mingw/lib/
+#       -LC:/mingw/lib/
 	DESTDIR = release
         RC_FILE += ../data/img/resource.rc
         LIBS += -lbz2 -lz -lproj -lnova
