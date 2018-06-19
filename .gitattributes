@@ -1,0 +1,4 @@
+Makefile> merge=ours
+src/Grib2Reader.h merge=ours
+src/Grib2Record.h merge=ours
+src/xyGrib.pro merge=ours
