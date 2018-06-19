@@ -11,7 +11,6 @@ mac: $(SRC)
 	rm -f  ./XyGrib
 	rm -fr ./XyGrib.app
 	rm -f  src/Makefile
-	cd src/g2clib; make -f makefile.osx
 	cd src; $(MACQTBIN)/qmake; make -j6
 
 macclean:
@@ -29,13 +28,12 @@ clean:
 	cd src;	$(QMAKE); make clean
 
 veryclean: clean
-	rm -f  src/g2clib/libg2c.a
-	rm -f  src/g2clib/*.o
+	cd src/g2clib-1.6.0; make clean
+	rm -f src/openjpeg-2.3.0/build
 
 XyGrib: $(SRC)
 	@ echo
 	rm -f ./XyGrib
-	cd src/g2clib; make
 	cd src; $(QMAKE); make -j6
 	@ echo "-----------------------------------"
 	@ echo "#!/bin/bash" >> ./XyGrib

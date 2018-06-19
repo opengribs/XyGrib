@@ -1,0 +1,11 @@
+prefix=@prefix@
+exec_prefix=${prefix}
+libdir=@libdir@
+includedir=${prefix}/include
+
+Name: glib2c
+Description: NCEP GRIB2 encoder/decoder library
+Requires: libpng
+Version: 1.6.0
+Libs: -lgrib2c
+Libs.private: -lgrib2c -lpng16 -lopenjp2

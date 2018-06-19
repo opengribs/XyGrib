@@ -8,7 +8,7 @@ TEMPLATE = app
 TARGET   = XyGrib
 
 DEPENDPATH  += . util map GUI
-INCLUDEPATH += . util map GUI g2clib
+INCLUDEPATH += . util map GUI
 
 # ----------------------------------------------------
 # platform specific
@@ -39,7 +39,7 @@ else {
 # linux
 	DESTDIR = .
        LIBS += -lbz2 -lz -lproj -lnova
-       LIBS += -lg2c -lpng  # respect order!
+       LIBS += -lg2c -lpng   # respect order!
 
 }
 }
