@@ -10,8 +10,8 @@ Step 1 - Prerequisite tools:
 Step 2 - Prerequisite libraries:
 --------------------------------
 The following libraries need to be installed first
-(If your Linux system is not one of the three below then other namings
-for these packages may apply)
+(If your Linux system is not one of the three below then other naming
+conventions for these packages may apply)
 
 ------------------------------------------------------------------------
 Ubuntu 18.04        Fedora 28        openSUSE**
@@ -27,7 +27,7 @@ Ubuntu 18.04        Fedora 28        openSUSE**
 * version >= 1.6 needed to build libopenjpeg
 ** TumbleWeed
 
-Step 3 - Prerequisite libraries provided in the XyGrib package:
+Step 3 - Additional prerequisite libraries provided in the XyGrib package:
 ---------------------------------------------------------------
 IMPORTANT! XyGrib uses a modified version of libg2c that uses openjpeg
 instead of libjasper. This eliminates conflicts with libjasper in newer
