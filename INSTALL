@@ -1,47 +1,69 @@
 ----------------------------------------------------------------------
-These install instructions are for building XyGrib on Linux platforms.
+These instructions are for building XyGrib 1.1.0 on Linux platforms.
 ----------------------------------------------------------------------
 
-Prerequisite tools:
---------------------
+Step 1 - Prerequisite tools:
+----------------------------
 - gnu build tools: g++, make, build-essential etc.
 - cmake (needed to build libopenjpeg provided in this package)
 
-Prerequisite libraries:
------------------------
+Step 2 - Prerequisite libraries:
+--------------------------------
 The following libraries need to be installed first
-- libbz2-dev
-- zlib1g-dev
-- libproj-dev
-- libnova-dev
-- libpng16-dev (version >= 1.6 needed to build libopenjpeg)
-- qtbase5-dev
-- qt5-default
+(If your Linux system is not one of the three below then other namings
+for these packages may apply)
 
-Prerequisite libraries provided in the package:
-----------------------------------------------
+------------------------------------------------------------------------
+Ubuntu 18.04        Fedora 28        openSUSE**
+------------------------------------------------------------------------
+- libbz2-dev        bzip2-devel      libbz2-devel
+- zlib1g-dev        zlib-devel       zlib-devel
+- libpng-dev *      libpng-devel *   libpng-devel *
+- libproj-dev       proj-devel       libproj-devel
+- libnova-dev       libnova-devel    libnova-devel
+- qtbase5-dev       qt5-devel        libqt5-qtbase-devel
+-------------------------------------------------------------------------
+
+* version >= 1.6 needed to build libopenjpeg
+** TumbleWeed
+
+Step 3 - Prerequisite libraries provided in the XyGrib package:
+---------------------------------------------------------------
 IMPORTANT! XyGrib uses a modified version of libg2c that uses openjpeg
 instead of libjasper. This eliminates conflicts with libjasper in newer
 linux distributions. Hence libg2c and libopenjpeg are provided here.
 
-To build libopenjpeg and libg2c please run the included batch file
-"linux_build_3rd_party_libs.sh".
+To build libopenjpeg and libg2c please perform the following steps:
+--------------------
+	cd src/openjpeg-2.3.0
+	mkdir build
+	cd build
+	cmake .. -DCMAKE_BUILD_TYPE=Release
+	make
+	sudo make install
+	
+	cd ../../g2clib-1.6.0
+	sudo make install
+	cd ../..
+--------------------
 
-Note: you may be asked to provide your sudo password to allow lib
-installation of these two libraries to complete.
+Make sure that you are back in the package root
 
----------------------------------------------------
-To build XyGrib after all above has been completed:
----------------------------------------------------
+---------------------------------------------------------
+Step 4 - Build XyGrib after all above has been completed:
+---------------------------------------------------------
+Edit the first line in the Makefile so that the QMAKE variable points to the
+folder with qmake on your system. 
+(For openSuse Tumbleweed and Fedora 28 this should be /usr/lib64/qt5/bin/qmake)
 
 In the package root (where this file is located) execute:
-------
-make
+----------------
+	make
 
-make install
+	make install
 
--------------
+-----------------
 A folder XyGrib which includes the application build will be located in
-your user root.
+your user root. Run 
 
 ENJOY!
