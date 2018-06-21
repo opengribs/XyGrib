@@ -30,14 +30,14 @@ CFLAGS:= -O3 -g $(INC) $(DEFS)  $(CFLAGS)
 
 PIC:= -fPIC
 
-prefix=/usr
-LIBDIR=/usr/lib
+prefix=/usr/local
+LIBDIR=/usr/local/lib
 SHLIB=libgrib2c.so.0d
 SONAME=libgrib2c.so.0d
 
 CC=gcc
 
-LIB=libg2c_v1.6.0.a
+LIB=libg2c.a
 ARFLAGS=
 
 
