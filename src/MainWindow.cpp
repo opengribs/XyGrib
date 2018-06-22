@@ -1389,7 +1389,7 @@ void MainWindow::slotHelp_APropos()
             tr("Version : ")+Version::getVersion()
                     +"      "+Version::getDate()
             +"\n"+ tr("Licence : GNU GPL v3")
-            +"\n"+ tr("http://OpenGribs.org")
+            +"\n"+ tr("https://OpenGribs.org")
         );
 }
 //-------------------------------------------------
