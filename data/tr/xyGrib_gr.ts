@@ -3505,11 +3505,6 @@ Unselected by left click in map holding shift at the same time</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1392"/>
-        <source>http://OpenGribs.org</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../../src/MainWindow.cpp" line="1412"/>
         <source>Choose a GRIB file</source>
         <translation>Επιλέξτε - GRIB</translation>
@@ -3536,6 +3531,11 @@ Unselected by left click in map holding shift at the same time</source>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1387"/>
         <source>XyGrib : GRIB files visualization</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="1392"/>
+        <source>https://OpenGribs.org</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6579,7 +6579,7 @@ Etes-vous sÃ»r ?</source>
         <translation>Άνοιγμα αρχείου</translation>
     </message>
     <message>
-        <location filename="../../src/Terrain.cpp" line="1159"/>
+        <location filename="../../src/Terrain.cpp" line="1162"/>
         <source>  Please wait...  </source>
         <translation>  Παρακαλώ περιμένετε....  </translation>
     </message>

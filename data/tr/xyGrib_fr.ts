@@ -3103,9 +3103,8 @@ Actualisation 4 fois par jour.
         <translation type="vanished">XyGrib : outil de visualisation des fichiers GRIB</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1392"/>
         <source>http://OpenGribs.org</source>
-        <translation>http://OpenGribs.org</translation>
+        <translation type="vanished">http://OpenGribs.org</translation>
     </message>
     <message>
         <source>Download a Meteoblue file</source>
@@ -3296,6 +3295,11 @@ Désélection: Maj + clic gauche sur la carte en même temps</translation>
         <location filename="../../src/MainWindow.cpp" line="1387"/>
         <source>XyGrib : GRIB files visualization</source>
         <translation>XyGrib : outil de visualisation des fichiers GRIB</translation>
+    </message>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="1392"/>
+        <source>https://OpenGribs.org</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1662"/>
@@ -5550,7 +5554,7 @@ Etes-vous sûr ?</translation>
         <translation>Ouvrir un fichier</translation>
     </message>
     <message>
-        <location filename="../../src/Terrain.cpp" line="1159"/>
+        <location filename="../../src/Terrain.cpp" line="1162"/>
         <source>  Please wait...  </source>
         <translation>  Calculs en cours...  </translation>
     </message>

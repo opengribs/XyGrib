@@ -2457,10 +2457,6 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
         <translation>(Grootcirkelafstand:</translation>
     </message>
     <message>
-        <source>http://OpenGribs.org</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Help is available at</source>
         <translation>Hulp is beschikbaar op</translation>
     </message>
@@ -2503,6 +2499,10 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     <message>
         <source>Network Error</source>
         <translation>Netwerkfout</translation>
+    </message>
+    <message>
+        <source>https://OpenGribs.org</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -2998,11 +2998,6 @@ Unselected by left click in map holding shift at the same time</source>
 Valinnan voit poistaa vasemman napsautuksella pitäen shift näppäintä alhaalla saman aikaisesti</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1392"/>
-        <source>http://OpenGribs.org</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Download a Meteoblue file</source>
         <translation type="vanished">Lataa Meteoblue tiedosto</translation>
     </message>
@@ -3184,6 +3179,11 @@ Valinnan voit poistaa vasemman napsautuksella pitäen shift näppäintä alhaall
     <message>
         <location filename="../../src/MainWindow.cpp" line="1387"/>
         <source>XyGrib : GRIB files visualization</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="1392"/>
+        <source>https://OpenGribs.org</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5387,7 +5387,7 @@ Oletko varma ?</translation>
         <translation>Avaa tiedosto</translation>
     </message>
     <message>
-        <location filename="../../src/Terrain.cpp" line="1159"/>
+        <location filename="../../src/Terrain.cpp" line="1162"/>
         <source>  Please wait...  </source>
         <translation>  Ole hyvä ja odota...  </translation>
     </message>

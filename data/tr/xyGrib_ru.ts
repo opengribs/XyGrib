@@ -3174,9 +3174,8 @@ Unselected by left click in map holding shift at the same time</source>
         <translation type="vanished">xyGrib: визуализация файлов GRIB</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1392"/>
         <source>http://OpenGribs.org</source>
-        <translation>http://OpenGribs.org</translation>
+        <translation type="vanished">http://OpenGribs.org</translation>
     </message>
     <message>
         <source>Download a Meteoblue file</source>
@@ -3287,6 +3286,11 @@ Unselected by left click in map holding shift at the same time</source>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1387"/>
         <source>XyGrib : GRIB files visualization</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="1392"/>
+        <source>https://OpenGribs.org</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5615,7 +5619,7 @@ Are you sure ?</source>
         <translation>Открыть файл</translation>
     </message>
     <message>
-        <location filename="../../src/Terrain.cpp" line="1159"/>
+        <location filename="../../src/Terrain.cpp" line="1162"/>
         <source>  Please wait...  </source>
         <translation>  Ведутся расчеты...  </translation>
     </message>
