@@ -21,8 +21,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // TODO - need to clean up this file
 
-#define XYGRIB_VERSION_NUM   "1.0.99"
-#define XYGRIB_VERSION_DATE  "2018-06-09"
+#define XYGRIB_VERSION_NUM   "1.1.0"
+#define XYGRIB_VERSION_DATE  "2018-06-21"
 
 #if defined(Q_OS_WIN32)
     #define XYGRIB_APP_NAME   "XyGrib_win"
