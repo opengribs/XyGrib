@@ -3062,11 +3062,6 @@ Jen 1 zóna : Evropa + SV Atlantik
         <translation>Licence : GNU GPL v3</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1392"/>
-        <source>http://OpenGribs.org</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../src/MainWindow.cpp" line="1412"/>
         <source>Choose a GRIB file</source>
         <translation>Vyber GRIB soubor</translation>
@@ -3279,6 +3274,11 @@ Drž Shift a zruš označení kliknutím levým tlačítkem myši na mapu</trans
     <message>
         <location filename="../../src/MainWindow.cpp" line="1387"/>
         <source>XyGrib : GRIB files visualization</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="1392"/>
+        <source>https://OpenGribs.org</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5502,7 +5502,7 @@ Jsi si jist ?</translation>
         <translation>Otevřít soubor</translation>
     </message>
     <message>
-        <location filename="../../src/Terrain.cpp" line="1159"/>
+        <location filename="../../src/Terrain.cpp" line="1162"/>
         <source>  Please wait...  </source>
         <translation>  Čekej prosím...  </translation>
     </message>

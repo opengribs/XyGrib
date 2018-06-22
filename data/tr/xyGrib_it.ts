@@ -2743,11 +2743,6 @@ Aggiornamento 4 volte al giorno.
         <translation>Selezionare per favore un area sulla mappa.</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1392"/>
-        <source>http://OpenGribs.org</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../src/MainWindow.cpp" line="1491"/>
         <location filename="../../src/MainWindow.cpp" line="1499"/>
         <source>File information</source>
@@ -2925,6 +2920,11 @@ Aggiornamento 4 volte al giorno.
     <message>
         <location filename="../../src/MainWindow.cpp" line="1387"/>
         <source>XyGrib : GRIB files visualization</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="1392"/>
+        <source>https://OpenGribs.org</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5068,7 +5068,7 @@ Procedere ?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/Terrain.cpp" line="1159"/>
+        <location filename="../../src/Terrain.cpp" line="1162"/>
         <source>  Please wait...  </source>
         <translation>  Calcolo in corso...  </translation>
     </message>

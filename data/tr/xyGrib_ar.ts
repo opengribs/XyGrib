@@ -2939,11 +2939,6 @@ Unselected by left click in map holding shift at the same time</source>
         <translation>حول</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1392"/>
-        <source>http://OpenGribs.org</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>zyGrib : GRIB files visualization</source>
         <translation type="vanished">zyGrib :صورة إلى  GRIB ملفات تحويل</translation>
     </message>
@@ -2989,6 +2984,11 @@ Unselected by left click in map holding shift at the same time</source>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1387"/>
         <source>XyGrib : GRIB files visualization</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="1392"/>
+        <source>https://OpenGribs.org</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5329,7 +5329,7 @@ Are you sure ?</source>
         <translation>فتح ملف</translation>
     </message>
     <message>
-        <location filename="../../src/Terrain.cpp" line="1159"/>
+        <location filename="../../src/Terrain.cpp" line="1162"/>
         <source>  Please wait...  </source>
         <translation>.. يرجى الانتظار...</translation>
     </message>
