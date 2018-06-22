@@ -1,7 +1,7 @@
-# XyGrib a fork of zyGrib
+# XyGrib - Weather Forecast Visualization
 Fork of zyGrib-8.0.1 under a new name and a new home https://opengribs.org
 
-Changes in version 1.0.99 (beta candidate for 1.1.0 release)
+Changes in version 1.1.0 :
 - Interactive GRIB downloads is now from the OpenGribs' on-the-fly grib server with 
   multiple models to choose from. These include: GFS, ICON and Arpege Global model 
   and WW3, GWAM and EWAM wave models.
@@ -15,7 +15,7 @@ Changes in version 1.0.99 (beta candidate for 1.1.0 release)
 - Hebrew language was added
 
 
-Changes in version 1.0.1 since forking:
+Changes in version 1.0.1 :
 - Addition of new meteorological parameter 'Composite Simulated Reflectivity'. This supports visualisation of severe convection
 - Inclusion of DWD ICON gribs
 - Addition of Grib2 handling for wave data
