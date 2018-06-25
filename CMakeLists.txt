@@ -93,6 +93,8 @@ find_path(OPENJPEG_INCLUDE_DIR
      /usr/local/include
      /usr/local/include/openjpeg-2.3
      /usr/include/openjpeg-2.3
+     /usr/local/include/openjpeg-2.1
+     /usr/include/openjpeg-2.1
      /usr/include
      /sw/include # Fink
      /opt/local/include # DarwinPorts
