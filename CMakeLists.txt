@@ -13,9 +13,12 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Instruct CMake to run moc automatically when needed
 set(CMAKE_AUTOMOC ON)
-# Create code from a list of Qt designer ui files
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTOUIC_SEARCH_PATHS "${CMAKE_CURRENT_SOURCE_DIR}/src/GUI")
+
+# Unfotunately AUTOUIC_SEARCH_PATHS is not available before cmake 3.9 so we can't use this on all the current platforms
+# At some future moment, turn this on and simplify src/GUI/CMakeLists.txt
+## Create code from a list of Qt designer ui files
+#set(CMAKE_AUTOUIC ON)
+#set(CMAKE_AUTOUIC_SEARCH_PATHS "${CMAKE_CURRENT_SOURCE_DIR}/src/GUI")
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
