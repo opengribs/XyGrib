@@ -5,12 +5,13 @@
 ### macOS
 
 - Install [Homebrew](https://brew.sh)
-- Install the requred packages: `brew git cmake install libnova openjpeg libpng qt5`
+- Install the requred packages: `brew tap indilib/indi; brew install git cmake libnova openjpeg libpng qt5`
 
 ### Linux
 
 - Install the required libraries
-  - Ubuntu: `sudo apt-get install build-essential git cmake qt5-default libpng-dev libopenjp2-7-dev libnova-dev libproj-dev zlib1g-dev libbz2-dev`
+  - Ubuntu (recent editions): `sudo apt-get install build-essential git cmake qt5-default libpng-dev libopenjp2-7-dev libnova-dev libproj-dev zlib1g-dev libbz2-dev`
+  - Ubuntu Trusty: `sudo apt-get install build-essential git cmake qt5-default libpng-dev libopenjpeg-dev libnova-dev libproj-dev zlib1g-dev libbz2-dev`
 
 ### Windows
 

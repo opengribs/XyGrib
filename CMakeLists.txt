@@ -43,7 +43,7 @@ find_package(Qt5Xml CONFIG REQUIRED)
 include_directories(${Qt5Xml_INCLUDE_DIRS})
 
 find_library(LIBNOVA_LIBRARY
-     NAMES "libnova.so"
+     NAMES "libnova.a" "libnova.so"
      PATHS
      $ENV{EXTERNLIBS}/libnova
      ~/Library/Frameworks
@@ -75,7 +75,7 @@ include_directories(${LIBNOVA_INCLUDE_DIR})
 
 #find_package(OpenJPEG REQUIRED)
 find_library(OPENJPEG_LIBRARIES
-     NAMES "libopenjp2.a" "libopenjp2.so"
+     NAMES "libopenjp2.a" "libopenjp2.so" "libopenjpeg.so.2"
      PATHS
      $ENV{EXTERNLIBS}/openjpeg
      ~/Library/Frameworks
