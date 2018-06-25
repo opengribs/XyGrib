@@ -11,8 +11,10 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-# Instruct CMake to run moc automatically when needed
-set(CMAKE_AUTOMOC ON)
+# Unfotunately cmake <3.9 is not able to handle the coding style of XyGrib and AUTOMOC misses many classes. Once the code is fixed or we can expect newer cmake everywhere, we can enable this and get rid of the QT5_WRAP_CPP() macros
+## Instruct CMake to run moc automatically when needed
+#set(CMAKE_AUTOMOC ON)
+#set(CMAKE_AUTOMOC_RELAXED_MODE TRUE)
 
 # Unfotunately AUTOUIC_SEARCH_PATHS is not available before cmake 3.9 so we can't use this on all the current platforms
 # At some future moment, turn this on and simplify src/GUI/CMakeLists.txt
@@ -98,6 +100,8 @@ find_path(OPENJPEG_INCLUDE_DIR
      /usr/include/openjpeg-2.3
      /usr/local/include/openjpeg-2.1
      /usr/include/openjpeg-2.1
+     /usr/local/include/openjpeg-2.2
+     /usr/include/openjpeg-2.2
      /usr/include
      /sw/include # Fink
      /opt/local/include # DarwinPorts

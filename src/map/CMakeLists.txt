@@ -19,12 +19,14 @@ Projection.cpp
 Projection_libproj.cpp
 )
 
-add_library(map ${MAP_SRCS})
+qt5_wrap_cpp(map_mocs ${MAP_SRCS} ${MAP_HDRS})
+
+add_library(map ${MAP_SRCS} ${map_mocs})
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/util ${CMAKE_CURRENT_SOURCE_DIR}/GUI ${GUI_GENERATED_HEADERS})
 target_include_directories (map PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/.. ${CMAKE_CURRENT_SOURCE_DIR}/../util ${CMAKE_CURRENT_SOURCE_DIR}/../GUI ${GUI_GENERATED_HEADERS})
 
-target_link_libraries(map gui)
+target_link_libraries(map gui util)
 add_dependencies(map gui)
 
 set(MAP_GENERATED_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/map_autogen/include" PARENT_SCOPE)
