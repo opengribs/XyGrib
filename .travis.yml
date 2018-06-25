@@ -1,0 +1,28 @@
+language: cpp
+
+matrix:
+  include:
+    - dist: trusty
+      compiler: gcc
+    - os: osx
+      compiler: clang
+
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get -qq update; fi
+#  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew upgrade; fi
+# Homebrew upgrade disabled to save time.
+
+install:
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install build-essential git cmake qt5-default libpng-dev libopenjpeg-dev libnova-dev libproj-dev zlib1g-dev libbz2-dev; fi
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew tap indilib/indi; brew install git cmake libnova openjpeg libpng qt5; export PATH="/usr/local/opt/qt5/bin:$PATH";  echo 'export PATH="/usr/local/opt/qt5/bin:$PATH"' >> ~/.bash_profile; fi
+
+script:
+    - mkdir build && cd build
+    - cmake ..
+    - make -s
+
+notifications:
+    email: false
+    
+git:
+    depth: 10
