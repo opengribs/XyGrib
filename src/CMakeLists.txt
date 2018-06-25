@@ -104,7 +104,9 @@ Therm.cpp
 main.cpp
 )
 
-add_executable(${CMAKE_PROJECT_NAME} MACOSX_BUNDLE ${XYGRIB_SRCS})
+qt5_wrap_cpp(xygrib_mocs ${XYGRIB_SRCS} ${XYGRIB_HDRS})
+
+add_executable(${CMAKE_PROJECT_NAME} MACOSX_BUNDLE ${XYGRIB_SRCS} ${xygrib_mocs})
 
 install(TARGETS
     ${CMAKE_PROJECT_NAME}
