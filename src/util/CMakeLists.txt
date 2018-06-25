@@ -15,7 +15,9 @@ Util.cpp
 zuFile.cpp
 )
 
-add_library(util ${UTIL_SRCS})
+qt5_wrap_cpp(util_mocs ${UTIL_SRCS} ${UTIL_HDRS})
+
+add_library(util ${UTIL_SRCS} ${util_mocs})
 
 target_include_directories (util PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
