@@ -57,7 +57,8 @@ make
 ```
 - Install
 ```
-sudo build install
+cmake -DCMAKE_INSTALL_PREFIX=/wherever .. (as it do not respect rules of most linux distro suggestion is : cmake -DCMAKE_INSTALL_PREFIX=/opt ..)
+sudo make install
 ```
 - Package
  - TBD
