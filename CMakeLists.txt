@@ -28,6 +28,15 @@ if(UNIX AND NOT APPLE)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fPIC")
 endif()
 
+# Add support for address etc sanitizers, part 1/2 (other half after ADD_EXECUTABLE)
+if ( CMAKE_VERSION VERSION_GREATER 3.4 )
+  set(ENABLE_SANITIZER "none" CACHE STRING "Add clang sanitizer to the build")
+  set_property(CACHE ENABLE_SANITIZER PROPERTY STRINGS none address memory thread undefined)
+  if (NOT "${ENABLE_SANITIZER}" MATCHES "none")
+    add_compile_options(-fsanitize=${ENABLE_SANITIZER})
+  endif()
+endif()
+
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_PREFIX}/cmake") 
 
 set(CMAKE_FIND_FRAMEWORK LAST)

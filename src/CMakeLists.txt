@@ -120,3 +120,10 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/map ${MAP_GENERATED_HEADERS})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/GUI ${GUI_GENERATED_HEADERS})
 
 target_link_libraries(${CMAKE_PROJECT_NAME} g2clib gui util map ${LIBNOVA_LIBRARY} ${OPENJPEG_LIBRARIES} ${Qt5Core_LIBRARIES} ${Qt5Gui_LIBRARIES} ${Qt5Widgets_LIBRARIES} ${Qt5Network_LIBRARIES} ${Qt5Xml_LIBRARIES} ${Qt5PrintSupport_LIBRARIES} ${BZIP2_LIBRARIES} ${ZLIB_LIBRARIES} ${PROJ4_LIBRARIES} ${PNG_LIBRARIES})
+
+# Sanitizers, part 2/2
+if ( CMAKE_VERSION VERSION_GREATER 3.4 )
+  if (NOT "${ENABLE_SANITIZER}" MATCHES "none")
+     target_link_libraries(${CMAKE_PROJECT_NAME} -fsanitize=${ENABLE_SANITIZER})
+  endif()
+endif()
