@@ -5,7 +5,7 @@
 ### macOS
 
 - Install [Homebrew](https://brew.sh)
-- Install the requred packages: `brew tap indilib/indi; brew install git cmake libnova openjpeg libpng qt5`
+- Install the requred packages: `brew tap indilib/indi; brew install git cmake libnova openjpeg libpng qt5 proj`
 
 ### Linux
 
@@ -28,16 +28,19 @@
 git clone https://github.com/opengribs/XyGrib.git
 ```
 - Build
+
+To build, you'll need to tell CMake where QT is located. This will be something like ```/usr/local/Cellar/qt/5.8.1``` The exact version number may differ, check the version you have installed.
 ```
 mkdir build
 cd build
-cmake ..
+QT5_DIR="/usr/local/Cellar/qt/5.11.1"
+cmake .. -DCMAKE_PREFIX_PATH=$QT5_DIR/
 make
 ```
 - Package (To be integrated to the cmake build process)
 ```
 cd ..
-mv src/build/XyGrib.app .
+mv build/src/XyGrib.app .
 ./mac-package.sh
 ```
 
