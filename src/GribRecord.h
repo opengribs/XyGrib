@@ -254,7 +254,7 @@ inline bool   GribRecord::hasValue (int i, int j) const
 	if (i<0 || j<0 || i>=Ni || j>=Nj) {
         return false;
     }
-    if (!hasBMS) {
+    if (boolBMStab == nullptr) {
         return true;
     }
 	return boolBMStab [j*Ni+i];
@@ -272,7 +272,7 @@ inline bool   GribRecord::hasValueInBitBMS (int i, int j) const
     if (!ok) {
         return false;
     }
-    if (!hasBMS) {
+    if (BMSbits == nullptr) {
         return true;
     }
     int bit;

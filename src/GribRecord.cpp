@@ -577,7 +577,7 @@ void GribRecord::reverseData (char orientation) // orientation = 'H' or 'V'
 				v = data [j*Ni+i1];
 				data [j*Ni+i1] = data [j*Ni+i2];
 				data [j*Ni+i2] = v;
-				if (hasBMS) {
+				if (boolBMStab) {
 					b = boolBMStab [j*Ni+i1];
 					boolBMStab [j*Ni+i1] = boolBMStab [j*Ni+i2];
 					boolBMStab [j*Ni+i2] = b;
@@ -593,7 +593,7 @@ void GribRecord::reverseData (char orientation) // orientation = 'H' or 'V'
 				v = data [j1*Ni+i];
 				data [j1*Ni+i] = data [j2*Ni+i];
 				data [j2*Ni+i] = v;
-				if (hasBMS) {
+				if (boolBMStab) {
 					b = boolBMStab [j1*Ni+i];
 					boolBMStab [j1*Ni+i] = boolBMStab [j2*Ni+i];
 					boolBMStab [j2*Ni+i] = b;
