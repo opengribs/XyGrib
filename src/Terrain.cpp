@@ -664,15 +664,19 @@ FileDataType Terrain::loadMeteoDataFile (QString fileName, bool zoom)
     //--------------------------------------------------------
     // Ouverture du fichier
     //--------------------------------------------------------
-    ZUFILE *file = zu_open (qPrintable(fileName), "rb", ZU_COMPRESS_AUTO);
-    if (file == NULL) {
-        erreur("Can't open file: %s", qPrintable(fileName));
-		taskProgress->setVisible (false);
-		delete taskProgress;
-		taskProgress = NULL;
-        return DATATYPE_NONE;
-    }
-    int nbrecs = GribReader::countGribRecords (file, taskProgress);
+    int nbrecs;
+    {
+	    ZUFILE *file = zu_open (qPrintable(fileName), "rb", ZU_COMPRESS_AUTO);
+	    if (file == NULL) {
+        	erreur("Can't open file: %s", qPrintable(fileName));
+			taskProgress->setVisible (false);
+			delete taskProgress;
+			taskProgress = NULL;
+	        return DATATYPE_NONE;
+		}
+		nbrecs = GribReader::countGribRecords (file, taskProgress);
+		zu_close(file);
+	}
 
     //----------------------------------------------
 	GriddedPlotter  *griddedPlot_Temp = NULL;
