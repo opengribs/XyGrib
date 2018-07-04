@@ -155,15 +155,19 @@ bool Util::isDirWritable (const QDir &dir)
 	FILE *fd;
 	QString tmpfname = dir.absolutePath() + "/jgj13642hygg54hjgiouhg43.tmp";
 	fd = fopen( qPrintable(tmpfname), "w");
-	if (fd != NULL
-			&& fwrite(&tmpfname,1,1,fd)==1 )
+	if (fd == nullptr)
+		return false;
+
+	if ( fwrite(&tmpfname,1,1,fd)==1 )
 	{
 		fclose(fd);
 		unlink( qPrintable(tmpfname) );
 		return true;
 	}
-	else
-		return false;
+	fclose(fd);
+	// shouldn't happen so don't unlink file, race?
+
+	return false;
 }
     
 //======================================================================
