@@ -276,6 +276,8 @@ void GshhsReader::readGshhsFiles()
 						case 4: lsPoly_level4[quality]->push_back(poly); break;
 					}
 				}
+				else
+				    delete poly;
 			}
 			zu_close(file);
 		}
@@ -336,6 +338,8 @@ void GshhsReader::setQuality(int quality_) // 5 levels: 0=low ... 4=full
                 if (ok) {
                     lsPoly_rivers[quality]->push_back(poly);
                 }
+                else
+                    delete poly;
 
             }
             zu_close(file);
@@ -429,6 +433,7 @@ void GshhsReader::GsshDrawPolygons(QPainter &pnt, std::vector <GshhsPolygon*> &l
         
         if (nbmax < pol->n+2) {
             nbmax = pol->n+2;
+            delete [] pts;
             pts = new QPoint[nbmax];
             assert(pts);
         }
@@ -465,6 +470,7 @@ void GshhsReader::GsshDrawLines(QPainter &pnt, std::vector <GshhsPolygon*> &lst,
         
         if (nbmax < pol->n+2) {
             nbmax = pol->n+2;
+            delete [] pts;
             pts = new QPoint[nbmax];
             assert(pts);
         }
