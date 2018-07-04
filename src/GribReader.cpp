@@ -408,6 +408,7 @@ void  GribReader::removeFirstCumulativeRecord (DataCode dtc)
 			for (it=liste->begin(); it!=liste->end() && (*it)!=rec; it++)
 			{
 			}
+			assert(it!=liste->end());
 			if ((*it) == rec) {
 				liste->erase(it);
 			}
