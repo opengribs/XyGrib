@@ -456,6 +456,7 @@ bool DataPointInfo::getWindValues
 	}
 	if (alt.levelType == LV_ISOBARIC) {
 		int i = alt.index();
+		assert(i != -1);
 		*speed = hWindSpeed [i];
 		*dir = hWindDir [i];
 	} 
@@ -494,6 +495,8 @@ void  DataPointInfo::getWindVxVy (const Altitude &alt, float *vx, float*vy) cons
 	}
 	if (alt.levelType == LV_ISOBARIC) {
 		int i = alt.index();
+		assert(i != -1);
+
 		*vx = hVx [i];
 		*vy = hVy [i];
 	} 
