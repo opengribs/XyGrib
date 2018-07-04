@@ -86,6 +86,7 @@ bool ColorScale::readFile (QString filename, double kv, double offset)
 				}
 			}
 		}
+		zu_close(f);
 		if (colors.size() < 2) {
 			Util::cleanVectorPointers (colors);
 			DBG("Error: file %s: colors.size() < 2: %d", 
