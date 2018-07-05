@@ -105,7 +105,7 @@ g2int g2_unpack4(unsigned char *cgrib,g2int *iofst,g2int *ipdsnum,g2int **ipdstm
          ierr=6;
          *mappdslen=0;
          *ipdstmpl=0;     //NULL
-         if ( mappds != 0 ) free(mappds);
+         free(mappds);
          return(ierr);
       }
       else {
@@ -153,8 +153,8 @@ g2int g2_unpack4(unsigned char *cgrib,g2int *iofst,g2int *ipdsnum,g2int **ipdstm
         }
         *mappdslen=newlen;
       }
-      if( mappds->ext != 0 ) free(mappds->ext);
-      if( mappds != 0 ) free(mappds);
+      free(mappds->ext);
+      free(mappds);
       //
       //   Get Optional list of vertical coordinate values
       //   after the Product Definition Template, if necessary.
@@ -167,8 +167,8 @@ g2int g2_unpack4(unsigned char *cgrib,g2int *iofst,g2int *ipdsnum,g2int **ipdstm
             ierr=6;
             *numcoord=0;
             *coordlist=0;    // NULL
-            if( coordieee != 0 ) free(coordieee);
-            if( lcoordlist != 0 ) free(lcoordlist);
+            free(coordieee);
+            free(lcoordlist);
             return(ierr);
          }
          else {
