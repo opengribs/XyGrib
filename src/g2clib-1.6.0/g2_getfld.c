@@ -400,6 +400,7 @@ g2int g2_getfld(unsigned char *cgrib,g2int ifldnum,g2int unpack,g2int expand,
           }
           else {
             ierr=10;
+            free( igds );
             return(ierr);
           }
         }
