@@ -200,10 +200,11 @@ int comunpack(unsigned char *cpack,g2int lensec,g2int idrsnum,g2int *idrstmpl,g2
         totBit += (gwidth[j]*glen[j]);
         totLen += glen[j];
       }
-      if (totLen != ndpts) {
-        return 1;
-      }
-      if (totBit / 8. > lensec) {
+      if (totLen != ndpts || totBit / 8. > lensec) {
+        free(ifld);
+        free(gwidth);
+        free(glen);
+        free(gref);
         return 1;
       }
 //
