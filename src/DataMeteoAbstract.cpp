@@ -86,7 +86,7 @@ double DataRecordAbstract::computeGeopotentialAltitude (
 time_t DataRecordAbstract::UTC_mktime (
 	int year,int month,int day,int hour,int min,int sec) 
 {
-	if (year<1970 || month<1 || month>12 || day<1
+	if (year<1970 || year>2200 || month<1 || month>12 || day<1
 			|| hour<0 || min<0 || sec<0)
 		return -1;
 	time_t r = 0;
