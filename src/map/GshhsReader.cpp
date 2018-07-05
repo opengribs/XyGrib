@@ -36,9 +36,9 @@ GshhsPolygon::GshhsPolygon(ZUFILE *file_)
     greenwich = readInt2();
     readInt2();   // source
 
-	antarctic = (west==0 && east==360);
     if (ok)
     {
+	    antarctic = (west==0 && east==360);
 		double x, y=-90;
         
         for (int i=0; i<n; i++) {
@@ -431,6 +431,7 @@ void GshhsReader::GsshDrawPolygons(QPainter &pnt, std::vector <GshhsPolygon*> &l
     
     for  (i=0, iter=lst.begin(); iter!=lst.end(); iter++,i++) {
         pol = *iter;
+        assert(pol->isOk());
         
         if (nbmax < pol->n+2) {
             nbmax = pol->n+2;
@@ -468,6 +469,7 @@ void GshhsReader::GsshDrawLines(QPainter &pnt, std::vector <GshhsPolygon*> &lst,
     
     for  (i=0, iter=lst.begin(); iter!=lst.end(); iter++,i++) {
         pol = *iter;
+        assert(pol->isOk());
         
         if (nbmax < pol->n+2) {
             nbmax = pol->n+2;
