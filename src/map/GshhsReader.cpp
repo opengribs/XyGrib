@@ -317,10 +317,11 @@ void GshhsReader::setQuality(int quality_) // 5 levels: 0=low ... 4=full
             while (ok) {
                 GshhsPolygon *poly = new GshhsPolygon_WDB(file);
                 ok = poly->isOk();
-                if (ok) {
-                    if (poly->getLevel() < 2) 
-                        lsPoly_boundaries[quality]->push_back(poly);
+                if (ok && poly->getLevel() < 2) {
+                    lsPoly_boundaries[quality]->push_back(poly);
                 }
+                else
+                    delete poly;
 
             }
             zu_close(file);
