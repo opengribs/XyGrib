@@ -417,19 +417,19 @@ GribRecord::GribRecord (ZUFILE* file, int id_)
     ok = readGribSection0_IS (file);
     if (ok) {
         ok = readGribSection1_PDS (file);
-        zu_seek(file, fileOffset1+sectionSize1, SEEK_SET);
+        ok = ok && zu_seek(file, fileOffset1+sectionSize1, SEEK_SET) == 0;
     }
     if (ok) {
         ok = readGribSection2_GDS (file);
-        zu_seek(file, fileOffset2+sectionSize2, SEEK_SET);
+        ok = ok && zu_seek(file, fileOffset2+sectionSize2, SEEK_SET) == 0;
     }
     if (ok) {
         ok = readGribSection3_BMS (file);
-        zu_seek(file, fileOffset3+sectionSize3, SEEK_SET);
+        ok = ok && zu_seek(file, fileOffset3+sectionSize3, SEEK_SET) == 0;
     }
     if (ok) {
         ok = readGribSection4_BDS (file);
-        zu_seek(file, fileOffset4+sectionSize4, SEEK_SET);
+        ok = ok && zu_seek(file, fileOffset4+sectionSize4, SEEK_SET) == 0;
     }
     if (ok) {
         ok = readGribSection5_ES (file);

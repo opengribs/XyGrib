@@ -131,12 +131,16 @@ void Grib2Reader::readGrib2FileContent (int nbrecs)
 		seekgb_zu (file, iseek, 64*1024, &lskip, &lgrib);
 		taskProgress->setValue ((int)(100.0*idrec/nbrecs));
         //DBG("READ FIELD : idrec=%d lskip=%ld lgrib=%ld", idrec, lskip, lgrib);
-		if (lgrib == 0) break;    // end loop at EOF or problem
+		if (lgrib == 0)
+			break;    // end loop at EOF or problem
 		iseek = lskip + lgrib;
 
 		cgrib = (unsigned char *) malloc (lgrib);
-		zu_seek (file, lskip, SEEK_SET);
-		if (zu_read(file, cgrib, lgrib) == lgrib) {
+		if (cgrib == NULL)
+			break;
+
+		if (zu_seek (file, lskip, SEEK_SET) == 0 && zu_read(file, cgrib, lgrib) == lgrib)
+		{
 			numfields = 0;
 			numlocal = 0;
 			ierr = g2_info (cgrib,listsec0,listsec1,&numfields,&numlocal);
