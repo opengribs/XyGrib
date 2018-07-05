@@ -818,6 +818,11 @@ bool GribRecord::readGribSection3_BMS(ZUFILE* file) {
     if (bitMapFollows != 0) {
         return ok;
     }
+    if (sectionSize3 <= 6) {
+        erreur("Record %d: Bad BMS size %d",id, sectionSize3);
+        ok = false;
+        return ok;
+    }
     BMSbits = new zuchar[sectionSize3-6];
     if (!BMSbits) {
         erreur("Record %d: out of memory",id);
