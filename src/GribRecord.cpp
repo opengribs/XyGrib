@@ -39,10 +39,6 @@ void  GribRecord::translateDataType ()
 			if (editionNumber == 1 && periodP2 > periodP1)
 				multiplyAllData( 1.0/(periodP2-periodP1) );
 		}
-		if (dataType == GRB_PRECIP_RATE) {	// mm/s -> mm/h
-			if (editionNumber == 1 && periodP2 > periodP1)
-				multiplyAllData( 3600.0 );
-		}
 		// NOAA GFS product table differs from NCEP WW3 product table
 		// data: http://nomads.ncdc.noaa.gov/data/gfsanl/
 		if ((idCenter==7 && idModel==81 && idGrid==3)) {
@@ -124,10 +120,6 @@ void  GribRecord::translateDataType ()
 		if (dataType == GRB_PRECIP_TOT) {	// mm/period -> mm/h
 			if (periodP2 > periodP1)
 				multiplyAllData( 1.0/(periodP2-periodP1) );
-		}
-		if (dataType == GRB_PRECIP_RATE) {	// mm/s -> mm/h
-			if (periodP2 > periodP1)
-				multiplyAllData( 3600.0 );
 		}
 	}
 	//----------------------------------------------
@@ -242,11 +234,7 @@ void  GribRecord::translateDataType ()
     else if (idCenter==98 && (idModel==148 || idModel==149) && idGrid==255)
     {
         dataCenterModel = ECMWF;
-        if (getDataType() == GRB_PRECIP_RATE) {      // mm/s -> mm/h
-            // dataType=59 levelType=1 levelValue=0
-            multiplyAllData( 3600.0 );
-        }
-        else if (getDataType()==GRB_CLOUD_TOT
+        if (getDataType()==GRB_CLOUD_TOT
             && getLevelType()==LV_GND_SURF
             && getLevelValue()==0)
         {
@@ -296,6 +284,9 @@ void  GribRecord::translateDataType ()
 	//===================================================================
 	if (this->knownData) {
 		switch (getDataType()) {
+		    case GRB_PRECIP_RATE: 	// mm/s -> mm/h
+				multiplyAllData( 3600.0 );
+				break;
 			case GRB_WAV_SIG_HT:
 			case GRB_WAV_WND_DIR:
 			case GRB_WAV_WND_HT:
