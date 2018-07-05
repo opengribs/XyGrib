@@ -36,11 +36,11 @@ void  GribRecord::translateDataType ()
 	{
 		dataCenterModel = NOAA_GFS;
 		if (dataType == GRB_PRECIP_TOT) {	// mm/period -> mm/h
-			if (periodP2 > periodP1)
+			if (editionNumber == 1 && periodP2 > periodP1)
 				multiplyAllData( 1.0/(periodP2-periodP1) );
 		}
 		if (dataType == GRB_PRECIP_RATE) {	// mm/s -> mm/h
-			if (periodP2 > periodP1)
+			if (editionNumber == 1 && periodP2 > periodP1)
 				multiplyAllData( 3600.0 );
 		}
 		// NOAA GFS product table differs from NCEP WW3 product table
@@ -417,11 +417,12 @@ GribRecord::GribRecord (ZUFILE* file, int id_)
     eof     = false;
 	knownData = true;
 	editionNumber = 0;
+	periodP1 = 0;
+	periodP2 = 0;
 	verticalOrientationIsAmbiguous = false;
 	setDuplicated (false);
 	waveData = false;
 	dataCenterModel = OTHER_DATA_CENTER;
-
     ok = readGribSection0_IS (file);
     if (ok) {
         ok = readGribSection1_PDS (file);
