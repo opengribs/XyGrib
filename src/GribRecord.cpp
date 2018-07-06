@@ -896,6 +896,11 @@ bool GribRecord::readGribSection4_BDS(ZUFILE* file) {
         ok = false;
     }
 
+    if (sectionSize4 < 11) {
+        erreur("Record %d: can't process additional flags",id);
+        ok = false;
+    }
+
     if (!ok) {
         return ok;
     }
@@ -909,22 +914,19 @@ bool GribRecord::readGribSection4_BDS(ZUFILE* file) {
 
     zuint  startbit  = 0;
     int  datasize = sectionSize4-11;
-    zuchar *buf = new zuchar[datasize+4];  // +4 pour simplifier les décalages ds readPackedBits
-	
-	// to make valgrind happy
-	for (int i=datasize; i<datasize+4; i++)
-		buf[i] = 0;
+    zuchar *buf = new zuchar[datasize+4]();  // +4 pour simplifier les décalages ds readPackedBits
 	
     if (!buf) {
         erreur("Record %d: out of memory",id);
         ok = false;
     }
-    if (zu_read(file, buf, datasize) != datasize) {
+    else if (zu_read(file, buf, datasize) != datasize) {
         erreur("Record %d: data read error",id);
         ok = false;
         eof = true;
     }
     if (!ok) {
+        delete [] buf;
         return ok;
     }
     
@@ -973,10 +975,7 @@ bool GribRecord::readGribSection4_BDS(ZUFILE* file) {
         }
     }
 
-    if (buf) {
-        delete [] buf;
-        buf = NULL;
-    }
+    delete [] buf;
     return ok;
 }
 
