@@ -118,7 +118,7 @@ void  GribRecord::translateDataType ()
 	else if (idCenter==7 && idModel==89 && idGrid==255)
 	{
 		if (dataType == GRB_PRECIP_TOT) {	// mm/period -> mm/h
-			if (periodP2 > periodP1)
+			if (editionNumber == 1 && periodP2 > periodP1)
 				multiplyAllData( 1.0/(periodP2-periodP1) );
 		}
 	}
