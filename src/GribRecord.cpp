@@ -628,6 +628,39 @@ void  GribRecord::multiplyAllData(double k)
 	}
 }
 
+//-------------------------------------------------------------------------------
+void GribRecord::substract(const GribRecord &rec, bool pos)
+{
+    // for now only substract records of same size
+    if (rec.data == 0 || !rec.isOk())
+        return;
+
+    if (data == 0 || !isOk())
+        return;
+
+    if (Ni != rec.Ni || Nj != rec.Nj)
+        return;
+
+    zuint size = Ni *Nj;
+    for (zuint i=0; i<size; i++) {
+        if (rec.data[i] == GRIB_NOTDEF)
+           continue;
+        if (data[i] == GRIB_NOTDEF) {
+            data[i] = -rec.data[i];
+            // XXX BMSbits
+            if (boolBMStab) {
+                boolBMStab [i] = true;
+            }
+        }
+        else
+            data[i] -= rec.data[i];
+        if (data[i] < 0. && pos) {
+            // clamp data ...
+            data[i] = 0.;
+        }
+    }
+}
+
 //==============================================================
 // Lecture des données
 //==============================================================

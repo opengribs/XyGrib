@@ -42,7 +42,10 @@ class GribRecord : public RegularGridRecord
         GribRecord (ZUFILE* file, int id_);
         GribRecord (const GribRecord &rec);
         ~GribRecord ();
-		
+
+        void   multiplyAllData(double k);
+        void   substract(const GribRecord &rec, bool positive=true);
+
         bool  isOk ()  const   		{return ok;}
         bool  isDataKnown ()  const {return knownData;}
         int   getId ()  const   	{return id;}
@@ -75,6 +78,7 @@ class GribRecord : public RegularGridRecord
         //-----------------------------------------
         int    getPeriodP1() const  { return periodP1; }
         int    getPeriodP2() const  { return periodP2; }
+        zuchar getTimeRange() const { return timeRange; }
 
         // Nombre de points de la grille
         int     getNi() const    { return Ni; }
@@ -226,8 +230,7 @@ class GribRecord : public RegularGridRecord
 
         inline bool   hasValueInBitBMS (int i, int j) const;
 		zuint  periodSeconds(zuchar unit, zuchar P1, zuchar P2, zuchar range);
-        void   multiplyAllData(double k);
-		
+
 		void   checkOrientation ();
 		void   reverseData (char orientation); // orientation = 'H' or 'V'
 		bool   verticalDataAreMirrored ();
