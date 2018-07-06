@@ -269,11 +269,12 @@ void GshhsReader::readGshhsFiles()
 				GshhsPolygon *poly = new GshhsPolygon(file);
 				ok = poly->isOk();
 				if (ok) {
-					switch (poly->getLevel()) {
+					switch (poly->getLevel()) { /* 0..255 */
 						case 1: lsPoly_level1[quality]->push_back(poly); break;
 						case 2: lsPoly_level2[quality]->push_back(poly); break;
 						case 3: lsPoly_level3[quality]->push_back(poly); break;
 						case 4: lsPoly_level4[quality]->push_back(poly); break;
+						default: delete poly; break;
 					}
 				}
 				else
