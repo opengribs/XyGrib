@@ -43,7 +43,7 @@ find_package(Qt5Xml CONFIG REQUIRED)
 include_directories(${Qt5Xml_INCLUDE_DIRS})
 
 find_library(LIBNOVA_LIBRARY
-     NAMES "libnova.a" "libnova.so"
+     NAMES "libnova.so" "libnova.a"
      PATHS
      $ENV{EXTERNLIBS}/lib
      ~/Library/Frameworks
