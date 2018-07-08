@@ -210,7 +210,7 @@ void Grib2Record::analyseProductDefinitionTemplate (gribfield  *gfld)
 	//-----------------------------------
 	this->idModel = gfld->ipdtmpl[4];
 	pdtnum = gfld->ipdtnum; // = Product Definition Template Number(see Code Table 4.0)
-    if (pdtnum!=0 && pdtnum!=2 && pdtnum!=8) {
+    if (pdtnum!=0 && pdtnum!=2 && pdtnum!=8 && pdtnum!=12 ) {
 		DBG ("id=%d: unknown pdtnum: %d", id, pdtnum);
 		pdtnum = -1;
 		ok = false;
@@ -219,7 +219,20 @@ void Grib2Record::analyseProductDefinitionTemplate (gribfield  *gfld)
 	//-------------------------
 	// forecast date
 	//-------------------------
-	else if (pdtnum == 0) {    // Analysis or forecast at a point in time
+	else if (pdtnum == 8) {   // Average, accumulation  TODO: period of time
+		int curyear  = gfld->ipdtmpl[15];  // end of the period
+		int curmonth = gfld->ipdtmpl[16];
+		int curday   = gfld->ipdtmpl[17];
+		int curhour  = gfld->ipdtmpl[18];
+		int curminute= gfld->ipdtmpl[19];
+		int cursecond= gfld->ipdtmpl[20];
+		this->curDate = DataRecordAbstract::UTC_mktime
+							(curyear,curmonth,curday,curhour,curminute,cursecond);
+	}
+	else {
+		// 0 Analysis or forecast at a point in time
+		// 2 Derived forecasts based on all ensemble members at a horizontal level or in a horizontal layer at a point in time. 
+		//12 Derived forecasts based on all ensemble members at ... in a continuous or non-continuous time interval
 		int periodcode = gfld->ipdtmpl[7];    
 		int periodoffset = gfld->ipdtmpl[8];
 		if (periodcode == 0)
@@ -241,16 +254,6 @@ void Grib2Record::analyseProductDefinitionTemplate (gribfield  *gfld)
 			ok = false;
 			return;
 		}
-	}
-	else if (pdtnum == 8) {   // Average, accumulation  TODO: period of time
-		int curyear  = gfld->ipdtmpl[15];  // end of the period
-		int curmonth = gfld->ipdtmpl[16];
-		int curday   = gfld->ipdtmpl[17];
-		int curhour  = gfld->ipdtmpl[18];
-		int curminute= gfld->ipdtmpl[19];
-		int cursecond= gfld->ipdtmpl[20];
-		this->curDate = DataRecordAbstract::UTC_mktime
-							(curyear,curmonth,curday,curhour,curminute,cursecond);
 	}
 	sprintf(strCurDate, "%s", qPrintable(QDateTime::fromTime_t(curDate,Qt::UTC).toString("yyyy-MM-dd HH:mm")));
 	//-------------------------
@@ -430,7 +433,7 @@ int Grib2Record::analyseProductType ()
     }
 
 
-    if (pdtnum==0) {
+    if (pdtnum==0 || pdtnum== 2  || pdtnum== 12 ) {
 		if (paramcat==0) {//TABLE 4.2-0-0
 			if (paramnumber==0)
 				return GRB_TEMP;

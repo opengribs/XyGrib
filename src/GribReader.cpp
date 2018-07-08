@@ -371,6 +371,50 @@ void GribReader::readAllGribRecords (int nbrecs)
 	if (! taskProgress->continueDownload)
 		ok = false;
 }
+//---------------------------------------------------------------------------------
+void  GribReader::computeAccumulationRecords (DataCode dtc)
+{
+    std::set<time_t>  setdates = getListDates();
+    GribRecord *prev = 0;
+    int p1 = 0, p2 = 0;
+
+    if (setdates.empty())
+        return;
+
+	// XXX only work if P2 -P1 === delta time
+    for (auto const rit : setdates)
+    {
+		time_t date = rit;
+		GribRecord *rec = getRecord( dtc, date );
+		if ( !rec || !rec->isOk() )
+			continue;
+
+		// XXX double check reference date and timerange 
+		if (prev != 0 ) {
+			if (rec->getTimeRange() == 4 && prev->getPeriodP1() == rec->getPeriodP1()) {
+				// printf("substract %d %d %d\n", prev->getPeriodP1(), prev->getPeriodP2(), prev->getPeriodSec());
+				prev->substract(*rec);
+				p1 = rec->getPeriodP2();
+			}
+			if (p2 > p1) {
+				prev->multiplyAllData( 1.0/(p2 -p1) );
+			}
+		}
+		prev = rec;
+        p1 = prev->getPeriodP1();
+		p2 = prev->getPeriodP2();
+	}
+	if (prev != 0 && p2 > p1) {
+	    // the last one
+        prev->multiplyAllData( 1.0/(p2 -p1) );
+	}
+}
+
+//---------------------------------------------------------------------------------
+void  GribReader::computeAccumulationRecords ()
+{
+	computeAccumulationRecords (DataCode(GRB_PRECIP_TOT,  LV_GND_SURF, 0));
+}
 
 //---------------------------------------------------------------------------------
 void  GribReader::copyFirstCumulativeRecord ()
@@ -408,6 +452,7 @@ void  GribReader::removeFirstCumulativeRecord (DataCode dtc)
 			for (it=liste->begin(); it!=liste->end() && (*it)!=rec; it++)
 			{
 			}
+			assert(it!=liste->end());
 			if ((*it) == rec) {
 				liste->erase(it);
 			}
@@ -913,6 +958,8 @@ void GribReader::openFilePriv (const std::string fname, int nbrecs)
 		taskProgress->setMessage (LTASK_PREPARE_MAPS);
 		taskProgress->setValue (0);
 		readGribFileContent (nbrecs);
+		// should be done once after opening all files.
+		computeAccumulationRecords ();
 	}
 	else {
 		ok = false;
