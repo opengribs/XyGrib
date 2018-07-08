@@ -309,28 +309,43 @@ float DataPointInfo::getDataValue (const DataCode &dtc) const
 				hasDewPoint()&&hasTemp() ? temp-dewPoint : GRIB_NOTDEF;
 			
 		case GRB_TEMP         : 
-			if (dtc.getAltitude().levelType == LV_ISOBARIC)
-				return hTemp [dtc.getAltitude().index()];
+			if (dtc.getAltitude().levelType == LV_ISOBARIC) {
+				int idx = dtc.getAltitude().index();
+				assert (idx >= 0);
+				return hTemp [idx];
+			}
 			else
 				return temp;
 		case GRB_GEOPOT_HGT   :
 			if (dtc.levelType == LV_ISOTHERM0)
 				return isotherm0HGT;
-			else if (dtc.getAltitude().levelType == LV_ISOBARIC)
-				return hGeopot [dtc.getAltitude().index()];
+			else if (dtc.getAltitude().levelType == LV_ISOBARIC) {
+				int idx = dtc.getAltitude().index();
+				assert (idx >= 0);
+				return hGeopot [idx];
+			}
 		case GRB_HUMID_REL    : 
-			if (dtc.getAltitude().levelType == LV_ISOBARIC)
-				return hHumidRel [dtc.getAltitude().index()];
+			if (dtc.getAltitude().levelType == LV_ISOBARIC) {
+				int idx = dtc.getAltitude().index();
+				assert (idx >= 0);
+				return hHumidRel [idx];
+			}
 			else
 				return humidRel;
 		case GRB_HUMID_SPEC   : 
-			if (dtc.getAltitude().levelType == LV_ISOBARIC)
-				return hHumidSpec [dtc.getAltitude().index()];
+			if (dtc.getAltitude().levelType == LV_ISOBARIC) {
+				int idx = dtc.getAltitude().index();
+				assert (idx >= 0);
+				return hHumidSpec [idx];
+			}
 			else
 				return humidSpec;
 		case GRB_PRV_THETA_E      : 
-			if (dtc.getAltitude().levelType == LV_ISOBARIC)
-				return hThetae [dtc.getAltitude().index()];
+			if (dtc.getAltitude().levelType == LV_ISOBARIC) {
+				int idx = dtc.getAltitude().index();
+				assert (idx >= 0);
+				return hThetae [idx];
+			}
 			else
 				return GRIB_NOTDEF;
 		//-----------------------------------
