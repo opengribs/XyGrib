@@ -324,6 +324,7 @@ float DataPointInfo::getDataValue (const DataCode &dtc) const
 				assert (idx >= 0);
 				return hGeopot [idx];
 			}
+			return GRIB_NOTDEF;
 		case GRB_HUMID_REL    : 
 			if (dtc.getAltitude().levelType == LV_ISOBARIC) {
 				int idx = dtc.getAltitude().index();
