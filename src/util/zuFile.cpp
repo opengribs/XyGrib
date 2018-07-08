@@ -47,6 +47,7 @@ ZUFILE * zu_open(const char *fname, const char *mode, int type)
     f->ok = 1;
     f->pos = 0;
     f->fname = strdup(fname);
+    f->type  = type;
 
 	if (type == ZU_COMPRESS_AUTO)
 	{
@@ -165,6 +166,7 @@ int zu_close(ZUFILE *f)
                     break;
             }
         }
+        free(f);
     }
     return 0;
 }

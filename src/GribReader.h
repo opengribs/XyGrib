@@ -75,6 +75,9 @@ class GribReader : public RegularGridReader
 				DATA_IN_FILE, NO_DATA_IN_FILE, COMPUTED_DATA
 		};
 
+		void  computeAccumulationRecords ();
+		void  computeAccumulationRecords (DataCode dtc);
+
 		void  copyFirstCumulativeRecord   ();
 		void  removeFirstCumulativeRecord ();
 		void  copyFirstCumulativeRecord   (DataCode dtc);

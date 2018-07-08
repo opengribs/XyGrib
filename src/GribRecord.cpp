@@ -36,12 +36,8 @@ void  GribRecord::translateDataType ()
 	{
 		dataCenterModel = NOAA_GFS;
 		if (dataType == GRB_PRECIP_TOT) {	// mm/period -> mm/h
-			if (periodP2 > periodP1)
+			if (editionNumber == 1 && periodP2 > periodP1)
 				multiplyAllData( 1.0/(periodP2-periodP1) );
-		}
-		if (dataType == GRB_PRECIP_RATE) {	// mm/s -> mm/h
-			if (periodP2 > periodP1)
-				multiplyAllData( 3600.0 );
 		}
 		// NOAA GFS product table differs from NCEP WW3 product table
 		// data: http://nomads.ncdc.noaa.gov/data/gfsanl/
@@ -76,7 +72,7 @@ void  GribRecord::translateDataType ()
 	//------------------------
 	// Meteo France Arome/Arpege
 	//------------------------
-    else if (idCenter==84 && idModel==204 && idGrid==255) {
+    else if (idCenter==84 && (idModel==204 || idModel==121) && idGrid==255) {
 
 		if ( (getDataType()==GRB_PRESSURE)
 			&& getLevelType()==LV_MSL
@@ -122,12 +118,8 @@ void  GribRecord::translateDataType ()
 	else if (idCenter==7 && idModel==89 && idGrid==255)
 	{
 		if (dataType == GRB_PRECIP_TOT) {	// mm/period -> mm/h
-			if (periodP2 > periodP1)
+			if (editionNumber == 1 && periodP2 > periodP1)
 				multiplyAllData( 1.0/(periodP2-periodP1) );
-		}
-		if (dataType == GRB_PRECIP_RATE) {	// mm/s -> mm/h
-			if (periodP2 > periodP1)
-				multiplyAllData( 3600.0 );
 		}
 	}
 	//----------------------------------------------
@@ -242,11 +234,7 @@ void  GribRecord::translateDataType ()
     else if (idCenter==98 && (idModel==148 || idModel==149) && idGrid==255)
     {
         dataCenterModel = ECMWF;
-        if (getDataType() == GRB_PRECIP_RATE) {      // mm/s -> mm/h
-            // dataType=59 levelType=1 levelValue=0
-            multiplyAllData( 3600.0 );
-        }
-        else if (getDataType()==GRB_CLOUD_TOT
+        if (getDataType()==GRB_CLOUD_TOT
             && getLevelType()==LV_GND_SURF
             && getLevelValue()==0)
         {
@@ -296,6 +284,9 @@ void  GribRecord::translateDataType ()
 	//===================================================================
 	if (this->knownData) {
 		switch (getDataType()) {
+		    case GRB_PRECIP_RATE: 	// mm/s -> mm/h
+				multiplyAllData( 3600.0 );
+				break;
 			case GRB_WAV_SIG_HT:
 			case GRB_WAV_WND_DIR:
 			case GRB_WAV_WND_HT:
@@ -417,11 +408,12 @@ GribRecord::GribRecord (ZUFILE* file, int id_)
     eof     = false;
 	knownData = true;
 	editionNumber = 0;
+	periodP1 = 0;
+	periodP2 = 0;
 	verticalOrientationIsAmbiguous = false;
 	setDuplicated (false);
 	waveData = false;
 	dataCenterModel = OTHER_DATA_CENTER;
-
     ok = readGribSection0_IS (file);
     if (ok) {
         ok = readGribSection1_PDS (file);
@@ -577,7 +569,7 @@ void GribRecord::reverseData (char orientation) // orientation = 'H' or 'V'
 				v = data [j*Ni+i1];
 				data [j*Ni+i1] = data [j*Ni+i2];
 				data [j*Ni+i2] = v;
-				if (hasBMS) {
+				if (boolBMStab) {
 					b = boolBMStab [j*Ni+i1];
 					boolBMStab [j*Ni+i1] = boolBMStab [j*Ni+i2];
 					boolBMStab [j*Ni+i2] = b;
@@ -593,7 +585,7 @@ void GribRecord::reverseData (char orientation) // orientation = 'H' or 'V'
 				v = data [j1*Ni+i];
 				data [j1*Ni+i] = data [j2*Ni+i];
 				data [j2*Ni+i] = v;
-				if (hasBMS) {
+				if (boolBMStab) {
 					b = boolBMStab [j1*Ni+i];
 					boolBMStab [j1*Ni+i] = boolBMStab [j2*Ni+i];
 					boolBMStab [j2*Ni+i] = b;
@@ -634,6 +626,39 @@ void  GribRecord::multiplyAllData(double k)
 			}
 		}
 	}
+}
+
+//-------------------------------------------------------------------------------
+void GribRecord::substract(const GribRecord &rec, bool pos)
+{
+    // for now only substract records of same size
+    if (rec.data == 0 || !rec.isOk())
+        return;
+
+    if (data == 0 || !isOk())
+        return;
+
+    if (Ni != rec.Ni || Nj != rec.Nj)
+        return;
+
+    zuint size = Ni *Nj;
+    for (zuint i=0; i<size; i++) {
+        if (rec.data[i] == GRIB_NOTDEF)
+           continue;
+        if (data[i] == GRIB_NOTDEF) {
+            data[i] = -rec.data[i];
+            // XXX BMSbits
+            if (boolBMStab) {
+                boolBMStab [i] = true;
+            }
+        }
+        else
+            data[i] -= rec.data[i];
+        if (data[i] < 0. && pos) {
+            // clamp data ...
+            data[i] = 0.;
+        }
+    }
 }
 
 //==============================================================
@@ -818,6 +843,11 @@ bool GribRecord::readGribSection3_BMS(ZUFILE* file) {
     if (bitMapFollows != 0) {
         return ok;
     }
+    if (sectionSize3 <= 6) {
+        erreur("Record %d: Bad BMS size %d",id, sectionSize3);
+        ok = false;
+        return ok;
+    }
     BMSbits = new zuchar[sectionSize3-6];
     if (!BMSbits) {
         erreur("Record %d: out of memory",id);
@@ -866,6 +896,11 @@ bool GribRecord::readGribSection4_BDS(ZUFILE* file) {
         ok = false;
     }
 
+    if (sectionSize4 < 11) {
+        erreur("Record %d: can't process additional flags",id);
+        ok = false;
+    }
+
     if (!ok) {
         return ok;
     }
@@ -879,22 +914,19 @@ bool GribRecord::readGribSection4_BDS(ZUFILE* file) {
 
     zuint  startbit  = 0;
     int  datasize = sectionSize4-11;
-    zuchar *buf = new zuchar[datasize+4];  // +4 pour simplifier les décalages ds readPackedBits
-	
-	// to make valgrind happy
-	for (int i=datasize; i<datasize+4; i++)
-		buf[i] = 0;
+    zuchar *buf = new zuchar[datasize+4]();  // +4 pour simplifier les décalages ds readPackedBits
 	
     if (!buf) {
         erreur("Record %d: out of memory",id);
         ok = false;
     }
-    if (zu_read(file, buf, datasize) != datasize) {
+    else if (zu_read(file, buf, datasize) != datasize) {
         erreur("Record %d: data read error",id);
         ok = false;
         eof = true;
     }
     if (!ok) {
+        delete [] buf;
         return ok;
     }
     
@@ -943,10 +975,7 @@ bool GribRecord::readGribSection4_BDS(ZUFILE* file) {
         }
     }
 
-    if (buf) {
-        delete [] buf;
-        buf = NULL;
-    }
+    delete [] buf;
     return ok;
 }
 
