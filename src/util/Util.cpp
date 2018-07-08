@@ -411,7 +411,7 @@ QString Util::getDataUnit (const DataCode &dtc)
 			return tr("%");
 			break;
 		default:
-			return "?";
+			break;
 	}
 	return "?";
 }
@@ -433,7 +433,7 @@ double Util::getDataCoef (const DataCode &dtc)
 				return 1.0;
 			break;
 		default:
-			return 1.0;
+			break;
 	}
 	return 1.0;
 }
