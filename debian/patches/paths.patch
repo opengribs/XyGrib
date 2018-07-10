@@ -1,0 +1,27 @@
+diff -ur xygrib-1.1.0.orig/src/util/Util.h xygrib-1.1.0/src/util/Util.h
+--- xygrib-1.1.0.orig/src/util/Util.h	2018-06-25 17:05:03.478073575 +0200
++++ xygrib-1.1.0/src/util/Util.h	2018-07-10 13:23:47.404056921 +0200
+@@ -78,15 +78,15 @@
+ 							const QString &dir, const QString &filter=QString());
+ 		
+ 	static QString pathData ()   {return "./";};
+-	static QString pathColors () {return pathData()+"data/colors/";}
+-	static QString pathConfig () {return pathData()+"data/config/";}
+-	static QString pathFonts ()  {return pathData()+"data/fonts/";}
+-	static QString pathGis ()    {return pathData()+"data/gis/";}
+-	static QString pathGshhs ()  {return pathData()+"data/maps/gshhs/";}
+-	static QString pathStuff ()  {return pathData()+"data/stuff/";}
++	static QString pathColors () {return "/usr/share/xygrib/data/colors/";}
++	static QString pathConfig () {return "/usr/share/xygrib/data/config/";}
++	static QString pathFonts ()  {return "/usr/share/fonts/";}
++	static QString pathGis ()    {return "/usr/share/maps/gis/";}
++	static QString pathGshhs ()  {return "/usr/share/maps/gshhs/";}
++	static QString pathStuff ()  {return "/usr/share/xygrib/data/stuff/";}
+ 	
+-	static QString pathImg (const char *fname) {return pathData()+"data/img/"+fname;}
+-    static QString pathTr  (QString lang)   {return pathData()+"data/tr/xyGrib_"+lang;}
++	static QString pathImg (const char *fname) {return ((QString) "/usr/share/icons/xygrib/") +fname;}
++    static QString pathTr  (QString lang)   {return "/usr/share/qt5/translations/xyGrib_"+lang;}
+ 	static QString getServerName ();
+ 
+     static void     setSetting (const QString &key, const QVariant &value);
