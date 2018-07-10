@@ -1,0 +1,5 @@
+xygrib (1.1.0-1) unstable; urgency=medium
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- oleg <oleg@debian9.intern.rossmann.de>  Tue, 10 Jul 2018 09:44:01 +0200
