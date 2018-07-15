@@ -43,6 +43,7 @@ void Grib2Reader::openFile (const std::string fname,
 		createListDates ();
 		ok = getNumberOfDates() > 0;
 		if (ok) {
+            computeAccumulationRecords ();
 			analyseRecords ();
 			computeMissingData ();   // RH DewPoint ThetaE
 		}
