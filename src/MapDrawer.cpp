@@ -64,12 +64,12 @@ MapDrawer::MapDrawer(const MapDrawer &model)
 	temperatureLabelsAlt = model.temperatureLabelsAlt;
 	windArrowsAltitude   = model.windArrowsAltitude;
 	currentArrowsAltitude   = model.currentArrowsAltitude;
-	geopotentialData = model.geopotentialData;
-	showGeopotential = model.showGeopotential;
-	showGeopotentialLabels = model.showGeopotentialLabels;
-	geopotentialStep = model.geopotentialStep;
-	geopotentialMin = model.geopotentialMin;
-	geopotentialMax = model.geopotentialMax;
+	//geopotentialData = model.geopotentialData;
+	//showGeopotential = model.showGeopotential;
+	//showGeopotentialLabels = model.showGeopotentialLabels;
+	//geopotentialStep = model.geopotentialStep;
+	//geopotentialMin = model.geopotentialMin;
+	//geopotentialMax = model.geopotentialMax;
 	showWaveArrowsType = model.showWaveArrowsType;
 	
 	initGraphicsParameters();
@@ -95,9 +95,6 @@ MapDrawer::~MapDrawer()
 //===========================================================
 void MapDrawer::initGraphicsParameters()
 {
-	showGeopotential = false;
-	showGeopotentialLabels = false;
-	
     showCitiesNamesLevel = Util::getSetting("showCitiesNamesLevel", 0).toInt();
     showCountriesNames = Util::getSetting("showCountriesNames", false).toBool();
     showCountriesBorders  = Util::getSetting("showCountriesBorders", true).toBool();
@@ -131,6 +128,8 @@ void MapDrawer::initGraphicsParameters()
     strdtc = Util::getSetting("colorMapData", strdtc).toString();
 	colorMapData = DataCodeStr::unserialize (strdtc);
 
+    showGeopotential = Util::getSetting("drawGeopotentialLines", false).toBool();
+    showGeopotentialLabels = Util::getSetting("drawGeopotentialLinesLabels", false).toBool();
 	strdtc = DataCodeStr::serialize (DataCode(GRB_GEOPOT_HGT,LV_ISOBARIC,925));
     strdtc = Util::getSetting("geopotentialLinesData", strdtc).toString();
 	setGeopotentialData (DataCodeStr::unserialize (strdtc));
@@ -172,11 +171,15 @@ void MapDrawer::updateGraphicsParameters()
 
     linesThetaE_Pen.setColor(Util::getSetting("linesThetaE_LineColor", QColor(40,140,40)).value<QColor>());
     linesThetaE_Pen.setWidthF(Util::getSetting("linesThetaE_LineWidth", 1.6).toDouble());
+
+    geopotentialsPen.setColor(Util::getSetting("geopotentials_LineColor", QColor(0, 140, 0)).value<QColor>());
+    geopotentialsPen.setWidthF(Util::getSetting("geopotentials_LineWidth", 0.3).toDouble());
 }
 
 //---------------------------------------------------------------------
 void MapDrawer::setGeopotentialData (const DataCode &dtc)
 {
+
 	if (dtc.getAltitude().levelType == LV_ISOBARIC) {
 		geopotentialData = dtc;
 		switch (dtc.getAltitude().levelValue) {
@@ -509,9 +512,8 @@ void MapDrawer::draw_MeteoData_Gridded
 	}
 
 	if (showGeopotential) {
-        QColor color (0,140,0);
-        geopotentialsPen.setColor(color);
         pnt.setPen (geopotentialsPen);
+	addUsedDataCenterModel(geopotentialData, plotter);
 		plotter->complete_listIsolines (&listGeopotential,
 						   geopotentialData,
 						   geopotentialMin, geopotentialMax, geopotentialStep, proj);
@@ -560,9 +562,8 @@ void MapDrawer::draw_MeteoData_Gridded
 	}
 	if (showGeopotentialLabels && showGeopotential) {
         QColor color(200,80,80);
-        DataCode dtc (GRB_GEOPOT_HGT,LV_ISOBARIC,0);
-		addUsedDataCenterModel (dtc, plotter);
-		double coef = Util::getDataCoef (dtc);
+		addUsedDataCenterModel (geopotentialData, plotter);
+		double coef = Util::getDataCoef (geopotentialData);
         plotter->draw_listIsolines_labels (listGeopotential, coef,0, color, pnt,proj);
 	}
 	if (showIsotherms_Labels && showIsotherms) {
