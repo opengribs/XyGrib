@@ -162,6 +162,8 @@ void DialogGraphicsParams::slotBtOK()
 	Util::setSetting("isotherms_LineColor",  inputIsotherms_Line->getLineColor());
 	Util::setSetting("linesThetaE_LineWidth",  inputThetaE_Line->getLineWidth());
 	Util::setSetting("linesThetaE_LineColor",  inputThetaE_Line->getLineColor());
+	Util::setSetting("geopotentials_LineWidth",  inputGeopotentials_Line->getLineWidth());
+	Util::setSetting("geopotentials_LineColor",  inputGeopotentials_Line->getLineColor());
 	
 	Util::setSetting("cloudsColorMode", inputCloudsColorMode->itemData(inputCloudsColorMode->currentIndex()).toString());
     
@@ -215,6 +217,10 @@ void DialogGraphicsParams::initInterface()
 				Util::getSetting("linesThetaE_LineWidth", 1.6).toDouble(),
 				Util::getSetting("linesThetaE_LineColor", QColor(40,140,40)).value<QColor>(),
 				1.6,  QColor(40,140,40) );
+	inputGeopotentials_Line->setValues (
+				Util::getSetting("geopotentials_LineWidth", 1.6).toDouble(),
+				Util::getSetting("geopotentials_LineColor", QColor(0, 140,0)).value<QColor>(),
+				0.3,  QColor(0,140,0) );
 
 	inputCloudsColorMode->addItem (tr("100 % -> white"), "white");
 	inputCloudsColorMode->addItem (tr("100 % -> dark"), "black");
