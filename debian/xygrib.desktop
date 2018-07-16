@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=XyGrib GRIB file viewer
+GenericName=GRIB file viewer
+Comment=Meterological file viewer
+Exec=XyGrib
+Icon=xygrib.png
+Terminal=false
+Type=Application
+Categories=Application;Geoscience;
+StartupNotify=true

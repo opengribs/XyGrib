@@ -1,0 +1,22 @@
+This package was debianized by Oleg Roitburd <oroitburd@gmail.com>, on
+Wed, 11 Jul 2018 10:00:04 +0100.  It was downloaded from
+https://www.github.com/opengribs/XyGrib
+
+The Debian packaging is Copyright  2018, Oleg Roitburd <oroitburd@gmail.com>,
+is licensed under the terms of the GNU GPL version 3.
+
+XyGrib Software is distributed under GNU GPL v3
+The text of the license can be found in /usr/share/common-licenses/GPL-3
+
+Copyright (C) 2008 Jacques Zaninetti - http://www.zygrib.org
+Copyright (C) 2018 David Gal         - https://github.com/norulz
+
+Upstream source: http://www.github.com/opengribs/XyGrib
+
+GSHHS
+=====
+
+The application contains copies of GSHSS, the 
+Global Self-consistant Hierarchical High-resolution Shorelines maps.
+These are distributed under the GNU Public License.
+
