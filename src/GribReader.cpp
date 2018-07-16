@@ -127,247 +127,250 @@ void GribReader::readAllGribRecords (int nbrecs)
     // Lecture de l'ensemble des GribRecord du fichier
     // et stockage dans les listes appropriées.
     //--------------------------------------------------------
-    GribRecord *rec;
+    GribRecord *rec = nullptr;
     int id = 0;
     time_t firstdate = -1;
 	ok = false;
+	bool eof;
     do {
 		if (id%4 == 1)
 			taskProgress->setValue ((int)(100.0*id/nbrecs));
 		
 		id ++;
+
+		delete rec;
         rec = new GribRecord(file, id);
         assert(rec);
         
-		if (rec->isOk())
+		if (!rec->isOk())
+        	break;
+
+        eof = rec->isEof();
+
+		if (rec->isDataKnown())
         {
-        	if (rec->isDataKnown())
-        	{
-				if (firstdate== -1)
-					firstdate = rec->getRecordCurrentDate();
-//                DBG("%d %d %d %d", rec->getDataType(),rec->getLevelType(), rec->getLevelValue(), rec->getRecordCurrentDate());
-				if (//-----------------------------------------
-					(rec->getDataType()==GRB_PRESSURE_MSL
-						&& rec->getLevelType()==LV_MSL && rec->getLevelValue()==0)
-				//-----------------------------------------
-				|| ( (rec->getDataType()==GRB_PRESSURE)
-						&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
-				//-----------------------------------------
-				|| ( (rec->getDataType()==GRB_TMIN || rec->getDataType()==GRB_TMAX)
-						&& rec->getLevelType()==LV_ABOV_GND && rec->getLevelValue()==2)
-				//-----------------------------------------
-				|| (rec->getDataType()==GRB_TEMP
-						&& rec->getLevelType()==LV_ABOV_GND && rec->getLevelValue()==2)
-				|| (rec->getDataType()==GRB_TEMP
-						&& rec->getLevelType()==LV_ABOV_GND && rec->getLevelValue()==0)
-				|| (rec->getDataType()==GRB_TEMP
-						&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
-				|| (rec->getDataType()==GRB_TEMP
-						&& rec->getLevelType()==LV_ISOBARIC
-						&& (   rec->getLevelValue()==1000
-							|| rec->getLevelValue()==975
-							|| rec->getLevelValue()==950
-							|| rec->getLevelValue()==925
-							|| rec->getLevelValue()==900
-							|| rec->getLevelValue()==875
-							|| rec->getLevelValue()==850
-							|| rec->getLevelValue()==825
-							|| rec->getLevelValue()==800
-							|| rec->getLevelValue()==775
-							|| rec->getLevelValue()==750
-							|| rec->getLevelValue()==725
-							|| rec->getLevelValue()==700
-							|| rec->getLevelValue()==650
-							|| rec->getLevelValue()==600
-							|| rec->getLevelValue()==550
-							|| rec->getLevelValue()==500
-							|| rec->getLevelValue()==400
-							|| rec->getLevelValue()==300 
-							|| rec->getLevelValue()==200 
-							|| rec->getLevelValue()==100 ) )
-				//-----------------------------------------
-				// Current
-				//-----------------------------------------
-				|| ( (rec->getDataType()==GRB_CUR_VX || rec->getDataType()==GRB_CUR_VY)
-                        /*&& rec->getLevelType()==LV_GND_SURF
-                        && rec->getLevelValue()==0*/ )
-				//-----------------------------------------
-				// Wind
-				//-----------------------------------------
-				|| ( (rec->getDataType()==GRB_WIND_VX || rec->getDataType()==GRB_WIND_VY
-				    || rec->getDataType()==GRB_WIND_DIR || rec->getDataType()==GRB_WIND_SPEED)
-						&& rec->getLevelType()==LV_ABOV_GND
-						&& (   rec->getLevelValue()==1
-							|| rec->getLevelValue()==2
-							|| rec->getLevelValue()==3
-							|| rec->getLevelValue()==10 ) )
-				|| ( (rec->getDataType()==GRB_WIND_VX || rec->getDataType()==GRB_WIND_VY
-				    || rec->getDataType()==GRB_WIND_DIR || rec->getDataType()==GRB_WIND_SPEED)
-						&& rec->getLevelType()==LV_MSL
-						&& rec->getLevelValue()==0 )
-				|| ( (rec->getDataType()==GRB_WIND_VX || rec->getDataType()==GRB_WIND_VY
-				    || rec->getDataType()==GRB_WIND_DIR || rec->getDataType()==GRB_WIND_SPEED)
-						&& rec->getLevelType()==LV_GND_SURF)
-				|| ( (rec->getDataType()==GRB_WIND_VX || rec->getDataType()==GRB_WIND_VY
-				    || rec->getDataType()==GRB_WIND_DIR || rec->getDataType()==GRB_WIND_SPEED)
-						&& rec->getLevelType()==LV_ISOBARIC
-						&& (   rec->getLevelValue()==925
-							|| rec->getLevelValue()==1000
-							|| rec->getLevelValue()==800
-							|| rec->getLevelValue()==600
-							|| rec->getLevelValue()==400
-							|| rec->getLevelValue()==100
-							|| rec->getLevelValue()==850
-							|| rec->getLevelValue()==700
-							|| rec->getLevelValue()==500
-							|| rec->getLevelValue()==300 
-							|| rec->getLevelValue()==200 ) )
-				//-----------------------------------------
-				//-----------------------------------------
-				|| (rec->getDataType()==GRB_HUMID_SPEC
-						&& rec->getLevelType()==LV_ISOBARIC
-						&& (   rec->getLevelValue()==925
-							|| rec->getLevelValue()==850
-							|| rec->getLevelValue()==700
-							|| rec->getLevelValue()==600
-							|| rec->getLevelValue()==500
-							|| rec->getLevelValue()==400
-							|| rec->getLevelValue()==300 
-							|| rec->getLevelValue()==200 ) )
-				//-----------------------------------------
-				|| (rec->getDataType()==GRB_HUMID_SPEC
-						&& rec->getLevelType()==LV_ABOV_GND
-						&& (   rec->getLevelValue()==2 ) )
-				//-----------------------------------------
-				|| (rec->getDataType()==GRB_GEOPOT_HGT
-						&& rec->getLevelType()==LV_ISOTHERM0 && rec->getLevelValue()==0)
-				|| (rec->getDataType()==GRB_GEOPOT_HGT
-						&& rec->getLevelType()==LV_ISOBARIC
-						&& (   rec->getLevelValue()==925
-							|| rec->getLevelValue()==850
-							|| rec->getLevelValue()==700
-							|| rec->getLevelValue()==600
-							|| rec->getLevelValue()==500
-							|| rec->getLevelValue()==400
-							|| rec->getLevelValue()==300 
-							|| rec->getLevelValue()==200 ) )
-				//-----------------------------------------
-				|| (rec->getDataType()==GRB_PRECIP_TOT
-						&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
-				//-----------------------------------------
-				|| (rec->getDataType()==GRB_PRECIP_RATE
-						&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
-				//-----------------------------------------
-				|| (rec->getDataType()==GRB_SNOW_DEPTH
-						&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
-				//-----------------------------------------
-				|| (rec->getDataType()==GRB_SNOW_CATEG
-						&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
-				//-----------------------------------------
-				|| (rec->getDataType()==GRB_FRZRAIN_CATEG
-						&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
-				//-----------------------------------------
-				|| (rec->getDataType()==GRB_CLOUD_TOT
-						&& rec->getLevelType()==LV_ATMOS_ALL && rec->getLevelValue()==0)
-				//-----------------------------------------
-				|| (rec->getDataType()==GRB_CLOUD_TOT
-						&& rec->getLevelType()==LV_CLOUD_LOW_LAYER && rec->getLevelValue()==0)
-				|| (rec->getDataType()==GRB_CLOUD_TOT
-						&& rec->getLevelType()==LV_CLOUD_MID_LAYER && rec->getLevelValue()==0)
-				|| (rec->getDataType()==GRB_CLOUD_TOT
-						&& rec->getLevelType()==LV_CLOUD_HIG_LAYER && rec->getLevelValue()==0)
-				|| (rec->getDataType()==GRB_PRESSURE
-						&& rec->getLevelType()==LV_CLOUD_LOW_TOP && rec->getLevelValue()==0)
-				|| (rec->getDataType()==GRB_PRESSURE
-						&& rec->getLevelType()==LV_CLOUD_MID_TOP && rec->getLevelValue()==0)
-				|| (rec->getDataType()==GRB_PRESSURE
-						&& rec->getLevelType()==LV_CLOUD_HIG_TOP && rec->getLevelValue()==0)
-				|| (rec->getDataType()==GRB_PRESSURE
-						&& rec->getLevelType()==LV_CLOUD_LOW_BOTTOM && rec->getLevelValue()==0)
-				|| (rec->getDataType()==GRB_PRESSURE
-						&& rec->getLevelType()==LV_CLOUD_MID_BOTTOM && rec->getLevelValue()==0)
-				|| (rec->getDataType()==GRB_PRESSURE
-						&& rec->getLevelType()==LV_CLOUD_HIG_BOTTOM && rec->getLevelValue()==0)
-				//-----------------------------------------
-				|| (rec->getDataType()==GRB_HUMID_REL
-						&& rec->getLevelType()==LV_ABOV_GND && rec->getLevelValue()==2)
-				|| (rec->getDataType()==GRB_HUMID_REL
-						&& rec->getLevelType()==LV_ISOBARIC
-						&& (   rec->getLevelValue()==1000
-							|| rec->getLevelValue()==975
-							|| rec->getLevelValue()==950
-							|| rec->getLevelValue()==925
-							|| rec->getLevelValue()==900
-							|| rec->getLevelValue()==875
-							|| rec->getLevelValue()==850
-							|| rec->getLevelValue()==825
-							|| rec->getLevelValue()==800
-							|| rec->getLevelValue()==775
-							|| rec->getLevelValue()==750
-							|| rec->getLevelValue()==725
-							|| rec->getLevelValue()==700
-							|| rec->getLevelValue()==650
-							|| rec->getLevelValue()==600
-							|| rec->getLevelValue()==550
-							|| rec->getLevelValue()==500
-							|| rec->getLevelValue()==400
-							|| rec->getLevelValue()==300 
-							|| rec->getLevelValue()==200 
-							|| rec->getLevelValue()==100 ) )
-				//-----------------------------------------
-				|| (rec->getDataType()==GRB_TEMP_POT
-						&& rec->getLevelType()==LV_SIGMA && rec->getLevelValue()==9950)
-				//-----------------------------------------
-				|| (rec->getDataType()==GRB_CAPE
-						&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
-				|| (rec->getDataType()==GRB_CIN
-						&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
-				|| (rec->getDataType()==GRB_WIND_GUST
-						&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
-                // added by david
-//                || (rec->getDataType()==GRB_WIND_GUST
-//                        && rec->getLevelType()==LV_ABOV_GND && rec->getLevelValue()==10)
-                || (rec->getDataType()==GRB_COMP_REFL
-                        && rec->getLevelType()==LV_ATMOS_ALL)
-                //-----------------------------------------
-				|| (rec->getLevelType()==LV_GND_SURF
-					&& (   rec->getDataType()==GRB_WAV_SIG_HT
-						|| rec->getDataType()==GRB_WAV_WND_DIR
-						|| rec->getDataType()==GRB_WAV_WND_HT
-						|| rec->getDataType()==GRB_WAV_WND_PER
-						|| rec->getDataType()==GRB_WAV_SWL_DIR
-						|| rec->getDataType()==GRB_WAV_SWL_HT
-						|| rec->getDataType()==GRB_WAV_SWL_PER
-						|| rec->getDataType()==GRB_WAV_PRIM_DIR
-						|| rec->getDataType()==GRB_WAV_PRIM_PER
-						|| rec->getDataType()==GRB_WAV_SCDY_DIR
-						|| rec->getDataType()==GRB_WAV_SCDY_PER
-						|| rec->getDataType()==GRB_WAV_WHITCAP_PROB
-						|| rec->getDataType()==GRB_WAV_MAX_PER
-						|| rec->getDataType()==GRB_WAV_MAX_DIR
-						|| rec->getDataType()==GRB_WAV_MAX_HT
-					))
-				)
-				{
-					storeRecordInMap (rec);
-					ok = true;   // at least 1 record ok
-				}
-				else {
-					fprintf(stderr,
-						"GribReader: id=%d unknown data: key=%s  idCenter==%d && idModel==%d && idGrid==%d\n",
-						rec->getId(),
-						rec->getKey().c_str(),
-						rec->getIdCenter(), rec->getIdModel(), rec->getIdGrid()
-						);
-				}
+			if (firstdate== -1)
+				firstdate = rec->getRecordCurrentDate();
+//            DBG("%d %d %d %d", rec->getDataType(),rec->getLevelType(), rec->getLevelValue(), rec->getRecordCurrentDate());
+			if (//-----------------------------------------
+				(rec->getDataType()==GRB_PRESSURE_MSL
+					&& rec->getLevelType()==LV_MSL && rec->getLevelValue()==0)
+			//-----------------------------------------
+			|| ( (rec->getDataType()==GRB_PRESSURE)
+					&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
+			//-----------------------------------------
+			|| ( (rec->getDataType()==GRB_TMIN || rec->getDataType()==GRB_TMAX)
+					&& rec->getLevelType()==LV_ABOV_GND && rec->getLevelValue()==2)
+			//-----------------------------------------
+			|| (rec->getDataType()==GRB_TEMP
+					&& rec->getLevelType()==LV_ABOV_GND && rec->getLevelValue()==2)
+			|| (rec->getDataType()==GRB_TEMP
+					&& rec->getLevelType()==LV_ABOV_GND && rec->getLevelValue()==0)
+			|| (rec->getDataType()==GRB_TEMP
+					&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
+			|| (rec->getDataType()==GRB_TEMP
+					&& rec->getLevelType()==LV_ISOBARIC
+					&& (   rec->getLevelValue()==1000
+						|| rec->getLevelValue()==975
+						|| rec->getLevelValue()==950
+						|| rec->getLevelValue()==925
+						|| rec->getLevelValue()==900
+						|| rec->getLevelValue()==875
+						|| rec->getLevelValue()==850
+						|| rec->getLevelValue()==825
+						|| rec->getLevelValue()==800
+						|| rec->getLevelValue()==775
+						|| rec->getLevelValue()==750
+						|| rec->getLevelValue()==725
+						|| rec->getLevelValue()==700
+						|| rec->getLevelValue()==650
+						|| rec->getLevelValue()==600
+						|| rec->getLevelValue()==550
+						|| rec->getLevelValue()==500
+						|| rec->getLevelValue()==400
+						|| rec->getLevelValue()==300 
+						|| rec->getLevelValue()==200 
+						|| rec->getLevelValue()==100 ) )
+			//-----------------------------------------
+			// Current
+			//-----------------------------------------
+			|| ( (rec->getDataType()==GRB_CUR_VX || rec->getDataType()==GRB_CUR_VY)
+                    /*&& rec->getLevelType()==LV_GND_SURF
+                    && rec->getLevelValue()==0*/ )
+			//-----------------------------------------
+			// Wind
+			//-----------------------------------------
+			|| ( (rec->getDataType()==GRB_WIND_VX || rec->getDataType()==GRB_WIND_VY
+			    || rec->getDataType()==GRB_WIND_DIR || rec->getDataType()==GRB_WIND_SPEED)
+					&& rec->getLevelType()==LV_ABOV_GND
+					&& (   rec->getLevelValue()==1
+						|| rec->getLevelValue()==2
+						|| rec->getLevelValue()==3
+						|| rec->getLevelValue()==10 ) )
+			|| ( (rec->getDataType()==GRB_WIND_VX || rec->getDataType()==GRB_WIND_VY
+			    || rec->getDataType()==GRB_WIND_DIR || rec->getDataType()==GRB_WIND_SPEED)
+					&& rec->getLevelType()==LV_MSL
+					&& rec->getLevelValue()==0 )
+			|| ( (rec->getDataType()==GRB_WIND_VX || rec->getDataType()==GRB_WIND_VY
+			    || rec->getDataType()==GRB_WIND_DIR || rec->getDataType()==GRB_WIND_SPEED)
+					&& rec->getLevelType()==LV_GND_SURF)
+			|| ( (rec->getDataType()==GRB_WIND_VX || rec->getDataType()==GRB_WIND_VY
+			    || rec->getDataType()==GRB_WIND_DIR || rec->getDataType()==GRB_WIND_SPEED)
+					&& rec->getLevelType()==LV_ISOBARIC
+					&& (   rec->getLevelValue()==925
+						|| rec->getLevelValue()==1000
+						|| rec->getLevelValue()==800
+						|| rec->getLevelValue()==600
+						|| rec->getLevelValue()==400
+						|| rec->getLevelValue()==100
+						|| rec->getLevelValue()==850
+						|| rec->getLevelValue()==700
+						|| rec->getLevelValue()==500
+						|| rec->getLevelValue()==300 
+						|| rec->getLevelValue()==200 ) )
+			//-----------------------------------------
+			//-----------------------------------------
+			|| (rec->getDataType()==GRB_HUMID_SPEC
+					&& rec->getLevelType()==LV_ISOBARIC
+					&& (   rec->getLevelValue()==925
+						|| rec->getLevelValue()==850
+						|| rec->getLevelValue()==700
+						|| rec->getLevelValue()==600
+						|| rec->getLevelValue()==500
+						|| rec->getLevelValue()==400
+						|| rec->getLevelValue()==300 
+						|| rec->getLevelValue()==200 ) )
+			//-----------------------------------------
+			|| (rec->getDataType()==GRB_HUMID_SPEC
+					&& rec->getLevelType()==LV_ABOV_GND
+					&& (   rec->getLevelValue()==2 ) )
+			//-----------------------------------------
+			|| (rec->getDataType()==GRB_GEOPOT_HGT
+					&& rec->getLevelType()==LV_ISOTHERM0 && rec->getLevelValue()==0)
+			|| (rec->getDataType()==GRB_GEOPOT_HGT
+					&& rec->getLevelType()==LV_ISOBARIC
+					&& (   rec->getLevelValue()==925
+						|| rec->getLevelValue()==850
+						|| rec->getLevelValue()==700
+						|| rec->getLevelValue()==600
+						|| rec->getLevelValue()==500
+						|| rec->getLevelValue()==400
+						|| rec->getLevelValue()==300 
+						|| rec->getLevelValue()==200 ) )
+			//-----------------------------------------
+			|| (rec->getDataType()==GRB_PRECIP_TOT
+					&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
+			//-----------------------------------------
+			|| (rec->getDataType()==GRB_PRECIP_RATE
+					&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
+			//-----------------------------------------
+			|| (rec->getDataType()==GRB_SNOW_DEPTH
+					&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
+			//-----------------------------------------
+			|| (rec->getDataType()==GRB_SNOW_CATEG
+					&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
+			//-----------------------------------------
+			|| (rec->getDataType()==GRB_FRZRAIN_CATEG
+					&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
+			//-----------------------------------------
+			|| (rec->getDataType()==GRB_CLOUD_TOT
+					&& rec->getLevelType()==LV_ATMOS_ALL && rec->getLevelValue()==0)
+			//-----------------------------------------
+			|| (rec->getDataType()==GRB_CLOUD_TOT
+					&& rec->getLevelType()==LV_CLOUD_LOW_LAYER && rec->getLevelValue()==0)
+			|| (rec->getDataType()==GRB_CLOUD_TOT
+					&& rec->getLevelType()==LV_CLOUD_MID_LAYER && rec->getLevelValue()==0)
+			|| (rec->getDataType()==GRB_CLOUD_TOT
+					&& rec->getLevelType()==LV_CLOUD_HIG_LAYER && rec->getLevelValue()==0)
+			|| (rec->getDataType()==GRB_PRESSURE
+					&& rec->getLevelType()==LV_CLOUD_LOW_TOP && rec->getLevelValue()==0)
+			|| (rec->getDataType()==GRB_PRESSURE
+					&& rec->getLevelType()==LV_CLOUD_MID_TOP && rec->getLevelValue()==0)
+			|| (rec->getDataType()==GRB_PRESSURE
+					&& rec->getLevelType()==LV_CLOUD_HIG_TOP && rec->getLevelValue()==0)
+			|| (rec->getDataType()==GRB_PRESSURE
+					&& rec->getLevelType()==LV_CLOUD_LOW_BOTTOM && rec->getLevelValue()==0)
+			|| (rec->getDataType()==GRB_PRESSURE
+					&& rec->getLevelType()==LV_CLOUD_MID_BOTTOM && rec->getLevelValue()==0)
+			|| (rec->getDataType()==GRB_PRESSURE
+					&& rec->getLevelType()==LV_CLOUD_HIG_BOTTOM && rec->getLevelValue()==0)
+			//-----------------------------------------
+			|| (rec->getDataType()==GRB_HUMID_REL
+					&& rec->getLevelType()==LV_ABOV_GND && rec->getLevelValue()==2)
+			|| (rec->getDataType()==GRB_HUMID_REL
+					&& rec->getLevelType()==LV_ISOBARIC
+					&& (   rec->getLevelValue()==1000
+						|| rec->getLevelValue()==975
+						|| rec->getLevelValue()==950
+						|| rec->getLevelValue()==925
+						|| rec->getLevelValue()==900
+						|| rec->getLevelValue()==875
+						|| rec->getLevelValue()==850
+						|| rec->getLevelValue()==825
+						|| rec->getLevelValue()==800
+						|| rec->getLevelValue()==775
+						|| rec->getLevelValue()==750
+						|| rec->getLevelValue()==725
+						|| rec->getLevelValue()==700
+						|| rec->getLevelValue()==650
+						|| rec->getLevelValue()==600
+						|| rec->getLevelValue()==550
+						|| rec->getLevelValue()==500
+						|| rec->getLevelValue()==400
+						|| rec->getLevelValue()==300 
+						|| rec->getLevelValue()==200 
+						|| rec->getLevelValue()==100 ) )
+			//-----------------------------------------
+			|| (rec->getDataType()==GRB_TEMP_POT
+					&& rec->getLevelType()==LV_SIGMA && rec->getLevelValue()==9950)
+			//-----------------------------------------
+			|| (rec->getDataType()==GRB_CAPE
+					&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
+			|| (rec->getDataType()==GRB_CIN
+					&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
+			|| (rec->getDataType()==GRB_WIND_GUST
+					&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
+            // added by david
+//            || (rec->getDataType()==GRB_WIND_GUST
+//                    && rec->getLevelType()==LV_ABOV_GND && rec->getLevelValue()==10)
+            || (rec->getDataType()==GRB_COMP_REFL
+                    && rec->getLevelType()==LV_ATMOS_ALL)
+            //-----------------------------------------
+			|| (rec->getLevelType()==LV_GND_SURF
+				&& (   rec->getDataType()==GRB_WAV_SIG_HT
+					|| rec->getDataType()==GRB_WAV_WND_DIR
+					|| rec->getDataType()==GRB_WAV_WND_HT
+					|| rec->getDataType()==GRB_WAV_WND_PER
+					|| rec->getDataType()==GRB_WAV_SWL_DIR
+					|| rec->getDataType()==GRB_WAV_SWL_HT
+					|| rec->getDataType()==GRB_WAV_SWL_PER
+					|| rec->getDataType()==GRB_WAV_PRIM_DIR
+					|| rec->getDataType()==GRB_WAV_PRIM_PER
+					|| rec->getDataType()==GRB_WAV_SCDY_DIR
+					|| rec->getDataType()==GRB_WAV_SCDY_PER
+					|| rec->getDataType()==GRB_WAV_WHITCAP_PROB
+					|| rec->getDataType()==GRB_WAV_MAX_PER
+					|| rec->getDataType()==GRB_WAV_MAX_DIR
+					|| rec->getDataType()==GRB_WAV_MAX_HT
+				))
+			)
+			{
+				storeRecordInMap (rec);
+				rec = nullptr; // release ownership
+				ok = true;   // at least 1 record ok
 			}
-        }
-        else {    // ! rec-isOk
-            delete rec;
-            rec = NULL;
-        }
-    } while (taskProgress->continueDownload && rec != NULL &&  !rec->isEof());
-	
+			else {
+				fprintf(stderr,
+					"GribReader: id=%d unknown data: key=%s  idCenter==%d && idModel==%d && idGrid==%d\n",
+					rec->getId(),
+					rec->getKey().c_str(),
+					rec->getIdCenter(), rec->getIdModel(), rec->getIdGrid()
+					);
+			}
+		}
+    } while (taskProgress->continueDownload && !eof);
+
+    delete rec;
 	if (! taskProgress->continueDownload)
 		ok = false;
 }

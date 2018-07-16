@@ -24,14 +24,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //================================================================
 ColorScaleGraph::ColorScaleGraph (QWidget *parent) : QWidget(parent)
 {
-	sc = NULL;
+	sc = nullptr;
+	datacolors = nullptr;
 }
 //---------------------------------------------------------------
 void ColorScaleGraph::setColorScale (DataColors *datacolors, const DataCode& dtc)
 {
 // 	DBGQS(DataCodeStr::toString(dtc));
 	this->datacolors = datacolors;
-	this->sc = datacolors->getColorScale (dtc);
+	if (datacolors == nullptr)
+		this->sc = nullptr;
+	else
+		this->sc = datacolors->getColorScale (dtc);
 	this->dtc = dtc;
 	update ();
 }

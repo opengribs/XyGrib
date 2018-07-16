@@ -36,9 +36,9 @@ GshhsPolygon::GshhsPolygon(ZUFILE *file_)
     greenwich = readInt2();
     readInt2();   // source
 
-	antarctic = (west==0 && east==360);
     if (ok)
     {
+	    antarctic = (west==0 && east==360);
 		double x, y=-90;
         
         for (int i=0; i<n; i++) {
@@ -269,13 +269,16 @@ void GshhsReader::readGshhsFiles()
 				GshhsPolygon *poly = new GshhsPolygon(file);
 				ok = poly->isOk();
 				if (ok) {
-					switch (poly->getLevel()) {
+					switch (poly->getLevel()) { /* 0..255 */
 						case 1: lsPoly_level1[quality]->push_back(poly); break;
 						case 2: lsPoly_level2[quality]->push_back(poly); break;
 						case 3: lsPoly_level3[quality]->push_back(poly); break;
 						case 4: lsPoly_level4[quality]->push_back(poly); break;
+						default: delete poly; break;
 					}
 				}
+				else
+				    delete poly;
 			}
 			zu_close(file);
 		}
@@ -315,10 +318,11 @@ void GshhsReader::setQuality(int quality_) // 5 levels: 0=low ... 4=full
             while (ok) {
                 GshhsPolygon *poly = new GshhsPolygon_WDB(file);
                 ok = poly->isOk();
-                if (ok) {
-                    if (poly->getLevel() < 2) 
-                        lsPoly_boundaries[quality]->push_back(poly);
+                if (ok && poly->getLevel() < 2) {
+                    lsPoly_boundaries[quality]->push_back(poly);
                 }
+                else
+                    delete poly;
 
             }
             zu_close(file);
@@ -336,6 +340,8 @@ void GshhsReader::setQuality(int quality_) // 5 levels: 0=low ... 4=full
                 if (ok) {
                     lsPoly_rivers[quality]->push_back(poly);
                 }
+                else
+                    delete poly;
 
             }
             zu_close(file);
@@ -426,9 +432,11 @@ void GshhsReader::GsshDrawPolygons(QPainter &pnt, std::vector <GshhsPolygon*> &l
     
     for  (i=0, iter=lst.begin(); iter!=lst.end(); iter++,i++) {
         pol = *iter;
+        assert(pol->isOk());
         
         if (nbmax < pol->n+2) {
             nbmax = pol->n+2;
+            delete [] pts;
             pts = new QPoint[nbmax];
             assert(pts);
         }
@@ -462,9 +470,11 @@ void GshhsReader::GsshDrawLines(QPainter &pnt, std::vector <GshhsPolygon*> &lst,
     
     for  (i=0, iter=lst.begin(); iter!=lst.end(); iter++,i++) {
         pol = *iter;
+        assert(pol->isOk());
         
         if (nbmax < pol->n+2) {
             nbmax = pol->n+2;
+            delete [] pts;
             pts = new QPoint[nbmax];
             assert(pts);
         }

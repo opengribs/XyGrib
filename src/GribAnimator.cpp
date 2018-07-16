@@ -319,10 +319,9 @@ void GribAnimator::createImages()
 			QMessageBox::critical (NULL,
 				tr("Error"),
                 tr("Need more memory."));
+			delete img;
 			break;
 		}
-		 
-		if (closestatus != 0) break;
 		
 		vectorImages.push_back (img);
 		showImage (currentImage, false);

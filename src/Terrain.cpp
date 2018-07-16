@@ -1217,12 +1217,12 @@ QPixmap * Terrain::createPixmap (time_t date, int width, int height)
 									scaledproj, 
 									getListPOIs() );
 		}
-		delete scaledproj;
-		delete scaleddrawer;
 	}
 	else {
 		DBG("Memory problem... ");
 	}
+	delete scaledproj;
+	delete scaleddrawer;
 	return pixmap;
 }
 

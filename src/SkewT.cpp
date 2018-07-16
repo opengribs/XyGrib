@@ -706,7 +706,7 @@ void SkewT::resetGraphic ()
 void SkewT::setTempPressLimits (double tempCMax, double hpaMin)
 {
 	sounding.invalidateConvectiveLevels ();
-	this->hpaMax = 1013.25;
+	// this->hpaMax = 1013.25;
 	this->hpaMax = 1050;
 	this->hpaMin = hpaMin;
 	this->tempCMax = tempCMax;
