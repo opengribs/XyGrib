@@ -96,7 +96,7 @@ g2int g2_unpack5(unsigned char *cgrib,g2int *iofst,g2int *ndpts,g2int *idrsnum,
          ierr=6;
          *mapdrslen=0;
          *idrstmpl=0;     //NULL
-         if ( mapdrs != 0 ) free(mapdrs);
+         free(mapdrs);
          return(ierr);
       }
       else {
@@ -144,8 +144,8 @@ g2int g2_unpack5(unsigned char *cgrib,g2int *iofst,g2int *ndpts,g2int *idrsnum,
         }
         *mapdrslen=newlen;
       }
-      if( mapdrs->ext != 0 ) free(mapdrs->ext);
-      if( mapdrs != 0 ) free(mapdrs);
+      free(mapdrs->ext);
+      free(mapdrs);
 
       return(ierr);    // End of Section 5 processing
 

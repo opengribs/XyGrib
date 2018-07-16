@@ -125,7 +125,7 @@ g2int g2_unpack3(unsigned char *cgrib,g2int *iofst,g2int **igds,g2int **igdstmpl
               ierr=6;
               *mapgridlen=0;
               *igdstmpl=0;    //NULL
-              if( mapgrid != 0 ) free(mapgrid);
+              free(mapgrid);
               return(ierr);
            }
            else {
@@ -177,8 +177,8 @@ g2int g2_unpack3(unsigned char *cgrib,g2int *iofst,g2int **igds,g2int **igdstmpl
           }
           *mapgridlen=newlen;
         }
-        if( mapgrid->ext != 0 ) free(mapgrid->ext);
-        if( mapgrid != 0 ) free(mapgrid);
+        free(mapgrid->ext);
+        free(mapgrid);
       }
       else {              // No Grid Definition Template
         *mapgridlen=0;

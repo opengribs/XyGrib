@@ -92,6 +92,8 @@ GisReader::GisReader()
                     assert(country);
                     lsCountries.push_back(country);
                 }
+                else
+                	delete country;
             }
         }
         zu_close(f);
@@ -130,6 +132,8 @@ GisReader::GisReader()
 							assert(city);
 							lsCities.push_back(city);
 						}
+						else
+							delete city;
 					}
 				}
 				zu_close(f);

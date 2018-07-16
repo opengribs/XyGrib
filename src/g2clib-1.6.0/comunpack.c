@@ -82,6 +82,13 @@ int comunpack(unsigned char *cpack,g2int lensec,g2int idrsnum,g2int *idrstmpl,g2
       //printf("ALLOC gref: %d %x\n",(int)ngroups,gref);
       gwidth=(g2int *)calloc(ngroups,sizeof(g2int));
       //printf("ALLOC gwidth: %d %x\n",(int)ngroups,gwidth);
+      if( ifld == NULL || gref == NULL || gwidth == NULL )
+      {
+          free(ifld);
+          free(gref);
+          free(gwidth);
+          return -1;
+      }
 //
 //  Get missing values, if supplied
 //
@@ -200,10 +207,11 @@ int comunpack(unsigned char *cpack,g2int lensec,g2int idrsnum,g2int *idrstmpl,g2
         totBit += (gwidth[j]*glen[j]);
         totLen += glen[j];
       }
-      if (totLen != ndpts) {
-        return 1;
-      }
-      if (totBit / 8. > lensec) {
+      if (totLen != ndpts || totBit / 8. > lensec) {
+        free(ifld);
+        free(gwidth);
+        free(glen);
+        free(gref);
         return 1;
       }
 //
@@ -275,9 +283,9 @@ int comunpack(unsigned char *cpack,g2int lensec,g2int idrsnum,g2int *idrstmpl,g2
          }
       }
 
-      if ( gref != 0 ) free(gref);
-      if ( gwidth != 0 ) free(gwidth);
-      if ( glen != 0 ) free(glen);
+      free(gref);
+      free(gwidth);
+      free(glen);
 //
 //  If using spatial differences, add overall min value, and
 //  sum up recursively
