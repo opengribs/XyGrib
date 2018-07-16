@@ -1,0 +1,21 @@
+Source: xygrib
+Section: utils
+Priority: optional
+Maintainer: Oleg Roitburd <oroitburd@gmail.com>
+Build-Depends: debhelper (>= 9),cmake,qt5-default,libpng-dev,libopenjp2-7-dev,libnova-dev,libproj-dev,zlib1g-dev,libbz2-dev
+Standards-Version: 3.9.8
+Homepage: https://github.com/opengribs/XyGrib.git
+#Vcs-Git: https://anonscm.debian.org/collab-maint/xygrib.git
+#Vcs-Browser: https://anonscm.debian.org/cgit/collab-maint/xygrib.git
+
+Package: xygrib
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, xygrib-maps, fonts-liberation
+Description: XyGrib is a Grib file reader and visualizes meteorological data 
+ XyGrib is a Grib file reader and visualizes meteorological data providing an off-line capability to analyse weather forecasts or hindcasts. The XyGrib software is released as open source under the GPLv3 License.
+
+Package: xygrib-maps
+Architecture: all
+Depends: ${misc:depends}
+Description: Maps for XyGrib weather visualisation
+ This contains maps and country names used by XyGrib

@@ -1,0 +1,6 @@
+data/tr/*.qm /usr/share/qt5/translations
+data/img/* /usr/share/icons/xygrib
+data/colors/* /usr/share/xygrib/data/colors
+debian/tmp/usr/XyGrib/XyGrib /usr/bin
+debian/xygrib.desktop /usr/share/applications
+debian/xygrib.png /usr/share/pixmaps
