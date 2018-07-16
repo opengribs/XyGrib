@@ -39,7 +39,7 @@ Q_OBJECT
 			
 	private slots:
 		void btCloseClicked();
-		void reject();
+//		void reject();
 };
 
 

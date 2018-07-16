@@ -52,13 +52,14 @@ AngleConverterDialog::~AngleConverterDialog()
 	delete angleConverterWidget;
 }
 //---------------------------------------
-void AngleConverterDialog::reject()
-{
-	btCloseClicked();
-}
+//void AngleConverterDialog::reject()
+//{
+	//btCloseClicked();
+//}
 //---------------------------------------
 void AngleConverterDialog::btCloseClicked()
 {
-	delete this;
+	//delete this;
+	reject();
 }
 
