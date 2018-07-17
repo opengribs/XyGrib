@@ -220,14 +220,47 @@ void Grib2Record::analyseProductDefinitionTemplate (gribfield  *gfld)
 	// forecast date
 	//-------------------------
 	else if (pdtnum == 8) {   // Average, accumulation  TODO: period of time
+	    if (gfld->ipdtlen < 27) {
+           DBG ("Missing parameters: ipdtlen=%d", (int)gfld->ipdtlen);
+           ok = false;
+           return;
+        }
+
 		int curyear  = gfld->ipdtmpl[15];  // end of the period
 		int curmonth = gfld->ipdtmpl[16];
 		int curday   = gfld->ipdtmpl[17];
 		int curhour  = gfld->ipdtmpl[18];
 		int curminute= gfld->ipdtmpl[19];
 		int cursecond= gfld->ipdtmpl[20];
+		if (gfld->ipdtmpl[21] != 1) {
+            DBG("id=%d: pdtnum: %d more than one time range (%d)", id, pdtnum, (int)gfld->ipdtmpl[21]);
+            pdtnum = -1;
+            ok = false;
+            return;
+		}
 		this->curDate = DataRecordAbstract::UTC_mktime
 							(curyear,curmonth,curday,curhour,curminute,cursecond);
+        switch (gfld->ipdtmpl[23]) { // proc_code, table 4.10
+		case 0: /* average */
+            timeRange = 3;
+		    break;
+		case 1: /* accumulation */
+		    timeRange = 4;
+		    break;
+	    case 2: // maximum
+	    case 3: // minimum
+		    timeRange = 2;
+		    break;
+		case 4: /* difference */
+		    timeRange = 5;
+		    break;
+        }
+	    switch(gfld->ipdtmpl[25]) { // time_unit, table 4.4
+	    case 1:  // hour
+            periodP1 = gfld->ipdtmpl[8];
+            periodP2 = periodP1 + gfld->ipdtmpl[26]; // time_length
+            break;
+	    }
 	}
 	else {
 		// 0 Analysis or forecast at a point in time

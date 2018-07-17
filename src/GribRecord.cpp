@@ -27,6 +27,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 void  GribRecord::translateDataType ()
 {
 	this->knownData = true;
+    if (dataType == GRB_PRECIP_RATE) {
+     	// mm/s -> mm/h
+        if (timeRange == 3 && periodP2 > periodP1 && idCenter==7 && idModel==96) {
+            // NOAA average 0-1 0-2 0-3 issue
+            // convert to accumulation, assume P2, P1 unit is hour
+            multiplyAllData( 3600.0 * (periodP2 -  periodP1));
+            timeRange = 4;
+            dataType = GRB_PRECIP_TOT;
+        }
+        else {
+            multiplyAllData( 3600.0 );
+        }
+    }
+
 	//------------------------
 	// NOAA GFS
 	//------------------------
@@ -35,13 +49,9 @@ void  GribRecord::translateDataType ()
 		&& (idGrid==0|| idGrid==3|| idGrid==4 || idGrid==255))	// Saildocs, Ocens
 	{
 		dataCenterModel = NOAA_GFS;
-		if (dataType == GRB_PRECIP_TOT) {	// mm/period -> mm/h
-			if (editionNumber == 1 && periodP2 > periodP1)
-				multiplyAllData( 1.0/(periodP2-periodP1) );
-		}
 		// NOAA GFS product table differs from NCEP WW3 product table
 		// data: http://nomads.ncdc.noaa.gov/data/gfsanl/
-		if ((idCenter==7 && idModel==81 && idGrid==3)) {
+		if (idModel==81 && idGrid==3) {
 			if (   dataType==GRB_WAV_MAX_DIR
 				|| dataType==GRB_WAV_MAX_PER
 				|| dataType==GRB_WAV_MAX_HT
@@ -111,16 +121,6 @@ void  GribRecord::translateDataType ()
              (idCenter==88 && idGrid==255)
     ) {
 		dataCenterModel = NORWAY_METNO;
-	}
-	//------------------------
-	// WRF NMM grib.meteorologic.net
-	//------------------------
-	else if (idCenter==7 && idModel==89 && idGrid==255)
-	{
-		if (dataType == GRB_PRECIP_TOT) {	// mm/period -> mm/h
-			if (editionNumber == 1 && periodP2 > periodP1)
-				multiplyAllData( 1.0/(periodP2-periodP1) );
-		}
 	}
 	//----------------------------------------------
 	// NCEP sea surface temperature
@@ -284,9 +284,6 @@ void  GribRecord::translateDataType ()
 	//===================================================================
 	if (this->knownData) {
 		switch (getDataType()) {
-		    case GRB_PRECIP_RATE: 	// mm/s -> mm/h
-				multiplyAllData( 3600.0 );
-				break;
 			case GRB_WAV_SIG_HT:
 			case GRB_WAV_WND_DIR:
 			case GRB_WAV_WND_HT:

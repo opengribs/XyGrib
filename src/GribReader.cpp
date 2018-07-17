@@ -385,9 +385,10 @@ void  GribReader::computeAccumulationRecords (DataCode dtc)
         return;
 
 	// XXX only work if P2 -P1 === delta time
-    for (auto const rit : setdates)
+	std::set<time_t>::reverse_iterator rit;
+	for (rit = setdates.rbegin(); rit != setdates.rend(); ++rit)
     {
-		time_t date = rit;
+		time_t date = *rit;
 		GribRecord *rec = getRecord( dtc, date );
 		if ( !rec || !rec->isOk() )
 			continue;
