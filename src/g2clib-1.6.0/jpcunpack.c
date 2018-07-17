@@ -65,7 +65,7 @@ g2int jpcunpack(unsigned char *cpack,g2int len,g2int *idrstmpl,g2int ndpts,
          free(ifld);
       }
       else {
-         for (j=0;j<ndpts;j++) fld[j]=ref;
+         for (j=0;j<ndpts;j++) fld[j]=ref*dscale;
       }
 
       return(0);
