@@ -360,6 +360,7 @@ gtemplate *extpdstemplate(g2int number,g2int *list)
                     }
                  }
               }
+           }
            else if ( number == 51 ) {
               new->extlen=list[15]*11;
               new->ext=(g2int *)malloc(sizeof(g2int)*new->extlen);
@@ -463,8 +464,6 @@ gtemplate *extpdstemplate(g2int number,g2int *list)
                     }
                  }
               }
-           }
-
            }
 
            return(new);
