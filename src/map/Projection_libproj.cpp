@@ -171,6 +171,11 @@ void Projection_libproj::setVisibleArea(double x0, double y0, double x1, double 
 		y0 -= 10;
 		y1 -= 10;
 	}
+	if (x0 > 180. && x1 > 180.) {
+		// in this case screen2map returns -180 .. 0
+		x0 -= 360.;
+		x1 -= 360.;
+	}
     
     double sx, sy;
 	// On cherche l'échelle qui permet d'englober la zone
