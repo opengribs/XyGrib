@@ -35,12 +35,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 //======================================================================
-QHash <QString, QVariant> GLOB_hashSettings;
+static QHash <QString, QVariant> GLOB_hashSettings;
 
-void Util::setSetting (const QString &key, const QVariant &value)
+void Util::setSettings (const QHash <QString, QVariant> &h)
+{
+}
+
+void Util::setSetting (const QString &key, const QVariant &value, bool sync)
 {
 	GLOB_hashSettings.insert (key, value);
-	Settings::setUserSetting (key, value);
+	Settings::setUserSetting (key, value, sync);
 }
 //---------------------------------------------------------------------
 QVariant Util::getSetting (const QString &key, const QVariant &defaultValue)
