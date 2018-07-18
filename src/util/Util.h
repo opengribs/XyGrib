@@ -90,7 +90,8 @@ class Util : public QObject
     static QString pathTr  (QString lang)   {return pathData()+"data/tr/xyGrib_"+lang;}
 	static QString getServerName ();
 
-    static void     setSetting (const QString &key, const QVariant &value);
+    static void     setSettings (const QHash <QString, QVariant> &h);
+    static void     setSetting (const QString &key, const QVariant &value, bool sync = true);
     static QVariant getSetting (const QString &key, const QVariant &defaultValue);
 	static bool     isDirWritable (const QDir &dir);
 	static void     setApplicationProxy ();

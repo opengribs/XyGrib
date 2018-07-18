@@ -662,9 +662,6 @@ void MainWindow::slotMap_Projection(QAction *act)
 	double x,y;    // current position
 	proj->screen2map(proj->getW()/2,proj->getH()/2, &x, &y);
 
-	Util::setSetting("projectionCX", proj->getCX());
-	Util::setSetting("projectionCY", proj->getCY());
-	Util::setSetting("projectionScale",  proj->getScale());
 	Util::setSetting("projectionId", idproj);
 
 	initProjection();
@@ -1255,17 +1252,17 @@ void MainWindow::slotGroupLinesThetaE_Step ()
 //-------------------------------------------------
 void MainWindow::slotGroupIsotherms (QAction *ac)
 {
-	Util::setSetting ("showIsotherms_2m", false);
-	Util::setSetting ("showIsotherms_925hpa", false);
-	Util::setSetting ("showIsotherms_850hpa", false);
-	Util::setSetting ("showIsotherms_700hpa", false);
-	Util::setSetting ("showIsotherms_600hpa", false);
-	Util::setSetting ("showIsotherms_500hpa", false);
-	Util::setSetting ("showIsotherms_400hpa", false);
+	Util::setSetting ("showIsotherms_2m", false, false);
+	Util::setSetting ("showIsotherms_925hpa", false, false);
+	Util::setSetting ("showIsotherms_850hpa", false, false);
+	Util::setSetting ("showIsotherms_700hpa", false, false);
+	Util::setSetting ("showIsotherms_600hpa", false, false);
+	Util::setSetting ("showIsotherms_500hpa", false, false);
+	Util::setSetting ("showIsotherms_400hpa", false, false);
 	Util::setSetting ("showIsotherms_300hpa", false);
 	if (ac && ac->isChecked()) {
 		Altitude alt;
-		Util::setSetting ("showIsotherms_200hpa", false);
+		Util::setSetting ("showIsotherms_200hpa", false, false);
 		if (ac == menuBar->acView_Isotherms_2m) {
 			alt = Altitude (LV_ABOV_GND,2);
 			Util::setSetting ("showIsotherms_2m", true);
@@ -1313,13 +1310,13 @@ void MainWindow::slotGroupIsotherms (QAction *ac)
 //-------------------------------------------------
 void MainWindow::slotGroupLinesThetaE (QAction *ac)
 {
-	Util::setSetting ("showLinesThetaE_925hpa", false);
-	Util::setSetting ("showLinesThetaE_850hpa", false);
-	Util::setSetting ("showLinesThetaE_700hpa", false);
-	Util::setSetting ("showLinesThetaE_600hpa", false);
-	Util::setSetting ("showLinesThetaE_500hpa", false);
-	Util::setSetting ("showLinesThetaE_400hpa", false);
-	Util::setSetting ("showLinesThetaE_300hpa", false);
+	Util::setSetting ("showLinesThetaE_925hpa", false, false);
+	Util::setSetting ("showLinesThetaE_850hpa", false, false);
+	Util::setSetting ("showLinesThetaE_700hpa", false, false);
+	Util::setSetting ("showLinesThetaE_600hpa", false, false);
+	Util::setSetting ("showLinesThetaE_500hpa", false, false);
+	Util::setSetting ("showLinesThetaE_400hpa", false, false);
+	Util::setSetting ("showLinesThetaE_300hpa", false, false);
 	Util::setSetting ("showLinesThetaE_200hpa", false);
 	if (ac) {
 		Altitude alt;

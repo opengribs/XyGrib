@@ -147,19 +147,19 @@ void POI::readSettings (uint code, bool fnat)
 void POI::writeSettings ()
 {
 	//printf("write poi: %s\n", qPrintable(name));
-	Settings::setSettingPOI (code, "name", name);
-	Settings::setSettingPOI (code, "lon", lon);
-	Settings::setSettingPOI (code, "lat", lat);
-	Settings::setSettingPOI (code, "markColor", markColor);
-	Settings::setSettingPOI (code, "labelFont", labelFont);
-	Settings::setSettingPOI (code, "labelTextColor", labelTextColor);
+	Settings::setSettingPOI (code, "name", name, false);
+	Settings::setSettingPOI (code, "lon", lon, false);
+	Settings::setSettingPOI (code, "lat", lat, false);
+	Settings::setSettingPOI (code, "markColor", markColor, false);
+	Settings::setSettingPOI (code, "labelFont", labelFont, false);
+	Settings::setSettingPOI (code, "labelTextColor", labelTextColor, false);
 	// write stored bg-color for marked POIs, TH20110103
 	if (labelBgColorMarkedPOI.isValid()) {
-		Settings::setSettingPOI (code, "labelBgColor", labelBgColorMarkedPOI);
+		Settings::setSettingPOI (code, "labelBgColor", labelBgColorMarkedPOI, false);
 	}else {
-		Settings::setSettingPOI (code, "labelBgColor", labelBgColor);
+		Settings::setSettingPOI (code, "labelBgColor", labelBgColor, false);
 	}
-	Settings::setSettingPOI (code, "move", isMovable);
+	Settings::setSettingPOI (code, "move", isMovable, false);
 	Settings::setSettingPOI (code, "showLabel", showLabel);
 }
 

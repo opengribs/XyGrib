@@ -118,16 +118,36 @@ void Settings::initializeSettingsDir ()
 }
 
 //---------------------------------------------------------------------
-void Settings::setApplicationNativeSetting
-            (const QString &group, const QString &key, const QVariant &value)
+void  Settings::setApplicationNativeSettings (const QString &group, const QHash <QString, QVariant> &h)
 {
-    if (GLOB_NatSettings != nullptr)
-    {
-        GLOB_NatSettings->beginGroup(group);
-        GLOB_NatSettings->setValue(key, value);
-        GLOB_NatSettings->endGroup();
-        GLOB_NatSettings->sync();
-    }
+	if (h.empty())
+		return;
+
+	if (GLOB_NatSettings == nullptr)
+		return;
+
+	GLOB_NatSettings->beginGroup(group);
+	QHash<QString, QVariant>::const_iterator i = h.constBegin();
+	while (i != h.constEnd()) {
+		GLOB_NatSettings->setValue(i.key(), i.value());
+		++i;
+	}
+	GLOB_NatSettings->endGroup();
+	GLOB_NatSettings->sync();
+}
+
+//---------------------------------------------------------------------
+void Settings::setApplicationNativeSetting
+			(const QString &group, const QString &key, const QVariant &value, bool sync)
+{
+	if (GLOB_NatSettings == nullptr)
+		return;
+
+	GLOB_NatSettings->beginGroup(group);
+	GLOB_NatSettings->setValue(key, value);
+	GLOB_NatSettings->endGroup();
+	if (sync)
+		GLOB_NatSettings->sync();
 }
 //---------------------------------------------------------------------
 QVariant Settings::getApplicationNativeSetting
@@ -144,19 +164,42 @@ QVariant Settings::getApplicationNativeSetting
     return val;
 }
 
-//---------------------------------------------------------------------
-void Settings::setUserSetting (const QString &key, const QVariant &value)
-{
-    // save 2 times the settings
-    Settings::setApplicationNativeSetting("main", key, value);
 
-    if (GLOB_IniSettings != nullptr)
-    {
-        GLOB_IniSettings->beginGroup("main");
-        GLOB_IniSettings->setValue(key, value);
-        GLOB_IniSettings->endGroup();
-        GLOB_IniSettings->sync();
-    }
+//---------------------------------------------------------------------
+void  Settings::setUserSettings (const QHash <QString, QVariant> &h)
+{
+	if (h.empty())
+		return;
+
+	Settings::setApplicationNativeSettings("main", h);
+
+	if (GLOB_IniSettings == nullptr)
+		return;
+
+	GLOB_IniSettings->beginGroup("main");
+	QHash<QString, QVariant>::const_iterator i = h.constBegin();
+	while (i != h.constEnd()) {
+		GLOB_IniSettings->setValue(i.key(), i.value());
+		++i;
+	}
+	GLOB_IniSettings->endGroup();
+	GLOB_IniSettings->sync();
+}
+
+//---------------------------------------------------------------------
+void Settings::setUserSetting (const QString &key, const QVariant &value, bool sync)
+{
+	// save 2 times the settings
+	Settings::setApplicationNativeSetting("main", key, value, sync);
+
+	if (GLOB_IniSettings == nullptr)
+		return;
+
+	GLOB_IniSettings->beginGroup("main");
+	GLOB_IniSettings->setValue(key, value);
+	GLOB_IniSettings->endGroup();
+	if (sync)
+		GLOB_IniSettings->sync();
 }
 //---------------------------------------------------------------------
 QVariant Settings::getUserSetting (const QString &key, const QVariant &defaultValue)
@@ -239,20 +282,21 @@ QVariant Settings::getSettingPOI
 }
 //---------------------------------------------------------------------
 void Settings::setSettingPOI
-				(uint code, const QString &key, const QVariant &value)
+				(uint code, const QString &key, const QVariant &value, bool sync)
 {
 	QString poikey = QString::number(code)+"/"+key;
 	
 	// save 2 times the settings : native and in ini file
-	Settings::setApplicationNativeSetting ("poi", poikey, value);
+	Settings::setApplicationNativeSetting ("poi", poikey, value, sync);
 	
-    if (GLOB_IniSettings_POI != nullptr)
-	{
-		GLOB_IniSettings_POI->beginGroup("poi");
-		GLOB_IniSettings_POI->setValue  (poikey, value);
-		GLOB_IniSettings_POI->endGroup();
+	if (GLOB_IniSettings_POI == nullptr)
+		return;
+
+	GLOB_IniSettings_POI->beginGroup("poi");
+	GLOB_IniSettings_POI->setValue  (poikey, value);
+	GLOB_IniSettings_POI->endGroup();
+	if (sync)
 		GLOB_IniSettings_POI->sync();
-	}
 }
 //---------------------------------------------------------------------
 QList<uint> Settings::getSettingAllCodesPOIs()

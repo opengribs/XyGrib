@@ -144,29 +144,30 @@ DialogGraphicsParams::DialogGraphicsParams (QWidget *parent) : DialogBoxBase (pa
 //-------------------------------------------------------------------------------
 void DialogGraphicsParams::slotBtOK()
 {
-	Util::setSetting("seaColor", inputSeaColor->getColor());
-	Util::setSetting("landColor", inputLandColor->getColor());
-	Util::setSetting("backgroundColor", inputBgColor->getColor());
+	QHash <QString, QVariant> h;
+	h.insert("seaColor", inputSeaColor->getColor());
+	h.insert("landColor", inputLandColor->getColor());
+	h.insert("backgroundColor", inputBgColor->getColor());
 	
-	Util::setSetting("seaBordersLineWidth", inputSeaBordersLine->getLineWidth());
-	Util::setSetting("seaBordersLineColor", inputSeaBordersLine->getLineColor());
-	Util::setSetting("boundariesLineWidth", inputBoundariesLine->getLineWidth());
-	Util::setSetting("boundariesLineColor", inputBoundariesLine->getLineColor());
-	Util::setSetting("riversLineWidth",   inputRiversLine->getLineWidth());
-	Util::setSetting("riversLineColor",   inputRiversLine->getLineColor());
-	Util::setSetting("isobarsLineWidth",  inputIsobarsLine->getLineWidth());
-	Util::setSetting("isobarsLineColor",  inputIsobarsLine->getLineColor());
-	Util::setSetting("isotherms0LineWidth",  inputIsotherms0Line->getLineWidth());
-	Util::setSetting("isotherms0LineColor",  inputIsotherms0Line->getLineColor());
-	Util::setSetting("isotherms_LineWidth",  inputIsotherms_Line->getLineWidth());
-	Util::setSetting("isotherms_LineColor",  inputIsotherms_Line->getLineColor());
-	Util::setSetting("linesThetaE_LineWidth",  inputThetaE_Line->getLineWidth());
-	Util::setSetting("linesThetaE_LineColor",  inputThetaE_Line->getLineColor());
-	Util::setSetting("geopotentials_LineWidth",  inputGeopotentials_Line->getLineWidth());
-	Util::setSetting("geopotentials_LineColor",  inputGeopotentials_Line->getLineColor());
+	h.insert("seaBordersLineWidth", inputSeaBordersLine->getLineWidth());
+	h.insert("seaBordersLineColor", inputSeaBordersLine->getLineColor());
+	h.insert("boundariesLineWidth", inputBoundariesLine->getLineWidth());
+	h.insert("boundariesLineColor", inputBoundariesLine->getLineColor());
+	h.insert("riversLineWidth",   inputRiversLine->getLineWidth());
+	h.insert("riversLineColor",   inputRiversLine->getLineColor());
+	h.insert("isobarsLineWidth",  inputIsobarsLine->getLineWidth());
+	h.insert("isobarsLineColor",  inputIsobarsLine->getLineColor());
+	h.insert("isotherms0LineWidth",  inputIsotherms0Line->getLineWidth());
+	h.insert("isotherms0LineColor",  inputIsotherms0Line->getLineColor());
+	h.insert("isotherms_LineWidth",  inputIsotherms_Line->getLineWidth());
+	h.insert("isotherms_LineColor",  inputIsotherms_Line->getLineColor());
+	h.insert("linesThetaE_LineWidth",  inputThetaE_Line->getLineWidth());
+	h.insert("linesThetaE_LineColor",  inputThetaE_Line->getLineColor());
+	h.insert("geopotentials_LineWidth",  inputGeopotentials_Line->getLineWidth());
+	h.insert("geopotentials_LineColor",  inputGeopotentials_Line->getLineColor());
 	
-	Util::setSetting("cloudsColorMode", inputCloudsColorMode->itemData(inputCloudsColorMode->currentIndex()).toString());
-    
+	h.insert("cloudsColorMode", inputCloudsColorMode->itemData(inputCloudsColorMode->currentIndex()).toString());
+	Util::setSettings(h);
     accept();
 }
 //-------------------------------------------------------------------------------

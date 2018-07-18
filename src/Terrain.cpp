@@ -225,8 +225,8 @@ void Terrain::setProjection(Projection *proj)
     this->proj = proj;
     proj->setScreenSize( width(), height());
 	
-    Util::setSetting("projectionCX", proj->getCX());
-    Util::setSetting("projectionCY", proj->getCY());
+    Util::setSetting("projectionCX", proj->getCX(), false);
+    Util::setSetting("projectionCY", proj->getCY(), false);
     Util::setSetting("projectionScale",  proj->getScale());	
 	
 	QList<POI*> lpois = getListPOIs();

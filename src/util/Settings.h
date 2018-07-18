@@ -55,11 +55,15 @@ public:
 	static QString  getSettingsFilename_POI ()
 						{ return GLOB_SettingsFilename_POI; }
 
-    static void     setUserSetting (const QString &key, const QVariant &value);
+    static void     setUserSettings (const QHash <QString, QVariant> &h);
+
+    static void     setUserSetting (const QString &key, const QVariant &value, bool sync = true);
     static QVariant getUserSetting (const QString &key, const QVariant &defaultValue);
     
+    static void     setApplicationNativeSettings (const QString &group, const QHash <QString, QVariant> &h);
     static void     setApplicationNativeSetting
-						(const QString &group, const QString &key, const QVariant &value);
+						(const QString &group, const QString &key, const QVariant &value, 
+						 bool sync = true);
     static QVariant getApplicationNativeSetting
 						(const QString &group, const QString &key, const QVariant &defaultValue);
 
@@ -70,7 +74,7 @@ public:
 	// POI's
 	//--------------------------------
     static void  setSettingPOI
-    					( uint code, const QString &key, const QVariant &value);    
+    					( uint code, const QString &key, const QVariant &value, bool sync = true);
     static QVariant getSettingPOI
 						( uint code, const QString &key, const QVariant &defaultValue,
 						  bool fromOldNativeSettings);

@@ -86,12 +86,12 @@ void DialogMeteotableOptions::slotBtOK()
 	for (int i = 0; i < listAllOptionItems.size(); ++i) {
 		MeteotableOptionItem *item = listAllOptionItems.at(i);
 		uint grbcode = item->dtc.toInt32 ();
-		Util::setSetting (getSettingName_vis(grbcode), item->visible);
-		Util::setSetting (getSettingName_pos(grbcode), item->pos);
+		Util::setSetting (getSettingName_vis(grbcode), item->visible, false);
+		Util::setSetting (getSettingName_pos(grbcode), item->pos, false);
 	}
-	Util::setSetting("MTABLE_cloudsColorMode", inputCloudsColorMode->itemData(inputCloudsColorMode->currentIndex()).toString());
-	Util::setSetting("MTABLE_showWindArrows", cbShowWindArrows->isChecked());
-	Util::setSetting("MTABLE_showWindBeauforts", cbShowBeauforts->isChecked());
+	Util::setSetting("MTABLE_cloudsColorMode", inputCloudsColorMode->itemData(inputCloudsColorMode->currentIndex()).toString(), false);
+	Util::setSetting("MTABLE_showWindArrows", cbShowWindArrows->isChecked(), false);
+	Util::setSetting("MTABLE_showWindBeauforts", cbShowBeauforts->isChecked(), false);
 	Util::setSetting("MTABLE_showSunMoonAlmanac", cbSunMoonAlmanac->isChecked());
     
     accept();
