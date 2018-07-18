@@ -209,7 +209,7 @@ void Projection_libproj::setVisibleArea(double x0, double y0, double x1, double 
 		stest = (smin+smax)/2.0;
 		dsc = fabs(dsc-stest);
 		setScale(stest);
-		setMapPointInScreen(x0,y0, 0,0);
+		setMapPointInScreen(x0,y1, 0,0);
 		screen2map(W, H,  &xx,&yy);
 		if (xx > x1)
 			smin = stest;
