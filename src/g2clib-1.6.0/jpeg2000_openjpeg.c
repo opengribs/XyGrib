@@ -164,7 +164,6 @@ int dec_jpeg2000(char *injpc,g2int bufsize,g2int *outfld)
     g2int i;
     unsigned long mask;
     size_t n_vals, count;
-    double *val;
 
     opj_dparameters_t parameters = {0,};    /* decompression parameters */
     opj_codec_t *codec = NULL;
@@ -221,13 +220,11 @@ int dec_jpeg2000(char *injpc,g2int bufsize,g2int *outfld)
     
     assert(image->comps[0].prec < sizeof(mask)*8-1);
     
-    outfld = image->comps[0].data;
     mask = (1 << image->comps[0].prec) - 1;
  
     count = image->comps[0].w * image->comps[0].h;
-    val = (double *) outfld;
     for(i = 0; i <count ; i++)
-      outfld[i] &= mask;
+      outfld[i] = image->comps[0].data[i] & mask;
     
  cleanup:
     /* close the byte stream */
