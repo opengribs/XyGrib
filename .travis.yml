@@ -2,10 +2,17 @@ language: cpp
 
 matrix:
   include:
-    - dist: trusty
+    - os: linux
       compiler: gcc
+      dist: trusty
+      sudo: required
+      env:
+        - BUILD_NAME=trusty
+
     - os: osx
       compiler: clang
+      env:
+        - BUILD_NAME=osx
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get -qq update; fi
@@ -13,7 +20,26 @@ before_install:
 # Homebrew upgrade disabled to save time.
 
 install:
-    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install build-essential git cmake qt5-default libpng-dev libopenjpeg-dev libnova-dev libproj-dev zlib1g-dev libbz2-dev; fi
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]];
+      then 
+          sudo apt-get install build-essential git cmake qt5-default libpng-dev  libnova-dev libproj-dev zlib1g-dev libbz2-dev; 
+      fi
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then grep -q trusty /etc/lsb-release || sudo apt-get install libopenjpeg-dev || true; fi
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]];
+      then 
+          if [[ "$BUILD_NAME" == "trusty" ]]; 
+          then
+              wget https://github.com/uclouvain/openjpeg/archive/v2.3.0.tar.gz;
+              tar xf v2.3.0.tar.gz;
+              cd openjpeg-2.3.0;
+              mkdir build;
+              cd build;
+              cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_CODEC=OFF -DOPJ_USE_THREAD=OFF;
+              make;
+              sudo make install;
+              cd ../..;
+          fi;
+      fi
     - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew tap indilib/indi; brew install git cmake libnova openjpeg libpng qt5; export PATH="/usr/local/opt/qt5/bin:$PATH";  echo 'export PATH="/usr/local/opt/qt5/bin:$PATH"' >> ~/.bash_profile; fi
 
 script:
