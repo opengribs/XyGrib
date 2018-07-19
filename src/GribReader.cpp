@@ -489,22 +489,25 @@ void  GribReader::copyMissingWaveRecords (DataCode dtc)
 	for (itd=setdates.begin(); itd!=setdates.end(); itd++) {
 		time_t date = *itd;
 		GribRecord *rec = getRecord (dtc, date);
-		if (!rec) {
-			itd2 = itd;
+		if (rec != nullptr)
+			continue;
+		itd2 = itd;
+		do {
 			itd2 ++;	// next date
-			if (itd2 != setdates.end()) {
-				time_t date2 = *itd2;
-				GribRecord *rec2 = getRecord (dtc, date2);
-				if (rec2 && rec2->isOk() && !rec2->isDuplicated()) {
+			if (itd2 == setdates.end())
+				break;
+			time_t date2 = *itd2;
+			GribRecord *rec2 = getRecord (dtc, date2);
+			if (rec2) {
+				if (rec2->isOk() && !rec2->isDuplicated()) {
 					// create a copied record from date2
 					GribRecord *r2 = new GribRecord (*rec2);
-					if (r2 != NULL) {
-						r2->setRecordCurrentDate (date);
-						storeRecordInMap (r2);
-					}
+					r2->setRecordCurrentDate (date);
+					storeRecordInMap (r2);
 				}
+				break;
 			}
-		}
+		} while (1);
 	}
 }
 //---------------------------------------------------------------------------------
