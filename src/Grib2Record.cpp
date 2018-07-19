@@ -21,9 +21,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //----------------------------------------
 Grib2Record::Grib2Record () : GribRecord ()
 {	
-	ok = false;
-	verticalOrientationIsAmbiguous = false;
 }
+
 //----------------------------------------
 Grib2Record::~Grib2Record ()
 {	
