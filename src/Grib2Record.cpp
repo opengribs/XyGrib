@@ -555,6 +555,8 @@ int Grib2Record::analyseProductType ()
 				return GRB_PRECIP_RATE;
 			else if (paramnumber==8)
 				return GRB_PRECIP_TOT;
+			else if (paramnumber==49)
+				return GRB_PRECIP_TOT;
 			else if (paramnumber==52)
 				return GRB_PRECIP_RATE;
 			else if (paramnumber==193)
