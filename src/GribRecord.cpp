@@ -390,26 +390,23 @@ GribRecord::GribRecord ()
 	data = NULL;
 	BMSbits = NULL;
 	boolBMStab = NULL;
+	periodP1 = 0;
+	periodP2 = 0;
+	waveData = false;
+	verticalOrientationIsAmbiguous = false;
 }
 
 //-------------------------------------------------------------------------------
 // Lecture depuis un fichier
 //-------------------------------------------------------------------------------
-GribRecord::GribRecord (ZUFILE* file, int id_)
+GribRecord::GribRecord (ZUFILE* file, int id_) : GribRecord()
 {
     id = id_;
     seekStart = zu_tell(file);
-    data    = NULL;
-    BMSbits = NULL;
-	boolBMStab = NULL;
     eof     = false;
 	knownData = true;
 	editionNumber = 0;
-	periodP1 = 0;
-	periodP2 = 0;
-	verticalOrientationIsAmbiguous = false;
 	setDuplicated (false);
-	waveData = false;
 	dataCenterModel = OTHER_DATA_CENTER;
     ok = readGribSection0_IS (file);
     if (ok) {
