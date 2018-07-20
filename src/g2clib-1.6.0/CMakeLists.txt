@@ -58,3 +58,5 @@ specunpack.c
 add_library(g2clib STATIC ${G2CLIB_SRCS})
 
 target_include_directories (g2clib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+ADD_DEFINITIONS(-DUSE_PNG -DUSE_OPENJPEG -DUSE_JPEG2000 )
