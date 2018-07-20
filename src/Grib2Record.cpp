@@ -21,9 +21,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //----------------------------------------
 Grib2Record::Grib2Record () : GribRecord ()
 {	
-	ok = false;
-	verticalOrientationIsAmbiguous = false;
 }
+
 //----------------------------------------
 Grib2Record::~Grib2Record ()
 {	
@@ -554,6 +553,8 @@ int Grib2Record::analyseProductType ()
 			if (paramnumber==7)
 				return GRB_PRECIP_RATE;
 			else if (paramnumber==8)
+				return GRB_PRECIP_TOT;
+			else if (paramnumber==49)
 				return GRB_PRECIP_TOT;
 			else if (paramnumber==52)
 				return GRB_PRECIP_RATE;
