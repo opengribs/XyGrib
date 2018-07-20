@@ -258,7 +258,7 @@ inline bool   GribRecord::hasValue (int i, int j) const
         return false;
     }
     if (boolBMStab == nullptr) {
-        return true;
+        return data[j*Ni+i] != GRIB_NOTDEF;
     }
 	return boolBMStab [j*Ni+i];
 }
