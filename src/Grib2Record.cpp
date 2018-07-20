@@ -138,7 +138,7 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
                 else {
                     ind = j*Ni+i;
                 }
-                if (!hasBMS || (hasBMS && gfld->bmap[ind])) {
+                if (!hasBMS || gfld->bmap[ind]) {
                     data[ind] = gfld->fld[indgfld];
                 }
                 else {
@@ -156,7 +156,7 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
                 else {
                     ind = j*Ni+i;
                 }
-                if (!hasBMS || (hasBMS && gfld->bmap[ind])) {
+                if (!hasBMS || gfld->bmap[ind]) {
                     data[ind] = gfld->fld[indgfld];
                 }
                 else {
