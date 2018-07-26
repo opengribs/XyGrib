@@ -330,14 +330,14 @@ int comunpack(unsigned char *cpack,g2int lensec,g2int idrsnum,g2int *idrstmpl,g2
                //printf(" SAG %d %f %d %f %f %f\n",n,fld[n],ifld[non-1],bscale,ref,dscale);
             }
             else if ( ifldmiss[n] == 1 ) 
-               fld[n]=rmiss1;
+               fld[n]= -99999.f; // XXX GRIB_NOTDEF rmiss1;
             else if ( ifldmiss[n] == 2 ) 
-               fld[n]=rmiss2;
+               fld[n]= -99999.f; // XXX GRIB_NOTDEF rmiss2;
          }
-         if ( ifldmiss != 0 ) free(ifldmiss);
+         free(ifldmiss);
       }
 
-      if ( ifld != 0 ) free(ifld);
+      free(ifld);
 
       return(0);
       
