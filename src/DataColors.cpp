@@ -123,6 +123,7 @@ QRgb  DataColors::getCloudColor (double v, bool smooth) {
     int tr;
     if (isCloudsColorModeWhite) {
 		rgb = colors_CloudsWhite.getColor (v, smooth);
+		v = Util::inRange(v, 0., 100.);
 		tr = (int)(2.5*v);
 	}
 	else {
