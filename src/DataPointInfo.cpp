@@ -95,33 +95,32 @@ DataPointInfo::DataPointInfo (
 	//----------------------------------------
 	// Cloud : total cover
 	//----------------------------------------
-	cloudTotal = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_CLOUD_TOT,LV_ATMOS_ALL,0), x,y,date);
+	// wgrib2 normalisation can return values < 0 or > 100 %
+	cloudTotal = getPercentValue(DataCode(GRB_CLOUD_TOT,LV_ATMOS_ALL,0));
+
 	//----------------------------------------
 	// Cloud : layers
 	//----------------------------------------
-	cloudLow = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_CLOUD_TOT,LV_CLOUD_LOW_LAYER,0), x,y,date);
-	cloudMid = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_CLOUD_TOT,LV_CLOUD_MID_LAYER,0), x,y,date);
-	cloudHigh = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_CLOUD_TOT,LV_CLOUD_HIG_LAYER,0), x,y,date);
+	cloudLow =  getPercentValue(DataCode(GRB_CLOUD_TOT,LV_CLOUD_LOW_LAYER,0));
+
+	cloudMid =  getPercentValue(DataCode(GRB_CLOUD_TOT,LV_CLOUD_MID_LAYER,0));
+	cloudHigh = getPercentValue(DataCode(GRB_CLOUD_TOT,LV_CLOUD_HIG_LAYER,0));
 			
 	hasCloudLayers = (cloudLow!=GRIB_NOTDEF) || (cloudMid!=GRIB_NOTDEF) || (cloudHigh!=GRIB_NOTDEF);
 
 	cloudLowTop = cloudLow<0.5 || reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_PRESSURE,LV_CLOUD_LOW_TOP,0), x,y,date);
+			: getPercentValue(DataCode(GRB_PRESSURE,LV_CLOUD_LOW_TOP,0));
 	cloudMidTop = cloudMid<0.5 || reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_PRESSURE,LV_CLOUD_MID_TOP,0), x,y,date);
+			: getPercentValue(DataCode(GRB_PRESSURE,LV_CLOUD_MID_TOP,0));
 	cloudHighTop = cloudHigh<0.5 || reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_PRESSURE,LV_CLOUD_HIG_TOP,0), x,y,date);
+			: getPercentValue(DataCode(GRB_PRESSURE,LV_CLOUD_HIG_TOP,0));
 	
 	cloudLowBottom = cloudLow<0.5 || reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_PRESSURE,LV_CLOUD_LOW_BOTTOM,0), x,y,date);
+			: getPercentValue(DataCode(GRB_PRESSURE,LV_CLOUD_LOW_BOTTOM,0));
 	cloudMidBottom = cloudMid<0.5 || reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_PRESSURE,LV_CLOUD_MID_BOTTOM,0), x,y,date);
+			: getPercentValue (DataCode(GRB_PRESSURE,LV_CLOUD_MID_BOTTOM,0));
 	cloudHighBottom = cloudHigh<0.5 || reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_PRESSURE,LV_CLOUD_HIG_BOTTOM,0), x,y,date);
+			: getPercentValue (DataCode(GRB_PRESSURE,LV_CLOUD_HIG_BOTTOM,0));
 	
 	//----------------------------------------
 	humidRel = reader==NULL ? GRIB_NOTDEF
