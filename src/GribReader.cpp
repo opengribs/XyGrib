@@ -395,12 +395,22 @@ void  GribReader::computeAccumulationRecords (DataCode dtc)
 
 		// XXX double check reference date and timerange 
 		if (prev != 0 ) {
-			if (rec->getTimeRange() == 4 && prev->getPeriodP1() == rec->getPeriodP1()) {
+			if (prev->getPeriodP1() == rec->getPeriodP1()) {
 				// printf("substract %d %d %d\n", prev->getPeriodP1(), prev->getPeriodP2(), prev->getPeriodSec());
-				prev->substract(*rec);
-				p1 = rec->getPeriodP2();
+				if (rec->getTimeRange() == 4) {
+					// accumulation 
+					// prev = prev -rec
+					prev->substract(*rec);
+					p1 = rec->getPeriodP2();
+				}
+				else if (rec->getTimeRange() == 3) {
+					// average
+					// prev = (prev*d2 - rec*d1) / (double) (d2 - d1);
+					prev->average(*rec);
+					p1 = rec->getPeriodP2();
+				}
 			}
-			if (p2 > p1) {
+			if (p2 > p1 && rec->getTimeRange() == 4) {
 				prev->multiplyAllData( 1.0/(p2 -p1) );
 			}
 		}
@@ -408,7 +418,7 @@ void  GribReader::computeAccumulationRecords (DataCode dtc)
         p1 = prev->getPeriodP1();
 		p2 = prev->getPeriodP2();
 	}
-	if (prev != 0 && p2 > p1) {
+	if (prev != 0 && p2 > p1 && prev->getTimeRange() == 4 ) {
 	    // the last one
         prev->multiplyAllData( 1.0/(p2 -p1) );
 	}
@@ -418,6 +428,8 @@ void  GribReader::computeAccumulationRecords (DataCode dtc)
 void  GribReader::computeAccumulationRecords ()
 {
 	computeAccumulationRecords (DataCode(GRB_PRECIP_TOT,  LV_GND_SURF, 0));
+	computeAccumulationRecords (DataCode(GRB_PRECIP_RATE, LV_GND_SURF, 0));
+	computeAccumulationRecords (DataCode(GRB_CLOUD_TOT,   LV_ATMOS_ALL, 0));
 }
 
 //---------------------------------------------------------------------------------
