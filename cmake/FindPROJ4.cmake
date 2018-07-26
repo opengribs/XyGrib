@@ -11,6 +11,7 @@ ENDIF(PROJ4_INCLUDE_DIR)
 
 FIND_PATH(PROJ4_INCLUDE_DIR "proj_api.h"
   PATHS
+  $ENV{EXTERNLIBS}/include
   $ENV{EXTERNLIBS}/proj4/include
   ~/Library/Frameworks/include
   /Library/Frameworks/include
@@ -28,6 +29,7 @@ SET(PROJ4_DBG_NAMES Proj4D projD proj_4_9_D)
 
 FIND_LIBRARY(PROJ4_LIBRARY NAMES ${PROJ4_NAMES}
   PATHS
+  $ENV{EXTERNLIBS}
   $ENV{EXTERNLIBS}/proj4
   ~/Library/Frameworks
   /Library/Frameworks
