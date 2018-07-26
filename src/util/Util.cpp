@@ -660,7 +660,7 @@ QString Util::formatPercentValue(float v, bool withUnit)
 	if (v == GRIB_NOTDEF)
 		return withUnit ? "    %%": "   ";
     QString r;
-    if (v<0)
+    if (v <= 0.)
         v=0;
     else if (v>100)
         v=100;    
