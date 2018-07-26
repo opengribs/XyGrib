@@ -58,9 +58,9 @@ find_library(LIBNOVA_LIBRARY
      REQUIRED
  )
 find_path(LIBNOVA_INCLUDE_DIR
-     NAMES "libnova/libnova.h"
+     NAMES "libnova/libnova.h" "libnova.h"
      PATHS
-     $ENV{EXTERNLIBS}/libnova/include
+     $ENV{EXTERNLIBS}/include
      ~/Library/Frameworks/include
      /Library/Frameworks/include
      /usr/local/include
@@ -75,7 +75,7 @@ include_directories(${LIBNOVA_INCLUDE_DIR})
 
 #find_package(OpenJPEG REQUIRED)
 find_library(OPENJPEG_LIBRARIES
-     NAMES "libopenjp2.a" "libopenjp2.so" "libopenjpeg.so.2"
+     NAMES "libopenjp2.a" "libopenjp2.so" "libopenjpeg.so.2" "libopenjp2.dll.a"
      PATHS
      $ENV{EXTERNLIBS}/openjpeg
      ~/Library/Frameworks
@@ -116,14 +116,60 @@ if(NOT PROJ4_FOUND)
   message(FATAL_ERROR "PROJ.4 library not found!")
 endif()
 include_directories(${PROJ4_INCLUDE_DIRS})
-
-find_package(BZip2 REQUIRED)
+if(WIN32)
+    find_library(BZIP2_LIBRARIES
+        NAME "libbz2.a"
+        PATHS
+        $ENV{EXTERNLIBS}/lib
+        REQUIRED
+    )
+    find_path(BZIP2_INCLUDE_DIR
+         NAMES "bzlib.h"
+         PATHS
+         $ENV{EXTERNLIBS}/include
+         REQUIRED
+     )
+else()
+    find_package(BZip2 REQUIRED)
+endif()
 include_directories(${BZIP2_INCLUDE_DIR})
 
-find_package(ZLIB REQUIRED)
+if(WIN32)
+    find_library(ZLIB_LIBRARIES
+        NAME "libz.a"
+        PATHS
+        $ENV{EXTERNLIBS}/lib
+        REQUIRED
+    )
+    find_path(ZLIB_INCLUDE_DIR
+         NAMES "zlib.h"
+         PATHS
+         $ENV{EXTERNLIBS}/include
+         REQUIRED
+     )
+else()
+    find_package(ZLIB REQUIRED)
+endif()
+
 include_directories(${ZLIB_INCLUDE_DIR})
 
-find_package(PNG REQUIRED)
+if(WIN32)
+    find_library(PNG_LIBRARIES
+        NAME "libpng.a"
+        PATHS
+        $ENV{EXTERNLIBS}/lib
+        REQUIRED
+    )
+    find_path(PNG_INCLUDE_DIR
+         NAMES "png.h"
+         PATHS
+         $ENV{EXTERNLIBS}/include
+         REQUIRED
+     )
+else()
+    find_package(PNG REQUIRED)
+endif()
+
 include_directories(${PNG_INCLUDE_DIR})
 
 configure_file(cmake/Version.h.in ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/include/Version.h)
