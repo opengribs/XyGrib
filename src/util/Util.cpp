@@ -279,8 +279,8 @@ QString Util::formatDistance (float mille, bool withUnit)
         r.sprintf("%5.2f", d);
     else if (d<100)
         r.sprintf("%5.1f", d);
-    else
-        r.sprintf("%5.0f", d);
+	else
+		r.sprintf("%5.0f", d);
 	return (withUnit) ? r+" "+unit : r;
 }
 //----------------------------------------------------------------
@@ -525,14 +525,7 @@ QString Util::formatWaveDirection (float angle, bool withUnit)
 //----------------------------------------------------------------
 QString Util::formatWhiteCap (float prb, bool withUnit)
 {
-    QString unite = "%";
-    QString r;
-	float v = inRange (0.0f, prb, 100.0f);
-	if (v < 10)
-		r.sprintf("%.1f", v);
-	else
-		r.sprintf("%.0f", v);
-	return (withUnit) ? r+" "+unite : r;
+	return formatPercentValue(prb, withUnit);
 }
 //----------------------------------------------------------------
 QString Util::formatSnowDepth (float meter, bool withUnit)
@@ -656,28 +649,19 @@ QString Util::formatLatitude(float y)
 	}
 }
 //---------------------------------------------------------------------
-QString Util::formatPercentValue(float v, bool withUnit)
+QString Util::formatPercentValue(float prb, bool withUnit)
 {
-	if (v == GRIB_NOTDEF)
-		return withUnit ? "    %%": "   ";
+	if (prb == GRIB_NOTDEF)
+		return withUnit ? "    %": "   ";
+
+    QString unite = "%";
     QString r;
-    if (v <= 0.)
-        v=0;
-    else if (v>100)
-        v=100;    
-	if (withUnit) {
-		if (v < 10)
-			r.sprintf("%.1f %%", v);
-		else
-			r.sprintf("%.0f %%", v);
-	}
-	else {
-		if (v < 10)
-			r.sprintf("%.1f", v);
-		else
-			r.sprintf("%.0f", v);
-	}
-    return r;
+	float v = inRange (0.0f, prb, 100.0f);
+	if (v < 10)
+		r.sprintf("%.1f", v);
+	else
+		r.sprintf("%.0f", v);
+	return withUnit ? r+" "+unite : r;
 }
 
 //======================================================================
