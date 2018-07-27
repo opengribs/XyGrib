@@ -457,8 +457,6 @@ void MeteoTableWidget::createListVisibleGribData ()
         listVisibleData.append( new MTGribData (
                     DataCode(GRB_PRECIP_TOT,LV_GND_SURF,0).toInt32(), pos++) );
         listVisibleData.append( new MTGribData (
-                    DataCode(GRB_PRECIP_RATE,LV_GND_SURF,0).toInt32(), pos++) );
-        listVisibleData.append( new MTGribData (
     				DataCode(GRB_TEMP,LV_ABOV_GND,2).toInt32(), pos++) );
     	listVisibleData.append( new MTGribData (
     				DataCode(GRB_PRV_DIFF_TEMPDEW,LV_ABOV_GND,2).toInt32(), pos++) );
