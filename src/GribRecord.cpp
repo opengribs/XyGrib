@@ -29,16 +29,7 @@ void  GribRecord::translateDataType ()
 	this->knownData = true;
     if (dataType == GRB_PRECIP_RATE) {
      	// mm/s -> mm/h
-        if (timeRange == 3 && periodP2 > periodP1 && idCenter==7 && idModel==96) {
-            // NOAA average 0-1 0-2 0-3 issue
-            // convert to accumulation, assume P2, P1 unit is hour
-            multiplyAllData( 3600.0 * (periodP2 -  periodP1));
-            timeRange = 4;
-            dataType = GRB_PRECIP_TOT;
-        }
-        else {
-            multiplyAllData( 3600.0 );
-        }
+        multiplyAllData( 3600.0 );
     }
 
 	//------------------------
@@ -620,6 +611,49 @@ void  GribRecord::multiplyAllData(double k)
 			}
 		}
 	}
+}
+
+//-------------------------------------------------------------------------------
+void GribRecord::average(const GribRecord &rec)
+{
+
+    // for now only average records of same size
+    // this : 6-12
+    // rec  : 6-9
+    // compute average 9-12
+    //
+    // this : 0-12
+    // rec  : 0-11
+    // compute average 11-12
+
+    if (rec.data == 0 || !rec.isOk())
+        return;
+
+    if (data == 0 || !isOk())
+        return;
+
+    if (Ni != rec.Ni || Nj != rec.Nj)
+        return;
+
+    if (getPeriodP1() != rec.getPeriodP1())
+        return;
+
+    double d2 = getPeriodP2() - getPeriodP1();
+    double d1 = rec.getPeriodP2() - rec.getPeriodP1();
+
+    if (d2 <= d1)
+        return;
+
+    zuint size = Ni *Nj;
+    double diff = d2 -d1;
+    for (zuint i=0; i<size; i++) {
+        if (rec.data[i] == GRIB_NOTDEF)
+           continue;
+        if (data[i] == GRIB_NOTDEF)
+           continue;
+
+        data[i] = (data[i]*d2 -rec.data[i]*d1)/diff;
+    }
 }
 
 //-------------------------------------------------------------------------------
