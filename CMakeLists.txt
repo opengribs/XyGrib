@@ -13,14 +13,14 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Unfotunately cmake <3.9 is not able to handle the coding style of XyGrib and AUTOMOC misses many classes. Once the code is fixed or we can expect newer cmake everywhere, we can enable this and get rid of the QT5_WRAP_CPP() macros
 ## Instruct CMake to run moc automatically when needed
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTOMOC_RELAXED_MODE TRUE)
+#set(CMAKE_AUTOMOC ON)
+#set(CMAKE_AUTOMOC_RELAXED_MODE TRUE)
 
 # Unfotunately AUTOUIC_SEARCH_PATHS is not available before cmake 3.9 so we can't use this on all the current platforms
 # At some future moment, turn this on and simplify src/GUI/CMakeLists.txt
 ## Create code from a list of Qt designer ui files
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTOUIC_SEARCH_PATHS "${CMAKE_CURRENT_SOURCE_DIR}/src/GUI")
+#set(CMAKE_AUTOUIC ON)
+#set(CMAKE_AUTOUIC_SEARCH_PATHS "${CMAKE_CURRENT_SOURCE_DIR}/src/GUI")
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
