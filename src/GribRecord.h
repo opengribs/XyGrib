@@ -45,6 +45,7 @@ class GribRecord : public RegularGridRecord
 
         void   multiplyAllData(double k);
         void   substract(const GribRecord &rec, bool positive=true);
+        void   average(const GribRecord &rec);
 
         bool  isOk ()  const   		{return ok;}
         bool  isDataKnown ()  const {return knownData;}
