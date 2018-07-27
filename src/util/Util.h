@@ -193,6 +193,15 @@ class Util : public QObject
                         else return v;
                     }
     
+    //-------------------------------------------------
+    template <typename T>
+        static T inRangeOrNotDef(T v, T min, T max)
+                    {
+                        if (v == GRIB_NOTDEF)
+                            return v;
+                        return inRange(v, min, max);
+                    }
+
     //--------------------------------------------------------
     template <typename T>
         static void cleanListPointers (std::list <T*> & ls)
