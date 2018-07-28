@@ -33,18 +33,13 @@ SkewTWindow::SkewTWindow (SkewT *skewt)
 //------------------------------------------------------
 SkewTWindow::~SkewTWindow ()
 {
-	if (skewt) {
-		delete skewt;
-		skewt = NULL;
-	}
+    delete skewt;
 }
 //------------------------------------------------------
 void SkewTWindow::closeEvent (QCloseEvent *)
 {
-	if (skewt) {
-		delete skewt;
-		skewt = NULL;
-	}
+    delete skewt;
+    skewt = nullptr;
 }
 //------------------------------------------------------
 void SkewTWindow::resizeEvent (QResizeEvent *)

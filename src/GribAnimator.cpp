@@ -32,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //=========================================================================================
 AnimImage::AnimImage () 
 {
-	pixmap = NULL;
+    pixmap = nullptr;
 }
 AnimImage::~AnimImage () 
 {
@@ -315,8 +315,8 @@ void GribAnimator::createImages()
 								lspois );
 		isEarthMapValid = true;
 		
- 		if (img->pixmap == NULL) {
-			QMessageBox::critical (NULL,
+        if (img->pixmap == nullptr) {
+            QMessageBox::critical (nullptr,
 				tr("Error"),
                 tr("Need more memory."));
 			delete img;
@@ -364,12 +364,9 @@ GribAnimator::~GribAnimator()
 // 	DBG ("destructor GribAnimator");
 	
 	Util::cleanVectorPointers (vectorImages);
-	
-	if (proj)
-		delete proj;	
-	
-	if (drawer)
-		delete drawer;
+
+    delete proj;
+    delete drawer;
 }
 
 //-------------------------------------------------------------------------------
