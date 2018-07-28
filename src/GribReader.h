@@ -56,7 +56,6 @@ class GribReader : public RegularGridReader
 		
 		virtual GribRecord *getRecord (DataCode dtc, time_t date);
 		
-		std::vector<GribRecord *> * getListOfGribRecords (DataCode dtc);
         
 		// Value at a point for an existing date
         virtual double getDateInterpolatedValue (
@@ -104,6 +103,7 @@ class GribReader : public RegularGridReader
 		
 		
     private:
+		std::vector<GribRecord *> * getListOfGribRecords (DataCode dtc);
         int	   dewpointDataStatus;
 		bool   hasAltitude;
 		bool   ambiguousHeader;
