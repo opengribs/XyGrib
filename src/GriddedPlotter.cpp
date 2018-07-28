@@ -372,7 +372,7 @@ void GriddedPlotter::draw_CoveredZone
 						(QPainter &pnt, const Projection *proj)
 {
 	GriddedReader *reader = getReader ();
-    if (reader == NULL) {
+    if (reader == nullptr) {
         return;
     }   
     double x0,y0, x1,y1;
@@ -403,8 +403,9 @@ void  GriddedPlotter::drawColorMapGeneric_1D (
 	)
 {
 	//DBGQS (Util::formatDateTimeLong(currentDate)); 
+    assert( getReader() != nullptr);
 	GriddedRecord *rec = getReader()->getRecord (dtc, currentDate);
-    if (rec == NULL || !rec->isOk())
+    if (rec == nullptr)
         return;
     int i, j;
     double x, y, v;
@@ -445,6 +446,7 @@ void  GriddedPlotter::drawColorMapGeneric_2D (
 		QRgb (DataColors::*function_getColor) (double v, bool smooth)
 	)
 {
+    assert( getReader() != nullptr);
 	//DBGQS (Util::formatDateTimeLong(currentDate)); 
 	GriddedRecord *recX = getReader()->getRecord (dtcX, currentDate);
 	GriddedRecord *recY = getReader()->getRecord (dtcY, currentDate);
@@ -493,9 +495,10 @@ void  GriddedPlotter::drawColorMapGeneric_Abs_Delta_Data (
 		QRgb (DataColors::*function_getColor) (double v, bool smooth)
 	)
 {
+    assert( getReader() != nullptr);
 	GriddedRecord *rec1 = getReader()->getRecord (dtc1, currentDate);
 	GriddedRecord *rec2 = getReader()->getRecord (dtc2, currentDate);
-    if (rec1 == NULL || !rec1->isOk() || rec2 == NULL || !rec2->isOk())
+    if (rec1 == nullptr || !rec1->isOk() || rec2 == nullptr || !rec2->isOk())
         return;
     int i, j;
     double x, y, vx, vy, v;
@@ -587,12 +590,13 @@ void GriddedPlotter::complete_listIsolines (
 ) {
     Util::cleanVectorPointers (*listIsolines);    
 	GriddedReader *reader = getReader ();
-    if (reader == NULL) {
+    if (reader == nullptr)
         return;
-    }   
+
     GriddedRecord *rec = reader->getRecord (dtc, currentDate);
-    if (rec == NULL)
+    if (rec == nullptr)
         return;
+
 	int deltaI, deltaJ;
 	analyseVisibleGridDensity (proj, rec, 16, &deltaI, &deltaJ);
 	//DBG("deltaI=%d deltaJ=%d", deltaI, deltaJ);
@@ -643,11 +647,13 @@ void GriddedPlotter::draw_DATA_Labels (
 				QPainter &pnt, const Projection *proj)
 {
 	GriddedReader *reader = getReader();
-    if (reader == NULL)
+    if (reader == nullptr)
         return;
+
 	GriddedRecord *rec = reader->getRecord (dtc, currentDate);
-	if (rec == NULL)
+	if (rec == nullptr)
 		return;
+
     QFontMetrics fmet (labelsFont);
     pnt.setFont (labelsFont);
     pnt.setPen  (labelsColor);
@@ -678,11 +684,12 @@ void GriddedPlotter::draw_DATA_MinMax (
 						QPainter &pnt, const Projection *proj)
 {
 	GriddedReader *reader = getReader();
-    if (reader == NULL)
+    if (reader == nullptr)
         return;
 	GriddedRecord *rec = reader->getRecord (dtc, currentDate);
-	if (rec == NULL)
+	if (rec == nullptr)
 		return;
+
     QFontMetrics fmet (labelsFont);
     pnt.setFont (labelsFont);
     pnt.setPen  (labelsColor);
@@ -737,10 +744,10 @@ void GriddedPlotter::draw_DATA_MinMax (
 //------------------------------------------------------------
 void GriddedPlotter::setCurrentDateClosestFromNow ()
 {
-	GriddedReader *reader = getReader();
-    if (reader == NULL || ! reader->isOk())
+	if (!isReaderOk())
         return;
-	time_t date = reader->getClosestDateFromNow ();
+
+	time_t date = getReader()->getClosestDateFromNow ();
 	if (date > 0) {
 		setCurrentDate (date);
 	}
@@ -749,29 +756,27 @@ void GriddedPlotter::setCurrentDateClosestFromNow ()
 std::set<Altitude> GriddedPlotter::getAllAltitudes (int dataType) const
 {
 	std::set<Altitude> empty;
-	GriddedReader *reader = getReader();
-    if (reader == NULL || ! reader->isOk())
+	if (!isReaderOk())
         return empty;
-	else
-		return getReader()->getAllAltitudes (dataType);
+
+    return getReader()->getAllAltitudes (dataType);
 }
 //------------------------------------------------------------
 std::set<DataCode> GriddedPlotter::getAllDataCode () const
 {
 	std::set<DataCode> empty;
-	GriddedReader *reader = getReader();
-    if (reader == NULL || ! reader->isOk())
+	if (!isReaderOk())
         return empty;
-	else
-		return getReader()->getAllDataCode ();
+
+    return getReader()->getAllDataCode ();
 }
 //------------------------------------------------------------
 bool GriddedPlotter::hasWaveDataType (int dataType)  const
 { 
 	if (! isReaderOk())
 		return false;
-	else
-		return getReader()->hasWaveDataType (dataType);
+
+    return getReader()->hasWaveDataType (dataType);
 }
 
 
