@@ -45,7 +45,7 @@ include_directories(${Qt5Xml_INCLUDE_DIRS})
 find_library(LIBNOVA_LIBRARY
      NAMES "libnova.a" "libnova.so"
      PATHS
-     $ENV{EXTERNLIBS}/libnova
+     $ENV{EXTERNLIBS}/lib
      ~/Library/Frameworks
      /Library/Frameworks
      /usr/local
@@ -77,7 +77,7 @@ include_directories(${LIBNOVA_INCLUDE_DIR})
 find_library(OPENJPEG_LIBRARIES
      NAMES "libopenjp2.a" "libopenjp2.so" "libopenjpeg.so.2" "libopenjp2.dll.a"
      PATHS
-     $ENV{EXTERNLIBS}/openjpeg
+     $ENV{EXTERNLIBS}/lib
      ~/Library/Frameworks
      /Library/Frameworks
      /usr/local
@@ -92,7 +92,7 @@ find_library(OPENJPEG_LIBRARIES
 find_path(OPENJPEG_INCLUDE_DIR
      NAMES "openjpeg.h"
      PATHS
-     $ENV{EXTERNLIBS}/openjpeg/include
+     $ENV{EXTERNLIBS}/include
      ~/Library/Frameworks/include
      /Library/Frameworks/include
      /usr/local/include
@@ -111,11 +111,27 @@ find_path(OPENJPEG_INCLUDE_DIR
  )
 include_directories(${OPENJPEG_INCLUDE_DIR})
 
-include(cmake/FindPROJ4.cmake)
-if(NOT PROJ4_FOUND)
-  message(FATAL_ERROR "PROJ.4 library not found!")
+if(NOT WIN32)
+    include(cmake/FindPROJ4.cmake)
+    if(NOT PROJ4_FOUND)
+      message(FATAL_ERROR "PROJ.4 library not found!")
+    endif()
+    include_directories(${PROJ4_INCLUDE_DIRS})
 endif()
-include_directories(${PROJ4_INCLUDE_DIRS})
+if(WIN32)
+    find_library(PROJ4_LIBRARIES
+        NAME "libproj.a"
+        PATHS
+        $ENV{EXTERNLIBS}/lib
+        REQUIRED
+    )
+    find_path(PROJ4_INCLUDE_DIRS
+         NAMES "proj_api.h"
+         PATHS
+         $ENV{EXTERNLIBS}/include
+         REQUIRED
+     )
+endif()
 if(WIN32)
     find_library(BZIP2_LIBRARIES
         NAME "libbz2.a"
