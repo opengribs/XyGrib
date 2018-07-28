@@ -46,7 +46,7 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
     if (rain == GRIB_NOTDEF) // try for precipitation rate
         rain = getValue(DataCode(GRB_PRECIP_RATE,LV_GND_SURF,0));
 
-	pressureMSL = getValue(DataCode(GRB_PRESSURE_MSL,LV_MSL,0));
+    pressureMSL = getValue(DataCode(GRB_PRESSURE_MSL,LV_MSL,0));
 	//----------------------------------------
 	// Waves
 	//----------------------------------------
@@ -85,18 +85,18 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
 			
 	hasCloudLayers = (cloudLow!=GRIB_NOTDEF) || (cloudMid!=GRIB_NOTDEF) || (cloudHigh!=GRIB_NOTDEF);
 
-	cloudLowTop = cloudLow<0.5 ? GRIB_NOTDEF
+    cloudLowTop = cloudLow<0.5f ? GRIB_NOTDEF
 			: getPercentValue(DataCode(GRB_PRESSURE,LV_CLOUD_LOW_TOP,0));
-	cloudMidTop = cloudMid<0.5 ? GRIB_NOTDEF
+    cloudMidTop = cloudMid<0.5f ? GRIB_NOTDEF
 			: getPercentValue(DataCode(GRB_PRESSURE,LV_CLOUD_MID_TOP,0));
-	cloudHighTop = cloudHigh<0.5 ? GRIB_NOTDEF
+    cloudHighTop = cloudHigh<0.5f ? GRIB_NOTDEF
 			: getPercentValue(DataCode(GRB_PRESSURE,LV_CLOUD_HIG_TOP,0));
 	
-	cloudLowBottom = cloudLow<0.5 ? GRIB_NOTDEF
+    cloudLowBottom = cloudLow<0.5f ? GRIB_NOTDEF
 			: getPercentValue(DataCode(GRB_PRESSURE,LV_CLOUD_LOW_BOTTOM,0));
-	cloudMidBottom = cloudMid<0.5 ? GRIB_NOTDEF
-			: getPercentValue (DataCode(GRB_PRESSURE,LV_CLOUD_MID_BOTTOM,0));
-	cloudHighBottom = cloudHigh<0.5 ? GRIB_NOTDEF
+    cloudMidBottom = cloudMid<0.5f ? GRIB_NOTDEF
+            : getPercentValue (DataCode(GRB_PRESSURE,LV_CLOUD_MID_BOTTOM,0));
+    cloudHighBottom = cloudHigh<0.5f ? GRIB_NOTDEF
 			: getPercentValue (DataCode(GRB_PRESSURE,LV_CLOUD_HIG_BOTTOM,0));
 	
 	//----------------------------------------
