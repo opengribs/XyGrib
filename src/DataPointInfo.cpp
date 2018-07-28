@@ -19,9 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "Util.h"
 #include "DataPointInfo.h"
 
-DataPointInfo::DataPointInfo ( 
-					GriddedReader *reader, 
-					float x, float y, time_t  date )
+DataPointInfo::DataPointInfo (GriddedReader *reader,
+                    double x, double y, time_t  date )
 {
 	this->x = x;
 	this->y = y;

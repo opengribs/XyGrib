@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class DataPointInfo
 {
     public :
-        DataPointInfo (GriddedReader *reader, float x, float y, time_t date);
+        DataPointInfo (GriddedReader *reader, double x, double y, time_t date);
 
 		bool isOk ()     const {return reader!=NULL;}
 		
@@ -75,7 +75,7 @@ class DataPointInfo
 		float getWaveData (int type) const;
 		
 		//----------------------------------------------
-        float   x, y;       // position
+        double  x, y;       // position
         time_t  date;
 
         float	cx, cy; // Current
