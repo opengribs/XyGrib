@@ -385,16 +385,16 @@ void  GribReader::computeAccumulationRecords (DataCode dtc)
         return;
 
 	// XXX only work if P2 -P1 === delta time
-	std::set<time_t>::reverse_iterator rit;
+    std::set<time_t>::reverse_iterator rit;
 	for (rit = setdates.rbegin(); rit != setdates.rend(); ++rit)
     {
 		time_t date = *rit;
 		GribRecord *rec = getRecord( dtc, date );
-		if ( !rec || !rec->isOk() )
+		if ( !rec )
 			continue;
 
 		// XXX double check reference date and timerange 
-		if (prev != 0 ) {
+		if (prev != nullptr ) {
 			if (prev->getPeriodP1() == rec->getPeriodP1()) {
 				// printf("substract %d %d %d\n", prev->getPeriodP1(), prev->getPeriodP2(), prev->getPeriodSec());
 				if (rec->getTimeRange() == 4) {
@@ -418,7 +418,7 @@ void  GribReader::computeAccumulationRecords (DataCode dtc)
         p1 = prev->getPeriodP1();
 		p2 = prev->getPeriodP2();
 	}
-	if (prev != 0 && p2 > p1 && prev->getTimeRange() == 4 ) {
+	if (prev != nullptr && p2 > p1 && prev->getTimeRange() == 4 ) {
 	    // the last one
         prev->multiplyAllData( 1.0/(p2 -p1) );
 	}
@@ -460,10 +460,10 @@ void  GribReader::removeFirstCumulativeRecord (DataCode dtc)
 	time_t dateref = getRefDateForData (dtc);
 	GribRecord *rec = getFirstGribRecord (dtc);
 
-	if (rec!=NULL  &&  rec->getRecordCurrentDate() == dateref)
+	if (rec!= nullptr && rec->getRecordCurrentDate() == dateref)
 	{
 		std::vector<GribRecord *> *liste = getListOfGribRecords (dtc);
-		if (liste != NULL) {
+		if (liste != nullptr) {
 			std::vector<GribRecord *>::iterator it;
 			for (it=liste->begin(); it!=liste->end() && (*it)!=rec; it++)
 			{
@@ -480,16 +480,14 @@ void  GribReader::copyFirstCumulativeRecord (DataCode dtc)
 {
 	time_t dateref = getRefDateForData (dtc);
 	GribRecord *rec = getRecord (dtc, dateref);
-	if (rec == NULL && dateref != 0)
+	if (rec == nullptr && dateref != 0)
 	{
 		rec = getFirstGribRecord (dtc);
-		if (rec != NULL)
+		if (rec != nullptr)
 		{
 			GribRecord *r2 = new GribRecord (*rec);
-			if (r2 != NULL) {
-				r2->setRecordCurrentDate (dateref);    // 1er enregistrement factice
-				storeRecordInMap (r2);
-			}
+			r2->setRecordCurrentDate (dateref);    // 1er enregistrement factice
+			storeRecordInMap (r2);
 		}
 	}
 }
@@ -511,7 +509,7 @@ void  GribReader::copyMissingWaveRecords (DataCode dtc)
 			time_t date2 = *itd2;
 			GribRecord *rec2 = getRecord (dtc, date2);
 			if (rec2) {
-				if (rec2->isOk() && !rec2->isDuplicated()) {
+				if (!rec2->isDuplicated()) {
 					// create a copied record from date2
 					GribRecord *r2 = new GribRecord (*rec2);
 					r2->setRecordCurrentDate (date);
@@ -586,7 +584,7 @@ void GribReader::computeMissingData ()
 		{
 			time_t date = *iter;
 			GribRecord *recModel = getRecord (DataCode(GRB_HUMID_SPEC,LV_ABOV_GND,2),date);
-			if (recModel != NULL)
+			if (recModel != nullptr)
 			{
 				GribRecord *recHumidRel = new GribRecord(*recModel);
 				if (recHumidRel != NULL) 
@@ -720,11 +718,9 @@ double GribReader::computeDewPoint (double lon, double lat, time_t now)
 		GribRecord *recTemp =  getRecord (DataCode(GRB_TEMP,LV_ABOV_GND,2), now);
 		GribRecord *recHumid = getRecord (DataCode(GRB_HUMID_REL,LV_ABOV_GND,2), now);
 		if (recTemp && recHumid) {
-			if (recTemp->isOk() && recHumid->isOk()) {
-				double temp = recTemp->getInterpolatedValue   (lon, lat);
-				double humid = recHumid->getInterpolatedValue (lon, lat);
-				dewpoint = DataRecordAbstract::dewpointHardy (temp, humid);
-			}
+			double temp = recTemp->getInterpolatedValue   (lon, lat);
+			double humid = recHumid->getInterpolatedValue (lon, lat);
+			dewpoint = DataRecordAbstract::dewpointHardy (temp, humid);
 		}
 	}
 	return dewpoint;
@@ -734,7 +730,7 @@ double GribReader::computeHumidRel (double lon, double lat, time_t now)
 {
 	double hr = GRIB_NOTDEF;
 	GribRecord *recHR =  getRecord (DataCode(GRB_HUMID_REL,LV_ABOV_GND,2), now);
-	if (recHR != NULL)
+	if (recHR != nullptr)
 	{  // GRIB file contains HR
 		hr = recHR->getInterpolatedValue(lon, lat);
 	}
@@ -743,11 +739,9 @@ double GribReader::computeHumidRel (double lon, double lat, time_t now)
 		GribRecord *recTemp =  getRecord (DataCode(GRB_TEMP,LV_ABOV_GND,2), now);
 		GribRecord *recHS = getRecord (DataCode(GRB_HUMID_SPEC,LV_ABOV_GND,2), now);
 		if (recTemp && recHS) {
-			if (recTemp->isOk() && recHS->isOk()) {
-				double tempK = recTemp->getInterpolatedValue   (lon, lat);
-				double hs = recHS->getInterpolatedValue (lon, lat);
-				hr = Therm::relHumidFromSpecific (tempK, hs);
-			}
+			double tempK = recTemp->getInterpolatedValue   (lon, lat);
+			double hs = recHS->getInterpolatedValue (lon, lat);
+			hr = Therm::relHumidFromSpecific (tempK, hs);
 		}
 	}
 	return hr;
@@ -787,7 +781,7 @@ std::vector<GribRecord *> * GribReader::getFirstNonEmptyList()
 int GribReader::getNumberOfGribRecords (DataCode dtc)
 {
 	std::vector<GribRecord *> *liste = getListOfGribRecords (dtc);
-	if (liste != NULL)
+	if (liste != nullptr)
 		return liste->size();
 	else
 		return 0;
@@ -811,8 +805,8 @@ double  GribReader::getDateInterpolatedValue (
 			return computeDewPoint(px, py, date);
 	}
 	else {
-		GribRecord *rec;
-		if ( (rec = getRecord (dtc, date)) != NULL)
+		GribRecord *rec = getRecord (dtc, date);
+		if ( rec != nullptr)
 			return rec->getInterpolatedValue (px, py);
 	}
 	return GRIB_NOTDEF;
@@ -838,6 +832,7 @@ void GribReader::findGribsAroundDate (DataCode dtc, time_t date,
 	for (zuint i=0; i<nb && *before==NULL && *after==NULL; i++)
 	{
 		GribRecord *rec = (*ls)[i];
+		assert(rec->isOk());
 		if (rec->getRecordCurrentDate() == date) {
 			*before = rec;
 			*after = rec;
@@ -899,20 +894,19 @@ bool GribReader::getZoneExtension (double *x0,double *y0, double *x1,double *y1)
 GribRecord * GribReader::getFirstGribRecord()
 {
     std::vector<GribRecord *> *ls = getFirstNonEmptyList();
-    if (ls != NULL) {
-        return ls->at(0);
-    }
-    else {
-        return NULL;
-    }
+    if (ls == nullptr)
+    	return nullptr;
+
+	assert(ls->at(0)->isOk());
+	return ls->at(0);
 }
 //---------------------------------------------------
 // Premier GribRecord (par date) pour un type donné
 GribRecord * GribReader::getFirstGribRecord (DataCode dtc)
 {
 	std::set<time_t>::iterator it;
-	GribRecord *rec = NULL;
-	for (it=setAllDates.begin(); rec==NULL && it!=setAllDates.end(); it++)
+	GribRecord *rec = nullptr;
+	for (it=setAllDates.begin(); rec== nullptr && it!=setAllDates.end(); it++)
 	{
 		time_t date = *it;
 		rec = getRecord (dtc, date);
@@ -924,12 +918,12 @@ GribRecord * GribReader::getFirstGribRecord (DataCode dtc)
 GribRecord * GribReader::getRecord (DataCode dtc, time_t date)
 {
     std::vector<GribRecord *> *ls = getListOfGribRecords (dtc);
-    GribRecord *res = NULL;
-    if (ls != NULL) {
+    GribRecord *res = nullptr;
+    if (ls != nullptr) {
         // Cherche le premier enregistrement à la bonne date
         zuint nb = ls->size();
-        for (zuint i=0; i<nb && res==NULL; i++) {
-            if ((*ls)[i]->getRecordCurrentDate() == date) {
+        for (zuint i=0; i<nb && res==nullptr; i++) {
+            if ((*ls)[i]->isOk() && (*ls)[i]->getRecordCurrentDate() == date) {
                 res = (*ls)[i];
 			}
         }
@@ -947,6 +941,7 @@ void GribReader::createListDates()
 	{
 		std::vector<GribRecord *> *ls = (*it).second;
 		for (zuint i=0; i<ls->size(); i++) {
+			assert(ls->at(i)->isOk());
 			setAllDates.insert( ls->at(i)->getRecordCurrentDate() );
 		}
 	}

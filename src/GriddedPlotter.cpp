@@ -450,7 +450,7 @@ void  GriddedPlotter::drawColorMapGeneric_2D (
 	//DBGQS (Util::formatDateTimeLong(currentDate)); 
 	GriddedRecord *recX = getReader()->getRecord (dtcX, currentDate);
 	GriddedRecord *recY = getReader()->getRecord (dtcY, currentDate);
-    if (recX == NULL || !recX->isOk() || recY == NULL || !recY->isOk())
+    if (recX == nullptr || recY == nullptr)
         return;
     int i, j;
     double x, y, vx, vy, v;
@@ -498,7 +498,7 @@ void  GriddedPlotter::drawColorMapGeneric_Abs_Delta_Data (
     assert( getReader() != nullptr);
 	GriddedRecord *rec1 = getReader()->getRecord (dtc1, currentDate);
 	GriddedRecord *rec2 = getReader()->getRecord (dtc2, currentDate);
-    if (rec1 == nullptr || !rec1->isOk() || rec2 == nullptr || !rec2->isOk())
+    if (rec1 == nullptr || rec2 == nullptr )
         return;
     int i, j;
     double x, y, vx, vy, v;
