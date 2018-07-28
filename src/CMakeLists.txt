@@ -103,6 +103,9 @@ Terrain.cpp
 Therm.cpp
 main.cpp
 )
+IF(WIN32)
+  SET(XYGRIB_SRCS ${XYGRIB_SRCS} ../data/img/resource.rc)
+ENDIF()
 
 qt5_wrap_cpp(xygrib_mocs ${XYGRIB_SRCS} ${XYGRIB_HDRS})
 
