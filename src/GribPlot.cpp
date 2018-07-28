@@ -38,15 +38,12 @@ GribPlot::GribPlot (const GribPlot &model)
 }
 //----------------------------------------------------
 GribPlot::~GribPlot() {
-    if (gribReader != NULL) {
-    	delete gribReader;
-        gribReader = NULL;
-    }
+    delete gribReader;
 }
 //----------------------------------------------------
 void GribPlot::initNewGribPlot(bool interpolateValues, bool windArrowsOnGribGrid, bool currentArrowsOnGribGrid)
 {
-    gribReader = NULL;
+    gribReader = nullptr;
     
 	this->mustInterpolateValues = interpolateValues;
 	this->drawWindArrowsOnGrid = windArrowsOnGribGrid;
@@ -59,28 +56,23 @@ void GribPlot::loadFile (QString fileName,
 	this->fileName = fileName;
 	listDates.clear();
     
-    if (gribReader != NULL) {
-    	delete gribReader;
-        gribReader = NULL;
-    }
+    delete gribReader;
 	
 	gribReader = new GribReader ();
-    if (gribReader != NULL)
+
+    gribReader->openFile (qPrintable(fileName), taskProgress, nbrecs);
+    if (gribReader->isOk())
     {
-		gribReader->openFile (qPrintable(fileName), taskProgress, nbrecs);
-		if (gribReader->isOk())
-		{
-			listDates = gribReader->getListDates();
-			setCurrentDate ( listDates.size()>0 ? *(listDates.begin()) : 0);
-		}
-	}
+        listDates = gribReader->getListDates();
+        setCurrentDate ( listDates.size()>0 ? *(listDates.begin()) : 0);
+    }
 }
 
 //----------------------------------------------------
 void GribPlot::duplicateFirstCumulativeRecord ( bool mustDuplicate )
 {
 	mustDuplicateFirstCumulativeRecord = mustDuplicate;
-    if (gribReader != NULL  &&  gribReader->isOk())
+    if (isReaderOk())
     {
 		if (mustDuplicate) {
 			gribReader->copyFirstCumulativeRecord ();
@@ -95,7 +87,7 @@ void GribPlot::duplicateFirstCumulativeRecord ( bool mustDuplicate )
 void GribPlot::duplicateMissingWaveRecords ( bool mustDuplicate )
 {
 	mustDuplicateMissingWaveRecords = mustDuplicate;
-    if (gribReader != NULL  &&  gribReader->isOk())
+    if (isReaderOk())
     {
 		if (mustDuplicate) {
 			gribReader->copyMissingWaveRecords ();
@@ -117,7 +109,7 @@ void GribPlot::setCurrentDate (time_t t)
 // Grille GRIB
 void GribPlot::draw_GridPoints (const DataCode &dtc, QPainter &pnt, const Projection *proj)
 {
-    if (gribReader == NULL) {
+    if (!isReaderOk()) {
         return;
     }
 //     GribRecord *rec = gribReader->getFirstGribRecord ();
@@ -452,10 +444,10 @@ void GribPlot::draw_WAVES_Arrows (
 //		recPer = gribReader->getRecord (DataCode(GRB_WAV_WND_PER,LV_GND_SURF,0), currentDate);
 	}
 	else {
-		recDir = recPer = NULL;
+        recDir = recPer = nullptr;
 	}
 //    if (recDir==NULL || recPer==NULL)
-    if (recDir==NULL)
+    if (recDir==nullptr)
         return;
 	
     int i, j;

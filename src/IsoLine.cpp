@@ -40,7 +40,7 @@ IsoLine::~IsoLine()
     std::vector <Segment *>::iterator it;
     for (it=trace.begin(); it!=trace.end(); it++) {
         delete *it;
-        *it = NULL;
+        *it = nullptr;
     }
     trace.clear();
 }
