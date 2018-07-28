@@ -28,68 +28,46 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
 	this->reader = reader;
 	
 	// Prefered temperature altitude : 2m. If not found try altitude 0m.
-	temp = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_TEMP,LV_ABOV_GND,2), x,y,date);
+	temp = getValue(DataCode(GRB_TEMP,LV_ABOV_GND,2));
 	if (temp != GRIB_NOTDEF) {
 		tempAltitude = Altitude (LV_ABOV_GND,2);
 	}
 	else {
-		temp = reader==NULL ? GRIB_NOTDEF
-				: reader->getDateInterpolatedValue (DataCode(GRB_TEMP,LV_GND_SURF,0), x,y,date);
+		temp = getValue(DataCode(GRB_TEMP,LV_GND_SURF,0));
 		if (temp != GRIB_NOTDEF)
 			tempAltitude = Altitude (LV_GND_SURF,0);
 		else
 			tempAltitude = Altitude (LV_TYPE_NOT_DEFINED,0);
 	}
 	//-------------------------------------
-	tempMin = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_TMIN,LV_ABOV_GND,2), x,y,date);
-	tempMax = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_TMAX,LV_ABOV_GND,2), x,y,date);
-	rain    = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_PRECIP_TOT,LV_GND_SURF,0), x,y,date);
+	tempMin = getValue(DataCode(GRB_TMIN,LV_ABOV_GND,2));
+	tempMax = getValue(DataCode(GRB_TMAX,LV_ABOV_GND,2));
+	rain    = getValue(DataCode(GRB_PRECIP_TOT,LV_GND_SURF,0));
     if (rain == GRIB_NOTDEF) // try for precipitation rate
-        rain = reader==NULL ? GRIB_NOTDEF
-            : reader->getDateInterpolatedValue (DataCode(GRB_PRECIP_RATE,LV_GND_SURF,0), x,y,date);
+        rain = getValue(DataCode(GRB_PRECIP_RATE,LV_GND_SURF,0));
 
-	pressureMSL = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_PRESSURE_MSL,LV_MSL,0), x,y,date);
+	pressureMSL = getValue(DataCode(GRB_PRESSURE_MSL,LV_MSL,0));
 	//----------------------------------------
 	// Waves
 	//----------------------------------------
-	wave_sig_ht = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_WAV_SIG_HT,LV_GND_SURF,0), x,y,date);
-	wave_max_ht = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_WAV_MAX_HT,LV_GND_SURF,0), x,y,date);
-	wave_swl_ht = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_WAV_SWL_HT,LV_GND_SURF,0), x,y,date);
-	wave_wnd_ht = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_WAV_WND_HT,LV_GND_SURF,0), x,y,date);
+	wave_sig_ht = getValue(DataCode(GRB_WAV_SIG_HT,LV_GND_SURF,0));
+	wave_max_ht = getValue(DataCode(GRB_WAV_MAX_HT,LV_GND_SURF,0));
+	wave_swl_ht = getValue(DataCode(GRB_WAV_SWL_HT,LV_GND_SURF,0));
+	wave_wnd_ht = getValue(DataCode(GRB_WAV_WND_HT,LV_GND_SURF,0));
 
-	wave_wnd_per = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_WAV_WND_PER,LV_GND_SURF,0), x,y,date);
-	wave_swl_per = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_WAV_SWL_PER,LV_GND_SURF,0), x,y,date);
-	wave_pr_per = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_WAV_PRIM_PER,LV_GND_SURF,0), x,y,date);
-	wave_scdy_per = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_WAV_SCDY_PER,LV_GND_SURF,0), x,y,date);
-	wave_max_per = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_WAV_MAX_PER,LV_GND_SURF,0), x,y,date);
+	wave_wnd_per = getValue(DataCode(GRB_WAV_WND_PER,LV_GND_SURF,0));
+	wave_swl_per = getValue(DataCode(GRB_WAV_SWL_PER,LV_GND_SURF,0));
+	wave_pr_per = getValue(DataCode(GRB_WAV_PRIM_PER,LV_GND_SURF,0));
+	wave_scdy_per = getValue(DataCode(GRB_WAV_SCDY_PER,LV_GND_SURF,0));
+	wave_max_per = getValue(DataCode(GRB_WAV_MAX_PER,LV_GND_SURF,0));
 
-	wave_wnd_dir = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_WAV_WND_DIR,LV_GND_SURF,0), x,y,date);
-	wave_swl_dir = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_WAV_SWL_DIR,LV_GND_SURF,0), x,y,date);
-	wave_pr_dir = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_WAV_PRIM_DIR,LV_GND_SURF,0), x,y,date);
-	wave_scdy_dir = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_WAV_SCDY_DIR,LV_GND_SURF,0), x,y,date);
-	wave_max_dir = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_WAV_MAX_DIR,LV_GND_SURF,0), x,y,date);
+	wave_wnd_dir = getValue(DataCode(GRB_WAV_WND_DIR,LV_GND_SURF,0));
+	wave_swl_dir = getValue(DataCode(GRB_WAV_SWL_DIR,LV_GND_SURF,0));
+	wave_pr_dir = getValue(DataCode(GRB_WAV_PRIM_DIR,LV_GND_SURF,0));
+	wave_scdy_dir = getValue(DataCode(GRB_WAV_SCDY_DIR,LV_GND_SURF,0));
+	wave_max_dir = getValue(DataCode(GRB_WAV_MAX_DIR,LV_GND_SURF,0));
 			
-	wave_wcap_prbl = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_WAV_WHITCAP_PROB,LV_GND_SURF,0), x,y,date);
+	wave_wcap_prbl = getValue(DataCode(GRB_WAV_WHITCAP_PROB,LV_GND_SURF,0));
 
 	//----------------------------------------
 	// Cloud : total cover
@@ -107,56 +85,42 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
 			
 	hasCloudLayers = (cloudLow!=GRIB_NOTDEF) || (cloudMid!=GRIB_NOTDEF) || (cloudHigh!=GRIB_NOTDEF);
 
-	cloudLowTop = cloudLow<0.5 || reader==NULL ? GRIB_NOTDEF
+	cloudLowTop = cloudLow<0.5 ? GRIB_NOTDEF
 			: getPercentValue(DataCode(GRB_PRESSURE,LV_CLOUD_LOW_TOP,0));
-	cloudMidTop = cloudMid<0.5 || reader==NULL ? GRIB_NOTDEF
+	cloudMidTop = cloudMid<0.5 ? GRIB_NOTDEF
 			: getPercentValue(DataCode(GRB_PRESSURE,LV_CLOUD_MID_TOP,0));
-	cloudHighTop = cloudHigh<0.5 || reader==NULL ? GRIB_NOTDEF
+	cloudHighTop = cloudHigh<0.5 ? GRIB_NOTDEF
 			: getPercentValue(DataCode(GRB_PRESSURE,LV_CLOUD_HIG_TOP,0));
 	
-	cloudLowBottom = cloudLow<0.5 || reader==NULL ? GRIB_NOTDEF
+	cloudLowBottom = cloudLow<0.5 ? GRIB_NOTDEF
 			: getPercentValue(DataCode(GRB_PRESSURE,LV_CLOUD_LOW_BOTTOM,0));
-	cloudMidBottom = cloudMid<0.5 || reader==NULL ? GRIB_NOTDEF
+	cloudMidBottom = cloudMid<0.5 ? GRIB_NOTDEF
 			: getPercentValue (DataCode(GRB_PRESSURE,LV_CLOUD_MID_BOTTOM,0));
-	cloudHighBottom = cloudHigh<0.5 || reader==NULL ? GRIB_NOTDEF
+	cloudHighBottom = cloudHigh<0.5 ? GRIB_NOTDEF
 			: getPercentValue (DataCode(GRB_PRESSURE,LV_CLOUD_HIG_BOTTOM,0));
 	
 	//----------------------------------------
-	humidRel = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_HUMID_REL,LV_ABOV_GND,2), x,y,date);
-	humidSpec = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_HUMID_SPEC,LV_ABOV_GND,2), x,y,date);
-	dewPoint = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_DEWPOINT,LV_ABOV_GND,2), x,y,date);
-	isotherm0HGT = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_GEOPOT_HGT,LV_ISOTHERM0,0), x,y,date);
-	snowDepth    = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_SNOW_DEPTH,LV_GND_SURF,0), x,y,date);
-	snowCateg    = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_SNOW_CATEG,LV_GND_SURF,0), x,y,date);
-	frzRainCateg = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_FRZRAIN_CATEG,LV_GND_SURF,0), x,y,date);
-	CAPEsfc = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_CAPE,LV_GND_SURF,0), x,y,date);
-    CINsfc = reader==NULL ? GRIB_NOTDEF
-            : reader->getDateInterpolatedValue (DataCode(GRB_CIN,LV_GND_SURF,0), x,y,date);
+	humidRel = getValue(DataCode(GRB_HUMID_REL,LV_ABOV_GND,2));
+	humidSpec = getValue(DataCode(GRB_HUMID_SPEC,LV_ABOV_GND,2));
+	dewPoint = getValue(DataCode(GRB_DEWPOINT,LV_ABOV_GND,2));
+	isotherm0HGT = getValue(DataCode(GRB_GEOPOT_HGT,LV_ISOTHERM0,0));
+	snowDepth    = getValue(DataCode(GRB_SNOW_DEPTH,LV_GND_SURF,0));
+	snowCateg    = getValue(DataCode(GRB_SNOW_CATEG,LV_GND_SURF,0));
+	frzRainCateg = getValue(DataCode(GRB_FRZRAIN_CATEG,LV_GND_SURF,0));
+	CAPEsfc = getValue(DataCode(GRB_CAPE,LV_GND_SURF,0));
+    CINsfc = getValue(DataCode(GRB_CIN,LV_GND_SURF,0));
     // added by david
-    compReflect = reader==NULL ? GRIB_NOTDEF
-            : reader->getDateInterpolatedValue (DataCode(GRB_COMP_REFL,LV_ATMOS_ALL,0), x,y,date);
-    GUSTsfc = reader==NULL ? GRIB_NOTDEF
-            : reader->getDateInterpolatedValue (DataCode(GRB_WIND_GUST,LV_GND_SURF,0), x,y,date);
+    compReflect = getValue(DataCode(GRB_COMP_REFL,LV_ATMOS_ALL,0));
+    GUSTsfc = getValue(DataCode(GRB_WIND_GUST,LV_GND_SURF,0));
     // added by david to enable gust fields both sfc and at 10m assuming that only one
     // option exists in grib file
     if (GUSTsfc == GRIB_NOTDEF) // gust at sfc not found - try at 10m
-        GUSTsfc = reader==NULL ? GRIB_NOTDEF
-                : reader->getDateInterpolatedValue (DataCode(GRB_WIND_GUST,LV_ABOV_GND,10), x,y,date);
+        GUSTsfc = getValue(DataCode(GRB_WIND_GUST,LV_ABOV_GND,10));
     //-----------------------------------------
 	// Wind 10m
 	//-----------------------------------------
-	vx_10m = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_WIND_VX,LV_ABOV_GND,10), x,y,date);
-	vy_10m = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_WIND_VY,LV_ABOV_GND,10), x,y,date);
+	vx_10m = getValue(DataCode(GRB_WIND_VX,LV_ABOV_GND,10));
+	vy_10m = getValue(DataCode(GRB_WIND_VY,LV_ABOV_GND,10));
 	if (vx_10m!=GRIB_NOTDEF && vy_10m!=GRIB_NOTDEF) {
 		windSpeed_10m = sqrt (vx_10m*vx_10m + vy_10m*vy_10m);
 		windDir_10m = - atan2 (-vx_10m, vy_10m) *180.0/M_PI + 180;
@@ -170,10 +134,8 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
 	//-----------------------------------------
 	// Wind surface
 	//-----------------------------------------
-	vx_gnd = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_WIND_VX,LV_GND_SURF,0), x,y,date);
-	vy_gnd = reader==NULL ? GRIB_NOTDEF
-			: reader->getDateInterpolatedValue (DataCode(GRB_WIND_VY,LV_GND_SURF,0), x,y,date);
+	vx_gnd = getValue(DataCode(GRB_WIND_VX,LV_GND_SURF,0));
+	vy_gnd = getValue(DataCode(GRB_WIND_VY,LV_GND_SURF,0));
 	if (vx_gnd!=GRIB_NOTDEF && vy_gnd!=GRIB_NOTDEF) {
 		windSpeed_gnd = sqrt (vx_gnd*vx_gnd + vy_gnd*vy_gnd);
 		windDir_gnd = - atan2 (-vx_gnd, vy_gnd) *180.0/M_PI + 180;
@@ -187,29 +149,21 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
 	//-----------------------------------------
     // Current
 	//-----------------------------------------
-    cx = reader==NULL ? GRIB_NOTDEF
-            : reader->getDateInterpolatedValue (DataCode(GRB_CUR_VX,LV_GND_SURF,0), x,y,date);
+    cx = getValue(DataCode(GRB_CUR_VX,LV_GND_SURF,0));
     if (cx==GRIB_NOTDEF) // if not at surface try at -1m
-        cx = reader==NULL ? GRIB_NOTDEF
-                : reader->getDateInterpolatedValue (DataCode(GRB_CUR_VX,LV_BLW_SURF,1), x,y,date);
+        cx = getValue(DataCode(GRB_CUR_VX,LV_BLW_SURF,1));
     if (cx==GRIB_NOTDEF) // if not at surface try at -2m
-        cx = reader==NULL ? GRIB_NOTDEF
-                : reader->getDateInterpolatedValue (DataCode(GRB_CUR_VX,LV_BLW_SURF,2), x,y,date);
+        cx = getValue(DataCode(GRB_CUR_VX,LV_BLW_SURF,2));
     if (cx==GRIB_NOTDEF) // if not at surface try at -3m
-        cx = reader==NULL ? GRIB_NOTDEF
-                : reader->getDateInterpolatedValue (DataCode(GRB_CUR_VX,LV_BLW_SURF,3), x,y,date);
+        cx = getValue(DataCode(GRB_CUR_VX,LV_BLW_SURF,3));
 
-    cy = reader==NULL ? GRIB_NOTDEF
-            : reader->getDateInterpolatedValue (DataCode(GRB_CUR_VY,LV_GND_SURF,0), x,y,date);
+    cy = getValue(DataCode(GRB_CUR_VY,LV_GND_SURF,0));
     if (cy==GRIB_NOTDEF) // if not at surface try at -1m
-        cy = reader==NULL ? GRIB_NOTDEF
-                : reader->getDateInterpolatedValue (DataCode(GRB_CUR_VY,LV_BLW_SURF,1), x,y,date);
+        cy = getValue(DataCode(GRB_CUR_VY,LV_BLW_SURF,1));
     if (cy==GRIB_NOTDEF) // if not at surface try at -2m
-        cy = reader==NULL ? GRIB_NOTDEF
-                : reader->getDateInterpolatedValue (DataCode(GRB_CUR_VY,LV_BLW_SURF,2), x,y,date);
+        cy = getValue(DataCode(GRB_CUR_VY,LV_BLW_SURF,2));
     if (cy==GRIB_NOTDEF) // if not at surface try at -3m
-        cy = reader==NULL ? GRIB_NOTDEF
-                : reader->getDateInterpolatedValue (DataCode(GRB_CUR_VY,LV_BLW_SURF,3), x,y,date);
+        cy = getValue(DataCode(GRB_CUR_VY,LV_BLW_SURF,3));
 
     if (cx!=GRIB_NOTDEF && cy!=GRIB_NOTDEF) {
 		currentSpeed = sqrt (cx*cx + cy*cy);
