@@ -152,10 +152,15 @@ class DataPointInfo
 		
 	private:
 
-	float getPercentValue (const DataCode &c)
-	{
-	     return reader==NULL ? GRIB_NOTDEF: Util::inRangeOrNotDef(reader->getDateInterpolatedValue (c, x,y,date), 0., 100.);
-	}
+	    float getValue (const DataCode &c) const
+	    {
+            return reader==nullptr ? GRIB_NOTDEF: static_cast<float>(reader->getDateInterpolatedValue (c, x,y,date));
+        }
+
+	    float getPercentValue (const DataCode &c) const
+	    {
+            return Util::inRangeOrNotDef(getValue(c), 0.f, 100.f);
+        }
 
         GriddedReader *reader;
         void initDataPointInfo();
