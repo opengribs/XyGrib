@@ -2236,7 +2236,7 @@ void MainWindow::openSkewtDiagramWindow (double lon, double lat,
 										)
 {
 	//DBG("%g, %g",lon,lat);
-	if (reader == NULL) {
+	if (reader == nullptr) {
 		if (! terre->getGriddedPlotter() || ! terre->getGriddedPlotter()->isReaderOk())    {
 			return;
 		}
