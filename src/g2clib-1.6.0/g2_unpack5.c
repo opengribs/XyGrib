@@ -99,9 +99,7 @@ g2int g2_unpack5(unsigned char *cgrib,g2int *iofst,g2int *ndpts,g2int *idrsnum,
          free(mapdrs);
          return(ierr);
       }
-      else {
-         *idrstmpl=lidrstmpl;
-      }
+      *idrstmpl=lidrstmpl;
       for (i=0;i<mapdrs->maplen;i++) {
         nbits=abs(mapdrs->map[i])*8;
         if ( mapdrs->map[i] >= 0 ) {
