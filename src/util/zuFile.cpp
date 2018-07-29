@@ -26,10 +26,8 @@ int    zu_can_read_file(const char *fname)
     if (f == nullptr) {
         return 0;
     }
-    else {
-        zu_close(f);
-        return 1;
-    }
+    zu_close(f);
+    return 1;
 }
 
 //----------------------------------------------------

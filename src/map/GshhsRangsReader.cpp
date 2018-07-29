@@ -57,16 +57,14 @@ bool GshhsRangsCell::readPolygonList()
         // printf("*** End_PolygonList ***\n");
         return false;         // Fin de récursion
     }
-    else 
-    { 
-        size = readSegmentLoop();
-        if (poligonSizeMax <size)
-        	poligonSizeMax = size;
-        	
-        while (readPolygonList())
-            {};        // Appel récursif
-        return true;
-    }
+
+    size = readSegmentLoop();
+    if (poligonSizeMax <size)
+        poligonSizeMax = size;
+
+    while (readPolygonList())
+    {};        // Appel récursif
+    return true;
 }
     
 //------------------------------------------------------------------------

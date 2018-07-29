@@ -1471,10 +1471,8 @@ QString MainWindow::dataPresentInGrib (GribReader* grib,
             if (ok != nullptr) *ok = true;
 			return tr("yes");
 		}
-		else {
-            if (ok != nullptr) *ok = false;
-			return tr("no");
-		}
+        if (ok != nullptr) *ok = false;
+        return tr("no");
 	}
 }
 
