@@ -332,13 +332,13 @@ void SkewTWindow::saveFileSYLK (SylkFile &slk)
 	QList <SoundingPoint> *allpts = snd->getAllSounds();
 	QList <SoundingPointWind> *allwinds = snd->getAllSoundsWind();
 	QList <double> allAlts;
-	for (int i=0; i<allpts->size(); i++) {
-		if (allpts->at(i).ok() && !allAlts.contains(allpts->at(i).hpa))
-			allAlts << allpts->at(i).hpa;
+	for (const auto & allpt : *allpts) {
+		if (allpt.ok() && !allAlts.contains(allpt.hpa))
+			allAlts << allpt.hpa;
 	}
-	for (int i=0; i<allwinds->size(); i++) {
-		if (allwinds->at(i).ok() && !allAlts.contains(allwinds->at(i).hpa))
-			allAlts << allwinds->at(i).hpa;
+	for (const auto & allwind : *allwinds) {
+		if (allwind.ok() && !allAlts.contains(allwind.hpa))
+			allAlts << allwind.hpa;
 	}
 	qSort (allAlts);
 	
@@ -348,11 +348,10 @@ void SkewTWindow::saveFileSYLK (SylkFile &slk)
 	slk.addCell (lig, col++, tr("Dew point")+" ("+Util::getDataUnit(GRB_TEMP)+")");
 	slk.addCell (lig, col++, tr("Wind speed")+" ("+Util::getDataUnit(GRB_WIND_SPEED)+")");
 	slk.addCell (lig, col++, tr("Wind direction")+" ("+Util::getDataUnit(GRB_WIND_DIR)+")");
-	for (int i=0; i<allAlts.size(); i++) {
+	for (double alt : allAlts) {
 		lig ++;
 		col = 1;
-		double alt = allAlts.at(i);
-		slk.addCell (lig, col++, alt);
+			slk.addCell (lig, col++, alt);
 		double v;
 		SoundingPointWind w;
 		

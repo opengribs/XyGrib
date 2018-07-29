@@ -94,10 +94,9 @@ GshhsPolygon_WDB::GshhsPolygon_WDB(ZUFILE *file_)
 //--------------------------------------------------------
 // Destructeur
 GshhsPolygon::~GshhsPolygon() {
-    std::vector <GshhsPoint *>::iterator itp;
-    for (itp=lsPoints.begin(); itp != lsPoints.end(); itp++) {
-        delete *itp;
-        *itp = NULL;
+    for (auto & lsPoint : lsPoints) {
+        delete lsPoint;
+        lsPoint = NULL;
     }
     lsPoints.clear();
 }
@@ -391,14 +390,13 @@ int GshhsReader::GSHHS_scaledPoints(
     }
     
     double x, y;
-    std::vector <GshhsPoint *>::iterator itp;
     int xx, yy, oxx=0, oyy=0;
     int j = 0;
     
-    for  (itp=(pol->lsPoints).begin(); itp!=(pol->lsPoints).end(); itp++)
+    for  (auto & lsPoint : pol->lsPoints)
     {
-        x = (*itp)->lon+decx;
-        y = (*itp)->lat;
+        x = lsPoint->lon+decx;
+        y = lsPoint->lat;
         // Ajustement d'échelle
         proj->map2screen(x, y, &xx, &yy);
         if (j==0 || (oxx!=xx || oyy!=yy))  // élimine les ponts trop proches
@@ -419,17 +417,13 @@ void GshhsReader::GsshDrawPolygons(QPainter &pnt, std::vector <GshhsPolygon*> &l
                                 Projection *proj
         )
 {
-    std::vector <GshhsPolygon*>::iterator iter;
-    GshhsPolygon *pol;
-    int i;
     int nbp;
     
     int nbmax = 10000;
     QPoint *pts = new QPoint[nbmax];
     assert(pts);
     
-    for  (i=0, iter=lst.begin(); iter!=lst.end(); iter++,i++) {
-        pol = *iter;
+    for  (auto pol : lst) {
         assert(pol->isOk());
         
         if (nbmax < pol->n+2) {
@@ -456,17 +450,13 @@ void GshhsReader::GsshDrawLines(QPainter &pnt, std::vector <GshhsPolygon*> &lst,
                                 Projection *proj, bool isClosed
         )
 {
-    std::vector <GshhsPolygon*>::iterator iter;
-    GshhsPolygon *pol;
-    int i;
     int nbp;
     
     int nbmax = 10000;
     QPoint *pts = new QPoint[nbmax];
     assert(pts);
     
-    for  (i=0, iter=lst.begin(); iter!=lst.end(); iter++,i++) {
-        pol = *iter;
+    for  (auto pol : lst) {
         assert(pol->isOk());
         
         if (nbmax < pol->n+2) {

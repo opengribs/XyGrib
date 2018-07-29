@@ -71,10 +71,9 @@ void GribReader::clean_all_vectors ()
 //-------------------------------------------------------------------------------
 void GribReader::clean_vector (std::vector<GribRecord *> &ls)
 {
-    std::vector<GribRecord *>::iterator it;
-    for (it=ls.begin(); it!=ls.end(); it++) {
-        delete *it;
-        *it = NULL;
+    for (auto & l : ls) {
+        delete l;
+        l = NULL;
     }
     ls.clear();
 }
@@ -578,11 +577,10 @@ void GribReader::computeMissingData ()
 	if (   getNumberOfGribRecords (DataCode(GRB_HUMID_REL, LV_ABOV_GND, 2)) == 0
 	    && getNumberOfGribRecords (DataCode(GRB_HUMID_SPEC, LV_ABOV_GND, 2)) > 0)
 	{
-		std::set<time_t>::iterator iter;
-		for (iter=setAllDates.begin(); iter!=setAllDates.end(); iter++)
+		
+		for (long date : setAllDates)
 		{
-			time_t date = *iter;
-			GribRecord *recModel = getRecord (DataCode(GRB_HUMID_SPEC,LV_ABOV_GND,2),date);
+            GribRecord *recModel = getRecord (DataCode(GRB_HUMID_SPEC,LV_ABOV_GND,2),date);
 			if (recModel != nullptr)
 			{
 				GribRecord *recHumidRel = new GribRecord(*recModel);
@@ -650,16 +648,12 @@ void GribReader::computeMissingData ()
 		double thmin = 10000;
 		double thmax = -10000;
 		std::set<Altitude> allAlts = getAllAltitudes (GRB_HUMID_REL);
-		std::set<Altitude>::iterator iterAlt;
-		for (iterAlt=allAlts.begin(); iterAlt!=allAlts.end(); iterAlt++)
+		for (auto altitude : allAlts)
 		{	// all altitudes
-			Altitude altitude = *iterAlt;
-			//DBGQS(AltitudeStr::toString(altitude));
-			std::set<time_t>::iterator iter;
-			for (iter=setAllDates.begin(); iter!=setAllDates.end(); iter++)
+				//DBGQS(AltitudeStr::toString(altitude));
+			for (long date : setAllDates)
 			{	// all dates
-				time_t date = *iter;
-				//GribRecord *recHumidSpec = getRecord (DataCode(GRB_HUMID_SPEC,altitude.levelType, altitude.levelValue),date);
+					//GribRecord *recHumidSpec = getRecord (DataCode(GRB_HUMID_SPEC,altitude.levelType, altitude.levelValue),date);
 				GribRecord *recHumidRel = getRecord (DataCode(GRB_HUMID_REL,altitude.levelType, altitude.levelValue),date);
 				GribRecord *recTemp = getRecord (DataCode(GRB_TEMP,altitude.levelType, altitude.levelValue),date);
 				// if (recHumidSpec && recTemp)
@@ -929,9 +923,9 @@ void GribReader::createListDates()
 	for (auto const & it : mapGribRecords )
 	{
 		std::vector<GribRecord *> *ls = it.second;
-		for (zuint i=0; i<ls->size(); i++) {
-			assert(ls->at(i)->isOk());
-			setAllDates.insert( ls->at(i)->getRecordCurrentDate() );
+		for (auto & l : *ls) {
+			assert(l->isOk());
+			setAllDates.insert( l->getRecordCurrentDate() );
 		}
 	}
 }
@@ -1056,11 +1050,9 @@ time_t  GribReader::getFirstRefDate ()
 {
 	time_t t, t2;
 	std::set<DataCode> all = getAllDataCode ();
-	std::set<DataCode>::iterator it;
 	t = 0;
-	for (it=all.begin(); it!=all.end(); it++) {
-		DataCode dtc = *it;
-		t2 = getRefDateForData (dtc); 
+	for (auto dtc : all) {
+			t2 = getRefDateForData (dtc); 
 		if (t==0 || (t2!=0 && t>t2)) {
 			t = t2;
 		}
@@ -1075,9 +1067,9 @@ time_t  GribReader::getRefDateForDataCenter (const DataCenterModel &dcm)
 	for (auto const & it : mapGribRecords)
 	{
 		std::vector<GribRecord *> *ls = it.second;
-		for (uint i=0; i<ls->size(); i++) {
-			if (ls->at(i)->getDataCenterModel() == dcm) {
-				t2 = ls->at(i)->getRecordRefDate (); 
+		for (auto & l : *ls) {
+			if (l->getDataCenterModel() == dcm) {
+				t2 = l->getRecordRefDate (); 
 				if (t==0 || (t2!=0 && t>t2)) {
 					t = t2;
 				}

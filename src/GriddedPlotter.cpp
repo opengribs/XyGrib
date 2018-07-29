@@ -541,10 +541,9 @@ void GriddedPlotter::draw_listIsolines (
 						std::vector <IsoLine *> & listIsolines,
 						QPainter &pnt, const Projection *proj)
 {
-    std::vector <IsoLine *>::iterator it;
-    for(it=listIsolines.begin(); it!=listIsolines.end(); it++)
+    for(auto & listIsoline : listIsolines)
     {
-        (*it)->drawIsoLine (pnt, proj);
+        listIsoline->drawIsoLine (pnt, proj);
     }
 }
 //--------------------------------------------------------------------------
@@ -557,11 +556,10 @@ void GriddedPlotter::draw_listIsolines_labels (
 						int density 	// default -1
 					)
 {
-    std::vector <IsoLine *>::iterator it;
     int nbseg = 0;
-    for(it=listIsolines.begin(); it!=listIsolines.end(); it++)
+    for(auto & listIsoline : listIsolines)
     {
-        nbseg += (*it)->getNbSegments();
+        nbseg += listIsoline->getNbSegments();
     }
     int nbpix, first;
 	nbpix = proj->getW()*proj->getH();
@@ -575,10 +573,10 @@ void GriddedPlotter::draw_listIsolines_labels (
 			density = 20;
 	}
     first = 0; 
-    for(it=listIsolines.begin(); it!=listIsolines.end(); it++)
+    for(auto & listIsoline : listIsolines)
     {
         first += 20;
-        (*it)->drawIsoLineLabels (pnt, color, proj, density, first, coef,offset);
+        listIsoline->drawIsoLineLabels (pnt, color, proj, density, first, coef,offset);
     }
 }
 //----------------------------------------------------

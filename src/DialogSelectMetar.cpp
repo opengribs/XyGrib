@@ -132,10 +132,9 @@ void DialogSelectMetar::make_metar_tree ()
     QTreeWidgetItem *itemCountry = nullptr;
     QTreeWidgetItem *itemState = nullptr;
     QTreeWidgetItem *itemRoot = nullptr;
-	for (int i=0; i < allAirports.size(); i++)
+	for (auto a : allAirports)
 	{
-		Airport a = allAirports.at(i);
-		if (curCountry != a.country) {
+			if (curCountry != a.country) {
 			curCountry = a.country;
 			itemCountry = new QTreeWidgetItem (treeWidget);
 			assert (itemCountry);

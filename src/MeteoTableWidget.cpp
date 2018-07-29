@@ -192,9 +192,8 @@ void MeteoTableWidget::createTable()
 	lig ++;
 	addCell_title_dataline ("", true, lig,col);
 	col ++;
-	for (iter=sdates.begin(); iter!=sdates.end(); iter++)
+	for (long date : sdates)
 	{
-		time_t date = *iter;
 		addCell_title(Util::formatTime(date), false, layout, lig,col, 1,1,
 						dateproche==date);
 		col ++;
@@ -209,10 +208,8 @@ void MeteoTableWidget::createTable()
 	//-----------------------------------------------
 	lig ++;
 	createListVisibleGribData();
-	QList <MTGribData *>::iterator it;
-	for (it=listVisibleData.begin(); it!=listVisibleData.end(); it++) {
-		MTGribData *gr = *it;
-		int dataType   = gr->dtc.dataType;
+	for (auto gr : listVisibleData) {
+			int dataType   = gr->dtc.dataType;
 		int levelType  = gr->dtc.levelType;
 		int levelValue = gr->dtc.levelValue;
 		
@@ -430,8 +427,7 @@ void MeteoTableWidget::createListVisibleGribData ()
 	QStringList listKeys = Settings::getAllKeys();
 	QStringList::const_iterator cstit;
 	bool foundMTableData = false;
-	for (cstit = listKeys.constBegin(); cstit != listKeys.constEnd(); cstit++) {
-		QString key = *cstit;
+	for (const auto & key : listKeys) {
 		if (key.startsWith("MTableData_vis_"))
 		{
 			foundMTableData = true;

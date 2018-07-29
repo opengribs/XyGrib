@@ -198,11 +198,9 @@ void Grib2Reader::analyseRecords ()
 	DataCode dtcx (GRB_WIND_GUST_VX, alt);
 	DataCode dtcy (GRB_WIND_GUST_VY, alt);
 	if (hasData(dtcx) && ! hasData(DataCode(GRB_WIND_GUST, alt))) {
-		std::set<time_t>::iterator iter;
-		for (iter=setAllDates.begin(); iter!=setAllDates.end(); iter++)
+		for (long date : setAllDates)
 		{
-			time_t date = *iter;
-			GribRecord *recx = getRecord (dtcx, date);
+            GribRecord *recx = getRecord (dtcx, date);
 			GribRecord *recy = getRecord (dtcy, date);
 			if (recx && recy) {
 				GribRecord *recGust = new GribRecord (*recx);

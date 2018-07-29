@@ -38,12 +38,12 @@ void ZeroOneActionGroup::slot_actionTrigerred(bool b)
 //------------------------------------------------------------------
 void ZeroOneActionGroup::setCheckedAction (QAction *act, bool val, bool emitSignal)
 {
-	for (int i=0; i<lsactions.size(); i++) {
-		if (lsactions.at(i)== act) {
-			lsactions.at(i)->setChecked (val);
+	for (auto lsaction : lsactions) {
+		if (lsaction== act) {
+			lsaction->setChecked (val);
 		}
 		else {
-			lsactions.at(i)->setChecked (false);
+			lsaction->setChecked (false);
 		}
 	}
 	if (emitSignal) {
@@ -476,6 +476,7 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
 	updateFonts();
 }
 
+//---------------------------------------------------------
 static void enumerateMenu(QMenu *menu, const QFont& ft )
 {
     if (menu == nullptr)
@@ -487,7 +488,6 @@ static void enumerateMenu(QMenu *menu, const QFont& ft )
 }
 
 
-//---------------------------------------------------------
 void MenuBar::updateFonts ()
 {
    cbDatesGrib->setFont (Font::getFont(FONT_ComboBox));
@@ -664,18 +664,15 @@ void MenuBar::updateListeDates(std::set<time_t> *setDates, time_t currentDate)
 {
     listGribDates.clear();
     // Construit un vector à partir du set (plus pratique)
-    std::set<time_t>::iterator its;
-    for (its=setDates->begin(); its!=setDates->end(); its++) {
-        listGribDates.push_back(*its);
+    for (long setDate : *setDates) {
+        listGribDates.push_back(setDate);
     }
 
     // Met à jour les item du QComboBox
     while (cbDatesGrib->count() > 0) {
         cbDatesGrib->removeItem(0);
     }
-    std::vector<time_t>::iterator it;
-    for (it=listGribDates.begin(); it!=listGribDates.end(); it++) {
-        time_t tps = *it;
+    for (long tps : listGribDates) {
         QString str = Util::formatDateTimeLong(tps);
         //printf("%s\n", qPrintable(str));
         cbDatesGrib->addItem(str);

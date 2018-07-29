@@ -230,8 +230,8 @@ void Terrain::setProjection(Projection *proj)
     Util::setSetting("projectionScale",  proj->getScale());	
 	
 	QList<POI*> lpois = getListPOIs();
-	for (int i=0; i<lpois.size(); i++) {
-		lpois.at(i)->setProjection(proj);
+	for (auto lpoi : lpois) {
+		lpoi->setProjection(proj);
 	}
     isEarthMapValid = false;
 	mustRedraw = true;
@@ -1293,12 +1293,12 @@ void Terrain::setShowPOIs(bool show)
 	Util::setSetting("showPOIs", show);
 	// list of all the POI's
 	QList<POI*> lpois = getListPOIs();
-	for (int i=0; i<lpois.size(); i++)
+	for (auto lpoi : lpois)
 	{
 		if (show)
-			lpois.at(i)->setVisible(true);
+			lpoi->setVisible(true);
 		else
-			lpois.at(i)->setVisible(false);
+			lpoi->setVisible(false);
 	}
 }
 

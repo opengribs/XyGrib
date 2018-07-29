@@ -152,8 +152,6 @@ void GshhsRangsCell::drawMapPlain(QPainter &pnt, double dx, QPoint *pts, Project
 // return;
 
 
-    std::vector <GshhsRangsPolygon *>::iterator iterPolygons;
-    std::vector <GshhsRangsPoint *>::iterator iterPoints;
     GshhsRangsPolygon *poly;
     int xx, yy, oxx=0, oyy=0, nbpts;
     
@@ -162,15 +160,14 @@ void GshhsRangsCell::drawMapPlain(QPainter &pnt, double dx, QPoint *pts, Project
 	
 	pnt.setRenderHint(QPainter::Antialiasing, true);
         
-    for (iterPolygons=lsPolygons.begin(); iterPolygons!=lsPolygons.end(); iterPolygons++)
+    for (auto & lsPolygon : lsPolygons)
     {
-        poly = *iterPolygons;
+        poly = lsPolygon;
         std::vector <GshhsRangsPoint *> lsPts = poly->lsPoints;
         
         int j = 0;
-        for (iterPoints=lsPts.begin(); iterPoints!=lsPts.end(); iterPoints++)
+        for (auto pt : lsPts)
         {
-            GshhsRangsPoint *pt = *iterPoints;
             proj->map2screen(pt->x+dx, pt->y, &xx, &yy);
             if (j==0 || (oxx!=xx || oyy!=yy))  // élimine les points trop proches
             {
@@ -199,14 +196,13 @@ void GshhsRangsCell::drawMapPlain(QPainter &pnt, double dx, QPoint *pts, Project
 //------------------------------------------------------------------------
 void GshhsRangsCell::drawSeaBorderLines(QPainter &pnt, double dx, Projection *proj)
 {
-    std::vector <GshhsRangsPolygon *>::iterator iterPolygons;
     std::vector <GshhsRangsPoint *>::iterator iterPoints;
     GshhsRangsPolygon *poly;
     int xx, yy;
 
-    for (iterPolygons=lsPolygons.begin(); iterPolygons!=lsPolygons.end(); iterPolygons++)
+    for (auto & lsPolygon : lsPolygons)
     {
-        poly = *iterPolygons;
+        poly = lsPolygon;
         std::vector <GshhsRangsPoint *> lsPts = poly->lsPoints;
 		
 		GshhsRangsPoint *pt;
@@ -293,9 +289,9 @@ GshhsRangsReader::GshhsRangsReader(const std::string &rangspath)
     fcel = nullptr;
     frim = nullptr;
 
-	for (int i=0; i<360; i++) {
-		for (int j=0; j<180; j++) {
-            allCells[i][j] = nullptr;
+	for (auto & allCell : allCells) {
+		for (auto & j : allCell) {
+            j = nullptr;
 		}
 	}
 	currentQuality = -1;
@@ -304,9 +300,9 @@ GshhsRangsReader::GshhsRangsReader(const std::string &rangspath)
 //-------------------------------------------------------------------------
 GshhsRangsReader::~GshhsRangsReader()
 {
-	for (int i=0; i<360; i++) {
-		for (int j=0; j<180; j++) {
-            delete allCells[i][j];
+	for (auto & allCell : allCells) {
+		for (auto & j : allCell) {
+            delete j;
 		}
 	}
 }
@@ -336,12 +332,12 @@ void GshhsRangsReader::setQuality(int quality)  // 5 levels: 0=low ... 4=full
 		fcel = fopen( (path+"rangs_"+txtn+".cel").c_str(), "rb");
 		frim = fopen( (path+"gshhs_"+txtn+".rim").c_str(), "rb");
 		
-		for (int i=0; i<360; i++) {
-			for (int j=0; j<180; j++) {
-                if (allCells[i][j] != nullptr)
+		for (auto & allCell : allCells) {
+			for (auto & j : allCell) {
+                if (j != nullptr)
 				{
-					delete allCells[i][j];
-                    allCells[i][j] = nullptr;
+					delete j;
+                    j = nullptr;
 				}
 			}
 		}

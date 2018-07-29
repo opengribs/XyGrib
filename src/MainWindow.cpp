@@ -970,10 +970,9 @@ void MainWindow::createPOIs ()
 {
 	POI *poi;
     QList<uint> lscodes = Settings::getSettingAllCodesPOIs();
-	for (int i=0; i < lscodes.size(); ++i)
+	for (unsigned int code : lscodes)
 	{
-		uint code = lscodes.at(i);
- 		poi = new POI (code, proj, this, terre);
+			poi = new POI (code, proj, this, terre);
 		connectPOI (poi);
  	}
 }
@@ -1033,8 +1032,8 @@ void MainWindow::createAllMETARs ()
 void MainWindow::slotMETARSvisibility (bool vis)
 {
 	Util::setSetting ("showMETARs", vis);
-	for (int i=0; i < listAllMetars.size(); i++) {
-		listAllMetars.at(i)->setVisible (vis);
+	for (auto listAllMetar : listAllMetars) {
+		listAllMetar->setVisible (vis);
 	}
 }
 //-------------------------------------------------
@@ -1549,12 +1548,10 @@ void MainWindow::slotFile_Info_GRIB ()
 	msg += "\n";
 	msg += tr("Available data :");
 	std::set<DataCode> setdata = plotter->getAllDataCode ();
-	std::set<DataCode>::iterator it;
 	int  currentype = -1;
 	bool firstalt = true;
-	for (it=setdata.begin(); it!=setdata.end(); it++) {
-		DataCode dtc = *it;
-		if (   dtc.dataType != GRIB_NOTDEF
+	for (auto dtc : setdata) {
+			if (   dtc.dataType != GRIB_NOTDEF
 			&& dtc.dataType != GRB_WIND_VY
 			&& dtc.dataType != GRB_CUR_VY
 		) {
@@ -2071,11 +2068,9 @@ void MainWindow::setMenubarAltitudeData (DataCode dtc)
 		dtc.dataType = GRB_PRV_WIND_XY2D;
 	}
 	std::set<Altitude> setalt = reader->getAllAltitudes (dtc.dataType);
-	std::set<Altitude>::iterator it;
 	
-	for (it=setalt.begin(); it!=setalt.end(); it++) {
-		Altitude alt = *it;
-		checkAltitude (LV_GND_SURF,0, mb->acAlt_GND, alt, dtc);
+	for (auto alt : setalt) {
+			checkAltitude (LV_GND_SURF,0, mb->acAlt_GND, alt, dtc);
 		checkAltitude (LV_ABOV_GND,1, mb->acAlt_GND_1m, alt, dtc);
 		checkAltitude (LV_ABOV_GND,2, mb->acAlt_GND_2m, alt, dtc);
 		checkAltitude (LV_ABOV_GND,3, mb->acAlt_GND_3m, alt, dtc);

@@ -80,10 +80,8 @@ std::set<Altitude> GriddedReader::getAllAltitudes (int dataType) const
 			dataType = GRB_DEWPOINT;
 	std::set<Altitude> res;
 	std::set<DataCode> setdata = getAllDataCode ();
-	std::set<DataCode>::iterator it;
-	for (it=setdata.begin(); it!=setdata.end(); it++) {
-		DataCode dtc = *it;
-		if (dtc.dataType == dataType)
+	for (auto dtc : setdata) {
+			if (dtc.dataType == dataType)
 			res.insert (dtc.getAltitude());
 	}
 	return res; 
@@ -103,14 +101,12 @@ time_t  GriddedReader::getClosestDateFromNow ()
 time_t  GriddedReader::getClosestDateFromDate (time_t date)
 {
 	std::set<time_t> sdates = getListDates();
-	std::set<time_t>::iterator iter;
 
 	time_t closestdate = 0;
 	uint difftime, difftimemin=0xFFFFFFFF;
 	
-	for (iter=sdates.begin(); iter!=sdates.end(); iter++)
+	for (long daterecord : sdates)
 	{
-		time_t daterecord = *iter;
 		difftime = abs (daterecord-date);
 		// find closets date +- 2*24h
 		if (difftimemin>difftime && (difftime/3600)<=24*2) {

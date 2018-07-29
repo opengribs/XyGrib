@@ -155,11 +155,9 @@ MeteoTableDialog::MeteoTableDialog (
 	// Dates of the forecast (meteo center dependent)
 	//------------------------------------------------------------
 	std::set<DataCenterModel>  allDcm = reader->getAllDataCenterModel ();
-	std::set<DataCenterModel>::iterator it;
 	QString srefdates;
-	for (it=allDcm.begin(); it!=allDcm.end(); it++) {
-		DataCenterModel dcm = *it;
-		if (srefdates != "")
+	for (auto dcm : allDcm) {
+			if (srefdates != "")
 			srefdates += "\n";
 		srefdates += tr("Reference date: ")
 					+ DataCodeStr::toString (dcm)
@@ -289,9 +287,8 @@ void MeteoTableDialog::saveFileSYLK (SylkFile &slk)
 	// All Data
 	dl = 4;
 	dc = 1;
-	for (int j=0; j<listData.size(); j++) {
-		MTGribData *data = listData.at(j);
-		//DBG ("%d %s",data->dtc.dataType,qPrintable(DataCodeStr::toString(data->dtc.dataType)));
+	for (auto data : listData) {
+			//DBG ("%d %s",data->dtc.dataType,qPrintable(DataCodeStr::toString(data->dtc.dataType)));
 		switch (data->dtc.dataType) {
 			case GRB_PRV_WIND_XY2D    : 
 				dl += SYLK_addData_wind (slk, dl, dc, data->dtc);
