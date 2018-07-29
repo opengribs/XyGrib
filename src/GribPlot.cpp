@@ -183,24 +183,24 @@ void GribPlot::draw_WIND_Arrows (
 				x = recx->getX(gi);
 				y = recx->getY(gj);
 				
-					//----------------------------------------------------------------------
-					if (! recx->isXInMap(x))
-						x += 360.0;   // tour du monde ?
+                //----------------------------------------------------------------------
+                if (! recx->isXInMap(x))
+                    x += 360.0;   // tour du monde ?
 				proj->map2screen(x,y, &i,&j);
 				if (i > W)
 					proj->map2screen(x-360,y, &i,&j);
 				
-					if (recx->isPointInMap(x,y)) {
-						vx = recx->getInterpolatedValue(x, y, mustInterpolateValues);
-						vy = recy->getInterpolatedValue(x, y, mustInterpolateValues);
-						if (vx != GRIB_NOTDEF && vy != GRIB_NOTDEF)
-						{
-							if (barbules)
-								drawWindArrowWithBarbs(pnt, i,j, vx,vy, (y<0), arrowsColor);
-							else
-								drawWindArrow(pnt, i,j, vx,vy);
-						}
-					}
+                if (recx->isPointInMap(x,y)) {
+                    vx = recx->getInterpolatedValue(x, y, mustInterpolateValues);
+                    vy = recy->getInterpolatedValue(x, y, mustInterpolateValues);
+                    if (vx != GRIB_NOTDEF && vy != GRIB_NOTDEF)
+                    {
+                        if (barbules)
+                            drawWindArrowWithBarbs(pnt, i,j, vx,vy, (y<0), arrowsColor);
+                        else
+                            drawWindArrow(pnt, i,j, vx,vy);
+                    }
+                }
 			}
     	}
     }
@@ -353,10 +353,10 @@ void GribPlot::draw_ColoredMapPlain (
 						QPainter &pnt, 
 						const Projection *proj)
 {
-     if (!isReaderOk())
+    if (!isReaderOk())
         return;
-	
-	if (dtc.dataType == GRB_PRV_WIND_JET) {
+
+    if (dtc.dataType == GRB_PRV_WIND_JET) {
 		dtc.dataType = GRB_PRV_WIND_XY2D;
 	}
 	DataCode dtc2 = dtc;
