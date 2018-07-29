@@ -10,8 +10,8 @@
 #include "openjpeg.h"
 
 #define GRIB_SUCCESS          0
-#define GRIB_DECODING_ERROR  -3
-#define GRIB_ENCODING_ERROR  -14 /* match openjpeg in grib_api */
+#define GRIB_DECODING_ERROR  (-3)
+#define GRIB_ENCODING_ERROR  (-14) /* match openjpeg in grib_api */
 
 /* opj_* Helper code from https://groups.google.com/forum/#!topic/openjpeg/8cebr0u7JgY */
 typedef struct
