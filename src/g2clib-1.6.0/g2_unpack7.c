@@ -102,9 +102,7 @@ g2int g2_unpack7(unsigned char *cgrib,g2int *iofst,g2int igdsnum,g2int *igdstmpl
          ierr=6;
          return(ierr);
       }
-      else {
-         *fld=lfld;
-      }
+      *fld=lfld;
 
       if (idrsnum == 0) 
         simunpack(cgrib+ipos,idrstmpl,ndpts,lfld);

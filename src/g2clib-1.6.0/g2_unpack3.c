@@ -128,9 +128,7 @@ g2int g2_unpack3(unsigned char *cgrib,g2int *iofst,g2int **igds,g2int **igdstmpl
               free(mapgrid);
               return(ierr);
            }
-           else {
-              *igdstmpl=ligdstmpl;
-           }
+           *igdstmpl=ligdstmpl;
         }
         ibyttem=0;
         for (i=0;i<*mapgridlen;i++) {
@@ -199,9 +197,8 @@ g2int g2_unpack3(unsigned char *cgrib,g2int *iofst,g2int **igds,g2int **igdstmpl
             *ideflist=0;   //NULL
             return(ierr);
          }
-         else {
-            *ideflist=lideflist;
-         }
+         *ideflist=lideflist;
+
          gbits(cgrib,lideflist,*iofst,nbits,0,*idefnum);
          *iofst=*iofst+(nbits*(*idefnum));
       }
