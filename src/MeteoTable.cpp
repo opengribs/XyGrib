@@ -265,7 +265,7 @@ void MeteoTableDialog::saveFileSYLK (SylkFile &slk)
 	std::vector <DataPointInfo *>::iterator itp;
 	DataPointInfo *pinfo;
 	
-	if (lspinfos.size() == 0) {
+	if (lspinfos.empty()) {
 		return;
 	}
 	//----------------------------------------

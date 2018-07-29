@@ -756,7 +756,7 @@ std::vector<GribRecord *> * GribReader::getFirstNonEmptyList()
     std::vector<GribRecord *> *ls = nullptr;
 	for (auto it=mapGribRecords.begin(); ls==nullptr && it!=mapGribRecords.end(); ++it)
 	{
-		if ((*it).second->size()>0)
+		if (!(*it).second->empty())
 			ls = (*it).second;
 	}
 	return ls;

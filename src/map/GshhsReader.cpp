@@ -257,7 +257,7 @@ void GshhsReader::readGshhsFiles()
     bool   ok;
 
 	// Bordures des continents (4 niveaux) (gshhs_[clihf].b)
-	if (lsPoly_level1[quality]->size() == 0) { // on ne lit qu'une fois le fichier
+	if (lsPoly_level1[quality]->empty()) { // on ne lit qu'une fois le fichier
 		fname = getFileName_gshhs(quality);
 		file = zu_open(fname.c_str(), "rb");
         if (file != nullptr) {
@@ -308,7 +308,7 @@ void GshhsReader::setQuality(int quality_) // 5 levels: 0=low ... 4=full
     }
         
     // Frontières politiques
-    if (lsPoly_boundaries[quality]->size() == 0) { // on ne lit qu'une fois le fichier
+    if (lsPoly_boundaries[quality]->empty()) { // on ne lit qu'une fois le fichier
         fname = getFileName_boundaries(quality);
         file = zu_open(fname.c_str(), "rb");
         if (file != nullptr) {
@@ -327,7 +327,7 @@ void GshhsReader::setQuality(int quality_) // 5 levels: 0=low ... 4=full
         }
     }
     // Rivières
-    if (lsPoly_rivers[quality]->size() == 0) { // on ne lit qu'une fois le fichier
+    if (lsPoly_rivers[quality]->empty()) { // on ne lit qu'une fois le fichier
         fname = getFileName_rivers(quality);
         file = zu_open(fname.c_str(), "rb");
         if (file != nullptr) {
