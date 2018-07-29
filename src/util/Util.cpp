@@ -462,7 +462,7 @@ QString Util::formatPressure (float pasc, bool withUnit, int precision)
 {
     QString unite = Util::getDataUnit (DataCode(GRB_PRESSURE_MSL,LV_MSL,0));
     QString r;
-	if (pasc != GRIB_NOTDEF) {
+	if (GribDataIsDef(pasc)) {
 		if (precision > 0)
             r.sprintf("%.1f", pasc/100.0f);
 		else
@@ -648,7 +648,7 @@ QString Util::formatLatitude(float y)
 //---------------------------------------------------------------------
 QString Util::formatPercentValue(float prb, bool withUnit)
 {
-	if (prb == GRIB_NOTDEF)
+	if (! GribDataIsDef(prb))
 		return withUnit ? "    %": "   ";
 
     QString unite = "%";

@@ -299,31 +299,31 @@ void SkewTWindow::saveFileSYLK (SylkFile &slk)
 	// Indices LI, SI, KI, TT, SWEAT, CAPE, CIN
 	lig++;
 	slk.addCell (lig, 1, "LI");
-	if (snd->LI != GRIB_NOTDEF)
+	if (GribDataIsDef(snd->LI))
 		slk.addCell (lig, 2, qRound(snd->LI));
 	lig++;
 	slk.addCell (lig, 1, "SI");
-	if (snd->SI != GRIB_NOTDEF)
+	if (GribDataIsDef(snd->SI))
 		slk.addCell (lig, 2, qRound(snd->SI));
 	lig++;
 	slk.addCell (lig, 1, "KI");
-	if (snd->KI != GRIB_NOTDEF)
+	if (GribDataIsDef(snd->KI))
 		slk.addCell (lig, 2, qRound(snd->KI));
 	lig++;
 	slk.addCell (lig, 1, "TT");
-	if (snd->TT != GRIB_NOTDEF)
+	if (GribDataIsDef(snd->TT))
 		slk.addCell (lig, 2, qRound(snd->TT));
 	lig++;
 	slk.addCell (lig, 1, "SWEAT");
-	if (snd->SWEAT != GRIB_NOTDEF)
+	if (GribDataIsDef(snd->SWEAT))
 		slk.addCell (lig, 2, qRound(snd->SWEAT));
 	lig++;
 	slk.addCell (lig, 1, "CAPE");
-	if (snd->CAPE != GRIB_NOTDEF)
+	if (GribDataIsDef(snd->CAPE))
 		slk.addCell (lig, 2, qRound(snd->CAPE));
 	lig++;
 	slk.addCell (lig, 1, "CIN");
-	if (snd->CIN != GRIB_NOTDEF)
+	if (GribDataIsDef(snd->CIN))
 		slk.addCell (lig, 2, qRound(snd->CIN));
 	lig++;
 	lig++;
@@ -357,12 +357,12 @@ void SkewTWindow::saveFileSYLK (SylkFile &slk)
 		SoundingPointWind w;
 		
 		v = snd->getTempCByAlt (alt);
-		if (v != GRIB_NOTDEF)
+		if (GribDataIsDef(v))
 			slk.addCell (lig, col, Util::formatTemperature(v+273.15,false).toDouble());
 		col ++;
 		
 		v = snd->getDewpCByAlt (alt);
-		if (v != GRIB_NOTDEF)
+		if (GribDataIsDef(v))
 			slk.addCell (lig, col, Util::formatTemperature(v+273.15,false).toDouble());
 		col ++;
 		

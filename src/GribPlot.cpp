@@ -193,7 +193,7 @@ void GribPlot::draw_WIND_Arrows (
                 if (recx->isPointInMap(x,y)) {
                     vx = recx->getInterpolatedValue(x, y, mustInterpolateValues);
                     vy = recy->getInterpolatedValue(x, y, mustInterpolateValues);
-                    if (vx != GRIB_NOTDEF && vy != GRIB_NOTDEF)
+                    if (GribDataIsDef(vx) && GribDataIsDef(vy))
                     {
                         if (barbules)
                             drawWindArrowWithBarbs(pnt, i,j, vx,vy, (y<0), arrowsColor);
@@ -239,7 +239,7 @@ void GribPlot::draw_WIND_Arrows (
 				if (recx->isPointInMap(x,y)) {
 					vx = recx->getInterpolatedValue(x, y, mustInterpolateValues);
 					vy = recy->getInterpolatedValue(x, y, mustInterpolateValues);
-					if (vx != GRIB_NOTDEF && vy != GRIB_NOTDEF)
+					if (GribDataIsDef(vx) && GribDataIsDef(vy))
 					{
 						if (barbules)
 							drawWindArrowWithBarbs(pnt, i,j, vx,vy, (y<0), arrowsColor);
@@ -312,7 +312,7 @@ void GribPlot::draw_CURRENT_Arrows (
 								oldj = j;
 								vx = recx->getInterpolatedValue(x, y, mustInterpolateValues);
 								vy = recy->getInterpolatedValue(x, y, mustInterpolateValues);
-								if (vx != GRIB_NOTDEF && vy != GRIB_NOTDEF)
+								if (GribDataIsDef(vx) && GribDataIsDef(vy))
 								{
 									drawCurrentArrow(pnt, i,j, vx,vy);
 								}
@@ -335,7 +335,7 @@ void GribPlot::draw_CURRENT_Arrows (
 				if (recx->isPointInMap(x,y)) {
 					vx = recx->getInterpolatedValue(x, y, mustInterpolateValues);
 					vy = recy->getInterpolatedValue(x, y, mustInterpolateValues);
-					if (vx != GRIB_NOTDEF && vy != GRIB_NOTDEF)
+					if (GribDataIsDef(vx) && GribDataIsDef(vy))
 					{
 						drawCurrentArrow(pnt, i,j, vx,vy);
 					}
@@ -485,7 +485,7 @@ void GribPlot::draw_WAVES_Arrows (
                                 vxy = recDir->getInterpolatedValue(x, y, mustInterpolateValues);
 //                                vy = recPer->getInterpolatedValue(x, y, mustInterpolateValues);
 //                                if (vxy != GRIB_NOTDEF && vy != GRIB_NOTDEF)
-                                if (vxy != GRIB_NOTDEF)
+                                if (GribDataIsDef(vxy))
                                 {
 //                                    drawWaveArrow (pnt, i,j, vxy,vy);
                                     drawWaveArrow (pnt, i,j, vxy);
@@ -509,7 +509,7 @@ void GribPlot::draw_WAVES_Arrows (
 				if (recDir->isPointInMap(x,y)) {
                     vxy = recDir->getInterpolatedValue(x, y, mustInterpolateValues);
 //                    vy = recPer->getInterpolatedValue(x, y, mustInterpolateValues);
-                    if (vxy != GRIB_NOTDEF)
+                    if (GribDataIsDef(vxy))
 					{
 //                        drawWaveArrow (pnt, i,j, vx,vy);
                         drawWaveArrow (pnt, i,j, vxy);

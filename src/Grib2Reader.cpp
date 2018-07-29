@@ -214,7 +214,7 @@ void Grib2Reader::analyseRecords ()
 					{
 						double vx = recx->getValue(i,j);
 						double vy = recy->getValue(i,j);
-						if (vx!=GRIB_NOTDEF && vy!=GRIB_NOTDEF) {
+						if (GribDataIsDef(vx) && GribDataIsDef(vy)) {
 							//DBG("%d %d : %g %g : %g", i,j, vx,vy, sqrt(vx*vx+vy*vy));
 							recGust->setValue (i, j, sqrt(vx*vx+vy*vy));
 						}

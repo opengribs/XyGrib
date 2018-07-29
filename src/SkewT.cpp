@@ -211,7 +211,7 @@ void SkewT::initFromGriddedReader (GriddedReader *reader, double lon, double lat
 	rec = reader->getRecord (DataCode(GRB_PRESSURE,LV_GND_SURF,0), date);
 	if (rec) {
 		surfaceHpa = rec->getInterpolatedValue (DataCode(GRB_PRESSURE,LV_GND_SURF,0), lon, lat);
-		if (surfaceHpa != GRIB_NOTDEF)
+		if (GribDataIsDef(surfaceHpa))
 		{
 			surfaceHpa /= 100.0;	// hpa
 			
@@ -221,7 +221,7 @@ void SkewT::initFromGriddedReader (GriddedReader *reader, double lon, double lat
 			rec = reader->getRecord (DataCode(GRB_DEWPOINT,LV_ABOV_GND,2), date);
 			dewp = rec ? rec->getInterpolatedValue (DataCode(GRB_DEWPOINT,LV_ABOV_GND,2), lon, lat)
 					: GRIB_NOTDEF;
-			if (temp != GRIB_NOTDEF && dewp != GRIB_NOTDEF) {
+			if (GribDataIsDef(temp) && GribDataIsDef(dewp)) {
 				this->addSoundingPoint (surfaceHpa, temp, dewp);
 				hasSurfaceData = true;
 			}
@@ -927,11 +927,11 @@ void  SkewT::draw_comments (QPainter &pnt)
 						: QString("CIN: %1").arg(sounding.CIN,0,'f',0);
 	
 	QString tModelCAPECIN = tr("Model:");
-	if (ModelCAPE!=GRIB_NOTDEF)
+	if (GribDataIsDef(ModelCAPE))
 		tModelCAPECIN += " CAPE: "+QString("%1").arg(qRound(ModelCAPE));
 	else
 		tModelCAPECIN += " CAPE: ---";
-	if (ModelCIN!=GRIB_NOTDEF)
+	if (GribDataIsDef(ModelCIN))
 		tModelCAPECIN += " CIN: "+QString("%1").arg(qRound(ModelCIN));
 	else
 		tModelCAPECIN += "  CIN: ---";

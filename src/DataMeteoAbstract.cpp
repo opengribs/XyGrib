@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 double DataRecordAbstract::dewpointMagnusTetens (double tempK, double humidRel)
 {
 	double dewpoint = GRIB_NOTDEF;
-	if (tempK != GRIB_NOTDEF && humidRel != GRIB_NOTDEF)
+	if (GribDataIsDef(tempK) && GribDataIsDef(humidRel))
 	{
 		double a = 17.27;
 		double b = 237.7;
@@ -50,7 +50,7 @@ double DataRecordAbstract::dewpointMagnusTetens (double tempK, double humidRel)
 double DataRecordAbstract::dewpointHardy (double tempK, double humidRel)
 {
 	double dewpoint = GRIB_NOTDEF;
-	if (tempK != GRIB_NOTDEF && humidRel != GRIB_NOTDEF)
+	if (GribDataIsDef(tempK) && GribDataIsDef(humidRel))
 	{
 		// Hardy B., Thunder Scientific Corporation, Albuquerque, NM, USA 
 		// The proceedings of the Third international Symposium on Humidity & Moisture, 

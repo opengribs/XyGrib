@@ -393,18 +393,18 @@ int MeteoTableDialog::SYLK_addData_waves (SylkFile &slk, int lig,int col, DataCo
 		curlig = lig;
 		if (pf->getWaveValues (dtc.dataType, &ht, &per, &dir)) {
 			if (tht != "") {
-				if (ht != GRIB_NOTDEF) {
+				if (GribDataIsDef(ht)) {
 					txt = Util::formatWaveHeight (ht, false);
 					slk.addCell (curlig, row, txt);
 				}
 				curlig ++;
 			}
-			if (dir != GRIB_NOTDEF) {
+			if (GribDataIsDef(dir)) {
 				txt = Util::formatWaveDirection (dir, false);
 				slk.addCell (curlig, row, txt);
 			}
 			curlig ++;
-			if (per != GRIB_NOTDEF) {
+			if (GribDataIsDef(per)) {
 				txt = Util::formatWavePeriod (per, false);
 				slk.addCell (curlig, row, txt);
 			}
@@ -499,7 +499,7 @@ int MeteoTableDialog::SYLK_addData_gen (SylkFile &slk, int lig,int col, DataCode
 		DataPointInfo *pinfo = *itp;
 		float val = pinfo->getDataValue (dtc);
 		QString txt = "";
-		if (val != GRIB_NOTDEF) {
+		if (GribDataIsDef(val)) {
 			switch (dtc.dataType) {
 				case GRB_SNOW_CATEG   : 
 				case GRB_FRZRAIN_CATEG: 
