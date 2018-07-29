@@ -128,7 +128,7 @@ void Util::setApplicationProxy ()
 		{
 			QNetworkProxyQuery proxq = QNetworkProxyQuery (QUrl("http://"+getServerName()+"/index.php"));
 			QList<QNetworkProxy> list = QNetworkProxyFactory::systemProxyForQuery (proxq);
-			if (list.size() > 0) {
+			if (!list.empty()) {
 				QNetworkProxy pr2 = list [0];
 				QNetworkProxy::setApplicationProxy (pr2);
 			}

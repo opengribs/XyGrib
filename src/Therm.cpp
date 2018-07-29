@@ -258,7 +258,7 @@ void Sounding::addSoundingPointWind (double hpa, double vx, double vy)
 //------------------------------------------------------
 double Sounding::hpaMax ()
 {
-	if (allSounds.size() > 0)
+	if (!allSounds.empty())
 		return allSounds[allSounds.size()-1].hpa;
 	
     return GRIB_NOTDEF;
@@ -266,7 +266,7 @@ double Sounding::hpaMax ()
 //------------------------------------------------------
 double Sounding::hpaMin ()
 {
-	if (allSounds.size() > 0)
+	if (!allSounds.empty())
 		return allSounds[0].hpa;
 	
     return GRIB_NOTDEF;
@@ -605,7 +605,7 @@ void Sounding::compute_convective_levels (double hpa0max, double hpa0min)
 			}
 		}
 	}
-	if (!EL.ok() && curveSaturatedFromLCL.points.size()>0) {
+	if (!EL.ok() && !curveSaturatedFromLCL.points.empty()) {
 		// simulated EL at maximal height (FIXME)
 		// calculate maximal height, on sounding temp curve or on adiabat
 		double pmin = hpaMin ();

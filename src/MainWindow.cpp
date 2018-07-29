@@ -48,7 +48,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 void ThreadNewInstance::run ()
 {
 	QStringList args = QCoreApplication::arguments ();
-	if (args.size() >= 1) {
+	if (!args.empty()) {
 		QString appname = args.at(0);
         //DBGQS (appname);
         QProcess::execute ("\"" + appname + "\" -sw");
@@ -1017,7 +1017,7 @@ void MainWindow::createAllMETARs ()
 	qDeleteAll (listAllMetars);
 	listAllMetars.clear ();
 	bool isVisible = Util::getSetting("showMETARs", true).toBool();
-	if (allMetarsSelected.size() > 0) {
+	if (!allMetarsSelected.empty()) {
 		factory = new MetarWidgetFactory ();
 		assert (factory);
 		for (int i=0; i < allMetarsSelected.size(); i++) {

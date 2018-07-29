@@ -726,7 +726,7 @@ void MapDrawer::draw_Cartouche_Gridded
 				datalist.append (stref);
 			}
 		}
-		if (datalist.size() > 0) {
+		if (!datalist.empty()) {
 			pnt.setFont (fontdate);
 			w = 0;  // get largest string data
 			for (int i = 0; i < datalist.size(); i++) {

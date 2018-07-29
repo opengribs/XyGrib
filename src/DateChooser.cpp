@@ -158,7 +158,7 @@ void DateChooser::setListDates (std::set<time_t> * setDates,
 	nbDates = 0;
 	this->currentDate = currentDate;
 	int current = 0;
-	if (setDates && setDates->size()>0)
+	if (setDates && !setDates->empty())
 	{
 		nbDates = setDates->size();
 		tabDates = new time_t [nbDates];

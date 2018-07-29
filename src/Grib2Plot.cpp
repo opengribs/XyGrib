@@ -48,7 +48,7 @@ void Grib2Plot::loadFile (QString fileName,
     if (gribReader->isOk())
     {
         listDates = gribReader->getListDates();
-        setCurrentDate ( listDates.size()>0 ? *(listDates.begin()) : 0);
+        setCurrentDate ( !listDates.empty() ? *(listDates.begin()) : 0);
     }
 }
 

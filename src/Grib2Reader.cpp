@@ -38,7 +38,7 @@ void Grib2Reader::openFile (const std::string fname,
 	setAllDates.clear ();
 	setAllDataCode.clear ();
 	
-    if (fname != "") {
+    if (!fname.empty()) {
         openFilePriv (fname, nbrecs);
 		createListDates ();
 		ok = getNumberOfDates() > 0;
