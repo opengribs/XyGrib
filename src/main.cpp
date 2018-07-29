@@ -92,7 +92,7 @@ int main (int argc, char *argv[])
     //--
     // check if we have commandline arguments which should replace some INI settings
     //--
-    QStringList cmdLineArgs = app.arguments();
+    QStringList cmdLineArgs = QApplication::arguments();
     
     foreach(QString str, cmdLineArgs)
     {
@@ -234,10 +234,10 @@ int main (int argc, char *argv[])
 	// Set layout orientation
     //-----------------------------------------------
     if (lang == "ar" ) {
-		app.setLayoutDirection (Qt::RightToLeft);
+        QApplication::setLayoutDirection (Qt::RightToLeft);
 	}
 	else {
-		app.setLayoutDirection (Qt::LeftToRight);
+        QApplication::setLayoutDirection (Qt::LeftToRight);
 	}
 
     //====================================================
@@ -316,5 +316,5 @@ int main (int argc, char *argv[])
     // check for new versions
     win->checkUpdates();
 
-	return app.exec();
+    return QApplication::exec();
 }
