@@ -19,6 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "Util.h"
 #include "DataPointInfo.h"
 
+#include <cmath>
+
 DataPointInfo::DataPointInfo (GriddedReader *reader,
                     double x, double y, time_t  date )
 {
@@ -122,8 +124,8 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
 	vx_10m = getValue(DataCode(GRB_WIND_VX,LV_ABOV_GND,10));
 	vy_10m = getValue(DataCode(GRB_WIND_VY,LV_ABOV_GND,10));
     if (GribDataIsDef(vx_10m) && GribDataIsDef(vy_10m)) {
-		windSpeed_10m = sqrt (vx_10m*vx_10m + vy_10m*vy_10m);
-		windDir_10m = - atan2 (-vx_10m, vy_10m) *180.0/M_PI + 180;
+		windSpeed_10m = std::sqrt (vx_10m*vx_10m + vy_10m*vy_10m);
+		windDir_10m = - std::atan2 (-vx_10m, vy_10m) *180.0/M_PI + 180;
 		if (windDir_10m < 0)    windDir_10m += 360.0;
 		else if (windDir_10m >= 360) windDir_10m -= 360.0;
 	}
@@ -137,8 +139,8 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
 	vx_gnd = getValue(DataCode(GRB_WIND_VX,LV_GND_SURF,0));
 	vy_gnd = getValue(DataCode(GRB_WIND_VY,LV_GND_SURF,0));
     if (GribDataIsDef(vx_gnd) && GribDataIsDef(vy_gnd)) {
-		windSpeed_gnd = sqrt (vx_gnd*vx_gnd + vy_gnd*vy_gnd);
-		windDir_gnd = - atan2 (-vx_gnd, vy_gnd) *180.0/M_PI + 180;
+		windSpeed_gnd = std::sqrt (vx_gnd*vx_gnd + vy_gnd*vy_gnd);
+		windDir_gnd = - std::atan2 (-vx_gnd, vy_gnd) *180.0/M_PI + 180;
 		if (windDir_gnd < 0)    windDir_gnd += 360.0;
 		else if (windDir_gnd >= 360) windDir_gnd -= 360.0;
 	}
@@ -166,8 +168,8 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
         cy = getValue(DataCode(GRB_CUR_VY,LV_BLW_SURF,3));
 
     if (GribDataIsDef(cx) && GribDataIsDef(cy)) {
-		currentSpeed = sqrt (cx*cx + cy*cy);
-		currentDir = - atan2 (-cx, cy) *180.0/M_PI;
+		currentSpeed = std::sqrt (cx*cx + cy*cy);
+		currentDir = - std::atan2 (-cx, cy) *180.0/M_PI;
 		if (currentDir < 0)    currentDir += 360.0;
 		else if (currentDir >= 360) currentDir -= 360.0;
 	}
@@ -196,8 +198,8 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
 			hVx [i] = reader->getDateInterpolatedValue (DataCode(GRB_WIND_VX,LV_ISOBARIC,P), x,y,date);
 			hVy [i] = reader->getDateInterpolatedValue (DataCode(GRB_WIND_VY,LV_ISOBARIC,P), x,y,date);
             if (GribDataIsDef(hVx[i]) && GribDataIsDef(hVy[i])) {
-				hWindSpeed[i] = sqrt (hVx[i]*hVx[i] + hVy[i]*hVy[i]);
-				hWindDir[i]   = -atan2 (-hVx[i], hVy[i]) *180.0/M_PI + 180;
+				hWindSpeed[i] = std::sqrt (hVx[i]*hVx[i] + hVy[i]*hVy[i]);
+				hWindDir[i]   = -std::atan2 (-hVx[i], hVy[i]) *180.0/M_PI + 180;
 				if (hWindDir[i] < 0)    hWindDir[i] += 360.0;
 				if (hWindDir[i] >= 360) hWindDir[i] -= 360.0;
 			}
