@@ -370,7 +370,7 @@ g2int g2_getfld(unsigned char *cgrib,g2int ifldnum,g2int unpack,g2int expand,
         //
         if (isecnum == 2) {
           iofst=iofst-40;       // reset offset to beginning of section
-          if (lgfld->local!=0) free(lgfld->local);
+          free(lgfld->local);
           jerr=g2_unpack2(cgrib,&iofst,&lgfld->locallen,&lgfld->local);
           if (jerr != 0) {
             ierr=16;
@@ -384,8 +384,8 @@ g2int g2_getfld(unsigned char *cgrib,g2int ifldnum,g2int unpack,g2int expand,
         //
         if (isecnum == 3) {
           iofst=iofst-40;       // reset offset to beginning of section
-          if (lgfld->igdtmpl!=0) free(lgfld->igdtmpl);
-          if (lgfld->list_opt!=0) free(lgfld->list_opt);
+          free(lgfld->igdtmpl);
+          free(lgfld->list_opt);
           jerr=g2_unpack3(cgrib,&iofst,&igds,&lgfld->igdtmpl,
                           &lgfld->igdtlen,&lgfld->list_opt,&lgfld->num_opt);
           if (jerr == 0) {
@@ -464,7 +464,7 @@ g2int g2_getfld(unsigned char *cgrib,g2int ifldnum,g2int unpack,g2int expand,
                     return(ierr);
                  }
               else                         // get rid of it
-                 if( bmpsave!=0 ) free(bmpsave);
+                 free(bmpsave);
             }
             else {
               ierr=13;
