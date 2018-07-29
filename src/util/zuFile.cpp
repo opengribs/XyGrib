@@ -23,7 +23,7 @@ int    zu_can_read_file(const char *fname)
 {
     ZUFILE *f;
     f = zu_open(fname, "rb");
-    if (f == NULL) {
+    if (f == nullptr) {
         return 0;
     }
     else {
@@ -37,11 +37,11 @@ ZUFILE * zu_open(const char *fname, const char *mode, int type)
 {
     ZUFILE *f;
     if (!fname || strlen(fname)==0) {
-        return NULL;
+        return nullptr;
     }
     f = (ZUFILE *) malloc(sizeof(ZUFILE));
     if (!f) {
-        return NULL;
+        return nullptr;
     }
 
     f->ok = 1;
@@ -74,19 +74,19 @@ ZUFILE * zu_open(const char *fname, const char *mode, int type)
                 if (bzerror != BZ_OK) {
                     BZ2_bzReadClose (&bzerror,(BZFILE*)(f->zfile));
                     fclose(f->faux);
-                    f->zfile = NULL;
+                    f->zfile = nullptr;
                 }
             } else {
-                f->zfile = NULL;
+                f->zfile = nullptr;
             }
             break;
         default :
-            f->zfile = NULL;
+            f->zfile = nullptr;
     }
 
-    if (f->zfile == NULL) {
+    if (f->zfile == nullptr) {
         free(f);
-        f = NULL;
+        f = nullptr;
     }
 
     return f;
@@ -241,7 +241,7 @@ int zu_seek(ZUFILE *f, long offset, int whence)
                 if (bzerror != BZ_OK) {
                     BZ2_bzReadClose (&bzerror,(BZFILE*)(f->zfile));
                     fclose(f->faux);
-                    f->zfile = NULL;
+                    f->zfile = nullptr;
                     f->ok = 0;
                 }
                 res = zu_bzSeekForward(f, offset);
@@ -294,7 +294,7 @@ char * zu_fgets(char *s, int size, ZUFILE *file)
 	}
 	*p = '\0';
 	if (nb == 0)
-		return NULL;
+        return nullptr;
 	else
 		return s;
 }

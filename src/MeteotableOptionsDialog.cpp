@@ -181,7 +181,7 @@ int DialogMeteotableOptions::nbOptionItems (bool visibility)
 //-----------------------------------------------------------------
 MeteotableOptionItem * DialogMeteotableOptions::getOptionItemByCode (int interncode)
 {
-	MeteotableOptionItem *p = 0;
+    MeteotableOptionItem *p = nullptr;
 	for (int i = 0; !p && i<listAllOptionItems.size(); ++i)
 		if (listAllOptionItems.at(i)->interncode == interncode)
 			p = listAllOptionItems.at(i);
@@ -234,12 +234,12 @@ void DialogMeteotableOptions::updateListWidgetsItems ()
 	
 	for (int i = 0; i < listVisibleItems.size(); ++i) {
 		MeteotableOptionItem *opt = listVisibleItems.at(i);
-		QListWidgetItem *item = new QListWidgetItem (opt->name, 0, opt->interncode);
+        QListWidgetItem *item = new QListWidgetItem (opt->name, nullptr, opt->interncode);
 		listVisibleData->addItem (item);
 	}
 	for (int i = 0; i < listHiddenItems.size(); ++i) {
 		MeteotableOptionItem *opt = listHiddenItems.at(i);
-		QListWidgetItem *item = new QListWidgetItem (opt->name, 0, opt->interncode);
+        QListWidgetItem *item = new QListWidgetItem (opt->name, nullptr, opt->interncode);
 		listHiddenData->addItem (item);
 	}
 }

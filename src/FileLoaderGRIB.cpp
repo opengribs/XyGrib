@@ -35,8 +35,8 @@ FileLoaderGRIB::FileLoaderGRIB (QNetworkAccessManager *manager, QWidget *parent)
 	this->parent = parent;
     step = 0;
 	downloadError = false;
-	reply_step1 = NULL;
-	reply_step2 = NULL;
+    reply_step1 = nullptr;
+    reply_step2 = nullptr;
     scriptpath = "/";
 }
 //-------------------------------------------------------------------------------
@@ -44,11 +44,11 @@ FileLoaderGRIB::~FileLoaderGRIB ()
 {
 	if (reply_step1) {
 		reply_step1->deleteLater ();
-		reply_step1 = NULL;
+        reply_step1 = nullptr;
 	}
 	if (reply_step2) {
 		reply_step2->deleteLater ();
-		reply_step2 = NULL;
+        reply_step2 = nullptr;
 	}
 }
 

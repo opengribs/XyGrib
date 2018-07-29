@@ -80,8 +80,8 @@ Terrain::Terrain (QWidget *parent, Projection *proj, GshhsReader *gshhsReader)
 	pleaseWait = false;
 	
     //---------------------------------------------------------------
-	griddedPlot = NULL;
-	taskProgress = NULL;
+    griddedPlot = nullptr;
+    taskProgress = nullptr;
 
     //---------------------------------------------------------------
 	updateGraphicsParameters();
@@ -187,7 +187,7 @@ void Terrain::draw_OrthodromieSegment(QPainter &pnt,
             ortho = new Orthodromie(x0, y0, x1, y1);
             ortho->getMidPoint(&xm, &ym);
             delete ortho;
-            ortho = NULL;
+            ortho = nullptr;
             
             xm *= 180.0/M_PI;
             ym *= 180.0/M_PI;
@@ -314,7 +314,7 @@ void Terrain::setWaveArrowsType  (int type) {
 void Terrain::setMapQuality (int q) {
     indicateWaitingMap();
     if (quality != q) {
-        if (drawer->gshhsReader == NULL)
+        if (drawer->gshhsReader == nullptr)
             return;
         quality = q;
         pleaseWait = true;
@@ -376,7 +376,7 @@ void Terrain::setColorMapData (const DataCode &dtc)
     {
 		Util::setSetting ("colorMapData", DataCodeStr::serialize(dtc));
         drawer->setColorMapData (dtc);
-		if (griddedPlot!=NULL && griddedPlot->isReaderOk()) {
+        if (griddedPlot!=nullptr && griddedPlot->isReaderOk()) {
 			griddedPlot->setUseJetStreamColorMap (
 						Util::getSetting("useJetStreamColorMap", false).toBool());
 		}
@@ -655,9 +655,9 @@ FileDataType Terrain::loadMeteoDataFile (QString fileName, bool zoom)
 	assert (taskProgress);
 	taskProgress->continueDownload = true;
 	
-	if (griddedPlot != NULL) {
+    if (griddedPlot != nullptr) {
 		delete griddedPlot;
-		griddedPlot = NULL;
+        griddedPlot = nullptr;
 	}
 	taskProgress->setMessage (LTASK_OPEN_FILE);
 	taskProgress->setValue (0);
@@ -667,11 +667,11 @@ FileDataType Terrain::loadMeteoDataFile (QString fileName, bool zoom)
     int nbrecs;
     {
 	    ZUFILE *file = zu_open (qPrintable(fileName), "rb", ZU_COMPRESS_AUTO);
-	    if (file == NULL) {
+        if (file == nullptr) {
         	erreur("Can't open file: %s", qPrintable(fileName));
 			taskProgress->setVisible (false);
 			delete taskProgress;
-			taskProgress = NULL;
+            taskProgress = nullptr;
 	        return DATATYPE_NONE;
 		}
 		nbrecs = GribReader::countGribRecords (file, taskProgress);
@@ -679,7 +679,7 @@ FileDataType Terrain::loadMeteoDataFile (QString fileName, bool zoom)
 	}
 
     //----------------------------------------------
-	GriddedPlotter  *griddedPlot_Temp = NULL;
+    GriddedPlotter  *griddedPlot_Temp = nullptr;
 	if (nbrecs>0 && !ok && taskProgress->continueDownload) {	// try to load a GRIB file
 		//DBGQS("try to load a GRIB1 file: "+fileName);
 		taskProgress->setWindowTitle (tr("Open file")+" GRIB");
@@ -694,7 +694,7 @@ FileDataType Terrain::loadMeteoDataFile (QString fileName, bool zoom)
 		}
 		else {
 			delete griddedPlot_Temp;
-			griddedPlot_Temp = NULL;
+            griddedPlot_Temp = nullptr;
 		}
 	}
 	if (nbrecs>0 && !ok && taskProgress->continueDownload) {	// try to load a GRIB2 file
@@ -711,7 +711,7 @@ FileDataType Terrain::loadMeteoDataFile (QString fileName, bool zoom)
 		}
 		else {
 			delete griddedPlot_Temp;
-			griddedPlot_Temp = NULL;
+            griddedPlot_Temp = nullptr;
 		}
 	}
 	
@@ -754,7 +754,7 @@ FileDataType Terrain::loadMeteoDataFile (QString fileName, bool zoom)
 
 	bool cancelled = ! taskProgress->continueDownload;
 	delete taskProgress;
-	taskProgress = NULL;
+    taskProgress = nullptr;
 	
 	if (cancelled)
 		return DATATYPE_CANCELLED;
@@ -769,16 +769,16 @@ GriddedPlotter *Terrain::getGriddedPlotter ()
 		return griddedPlot;
     }
 	else {
-		return NULL;
+        return nullptr;
 	}
 }
 
 //---------------------------------------------------------
 void   Terrain::closeMeteoDataFile()
 {
-	if (griddedPlot != NULL) {
+    if (griddedPlot != nullptr) {
 		delete griddedPlot;
-		griddedPlot = NULL;
+        griddedPlot = nullptr;
 	}
 	currentFileType = DATATYPE_NONE;
 	mustRedraw = true;
@@ -791,7 +791,7 @@ void Terrain::zoomOnFileZone ()
 	double x0,y0, x1,y1;
 	bool ok = false;
     if (currentFileType == DATATYPE_GRIB) {
-		if (griddedPlot!=NULL && griddedPlot->isReaderOk()) {
+        if (griddedPlot!=nullptr && griddedPlot->isReaderOk()) {
 			ok = griddedPlot->getReader()->getZoneExtension(&x0,&y0, &x1,&y1);
 		}
     }
@@ -1189,7 +1189,7 @@ QPixmap * Terrain::createPixmap (time_t date, int width, int height)
 {
 	Projection *scaledproj = proj->clone(); 
 	MapDrawer  *scaleddrawer = new MapDrawer (*drawer);
-	QPixmap *pixmap = NULL;
+    QPixmap *pixmap = nullptr;
 	
 	if (scaledproj && scaleddrawer)
 	{
@@ -1213,7 +1213,7 @@ QPixmap * Terrain::createPixmap (time_t date, int width, int height)
 				pixmap = scaleddrawer->createPixmap_GriddedData ( 
 									date, 
 									false, 
-									NULL, 
+                                    nullptr,
 									scaledproj, 
 									getListPOIs() );
 		}

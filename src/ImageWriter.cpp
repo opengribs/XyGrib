@@ -108,8 +108,8 @@ ImageWriter::~ImageWriter ()
 QImage * ImageWriter::createImage (
 			time_t date, ImageWriterDialog &dial, int Winit, int Hinit)
 {
-	QPixmap *pixmap = NULL;
-	QImage *image = NULL;
+    QPixmap *pixmap = nullptr;
+    QImage *image = nullptr;
 	int W = dial.getW ();
 	int H = dial.getH ();
 	

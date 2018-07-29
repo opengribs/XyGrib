@@ -46,10 +46,10 @@ void DateChooserPopup::setText (QString txt)
 //=====================================================================
 DateChooser::DateChooser ()
 {	
-	tabDates = NULL;
+    tabDates = nullptr;
 	nbDates  = 0;
 	currentDate = 0;
-	plotter  = NULL;
+    plotter  = nullptr;
 	markToday = true;
 	
     QVBoxLayout *lay = new QVBoxLayout();
@@ -65,7 +65,7 @@ DateChooser::DateChooser ()
 	slider->setSingleStep (0);	// ignore keyboard events
 	slider->setPageStep (0);
 	
-	popup = new DateChooserPopup (NULL);
+    popup = new DateChooserPopup (nullptr);
     assert (popup);
 	popup->setVisible (false);
 	popup->raise ();
@@ -80,8 +80,7 @@ DateChooser::DateChooser ()
 //------------------------------------------------------------------------
 DateChooser::~DateChooser ()
 {	
-	if (tabDates)
-		delete [] tabDates;
+    delete [] tabDates;
 }
 
 //------------------------------------------------------------------------
@@ -129,7 +128,7 @@ void DateChooser::reset ()
 {
 	if (tabDates) {
 		delete [] tabDates;
-		tabDates = NULL;
+        tabDates = nullptr;
 	}
 	nbDates = 0;
 	currentDate = 0;

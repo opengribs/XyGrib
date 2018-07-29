@@ -82,7 +82,7 @@ void GribReader::clean_vector (std::vector<GribRecord *> &ls)
 //---------------------------------------------------------------------------------
 void GribReader::storeRecordInMap (GribRecord *rec)
 {
-	if (rec==NULL || !rec->isOk())
+    if (rec==nullptr || !rec->isOk())
 		return;
 //    DBG ("%g %g   %g %g", rec->getXmin(),rec->getXmax(), getYmin(),getYmax());
 
@@ -378,7 +378,7 @@ void GribReader::readAllGribRecords (int nbrecs)
 void  GribReader::computeAccumulationRecords (DataCode dtc)
 {
     std::set<time_t>  setdates = getListDates();
-    GribRecord *prev = 0;
+    GribRecord *prev = nullptr;
     int p1 = 0, p2 = 0;
 
     if (setdates.empty())
@@ -587,22 +587,20 @@ void GribReader::computeMissingData ()
 			if (recModel != nullptr)
 			{
 				GribRecord *recHumidRel = new GribRecord(*recModel);
-				if (recHumidRel != NULL) 
-				{
-					recHumidRel->setDataType (GRB_HUMID_REL);
-					for (int i=0; i<recModel->getNi(); i++)
-					{
-						for (int j=0; j<recModel->getNj(); j++)
-						{
-							double x = recModel->getX(i);
-							double y = recModel->getY(j);
-							double dp = computeHumidRel (x, y, date);
-							recHumidRel->setValue(i, j, dp);
-						}
-					}
-					storeRecordInMap (recHumidRel);
-				}
-			}
+
+                recHumidRel->setDataType (GRB_HUMID_REL);
+                for (int i=0; i<recModel->getNi(); i++)
+                {
+                    for (int j=0; j<recModel->getNj(); j++)
+                    {
+                        double x = recModel->getX(i);
+                        double y = recModel->getY(j);
+                        double dp = computeHumidRel (x, y, date);
+                        recHumidRel->setValue(i, j, dp);
+                    }
+                }
+                storeRecordInMap (recHumidRel);
+            }
 		}
 	}
 	
@@ -623,26 +621,23 @@ void GribReader::computeMissingData ()
 			{
 				time_t date = *iter;
 				GribRecord *recModel = getRecord (DataCode(GRB_TEMP,LV_ABOV_GND,2),date);
-				if (recModel != NULL)
+                if (recModel != nullptr)
 				{
 					// Crée un GribRecord avec les dewpoints calculés
 					GribRecord *recDewpoint = new GribRecord(*recModel);
-					if (recDewpoint != NULL) 
-					{
-						recDewpoint->setDataType (GRB_DEWPOINT);
-						for (int i=0; i<recModel->getNi(); i++)
-						{
-							for (int j=0; j<recModel->getNj(); j++)
-							{
-								double x = recModel->getX(i);
-								double y = recModel->getY(j);
-								double dp = computeDewPoint(x, y, date);
-								recDewpoint->setValue(i, j, dp);
-							}
-						}
-						storeRecordInMap (recDewpoint);
-					}
-				}
+                    recDewpoint->setDataType (GRB_DEWPOINT);
+                    for (int i=0; i<recModel->getNi(); i++)
+                    {
+                        for (int j=0; j<recModel->getNj(); j++)
+                        {
+                            double x = recModel->getX(i);
+                            double y = recModel->getY(j);
+                            double dp = computeDewPoint(x, y, date);
+                            recDewpoint->setValue(i, j, dp);
+                        }
+                    }
+                    storeRecordInMap (recDewpoint);
+                }
 			}
 		}
 	}
@@ -670,32 +665,29 @@ void GribReader::computeMissingData ()
 				if (recHumidRel && recTemp)
 				{  // Crée un GribRecord avec les theta-e calculées
 					GribRecord *recThetaE = new GribRecord (*recTemp);
-					if (recThetaE) 
-					{
-						recThetaE->setDuplicated (false);
-						recThetaE->setDataType (GRB_PRV_THETA_E);
-						double P = -1;
-						if (altitude.levelType == LV_ISOBARIC)
-							P = altitude.levelValue;
-						else if (altitude.levelType == LV_ABOV_GND)
-							P = Therm::m2hpa (altitude.levelValue);
-						if (P > 0) {
-							for (int i=0; i<recThetaE->getNi(); i++)
-							{
-								for (int j=0; j<recThetaE->getNj(); j++)
-								{
-									double T = recTemp->getValue (i, j);
-									double RH = recHumidRel->getValue (i, j);
-									double thetae = Therm::thetaEfromHR (T,P,RH);
-									recThetaE->setValue (i, j, thetae);
-									if (thetae > thmax) thmax=thetae;
-									if (thetae < thmin) thmin=thetae;
-								}
-							}
-							storeRecordInMap (recThetaE);
-						}
-					}
-				}
+                    recThetaE->setDuplicated (false);
+                    recThetaE->setDataType (GRB_PRV_THETA_E);
+                    double P = -1;
+                    if (altitude.levelType == LV_ISOBARIC)
+                        P = altitude.levelValue;
+                    else if (altitude.levelType == LV_ABOV_GND)
+                        P = Therm::m2hpa (altitude.levelValue);
+                    if (P > 0) {
+                        for (int i=0; i<recThetaE->getNi(); i++)
+                        {
+                            for (int j=0; j<recThetaE->getNj(); j++)
+                            {
+                                double T = recTemp->getValue (i, j);
+                                double RH = recHumidRel->getValue (i, j);
+                                double thetae = Therm::thetaEfromHR (T,P,RH);
+                                recThetaE->setValue (i, j, thetae);
+                                if (thetae > thmax) thmax=thetae;
+                                if (thetae < thmin) thmin=thetae;
+                            }
+                        }
+                        storeRecordInMap (recThetaE);
+                    }
+                }
 			}
 		}
 		//DBG("%g %g", thmin-273.15,thmax-273.15);
@@ -826,10 +818,10 @@ void GribReader::findGribsAroundDate (DataCode dtc, time_t date,
 {
 	// Cherche les GribRecord qui encadrent la date
 	std::vector<GribRecord *> *ls = getListOfGribRecords (dtc);
-	*before = NULL;
-	*after  = NULL;
+    *before = nullptr;
+    *after  = nullptr;
 	zuint nb = ls->size();
-	for (zuint i=0; i<nb && *before==NULL && *after==NULL; i++)
+    for (zuint i=0; i<nb && *before==nullptr && *after==nullptr; i++)
 	{
 		GribRecord *rec = (*ls)[i];
 		assert(rec->isOk());
@@ -840,7 +832,7 @@ void GribReader::findGribsAroundDate (DataCode dtc, time_t date,
 		else if (rec->getRecordCurrentDate() < date) {
 			*before = rec;
 		}
-		else if (rec->getRecordCurrentDate() > date  &&  *before != NULL) {
+        else if (rec->getRecordCurrentDate() > date  &&  *before != nullptr) {
 			*after = rec;
 		}
 	}
@@ -851,7 +843,7 @@ double 	GribReader::get2GribsInterpolatedValueByDate (
 				GribRecord *before, GribRecord *after)
 {
 	double val = GRIB_NOTDEF;
-	if (before!=NULL && after!=NULL) {
+    if (before!=nullptr && after!=nullptr) {
 		if (before == after) {
 			val = before->getInterpolatedValue(px, py);
 		}
@@ -961,7 +953,7 @@ void GribReader::openFilePriv (const std::string fname, int nbrecs)
     // Ouverture du fichier
     //--------------------------------------------------------
     file = zu_open (fname.c_str(), "rb", ZU_COMPRESS_AUTO);
-    if (file == NULL) {
+    if (file == nullptr) {
         erreur("Can't open file: %s", fname.c_str());
         return;
     }

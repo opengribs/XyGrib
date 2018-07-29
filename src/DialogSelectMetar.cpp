@@ -129,9 +129,9 @@ void DialogSelectMetar::make_metar_tree ()
 	QString curState = "";
 	QString name = "";
 	QTreeWidgetItem *item;
-	QTreeWidgetItem *itemCountry = NULL;
-	QTreeWidgetItem *itemState = NULL;
-	QTreeWidgetItem *itemRoot = NULL;
+    QTreeWidgetItem *itemCountry = nullptr;
+    QTreeWidgetItem *itemState = nullptr;
+    QTreeWidgetItem *itemRoot = nullptr;
 	for (int i=0; i < allAirports.size(); i++)
 	{
 		Airport a = allAirports.at(i);

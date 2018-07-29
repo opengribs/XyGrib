@@ -32,8 +32,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //===========================================================
 MapDrawer::MapDrawer(GshhsReader *gshhsReader)
 {
-    imgEarth = NULL;
-    imgAll   = NULL;
+    imgEarth = nullptr;
+    imgAll   = nullptr;
 
     gisReader = new GisReader ();
     assert (gisReader);
@@ -48,8 +48,8 @@ MapDrawer::MapDrawer(GshhsReader *gshhsReader)
 //---------------------------------------------------------------------
 MapDrawer::MapDrawer(const MapDrawer &model)
 {
-    imgEarth = NULL;
-    imgAll   = NULL;
+    imgEarth = nullptr;
+    imgAll   = nullptr;
 	gisReader = model.gisReader;
     gisReaderIsNew = false;		// don't delete pointer
     
@@ -76,18 +76,10 @@ MapDrawer::MapDrawer(const MapDrawer &model)
 //---------------------------------------------------------------------
 MapDrawer::~MapDrawer()
 {
-	if (gisReaderIsNew) {
-		delete gisReader;
-	}
-	if (gshhsReaderIsNew) {
-		delete gshhsReader;
-	}
-	if (imgAll != NULL) {
-		delete imgAll;
-	}
-	if (imgEarth != NULL) {
-		delete imgEarth;
-	}
+    delete gisReader;
+    delete gshhsReader;
+    delete imgAll;
+    delete imgEarth;
 }
 
 //===========================================================
@@ -225,10 +217,8 @@ void MapDrawer::setGeopotentialData (const DataCode &dtc)
 //---------------------------------------------------------------------
 void MapDrawer::draw_Map_Background(bool isEarthMapValid, Projection *proj)
 {
-	if (imgAll != NULL) {
-		delete imgAll;
-		imgAll = NULL;
-	}
+
+    delete imgAll;
 	imgAll = new QPixmap(proj->getW(), proj->getH());
 	assert(imgAll);
 
@@ -237,15 +227,12 @@ void MapDrawer::draw_Map_Background(bool isEarthMapValid, Projection *proj)
 
 	if (!isEarthMapValid)
 	{
-		if (imgEarth != NULL) {
-			delete imgEarth;
-			imgEarth = NULL;
-		}
 
+        delete imgEarth;
 		imgEarth = new QPixmap(proj->getW(), proj->getH());
 		assert(imgEarth);
 
-		if (gshhsReader != NULL)
+        if (gshhsReader != nullptr)
 		{
 			QPainter pnt1(imgEarth);
 			pnt1.setRenderHint(QPainter::Antialiasing, false);
@@ -258,7 +245,7 @@ void MapDrawer::draw_Map_Background(bool isEarthMapValid, Projection *proj)
 //----------------------------------------------------------------------
 void MapDrawer::draw_Map_Foreground(QPainter &pnt, Projection *proj)
 {
-	if (gshhsReader != NULL)
+    if (gshhsReader != nullptr)
 	{
 		pnt.setPen(seaBordersPen);
 		gshhsReader->drawSeaBorders(pnt, proj);
@@ -784,9 +771,7 @@ QPixmap * MapDrawer::createPixmap_GriddedData (
 						QList<POI*> lspois )
 {
 	QPixmap *pixmap = new QPixmap(proj->getW(), proj->getH());
-	if (pixmap == NULL) {
-		return NULL;
-	}
+
 	QPainter pnt;
 	pnt.begin (pixmap);
 	

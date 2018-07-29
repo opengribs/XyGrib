@@ -8,7 +8,8 @@ SkewTWindow::SkewTWindow (SkewT *skewt)
     //dark skin?
     if (Util::getSetting("showDarkSkin", true).toBool())
         this->setStyleSheet(stStyleSheet);
-	createToolBar ();
+
+    createToolBar ();
 	
 	QScrollArea *scrollarea = new QScrollArea (this);
 	scrollarea->setWidget (skewt);
@@ -163,7 +164,7 @@ void SkewTWindow::actionsCommonSlot ()
 		this->destroy ();
 		if (skewt) {
 			delete skewt;
-			skewt = NULL;
+            skewt = nullptr;
 		}
 	}	
 	else if (send == cbTempMax) {

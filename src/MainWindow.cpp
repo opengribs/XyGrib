@@ -658,7 +658,7 @@ void MainWindow::slotMap_Projection(QAction *act)
     else if (act == mb->acMap_PROJ_EQU_CYL)
         idproj = Projection::PROJ_EQU_CYL;
 
-	double x,y;    // current position
+    double x,y;    // current position
 	proj->screen2map(proj->getW()/2,proj->getH()/2, &x, &y);
 
 	Util::setSetting("projectionId", idproj);
@@ -1143,7 +1143,7 @@ void MainWindow::slotMap_Quality()
     else if (act == mb->acMap_Quality5)
         quality = 4;
 
-	Util::setSetting("gshhsMapQuality", quality);
+    Util::setSetting("gshhsMapQuality", quality);
 	emit signalMapQuality(quality);
 }
 
@@ -1966,7 +1966,7 @@ void MainWindow::slot_GroupColorMap (QAction *act)
     else
     	dtc.set (GRB_TYPE_NOT_DEFINED);
 
-	setMenubarAltitudeData (dtc);
+    setMenubarAltitudeData (dtc);
     terre->setColorMapData (dtc);
 	if (colorScaleWidget && terre->getGriddedPlotter() && terre->getGriddedPlotter()->isReaderOk()) {
  		colorScaleWidget->setColorScale (terre->getGriddedPlotter(), dtc);

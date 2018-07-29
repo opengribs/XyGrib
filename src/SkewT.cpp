@@ -13,8 +13,8 @@ SkewT::SkewT (int W, int H, QWidget *parent) : QWidget (parent)
 	this->W = W;
 	this->H = H;
 	setFixedSize (W, H);
-	globalPixmap = NULL;
-	reader = NULL;
+    globalPixmap = nullptr;
+    reader = nullptr;
 	printerRendering = false;
 	hasSurfaceData = false;
 	
@@ -734,7 +734,7 @@ void SkewT::setTempPressLimits (double tempCMax, double hpaMin)
 	Util::cleanMapPointers (mapSaturatedAdiabats);
 	if (globalPixmap) {
 		delete globalPixmap;
-		globalPixmap = NULL;
+        globalPixmap = nullptr;
 	}
 	update ();
 }

@@ -31,7 +31,7 @@ DialogServerStatus::DialogServerStatus
 {
 	QString page;
 	downloadError = false;
-	reply_step1 = NULL;
+    reply_step1 = nullptr;
     page = "/getstatus.php";
     setWindowTitle (tr("Server"));
     QFrame *ftmp;
@@ -83,7 +83,7 @@ DialogServerStatus::DialogServerStatus
 DialogServerStatus::~DialogServerStatus() {
 	if (reply_step1) {
 		reply_step1->deleteLater ();
-		reply_step1 = NULL;
+        reply_step1 = nullptr;
 	}
 }
 

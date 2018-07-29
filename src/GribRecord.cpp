@@ -456,21 +456,21 @@ GribRecord::GribRecord (const GribRecord &rec)
     *this = rec;
 	setDuplicated (true);
     // recopie les champs de bits
-    if (rec.data != NULL) {
+    if (rec.data != nullptr) {
         int size = rec.Ni*rec.Nj;
         this->data = new double[size];
 		assert (this->data);
         for (int i=0; i<size; i++)
             this->data[i] = rec.data[i];
     }
-    if (rec.BMSbits != NULL) {
+    if (rec.BMSbits != nullptr) {
         int size = rec.sectionSize3-6;
         this->BMSbits = new zuchar[size];
 		assert (this->BMSbits);
         for (int i=0; i<size; i++)
             this->BMSbits[i] = rec.BMSbits[i];
     }
-    if (rec.boolBMStab != NULL) {
+    if (rec.boolBMStab != nullptr) {
         int size = rec.Ni*rec.Nj;
         this->boolBMStab = new bool[size];
 		assert (this->boolBMStab);
@@ -482,19 +482,9 @@ GribRecord::GribRecord (const GribRecord &rec)
 //--------------------------------------------------------------------------
 GribRecord::~GribRecord()
 {
-    if (data) {
-        delete [] data;
-        data = NULL;
-    }
-    if (BMSbits) {
-        delete [] BMSbits;
-        BMSbits = NULL;
-    }
-	if (boolBMStab) {
-        delete [] boolBMStab;
-        boolBMStab = NULL;
-    }
-	
+    delete [] data;
+    delete [] BMSbits;
+    delete [] boolBMStab;
 }
 //------------------------------------------------------------------------------
 void  GribRecord::checkOrientation ()
@@ -625,10 +615,10 @@ void GribRecord::average(const GribRecord &rec)
     // rec  : 0-11
     // compute average 11-12
 
-    if (rec.data == 0 || !rec.isOk())
+    if (rec.data == nullptr || !rec.isOk())
         return;
 
-    if (data == 0 || !isOk())
+    if (data == nullptr || !isOk())
         return;
 
     if (Ni != rec.Ni || Nj != rec.Nj)

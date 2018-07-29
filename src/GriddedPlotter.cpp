@@ -151,7 +151,7 @@ void GriddedPlotter::drawCurrentArrow (QPainter &pnt, int i, int j, double cx, d
     else
         ytt = tf_a*vkn + tf_b;
 
-	currentArrowColor = QColor(0,0,255); // color blue
+    currentArrowColor = QColor(0,0,255); // color blue
 	coefLen = 1.4*coefLen;	
 	
     QPen pen (currentArrowColor);
@@ -597,19 +597,17 @@ void GriddedPlotter::complete_listIsolines (
     if (rec == nullptr)
         return;
 
-	int deltaI, deltaJ;
-	analyseVisibleGridDensity (proj, rec, 16, &deltaI, &deltaJ);
+    int deltaI, deltaJ;
+    analyseVisibleGridDensity (proj, rec, 16, &deltaI, &deltaJ);
 	//DBG("deltaI=%d deltaJ=%d", deltaI, deltaJ);
 	IsoLine *iso;
 	for (double val=dataMin; val<=dataMax; val += dataStep)
 	{
 		iso = new IsoLine (dtc, val, rec, deltaI, deltaJ);
-		if (iso != NULL) {
-			if (iso->getNbSegments()>0)
-				listIsolines->push_back (iso);
-			else
-				delete iso;
-		}
+        if (iso->getNbSegments()>0)
+            listIsolines->push_back (iso);
+        else
+            delete iso;
 	}
 }
 //-----------------------------------------------------------------
@@ -650,7 +648,7 @@ void GriddedPlotter::draw_DATA_Labels (
     if (reader == nullptr)
         return;
 
-	GriddedRecord *rec = reader->getRecord (dtc, currentDate);
+    GriddedRecord *rec = reader->getRecord (dtc, currentDate);
 	if (rec == nullptr)
 		return;
 
@@ -686,7 +684,8 @@ void GriddedPlotter::draw_DATA_MinMax (
 	GriddedReader *reader = getReader();
     if (reader == nullptr)
         return;
-	GriddedRecord *rec = reader->getRecord (dtc, currentDate);
+
+    GriddedRecord *rec = reader->getRecord (dtc, currentDate);
 	if (rec == nullptr)
 		return;
 

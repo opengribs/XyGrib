@@ -746,25 +746,25 @@ QDateTime Util::applyTimeZone (time_t t, QString *suffix)
 	QString tmzone =  Util::getSetting("timeZone", "UTC").toString();
 	if (tmzone == "LOC") {
 		dt = dt.toLocalTime();
-		if (suffix != NULL)
+        if (suffix != nullptr)
 			*suffix = "LOC";
 	}
 	else if (tmzone.left(4)=="UTC+" || tmzone.left(4)=="UTC-")
 	{    // UTC-12 UTC-11 ... UTC+1 UTC+2 UTC+3 ... UTC+14
 		int dec = tmzone.mid(3,-1).toInt();
 		if (dec==0 || dec<-12 || dec>14) {
-			if (suffix != NULL)
+            if (suffix != nullptr)
 				*suffix = "UTC";
 		}
 		else {
 			dt = dt.addSecs(dec*3600);
-			if (suffix != NULL)
+            if (suffix != nullptr)
 				*suffix = tmzone;
 		}
 	}
 	else
 	{	// default timezone : UTC
-		if (suffix != NULL)
+        if (suffix != nullptr)
 			*suffix = "UTC";
 	}
     
