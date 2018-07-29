@@ -378,7 +378,7 @@ GribAnimator::GribAnimator (Terrain *terre)
     if (Util::getSetting("showDarkSkin", true).toBool())
         this->setStyleSheet(animStyleSheet);
 
-	this->terre = terre;
+    this->terre = terre;
 	this->gribplot = terre->getGriddedPlotter();
 	
 	this->proj     = terre->getProjection()->clone();
