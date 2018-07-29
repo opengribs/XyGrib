@@ -11,7 +11,7 @@ void sbit(unsigned char *out,g2int *in,g2int iskip,g2int nbyte)
 }
 
 
-void gbits(unsigned char *in,g2int *iout,g2int iskip,g2int nbyte,g2int nskip,
+void gbits(const unsigned char *in, g2int *iout,g2int iskip,g2int nbyte,g2int nskip,
            g2int n)
 /*          Get bits - unpack bits:  Extract arbitrary size values from a
 /          packed bit string, right justifying each value in the unpacked
@@ -61,7 +61,7 @@ void gbits(unsigned char *in,g2int *iout,g2int iskip,g2int nbyte,g2int nskip,
 }
 
 
-void sbits(unsigned char *out,g2int *in,g2int iskip,g2int nbyte,g2int nskip,
+void sbits(unsigned char *out,const g2int *in,g2int iskip,g2int nbyte,g2int nskip,
            g2int n)
 /*C          Store bits - pack bits:  Put arbitrary size values into a
 /          packed bit string, taking the low order bits from each value

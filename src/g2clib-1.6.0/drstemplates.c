@@ -101,7 +101,7 @@ gtemplate *getdrstemplate(g2int number)
          return(0);        //NULL
 }
 
-gtemplate *extdrstemplate(g2int number,g2int *list)
+gtemplate *extdrstemplate(g2int number,const g2int *list)
 /*!$$$  SUBPROGRAM DOCUMENTATION BLOCK
 !                .      .    .                                       .
 ! SUBPROGRAM:    extdrstemplate 

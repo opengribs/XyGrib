@@ -114,7 +114,7 @@ gtemplate *getpdstemplate(g2int number)
 }
          
         
-gtemplate *extpdstemplate(g2int number,g2int *list)
+gtemplate *extpdstemplate(g2int number,const g2int *list)
 ///$$$  SUBPROGRAM DOCUMENTATION BLOCK
 //                .      .    .                                       .
 // SUBPROGRAM:    extpdstemplate 

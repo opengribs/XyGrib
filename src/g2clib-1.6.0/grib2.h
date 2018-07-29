@@ -223,20 +223,20 @@ g2int g2_gribend(unsigned char *);
 /*  Prototypes for supporting routines  */
 extern double int_power(double, g2int );
 extern void mkieee(g2float *,g2int *,g2int);
-void rdieee(g2int *,g2float *,g2int );
+void rdieee(const g2int *, g2float *, g2int );
 extern gtemplate *getpdstemplate(g2int);
-extern gtemplate *extpdstemplate(g2int,g2int *);
+extern gtemplate *extpdstemplate(g2int, const g2int *);
 extern gtemplate *getdrstemplate(g2int);
-extern gtemplate *extdrstemplate(g2int,g2int *);
+extern gtemplate *extdrstemplate(g2int, const g2int *);
 extern gtemplate *getgridtemplate(g2int);
-extern gtemplate *extgridtemplate(g2int,g2int *);
+extern gtemplate *extgridtemplate(g2int, const g2int *);
 extern void simpack(g2float *,g2int,g2int *,unsigned char *,g2int *);
 extern void compack(g2float *,g2int,g2int,g2int *,unsigned char *,g2int *);
 void misspack(g2float *,g2int ,g2int ,g2int *, unsigned char *, g2int *);
 void gbit(unsigned char *,g2int *,g2int ,g2int );
 void sbit(unsigned char *,g2int *,g2int ,g2int );
-void gbits(unsigned char *,g2int *,g2int ,g2int ,g2int ,g2int );
-void sbits(unsigned char *,g2int *,g2int ,g2int ,g2int ,g2int );
+void gbits(const unsigned char *,  g2int *, g2int , g2int , g2int , g2int );
+void sbits(unsigned char *, const g2int *, g2int , g2int , g2int , g2int );
 
 int pack_gp(g2int *, g2int *, g2int *,
             g2int *, g2int *, g2int *, g2int *, g2int *,
