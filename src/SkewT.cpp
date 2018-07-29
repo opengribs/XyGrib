@@ -571,7 +571,7 @@ QPointF SkewT::tempPressPoint (double tempC, double hpa)
 	// 45 degrees projection
 	double hp = H - jp - DY2;
 	double i1 = i0 + hp;
-	return QPointF (i1, jp);
+	return {i1, jp};
 }
 //--------------------------------------------------------
 QPointF SkewT::tempPressPoint (const TPoint &tp)
@@ -621,7 +621,7 @@ void  PersPath::fromTPCurve (TPCurve *curve)
 //------------------------------------------------------
 QRect SkewT::getDiagramRectangle () const
 {
-	return QRect(DX1,DY1, W-DX1-DX2, H-DY1-DY2);
+	return {DX1,DY1, W-DX1-DX2, H-DY1-DY2};
 }
 //------------------------------------------------------
 void SkewT::addSoundingPoint (double hpa, double tempK, double dewpK)

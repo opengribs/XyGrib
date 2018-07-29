@@ -279,7 +279,7 @@ SoundingPointWind Sounding::getWindByAlt (double hpa)
 			return pw;
 		}
 	}
-	return SoundingPointWind ();
+	return {};
 }
 //------------------------------------------------------
 double Sounding::getTempCByAlt (double hpa)
