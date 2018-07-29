@@ -107,8 +107,8 @@ MeteoTableDialog::MeteoTableDialog (
 	this->lon = lon;
 	this->lat = lat;
 	this->locationName = locationName;
-	optionsDialog = NULL;
-	dataTable = NULL;
+    optionsDialog = nullptr;
+    dataTable = nullptr;
     this->setObjectName("mtd");
     if (Util::getSetting("showDarkSkin", true).toBool())
         this->setStyleSheet(mtStyleSheet);
@@ -120,7 +120,7 @@ MeteoTableDialog::MeteoTableDialog (
     }
     GriddedReader *reader = plotter->getReader();
     GriddedRecord *record;
-	if ((record=reader->getFirstRecord()) == NULL) {
+    if ((record=reader->getFirstRecord()) == nullptr) {
         QMessageBox::critical (this,
             	tr("Error"),tr("Can't create Meteotable\n\nGRIB area undefined."));
 		return;
@@ -208,8 +208,7 @@ MeteoTableDialog::MeteoTableDialog (
 MeteoTableDialog::~MeteoTableDialog()
 {
 	Util::setSetting("meteoTableDialogSize", size());
-	if (optionsDialog)
-		delete optionsDialog;
+    delete optionsDialog;
 }
 
 //-----------------------------------------

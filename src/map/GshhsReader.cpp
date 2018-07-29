@@ -51,7 +51,7 @@ GshhsPolygon::GshhsPolygon(ZUFILE *file_)
         
     	// force l'Antarctic à être un "rectangle" qui passe par le pôle
         if (antarctic) {
-        	lsPoints.insert (lsPoints.begin(), 2, (GshhsPoint*)0);
+            lsPoints.insert (lsPoints.begin(), 2, nullptr);
         	lsPoints [1] = new GshhsPoint(360, y);
         	lsPoints [0] = new GshhsPoint(360,-90);
             lsPoints.push_back(new GshhsPoint(0,-90));
@@ -156,8 +156,7 @@ GshhsReader::GshhsReader (const GshhsReader &model)
 // Destructeur
 GshhsReader::~GshhsReader () 
 {
-	if (gshhsRangsReader)
-		delete gshhsRangsReader;
+    delete gshhsRangsReader;
 	if (isListCreator)
 		clearLists();
 }
@@ -170,27 +169,27 @@ void GshhsReader::clearLists ()
     {
         for (itp=lsPoly_level1[qual]->begin(); itp != lsPoly_level1[qual]->end(); itp++) {
             delete *itp;
-            *itp = NULL;
+            *itp = nullptr;
         }
         for (itp=lsPoly_level2[qual]->begin(); itp != lsPoly_level2[qual]->end(); itp++) {
             delete *itp;
-            *itp = NULL;
+            *itp = nullptr;
         }
         for (itp=lsPoly_level3[qual]->begin(); itp != lsPoly_level3[qual]->end(); itp++) {
             delete *itp;
-            *itp = NULL;
+            *itp = nullptr;
         }
         for (itp=lsPoly_level4[qual]->begin(); itp != lsPoly_level4[qual]->end(); itp++) {
             delete *itp;
-            *itp = NULL;
+            *itp = nullptr;
         }
         for (itp=lsPoly_boundaries[qual]->begin(); itp != lsPoly_boundaries[qual]->end(); itp++) {
             delete *itp;
-            *itp = NULL;
+            *itp = nullptr;
         }
         for (itp=lsPoly_rivers[qual]->begin(); itp != lsPoly_rivers[qual]->end(); itp++) {
             delete *itp;
-            *itp = NULL;
+            *itp = nullptr;
         }
         lsPoly_level1[qual]->clear();
         lsPoly_level2[qual]->clear();
@@ -262,7 +261,7 @@ void GshhsReader::readGshhsFiles()
 	if (lsPoly_level1[quality]->size() == 0) { // on ne lit qu'une fois le fichier
 		fname = getFileName_gshhs(quality);
 		file = zu_open(fname.c_str(), "rb");
-		if (file != NULL) {
+        if (file != nullptr) {
 			
 			ok = true;
 			while (ok) {
@@ -313,7 +312,7 @@ void GshhsReader::setQuality(int quality_) // 5 levels: 0=low ... 4=full
     if (lsPoly_boundaries[quality]->size() == 0) { // on ne lit qu'une fois le fichier
         fname = getFileName_boundaries(quality);
         file = zu_open(fname.c_str(), "rb");
-        if (file != NULL) {
+        if (file != nullptr) {
             ok = true;
             while (ok) {
                 GshhsPolygon *poly = new GshhsPolygon_WDB(file);
@@ -332,7 +331,7 @@ void GshhsReader::setQuality(int quality_) // 5 levels: 0=low ... 4=full
     if (lsPoly_rivers[quality]->size() == 0) { // on ne lit qu'une fois le fichier
         fname = getFileName_rivers(quality);
         file = zu_open(fname.c_str(), "rb");
-        if (file != NULL) {
+        if (file != nullptr) {
             ok = true;
             while (ok) {
                 GshhsPolygon *poly = new GshhsPolygon_WDB(file);
@@ -422,12 +421,11 @@ void GshhsReader::GsshDrawPolygons(QPainter &pnt, std::vector <GshhsPolygon*> &l
 {
     std::vector <GshhsPolygon*>::iterator iter;
     GshhsPolygon *pol;
-    QPoint *pts = NULL;
     int i;
     int nbp;
     
     int nbmax = 10000;
-    pts = new QPoint[nbmax];
+    QPoint *pts = new QPoint[nbmax];
     assert(pts);
     
     for  (i=0, iter=lst.begin(); iter!=lst.end(); iter++,i++) {
@@ -460,12 +458,11 @@ void GshhsReader::GsshDrawLines(QPainter &pnt, std::vector <GshhsPolygon*> &lst,
 {
     std::vector <GshhsPolygon*>::iterator iter;
     GshhsPolygon *pol;
-    QPoint *pts = NULL;
     int i;
     int nbp;
     
     int nbmax = 10000;
-    pts = new QPoint[nbmax];
+    QPoint *pts = new QPoint[nbmax];
     assert(pts);
     
     for  (i=0, iter=lst.begin(); iter!=lst.end(); iter++,i++) {

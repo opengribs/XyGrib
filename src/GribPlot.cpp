@@ -151,7 +151,7 @@ void GribPlot::draw_WIND_Arrows (
 				bool barbules, QColor arrowsColor, 
 				QPainter &pnt, const Projection *proj )
 {
-    if (gribReader == NULL) {
+    if (!isReaderOk()) {
         return;
     }
 	windAltitude = altitude;
@@ -160,7 +160,7 @@ void GribPlot::draw_WIND_Arrows (
 								(DataCode(GRB_WIND_VX,altitude),currentDate);
     GribRecord *recy = gribReader->getRecord 
 								(DataCode(GRB_WIND_VY,altitude),currentDate);
-    if (recx == NULL || recy == NULL)
+    if (recx == nullptr || recy == nullptr)
         return;        
 	
     int i, j;
@@ -265,7 +265,7 @@ void GribPlot::draw_CURRENT_Arrows (
 				QColor arrowsColor, 
 				QPainter &pnt, const Projection *proj )
 {
-    if (gribReader == NULL) {
+    if (!isReaderOk()) {
         return;
     }
 	currentAltitude = altitude;
@@ -275,7 +275,7 @@ void GribPlot::draw_CURRENT_Arrows (
 								(DataCode(GRB_CUR_VX,altitude),currentDate);
     GribRecord *recy = gribReader->getRecord 
 								(DataCode(GRB_CUR_VY,altitude),currentDate);
-    if (recx == NULL || recy == NULL)
+    if (recx == nullptr || recy == nullptr)
         return;        
     int i, j;
     double x, y, vx, vy;
@@ -353,7 +353,7 @@ void GribPlot::draw_ColoredMapPlain (
 						QPainter &pnt, 
 						const Projection *proj)
 {
-    if (gribReader == NULL)
+     if (!isReaderOk())
         return;
 	
 	if (dtc.dataType == GRB_PRV_WIND_JET) {
@@ -419,7 +419,7 @@ void GribPlot::draw_WAVES_Arrows (
 				const DataCode &dtc,
 				QPainter &pnt, const Projection *proj )
 {
-    if (gribReader == NULL || dtc.dataType == GRB_TYPE_NOT_DEFINED) 
+    if (!isReaderOk() || dtc.dataType == GRB_TYPE_NOT_DEFINED)
         return;
     QColor waveArrowColor (0,0,0);
     GribRecord *recDir, *recPer;

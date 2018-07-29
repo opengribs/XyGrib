@@ -105,9 +105,8 @@ void Projection_libproj::setProjection(int code)
 //-----------------------------------------------------------------------------------------
 Projection_libproj::~Projection_libproj()
 {
-	if (libProj != NULL) {
+    if (libProj != nullptr) {
 		pj_free(libProj);
-		libProj = NULL;
 	}
 }
 
