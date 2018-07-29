@@ -694,7 +694,7 @@ double GribReader::computeDewPoint (double lon, double lat, time_t now)
 	double dewpoint = GRIB_NOTDEF;
 
 	GribRecord *recTempDew =  getRecord (DataCode(GRB_DEWPOINT,LV_ABOV_GND,2), now);
-	if (recTempDew != NULL)
+	if (recTempDew != nullptr)
 	{
 		// GRIB file contains dew point data
 		dewpoint = recTempDew->getInterpolatedValue(lon, lat);
