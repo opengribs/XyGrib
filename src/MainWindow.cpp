@@ -49,7 +49,7 @@ void ThreadNewInstance::run ()
 {
 	QStringList args = QCoreApplication::arguments ();
 	if (!args.empty()) {
-		QString appname = args.at(0);
+		const QString& appname = args.at(0);
         //DBGQS (appname);
         QProcess::execute ("\"" + appname + "\" -sw");
 		exit ();
@@ -692,7 +692,7 @@ void MainWindow::slotTimeZoneChanged()
     }
 }
 //-------------------------------------------------
-void MainWindow::openMeteoDataFile (QString fileName)
+void MainWindow::openMeteoDataFile (const QString& fileName)
 {
 	QCursor oldcursor = cursor();
 	setCursor(Qt::WaitCursor);
@@ -1021,7 +1021,7 @@ void MainWindow::createAllMETARs ()
 		factory = new MetarWidgetFactory ();
 		assert (factory);
 		for (int i=0; i < allMetarsSelected.size(); i++) {
-			QString icao = allMetarsSelected.at(i);
+			const QString& icao = allMetarsSelected.at(i);
 			mw = factory->createMetarWidget (icao, isVisible, proj, terre);
 			listAllMetars.append (mw);
 		}

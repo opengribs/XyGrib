@@ -38,7 +38,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class FontSelector : public QWidget
 { Q_OBJECT
     public:
-		FontSelector (FontCode code, QString txtlabel, QWidget *parent);
+		FontSelector (FontCode code, const QString& txtlabel, QWidget *parent);
 		
 		FontCode getFontCode() { return code; }
 		QFont getFont() { return font; }

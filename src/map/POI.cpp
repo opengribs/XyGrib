@@ -63,7 +63,7 @@ POI::POI (const QString& seralizedPOI_oldFormat)//
 }
 
 //-------------------------------------------------------------------------------
-POI::POI(uint code, QString name, double lon, double lat,
+POI::POI(uint code, const QString &name, double lon, double lat,
 				 Projection *proj, QWidget *ownerSlotsPOI, QWidget *parentWindow)
 	: QWidget(parentWindow)
 {
@@ -109,10 +109,10 @@ POI::POI (uint code,
     widgetFocus = nullptr;
 }
 //-------------------------------------------------------------------------------
-void POI::setDisplayParams ( QColor markColor,
-						QFont  labelFont,
-						QColor textColor,
-						const QColor& bgColor     )
+void POI::setDisplayParams (const QColor& markColor,
+                        const QFont&  labelFont,
+                        const QColor& textColor,
+                        const QColor& bgColor     )
 {
 	this->markColor = markColor;
 	this->labelFont = labelFont;

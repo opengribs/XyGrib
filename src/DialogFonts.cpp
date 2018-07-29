@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 //==============================================================================
 //==============================================================================
-FontSelector::FontSelector (FontCode code, QString txtlabel, QWidget *parent)
+FontSelector::FontSelector (FontCode code, const QString& txtlabel, QWidget *parent)
 	: QWidget(parent)
 {
 	this->code = code;

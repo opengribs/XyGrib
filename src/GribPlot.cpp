@@ -50,7 +50,7 @@ void GribPlot::initNewGribPlot(bool interpolateValues, bool windArrowsOnGribGrid
 	this->drawCurrentArrowsOnGrid = currentArrowsOnGribGrid;
 }
 //----------------------------------------------------
-void GribPlot::loadFile (QString fileName,
+void GribPlot::loadFile (const QString &fileName,
 						 LongTaskProgress * taskProgress, int nbrecs)
 {
 	this->fileName = fileName;

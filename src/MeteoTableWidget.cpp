@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //-------------------------------------------------------------------------------
 MeteoTableWidget::MeteoTableWidget 
 			(GriddedPlotter *plotter, 
-			 double lon, double lat, QString locationName, QWidget *parent)
+             double lon, double lat, const QString &locationName, QWidget *parent)
 	: QWidget(parent)
 {
 	this->plotter = plotter;
@@ -49,7 +49,7 @@ MeteoTableWidget::MeteoTableWidget
 	createTable();
 }
 //----------------------------------------------------------------
-void MeteoTableWidget::addCell_title_dataline (QString txt, bool bold,
+void MeteoTableWidget::addCell_title_dataline (const QString& txt, bool bold,
 				int lig,int col)
 {
 	QColor bgcolor(200,200,255);
@@ -957,11 +957,11 @@ void MeteoTableWidget::addCell_SkewT (
 }
 //----------------------------------------------------------------
 void MeteoTableWidget::addCell_content (
-				QString txt,
+				const QString& txt,
 				QGridLayout *layout,int lig,int col,
 				int    rowspan,
 				int    colspan,
-				QColor bgcolor,
+				const QColor& bgcolor,
 				int    cellType,
 				double  vx,
 				double  vy
@@ -988,7 +988,7 @@ void MeteoTableWidget::addCell_content (
 	layout->addWidget (cell, lig,col, rowspan,colspan );
 }
 //----------------------------------------------------------------
-void MeteoTableWidget::addCell_title (QString txt, bool bold,
+void MeteoTableWidget::addCell_title (const QString& txt, bool bold,
 				QGridLayout *layout,int lig,int col, int rowspan,int colspan,
 				bool isNowDate)
 {
@@ -1004,8 +1004,8 @@ void MeteoTableWidget::addCell_title (QString txt, bool bold,
 //===================================================================
 // TableCell : case seule
 //===================================================================
-TableCell::TableCell(QWidget *parent, QString txt, bool bold,
-						QColor bgcolor,
+TableCell::TableCell(QWidget *parent, const QString& txt, bool bold,
+                        const QColor &bgcolor,
 						Qt::Alignment alignment
 					)
 	: QWidget(parent)
@@ -1030,7 +1030,7 @@ TableCell::TableCell(QWidget *parent, QString txt, bool bold,
 	layout->addWidget(label, 0,0, alignment);
 }
 //----------------------------------------------------------
-void    TableCell::setContrastedTextColor(QColor bgcolor)
+void    TableCell::setContrastedTextColor(const QColor &bgcolor)
 {
 	QColor fgcolor = DataColors::getContrastedColor (bgcolor);
 	QPalette p;
@@ -1078,9 +1078,9 @@ void TableCell::paintEvent(QPaintEvent * /*event*/)
 // TableCell_Wind : case seule spécialisée pour le vent (flêche+barbules)
 //===================================================================
 TableCell_Wind::TableCell_Wind (double vx, double vy, bool south,
-        			GriddedPlotter *plotter,
-        			QWidget *parent, QString txt, bool bold,
-        			QColor bgcolor )
+                    GriddedPlotter *plotter,
+                    QWidget *parent, const QString &txt, bool bold,
+                    const QColor &bgcolor )
 	: TableCell(parent, txt, bold, bgcolor)
 {
 	this->vx = vx;
@@ -1114,8 +1114,8 @@ void TableCell_Wind::paintEvent(QPaintEvent * e)
 //===================================================================
 TableCell_Current::TableCell_Current (double cx, double cy, bool south,
         			GriddedPlotter *plotter,
-        			QWidget *parent, QString txt, bool bold,
-        			QColor bgcolor )
+        			QWidget *parent, const QString& txt, bool bold,
+        			const QColor& bgcolor )
 	: TableCell(parent, txt, bold, bgcolor)
 {
 	this->cx = cx;
@@ -1150,8 +1150,8 @@ void TableCell_Current::paintEvent(QPaintEvent * e)
 TableCell_Clouds::TableCell_Clouds (
 					double   val,
         			GriddedPlotter *plotter,
-        			QWidget  *parent, QString txt, bool bold,
-        			QColor bgcolor )
+        			QWidget  *parent, const QString& txt, bool bold,
+        			const QColor& bgcolor )
 	: TableCell(parent, txt, bold, bgcolor)
 {
 	this->plotter = plotter;
@@ -1187,7 +1187,7 @@ void TableCell_Clouds::paintEvent(QPaintEvent * e)
 // TableCell_SkewT
 //===================================================================
 TableCell_SkewT::TableCell_SkewT (QWidget *parent,
-					double lon, double lat,  QString locationName,
+                    double lon, double lat, const QString &locationName,
 					time_t date,
 					GriddedReader *reader)
 	: TableCell (parent)

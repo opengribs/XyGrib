@@ -58,7 +58,7 @@ void LongTaskProgress::downloadCanceled ()
 }
 
 //------------------------------------------------------------
-void LongTaskProgress::setWindowTitle (QString title)
+void LongTaskProgress::setWindowTitle (const QString& title)
 {
 	progress->setWindowTitle (title);
 }

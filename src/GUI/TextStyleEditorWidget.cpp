@@ -74,11 +74,11 @@ void TextColorWidget::paintEvent(QPaintEvent *)
 TextStyleEditorWidget::TextStyleEditorWidget (
 					QWidget *parent,
 					const QFont&  fonte,
-					QFont  defaultFont,
+                    const QFont&  defaultFont,
 					const QColor& textColor,
 					const QColor& bgColor,
-					QColor defaultTextColor,
-					QColor defaultBgColor
+                    const QColor& defaultTextColor,
+                    const QColor& defaultBgColor
 		)
 	: QWidget(parent)
 {

@@ -188,7 +188,7 @@ MeteotableOptionItem * DialogMeteotableOptions::getOptionItemByCode (int internc
 // GUI
 //=============================================================================
 void DialogMeteotableOptions::addData
-		( QString title, uchar grbtype, uchar leveltype, uint level,
+        ( const QString &title, uchar grbtype, uchar leveltype, uint level,
 		  bool defaultvis, int defaultpos )
 {
 	uint grbcode = DataCode (grbtype, leveltype, level).toInt32();

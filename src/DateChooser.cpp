@@ -37,7 +37,7 @@ DateChooserPopup::DateChooserPopup (QWidget *parent)
 	setAutoFillBackground (true);
 }
 //-------------------------------------------------
-void DateChooserPopup::setText (QString txt)
+void DateChooserPopup::setText (const QString& txt)
 {
 	label.setText(txt);
 }

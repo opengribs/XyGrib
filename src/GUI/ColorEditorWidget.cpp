@@ -29,7 +29,7 @@ void ColorTestZone::paintEvent(QPaintEvent *)
 
 
 //=================================================================================
-ColorEditorWidget::ColorEditorWidget( QWidget *parent, QColor color, QColor defaultColor)
+ColorEditorWidget::ColorEditorWidget( QWidget *parent, const QColor &color, const QColor &defaultColor)
     : QWidget(parent)
 {
     setupUi(this);

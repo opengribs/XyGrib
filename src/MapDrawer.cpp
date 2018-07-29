@@ -771,7 +771,7 @@ QPixmap * MapDrawer::createPixmap_GriddedData (
 						bool isEarthMapValid, 
 						GriddedPlotter *plotter,
 						Projection *proj,
-						QList<POI*> lspois )
+						const QList<POI*>& lspois )
 {
 	QPixmap *pixmap = new QPixmap(proj->getW(), proj->getH());
 

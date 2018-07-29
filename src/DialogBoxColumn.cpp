@@ -110,7 +110,7 @@ void DialogBoxColumn::slotBtCancel()
 }
 
 //-----------------------------------------------------------------------------
-void DialogBoxColumn::addLabeledWidget (int col, QString label, QWidget *widget)
+void DialogBoxColumn::addLabeledWidget (int col, const QString& label, QWidget *widget)
 {
 	if (col>=0 && col < nbColumn)
 	{

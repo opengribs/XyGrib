@@ -94,9 +94,9 @@ class DialogMeteotableOptions
         //void addItemInDataList (QString name, int code, bool isVisible, int position);
         
 		int  currentItemCode;
-		void addData (QString title, 
-					uchar grbtype, uchar leveltype, uint level,
-					bool defaultvis, int defaultpos );
+        void addData (const QString &title,
+                    uchar grbtype, uchar leveltype, uint level,
+                    bool defaultvis, int defaultpos );
 
         QString dmoStyleSheet =
                 "QDialog, QFrame, QScrollBar {color: #dddddd; background-color: #666666;} "

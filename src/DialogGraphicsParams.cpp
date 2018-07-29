@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //===========================================================================
 // DialogGraphicsParams
 //===========================================================================
-DialogChooseLang::DialogChooseLang (QWidget *parent, QString defaultlang)
+DialogChooseLang::DialogChooseLang (QWidget *parent, const QString& defaultlang)
 		: DialogBoxColumn ( parent, 1, 
                             "Welcome to XyGrib",
 						    "Choose your language",   

@@ -34,7 +34,7 @@ class Grib2Plot : public GribPlot
         Grib2Plot (const Grib2Plot &);
         virtual ~Grib2Plot ();
         
-		virtual void  loadFile (QString fileName,
+		virtual void  loadFile (const QString &fileName,
 						LongTaskProgress *taskProgress=NULL, int nbrecs=0);
 
 };

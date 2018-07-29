@@ -18,8 +18,7 @@ class LineTestZone : public QWidget
 					{return lineWidth;}
 			
 	public slots:
-		void setLineColor(QColor c)
-					{lineColor=c; update();}
+        void setLineColor(const QColor &c);
 		void setLineWidth(double w)
 					{lineWidth=w; update();}
 		
@@ -43,14 +42,14 @@ class /*QDESIGNER_WIDGET_EXPORT*/ LineEditorWidget
     Q_OBJECT
 	public:
 		LineEditorWidget
-					(	QWidget *parent = 0,
-						double width = 1.0,
-						QColor color = Qt::black,
-						double defaultWidth = 1.0,
-						QColor defaultColor = Qt::black,
-						double minWidth = 0.2,
-						double maxWidth = 6
-        			);
+                    (QWidget *parent = 0,
+                        double width = 1.0,
+                        const QColor &color = Qt::black,
+                        double defaultWidth = 1.0,
+                        const QColor &defaultColor = Qt::black,
+                        double minWidth = 0.2,
+                        double maxWidth = 6
+                    );
 		
 		QColor getLineColor()
 					{return testZone->getLineColor();}

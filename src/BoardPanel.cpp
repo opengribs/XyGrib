@@ -267,7 +267,7 @@ void BoardPanel::showDataPointInfo (
 
 }
 //===================================================================================
-QString BoardPanel::formatWave (QString title, float ht, float dir, float per)
+QString BoardPanel::formatWave (const QString &title, float ht, float dir, float per)
 {
 	QString r = title;
 	

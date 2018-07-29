@@ -338,20 +338,20 @@ private:
     std::vector<time_t> listGribDates;
 
     QAction* addAction (QMenu *menu,
-                    QString title, QString shortcut, QString statustip,
-                    QString iconFileName = "");
+                    const QString& title, const QString& shortcut, const QString& statustip,
+                    const QString& iconFileName = "");
 
     QAction* addGroup (ZeroOneActionGroup *group, QMenu *menu,
-                    QString title, QString shortcut, QString statustip,
-                    QString iconFileName = "");
+                    const QString& title, const QString& shortcut, const QString& statustip,
+                    const QString& iconFileName = "");
 
     QAction* addGroup (QActionGroup *group, QMenu *menu,
-                    QString title, QString shortcut, QString statustip,
-                    QString iconFileName = "");
+                    const QString &title, const QString &shortcut, const QString &statustip,
+                    const QString &iconFileName = "");
 
     QAction* addActionCheck (QMenu *menu,
-                    QString title, QString shortcut, QString statustip,
-                    QString iconFileName = "");
+                    const QString &title, const QString &shortcut, const QString &statustip,
+                    const QString &iconFileName = "");
 
     bool maintenanceToolExists;
 

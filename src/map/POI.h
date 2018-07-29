@@ -47,8 +47,8 @@ class POI : public QWidget
         POI (uint code,     // read POI from .ini settings
 				Projection *proj, QWidget *ownerSlotsPOI, QWidget *parentWindow);
 
-        POI	(uint code, QString name, double lon, double lat,
-        			Projection *proj, QWidget *ownerSlotsPOI, QWidget *parentWindow);
+        POI	(uint code, const QString &name, double lon, double lat,
+                    Projection *proj, QWidget *ownerSlotsPOI, QWidget *parentWindow);
         
         void	writeSettings ();
         bool	isValid ()  {return valid;}
@@ -67,10 +67,10 @@ class POI : public QWidget
         
 		QString serialize ();
 
-		void setDisplayParams ( QColor markColor,
-							    QFont  labelFont,
-								QColor textColor,
-								const QColor& bgColor     );
+        void setDisplayParams (const QColor &markColor,
+                                const QFont &labelFont,
+                                const QColor &textColor,
+                                const QColor& bgColor     );
 		// Restore background color for all selected POIs, TH20110103
 		static void restoreBgOfSelectedPOIs( void );
 

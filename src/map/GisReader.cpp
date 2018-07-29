@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "GisReader.h"
 
-GisCity::GisCity (QString country, QString name, int pop, float lon, float lat)
+GisCity::GisCity (const QString &country, const QString &name, int pop, float lon, float lat)
 	: GisPoint(lon, lat)
 {
 	this->country = country;

@@ -40,7 +40,7 @@ class DialogBoxColumn  : public DialogBoxBase
 		bool isAccepted () {return accepted;}
 		
 	protected :
-		void addLabeledWidget (int column, QString label, QWidget *widget); 
+		void addLabeledWidget (int column, const QString& label, QWidget *widget); 
     
 	private slots:
         void slotBtOK();

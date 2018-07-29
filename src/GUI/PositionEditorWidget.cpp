@@ -8,8 +8,8 @@ PositionEditorWidget::PositionEditorWidget
     				( QWidget *parent,
     				  double lat,
     				  double lon,
-					  QString userOrient_lat,   /* "Auto" "North+" "South+" */
-					  QString userOrient_lon    /* "Auto" "East+" "West+"   */
+                      const QString & userOrient_lat,   /* "Auto" "North+" "South+" */
+                      const QString & userOrient_lon    /* "Auto" "East+" "West+"   */
 					)
     : QWidget(parent)
 {

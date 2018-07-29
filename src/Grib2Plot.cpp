@@ -34,7 +34,7 @@ Grib2Plot::~Grib2Plot ()
 //---------------------------------------------------
 
 //----------------------------------------------------
-void Grib2Plot::loadFile (QString fileName,
+void Grib2Plot::loadFile (const QString &fileName,
 						 LongTaskProgress * taskProgress, int nbrecs)
 {
 	this->fileName = fileName;

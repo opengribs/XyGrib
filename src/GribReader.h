@@ -36,8 +36,8 @@ class GribReader : public RegularGridReader
         GribReader ();
         ~GribReader ();
 		
-        virtual void  openFile (const std::string fname,
-						LongTaskProgress *taskProgress, int nbrecs);
+        virtual void  openFile (const std::string &fname,
+                        LongTaskProgress *taskProgress, int nbrecs);
 		
 		virtual FileDataType getReaderFileDataType () 
 					{return DATATYPE_GRIB;};

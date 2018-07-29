@@ -216,7 +216,7 @@ void GriddedPlotter::drawWindArrowWithBarbs (
 			QPainter &pnt,
 			int i, int j, double vx, double vy,
 			bool south,
-			QColor arrowColor
+			const QColor& arrowColor
 	)
 {
     GriddedPlotter::drawWindArrowWithBarbs_static (
@@ -637,8 +637,8 @@ void GriddedPlotter::analyseVisibleGridDensity
 //======================================================================
 void GriddedPlotter::draw_DATA_Labels (
 				DataCode dtc, 
-				QFont 	 labelsFont,
-				QColor   labelsColor,
+                const QFont 	&labelsFont,
+                const QColor   &labelsColor,
 				QString  (formatLabelFunction) (float v, bool withUnit),
 				QPainter &pnt, const Projection *proj)
 {
@@ -673,10 +673,10 @@ void GriddedPlotter::draw_DATA_Labels (
 void GriddedPlotter::draw_DATA_MinMax (
 						DataCode dtc, 
 						double   meanValue,
-						QString  minSymbol,
-						QString  maxSymbol,
-						QFont 	 labelsFont,
-						QColor   labelsColor,
+                        const QString  &minSymbol,
+                        const QString  &maxSymbol,
+                        const QFont 	 &labelsFont,
+                        const QColor   &labelsColor,
 						QPainter &pnt, const Projection *proj)
 {
 	GriddedReader *reader = getReader();

@@ -61,14 +61,14 @@ class /*QDESIGNER_WIDGET_EXPORT*/ TextStyleEditorWidget
 {
     Q_OBJECT
 	public:
-		TextStyleEditorWidget ( QWidget *parent = 0,
-					const QFont&  fonte       = QFont("Helvetica",10),
-					QFont  defaultFont = QFont("Helvetica",10),
-					const QColor& textColor = Qt::black,
-					const QColor& bgColor   = Qt::white,
-					QColor defaultTextColor = Qt::black,
-					QColor defaultBgColor   =  Qt::white
-			);
+        TextStyleEditorWidget (QWidget *parent = 0,
+                    const QFont&  fonte       = QFont("Helvetica",10),
+                    const QFont &defaultFont = QFont("Helvetica",10),
+                    const QColor& textColor = Qt::black,
+                    const QColor& bgColor   = Qt::white,
+                    const QColor &defaultTextColor = Qt::black,
+                    const QColor &defaultBgColor   =  Qt::white
+            );
 
  		QColor getTextColor() {return testZoneLabel->getTextColor();}
  		QColor getBgColor()   {return testZoneLabel->getBgColor();}

@@ -521,8 +521,8 @@ QMenu * MenuBar::createPopupBtRight(QWidget *parent)
 
 //===================================================================================
 QAction* MenuBar::addGroup (ZeroOneActionGroup *group, QMenu *menu,
-                    QString title, QString shortcut, QString statustip,
-                    QString iconFileName)
+                    const QString& title, const QString& shortcut, const QString& statustip,
+                    const QString& iconFileName)
 {
     QAction *action = addActionCheck (menu, title, shortcut, statustip, iconFileName);
 	group->addAction (action);
@@ -530,8 +530,8 @@ QAction* MenuBar::addGroup (ZeroOneActionGroup *group, QMenu *menu,
 }
 //-------------------------------------------------
 QAction* MenuBar::addGroup (QActionGroup *group, QMenu *menu,
-                    QString title, QString shortcut, QString statustip,
-                    QString iconFileName)
+                    const QString &title, const QString &shortcut, const QString &statustip,
+                    const QString &iconFileName)
 {
     QAction *action = addActionCheck (menu, title, shortcut, statustip, iconFileName);
 	group->addAction (action);
@@ -539,8 +539,8 @@ QAction* MenuBar::addGroup (QActionGroup *group, QMenu *menu,
 }
 //-------------------------------------------------
 QAction* MenuBar::addAction (QMenu *menu,
-                    QString title, QString shortcut, QString statustip,
-                    QString iconFileName)
+                    const QString& title, const QString& shortcut, const QString& statustip,
+                    const QString& iconFileName)
 {
     QAction *action;
     action = new QAction(title, menu);
@@ -550,15 +550,15 @@ QAction* MenuBar::addAction (QMenu *menu,
     if (iconFileName != "") {
         action->setIcon(QIcon(iconFileName));
 		action->setIconVisibleInMenu(true);
-	}
+    }
     if (menu != nullptr)
         menu->addAction (action);
     return action;
 }
 //-------------------------------------------------
 QAction* MenuBar::addActionCheck (QMenu *menu,
-                    QString title, QString shortcut, QString statustip,
-                    QString iconFileName)
+                    const QString &title, const QString &shortcut, const QString &statustip,
+                    const QString &iconFileName)
 {
     QAction *action;
     action = addAction (menu, title, shortcut, statustip, iconFileName);

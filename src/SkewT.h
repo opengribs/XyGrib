@@ -80,7 +80,7 @@ class SkewT : public QWidget
 		void   resetGraphic ();
 		
 		void   setConvectiveBase (double hpa0max, double hpa0min);
-		void   setConvectiveBase (QString cbase);    // format "1000-950"
+		void   setConvectiveBase (const QString& cbase);    // format "1000-950"
 		
 		double getHpaMin ()  {return hpaMin;}
 		double getHpaMax ()  {return hpaMax;}

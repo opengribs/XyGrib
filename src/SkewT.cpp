@@ -101,7 +101,7 @@ void SkewT::setConvectiveBase (double hpa0max, double hpa0min)
 	setTempPressLimits (tempCMax, hpaMin);
 }
 //------------------------------------------------------
-void SkewT::setConvectiveBase (QString cbase) 
+void SkewT::setConvectiveBase (const QString& cbase) 
 { 
 	double hmax, hmin;
 	QString p1, p2;

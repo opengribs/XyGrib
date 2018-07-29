@@ -50,7 +50,7 @@ class GriddedPlotter :
 		
 		virtual bool  isReaderOk () const = 0;
 		virtual GriddedReader *getReader () const = 0;
-		virtual void  loadFile (QString fileName, 
+		virtual void  loadFile (const QString &fileName, 
 								LongTaskProgress *taskProgress,
 								int nbrecs=0) = 0;
 		
@@ -113,23 +113,21 @@ class GriddedPlotter :
 		//----------------------------------------------------------------
 		/** Data: write numerical values on the map (temperature).
 		*/
-        virtual void draw_DATA_Labels (
-						DataCode dtc, 
-						QFont 	 labelsFont,
-						QColor   labelsColor,
-						QString  (formatLabelFunction) (float v, bool withUnit),
-						QPainter &pnt, const Projection *proj);
+        virtual void draw_DATA_Labels (DataCode dtc,
+                        const QFont &labelsFont,
+                        const QColor &labelsColor,
+                        QString  (formatLabelFunction) (float v, bool withUnit),
+                        QPainter &pnt, const Projection *proj);
 
 		/** Pressure: write H and L at hight and low points (pressure).
 		*/
-        virtual void draw_DATA_MinMax (
-						DataCode dtc, 
-						double   meanValue,
-						QString  minSymbol,
-						QString  maxSymbol,
-						QFont 	 labelsFont,
-						QColor   labelsColor,
-						QPainter &pnt, const Projection *proj);
+        virtual void draw_DATA_MinMax (DataCode dtc,
+                        double   meanValue,
+                        const QString &minSymbol,
+                        const QString &maxSymbol,
+                        const QFont &labelsFont,
+                        const QColor &labelsColor,
+                        QPainter &pnt, const Projection *proj);
 		
 		//----------------------------------------------------------------
 		// Drawing functions (pure virtual)
@@ -206,7 +204,7 @@ class GriddedPlotter :
         			QPainter &pnt, int i, int j,
         			double vx, double vy,
         			bool south,
-        			QColor arrowColor=Qt::white);
+        			const QColor& arrowColor=Qt::white);
 		
 		static void drawWindArrowWithBarbs_static (
         			QPainter &pnt, int i, int j,

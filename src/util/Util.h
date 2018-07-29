@@ -96,7 +96,7 @@ class Util : public QObject
     static QVariant getSetting (const QString &key, const QVariant &defaultValue);
 	static bool     isDirWritable (const QDir &dir);
 	static void     setApplicationProxy ();
-    static QNetworkRequest makeNetworkRequest (QString url);
+    static QNetworkRequest makeNetworkRequest (const QString& url);
 	
     //-------------------------------------------------
     static QString formatDateLong  (time_t t, bool localTime=true);
@@ -162,7 +162,7 @@ class Util : public QObject
 								  double x1, double y1   // segment end
 								);
 	static double roundMultiple (double x, double mul=1.0);
-	static void dumpchars (unsigned char *buf, size_t offset, size_t len);
+	static void dumpchars (const unsigned char *buf, size_t offset, size_t len);
 
 	//---------------------------------------------------------------
 	static time_t timestampSetHour (time_t t, int hour, int min, int sec);

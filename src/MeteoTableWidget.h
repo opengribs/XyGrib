@@ -36,17 +36,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class TableCell : public QWidget
 { Q_OBJECT
     public:
-        TableCell (QWidget *parent, QString txt="", bool bold=false,
-					QColor bgcolor=QColor(200,200,255),
-					Qt::Alignment alignment=Qt::AlignHCenter|Qt::AlignBottom
-			);
+        TableCell (QWidget *parent, const QString& txt="", bool bold=false,
+                    const QColor &bgcolor=QColor(200,200,255),
+                    Qt::Alignment alignment=Qt::AlignHCenter|Qt::AlignBottom
+            );
 		
 		void setBorders (int lig, int col);
 	    QLabel  *label;
 
     protected:
 	    void  	paintEvent(QPaintEvent *event);
-	    void    setContrastedTextColor(QColor bgColor);
+        void    setContrastedTextColor(const QColor &bgColor);
 		
 		static const uint none  = 0;
 		static const uint north = 1;
@@ -66,9 +66,9 @@ class TableCell_SkewT : public TableCell
 { Q_OBJECT
     public:
         TableCell_SkewT (QWidget *parent,
-						 double lon, double lat, QString locationName,
-						 time_t date,
-						 GriddedReader *reader);
+                         double lon, double lat, const QString &locationName,
+                         time_t date,
+                         GriddedReader *reader);
     protected:
 		QPixmap pixmap;
 		double lon, lat;
@@ -87,9 +87,9 @@ class TableCell_Wind : public TableCell
     public:
         TableCell_Wind(
         			double vx, double vy, bool south,
-        			GriddedPlotter  *plotter,
-        			QWidget *parent, QString txt, bool bold,
-        			QColor bgcolor
+        	 		GriddedPlotter  *plotter,
+        			QWidget *parent, const QString &txt, bool bold,
+        			const QColor &bgcolor
 				);
     protected:
     	QColor    windArrowsColor;
@@ -107,8 +107,8 @@ class TableCell_Current : public TableCell
         TableCell_Current(
         			double cx, double cy, bool south,
         			GriddedPlotter  *plotter,
-        			QWidget *parent, QString txt, bool bold,
-        			QColor bgcolor
+        			QWidget *parent, const QString& txt, bool bold,
+        			const QColor& bgcolor
 				);
     protected:
     	QColor    windArrowsColor;
@@ -127,8 +127,8 @@ class TableCell_Clouds : public TableCell
         TableCell_Clouds (
         			double val,
         			GriddedPlotter *plotter,
-        			QWidget *parent, QString txt, bool bold,
-        			QColor bgcolor
+        			QWidget *parent, const QString& txt, bool bold,
+        			const QColor& bgcolor
 				);
     protected:
     	GriddedPlotter *plotter;
@@ -159,9 +159,9 @@ class MTGribData {
 class MeteoTableWidget : public QWidget
 { Q_OBJECT
     public:
-        MeteoTableWidget (GriddedPlotter *plotter, 
-						  double lon, double lat, 
-						  QString locationName, QWidget *parent);
+        MeteoTableWidget (GriddedPlotter *plotter,
+                          double lon, double lat,
+                          const QString &locationName, QWidget *parent);
         ~MeteoTableWidget();
 		QList <MTGribData *> & getListVisibleData() 
 									{ return listVisibleData; }
@@ -214,17 +214,17 @@ class MeteoTableWidget : public QWidget
 		void  addLine_WaveWhitecap (int type, int lig);
 		void  addLine_WaveCompleteCell (int prvtype, int lig);
 		
-		void addCell_content (QString txt, 
+		void addCell_content (const QString& txt, 
 				QGridLayout *layout,int lig,int col,
 				int    rowspan=1,
 				int    colspan=1,
-				QColor bgcolor=Qt::white,
+				const QColor& bgcolor=Qt::white,
 				int    cellType = 0,
 				double  vx=0,
 				double  vy=0
 				);
 				
-		void addCell_title (QString txt, bool bold,
+		void addCell_title (const QString& txt, bool bold,
 				QGridLayout *layout,int lig,int col,
 				int rowspan=1, int colspan=1,
 				bool isNowDate=false);
@@ -234,7 +234,7 @@ class MeteoTableWidget : public QWidget
 		
 		void addCell_SkewT (QGridLayout *layout,int lig,int col, time_t date);
 		
-		void addCell_title_dataline (QString txt, bool bold,
+		void addCell_title_dataline (const QString& txt, bool bold,
 				int lig,int col);
 		
 		void showEvent (QShowEvent *event);		

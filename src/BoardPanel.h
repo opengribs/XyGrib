@@ -147,7 +147,7 @@ class BoardPanel : public QDockWidget
 		//QLabel     lbWaves_pek;	
 		QLabel     lbWaves_wcap;	
 		
-		QString  formatWave (QString title, float ht, float dir, float per);
+        QString  formatWave (const QString &title, float ht, float dir, float per);
 		Altitude lastDefinedTempAltitude;
 };
 

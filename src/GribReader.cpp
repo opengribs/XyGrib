@@ -36,7 +36,7 @@ GribReader::GribReader()
 	ymax = -1e300;
 }
 //-------------------------------------------------------------------------------
-void GribReader::openFile (const std::string fname,
+void GribReader::openFile (const std::string &fname,
 							LongTaskProgress *taskProgress, int nbrecs)
 {
 	this->taskProgress = taskProgress;
@@ -45,7 +45,7 @@ void GribReader::openFile (const std::string fname,
 	setAllDates.clear ();
 	setAllDataCode.clear ();
 	
-    if (fname != "") {
+    if (!fname.empty()) {
         openFilePriv (fname, nbrecs);
     }
     else {

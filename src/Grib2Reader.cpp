@@ -28,7 +28,7 @@ Grib2Reader::~Grib2Reader ()
 {
 }
 //-------------------------------------------------------------------------------
-void Grib2Reader::openFile (const std::string fname,
+void Grib2Reader::openFile (const std::string &fname,
 							LongTaskProgress *taskProgress, int nbrecs)
 {
 	allUnknownRecords.clear();
@@ -53,7 +53,7 @@ void Grib2Reader::openFile (const std::string fname,
     }
 }
 //-------------------------------------------------------------------------------
-void Grib2Reader::openFilePriv (const std::string fname, int nbrecs)
+void Grib2Reader::openFilePriv (const std::string& fname, int nbrecs)
 {
 //     debug("Open file: %s", fname.c_str());
     fileName = fname;

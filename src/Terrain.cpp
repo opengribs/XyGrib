@@ -645,7 +645,7 @@ bool  Terrain::getGribFileRectangle(double *x0, double *y0, double *x1, double *
 //---------------------------------------------------------
 // Grib files or ...
 //---------------------------------------------------------
-FileDataType Terrain::loadMeteoDataFile (QString fileName, bool zoom)
+FileDataType Terrain::loadMeteoDataFile (const QString& fileName, bool zoom)
 {
     indicateWaitingMap();
 	currentFileType = DATATYPE_NONE;

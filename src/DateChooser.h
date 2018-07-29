@@ -39,7 +39,7 @@ class DateChooserPopup : public QWidget
 	public:
 		DateChooserPopup (QWidget *parent);
 		void setDate (time_t date);
-		void setText (QString txt);
+		void setText (const QString& txt);
 		
 	private:
 		QLabel label;

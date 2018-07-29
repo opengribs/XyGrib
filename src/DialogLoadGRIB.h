@@ -54,7 +54,7 @@ class DialogLoadGRIB : public DialogBoxBase
         void slotGribDataReceived(QByteArray *content, QString fileName);
         void slotGribReadProgress(int step, int done, int total);
         void slotGribLoadError(const QString& error);
-        void slotGribMessage(QString msg);
+        void slotGribMessage(const QString& msg);
         void slotGribStartLoadData();
         void slotAtmModelSettings();
         void slotWaveModelSettings();

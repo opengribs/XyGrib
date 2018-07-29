@@ -146,7 +146,7 @@ void Util::setApplicationProxy ()
 	}
 }
 //-------------------------------------------------------------------------------
-QNetworkRequest Util::makeNetworkRequest (QString url)
+QNetworkRequest Util::makeNetworkRequest (const QString& url)
 {
 	QNetworkRequest request;
      request.setRawHeader ("User-Agent",qPrintable(Version::getAppName()+"/"+Version::getVersion()) );
@@ -838,7 +838,7 @@ time_t Util::timestampSetHour (time_t t, int hour, int min, int sec)
 	return mktime (&dt);
 }
 //------------------------------------
-void Util::dumpchars (unsigned char *buf, size_t offset, size_t len)
+void Util::dumpchars (const unsigned char *buf, size_t offset, size_t len)
 {
 	for (size_t i=0; i<len; i++) {
 		unsigned char c = buf[i+offset];

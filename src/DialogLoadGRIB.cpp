@@ -208,7 +208,7 @@ DialogLoadGRIB::~DialogLoadGRIB()
 }
 
 //----------------------------------------------------
-void DialogLoadGRIB::slotGribMessage(QString msg)
+void DialogLoadGRIB::slotGribMessage(const QString& msg)
 {
     labelMsg->setText(msg);
 }
