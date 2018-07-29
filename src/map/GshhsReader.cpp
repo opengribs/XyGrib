@@ -110,7 +110,7 @@ GshhsPolygon::~GshhsPolygon() {
 //==========================================================
 //==========================================================
 //==========================================================
-GshhsReader::GshhsReader (std::string fpath, int quality)
+GshhsReader::GshhsReader (const std::string& fpath, int quality)
 {
     this->fpath = fpath;
     gshhsRangsReader = new GshhsRangsReader(fpath);
@@ -518,7 +518,7 @@ void GshhsReader::GsshDrawLines(QPainter &pnt, std::vector <GshhsPolygon*> &lst,
 
 //-----------------------------------------------------------------------
 void GshhsReader::drawBackground( QPainter &pnt, Projection *proj,
-            QColor seaColor, QColor backgroundColor
+            const QColor& seaColor, const QColor& backgroundColor
         )
 {
     // fond de carte
@@ -541,7 +541,7 @@ void GshhsReader::drawBackground( QPainter &pnt, Projection *proj,
 
 //-----------------------------------------------------------------------
 void GshhsReader::drawContinents( QPainter &pnt, Projection *proj,
-            QColor seaColor, QColor landColor
+            const QColor& seaColor, const QColor& landColor
         )
 {
 	selectBestQuality(proj);

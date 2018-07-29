@@ -79,7 +79,7 @@ GisReader::GisReader()
         QList<QByteArray> blist = barr.split('\n');
         for (int i=0; i < blist.size(); i++)
         {
-            QByteArray bline = blist.at(i);
+            const QByteArray& bline = blist.at(i);
             QList<QByteArray> bwords = bline.split(';');
             if (bwords.size() == 4) {
                 country = new GisCountry(
@@ -105,7 +105,7 @@ GisReader::GisReader()
 	dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
 	QFileInfoList list = dir.entryInfoList();
     for (int nf = 0; nf < list.size(); ++nf) {
-        QFileInfo fileInfo = list.at(nf);
+        const QFileInfo& fileInfo = list.at(nf);
         fname = fileInfo.fileName();
 		if (fname.indexOf ("cities",0,Qt::CaseInsensitive) == 0) {
 			// DBGQS(fname);
@@ -118,7 +118,7 @@ GisReader::GisReader()
 				//DBG("%d", blist.size());
 				for (int i=0; i < blist.size(); i++)
 				{
-					QByteArray bline = blist.at(i);
+					const QByteArray& bline = blist.at(i);
 					QList<QByteArray> bwords = bline.split(';');
 					if (bwords.size() >= 5) {
 						city = new GisCity(

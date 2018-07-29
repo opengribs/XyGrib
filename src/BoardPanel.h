@@ -68,7 +68,7 @@ class BoardPanel : public QDockWidget
 		
 		void mouseReleaseEvent (QMouseEvent *);
 		void createMenuPopup ();
-		void addAction (QString title,	QString settingName, 
+		void addAction (const QString& title,	const QString& settingName, 
 							BoardPanelCell *cell);
 		
 		QHash <QAction*,QString>  hashActionSettingName;

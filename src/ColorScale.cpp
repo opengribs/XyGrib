@@ -54,7 +54,7 @@ QRgb ColorScale::getColor (double v, bool smooth)
 }
 
 //--------------------------------------------
-bool ColorScale::readFile (QString filename, double kv, double offset)
+bool ColorScale::readFile (const QString& filename, double kv, double offset)
 {
 	ColorElement *ea, *eb;
 	char buf [1000];

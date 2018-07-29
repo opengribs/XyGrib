@@ -118,7 +118,7 @@ QString DialogChooseLang::getLanguage ()
 		return "en";
 }
 //--------------------------------------------------------------------------------	
-QRadioButton * DialogChooseLang::addLanguage (QString name, QString iconfile)
+QRadioButton * DialogChooseLang::addLanguage (const QString& name, const QString& iconfile)
 {
 	QRadioButton *bt = new QRadioButton (name, this);
 	assert (bt);

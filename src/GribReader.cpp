@@ -940,7 +940,7 @@ void GribReader::createListDates()
 //-------------------------------------------------------------------------------
 // Lecture complète d'un fichier GRIB
 //-------------------------------------------------------------------------------
-void GribReader::openFilePriv (const std::string fname, int nbrecs)
+void GribReader::openFilePriv (const std::string& fname, int nbrecs)
 {
 //     debug("Open file: %s", fname.c_str());
     fileName = fname;

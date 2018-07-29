@@ -146,7 +146,7 @@ void GshhsRangsCell::readSegmentRim(
 //=======================================================================================
 //=======================================================================================
 void GshhsRangsCell::drawMapPlain(QPainter &pnt, double dx, QPoint *pts, Projection *proj,
-            QColor seaColor, QColor landColor )
+            const QColor& seaColor, const QColor& landColor )
 {
 // if (!(x0cell==x0debug && y0cell==y0debug))
 // return;
@@ -286,7 +286,7 @@ void GshhsRangsCell::drawSeaBorderLines(QPainter &pnt, double dx, Projection *pr
 //========================================================================
 //========================================================================
 //========================================================================
-GshhsRangsReader::GshhsRangsReader(std::string rangspath)
+GshhsRangsReader::GshhsRangsReader(const std::string &rangspath)
 {
     path = rangspath+"/";
     fcat = nullptr;
@@ -350,7 +350,7 @@ void GshhsRangsReader::setQuality(int quality)  // 5 levels: 0=low ... 4=full
 
 //-------------------------------------------------------------------------
 void GshhsRangsReader::drawGshhsRangsMapPlain( QPainter &pnt, Projection *proj,
-                    QColor seaColor, QColor landColor )
+                    const QColor& seaColor, const QColor& landColor )
 {
     if (!fcat || !fcel || !frim)
         return;

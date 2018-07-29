@@ -42,7 +42,7 @@ class DialogChooseLang : public DialogBoxColumn
 		QString getLanguage ();
 		
 	private:
-		QRadioButton * addLanguage (QString name, QString iconfile);
+		QRadioButton * addLanguage (const QString& name, const QString& iconfile);
 		QButtonGroup *btGroup;
 		
 		QRadioButton *bt_de;

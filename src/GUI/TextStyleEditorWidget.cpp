@@ -11,7 +11,7 @@ TextDisplayLabel::TextDisplayLabel(QWidget *parent)
 	this->setText( (font().family()+" %1").arg(font().pointSizeF()) );
 }
 //----------------------------------------------------------------------
-void TextDisplayLabel::changeFont (QFont ft)
+void TextDisplayLabel::changeFont (const QFont& ft)
 {
 	QString description = (ft.family()+" %1").arg(ft.pointSizeF());
 	this->setText(description);
@@ -20,7 +20,7 @@ void TextDisplayLabel::changeFont (QFont ft)
 	parentWidget->setMinimumHeight(ft.pointSizeF()+4);
 }
 //----------------------------------------------------------------------
-void TextDisplayLabel::setColors (QColor textColor, QColor bgColor)
+void TextDisplayLabel::setColors (const QColor& textColor, const QColor& bgColor)
 {
 	this->textColor = textColor;
 	this->bgColor   = bgColor;
@@ -73,10 +73,10 @@ void TextColorWidget::paintEvent(QPaintEvent *)
 //=================================================================================
 TextStyleEditorWidget::TextStyleEditorWidget (
 					QWidget *parent,
-					QFont  fonte,
+					const QFont&  fonte,
 					QFont  defaultFont,
-					QColor textColor,
-					QColor bgColor,
+					const QColor& textColor,
+					const QColor& bgColor,
 					QColor defaultTextColor,
 					QColor defaultBgColor
 		)
@@ -99,7 +99,7 @@ TextStyleEditorWidget::TextStyleEditorWidget (
 }
 
 //---------------------------------------------------------------------------------------
-void TextStyleEditorWidget::slotColorChanged(QColor)
+void TextStyleEditorWidget::slotColorChanged(const QColor&)
 {	
 	testZoneLabel->setColors (textColorWidget->getColor(), bgColorWidget->getColor());
 }

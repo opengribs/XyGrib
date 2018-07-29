@@ -111,7 +111,7 @@ class GribReader : public RegularGridReader
 		
         std::map <uint64_t, std::vector<GribRecord *>* >  mapGribRecords;
 
-        void   openFilePriv (const std::string fname, int nbrecs);
+        void   openFilePriv (const std::string& fname, int nbrecs);
 		void   readGribFileContent (int nbrecs);
 		void   readAllGribRecords  (int nbrecs);
         

@@ -212,7 +212,7 @@ class GriddedPlotter :
         			QPainter &pnt, int i, int j,
         			double vx, double vy,
         			bool south,
-        			QColor arrowColor,
+        			const QColor& arrowColor,
 					int  windBarbuleSize,
 					bool thinWindArrows
   				);
@@ -222,7 +222,7 @@ class GriddedPlotter :
         			QPainter &pnt, int i, int j,
         			double cx, double cy,
         			bool south,
-        			QColor arrowColor=Qt::white);
+        			const QColor& arrowColor=Qt::white);
 		
 
 	protected:

@@ -35,7 +35,7 @@ QList<POI*> GLOB_listSelectedPOI;
 //-------------------------------------------------------------------------------
 // Read from old settings format (version <= 3.3.0)
 //-------------------------------------------------------------------------------
-POI::POI (QString seralizedPOI_oldFormat)//
+POI::POI (const QString& seralizedPOI_oldFormat)//
 				 // Projection *proj, QWidget *ownerSlotsPOI, QWidget *parentWindow)
     : QWidget(nullptr)
 {
@@ -112,7 +112,7 @@ POI::POI (uint code,
 void POI::setDisplayParams ( QColor markColor,
 						QFont  labelFont,
 						QColor textColor,
-						QColor bgColor     )
+						const QColor& bgColor     )
 {
 	this->markColor = markColor;
 	this->labelFont = labelFont;
@@ -227,7 +227,7 @@ QString POI::serialize()
 }
 
 //-------------------------------------------------------------------------------
-void POI::setName(QString name)
+void POI::setName(const QString& name)
 {
 	this->name=name;
 	setToolTip(tr("Point of interest: ")+name);

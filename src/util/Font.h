@@ -70,7 +70,7 @@ class Font {
         }
 
         static void loadAllFonts ();
-		static void changeGlobalFont (FontCode code, QFont font);
+		static void changeGlobalFont (FontCode code, const QFont& font);
 
 		static QString getFontCodeString (FontCode code);
 		static QFont   getDefaultFont (FontCode code);
@@ -85,7 +85,7 @@ class Font {
 		}
 		
 	private:
-		static bool loadFontFamily (QString fname);
+		static bool loadFontFamily (const QString& fname);
 		static void initAppFonts ();
 	
 };

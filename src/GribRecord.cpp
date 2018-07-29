@@ -804,7 +804,7 @@ bool GribRecord::readGribSection1_PDS(ZUFILE* file) {
 //----------------------------------------------
 bool GribRecord::readGribSection2_GDS(ZUFILE* file) {
     if (! hasGDS)
-        return 0;
+        return false;
     fileOffset2 = zu_tell(file);
     sectionSize2 = readInt3(file);  // byte 1-2-3
     NV = readChar(file);			// byte 4
@@ -1133,7 +1133,7 @@ zuint GribRecord::makeInt2(zuchar b, zuchar c) {
     return ((zuint)b<<8)+(zuint)c;
 }
 //----------------------------------------------
-zuint GribRecord::readPackedBits(zuchar *buf, zuint first, zuint nbBits)
+zuint GribRecord::readPackedBits(const zuchar *buf, zuint first, zuint nbBits)
 {
     zuint oct = first / 8;
     zuint bit = first % 8;

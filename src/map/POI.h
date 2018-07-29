@@ -40,7 +40,7 @@ class POI : public QWidget
     	friend class POI_Editor;
 
 		// Create POI from old setting style (version<=3.3.0) : obsolete !
-        POI (QString seralizedPOI_oldFormat); //
+        POI (const QString& seralizedPOI_oldFormat); //
         
         POI (uint code);    // read POI from old native settings
         
@@ -61,7 +61,7 @@ class POI : public QWidget
         double   getLongitude () {return lon;}
         double   getLatitude ()  {return lat;}
 
-        void setName      (QString name);
+        void setName      (const QString& name);
         void setLongitude (double lon) {this->lon=lon;}
         void setLatitude  (double lat) {this->lat=lat;}
         
@@ -70,7 +70,7 @@ class POI : public QWidget
 		void setDisplayParams ( QColor markColor,
 							    QFont  labelFont,
 								QColor textColor,
-								QColor bgColor     );
+								const QColor& bgColor     );
 		// Restore background color for all selected POIs, TH20110103
 		static void restoreBgOfSelectedPOIs( void );
 

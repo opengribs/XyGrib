@@ -169,7 +169,7 @@ void GriddedPlotter::drawCurrentArrow (
 			QPainter &pnt,
 			int i, int j, double cx, double cy,
 			bool /*south*/,
-			QColor arrowColor
+			const QColor& arrowColor
 	)
 {
     double vkn = sqrt(cx*cx+cy*cy)*3.6/1.852;
@@ -232,7 +232,7 @@ void GriddedPlotter::drawWindArrowWithBarbs_static (
 					QPainter &pnt,
 					int i, int j, double vx, double vy,
 					bool south,
-        			QColor arrowColor,
+        			const QColor& arrowColor,
 					int  windBarbuleSize,
 					bool thinWindArrows
 	)

@@ -131,7 +131,7 @@ void Font::initAppFonts ()
 }
 
 //----------------------------------------------------------
-void Font::changeGlobalFont (FontCode code, QFont font)
+void Font::changeGlobalFont (FontCode code, const QFont& font)
 {
 	GLOB_Font[code] = font;
 	Util::setSetting( getFontCodeString(code), font);
@@ -140,7 +140,7 @@ void Font::changeGlobalFont (FontCode code, QFont font)
 
 
 //----------------------------------------------------------
-bool Font::loadFontFamily(QString fname)
+bool Font::loadFontFamily(const QString& fname)
 {
 	int id = QFontDatabase::addApplicationFont (fname);
 	if (id >= 0) {
