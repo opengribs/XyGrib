@@ -36,7 +36,7 @@ AnimImage::AnimImage ()
 }
 AnimImage::~AnimImage () 
 {
-	if (pixmap) delete pixmap;
+	delete pixmap;
 }
 
 //=========================================================================================

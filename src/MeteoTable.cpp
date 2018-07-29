@@ -33,10 +33,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //------------------------------------------------------------------------
 QWidget *MeteoTableDialog::createDataTable ()
 {
-	if (dataTable) {
-		delete dataTable;
-	}
-	
+    delete dataTable;
+
 	meteoTableWidget = new MeteoTableWidget (plotter, lon,lat, locationName, this);
 	assert (meteoTableWidget);
     meteoTableWidget->setObjectName("mtw");
