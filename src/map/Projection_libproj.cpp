@@ -47,53 +47,53 @@ Projection_libproj::Projection_libproj(const Projection_libproj &model)
 //-----------------------------------------------------------------------------------------
 void Projection_libproj::setProjection(int code)
 {
-	char *params[20];
+    const char *params[20];
 	int nbpar=0;
 	switch (code)
 	{
 		case PROJ_UTM :
 			nbpar = 0;
-			params[nbpar++] = (char*) "proj=utm";
+            params[nbpar++] = "proj=utm";
 			cylindrical = false;
 			break;
 		case PROJ_CENTRAL_CYL:
 			nbpar = 0;
-			params[nbpar++] = (char*) "proj=cc";
+            params[nbpar++] = "proj=cc";
 			cylindrical = true;
 			break;
 		case PROJ_EQU_CYL:
 			nbpar = 0;
-			params[nbpar++] = (char*) "proj=eqc";
+            params[nbpar++] = "proj=eqc";
 			cylindrical = true;
 			break;
 		case PROJ_MILLER :
 			// Miller
 			nbpar = 0;
-			params[nbpar++] = (char*) "proj=mill";
+            params[nbpar++] = "proj=mill";
 			cylindrical = true;
 			break;
 		case PROJ_LAMBERT_CONF_CON :
 			// Lambert Conformal Conic
 			nbpar = 0;
-			params[nbpar++] = (char*) "proj=lcc";
-			params[nbpar++] = (char*) "lat_1=80N";
-			params[nbpar++] = (char*) "lat_2=20N";
-			params[nbpar++] = (char*) "lon_0=0W";
+            params[nbpar++] = "proj=lcc";
+            params[nbpar++] = "lat_1=80N";
+            params[nbpar++] = "lat_2=20N";
+            params[nbpar++] = "lon_0=0W";
 			cylindrical = false;
 			break;
 		case PROJ_MERCATOR :
 		default :
 			// Mercator
 			nbpar = 0;
-			params[nbpar++] = (char*) "proj=merc";
+            params[nbpar++] = "proj=merc";
 			cylindrical = true;
 			break;
 	}
-	params[nbpar++] = (char*) "ellps=WGS84";
-	params[nbpar++] = (char*) "no_defs";
-	params[nbpar++] = (char*) "over";	// allow longitude > 180Â°
-
-	libProj = pj_init(nbpar, params);
+    params[nbpar++] = "ellps=WGS84";
+    params[nbpar++] = "no_defs";
+    params[nbpar++] = "over";	// allow longitude > 180Â°
+    // XXX ouch pj_init
+    libProj = pj_init(nbpar, (char **)params);
 	if (!libProj)
 		printf("proj error: %s\n", pj_strerrno(pj_errno));
 	assert(libProj);
