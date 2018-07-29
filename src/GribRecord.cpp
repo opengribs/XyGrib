@@ -378,9 +378,9 @@ fprintf(stderr,"hasBMS=%d isScanIpositive=%d isScanJpositive=%d isAdjacentI=%d\n
 GribRecord::GribRecord ()
 {
 	ok = false;
-	data = NULL;
-	BMSbits = NULL;
-	boolBMStab = NULL;
+    data = nullptr;
+    BMSbits = nullptr;
+    boolBMStab = nullptr;
 	periodP1 = 0;
 	periodP2 = 0;
 	waveData = false;
@@ -649,10 +649,10 @@ void GribRecord::average(const GribRecord &rec)
 void GribRecord::substract(const GribRecord &rec, bool pos)
 {
     // for now only substract records of same size
-    if (rec.data == 0 || !rec.isOk())
+    if (rec.data == nullptr || !rec.isOk())
         return;
 
-    if (data == 0 || !isOk())
+    if (data == nullptr || !isOk())
         return;
 
     if (Ni != rec.Ni || Nj != rec.Nj)

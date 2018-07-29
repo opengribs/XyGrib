@@ -485,7 +485,7 @@ void  DataPointInfo::getCurrentCxCy (const Altitude &alt, float *vx, float*vy) c
 		*vy = GRIB_NOTDEF;
 		return;
 	}
-	else if (alt.levelType == LV_GND_SURF) {
+    if (alt.levelType == LV_GND_SURF) {
 		*vx = cx;
 		*vy = cy;
 	} 

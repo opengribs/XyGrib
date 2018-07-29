@@ -53,12 +53,9 @@ QVariant Util::getSetting (const QString &key, const QVariant &defaultValue)
 	{
 		return GLOB_hashSettings.value (key);
 	}
-	else
-	{
-		QVariant v = Settings::getUserSetting (key, defaultValue);
-		GLOB_hashSettings.insert (key, v);
-		return v;
-	}
+    QVariant v = Settings::getUserSetting (key, defaultValue);
+    GLOB_hashSettings.insert (key, v);
+    return v;
 }
 //========================================================================
 QString Util::getSaveFileName (QWidget *parent, const QString &caption, 

@@ -255,9 +255,9 @@ QString DataCodeStr::toString (const DataCode &dtc)
 	QString name = toString_name (dtc);
 	QString level = toString_level (dtc);
 	if (level != "")
-			return name+" (" +level+ ")";
-	else
-			return name;
+            return name+" (" +level+ ")";
+
+    return name;
 }
 //-------------------------------------------------
 QString DataCodeStr::toString_levelShort (const DataCode &dtc)
@@ -265,9 +265,9 @@ QString DataCodeStr::toString_levelShort (const DataCode &dtc)
 	QString name = toString_name (dtc);
 	QString level = AltitudeStr::toStringShort (dtc.getAltitude());
 	if (level != "")
-			return name+" (" +level+ ")";
-	else
-			return name;
+            return name+" (" +level+ ")";
+
+    return name;
 }
 
 //-------------------------------------------------

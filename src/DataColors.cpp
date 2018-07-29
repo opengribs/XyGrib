@@ -58,8 +58,8 @@ QColor DataColors::getContrastedColor (const QColor &base)
 		return QColor(230,225,200);
 	else if (gris < 0.45)
 		return QColor(240,235,210);
-	else
-		return Qt::black;
+
+    return Qt::black;
 }
 //--------------------------------------------------------------------------
 QRgb DataColors::getWindColor (double v, bool smooth)  {

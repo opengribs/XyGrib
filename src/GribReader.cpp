@@ -785,8 +785,8 @@ std::vector<GribRecord *> * GribReader::getListOfGribRecords (DataCode dtc)
 	std::string key = GribRecord::makeKey (dtc.dataType,dtc.levelType,dtc.levelValue);
 	if (mapGribRecords.find(key) != mapGribRecords.end())
 		return mapGribRecords[key];
-	else
-		return NULL;
+
+    return nullptr;
 }
 //---------------------------------------------------------------------------
 double  GribReader::getDateInterpolatedValue (
@@ -877,9 +877,8 @@ bool GribReader::getZoneExtension (double *x0,double *y0, double *x1,double *y1)
 		*y1 = getYmax ();
         return true;
     }
-    else {
-        return false;
-    }
+
+    return false;
 }
 //---------------------------------------------------
 // Premier GribRecord trouvé (pour récupérer la grille)
@@ -1050,8 +1049,8 @@ time_t  GribReader::getRefDateForData (const DataCode &dtc)
 	GribRecord *rec = getFirstGribRecord (dtc);
 	if (rec)
 		return rec->getRecordRefDate ();
-	else
-		return 0;
+
+    return 0;
 }
 
 //------------------------------------------------------------

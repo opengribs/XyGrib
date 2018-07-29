@@ -153,7 +153,7 @@ void DateChooser::setListDates (std::set<time_t> * setDates,
 {
 	if (tabDates) {
 		delete [] tabDates;
-		tabDates = NULL;
+        tabDates = nullptr;
 	}
 	nbDates = 0;
 	this->currentDate = currentDate;
