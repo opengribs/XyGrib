@@ -219,8 +219,8 @@ void GriddedPlotter::drawWindArrowWithBarbs (
 			QColor arrowColor
 	)
 {
-	this->drawWindArrowWithBarbs_static (
-					pnt,
+    GriddedPlotter::drawWindArrowWithBarbs_static (
+                    pnt,
 					i, j, vx, vy,
 					south,
         			arrowColor,
