@@ -508,7 +508,7 @@ void  GriddedPlotter::drawColorMapGeneric_Abs_Delta_2D (
     if (recX == nullptr || recY == nullptr)
         return;
 
-	GriddedRecord *rec2 = getReader()->getRecord (dtc2, currentDate);
+    GriddedRecord *rec2 = getReader()->getRecord (dtc2, currentDate);
     if (rec2 == nullptr )
         return;
 
