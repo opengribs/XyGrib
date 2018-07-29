@@ -636,9 +636,9 @@ void GribRecord::average(const GribRecord &rec)
     zuint size = Ni *Nj;
     double diff = d2 -d1;
     for (zuint i=0; i<size; i++) {
-        if (rec.data[i] == GRIB_NOTDEF)
+        if (! GribDataIsDef(rec.data[i]))
            continue;
-        if (data[i] == GRIB_NOTDEF)
+        if (! GribDataIsDef(data[i]))
            continue;
 
         data[i] = (data[i]*d2 -rec.data[i]*d1)/diff;
@@ -662,7 +662,7 @@ void GribRecord::substract(const GribRecord &rec, bool pos)
     for (zuint i=0; i<size; i++) {
         if (rec.data[i] == GRIB_NOTDEF)
            continue;
-        if (data[i] == GRIB_NOTDEF) {
+        if (! GribDataIsDef(data[i])) {
             data[i] = -rec.data[i];
             // XXX BMSbits
             if (boolBMStab) {

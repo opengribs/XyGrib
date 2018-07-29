@@ -5,7 +5,7 @@
 #include <cmath>
 
 #include "Util.h"
-
+#include "DataDefines.h"
 // Useful thermodynamic formulas
 //
 // Documents:
@@ -15,9 +15,6 @@
 // - skew-t.pdf   Written by Bret D. Whissel, Tallahassee, Florida, November 2011.
 //               http://bretwhissel.net/skewt/
 
-#ifndef GRIB_NOTDEF
-#define GRIB_NOTDEF -99999
-#endif
 //-----------------------------------------------------------
 class TPoint
 {
@@ -89,7 +86,7 @@ class SoundingPoint
 						{this->hpa=hpa; this->tempC=tempC; this->dewpC=dewpC;}
 		double hpa;             // altitude
 		double tempC, dewpC;    // °C
-		bool   ok () const {return hpa!=GRIB_NOTDEF && tempC!=GRIB_NOTDEF && dewpC!=GRIB_NOTDEF;}
+		bool   ok () const {return GribDataIsDef(hpa) && GribDataIsDef(tempC) && GribDataIsDef(dewpC);}
 		bool operator< (const SoundingPoint &other) const
 									{return this->hpa < other.hpa;}
 };
@@ -102,7 +99,7 @@ class SoundingPointWind
 						{this->hpa=hpa; this->vx=vx; this->vy=vy;}
 		double hpa;             // altitude
 		double vx, vy;			// wind m/s
-		bool   ok () const {return hpa!=GRIB_NOTDEF && vx!=GRIB_NOTDEF && vy!=GRIB_NOTDEF;}
+		bool   ok () const {return GribDataIsDef(hpa) && GribDataIsDef(vx) && GribDataIsDef(vy);}
 		double speedKts () {return sqrt(vx*vx+vy*vy)*3.6/1.852;}
 		double speedMs () {return sqrt(vx*vx+vy*vy);}
 		double degrees () {return  - atan2 (-vx, vy) *180.0/M_PI + 180;}

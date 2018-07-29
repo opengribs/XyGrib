@@ -237,7 +237,7 @@ void GriddedPlotter::drawWindArrowWithBarbs_static (
 					bool thinWindArrows
 	)
 {
-	if (vx==GRIB_NOTDEF || vy==GRIB_NOTDEF)
+	if (! GribDataIsDef(vx) || ! GribDataIsDef(vy))
 		return;
     double vkn = sqrt(vx*vx+vy*vy)*3.6/1.852;
     double ang = atan2(vy, -vx);
@@ -423,7 +423,7 @@ void  GriddedPlotter::drawColorMapGeneric_1D (
             if (rec->isPointInMap(x, y))
             {
                 v = rec->getInterpolatedValue (dtc, x, y, mustInterpolateValues);
-                if (v != GRIB_NOTDEF)
+                if (GribDataIsDef(v))
                 {
                     rgb = (this->*function_getColor) (v, smooth);
                     image->setPixel(i,  j, rgb);
@@ -471,7 +471,7 @@ void  GriddedPlotter::drawColorMapGeneric_2D (
                 vx = recX->getInterpolatedValue (dtcX, x, y, mustInterpolateValues);
                 vy = recY->getInterpolatedValue (dtcY, x, y, mustInterpolateValues);
 				
-                if (vx != GRIB_NOTDEF && vy != GRIB_NOTDEF)
+                if (GribDataIsDef(vx) && GribDataIsDef(vy))
                 {
                     v = sqrt(vx*vx+vy*vy);
                     rgb = (this->*function_getColor) (v, smooth);
@@ -519,7 +519,7 @@ void  GriddedPlotter::drawColorMapGeneric_Abs_Delta_Data (
                 vx = rec1->getInterpolatedValue (dtc1, x, y, mustInterpolateValues);
                 vy = rec2->getInterpolatedValue (dtc2, x, y, mustInterpolateValues);
 
-                if (vx != GRIB_NOTDEF && vy != GRIB_NOTDEF)
+                if (GribDataIsDef(vx) && GribDataIsDef(vy))
                 {
                     v = fabs(vx-vy);
                     rgb = (this->*function_getColor) (v, smooth);
@@ -664,7 +664,7 @@ void GriddedPlotter::draw_DATA_Labels (
         for (i=0; i<proj->getW(); i+= dimin) {
             proj->screen2map(i,j, &x,&y);
             v = rec->getInterpolatedValue (dtc, x, y, mustInterpolateValues);
-            if (v!= GRIB_NOTDEF) {
+            if (GribDataIsDef(v)) {
                 QString strtemp = formatLabelFunction (v,false);
                 pnt.drawText(i-fmet.width("XXX")/2, j+fmet.ascent()/2, strtemp);
             }

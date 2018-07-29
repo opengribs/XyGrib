@@ -856,7 +856,7 @@ double 	GribReader::get2GribsInterpolatedValueByDate (
 			else {
 				double v1 = before->getInterpolatedValue(px, py);
 				double v2 = after->getInterpolatedValue(px, py);
-				if (v1!=GRIB_NOTDEF && v2!=GRIB_NOTDEF) {
+				if (GribDataIsDef(v1) && GribDataIsDef(v2)) {
 					double k  = fabs( (double)(date-t1)/(t2-t1) );
 					val = (1.0-k)*v1 + k*v2;
 				}

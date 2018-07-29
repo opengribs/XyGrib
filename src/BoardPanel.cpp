@@ -185,28 +185,28 @@ void BoardPanel::showDataPointInfo (
 			{
 				int P = GEOPOThgt(i);	// 925 850 700 600 500 400 300 200
 				shpa.sprintf("%3d", P);
-				if (pf.hGeopot[i] != GRIB_NOTDEF) {
+				if (GribDataIsDef(pf.hGeopot[i])) {
 					sgeopot = QString("%1")
 							.arg(Util::formatGeopotAltitude (pf.hGeopot[i],true), 9);
 				}
 				else
 					sgeopot = QString("%1").arg(" ", 9);
 				
-				if (pf.hTemp[i] != GRIB_NOTDEF) {
+				if (GribDataIsDef(pf.hTemp[i])) {
 					stemp = QString("%1")
 							.arg(Util::formatTemperature (pf.hTemp[i],true), 7);
 				}
 				else
 					stemp = QString("%1").arg(" ", 7);
 				
-				if (pf.hHumidRel[i] != GRIB_NOTDEF) {
+				if (GribDataIsDef(pf.hHumidRel[i])) {
 					shumidrel = QString("%1%")
 							.arg(Util::formatPercentValue (pf.hHumidRel[i],false), 3);
 				}
 				else
 					shumidrel = QString("%1").arg(" ", 4);
 				
-				if (pf.hThetae[i] != GRIB_NOTDEF) {
+				if (GribDataIsDef(pf.hThetae[i])) {
 					sthetae = QString("%1")
 							.arg(Util::formatTemperature (pf.hThetae[i],true), 7);
 				}
@@ -216,7 +216,7 @@ void BoardPanel::showDataPointInfo (
 				sv[i] = QString("%1 %2 %3 %4 %5")
 									.arg(shpa).arg(sgeopot).arg(stemp).arg(shumidrel).arg(sthetae);
 
-				if (i>0 && pf.hThetae[i]!=GRIB_NOTDEF && pf.hThetae[i-1]!=GRIB_NOTDEF) {
+				if (i>0 && GribDataIsDef(pf.hThetae[i]) && GribDataIsDef(pf.hThetae[i-1])) {
 					QString delta;
 					delta.sprintf(" (%+.1f)", pf.hThetae[i]-pf.hThetae[i-1]);
 					sv[i] += delta;
@@ -257,7 +257,7 @@ void BoardPanel::showDataPointInfo (
 		lbWaves_sec.setText (formatWave(tr("scdy :","Tr: VERY SHORT TAG, same size as 'swell' translation: secondary"),GRIB_NOTDEF, pf.wave_scdy_dir, pf.wave_scdy_per));
 		
 		QString s;
-		if (pf.wave_wcap_prbl != GRIB_NOTDEF) {
+		if (GribDataIsDef(pf.wave_wcap_prbl)) {
 			s = tr("whitecap (prob)","Tr: SHORT TAG")+QString(": %1").arg(Util::formatWhiteCap (pf.wave_wcap_prbl,true));
 		}
 		else
@@ -272,17 +272,17 @@ QString BoardPanel::formatWave (QString title, float ht, float dir, float per)
 	QString r = title;
 	
 	QString s;
-	if (ht != GRIB_NOTDEF)
+	if (GribDataIsDef(ht))
 		s.sprintf(" %5.2fm", ht);
 	else
 		s.sprintf("       ");
 	r += s;
-	if (dir != GRIB_NOTDEF)
+	if (GribDataIsDef(dir))
 		s.sprintf(" %+4.0f°", dir);
 	else
 		s.sprintf("      ");
 	r += s;
-	if (per != GRIB_NOTDEF)
+	if (GribDataIsDef(per))
 		s.sprintf(" %3.0fs", per);
 	else
 		s.sprintf("     ");
