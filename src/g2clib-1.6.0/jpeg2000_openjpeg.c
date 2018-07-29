@@ -176,7 +176,7 @@ int dec_jpeg2000(char *injpc,g2int bufsize,g2int *outfld)
     
     /* set decoding parameters to default values */
     opj_set_default_decoder_parameters(&parameters);
-    parameters.decod_format = 1; /* J
+    parameters.decod_format = 1; /* J */
 
     /* get a decoder handle */
     codec = opj_create_decompress(OPJ_CODEC_J2K);
