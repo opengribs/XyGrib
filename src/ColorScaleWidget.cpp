@@ -16,6 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ***********************************************************************/
 #include <QPainter>
+#include <cmath>
 
 #include "ColorScaleWidget.h" 
 #include "DataQString.h" 
@@ -93,7 +94,7 @@ QString ColorScaleGraph::formatValue (double v)
 		case GRB_PRV_DIFF_TEMPDEW :
 			t0 = Util::convertTemperature (273.15);
 			tv = Util::convertTemperature (v+273.15);
-			return QString("%1").arg(fabs(tv-t0),0,'f',1);
+			return QString("%1").arg(std::fabs(tv-t0),0,'f',1);
 		case GRB_CLOUD_TOT : 
 			return Util::formatPercentValue (v, false);
 		case GRB_PRECIP_TOT :
