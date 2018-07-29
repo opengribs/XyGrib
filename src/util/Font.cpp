@@ -149,9 +149,8 @@ bool Font::loadFontFamily(QString fname)
 			//printf("%s\n", qPrintable(lst.at(i)));
 		}
 		return true;
-	}
-	else
-		return false;
+    }
+    return false;
 }
 
 //----------------------------------------------------------

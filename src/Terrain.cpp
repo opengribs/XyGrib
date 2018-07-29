@@ -758,8 +758,8 @@ FileDataType Terrain::loadMeteoDataFile (QString fileName, bool zoom)
 	
 	if (cancelled)
 		return DATATYPE_CANCELLED;
-	else
-		return currentFileType;
+
+    return currentFileType;
 }
 
 //---------------------------------------------------------
@@ -768,9 +768,7 @@ GriddedPlotter *Terrain::getGriddedPlotter ()
     if (currentFileType == DATATYPE_GRIB) {
 		return griddedPlot;
     }
-	else {
-        return nullptr;
-	}
+    return nullptr;
 }
 
 //---------------------------------------------------------

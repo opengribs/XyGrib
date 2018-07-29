@@ -260,16 +260,16 @@ double Sounding::hpaMax ()
 {
 	if (allSounds.size() > 0)
 		return allSounds[allSounds.size()-1].hpa;
-	else
-		return GRIB_NOTDEF;
+	
+    return GRIB_NOTDEF;
 }
 //------------------------------------------------------
 double Sounding::hpaMin ()
 {
 	if (allSounds.size() > 0)
 		return allSounds[0].hpa;
-	else
-		return GRIB_NOTDEF;
+	
+    return GRIB_NOTDEF;
 }
 //------------------------------------------------------
 SoundingPointWind Sounding::getWindByAlt (double hpa)
