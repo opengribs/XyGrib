@@ -61,14 +61,14 @@ class GshhsPoint {
 class GshhsPolygon
 {
     public:
-        GshhsPolygon() {};
+        GshhsPolygon() {}
         GshhsPolygon(ZUFILE *file);
         virtual ~GshhsPolygon();
         
-        int  getLevel()     {return flag&255;};
-        int  isGreenwich()  {return greenwich;};
-        int  isAntarctic()  {return antarctic;};
-        bool isOk()         {return ok;};
+        int  getLevel()     {return flag&255;}
+        int  isGreenwich()  {return greenwich;}
+        int  isAntarctic()  {return antarctic;}
+        bool isOk()         {return ok;}
         //----------------------
         int id;				/* Unique polygon id number, starting at 0 */
         int n;				/* Number of points in this polygon */
@@ -94,7 +94,6 @@ class GshhsPolygon_WDB : public GshhsPolygon
     public:
         GshhsPolygon_WDB(ZUFILE *file);
         virtual ~GshhsPolygon_WDB() {}
-    protected:
         inline virtual int readInt4();
         inline virtual int readInt2();
 };

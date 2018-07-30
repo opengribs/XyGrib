@@ -25,16 +25,16 @@ GshhsPolygon::GshhsPolygon(ZUFILE *file_)
 {
  	file  = file_;
     ok = true;
-    id    = readInt4();
-    n     = readInt4();
-    flag  = readInt4();
-    west  = readInt4() * 1e-6;
-    east  = readInt4() * 1e-6;
-    south = readInt4() * 1e-6;
-    north = readInt4() * 1e-6;
-    area  = readInt4();
-    greenwich = readInt2();
-    readInt2();   // source
+    id    = GshhsPolygon::readInt4();
+    n     = GshhsPolygon::readInt4();
+    flag  = GshhsPolygon::readInt4();
+    west  = GshhsPolygon::readInt4() * 1e-6;
+    east  = GshhsPolygon::readInt4() * 1e-6;
+    south = GshhsPolygon::readInt4() * 1e-6;
+    north = GshhsPolygon::readInt4() * 1e-6;
+    area  = GshhsPolygon::readInt4();
+    greenwich = GshhsPolygon::readInt2();
+    GshhsPolygon::readInt2();   // source
 
     if (ok)
     {
@@ -42,10 +42,10 @@ GshhsPolygon::GshhsPolygon(ZUFILE *file_)
 		double x, y=-90;
         
         for (int i=0; i<n; i++) {
-            x = readInt4() * 1e-6;
+            x = GshhsPolygon::readInt4() * 1e-6;
             if (greenwich && x > 270)
                 x -= 360;
-            y = readInt4() * 1e-6;
+            y = GshhsPolygon::readInt4() * 1e-6;
             lsPoints.push_back(new GshhsPoint(x,y));
         }
         
@@ -67,24 +67,24 @@ GshhsPolygon_WDB::GshhsPolygon_WDB(ZUFILE *file_)
 {
     file  = file_;
     ok = true;
-    id    = readInt4();
-    n     = readInt4();
-    flag  = readInt4();
-    west  = readInt4() * 1e-6;
-    east  = readInt4() * 1e-6;
-    south = readInt4() * 1e-6;
-    north = readInt4() * 1e-6;
-    area  = readInt4();
+    id    = GshhsPolygon_WDB::readInt4();
+    n     = GshhsPolygon_WDB::readInt4();
+    flag  = GshhsPolygon_WDB::readInt4();
+    west  = GshhsPolygon_WDB::readInt4() * 1e-6;
+    east  = GshhsPolygon_WDB::readInt4() * 1e-6;
+    south = GshhsPolygon_WDB::readInt4() * 1e-6;
+    north = GshhsPolygon_WDB::readInt4() * 1e-6;
+    area  = GshhsPolygon_WDB::readInt4();
     
     greenwich = false;
     antarctic = false;
     if (ok) {
         for (int i=0; i<n; i++) {
             double x, y;
-            x = readInt4() * 1e-6;
+            x = GshhsPolygon_WDB::readInt4() * 1e-6;
             if (greenwich && x > 270)
                 x -= 360;
-            y = readInt4() * 1e-6;
+            y = GshhsPolygon_WDB::readInt4() * 1e-6;
             lsPoints.push_back(new GshhsPoint(x,y));
         }
     }
