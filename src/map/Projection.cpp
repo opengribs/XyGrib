@@ -197,7 +197,7 @@ Projection_ZYGRIB::Projection_ZYGRIB (int w, int h, double cx, double cy, double
 //printf("init Projection_ZYGRIB : W=%d H=%d   CX=%f CY=%f  scale=%f\n", W,H,CX,CY,scale);
     dscale = 1.2;
     setMapPointInScreen(CX, CY, W/2, H/2);
-    setScale(scale);
+    Projection_ZYGRIB::setScale(scale);
 }
 //---------------------------------------------------------------------------
 Projection_ZYGRIB::Projection_ZYGRIB (const Projection_ZYGRIB &model)
@@ -205,7 +205,7 @@ Projection_ZYGRIB::Projection_ZYGRIB (const Projection_ZYGRIB &model)
 {
     dscale = 1.2;
     setMapPointInScreen(CX, CY, W/2, H/2);
-    setScale(scale);
+    Projection_ZYGRIB::setScale(scale);
 }
 //-------------------------------------------------------------------------------
 void Projection_ZYGRIB::map2screen (double x, double y, int *i, int *j) const

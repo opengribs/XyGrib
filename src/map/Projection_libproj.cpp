@@ -31,7 +31,7 @@ Projection_libproj::Projection_libproj(int code, int w, int h, double cx, double
 	setProjection(code);
 	CX = cx;
 	CY = cy;
-    setScale(scale);
+    Projection_libproj::setScale(scale); // virtual function call in CTOR
 //    setCenterPosition(cx, cy);
 }
 //-----------------------------------------------------------------------------------------
@@ -41,7 +41,7 @@ Projection_libproj::Projection_libproj(const Projection_libproj &model)
 	setProjection(model.currentProj);
 	CX = model.getCX();
 	CY = model.getCY();
-    setScale(model.getScale());
+    Projection_libproj::setScale(model.getScale());
 //    setCenterPosition(model.getCX(),model.getCY());
 }
 //-----------------------------------------------------------------------------------------
