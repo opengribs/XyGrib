@@ -115,8 +115,8 @@ class GshhsRangsReader
     private:
     	int currentQuality;
         std::string path;
-        FILE *fcat, *fcel, *frim;
-        GshhsRangsCell * allCells[360][180];
+        FILE *fcat{}, *fcel{}, *frim{};
+        GshhsRangsCell * allCells[360][180]{};
 };
 
 

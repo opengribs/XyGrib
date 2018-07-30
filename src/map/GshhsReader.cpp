@@ -96,7 +96,6 @@ GshhsPolygon_WDB::GshhsPolygon_WDB(ZUFILE *file_)
 GshhsPolygon::~GshhsPolygon() {
     for (auto & lsPoint : lsPoints) {
         delete lsPoint;
-        lsPoint = NULL;
     }
     lsPoints.clear();
 }

@@ -285,15 +285,6 @@ void GshhsRangsCell::drawSeaBorderLines(QPainter &pnt, double dx, Projection *pr
 GshhsRangsReader::GshhsRangsReader(const std::string &rangspath)
 {
     path = rangspath+"/";
-    fcat = nullptr;
-    fcel = nullptr;
-    frim = nullptr;
-
-	for (auto & allCell : allCells) {
-		for (auto & j : allCell) {
-            j = nullptr;
-		}
-	}
 	currentQuality = -1;
     setQuality(1);
 }
@@ -305,6 +296,12 @@ GshhsRangsReader::~GshhsRangsReader()
             delete j;
 		}
 	}
+	if (fcat)
+		fclose(fcat);
+	if (fcel)
+		fclose(fcel);
+	if (frim)
+		fclose(frim);
 }
 
 //-------------------------------------------------------------------------
@@ -438,14 +435,4 @@ void GshhsRangsReader::drawGshhsRangsMapSeaBorders( QPainter &pnt, Projection *p
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
 
