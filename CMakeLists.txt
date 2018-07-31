@@ -75,7 +75,8 @@ include_directories(${LIBNOVA_INCLUDE_DIR})
 
 #find_package(OpenJPEG REQUIRED)
 find_library(OPENJPEG_LIBRARIES
-     NAMES "libopenjp2.a" "libopenjp2.so" "libopenjpeg.so.2" "libopenjp2.dll.a"
+#     NAMES "libopenjp2.a" "libopenjp2.so" "libopenjpeg.so.2" "libopenjp2.dll.a"
+     NAMES "libopenjp2.so.7" "libopenjp2.so" "libopenjp2.a" "libopenjpeg.so.2" "libopenjp2.dll.a"
      PATHS
      $ENV{EXTERNLIBS}/lib
      ~/Library/Frameworks
