@@ -493,7 +493,7 @@ BoardPanelCell::BoardPanelCell (QWidget *parent, QLayout *lay)
 	: QFrame (parent)
 {
 	setFrameStyle (QFrame::Panel | QFrame::Sunken);
-	setVisible (true);
+    BoardPanelCell::setVisible (true); // virtual in CTOR
     lay->addWidget (this);
 }
 
