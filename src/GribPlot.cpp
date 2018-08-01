@@ -32,9 +32,9 @@ GribPlot::GribPlot (const GribPlot &model)
 	: RegularGridPlot ()
 {
 	initNewGribPlot (model.mustInterpolateValues, model.drawWindArrowsOnGrid, model.drawCurrentArrowsOnGrid);	
-	loadFile (model.fileName);
-	duplicateFirstCumulativeRecord (model.mustDuplicateFirstCumulativeRecord);
-	duplicateMissingWaveRecords (model.mustDuplicateMissingWaveRecords);
+    GribPlot::loadFile (model.fileName);
+    GribPlot::duplicateFirstCumulativeRecord (model.mustDuplicateFirstCumulativeRecord);
+    GribPlot::duplicateMissingWaveRecords (model.mustDuplicateMissingWaveRecords);
 }
 //----------------------------------------------------
 GribPlot::~GribPlot() {

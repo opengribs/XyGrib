@@ -55,7 +55,7 @@ GriddedPlotter::GriddedPlotter ()
     currentArrowSpace = 28;      // distance mini entre flèches
     currentArrowSpaceOnGrid = 20;      // distance mini entre flèches
     
-	updateGraphicsParameters ();
+    GriddedPlotter::updateGraphicsParameters ();
 	
 	useJetStreamColorMap = false;
 }
