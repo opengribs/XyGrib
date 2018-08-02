@@ -31,7 +31,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 //===========================================================
 MapDrawer::MapDrawer(GshhsReader *gshhsReader)
-	: QObject()
 {
     imgEarth = NULL;
     imgAll   = NULL;
@@ -48,7 +47,6 @@ MapDrawer::MapDrawer(GshhsReader *gshhsReader)
 }
 //---------------------------------------------------------------------
 MapDrawer::MapDrawer(const MapDrawer &model)
-	: QObject()
 {
     imgEarth = NULL;
     imgAll   = NULL;

@@ -119,9 +119,9 @@ g2int getdim(unsigned char *csec3,g2int *width,g2int *height,g2int *iscan)
          *height=0;
       }
 
-      if (igds != 0) free(igds);
-      if (igdstmpl != 0) free(igdstmpl);
-      if (list_opt != 0) free(list_opt);
+      free(igds);
+      free(igdstmpl);
+      free(list_opt);
 
       return 0;
 }

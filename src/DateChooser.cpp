@@ -45,7 +45,6 @@ void DateChooserPopup::setText (QString txt)
 
 //=====================================================================
 DateChooser::DateChooser ()
-		: QWidget ()
 {	
 	tabDates = NULL;
 	nbDates  = 0;
