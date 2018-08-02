@@ -28,17 +28,18 @@ void g2_free(gribfield *gfld)
 //
 //$$$
 { 
+      if (gfld == NULL)
+            return;
 
-      if (gfld->idsect != 0 ) free(gfld->idsect);
-      if (gfld->local != 0 ) free(gfld->local);
-      if (gfld->list_opt != 0 ) free(gfld->list_opt);
-      if (gfld->igdtmpl != 0 ) free(gfld->igdtmpl);
-      if (gfld->ipdtmpl != 0 ) free(gfld->ipdtmpl);
-      if (gfld->coord_list != 0 ) free(gfld->coord_list);
-      if (gfld->idrtmpl != 0 ) free(gfld->idrtmpl);
-      if (gfld->bmap != 0 ) free(gfld->bmap);
-      if (gfld->fld != 0 ) free(gfld->fld);
+      free(gfld->idsect);
+      free(gfld->local);
+      free(gfld->list_opt);
+      free(gfld->igdtmpl);
+      free(gfld->ipdtmpl);
+      free(gfld->coord_list);
+      free(gfld->idrtmpl);
+      free(gfld->bmap);
+      free(gfld->fld);
       free(gfld);
 
-      return;
 }

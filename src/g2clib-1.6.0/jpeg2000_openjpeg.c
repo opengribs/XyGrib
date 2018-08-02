@@ -10,8 +10,8 @@
 #include "openjpeg.h"
 
 #define GRIB_SUCCESS          0
-#define GRIB_DECODING_ERROR  -3
-#define GRIB_ENCODING_ERROR  -14 /* match openjpeg in grib_api */
+#define GRIB_DECODING_ERROR  (-3)
+#define GRIB_ENCODING_ERROR  (-14) /* match openjpeg in grib_api */
 
 /* opj_* Helper code from https://groups.google.com/forum/#!topic/openjpeg/8cebr0u7JgY */
 typedef struct
@@ -176,7 +176,7 @@ int dec_jpeg2000(char *injpc,g2int bufsize,g2int *outfld)
     
     /* set decoding parameters to default values */
     opj_set_default_decoder_parameters(&parameters);
-    parameters.decod_format = 1; /* J
+    parameters.decod_format = 1; /* J */
 
     /* get a decoder handle */
     codec = opj_create_decompress(OPJ_CODEC_J2K);

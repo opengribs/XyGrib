@@ -26,13 +26,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Constructeur
 //---------------------------------------------------------------------------
 Projection::Projection (int w, int h, double cx, double cy, double scale)
-	: QObject()
 {
     init(w, h, cx, cy, scale);
 }
 //---------------------------------------------------------------------------
-Projection::Projection (const Projection &model)
-	: QObject()
+Projection::Projection (const Projection &model) 
 {
     init(model.getW(),model.getH(),model.getCX(),model.getCY(), model.getScale());
 }
