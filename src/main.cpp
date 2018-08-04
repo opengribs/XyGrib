@@ -37,7 +37,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 int main (int argc, char *argv[])
 {
     QApplication app(argc, argv);
-	qsrand(QTime::currentTime().msec());
+//	qsrand(QTime::currentTime().msec());
 
 
 #ifdef Q_OS_MACX
@@ -279,7 +279,7 @@ int main (int argc, char *argv[])
         win->setStyleSheet(styleSheetDef);
     }
     win->show();
-	//-------------------------------------------------------------------
+    //-------------------------------------------------------------------
     // Open file (command line parameter or last open)
     //-------------------------------------------------------------------
     // A. Degwerth [Cassidian] short modifications because the command line is parsed above

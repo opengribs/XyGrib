@@ -454,19 +454,30 @@ MenuBar::MenuBar (QWidget *parent)
 	updateFonts();
 }
 
+static void enumerateMenu(QMenu *menu, const QFont& ft )
+{
+    if (menu == nullptr)
+        return;
+    for (auto lsaction: menu->actions()) {
+        lsaction->setFont(ft);
+        enumerateMenu(lsaction->menu(), ft);
+    }
+}
+
+
 //---------------------------------------------------------
 void MenuBar::updateFonts ()
 {
-	cbDatesGrib->setFont (Font::getFont(FONT_ComboBox));
-	
-	QFont ft = Font::getFont(FONT_MenuBar);
-	this->setFont(ft);
-	QList<QAction *> lsactions = this->findChildren<QAction *>();
-	for (int i = 0; i < lsactions.size(); ++i) {
-		lsactions.at(i)->setFont(ft);
-	}
-	
+   cbDatesGrib->setFont (Font::getFont(FONT_ComboBox));
+
+    QFont ft = Font::getFont(FONT_MenuBar);
+    setFont(ft);
+    for (auto lsaction : actions()) {
+        lsaction->setFont(ft);
+        enumerateMenu(lsaction->menu(), ft);
+    }
 }
+
 
 //---------------------------------------------------------
 // Menu popup : bouton droit de la souris
