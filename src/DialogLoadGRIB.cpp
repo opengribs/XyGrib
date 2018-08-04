@@ -854,8 +854,8 @@ void DialogLoadGRIB::slotParameterUpdated ()
 
     }
 
-
-
+    // adjust for packing ~ 65%
+    estimate = estimate * 0.65;
 
     double estKB = estimate/1024.0;	// size in kb
 	QString ssz;
