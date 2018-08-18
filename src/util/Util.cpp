@@ -325,12 +325,12 @@ QString Util::getDataUnit (const DataCode &dtc)
 	switch (dtc.dataType) {
 		case GRB_GEOPOT_HGT:
 			if (dtc.levelType == LV_ISOTHERM0)
-				unit = Util::getSetting("geopotAltitudeUnit", "gpm").toString();
-			else
 				unit = Util::getSetting("isotherm0Unit", "m").toString();
+			else
+				unit = Util::getSetting("geopotAltitudeUnit", "gpm").toString();
 			if (unit == "dam")
 				return tr("dam");
-			else if (unit == "ft")
+			else if (unit == "gpft" ||  unit == "ft")
 				return tr("ft");
 			else   // if (unit == "m")
 				return tr("m");
