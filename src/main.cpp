@@ -39,6 +39,10 @@ int main (int argc, char *argv[])
     QApplication app(argc, argv);
 //	qsrand(QTime::currentTime().msec());
 
+    QCoreApplication::setOrganizationName("openGribs");
+    QCoreApplication::setOrganizationDomain("opengribs.org");
+    QCoreApplication::setApplicationName("XyGrib");
+
 
 #ifdef Q_OS_MACX
     if ( QSysInfo::MacintoshVersion > QSysInfo::MV_10_8 )

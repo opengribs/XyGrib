@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ***********************************************************************/
 
 #include <QDir>
+#include <QStandardPaths>
 #include <QStringList>
 #include <QMessageBox>
 
@@ -35,10 +36,10 @@ QSettings *GLOB_IniSettings;
 QSettings *GLOB_IniSettings_POI;
 
 //---------------------------------------------------------------------
-// Priorité :
-// 1. le répertoire_de_zygrib/data/config/
-// 2. le dossier perso
-// 3. le dossier temporaire (bad news)
+// Priority :
+// 1. user app settings location (OS specific)
+// 2. under application current directory (data/config/)
+// 3. OS system temporary folder if all else fails
 //---------------------------------------------------------------------
 void Settings::initializeSettingsDir ()
 {
@@ -46,43 +47,45 @@ void Settings::initializeSettingsDir ()
 	QDir dir;
 	
 	if (path == "")
-	{	// try zygrib_directory/config
-		dir = QDir::current();
-		if ( dir.exists(Util::pathGshhs())
-					&& dir.exists(Util::pathGis()) )
-		{   // seem's zygrib directory, try yo write a file
-			if (Util::isDirWritable(dir))
-			{
-				QString path2 = dir.absolutePath()+"/"+Util::pathConfig();
-				QDir dir2 = QDir (path2);
-				if (! dir2.exists()) {
-					// try to create the directory
-					dir2.mkpath(dir2.absolutePath());
-				}
-				if (Util::isDirWritable(dir2)) {
-					path = path2;
-				}
-			}
-		}
-	}
-	if (path == "")
-	{	// try user directory
+    {	// first option is to locate setting files in user application settings area
 		#ifdef Q_OS_WIN32
             dir = QDir( QDir::homePath()+"/xygrib/config" );
 		#else
-            dir = QDir( QDir::homePath()+"/.xygrib/config" );
-		#endif
-		if (! dir.exists()) {
-			// create a directory in user home if it don't exists
-			dir.mkpath(dir.absolutePath());
-		}
-		if (Util::isDirWritable(dir)) {
-			path = dir.absolutePath();
-		}
+//            dir = QDir( QDir::homePath()+"/.xygrib/config" );
+            dir = QDir(QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation));
+        #endif
+        if (! dir.exists()) {
+            // create a directory in user home if it don't exists
+            dir.mkpath(dir.absolutePath());
+        }
+        if (Util::isDirWritable(dir)) {
+            path = dir.absolutePath();
+        }
 	}
 	
-	if (path == "")
-	{	// try temp directory
+    if (path == "")
+    {	// second option is to locate setting files under application current directory
+        dir = QDir::current();
+        if ( dir.exists(Util::pathGshhs())
+                    && dir.exists(Util::pathGis()) )
+        {   // seem's zygrib directory, try yo write a file
+            if (Util::isDirWritable(dir))
+            {
+                QString path2 = dir.absolutePath()+"/"+Util::pathConfig();
+                QDir dir2 = QDir (path2);
+                if (! dir2.exists()) {
+                    // try to create the directory
+                    dir2.mkpath(dir2.absolutePath());
+                }
+                if (Util::isDirWritable(dir2)) {
+                    path = path2;
+                }
+            }
+        }
+    }
+
+    if (path == "")
+    {	// third option is to use temp directory
 		dir = QDir::temp();
 		if (Util::isDirWritable(dir)) {
 			path = dir.absolutePath();
@@ -95,12 +98,15 @@ void Settings::initializeSettingsDir ()
         GLOB_SettingsFilename_POI	= GLOB_SettingsDir + "/xygrib_poi.ini";
 
 		// A. Degwerth [Cassidian] added to make sure that the user dir contains an updated .ini file
-        Settings::checkAndCopyDefaultIni(GLOB_SettingsFilename, QDir::current().absolutePath() + "/" + Util::pathConfig() + "/xygrib.ini");
-        Settings::checkAndCopyDefaultIni(GLOB_SettingsFilename_POI, QDir::current().absolutePath() + "/" + Util::pathConfig() + "/xygrib_poi.ini");
 
-		GLOB_IniSettings     = new QSettings (GLOB_SettingsFilename, QSettings::IniFormat);
-		GLOB_IniSettings_POI = new QSettings (GLOB_SettingsFilename_POI, QSettings::IniFormat);
-	}
+        // TODO remove as there is no default ini file. David
+        // TODO methods can also be removed
+//        Settings::checkAndCopyDefaultIni(GLOB_SettingsFilename, QDir::current().absolutePath() + "/" + Util::pathConfig() + "/xygrib.ini");
+//        Settings::checkAndCopyDefaultIni(GLOB_SettingsFilename_POI, QDir::current().absolutePath() + "/" + Util::pathConfig() + "/xygrib_poi.ini");
+
+        GLOB_IniSettings     = new QSettings (GLOB_SettingsFilename, QSettings::IniFormat);
+        GLOB_IniSettings_POI = new QSettings (GLOB_SettingsFilename_POI, QSettings::IniFormat);
+    }
 	else {
 		GLOB_SettingsDir = "";
 		GLOB_SettingsFilename	  = "";
@@ -110,17 +116,20 @@ void Settings::initializeSettingsDir ()
 	}
     GLOB_NatSettings = new QSettings ("xyGrib");
 			
-	//-----------------------------------------------------------------------
+    // TODO this is ancient and needs to be removed. David
+
+    //-----------------------------------------------------------------------
 	// Si les settings.ini ne sont pas définis, cherche d'anciennes valeurs
 	// au format native (versions <= 3.3.0)
 	//-----------------------------------------------------------------------
-	if (! QFile::exists (GLOB_SettingsFilename)) {
-		Settings::copyOldNativeSettingsToIniFile ();
-	}
 
-	if (! QFile::exists (GLOB_SettingsFilename_POI)) {
-		Settings::copyOldNativeSettingsToIniFile_POI ();
-	}
+//    if (! QFile::exists (GLOB_SettingsFilename)) {
+//        Settings::copyOldNativeSettingsToIniFile ();
+//    }
+
+//    if (! QFile::exists (GLOB_SettingsFilename_POI)) {
+//        Settings::copyOldNativeSettingsToIniFile_POI ();
+//    }
 }
 
 //---------------------------------------------------------------------
