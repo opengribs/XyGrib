@@ -481,7 +481,7 @@ void MeteoTableWidget::addLine_Isotherm0Height(int lig)
 		DataPointInfo * pinfo = *iter;
 		txt = "";
 		if (pinfo->hasIsotherm0HGT()) {
-			txt = Util::formatGeopotAltitude (pinfo->isotherm0HGT);
+			txt = Util::formatIsotherm0HGT (pinfo->isotherm0HGT);
 			bgColor = QColor(plotter->getAltitudeColor
 						(pinfo->isotherm0HGT, Altitude(LV_ISOTHERM0,0), true));
 		}
