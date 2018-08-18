@@ -146,7 +146,7 @@ void BoardPanel::showDataPointInfo (
 	}
 	if (cellIsotherm0->isVisible()) {
 		if (pf.hasIsotherm0HGT())
-			lbIsotherm0HGT.setText(Util::formatGeopotAltitude(pf.isotherm0HGT));
+			lbIsotherm0HGT.setText(Util::formatIsotherm0HGT(pf.isotherm0HGT));
 		else
 			lbIsotherm0HGT.setText("");
 	}

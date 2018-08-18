@@ -438,6 +438,16 @@ double Util::getDataCoef (const DataCode &dtc)
 	return 1.0;
 }
 //----------------------------------------------------------------
+QString Util::formatIsotherm0HGT (float meter, bool withUnit)
+{
+    QString unite = Util::getDataUnit (DataCode(GRB_GEOPOT_HGT,LV_ISOTHERM0,0));
+	double  coef  = Util::getDataCoef (DataCode(GRB_GEOPOT_HGT,LV_ISOTHERM0,0));
+    int d = (int) (meter*coef +0.5);
+    QString r;
+	r.sprintf("%d", d);
+	return (withUnit) ? r+" "+unite : r;
+}
+//----------------------------------------------------------------
 QString Util::formatGeopotAltitude (float meter, bool withUnit)
 {
     QString unite = Util::getDataUnit (DataCode(GRB_GEOPOT_HGT,LV_ISOBARIC,0));
