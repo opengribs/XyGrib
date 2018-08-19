@@ -117,6 +117,7 @@ class Util : public QObject
     static QString formatTemperature (float tempKelvin, bool withUnit=true);
     static QString formatTemperature_short (float tempKelvin, bool withUnit=true);
 	
+    static QString formatIsotherm0HGT  (float meter, bool withUnit=true);
     static QString formatGeopotAltitude  (float meter, bool withUnit=true);
     static QString formatDirection (float angle, bool withUnit=true);
     static QString formatDistance (float mille, bool withUnit=true);
