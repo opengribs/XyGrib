@@ -61,6 +61,7 @@ int main (int argc, char *argv[])
 	//----------------------------------------------------------
     // Find application settings files
     //----------------------------------------------------------
+    Settings::findAppDataDir();
 	Settings::initializeSettingsDir();
 	Settings::initializeGribFilesDir();
     //printf("settings: %s\n", qPrintable( Settings::getSettingsDir()) );

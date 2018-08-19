@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <time.h>
 
 #include <QDir>
+#include <QStandardPaths>
 #include <QStringList>
 
 #include <QUrl>
@@ -860,5 +861,8 @@ void Util::dumpchars (unsigned char *buf, size_t offset, size_t len)
 	}
 }
 
-
+QString Util::pathData()
+{
+    return GLOB_AppDataDir + "/";
+}
 
