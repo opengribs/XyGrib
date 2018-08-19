@@ -43,7 +43,7 @@ class Settings
 public:
 	static void     initializeSettingsDir ();	// Don't forget to call it
 	static void     initializeGribFilesDir ();	// Don't forget to call it
-    static void     findAppDataDir();
+    static bool     findAppDataDir();
 	
 	//--------------------------------
 	// Globals settings

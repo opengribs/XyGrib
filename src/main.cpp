@@ -37,11 +37,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 int main (int argc, char *argv[])
 {
     QApplication app(argc, argv);
-//	qsrand(QTime::currentTime().msec());
+
+    bool foundAppData;
 
     QCoreApplication::setOrganizationName("openGribs");
     QCoreApplication::setOrganizationDomain("opengribs.org");
     QCoreApplication::setApplicationName("XyGrib");
+
+    Util::setSetting("AppVersion", Version::getCompleteName());
 
 
 #ifdef Q_OS_MACX
@@ -59,34 +62,21 @@ int main (int argc, char *argv[])
 	QLoggingCategory::setFilterRules("qt.network.ssl.warning=false");
 
 	//----------------------------------------------------------
-    // Find application settings files
+    // Find/initialize application settings files
     //----------------------------------------------------------
-    Settings::findAppDataDir();
 	Settings::initializeSettingsDir();
 	Settings::initializeGribFilesDir();
-    //printf("settings: %s\n", qPrintable( Settings::getSettingsDir()) );
-	//QString path = Util::getSetting("gribFilePath", "").toString();
-    //printf("Grib files dir: %s\n", qPrintable(path) );
 
-	Util::setSetting("AppVersion", Version::getCompleteName());
     //----------------------------------------------------------
+    // Find application data files
+    //----------------------------------------------------------
+    foundAppData = Settings::findAppDataDir();
+
+   //----------------------------------------------------------
     // Fonts
     //----------------------------------------------------------
 	Font::loadAllFonts();
 
-	//----------------------------------------------------------
-/*	double pr, h;
-	pr = 400;
-	h = DataRecordAbstract::computeGeopotentialAltitude (pr);
-	printf ("%g %g\n", pr,h);
-*/
-	//----------------------------------------------------------
-    // Images formats
-    //----------------------------------------------------------
-/*	QList<QByteArray> list = QImageWriter::supportedImageFormats ();
-	for (int i = 0; i < list.size(); ++i) {
-		DBGS (list.at(i).data());
-	}	*/
 	//----------------------------------------------------------
     // Load language
     //----------------------------------------------------------
@@ -317,6 +307,13 @@ int main (int argc, char *argv[])
 
 	}
     //====================================================
+    // TODO implement manual selection of data folder if appData not found
+    if ( ! foundAppData ){
+        // implement folder selection dialog via mainwindow method
+    }
+
+
+    // check for new versions
     win->checkUpdates();
 
 	return app.exec();

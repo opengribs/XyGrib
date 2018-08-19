@@ -59,8 +59,9 @@ void Settings::initializeSettingsDir ()
             path = dir.absolutePath();
         }
 	}
-    DBGQS("Path is: "+path);
-    DBGQS("Colors path is: "+Util::pathColors());
+    DBGQS("Settings path is: "+path);
+    DBGQS("Colors path is currently (appDataDir not yet set): "+Util::pathColors());
+
     if (path == "")
     {	// second option is to locate setting files under application current directory
         dir = QDir::current();
@@ -109,117 +110,18 @@ void Settings::initializeSettingsDir ()
 		GLOB_SettingsDir = "";
 		GLOB_SettingsFilename	  = "";
 		GLOB_SettingsFilename_POI = "";
-		GLOB_IniSettings     = NULL;
-		GLOB_IniSettings_POI = NULL;
+        GLOB_IniSettings     = nullptr;
+        GLOB_IniSettings_POI = nullptr;
 	}
     GLOB_NatSettings = new QSettings ("xyGrib");
 			
-    // TODO this is ancient and needs to be removed. David
-
-    //-----------------------------------------------------------------------
-	// Si les settings.ini ne sont pas définis, cherche d'anciennes valeurs
-	// au format native (versions <= 3.3.0)
-	//-----------------------------------------------------------------------
-
-//    if (! QFile::exists (GLOB_SettingsFilename)) {
-//        Settings::copyOldNativeSettingsToIniFile ();
-//    }
-
-//    if (! QFile::exists (GLOB_SettingsFilename_POI)) {
-//        Settings::copyOldNativeSettingsToIniFile_POI ();
-//    }
 }
-
-//---------------------------------------------------------------------
-//void Settings::copyOldNativeSettingsToIniFile()
-//{
-//	if (GLOB_SettingsDir == "")
-//		return;
-//	QString group = "main";
-//    QSettings natSettings("xyGrib");
-//	QSettings iniSettings(GLOB_SettingsFilename, QSettings::IniFormat);
-//	// Read All settings from global storage (childKeys)
-//	// and write it to user directory
-//	natSettings.setFallbacksEnabled(false);
-//	natSettings.beginGroup(group);
-//	iniSettings.beginGroup(group);
-//	QStringList oldkeys = natSettings.childKeys();
-//	QStringListIterator it(oldkeys);
-//	while (it.hasNext()) {
-//		QString key = it.next();
-//		if ( key != "POI_Font"		// obsolete data
-//			)
-//		{
-//			QVariant val = natSettings.value(key);
-//			iniSettings.setValue(key, val);
-//		}
-//	}
-//	natSettings.endGroup();
-//	iniSettings.endGroup();
-//}
-//---------------------------------------------------------------------
-//void Settings::copyOldNativeSettingsToIniFile_POI ()
-//{
-//	if (GLOB_SettingsDir == "")
-//		return;
-//	POI *poi = NULL;
-//	QString group = "poi";
-//    QSettings natSettings("xyGrib");
-//	// Read All childKeys (old style POI's, version<=3.3.0),
-//	// translate it to new style (one group by POI).
-//	// Delete old POI.
-//	// Write new POI to ini file and to Native Setting.
-//	natSettings.beginGroup(group);
-//	QStringList oldkeys = natSettings.childKeys();	// old keys: a number for each poi
-//	QStringListIterator it(oldkeys);
-//	bool  found = false;
-	
-//	while (it.hasNext()) {
-//		QString  key = it.next();
-//		QString  serialized = natSettings.value(key).toString();
-//		poi = new POI (serialized);	 // try to create POI with settings value
-//		if (poi != NULL)
-//		{
-//			found = true;
-//			natSettings.remove(key);  // remove old poi format from native settings
-//			if (poi->isValid()) {
-//				poi->writeSettings();  // write new format to settings
-//			}
-//			delete poi;
-//			poi = NULL;
-//		}
-//	}
-	
-//	if (!found) {
-//		// perhaps there are new format POI's in native settings
-//		QStringList oldgroups = natSettings.childGroups(); // pois are in groups
-//		QStringListIterator it(oldgroups);
-//		while (it.hasNext()) {
-//			QString  group = it.next();
-//			bool ok;
-//			uint code = group.toUInt(&ok);
-//			//printf("poi code: %d\n", code);
-//			if (ok) {
-//				poi = new POI (code);
-//				if (poi!=NULL) {
-//					if (poi->isValid()) {
-//						//printf("poi valid\n");
-//						poi->writeSettings();  // write new format to settings
-//					}
-//					delete poi;
-//					poi = NULL;
-//				}
-//			}
-//		}
-//	}
-//	natSettings.endGroup();
-//}
 
 //---------------------------------------------------------------------
 void Settings::setApplicationNativeSetting
             (const QString &group, const QString &key, const QVariant &value)
 {
-    if (GLOB_NatSettings != NULL)
+    if (GLOB_NatSettings != nullptr)
     {
         GLOB_NatSettings->beginGroup(group);
         GLOB_NatSettings->setValue(key, value);
@@ -232,7 +134,7 @@ QVariant Settings::getApplicationNativeSetting
             (const QString &group, const QString &key, const QVariant &defaultValue)
 {
     QVariant val;
-    if (GLOB_NatSettings != NULL)
+    if (GLOB_NatSettings != nullptr)
     {
         GLOB_NatSettings->beginGroup (group);
         val = GLOB_NatSettings->value (key, defaultValue);
@@ -248,7 +150,7 @@ void Settings::setUserSetting (const QString &key, const QVariant &value)
     // save 2 times the settings
     Settings::setApplicationNativeSetting("main", key, value);
 
-    if (GLOB_IniSettings != NULL)
+    if (GLOB_IniSettings != nullptr)
     {
         GLOB_IniSettings->beginGroup("main");
         GLOB_IniSettings->setValue(key, value);
@@ -260,7 +162,7 @@ void Settings::setUserSetting (const QString &key, const QVariant &value)
 QVariant Settings::getUserSetting (const QString &key, const QVariant &defaultValue)
 {
 	QVariant val;
-	if (GLOB_IniSettings != NULL)
+    if (GLOB_IniSettings != nullptr)
 	{
 		GLOB_IniSettings->beginGroup("main");
 		val = GLOB_IniSettings->value(key, defaultValue);
@@ -279,13 +181,13 @@ QVariant Settings::getUserSetting (const QString &key, const QVariant &defaultVa
 QStringList Settings::getAllKeys()
 {
 	QStringList list;
-	if (GLOB_IniSettings != NULL)
+    if (GLOB_IniSettings != nullptr)
 	{
 		GLOB_IniSettings->beginGroup ("main");
 		list = GLOB_IniSettings->allKeys();
 		GLOB_IniSettings->endGroup();
 	}
-	else if (GLOB_NatSettings != NULL)
+    else if (GLOB_NatSettings != nullptr)
 	{
 		GLOB_NatSettings->beginGroup ("main");
 		list = GLOB_NatSettings->allKeys();
@@ -296,13 +198,13 @@ QStringList Settings::getAllKeys()
 //---------------------------------------------------------------------
 void Settings::removeUserSetting (const QString &key)
 {
-	if (GLOB_IniSettings != NULL)
+    if (GLOB_IniSettings != nullptr)
 	{
 		GLOB_IniSettings->beginGroup ("main");
 		GLOB_IniSettings->remove(key);
 		GLOB_IniSettings->endGroup();
 	}
-	else if (GLOB_NatSettings != NULL)
+    else if (GLOB_NatSettings != nullptr)
 	{
 		GLOB_NatSettings->beginGroup ("main");
 		GLOB_NatSettings->remove(key);
@@ -321,7 +223,7 @@ QVariant Settings::getSettingPOI
 	QString poikey = QString::number(code)+"/"+key;
 	QVariant val;
 	if ( ! fromOldNativeSettings
-		&&  GLOB_IniSettings_POI != NULL)
+        &&  GLOB_IniSettings_POI != nullptr)
 	{
 		GLOB_IniSettings_POI->beginGroup("poi");
 		val = GLOB_IniSettings_POI->value(poikey, defaultValue);
@@ -344,7 +246,7 @@ void Settings::setSettingPOI
 	// save 2 times the settings : native and in ini file
 	Settings::setApplicationNativeSetting ("poi", poikey, value);
 	
-	if (GLOB_IniSettings_POI != NULL)
+    if (GLOB_IniSettings_POI != nullptr)
 	{
 		GLOB_IniSettings_POI->beginGroup("poi");
 		GLOB_IniSettings_POI->setValue  (poikey, value);
@@ -547,34 +449,88 @@ void Settings::initializeGribFilesDir ()
 
 //---------------------------------------------------------------------
 // Priority for appDataLocation:
-// 1. user app data location (OS specific) WRITABLE
-// 2. shared area i.e. /usr/shared....  or c:/ProgramData/
-// 3. under the application current directory
+// 1. check ini file setting for appDataDir
+// 2. user app data location (OS specific) WRITABLE
+// 3. shared area i.e. /usr/shared....  or c:/ProgramData/
+// 4. under the application current directory
 //---------------------------------------------------------------------
-void Settings::findAppDataDir ()
+bool Settings::findAppDataDir ()
 {
+    QString appDataPathSetting;
     QString path="";
     QDir dir;
+    QStringList slist;
+    bool retval = true;
 
+    // ----------------------------------------------------
+    // before all let's check for valid appDataDir ini setting
+    // ----------------------------------------------------
+    appDataPathSetting = Settings::getUserSetting("appDataDir", "").toString();
+    DBGQS ("Ini setting is: " + appDataPathSetting);
+    if (appDataPathSetting != ""){
+        // set dir to ini settings value
+        dir = QDir(appDataPathSetting);
+        QDir maps = QDir(dir.absolutePath() + "/data/maps");
+        QDir gis = QDir(dir.absolutePath() + "/data/gis");
+
+        if (maps.exists() && gis.exists()) { // we have the location
+            path = dir.absolutePath();
+            DBGQS("Ini setting was good and is: " + path);
+        }
+    }
+
+
+    // ----------------------------------------------------
+    // no path to appDataDir - let's look for it
+    // ----------------------------------------------------
     if (path == "")
-    {	// first option is to locate setting files in user application data area
+    {	// first search option is to locate setting files in user application data area
         // this should be OK for all systems
         dir = QDir(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
         QDir maps = QDir(dir.absolutePath() + "/data/maps");
         QDir gis = QDir(dir.absolutePath() + "/data/gis");
-        if (maps.exists() && gis.exists()) {
+
+        DBGQS("Searching in: " + dir.absolutePath());
+        if (maps.exists() && gis.exists()) { // we have the location
             path = dir.absolutePath();
+            Settings::setUserSetting("appDataDir", path); // store the location in settings
+            DBGQS("Writable location search was good and is: " + path);
         }
     }
 
     if (path == "")
     {	// second option is to locate app data files in shared area
 
+        slist = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation);
+        foreach (QString str, slist)
+        {
+            DBGQS("Searching in: " + str);
+
+            dir = QDir(str);
+            QDir maps = QDir(dir.absolutePath() + "/data/maps");
+            QDir gis = QDir(dir.absolutePath() + "/data/gis");
+
+            if (maps.exists() && gis.exists()) { // we have the location
+                path = dir.absolutePath();
+                Settings::setUserSetting("appDataDir", path); // store the location in settings
+                DBGQS("Shared location search was good and is: " + path);
+                break;
+            }
+        }
     }
 
     if (path == "")
     {	// third option is to look under application current directory
         dir = QDir::current();
+        DBGQS("Searching in current dir: " + dir.absolutePath());
+        QDir maps = QDir(dir.absolutePath() + "/data/maps");
+        QDir gis = QDir(dir.absolutePath() + "/data/gis");
+
+        if (maps.exists() && gis.exists()) { // we have the location
+            path = dir.absolutePath();
+            Settings::setUserSetting("appDataDir", path); // store the location in settings
+            DBGQS("Current dir search was good and is: " + path);
+         }
 
     }
 
@@ -583,10 +539,10 @@ void Settings::findAppDataDir ()
     }
     else {
         // error message
-
+        retval = false;
     }
-    DBGQS("AppDataPath is: "+path);
-    DBGQS("Colors path is: "+Util::pathColors());
-
+    DBGQS("Final AppDataPath is: "+path);
+    DBGQS("For sanity: Colors path is: "+Util::pathColors());
+    return retval;
  }
 
