@@ -30,6 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "POI.h"
 
 extern QString GLOB_SettingsDir;
+extern QString GLOB_AppDataDir;
 extern QString GLOB_SettingsFilename;
 extern QString GLOB_SettingsFilename_POI;
 
@@ -42,6 +43,7 @@ class Settings
 public:
 	static void     initializeSettingsDir ();	// Don't forget to call it
 	static void     initializeGribFilesDir ();	// Don't forget to call it
+    static void     findAppDataDir();
 	
 	//--------------------------------
 	// Globals settings
@@ -81,10 +83,10 @@ public:
 
 
 private:
-	static void     copyOldNativeSettingsToIniFile ();
-	static void     copyOldNativeSettingsToIniFile_POI ();
-	// A. Degwerth [Cassidian] added
-        static void     checkAndCopyDefaultIni(const QString& strIni, const QString& strIniDefault);
+//	static void     copyOldNativeSettingsToIniFile ();
+//	static void     copyOldNativeSettingsToIniFile_POI ();
+//	// A. Degwerth [Cassidian] added
+//        static void     checkAndCopyDefaultIni(const QString& strIni, const QString& strIniDefault);
 };
 
 
