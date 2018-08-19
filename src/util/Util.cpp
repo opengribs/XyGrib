@@ -325,25 +325,24 @@ QString Util::getDataUnit (const DataCode &dtc)
 	switch (dtc.dataType) {
 		case GRB_GEOPOT_HGT:
 			if (dtc.levelType == LV_ISOTHERM0)
-				unit = Util::getSetting("geopotAltitudeUnit", "gpm").toString();
-			else
 				unit = Util::getSetting("isotherm0Unit", "m").toString();
+			else
+				unit = Util::getSetting("geopotAltitudeUnit", "gpm").toString();
 			if (unit == "dam")
 				return tr("dam");
-			else if (unit == "ft")
+
+			if (unit == "gpft" ||  unit == "ft")
 				return tr("ft");
-			else   // if (unit == "m")
-				return tr("m");
-			break;
+
+			// if (unit == "m")
+			return tr("m");
 		case GRB_CLOUD_TOT    : 
 		case GRB_HUMID_SPEC   : 
 		case GRB_HUMID_REL    : 
 			return "%";
-			break;
 		case GRB_FRZRAIN_CATEG: 
 		case GRB_SNOW_CATEG   : 
 			return "0/1";
-			break;
 		case GRB_TEMP         : 
 		case GRB_TEMP_POT     : 
 		case GRB_TMAX         : 
@@ -352,46 +351,37 @@ QString Util::getDataUnit (const DataCode &dtc)
 		case GRB_PRV_DIFF_TEMPDEW : 
 		case GRB_PRV_THETA_E      : 
 			return Util::getSetting("unitsTemp", tr("°C")).toString();
-			break;
 		case GRB_WIND_VX    : 
 		case GRB_WIND_VY    : 
 		case GRB_WIND_SPEED : 
 		case GRB_PRV_WIND_XY2D : 
 		case GRB_PRV_WIND_JET  : 
 			return Util::getSetting("unitsWindSpeed", tr("km/h")).toString();
-			break;
 		case GRB_CUR_VX      : 
 		case GRB_CUR_VY      : 
 		case GRB_PRV_CUR_XY2D    : 
 			return Util::getSetting("unitsCurrentSpeed", tr("kts")).toString();
-			break;
 		case GRB_CAPE 		  : 
 		case GRB_CIN 		  : 
 			return tr("J/kg");
-			break;
         // added by david
         case GRB_COMP_REFL    :
             return tr("dBZ");
-            break;
 		case GRB_SNOW_DEPTH   : 
 			unit = Util::getSetting("snowDepthUnit", tr("m")).toString();
 			if (unit == tr("m"))
 				unit = tr("cm");
 			return unit;
-			break;
 		case GRB_PRECIP_RATE  : 
 		case GRB_PRECIP_TOT   : 
 			return tr("mm/h");
-			break;
 		case GRB_PRESSURE_MSL : 
 			return tr("hPa");
-			break;
 		case GRB_WAV_SIG_HT : 
 		case GRB_WAV_WND_HT : 
 		case GRB_WAV_SWL_HT : 
 		case GRB_WAV_MAX_HT : 
 			return tr("m");
-			break;
 		case GRB_WIND_DIR : 
 		case GRB_WAV_WND_DIR : 
 		case GRB_WAV_SWL_DIR : 
@@ -399,17 +389,14 @@ QString Util::getDataUnit (const DataCode &dtc)
 		case GRB_WAV_PRIM_DIR : 
 		case GRB_WAV_SCDY_DIR : 
 			return tr("°");
-			break;
 		case GRB_WAV_WND_PER : 
 		case GRB_WAV_SWL_PER : 
 		case GRB_WAV_MAX_PER : 
 		case GRB_WAV_PRIM_PER : 
 		case GRB_WAV_SCDY_PER : 
 			return tr("s");
-			break;
 		case GRB_WAV_WHITCAP_PROB : 
 			return tr("%");
-			break;
 		default:
 			break;
 	}
@@ -425,17 +412,26 @@ double Util::getDataCoef (const DataCode &dtc)
 				unit = Util::getSetting("isotherm0Unit", "m").toString();
 			else
 				unit = Util::getSetting("geopotAltitudeUnit", "gpm").toString();
+
 			if (unit == "gpdm" ||  unit == "dam")
 				return 0.1;
-			else if (unit == "gpft" ||  unit == "ft")
+			if (unit == "gpft" ||  unit == "ft")
 				return 1.0/0.3048;
-			else
-				return 1.0;
 			break;
 		default:
 			break;
 	}
 	return 1.0;
+}
+//----------------------------------------------------------------
+QString Util::formatIsotherm0HGT (float meter, bool withUnit)
+{
+    QString unite = Util::getDataUnit (DataCode(GRB_GEOPOT_HGT,LV_ISOTHERM0,0));
+	double  coef  = Util::getDataCoef (DataCode(GRB_GEOPOT_HGT,LV_ISOTHERM0,0));
+    int d = (int) (meter*coef +0.5);
+    QString r;
+	r.sprintf("%d", d);
+	return (withUnit) ? r+" "+unite : r;
 }
 //----------------------------------------------------------------
 QString Util::formatGeopotAltitude (float meter, bool withUnit)
