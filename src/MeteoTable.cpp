@@ -526,7 +526,10 @@ int MeteoTableDialog::SYLK_addData_gen (SylkFile &slk, int lig,int col, DataCode
 					txt = Util::formatPercentValue (val, false); 
 					break;
 				case GRB_GEOPOT_HGT   :
-					txt = Util::formatGeopotAltitude (val, false); 
+					if (dtc.levelType == LV_ISOTHERM0)
+						txt = Util::formatIsotherm0HGT (val, false);
+					else
+						txt = Util::formatGeopotAltitude (val, false);
 					break;
 				case GRB_CAPE 		  : 
 					txt = Util::formatCAPEsfc (val, false); 
