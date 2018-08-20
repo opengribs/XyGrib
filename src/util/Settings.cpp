@@ -50,7 +50,7 @@ void Settings::initializeSettingsDir ()
 	if (path == "")
     {	// first option is to locate setting files in user application settings area
         // this should be OK for all systems
-        dir = QDir(QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation));
+        dir = QDir(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation));
         if (! dir.exists()) {
             // create a directory in user home if it don't exists
             dir.mkpath(dir.absolutePath());
@@ -486,7 +486,7 @@ bool Settings::findAppDataDir ()
     if (path == "")
     {	// first search option is to locate setting files in user application data area
         // this should be OK for all systems
-        dir = QDir(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
+        dir = QDir(QStandardPaths::writableLocation(QStandardPaths::DataLocation));
         QDir maps = QDir(dir.absolutePath() + "/data/maps");
         QDir gis = QDir(dir.absolutePath() + "/data/gis");
 
@@ -501,7 +501,7 @@ bool Settings::findAppDataDir ()
     if (path == "")
     {	// second option is to locate app data files in shared area
 
-        slist = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation);
+        slist = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
         foreach (QString str, slist)
         {
             DBGQS("Searching in: " + str);
