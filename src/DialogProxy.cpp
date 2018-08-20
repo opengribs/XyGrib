@@ -113,13 +113,13 @@ void DialogProxy::slotUseProxyChanged ()
 //-------------------------------------------------------------------------------
 void DialogProxy::slotBtOK()
 {
-    Util::setSetting("httpUseProxy", btUseProxy->isChecked());
-    Util::setSetting("httpProxyHostname", Util::encode(lineProxyHostname->text()));
-    Util::setSetting("httpProxyPort", lineProxyPort->text());
-    Util::setSetting("httpProxyUsername", Util::encode(lineProxyUserName->text()));
-    Util::setSetting("httpProxyUserPassword", Util::encode(lineProxyUserPassword->text()));
+    Util::setSetting("httpUseProxy", btUseProxy->isChecked(), false);
+    Util::setSetting("httpProxyHostname", Util::encode(lineProxyHostname->text()), false);
+    Util::setSetting("httpProxyPort", lineProxyPort->text(), false);
+    Util::setSetting("httpProxyUsername", Util::encode(lineProxyUserName->text()), false);
+    Util::setSetting("httpProxyUserPassword", Util::encode(lineProxyUserPassword->text()), false);
     Util::setSetting("httpProxyType", 
-					 cbProxyType->itemData (cbProxyType->currentIndex() ).toInt() );
+					 cbProxyType->itemData (cbProxyType->currentIndex() ).toInt(), false );
 	Util::setApplicationProxy ();
 
 //    Util::setSetting("strictHttpDownload", btStrictHttpDownload->isChecked());

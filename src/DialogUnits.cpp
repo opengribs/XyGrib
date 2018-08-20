@@ -115,25 +115,25 @@ void DialogUnits::slotBtOK()
 	QComboBox *cb;
 	
 	cb = cbWindSpeedUnit;
-    Util::setSetting("unitsWindSpeed", cb->itemData(cb->currentIndex()).toString());
+    Util::setSetting("unitsWindSpeed", cb->itemData(cb->currentIndex()).toString(), false);
     cb = cbCurrentSpeedUnit;
-    Util::setSetting("unitsCurrentSpeed", cb->itemData(cb->currentIndex()).toString());
+    Util::setSetting("unitsCurrentSpeed", cb->itemData(cb->currentIndex()).toString(), false);
     cb = cbTempUnit;
-    Util::setSetting("unitsTemp",      cb->itemData(cb->currentIndex()).toString());
+    Util::setSetting("unitsTemp",      cb->itemData(cb->currentIndex()).toString(), false);
     cb = cbPositionUnit;
-    Util::setSetting("unitsPosition",  cb->itemData(cb->currentIndex()).toString());
+    Util::setSetting("unitsPosition",  cb->itemData(cb->currentIndex()).toString(), false);
     cb = cbDistanceUnit;
-    Util::setSetting("unitsDistance",  cb->itemData(cb->currentIndex()).toString());
+    Util::setSetting("unitsDistance",  cb->itemData(cb->currentIndex()).toString(), false);
 
     cb = cbAltitude;
-    Util::setSetting("geopotAltitudeUnit",  cb->itemData(cb->currentIndex()).toString());
+    Util::setSetting("geopotAltitudeUnit",  cb->itemData(cb->currentIndex()).toString(), false);
     cb = cbIsotherme0;
-    Util::setSetting("isotherm0Unit",  cb->itemData(cb->currentIndex()).toString());
+    Util::setSetting("isotherm0Unit",  cb->itemData(cb->currentIndex()).toString(), false);
 
  	cb = cbLongitude;
-    Util::setSetting("longitudeDirection", cb->itemData(cb->currentIndex()).toString());
+    Util::setSetting("longitudeDirection", cb->itemData(cb->currentIndex()).toString(), false);
     cb = cbLatitude;
-    Util::setSetting("latitudeDirection",  cb->itemData(cb->currentIndex()).toString());
+    Util::setSetting("latitudeDirection",  cb->itemData(cb->currentIndex()).toString(), false);
 
  	cb = cbTimeZone;
     Util::setSetting("timeZone",  cb->itemData(cb->currentIndex()).toString());
@@ -284,9 +284,9 @@ void DialogUnits::slotTimeZoneChanged(int index)
 		time_t locnow = QDateTime::currentDateTime().toTime_t();
     	
     	QString saveTimeZone = Util::getSetting("timeZone", "UTC").toString();
-		Util::setSetting("timeZone",  "UTC");
+		Util::setSetting("timeZone",  "UTC", false);
 		QString tutc = Util::formatDateTimeLong (locnow);
-		Util::setSetting("timeZone",  "LOC");
+		Util::setSetting("timeZone",  "LOC", false);
 		QString tloc = Util::formatDateTimeLong (locnow);
     	Util::setSetting("timeZone",  saveTimeZone);
 
