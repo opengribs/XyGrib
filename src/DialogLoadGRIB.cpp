@@ -312,46 +312,49 @@ void DialogLoadGRIB::slotGribReadProgress(int step, int done, int total)
 //-------------------------------------------------------------------------------
 void DialogLoadGRIB::saveParametersSettings ()
 {
-    Util::setSetting("downloadIndModel", cbModel->currentIndex());
-    Util::setSetting("downloadIndWaveModel", cbWvModel->currentIndex());
+    QHash <QString, QVariant> h;
 
-    Util::setSetting("downloadIndResolution", cbResolution->currentIndex());
-    Util::setSetting("downloadIndInterval",  cbInterval->currentIndex());
-	Util::setSetting("downloadIndNbDays",  cbDays->currentIndex());
-    Util::setSetting("downloadRunCycle",  cbRunCycle->itemData(cbRunCycle->currentIndex()));
+	h.insert("downloadIndModel", cbModel->currentIndex());
+    h.insert("downloadIndWaveModel", cbWvModel->currentIndex());
+
+    h.insert("downloadIndResolution", cbResolution->currentIndex());
+    h.insert("downloadIndInterval",  cbInterval->currentIndex());
+	h.insert("downloadIndNbDays",  cbDays->currentIndex());
+    h.insert("downloadRunCycle",  cbRunCycle->itemData(cbRunCycle->currentIndex()));
 	
-	Util::setSetting("downloadWind",  wind);
-	Util::setSetting("downloadPressure", pressure);
-	Util::setSetting("downloadRain",  rain);
-	Util::setSetting("downloadCloud", cloud);
-	Util::setSetting("downloadCloudLayers", cloudLayers);
-	Util::setSetting("downloadTemp",  temp);
-	Util::setSetting("downloadHumid", humid);
-	Util::setSetting("downloadIsotherm0", isotherm0);
+	h.insert("downloadWind",  wind);
+	h.insert("downloadPressure", pressure);
+	h.insert("downloadRain",  rain);
+	h.insert("downloadCloud", cloud);
+	h.insert("downloadCloudLayers", cloudLayers);
+	h.insert("downloadTemp",  temp);
+	h.insert("downloadHumid", humid);
+	h.insert("downloadIsotherm0", isotherm0);
 	
 //	Util::setSetting("downloadTempMin",  tempMin);
 //	Util::setSetting("downloadTempMax",  tempMax);
-	Util::setSetting("downloadSnowDepth", snowDepth);
-	Util::setSetting("downloadSnowCateg", snowCateg);
-	Util::setSetting("downloadFrzRainCateg", frzRainCateg);
-	Util::setSetting("downloadCAPEsfc", CAPEsfc);
-	Util::setSetting("downloadCINsfc", CINsfc);
-	Util::setSetting("downloadGUSTsfc", GUSTsfc);
+	h.insert("downloadSnowDepth", snowDepth);
+	h.insert("downloadSnowCateg", snowCateg);
+	h.insert("downloadFrzRainCateg", frzRainCateg);
+	h.insert("downloadCAPEsfc", CAPEsfc);
+	h.insert("downloadCINsfc", CINsfc);
+	h.insert("downloadGUSTsfc", GUSTsfc);
 //	Util::setSetting("downloadSUNSDsfc", SUNSDsfc);
 	
-	Util::setSetting("downloadAltitudeData200",  chkAltitude200->isChecked());
-	Util::setSetting("downloadAltitudeData300",  chkAltitude300->isChecked());
-	Util::setSetting("downloadAltitudeData400",  chkAltitude400->isChecked());
-	Util::setSetting("downloadAltitudeData500",  chkAltitude500->isChecked());
-	Util::setSetting("downloadAltitudeData600",  chkAltitude600->isChecked());
-	Util::setSetting("downloadAltitudeData700",  chkAltitude700->isChecked());
-	Util::setSetting("downloadAltitudeData850",  chkAltitude850->isChecked());
-	Util::setSetting("downloadAltitudeData925",  chkAltitude925->isChecked());
-	Util::setSetting("downloadSkewtData",  chkAltitude_SkewT->isChecked());
+	h.insert("downloadAltitudeData200",  chkAltitude200->isChecked());
+	h.insert("downloadAltitudeData300",  chkAltitude300->isChecked());
+	h.insert("downloadAltitudeData400",  chkAltitude400->isChecked());
+	h.insert("downloadAltitudeData500",  chkAltitude500->isChecked());
+	h.insert("downloadAltitudeData600",  chkAltitude600->isChecked());
+	h.insert("downloadAltitudeData700",  chkAltitude700->isChecked());
+	h.insert("downloadAltitudeData850",  chkAltitude850->isChecked());
+	h.insert("downloadAltitudeData925",  chkAltitude925->isChecked());
+	h.insert("downloadSkewtData",  chkAltitude_SkewT->isChecked());
 	
-    Util::setSetting("downoadWaveSig",  chkWaveSig->isChecked());
-    Util::setSetting("downloadWaveSwell",  chkWaveSwell->isChecked());
-    Util::setSetting("downloadWaveWind",  chkWaveWind->isChecked());
+    h.insert("downoadWaveSig",  chkWaveSig->isChecked());
+    h.insert("downloadWaveSwell",  chkWaveSwell->isChecked());
+    h.insert("downloadWaveWind",  chkWaveWind->isChecked());
+    Util::setSettings(h);
 }
 //-------------------------------------------------------------------------------
 void DialogLoadGRIB::updateParameters ()

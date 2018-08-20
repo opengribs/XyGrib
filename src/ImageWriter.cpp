@@ -212,12 +212,12 @@ void ImageWriter::saveImage (time_t date)
 //-------------------------------------------------
 void ImageWriter::saveSettings (ImageWriterDialog &dial, QString filename)
 {
-	Util::setSetting("imageSaveWidth", dial.getW());
-	Util::setSetting("imageSaveHeight", dial.getH());
-	Util::setSetting("imageSaveQuality", dial.getQ());
-	Util::setSetting("imageSaveFilename", filename);
-	Util::setSetting("imageSaveResizeAfter", dial.getResizeAfter());
-	Util::setSetting("imageShowDateCursor", dial.getShowDateCursor());
+	Util::setSetting("imageSaveWidth", dial.getW(), false);
+	Util::setSetting("imageSaveHeight", dial.getH(), false);
+	Util::setSetting("imageSaveQuality", dial.getQ(), false);
+	Util::setSetting("imageSaveFilename", filename, false);
+	Util::setSetting("imageSaveResizeAfter", dial.getResizeAfter(), false);
+	Util::setSetting("imageShowDateCursor", dial.getShowDateCursor(), false);
 	Util::setSetting("imageShowColorScale", dial.getShowColorScale());
 }
 //-------------------------------------------------
