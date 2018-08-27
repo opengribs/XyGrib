@@ -105,7 +105,7 @@ void GriddedPlotter::drawWaveArrow (QPainter &pnt,
 {
     double ang = (dir-90)/180.0*M_PI;
     double si=sin(ang),  co=cos(ang);
-    QPen pen (QColor(0,0,0));
+    QPen pen (QColor(255,0,255)); // color fuchsia
     pen.setWidth (1);
     pnt.setPen (pen);
     drawTransformedLine(pnt, si,co, i+windArrowSize/2,j,  0,0, windArrowSize, 0);   // hampe
@@ -151,7 +151,7 @@ void GriddedPlotter::drawCurrentArrow (QPainter &pnt, int i, int j, double cx, d
     else
         ytt = tf_a*vkn + tf_b;
 
-	currentArrowColor = QColor(0,0,220);
+	currentArrowColor = QColor(0,0,255); // color blue
 	coefLen = 1.4*coefLen;	
 	
     QPen pen (currentArrowColor);
@@ -245,7 +245,7 @@ void GriddedPlotter::drawWindArrowWithBarbs_static (
     
     QPen pen (arrowColor);
 	if (thinWindArrows) {
-		pen.setColor (QColor(40,40,40));
+		pen.setColor (QColor(40,40,40)); // color dark jungle green
 		//pen.setColor (QColor(255,255,255));
 		pen.setWidth (1);
 	}
