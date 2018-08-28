@@ -43,7 +43,7 @@ find_package(Qt5Xml CONFIG REQUIRED)
 include_directories(${Qt5Xml_INCLUDE_DIRS})
 
 find_library(LIBNOVA_LIBRARY
-     NAMES "libnova.a" "libnova.so"
+     NAMES "libnova.so" "libnova.a"
      PATHS
      $ENV{EXTERNLIBS}/lib
      ~/Library/Frameworks
@@ -201,9 +201,8 @@ set(PREFIX_BIN ".")
 set(PREFIX_PKGDATA ".")
 endif()
 if(UNIX AND NOT APPLE)
-# This is not exactly a good idea on linux - the code should be changed so that the executable would go to /usr/local/bin and the data to /usr/local/share/XyGrib
-set(PREFIX_BIN ${PROJECT_NAME})
-set(PREFIX_PKGDATA ${PROJECT_NAME})
+set(PREFIX_BIN "bin")
+set(PREFIX_PKGDATA "share/${PROJECT_NAME}")
 endif()
 
 add_subdirectory(src)
