@@ -179,6 +179,7 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 	//----------------------------------------
 	checkOrientation ();
 	if (ok) {
+		editionNumber = 2;
 		translateDataType ();
 		setDataType (dataType);
 		entireWorldInLongitude = (fabs(xmax-xmin)>=360.0)||(fabs(xmax-360.0+Di-xmin) < fabs(Di/20));
@@ -555,8 +556,44 @@ int Grib2Record::analyseProductType ()
 				return GRB_PRECIP_TOT;
 			else if (paramnumber==49)
 				return GRB_PRECIP_TOT;
-			else if (paramnumber==52)
-				return GRB_PRECIP_TOT;// XXX return GRB_PRECIP_RATE;
+			else if (paramnumber==52) {
+				/*
+				   cf
+				   https://www.wmo.int/pages/prog/www/ISS/Meetings/CT-MTDCF-ET-DRC_Montreal2006/Doc2-2-5(1).doc
+				   and
+				   https://www.wmo.int/pages/prog/www/ISS/Meetings/IPET-DRC_Brasilia2010/Documents/IPETDRC-II_Doc2-3_13.doc
+				   ''''
+				   According to the official WMO documentation for GRIB2,
+				   the parameter psum (number 8) is deprecated.
+				   Instead, parameter prate (number 52) together with the statistical processing “accumulation”
+				   (Code Table 4.10) and suitable product definition templates (e.g. Template 4.8)
+				   is used for total precipitation summed up over a specified time interval.
+
+				   the statistical process “accumulation” changes the units to kg m-2 and the non-normalized
+				   total precipitation sum is encoded in prate (number 52).
+				   '''
+				   But
+
+				   '''
+				   "Total precipitation rate" as sum of convective and large-scale precipitation rate is still a rate and 
+				   shall be coded with "at a point in time" templates,  parameter number 52 (Total precipitation rate), 
+				   category 1 (Moisture), discipline 0 (Meteorological products). It is the instantaneous value at the forecast time.
+
+				   "Total precipitation" shall be coded with type of statistical processing 1 (Accumulation), 
+				   parameter number 8 (Total precipitation), category 1 (Moisture), discipline 0 (Meteorological products)."
+				   '''
+
+				   For Xygrib that's mean GRB_PRECIP_TOT
+				*/
+				if (pdtnum == 8) {
+					// Used in Meteo France, ICON grib
+					// Product Definition Template Number(Table 4.0)
+					// 8 = Average, accumulation, etc..
+					return GRB_PRECIP_TOT;
+				}
+				// XXX need a file for testing
+				return GRB_PRECIP_RATE;
+			}
 			else if (paramnumber==193)
 				return GRB_FRZRAIN_CATEG;
 			else if (paramnumber==195)
