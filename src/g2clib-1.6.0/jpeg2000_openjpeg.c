@@ -23,19 +23,22 @@ typedef struct
 } opj_memory_stream;
 
 
+#if 0
+// debug output
 static void openjpeg_warning(const char *msg, void *client_data)
 {
     fprintf(stderr,"OPENJPEG: %s",msg);
 }
 
-static void openjpeg_error(const char *msg, void *client_data)
-{
-    fprintf(stderr,"OPENJPEG ERROR: %s",msg);
-}
-
 static void openjpeg_info(const char *msg, void *client_data)
 {
   fprintf(stderr,"OPENJPEG INFO: %s",msg);
+}
+#endif
+
+static void openjpeg_error(const char *msg, void *client_data)
+{
+    fprintf(stderr,"OPENJPEG ERROR: %s",msg);
 }
 
 
@@ -181,8 +184,12 @@ int dec_jpeg2000(char *injpc,g2int bufsize,g2int *outfld)
     /* get a decoder handle */
     codec = opj_create_decompress(OPJ_CODEC_J2K);
 
+#if 0
     opj_set_info_handler(codec, openjpeg_info, NULL);
     opj_set_warning_handler(codec, openjpeg_warning, NULL);
+#endif
+    opj_set_info_handler(codec, NULL, NULL);
+    opj_set_warning_handler(codec, NULL, NULL);
     opj_set_error_handler(codec, openjpeg_error,NULL);
 
     /* initialize our memory stream */
