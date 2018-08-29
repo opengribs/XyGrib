@@ -1511,7 +1511,7 @@ void MainWindow::slotFile_Info_GRIB ()
 	msg += tr("    to %1\n").arg( Util::formatDateTimeLong(*(sdates.rbegin())) );
 
 	msg += "\n";
-	msg += tr("Avalaible data :");
+	msg += tr("Available data :");
 	std::set<DataCode> setdata = plotter->getAllDataCode ();
 	std::set<DataCode>::iterator it;
 	int  currentype = -1;
