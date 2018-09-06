@@ -245,6 +245,8 @@ class GribRecord : public RegularGridRecord
 //==========================================================================
 inline bool   GribRecord::hasValue (int i, int j) const
 {
+    static_assert((double)GRIB_NOTDEF == (float)GRIB_NOTDEF, "float double GRIB_NOTDEF not the same");
+    static_assert((int)GRIB_NOTDEF == (float)GRIB_NOTDEF, "float int GRIB_NOTDEF not the same");
     // is data present in BMS ?
     if (entireWorldInLongitude) {
 		while (i>=Ni)

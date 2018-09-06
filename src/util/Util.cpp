@@ -198,11 +198,11 @@ QString Util::formatTemperature (float tempKelvin, bool withUnit)
         r.sprintf("%.1f", tempKelvin);
     }
     else if (unit == tr("°F")) {
-        r.sprintf("%.1f", 1.8*(tempKelvin-273.15)+32.0);
+        r.sprintf("%.1f", 1.8f*(tempKelvin-273.15f)+32.0f);
     }
     else  {   // if (unit == tr("°K"))
         unit = tr("°C");
-        r.sprintf("%.1f", tempKelvin-273.15);
+        r.sprintf("%.1f", tempKelvin-273.15f);
     }
 	return (withUnit) ? r+""+unit : r;
 }
@@ -215,11 +215,11 @@ QString Util::formatTemperature_short(float tempKelvin, bool withUnit)
         r.sprintf("%d", qRound(tempKelvin) );
     }
     else if (unit == tr("°F")) {
-        r.sprintf("%d", qRound(1.8*(tempKelvin-273.15)+32.0) );
+        r.sprintf("%d", qRound(1.8f*(tempKelvin-273.15f)+32.0f) );
     }
     else  {   // if (unit == tr("°K"))
         unit = tr("°C");
-        r.sprintf("%d", qRound(tempKelvin-273.15) );
+        r.sprintf("%d", qRound(tempKelvin-273.15f) );
     }
 	return (withUnit) ? r+""+unit : r;
 }
@@ -258,7 +258,7 @@ QString Util::formatDirection (float angle, bool withUnit)
 {
     QString unite = tr("°");
     QString r;
-	r.sprintf("%d", (int) (angle+0.5));
+    r.sprintf("%d", qRound(angle +0.5f));
 	return (withUnit) ? r+unite : r;
 }
 //----------------------------------------------------------------
@@ -269,7 +269,7 @@ QString Util::formatDistance (float mille, bool withUnit)
     float d;
     if (unit == tr("km")) {
         unit = "km";
-        d= mille*1.852;
+        d= mille*1.852f;
     }
     else  {
         unit = "NM";
@@ -279,8 +279,8 @@ QString Util::formatDistance (float mille, bool withUnit)
         r.sprintf("%5.2f", d);
     else if (d<100)
         r.sprintf("%5.1f", d);
-    else
-        r.sprintf("%5.0f", d);
+	else
+		r.sprintf("%5.0f", d);
 	return (withUnit) ? r+" "+unit : r;
 }
 //----------------------------------------------------------------
@@ -467,9 +467,9 @@ QString Util::formatPressure (float pasc, bool withUnit, int precision)
     QString r;
 	if (pasc != GRIB_NOTDEF) {
 		if (precision > 0)
-			r.sprintf("%.1f", pasc/100.0);
+            r.sprintf("%.1f", pasc/100.0f);
 		else
-			r.sprintf("%.0f", pasc/100.0);
+            r.sprintf("%.0f", pasc/100.0f);
 	}
 	return (withUnit) ? r+" "+unite : r;
 }
@@ -501,7 +501,7 @@ QString Util::formatWaveHeight (float meter, bool withUnit)
     }
     else {
         unite = "ft";
-        d= meter/0.3048;
+        d= meter/0.3048f;
     }
 	if (d < 10)
 		r.sprintf("%.1f", d);
@@ -525,14 +525,7 @@ QString Util::formatWaveDirection (float angle, bool withUnit)
 //----------------------------------------------------------------
 QString Util::formatWhiteCap (float prb, bool withUnit)
 {
-    QString unite = "%";
-    QString r;
-	float v = inRange (0.0f, prb, 100.0f);
-	if (v < 10)
-		r.sprintf("%.1f", v);
-	else
-		r.sprintf("%.0f", v);
-	return (withUnit) ? r+" "+unite : r;
+	return formatPercentValue(prb, withUnit);
 }
 //----------------------------------------------------------------
 QString Util::formatSnowDepth (float meter, bool withUnit)
@@ -542,7 +535,7 @@ QString Util::formatSnowDepth (float meter, bool withUnit)
     float d;
     if (unit == tr("m")) {
         unite = "cm";
-        d= meter*100.0;
+        d= meter*100.0f;
         if (d < 10)
 			r.sprintf("%.1f", d);
 		else
@@ -550,7 +543,7 @@ QString Util::formatSnowDepth (float meter, bool withUnit)
     }
     else {
         unite = "ft";
-        d= meter/0.3048;
+        d= meter/0.3048f;
 		r.sprintf("%.2f", d);
     }
 	return (withUnit) ? r+" "+unite : r;
@@ -566,7 +559,7 @@ QString Util::formatDegres (float x, bool inf100)     // 123.4 -> 123°24.00'
     if (unit == tr("dd°mm,mm'"))
     {
         int deg = (int) fabs(x);
-        float min = (fabs(x) - deg)*60.0;
+        float min = (fabs(x) - deg)*60.0f;
         char sign = (x<0) ? '-' : ' ';
         if (inf100)
         	r.sprintf("%c%02d%s%05.2f'", sign,deg,cdeg, min);
@@ -575,7 +568,7 @@ QString Util::formatDegres (float x, bool inf100)     // 123.4 -> 123°24.00'
     }
     else if (unit == tr("dd°mm'ss\""))
     {
-        int sec = (int) fabs(x*3600.0);  // total en secondes
+        int sec = (int) fabs(x*3600.0f);  // total en secondes
         int min = sec / 60;              // nombre entier de minutes
         int deg = min / 60;              // nombre entier de degrés
         min = min % 60;                  // reste en minutes
@@ -656,28 +649,19 @@ QString Util::formatLatitude(float y)
 	}
 }
 //---------------------------------------------------------------------
-QString Util::formatPercentValue(float v, bool withUnit)
+QString Util::formatPercentValue(float prb, bool withUnit)
 {
-	if (v == GRIB_NOTDEF)
-		return withUnit ? "    %%": "   ";
+	if (prb == GRIB_NOTDEF)
+		return withUnit ? "    %": "   ";
+
+    QString unite = "%";
     QString r;
-    if (v <= 0.)
-        v=0;
-    else if (v>100)
-        v=100;    
-	if (withUnit) {
-		if (v < 10)
-			r.sprintf("%.1f %%", v);
-		else
-			r.sprintf("%.0f %%", v);
-	}
-	else {
-		if (v < 10)
-			r.sprintf("%.1f", v);
-		else
-			r.sprintf("%.0f", v);
-	}
-    return r;
+	float v = inRange (0.0f, prb, 100.0f);
+	if (v < 10)
+		r.sprintf("%.1f", v);
+	else
+		r.sprintf("%.0f", v);
+	return withUnit ? r+" "+unite : r;
 }
 
 //======================================================================
@@ -798,7 +782,7 @@ double Util::distancePointSegment (double a,double b,     // point
 	dx = x1 - x0;
 	dy = y1 - y0;
 
-	if (dx == 0 && dy == 0) {	//  the segment is a single point
+    if (dx == 0. && dy == 0.) {	//  the segment is a single point
 		dx = a - x0;
 		dy = b - y0;
 		dist = sqrt(dx*dx + dy*dy);

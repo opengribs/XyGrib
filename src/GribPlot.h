@@ -40,12 +40,12 @@ class GribPlot : public RegularGridPlot
 		virtual void  loadFile (QString fileName,
 						LongTaskProgress *taskProgress=NULL, int nbrecs=0);
 		
-        GribReader *getReader()  const  {return gribReader;}
+        GribReader *getReader()  const  {return gribReader != nullptr && gribReader->isOk()? gribReader: nullptr;}
 
 		virtual void  setCurrentDate (time_t t);
 
 		virtual bool  isReaderOk() const  
-						{return gribReader!=NULL && gribReader->isOk();}
+						{return gribReader!=nullptr && gribReader->isOk();}
 
 		virtual void duplicateFirstCumulativeRecord (bool b);
 		virtual void duplicateMissingWaveRecords (bool b);
