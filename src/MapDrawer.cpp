@@ -360,9 +360,11 @@ void MapDrawer::addUsedDataCenterModel (const DataCode &dtc, GriddedPlotter *plo
 		type = GRB_DEWPOINT;
 	else
 		type = dtc.dataType;
+
+	assert(plotter->getReader() != nullptr);
 	GriddedRecord *rec = plotter->getReader()->getRecord 
 			(DataCode(type,dtc.levelType,dtc.levelValue),  plotter->getCurrentDate());
-	if (rec && rec->isOk()) {
+	if (rec != nullptr) {
 		setUsedDataCenters.insert (rec->getDataCenterModel());
 	}
 }
@@ -613,7 +615,7 @@ void MapDrawer::draw_Cartouche_Gridded
 		(QPainter &pnt, const Projection *proj, GriddedPlotter *plotter)
 {
 	GriddedReader *reader = plotter->getReader();
-    if (reader == NULL) {
+    if (reader == nullptr) {
         return;
     }
 	//------------------------------------------
@@ -625,7 +627,7 @@ void MapDrawer::draw_Cartouche_Gridded
 			dtmp.dataType = GRB_CUR_VX;
 	
 	GriddedRecord *rec = reader->getRecord (dtmp, plotter->getCurrentDate());
-	if (rec && rec->isOk()) {
+	if (rec != nullptr) {
 		origine = DataCodeStr::toString (rec->getDataCenterModel());
 		duplicated = rec->isDuplicated() ? " (dup)" : "";
 	}

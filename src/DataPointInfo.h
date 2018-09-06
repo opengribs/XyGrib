@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class DataPointInfo
 {
     public :
-        DataPointInfo (GriddedReader *reader, float x, float y, time_t date);
+        DataPointInfo (GriddedReader *reader, double x, double y, time_t date);
 
 		bool isOk ()     const {return reader!=NULL;}
 		
@@ -75,7 +75,7 @@ class DataPointInfo
 		float getWaveData (int type) const;
 		
 		//----------------------------------------------
-        float   x, y;       // position
+        double  x, y;       // position
         time_t  date;
 
         float	cx, cy; // Current
@@ -152,10 +152,15 @@ class DataPointInfo
 		
 	private:
 
-	float getPercentValue (const DataCode &c)
-	{
-	     return reader==NULL ? GRIB_NOTDEF: Util::inRangeOrNotDef(reader->getDateInterpolatedValue (c, x,y,date), 0., 100.);
-	}
+	    float getValue (const DataCode &c) const
+	    {
+            return reader==nullptr ? GRIB_NOTDEF: static_cast<float>(reader->getDateInterpolatedValue (c, x,y,date));
+        }
+
+	    float getPercentValue (const DataCode &c) const
+	    {
+            return Util::inRangeOrNotDef(getValue(c), 0.f, 100.f);
+        }
 
         GriddedReader *reader;
         void initDataPointInfo();
