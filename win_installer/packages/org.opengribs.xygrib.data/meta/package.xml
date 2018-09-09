@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<Package>
+    <DisplayName>XyGrib Static Data</DisplayName>
+    <Description>Data needed by XyGrib such as maps, gis info, color schemes and translations</Description>
+    <Version>1.1.1</Version>
+    <ReleaseDate>2018-09-15</ReleaseDate>
+    <Default>true</Default>
+    <Script>installscript.qs</Script>
+</Package>
