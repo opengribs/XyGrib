@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QStandardPaths>
 #include <QStringList>
 #include <QMessageBox>
+#include <QMetaEnum>
 
 #include "Settings.h"
 #include "Util.h"
@@ -530,7 +531,13 @@ bool Settings::findAppDataDir ()
     if (path == "")
     {	// first search option is to locate setting files in user application data area
         // this should be OK for all systems
+#ifdef Q_OS_WIN
+        // "AppDataLocation" is new and does not appear in earlier QT5 versions and may crash linux builds
+        // in windows binaries it does exist for sure. This will put app data in c:/user/AppData/Roaming...
+        dir = QDir(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
+#else
         dir = QDir(QStandardPaths::writableLocation(QStandardPaths::DataLocation));
+#endif
         QDir maps = QDir(dir.absolutePath() + "/data/maps");
         QDir gis = QDir(dir.absolutePath() + "/data/gis");
 
