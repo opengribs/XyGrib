@@ -5,5 +5,6 @@
     <Version>1.1.1</Version>
     <ReleaseDate>2018-09-15</ReleaseDate>
     <Default>true</Default>
+	<SortingPriority>002</SortingPriority>
     <Script>installscript.qs</Script>
 </Package>
