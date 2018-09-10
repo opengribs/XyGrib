@@ -35,7 +35,7 @@ QString styleSheetDef =
         ;
 
 QString menuStyleSheetDef =
-        "QMenu,QMenuBar {color: #ffffff; background: #666666}"
+        "QMenu,QMenuBar {color: #ffffff; background: #666666;}"
         "QMenuBar::item:selected, QMenu::item::selected {color: #666666; background-color: #dddddd;}"
         "QMenu::item:disabled {color: #aaaaaa;}"
         ;

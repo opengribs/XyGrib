@@ -38,7 +38,7 @@ Component.prototype.createOperations = function()
 
     if (systemInfo.productType === "windows") {
         component.addOperation("CreateShortcut", "@TargetDir@/XyGrib.exe", "@StartMenuDir@/XyGrib.lnk",
-            "workingDirectory=@TargetDir@", "iconPath=@TargetDir@/XyGrib.exe,1",
+            "workingDirectory=@TargetDir@", "iconPath=@TargetDir@/XyGrib.exe", "IconID=1",
              "description=Run XyGrib Weather Visualization");
 			 
 		component.addOperation("RegisterFileType",
@@ -46,7 +46,7 @@ Component.prototype.createOperations = function()
                        "@TargetDir@/XyGrib.exe \"%1\"",
                        "XyGrib Files",
                        "application/x-binary",
-                       "@TargetDir@/icons/xyGrib_32.ico",
+                       "@TargetDir@/XyGrib.exe",
                        "ProgId=XyGrib.grb2");  
 					   
 		component.addOperation("RegisterFileType",
@@ -54,7 +54,7 @@ Component.prototype.createOperations = function()
                        "@TargetDir@/XyGrib.exe \"%1\"",
                        "XyGrib Files",
                        "application/x-binary",
-                       "@TargetDir@/icons/xyGrib_32.ico",
+                       "@TargetDir@/XyGrib.exe",
                        "ProgId=XyGrib.grib2");  
 					   
 		component.addOperation("RegisterFileType",
@@ -62,8 +62,11 @@ Component.prototype.createOperations = function()
                        "@TargetDir@/XyGrib.exe \"%1\"",
                        "XyGrib Files",
                        "application/x-binary",
-                       "@TargetDir@/icons/xyGrib_32.ico",
+                       "@TargetDir@/XyGrib.exe",
                        "ProgId=XyGrib.grb");  
 					   					   
     }
 }
+
+
+
