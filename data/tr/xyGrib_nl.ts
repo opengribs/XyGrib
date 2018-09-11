@@ -2094,6 +2094,10 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
         <source>Theta-e :</source>
         <translation></translation>
     </message>
+    <message>
+        <source>Geopotentials :</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GribAnimator</name>
@@ -2120,6 +2124,69 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     <message>
         <source>Image %1/%2 : %3</source>
         <translation>Beeld %1/%2 : %3</translation>
+    </message>
+</context>
+<context>
+    <name>GribLoadDialog</name>
+    <message>
+        <source>Réglages des Météotables</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Vent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Précipitations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Nébulosité</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Température</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pression</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Point de rosée</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ecart température-point de rosée</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Isotherme 0°C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Neige (chute possible)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Neige (hauteur)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pluie verglaçante (chute possible)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Température potentielle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Valider</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Annuler</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2482,7 +2549,7 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     </message>
     <message>
         <source>is available for download.</source>
-        <translation>kan gedownload worden</translation>
+        <translation type="vanished">kan gedownload worden</translation>
     </message>
     <message>
         <source>Version is up to date</source>
@@ -2502,6 +2569,30 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
     </message>
     <message>
         <source>https://OpenGribs.org</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable to start XyGrib Maintenance Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It is recommended to exit XyGrib while running the Maintenance Tool. Do you wish to exit XyGrib?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exit XyGrib?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>is available for update.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please use the XyGrib Maintenance Tool to upgrade. It can be activated from the Help Menu</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3594,6 +3685,14 @@ alleen voor de zone: Europe + NO Atlantische Oceaan
         <source>Toggle click to select</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Run XyGrib Maintenance Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To add, update or remove XyGrib components</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MeteoTableDialog</name>
@@ -3933,6 +4032,10 @@ Are you sure ?</source>
     <message>
         <source>Delete this POI</source>
         <translation type="unfinished">Verwijder punt</translation>
+    </message>
+    <message>
+        <source>Result</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
