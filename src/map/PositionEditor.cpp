@@ -63,8 +63,8 @@ double DegreeMinuteEditor::getValue()
 	double min = angMin->value()/60.0;
 	if (cbSigne->currentText() == "-")
 		return - deg - min;
-	else
-		return deg + min;
+
+    return deg + min;
 }
 
 //=============================================================

@@ -37,7 +37,7 @@ QList<POI*> GLOB_listSelectedPOI;
 //-------------------------------------------------------------------------------
 POI::POI (QString seralizedPOI_oldFormat)//
 				 // Projection *proj, QWidget *ownerSlotsPOI, QWidget *parentWindow)
-	: QWidget(NULL)
+    : QWidget(nullptr)
 {
 	valid = true;
 	isMovable = false;
@@ -59,7 +59,7 @@ POI::POI (QString seralizedPOI_oldFormat)//
 	this->labelTextColor = Qt::black;
 	this->labelBgColor = Qt::white;
 	this->labelBgColor.setAlpha(200);
-    widgetFocus = NULL;
+    widgetFocus = nullptr;
 }
 
 //-------------------------------------------------------------------------------
@@ -79,7 +79,7 @@ POI::POI(uint code, QString name, double lon, double lat,
 	createWidget  (ownerSlotsPOI);
 	setDisplayParams (Qt::red, Font::getFont(FONT_POILabel), Qt::black,Qt::white);
 	adjustGeometry();
-    widgetFocus = NULL;
+    widgetFocus = nullptr;
 }
 
 //-------------------------------------------------------------------------------
@@ -88,9 +88,9 @@ POI::POI (uint codeFromOldSettings)
 {
 	valid = true;
 	code = codeFromOldSettings;
-	this->parent = NULL;
+    this->parent = nullptr;
 	readSettings (codeFromOldSettings, true);
-    widgetFocus = NULL;
+    widgetFocus = nullptr;
 }
 
 //-------------------------------------------------------------------------------
@@ -106,7 +106,7 @@ POI::POI (uint code,
 	setProjection (proj);
 	createWidget  (ownerSlotsPOI);
 	adjustGeometry();
-    widgetFocus = NULL;
+    widgetFocus = nullptr;
 }
 //-------------------------------------------------------------------------------
 void POI::setDisplayParams ( QColor markColor,
@@ -182,7 +182,7 @@ void POI::createWidget(QWidget *ownerSlotsPOI)
 //-------------------------------------------------------------------------------
 void POI::adjustGeometry()
 {
-	if (proj == NULL)
+    if (proj == nullptr)
 		return;
 	QFontMetrics fmet(labelFont);
 	QRect rect = fmet.boundingRect(name);

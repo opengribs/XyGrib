@@ -108,9 +108,8 @@ g2int g2_unpack4(unsigned char *cgrib,g2int *iofst,g2int *ipdsnum,g2int **ipdstm
          free(mappds);
          return(ierr);
       }
-      else {
-         *ipdstmpl=lipdstmpl;
-      }
+      *ipdstmpl=lipdstmpl;
+
       for (i=0;i<mappds->maplen;i++) {
         nbits=abs(mappds->map[i])*8;
         if ( mappds->map[i] >= 0 ) {
@@ -171,13 +170,12 @@ g2int g2_unpack4(unsigned char *cgrib,g2int *iofst,g2int *ipdsnum,g2int **ipdstm
             free(lcoordlist);
             return(ierr);
          }
-         else {
-            *coordlist=lcoordlist;
-         }
-        gbits(cgrib,coordieee,*iofst,32,0,*numcoord);
-        rdieee(coordieee,*coordlist,*numcoord);
-        free(coordieee);
-        *iofst=*iofst+(32*(*numcoord));
+         *coordlist=lcoordlist;
+
+         gbits(cgrib,coordieee,*iofst,32,0,*numcoord);
+         rdieee(coordieee,*coordlist,*numcoord);
+         free(coordieee);
+         *iofst=*iofst+(32*(*numcoord));
       }
       
       return(ierr);    // End of Section 4 processing

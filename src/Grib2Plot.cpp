@@ -40,21 +40,16 @@ void Grib2Plot::loadFile (QString fileName,
 	this->fileName = fileName;
 	listDates.clear();
     
-    if (gribReader != NULL) {
-    	delete gribReader;
-        gribReader = NULL;
-    }
-// 	
+    delete gribReader;
+
+//
 	gribReader = new Grib2Reader ();
-    if (gribReader != NULL)
+    gribReader->openFile (qPrintable(fileName), taskProgress, nbrecs);
+    if (gribReader->isOk())
     {
-		gribReader->openFile (qPrintable(fileName), taskProgress, nbrecs);
-		if (gribReader->isOk())
-		{
-			listDates = gribReader->getListDates();
-			setCurrentDate ( listDates.size()>0 ? *(listDates.begin()) : 0);
-		}
-	}
+        listDates = gribReader->getListDates();
+        setCurrentDate ( listDates.size()>0 ? *(listDates.begin()) : 0);
+    }
 }
 
 

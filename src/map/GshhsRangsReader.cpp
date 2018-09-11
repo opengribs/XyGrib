@@ -57,16 +57,14 @@ bool GshhsRangsCell::readPolygonList()
         // printf("*** End_PolygonList ***\n");
         return false;         // Fin de récursion
     }
-    else 
-    { 
-        size = readSegmentLoop();
-        if (poligonSizeMax <size)
-        	poligonSizeMax = size;
-        	
-        while (readPolygonList())
-            {};        // Appel récursif
-        return true;
-    }
+
+    size = readSegmentLoop();
+    if (poligonSizeMax <size)
+        poligonSizeMax = size;
+
+    while (readPolygonList())
+    {};        // Appel récursif
+    return true;
 }
     
 //------------------------------------------------------------------------
@@ -291,13 +289,13 @@ void GshhsRangsCell::drawSeaBorderLines(QPainter &pnt, double dx, Projection *pr
 GshhsRangsReader::GshhsRangsReader(std::string rangspath)
 {
     path = rangspath+"/";
-    fcat = NULL;
-    fcel = NULL;
-    frim = NULL;
+    fcat = nullptr;
+    fcel = nullptr;
+    frim = nullptr;
 
 	for (int i=0; i<360; i++) {
 		for (int j=0; j<180; j++) {
-			allCells[i][j] = NULL;
+            allCells[i][j] = nullptr;
 		}
 	}
 	currentQuality = -1;
@@ -308,11 +306,7 @@ GshhsRangsReader::~GshhsRangsReader()
 {
 	for (int i=0; i<360; i++) {
 		for (int j=0; j<180; j++) {
-			if (allCells[i][j] != NULL)
-			{
-				delete allCells[i][j];
-				allCells[i][j] = NULL;
-			}
+            delete allCells[i][j];
 		}
 	}
 }
@@ -344,10 +338,10 @@ void GshhsRangsReader::setQuality(int quality)  // 5 levels: 0=low ... 4=full
 		
 		for (int i=0; i<360; i++) {
 			for (int j=0; j<180; j++) {
-				if (allCells[i][j] != NULL)
+                if (allCells[i][j] != nullptr)
 				{
 					delete allCells[i][j];
-					allCells[i][j] = NULL;
+                    allCells[i][j] = nullptr;
 				}
 			}
 		}
@@ -385,7 +379,7 @@ void GshhsRangsReader::drawGshhsRangsMapPlain( QPainter &pnt, Projection *proj,
         for (cy=cymin; cy<cymax; cy++) {
             if (cxx>=0 && cxx<=359 && cy>=-90 && cy<=89)
             {
-            	if (allCells[cxx][cy+90] == NULL) {
+                if (allCells[cxx][cy+90] == nullptr) {
 					cel = new GshhsRangsCell(fcat, fcel, frim, cxx, cy);
 					assert(cel);
 					allCells[cxx][cy+90] = cel;
@@ -432,7 +426,7 @@ void GshhsRangsReader::drawGshhsRangsMapSeaBorders( QPainter &pnt, Projection *p
         for (cy=cymin; cy<cymax; cy++) {
             if (cxx>=0 && cxx<=359 && cy>=-90 && cy<=89)
             {
-            	if (allCells[cxx][cy+90] == NULL) {
+                if (allCells[cxx][cy+90] == nullptr) {
 					cel = new GshhsRangsCell(fcat, fcel, frim, cxx, cy);
 					assert(cel);
 					allCells[cxx][cy+90] = cel;

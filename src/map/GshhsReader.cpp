@@ -25,16 +25,16 @@ GshhsPolygon::GshhsPolygon(ZUFILE *file_)
 {
  	file  = file_;
     ok = true;
-    id    = readInt4();
-    n     = readInt4();
-    flag  = readInt4();
-    west  = readInt4() * 1e-6;
-    east  = readInt4() * 1e-6;
-    south = readInt4() * 1e-6;
-    north = readInt4() * 1e-6;
-    area  = readInt4();
-    greenwich = readInt2();
-    readInt2();   // source
+    id    = GshhsPolygon::readInt4();
+    n     = GshhsPolygon::readInt4();
+    flag  = GshhsPolygon::readInt4();
+    west  = GshhsPolygon::readInt4() * 1e-6;
+    east  = GshhsPolygon::readInt4() * 1e-6;
+    south = GshhsPolygon::readInt4() * 1e-6;
+    north = GshhsPolygon::readInt4() * 1e-6;
+    area  = GshhsPolygon::readInt4();
+    greenwich = GshhsPolygon::readInt2();
+    GshhsPolygon::readInt2();   // source
 
     if (ok)
     {
@@ -42,16 +42,16 @@ GshhsPolygon::GshhsPolygon(ZUFILE *file_)
 		double x, y=-90;
         
         for (int i=0; i<n; i++) {
-            x = readInt4() * 1e-6;
+            x = GshhsPolygon::readInt4() * 1e-6;
             if (greenwich && x > 270)
                 x -= 360;
-            y = readInt4() * 1e-6;
+            y = GshhsPolygon::readInt4() * 1e-6;
             lsPoints.push_back(new GshhsPoint(x,y));
         }
         
     	// force l'Antarctic à être un "rectangle" qui passe par le pôle
         if (antarctic) {
-        	lsPoints.insert (lsPoints.begin(), 2, (GshhsPoint*)0);
+            lsPoints.insert (lsPoints.begin(), 2, nullptr);
         	lsPoints [1] = new GshhsPoint(360, y);
         	lsPoints [0] = new GshhsPoint(360,-90);
             lsPoints.push_back(new GshhsPoint(0,-90));
@@ -67,24 +67,24 @@ GshhsPolygon_WDB::GshhsPolygon_WDB(ZUFILE *file_)
 {
     file  = file_;
     ok = true;
-    id    = readInt4();
-    n     = readInt4();
-    flag  = readInt4();
-    west  = readInt4() * 1e-6;
-    east  = readInt4() * 1e-6;
-    south = readInt4() * 1e-6;
-    north = readInt4() * 1e-6;
-    area  = readInt4();
+    id    = GshhsPolygon_WDB::readInt4();
+    n     = GshhsPolygon_WDB::readInt4();
+    flag  = GshhsPolygon_WDB::readInt4();
+    west  = GshhsPolygon_WDB::readInt4() * 1e-6;
+    east  = GshhsPolygon_WDB::readInt4() * 1e-6;
+    south = GshhsPolygon_WDB::readInt4() * 1e-6;
+    north = GshhsPolygon_WDB::readInt4() * 1e-6;
+    area  = GshhsPolygon_WDB::readInt4();
     
     greenwich = false;
     antarctic = false;
     if (ok) {
         for (int i=0; i<n; i++) {
             double x, y;
-            x = readInt4() * 1e-6;
+            x = GshhsPolygon_WDB::readInt4() * 1e-6;
             if (greenwich && x > 270)
                 x -= 360;
-            y = readInt4() * 1e-6;
+            y = GshhsPolygon_WDB::readInt4() * 1e-6;
             lsPoints.push_back(new GshhsPoint(x,y));
         }
     }
@@ -156,8 +156,7 @@ GshhsReader::GshhsReader (const GshhsReader &model)
 // Destructeur
 GshhsReader::~GshhsReader () 
 {
-	if (gshhsRangsReader)
-		delete gshhsRangsReader;
+    delete gshhsRangsReader;
 	if (isListCreator)
 		clearLists();
 }
@@ -170,27 +169,27 @@ void GshhsReader::clearLists ()
     {
         for (itp=lsPoly_level1[qual]->begin(); itp != lsPoly_level1[qual]->end(); itp++) {
             delete *itp;
-            *itp = NULL;
+            *itp = nullptr;
         }
         for (itp=lsPoly_level2[qual]->begin(); itp != lsPoly_level2[qual]->end(); itp++) {
             delete *itp;
-            *itp = NULL;
+            *itp = nullptr;
         }
         for (itp=lsPoly_level3[qual]->begin(); itp != lsPoly_level3[qual]->end(); itp++) {
             delete *itp;
-            *itp = NULL;
+            *itp = nullptr;
         }
         for (itp=lsPoly_level4[qual]->begin(); itp != lsPoly_level4[qual]->end(); itp++) {
             delete *itp;
-            *itp = NULL;
+            *itp = nullptr;
         }
         for (itp=lsPoly_boundaries[qual]->begin(); itp != lsPoly_boundaries[qual]->end(); itp++) {
             delete *itp;
-            *itp = NULL;
+            *itp = nullptr;
         }
         for (itp=lsPoly_rivers[qual]->begin(); itp != lsPoly_rivers[qual]->end(); itp++) {
             delete *itp;
-            *itp = NULL;
+            *itp = nullptr;
         }
         lsPoly_level1[qual]->clear();
         lsPoly_level2[qual]->clear();
@@ -262,7 +261,7 @@ void GshhsReader::readGshhsFiles()
 	if (lsPoly_level1[quality]->size() == 0) { // on ne lit qu'une fois le fichier
 		fname = getFileName_gshhs(quality);
 		file = zu_open(fname.c_str(), "rb");
-		if (file != NULL) {
+        if (file != nullptr) {
 			
 			ok = true;
 			while (ok) {
@@ -313,7 +312,7 @@ void GshhsReader::setQuality(int quality_) // 5 levels: 0=low ... 4=full
     if (lsPoly_boundaries[quality]->size() == 0) { // on ne lit qu'une fois le fichier
         fname = getFileName_boundaries(quality);
         file = zu_open(fname.c_str(), "rb");
-        if (file != NULL) {
+        if (file != nullptr) {
             ok = true;
             while (ok) {
                 GshhsPolygon *poly = new GshhsPolygon_WDB(file);
@@ -332,7 +331,7 @@ void GshhsReader::setQuality(int quality_) // 5 levels: 0=low ... 4=full
     if (lsPoly_rivers[quality]->size() == 0) { // on ne lit qu'une fois le fichier
         fname = getFileName_rivers(quality);
         file = zu_open(fname.c_str(), "rb");
-        if (file != NULL) {
+        if (file != nullptr) {
             ok = true;
             while (ok) {
                 GshhsPolygon *poly = new GshhsPolygon_WDB(file);
@@ -422,12 +421,11 @@ void GshhsReader::GsshDrawPolygons(QPainter &pnt, std::vector <GshhsPolygon*> &l
 {
     std::vector <GshhsPolygon*>::iterator iter;
     GshhsPolygon *pol;
-    QPoint *pts = NULL;
     int i;
     int nbp;
     
     int nbmax = 10000;
-    pts = new QPoint[nbmax];
+    QPoint *pts = new QPoint[nbmax];
     assert(pts);
     
     for  (i=0, iter=lst.begin(); iter!=lst.end(); iter++,i++) {
@@ -460,12 +458,11 @@ void GshhsReader::GsshDrawLines(QPainter &pnt, std::vector <GshhsPolygon*> &lst,
 {
     std::vector <GshhsPolygon*>::iterator iter;
     GshhsPolygon *pol;
-    QPoint *pts = NULL;
     int i;
     int nbp;
     
     int nbmax = 10000;
-    pts = new QPoint[nbmax];
+    QPoint *pts = new QPoint[nbmax];
     assert(pts);
     
     for  (i=0, iter=lst.begin(); iter!=lst.end(); iter++,i++) {

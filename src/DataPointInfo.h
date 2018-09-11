@@ -30,36 +30,36 @@ class DataPointInfo
 		
 		float getDataValue (const DataCode &dtc) const;
 		
-        bool hasPressureMSL() const {return pressureMSL!=GRIB_NOTDEF;}
-        bool hasTemp()     const {return temp!=GRIB_NOTDEF;}
-        bool hasTempMin()  const {return tempMin!=GRIB_NOTDEF;}
-        bool hasTempMax()  const {return tempMax!=GRIB_NOTDEF;}
-        bool hasRain()     const {return rain!=GRIB_NOTDEF;}
-        bool hasHumidRel()      const {return humidRel!=GRIB_NOTDEF;}
-        bool hasHumidSpec()     const {return humidSpec!=GRIB_NOTDEF;}
-        bool hasDewPoint()      const {return dewPoint!=GRIB_NOTDEF;}
-        bool hasIsotherm0HGT()  const {return isotherm0HGT!=GRIB_NOTDEF;}
-        bool hasSnowDepth()     const {return snowDepth!=GRIB_NOTDEF;}
-        bool hasSnowCateg()     const {return snowCateg!=GRIB_NOTDEF;}
-        bool hasFrzRainCateg()  const {return frzRainCateg!=GRIB_NOTDEF;}
-        bool hasCAPEsfc()   	const {return CAPEsfc!=GRIB_NOTDEF;}
-        bool hasCINsfc()   	const {return CINsfc!=GRIB_NOTDEF;}
+        bool hasPressureMSL() const {return GribDataIsDef(pressureMSL);}
+        bool hasTemp()     const {return GribDataIsDef(temp);}
+        bool hasTempMin()  const {return GribDataIsDef(tempMin);}
+        bool hasTempMax()  const {return GribDataIsDef(tempMax);}
+        bool hasRain()     const {return GribDataIsDef(rain);}
+        bool hasHumidRel()      const {return GribDataIsDef(humidRel);}
+        bool hasHumidSpec()     const {return GribDataIsDef(humidSpec);}
+        bool hasDewPoint()      const {return GribDataIsDef(dewPoint);}
+        bool hasIsotherm0HGT()  const {return GribDataIsDef(isotherm0HGT);}
+        bool hasSnowDepth()     const {return GribDataIsDef(snowDepth);}
+        bool hasSnowCateg()     const {return GribDataIsDef(snowCateg);}
+        bool hasFrzRainCateg()  const {return GribDataIsDef(frzRainCateg);}
+        bool hasCAPEsfc()   	const {return GribDataIsDef(CAPEsfc);}
+        bool hasCINsfc()   	const {return GribDataIsDef(CINsfc);}
         // added by david
-        bool hasCompReflect()   const {return compReflect!=GRIB_NOTDEF;}
-        bool hasGUSTsfc()   	const {return GUSTsfc!=GRIB_NOTDEF;}
+        bool hasCompReflect()   const {return GribDataIsDef(compReflect);}
+        bool hasGUSTsfc()   	const {return GribDataIsDef(GUSTsfc);}
         
-        bool hasCloudTotal ()   const {return cloudTotal!=GRIB_NOTDEF;}
-        bool hasCloudLow ()     const {return cloudLow!=GRIB_NOTDEF;}
-        bool hasCloudMid ()     const {return cloudMid!=GRIB_NOTDEF;}
-        bool hasCloudHigh ()    const {return cloudHigh!=GRIB_NOTDEF;}
+        bool hasCloudTotal ()   const {return GribDataIsDef(cloudTotal);}
+        bool hasCloudLow ()     const {return GribDataIsDef(cloudLow);}
+        bool hasCloudMid ()     const {return GribDataIsDef(cloudMid);}
+        bool hasCloudHigh ()    const {return GribDataIsDef(cloudHigh);}
 
-        bool hasCloudLowTop ()     const {return cloudLowTop!=GRIB_NOTDEF;}
-        bool hasCloudMidTop ()     const {return cloudMidTop!=GRIB_NOTDEF;}
-        bool hasCloudHighTop ()    const {return cloudHighTop!=GRIB_NOTDEF;}
+        bool hasCloudLowTop ()     const {return GribDataIsDef(cloudLowTop);}
+        bool hasCloudMidTop ()     const {return GribDataIsDef(cloudMidTop);}
+        bool hasCloudHighTop ()    const {return GribDataIsDef(cloudHighTop);}
 
-        bool hasCloudLowBottom ()     const {return cloudLowBottom!=GRIB_NOTDEF;}
-        bool hasCloudMidBottom ()     const {return cloudMidBottom!=GRIB_NOTDEF;}
-        bool hasCloudHighBottom ()    const {return cloudHighBottom!=GRIB_NOTDEF;}
+        bool hasCloudLowBottom ()     const {return GribDataIsDef(cloudLowBottom);}
+        bool hasCloudMidBottom ()     const {return GribDataIsDef(cloudMidBottom);}
+        bool hasCloudHighBottom ()    const {return GribDataIsDef(cloudHighBottom);}
 
 		//----------------------------------------------
 		// Special case : wind, current, waves

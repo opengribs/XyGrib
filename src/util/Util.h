@@ -200,7 +200,7 @@ class Util : public QObject
     template <typename T>
         static T inRangeOrNotDef(T v, T min, T max)
                     {
-                        if (v == GRIB_NOTDEF)
+                        if (! GribDataIsDef(v))
                             return v;
                         return inRange(v, min, max);
                     }

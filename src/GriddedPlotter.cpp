@@ -151,7 +151,7 @@ void GriddedPlotter::drawCurrentArrow (QPainter &pnt, int i, int j, double cx, d
     else
         ytt = tf_a*vkn + tf_b;
 
-	currentArrowColor = QColor(0,0,255); // color blue
+    currentArrowColor = QColor(0,0,255); // color blue
 	coefLen = 1.4*coefLen;	
 	
     QPen pen (currentArrowColor);
@@ -237,7 +237,7 @@ void GriddedPlotter::drawWindArrowWithBarbs_static (
 					bool thinWindArrows
 	)
 {
-	if (vx==GRIB_NOTDEF || vy==GRIB_NOTDEF)
+	if (! GribDataIsDef(vx) || ! GribDataIsDef(vy))
 		return;
     double vkn = sqrt(vx*vx+vy*vy)*3.6/1.852;
     double ang = atan2(vy, -vx);
@@ -423,7 +423,7 @@ void  GriddedPlotter::drawColorMapGeneric_1D (
             if (rec->isPointInMap(x, y))
             {
                 v = rec->getInterpolatedValue (dtc, x, y, mustInterpolateValues);
-                if (v != GRIB_NOTDEF)
+                if (GribDataIsDef(v))
                 {
                     rgb = (this->*function_getColor) (v, smooth);
                     image->setPixel(i,  j, rgb);
@@ -471,7 +471,7 @@ void  GriddedPlotter::drawColorMapGeneric_2D (
                 vx = recX->getInterpolatedValue (dtcX, x, y, mustInterpolateValues);
                 vy = recY->getInterpolatedValue (dtcY, x, y, mustInterpolateValues);
 				
-                if (vx != GRIB_NOTDEF && vy != GRIB_NOTDEF)
+                if (GribDataIsDef(vx) && GribDataIsDef(vy))
                 {
                     v = sqrt(vx*vx+vy*vy);
                     rgb = (this->*function_getColor) (v, smooth);
@@ -519,7 +519,7 @@ void  GriddedPlotter::drawColorMapGeneric_Abs_Delta_Data (
                 vx = rec1->getInterpolatedValue (dtc1, x, y, mustInterpolateValues);
                 vy = rec2->getInterpolatedValue (dtc2, x, y, mustInterpolateValues);
 
-                if (vx != GRIB_NOTDEF && vy != GRIB_NOTDEF)
+                if (GribDataIsDef(vx) && GribDataIsDef(vy))
                 {
                     v = fabs(vx-vy);
                     rgb = (this->*function_getColor) (v, smooth);
@@ -597,19 +597,17 @@ void GriddedPlotter::complete_listIsolines (
     if (rec == nullptr)
         return;
 
-	int deltaI, deltaJ;
-	analyseVisibleGridDensity (proj, rec, 16, &deltaI, &deltaJ);
+    int deltaI, deltaJ;
+    analyseVisibleGridDensity (proj, rec, 16, &deltaI, &deltaJ);
 	//DBG("deltaI=%d deltaJ=%d", deltaI, deltaJ);
 	IsoLine *iso;
 	for (double val=dataMin; val<=dataMax; val += dataStep)
 	{
 		iso = new IsoLine (dtc, val, rec, deltaI, deltaJ);
-		if (iso != NULL) {
-			if (iso->getNbSegments()>0)
-				listIsolines->push_back (iso);
-			else
-				delete iso;
-		}
+        if (iso->getNbSegments()>0)
+            listIsolines->push_back (iso);
+        else
+            delete iso;
 	}
 }
 //-----------------------------------------------------------------
@@ -650,7 +648,7 @@ void GriddedPlotter::draw_DATA_Labels (
     if (reader == nullptr)
         return;
 
-	GriddedRecord *rec = reader->getRecord (dtc, currentDate);
+    GriddedRecord *rec = reader->getRecord (dtc, currentDate);
 	if (rec == nullptr)
 		return;
 
@@ -666,7 +664,7 @@ void GriddedPlotter::draw_DATA_Labels (
         for (i=0; i<proj->getW(); i+= dimin) {
             proj->screen2map(i,j, &x,&y);
             v = rec->getInterpolatedValue (dtc, x, y, mustInterpolateValues);
-            if (v!= GRIB_NOTDEF) {
+            if (GribDataIsDef(v)) {
                 QString strtemp = formatLabelFunction (v,false);
                 pnt.drawText(i-fmet.width("XXX")/2, j+fmet.ascent()/2, strtemp);
             }
@@ -686,7 +684,8 @@ void GriddedPlotter::draw_DATA_MinMax (
 	GriddedReader *reader = getReader();
     if (reader == nullptr)
         return;
-	GriddedRecord *rec = reader->getRecord (dtc, currentDate);
+
+    GriddedRecord *rec = reader->getRecord (dtc, currentDate);
 	if (rec == nullptr)
 		return;
 

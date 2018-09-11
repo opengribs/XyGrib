@@ -19,6 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "Util.h"
 #include "DataPointInfo.h"
 
+#include <cmath>
+
 DataPointInfo::DataPointInfo (GriddedReader *reader,
                     double x, double y, time_t  date )
 {
@@ -29,13 +31,13 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
 	
 	// Prefered temperature altitude : 2m. If not found try altitude 0m.
 	temp = getValue(DataCode(GRB_TEMP,LV_ABOV_GND,2));
-	if (temp != GRIB_NOTDEF) {
+    if (GribDataIsDef(temp)) {
 		tempAltitude = Altitude (LV_ABOV_GND,2);
 	}
 	else {
 		temp = getValue(DataCode(GRB_TEMP,LV_GND_SURF,0));
-		if (temp != GRIB_NOTDEF)
-			tempAltitude = Altitude (LV_GND_SURF,0);
+        if (GribDataIsDef(temp))
+            tempAltitude = Altitude (LV_GND_SURF,0);
 		else
 			tempAltitude = Altitude (LV_TYPE_NOT_DEFINED,0);
 	}
@@ -43,7 +45,7 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
 	tempMin = getValue(DataCode(GRB_TMIN,LV_ABOV_GND,2));
 	tempMax = getValue(DataCode(GRB_TMAX,LV_ABOV_GND,2));
 	rain    = getValue(DataCode(GRB_PRECIP_TOT,LV_GND_SURF,0));
-    if (rain == GRIB_NOTDEF) // try for precipitation rate
+    if ( ! GribDataIsDef(rain )) // try for precipitation rate
         rain = getValue(DataCode(GRB_PRECIP_RATE,LV_GND_SURF,0));
 
     pressureMSL = getValue(DataCode(GRB_PRESSURE_MSL,LV_MSL,0));
@@ -83,7 +85,7 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
 	cloudMid =  getPercentValue(DataCode(GRB_CLOUD_TOT,LV_CLOUD_MID_LAYER,0));
 	cloudHigh = getPercentValue(DataCode(GRB_CLOUD_TOT,LV_CLOUD_HIG_LAYER,0));
 			
-	hasCloudLayers = (cloudLow!=GRIB_NOTDEF) || (cloudMid!=GRIB_NOTDEF) || (cloudHigh!=GRIB_NOTDEF);
+    hasCloudLayers = GribDataIsDef(cloudLow) || GribDataIsDef(cloudMid) || GribDataIsDef(cloudHigh);
 
     cloudLowTop = cloudLow<0.5f ? GRIB_NOTDEF
 			: getPercentValue(DataCode(GRB_PRESSURE,LV_CLOUD_LOW_TOP,0));
@@ -114,16 +116,16 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
     GUSTsfc = getValue(DataCode(GRB_WIND_GUST,LV_GND_SURF,0));
     // added by david to enable gust fields both sfc and at 10m assuming that only one
     // option exists in grib file
-    if (GUSTsfc == GRIB_NOTDEF) // gust at sfc not found - try at 10m
+    if (! GribDataIsDef( GUSTsfc )) // gust at sfc not found - try at 10m
         GUSTsfc = getValue(DataCode(GRB_WIND_GUST,LV_ABOV_GND,10));
     //-----------------------------------------
 	// Wind 10m
 	//-----------------------------------------
 	vx_10m = getValue(DataCode(GRB_WIND_VX,LV_ABOV_GND,10));
 	vy_10m = getValue(DataCode(GRB_WIND_VY,LV_ABOV_GND,10));
-	if (vx_10m!=GRIB_NOTDEF && vy_10m!=GRIB_NOTDEF) {
-		windSpeed_10m = sqrt (vx_10m*vx_10m + vy_10m*vy_10m);
-		windDir_10m = - atan2 (-vx_10m, vy_10m) *180.0/M_PI + 180;
+    if (GribDataIsDef(vx_10m) && GribDataIsDef(vy_10m)) {
+		windSpeed_10m = std::sqrt (vx_10m*vx_10m + vy_10m*vy_10m);
+		windDir_10m = - std::atan2 (-vx_10m, vy_10m) *180.0/M_PI + 180;
 		if (windDir_10m < 0)    windDir_10m += 360.0;
 		else if (windDir_10m >= 360) windDir_10m -= 360.0;
 	}
@@ -136,9 +138,9 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
 	//-----------------------------------------
 	vx_gnd = getValue(DataCode(GRB_WIND_VX,LV_GND_SURF,0));
 	vy_gnd = getValue(DataCode(GRB_WIND_VY,LV_GND_SURF,0));
-	if (vx_gnd!=GRIB_NOTDEF && vy_gnd!=GRIB_NOTDEF) {
-		windSpeed_gnd = sqrt (vx_gnd*vx_gnd + vy_gnd*vy_gnd);
-		windDir_gnd = - atan2 (-vx_gnd, vy_gnd) *180.0/M_PI + 180;
+    if (GribDataIsDef(vx_gnd) && GribDataIsDef(vy_gnd)) {
+		windSpeed_gnd = std::sqrt (vx_gnd*vx_gnd + vy_gnd*vy_gnd);
+		windDir_gnd = - std::atan2 (-vx_gnd, vy_gnd) *180.0/M_PI + 180;
 		if (windDir_gnd < 0)    windDir_gnd += 360.0;
 		else if (windDir_gnd >= 360) windDir_gnd -= 360.0;
 	}
@@ -150,24 +152,24 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
     // Current
 	//-----------------------------------------
     cx = getValue(DataCode(GRB_CUR_VX,LV_GND_SURF,0));
-    if (cx==GRIB_NOTDEF) // if not at surface try at -1m
+    if (!GribDataIsDef(cx)) // if not at surface try at -1m
         cx = getValue(DataCode(GRB_CUR_VX,LV_BLW_SURF,1));
-    if (cx==GRIB_NOTDEF) // if not at surface try at -2m
+    if (!GribDataIsDef(cx)) // if not at surface try at -2m
         cx = getValue(DataCode(GRB_CUR_VX,LV_BLW_SURF,2));
-    if (cx==GRIB_NOTDEF) // if not at surface try at -3m
+    if (!GribDataIsDef(cx)) // if not at surface try at -3m
         cx = getValue(DataCode(GRB_CUR_VX,LV_BLW_SURF,3));
 
     cy = getValue(DataCode(GRB_CUR_VY,LV_GND_SURF,0));
-    if (cy==GRIB_NOTDEF) // if not at surface try at -1m
+    if (!GribDataIsDef(cy)) // if not at surface try at -1m
         cy = getValue(DataCode(GRB_CUR_VY,LV_BLW_SURF,1));
-    if (cy==GRIB_NOTDEF) // if not at surface try at -2m
+    if (!GribDataIsDef(cy)) // if not at surface try at -2m
         cy = getValue(DataCode(GRB_CUR_VY,LV_BLW_SURF,2));
-    if (cy==GRIB_NOTDEF) // if not at surface try at -3m
+    if (!GribDataIsDef(cy)) // if not at surface try at -3m
         cy = getValue(DataCode(GRB_CUR_VY,LV_BLW_SURF,3));
 
-    if (cx!=GRIB_NOTDEF && cy!=GRIB_NOTDEF) {
-		currentSpeed = sqrt (cx*cx + cy*cy);
-		currentDir = - atan2 (-cx, cy) *180.0/M_PI;
+    if (GribDataIsDef(cx) && GribDataIsDef(cy)) {
+		currentSpeed = std::sqrt (cx*cx + cy*cy);
+		currentDir = - std::atan2 (-cx, cy) *180.0/M_PI;
 		if (currentDir < 0)    currentDir += 360.0;
 		else if (currentDir >= 360) currentDir -= 360.0;
 	}
@@ -195,9 +197,9 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
 
 			hVx [i] = reader->getDateInterpolatedValue (DataCode(GRB_WIND_VX,LV_ISOBARIC,P), x,y,date);
 			hVy [i] = reader->getDateInterpolatedValue (DataCode(GRB_WIND_VY,LV_ISOBARIC,P), x,y,date);
-			if (hVx[i]!=GRIB_NOTDEF && hVy[i]!=GRIB_NOTDEF) {
-				hWindSpeed[i] = sqrt (hVx[i]*hVx[i] + hVy[i]*hVy[i]);
-				hWindDir[i]   = -atan2 (-hVx[i], hVy[i]) *180.0/M_PI + 180;
+            if (GribDataIsDef(hVx[i]) && GribDataIsDef(hVy[i])) {
+				hWindSpeed[i] = std::sqrt (hVx[i]*hVx[i] + hVy[i]*hVy[i]);
+				hWindDir[i]   = -std::atan2 (-hVx[i], hVy[i]) *180.0/M_PI + 180;
 				if (hWindDir[i] < 0)    hWindDir[i] += 360.0;
 				if (hWindDir[i] >= 360) hWindDir[i] -= 360.0;
 			}
@@ -383,7 +385,7 @@ bool DataPointInfo::getWaveValues (int prvtype,
 			*per = GRIB_NOTDEF;
 			return false;
 	}
-	return *ht != GRIB_NOTDEF || *dir != GRIB_NOTDEF || *per != GRIB_NOTDEF;
+    return GribDataIsDef(*ht) || GribDataIsDef(*dir) || GribDataIsDef(*per);
 }
 //--------------------------------------------------------
 float DataPointInfo::getWaveData (int type)  const
@@ -393,25 +395,25 @@ float DataPointInfo::getWaveData (int type)  const
 //--------------------------------------------------------
 bool DataPointInfo::hasWaveData (int type)  const
 {	
-	return getWaveData (type) != GRIB_NOTDEF;
+    return GribDataIsDef(getWaveData (type));
 }
 //--------------------------------------------------------
 bool DataPointInfo::hasWind (const Altitude &alt)  const
 {	
 	if (alt.levelType == LV_ISOBARIC) {
 		int i = alt.index();
-		return i>=0 && hVx[i]!=GRIB_NOTDEF && hVy[i]!=GRIB_NOTDEF;
+        return i>=0 && GribDataIsDef(hVx[i]) && GribDataIsDef(hVy[i]);
 	} 
 	else if (alt.levelType == LV_GND_SURF) {
-		return windDir_gnd!=GRIB_NOTDEF && windSpeed_gnd!=GRIB_NOTDEF;
+        return GribDataIsDef(windDir_gnd) && GribDataIsDef(windSpeed_gnd);
 	} 
 	else
-		return windDir_10m!=GRIB_NOTDEF && windSpeed_10m!=GRIB_NOTDEF;
+        return GribDataIsDef(windDir_10m) && GribDataIsDef(windSpeed_10m);
 }
 //--------------------------------------------------------
 bool DataPointInfo::hasCurrent ()  const
 {	
-	return currentDir!=GRIB_NOTDEF && currentSpeed!=GRIB_NOTDEF;
+    return GribDataIsDef(currentDir) && GribDataIsDef(currentSpeed);
 }
 //--------------------------------------------------------
 bool DataPointInfo::getWindValues 
@@ -485,7 +487,7 @@ void  DataPointInfo::getCurrentCxCy (const Altitude &alt, float *vx, float*vy) c
 		*vy = GRIB_NOTDEF;
 		return;
 	}
-	else if (alt.levelType == LV_GND_SURF) {
+    if (alt.levelType == LV_GND_SURF) {
 		*vx = cx;
 		*vy = cy;
 	} 

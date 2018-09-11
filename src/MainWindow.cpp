@@ -467,7 +467,7 @@ MainWindow::MainWindow (int w, int h, QWidget *parent)
     assert(menuBar);
     //---------------------------------------------------
 	// Projection
-	proj = NULL;
+    proj = nullptr;
     initProjection();
 	
     //--------------------------------------------------
@@ -544,7 +544,7 @@ MainWindow::MainWindow (int w, int h, QWidget *parent)
     //---------------------------------------------------------
     // METAR's
     //---------------------------------------------------------
-	dialogSelectMetar = NULL;
+    dialogSelectMetar = nullptr;
 	createAllMETARs ();
 
     //---------------------------------------------------------
@@ -614,10 +614,9 @@ void MainWindow::resizeEvent (QResizeEvent *)
 //---------------------------------------------------------------
 void MainWindow::initProjection()
 {
-	if (proj != NULL) {
-		delete proj;
-		proj = NULL;
-	}
+    delete proj;
+    proj = nullptr;
+
     int idproj = Util::getSetting("projectionId", Projection::PROJ_ZYGRIB).toInt();
     double cx = (double) Util::getSetting("projectionCX", 0.0).toDouble();
     double cy = (double) Util::getSetting("projectionCY", 0.0).toDouble();
@@ -661,7 +660,7 @@ void MainWindow::slotMap_Projection(QAction *act)
     else if (act == mb->acMap_PROJ_EQU_CYL)
         idproj = Projection::PROJ_EQU_CYL;
 
-	double x,y;    // current position
+    double x,y;    // current position
 	proj->screen2map(proj->getW()/2,proj->getH()/2, &x, &y);
 
 	Util::setSetting("projectionId", idproj);
@@ -688,7 +687,7 @@ void MainWindow::openMeteoDataFile (QString fileName)
 	setCursor(Qt::WaitCursor);
 	bool ok,ok2,ok3,ok4,ok5,ok6,ok7,ok8,ok9,ok10,ok11;
 	FileDataType meteoFileType = DATATYPE_NONE;
-	colorScaleWidget->setColorScale (NULL, DataCode());
+    colorScaleWidget->setColorScale (nullptr, DataCode());
     dateChooser->reset ();
 	if (QFile::exists(fileName))
 	{
@@ -700,7 +699,7 @@ void MainWindow::openMeteoDataFile (QString fileName)
 	}
 	
 	GriddedPlotter *plotter = terre->getGriddedPlotter();
-	if (plotter!=NULL && plotter->isReaderOk())
+    if (plotter!=nullptr && plotter->isReaderOk())
 	{
 		//------------------------------------------------
 		if (meteoFileType == DATATYPE_GRIB)
@@ -867,7 +866,7 @@ void MainWindow::openMeteoDataFile (QString fileName)
 					+ tr("or...")
 			);
 		}
-		dateChooser->setGriddedPlotter (NULL);
+        dateChooser->setGriddedPlotter (nullptr);
 		dateChooser->setVisible (false);
 		menuBar->acDatesGrib_prev->setEnabled (false);
 		menuBar->acDatesGrib_next->setEnabled (false);
@@ -889,7 +888,7 @@ void MainWindow::slotUseJetStreamColorMap (bool b)
 void MainWindow::updateGriddedData ()
 {
 	GriddedPlotter *plotter = terre->getGriddedPlotter();
-	if (plotter!=NULL && plotter->isReaderOk())
+    if (plotter!=nullptr && plotter->isReaderOk())
 	{
 		GriddedReader *reader = plotter->getReader();
 		QString strdtc;
@@ -927,7 +926,7 @@ void MainWindow::slotCreateAnimation()
 {
 	GriddedPlotter *plotter = terre->getGriddedPlotter();
 	
-	if (plotter==NULL  || ! plotter->isReaderOk())
+    if (plotter==nullptr  || ! plotter->isReaderOk())
 	{
         QMessageBox::critical (this,
             tr("Error"),
@@ -971,14 +970,14 @@ void MainWindow::createPOIs ()
 void MainWindow::connectPOI (POI *poi)
 {
 	bool visible = Util::getSetting("showPOIs", true).toBool();
-	if (poi!=NULL) {
+    if (poi!=nullptr) {
 		if (poi->isValid()) {
 			poi->setVisible (visible);
 		}
 		else {
 			Settings::deleteSettingsPOI (poi->getCode() );
 			delete poi;
-			poi = NULL;
+            poi = nullptr;
 		}
 	}
 }
@@ -986,7 +985,7 @@ void MainWindow::connectPOI (POI *poi)
 void MainWindow::slotOpenSelectMetar ()
 {
 	DBG(" ");
-	if (dialogSelectMetar == NULL) {
+    if (dialogSelectMetar == nullptr) {
 		dialogSelectMetar = new DialogSelectMetar ();
 		assert (dialogSelectMetar);
 		connect (dialogSelectMetar, SIGNAL(metarListChanged()), this, SLOT(slotMETARsListChanged()));
@@ -1040,7 +1039,7 @@ void MainWindow::slotFile_Close()
 {
     gribFileName = "";
 	Util::setSetting ("gribFileName",  gribFileName);
-	colorScaleWidget->setColorScale (NULL, DataCode());
+    colorScaleWidget->setColorScale (nullptr, DataCode());
     terre->closeMeteoDataFile ();
 	dateChooser->reset ();
 	// close opened windows related to the file
@@ -1146,7 +1145,7 @@ void MainWindow::slotMap_Quality()
     else if (act == mb->acMap_Quality5)
         quality = 4;
 
-	Util::setSetting("gshhsMapQuality", quality);
+    Util::setSetting("gshhsMapQuality", quality);
 	emit signalMapQuality(quality);
 }
 
@@ -1454,16 +1453,16 @@ QString MainWindow::dataPresentInGrib (GribReader* grib,
 	if (dataType == GRB_DEWPOINT) {
 		switch (grib->getDewpointDataStatus (levelType,levelValue)) {
 			case GribReader::DATA_IN_FILE :
-				if (ok != NULL) *ok = true;
+                if (ok != nullptr) *ok = true;
 				return tr("yes");
 				break;
 			case GribReader::NO_DATA_IN_FILE :
-				if (ok != NULL) *ok = false;
+                if (ok != nullptr) *ok = false;
 				return tr("no");
 				break;
 			case GribReader::COMPUTED_DATA :
 			default :
-				if (ok != NULL) *ok = true;
+                if (ok != nullptr) *ok = true;
 				return tr("no (computed with Magnus-Tetens formula)");
 				break;
 		}
@@ -1471,13 +1470,11 @@ QString MainWindow::dataPresentInGrib (GribReader* grib,
 	else {
 		if (grib->getNumberOfGribRecords 
 						(DataCode(dataType,levelType,levelValue)) > 0) {
-			if (ok != NULL) *ok = true;
+            if (ok != nullptr) *ok = true;
 			return tr("yes");
 		}
-		else {
-			if (ok != NULL) *ok = false;
-			return tr("no");
-		}
+        if (ok != nullptr) *ok = false;
+        return tr("no");
 	}
 }
 
@@ -1516,7 +1513,7 @@ void MainWindow::slotFile_Info_GRIB ()
 	msg += tr("    to %1\n").arg( Util::formatDateTimeLong(*(sdates.rbegin())) );
 
 	msg += "\n";
-	msg += tr("Avalaible data :");
+	msg += tr("Available data :");
 	std::set<DataCode> setdata = plotter->getAllDataCode ();
 	std::set<DataCode>::iterator it;
 	int  currentype = -1;
@@ -1736,7 +1733,7 @@ void MainWindow::updateBoardPanel ()
 		int x, y;
 		terre->getLastMousePosition (&x, &y);
 		proj->screen2map(x, y, &xx, &yy);
-		if (plotter != NULL) {
+        if (plotter != nullptr) {
 			DataPointInfo  pf (plotter->getReader(),
 								xx, yy, plotter->getCurrentDate() );
  			boardPanel->showDataPointInfo (pf, plotter->getWindAltitude());
@@ -1748,7 +1745,7 @@ void MainWindow::updateBoardPanel ()
 }
 //--------------------------------------------------------------
 void MainWindow::slotMouseLeaveTerre (QEvent *) {
-	DataPointInfo  pf (NULL, 0,0,0);
+    DataPointInfo  pf (nullptr, 0,0,0);
 	boardPanel->showDataPointInfo (pf, 0);
 }
 //--------------------------------------------------------------
@@ -1773,7 +1770,7 @@ void MainWindow::slotChangeFonts ()
 void MainWindow::setMenubarColorMapData (const DataCode &dtc, bool trigAction)
 {
     MenuBar  *mb = menuBar;
-    QAction  *act = NULL;
+    QAction  *act = nullptr;
 	switch (dtc.dataType)
 	{
 		case GRB_PRV_WIND_XY2D :
@@ -1969,7 +1966,7 @@ void MainWindow::slot_GroupColorMap (QAction *act)
     else
     	dtc.set (GRB_TYPE_NOT_DEFINED);
 
-	setMenubarAltitudeData (dtc);
+    setMenubarAltitudeData (dtc);
     terre->setColorMapData (dtc);
 	if (colorScaleWidget && terre->getGriddedPlotter() && terre->getGriddedPlotter()->isReaderOk()) {
  		colorScaleWidget->setColorScale (terre->getGriddedPlotter(), dtc);

@@ -99,12 +99,8 @@ gtemplate *getgridtemplate(g2int number)
               new->ext=0;        //NULL
               return(new);
            }
-           else {
-             printf("getgridtemplate: GDT Template 3.%d not defined.\n",(int)number);
-             return(0);        //NULL
-           }
-
-         return(0);        //NULL
+           printf("getgridtemplate: GDT Template 3.%d not defined.\n",(int)number);
+           return(0);        //NULL
 }
 
 

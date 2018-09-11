@@ -53,12 +53,9 @@ QVariant Util::getSetting (const QString &key, const QVariant &defaultValue)
 	{
 		return GLOB_hashSettings.value (key);
 	}
-	else
-	{
-		QVariant v = Settings::getUserSetting (key, defaultValue);
-		GLOB_hashSettings.insert (key, v);
-		return v;
-	}
+    QVariant v = Settings::getUserSetting (key, defaultValue);
+    GLOB_hashSettings.insert (key, v);
+    return v;
 }
 //========================================================================
 QString Util::getSaveFileName (QWidget *parent, const QString &caption, 
@@ -465,7 +462,7 @@ QString Util::formatPressure (float pasc, bool withUnit, int precision)
 {
     QString unite = Util::getDataUnit (DataCode(GRB_PRESSURE_MSL,LV_MSL,0));
     QString r;
-	if (pasc != GRIB_NOTDEF) {
+	if (GribDataIsDef(pasc)) {
 		if (precision > 0)
             r.sprintf("%.1f", pasc/100.0f);
 		else
@@ -651,7 +648,7 @@ QString Util::formatLatitude(float y)
 //---------------------------------------------------------------------
 QString Util::formatPercentValue(float prb, bool withUnit)
 {
-	if (prb == GRIB_NOTDEF)
+	if (! GribDataIsDef(prb))
 		return withUnit ? "    %": "   ";
 
     QString unite = "%";
@@ -746,25 +743,25 @@ QDateTime Util::applyTimeZone (time_t t, QString *suffix)
 	QString tmzone =  Util::getSetting("timeZone", "UTC").toString();
 	if (tmzone == "LOC") {
 		dt = dt.toLocalTime();
-		if (suffix != NULL)
+        if (suffix != nullptr)
 			*suffix = "LOC";
 	}
 	else if (tmzone.left(4)=="UTC+" || tmzone.left(4)=="UTC-")
 	{    // UTC-12 UTC-11 ... UTC+1 UTC+2 UTC+3 ... UTC+14
 		int dec = tmzone.mid(3,-1).toInt();
 		if (dec==0 || dec<-12 || dec>14) {
-			if (suffix != NULL)
+            if (suffix != nullptr)
 				*suffix = "UTC";
 		}
 		else {
 			dt = dt.addSecs(dec*3600);
-			if (suffix != NULL)
+            if (suffix != nullptr)
 				*suffix = tmzone;
 		}
 	}
 	else
 	{	// default timezone : UTC
-		if (suffix != NULL)
+        if (suffix != nullptr)
 			*suffix = "UTC";
 	}
     

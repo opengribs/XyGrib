@@ -47,11 +47,10 @@ QRgb ColorScale::getColor (double v, bool smooth)
 	if (imin>imax) {
 		if (colors[0]->isLow(v))
 			return colors[0]->getColor (v, smooth, transparence);
-		else
-			return colors[colors.size()-1]->getColor (v, smooth, transparence);
+
+        return colors[colors.size()-1]->getColor (v, smooth, transparence);
 	}
-	else
-		return colors[ii]->getColor (v, smooth, transparence);
+    return colors[ii]->getColor (v, smooth, transparence);
 }
 
 //--------------------------------------------
@@ -178,8 +177,7 @@ QRgb ColorElement::getColor (double v, bool smooth, int transp)
 	if (! smooth) {
 		if (v-vmin > vmax-v)
 			return qRgba (rb,gb,bb, transp);
-		else
-			return qRgba (ra,ga,ba, transp);
+        return qRgba (ra,ga,ba, transp);
 	}
 	
 	double k = (v-vmin)/(vmax-vmin);

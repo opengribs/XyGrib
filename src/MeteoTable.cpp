@@ -33,10 +33,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //------------------------------------------------------------------------
 QWidget *MeteoTableDialog::createDataTable ()
 {
-	if (dataTable) {
-		delete dataTable;
-	}
-	
+    delete dataTable;
+
 	meteoTableWidget = new MeteoTableWidget (plotter, lon,lat, locationName, this);
 	assert (meteoTableWidget);
     meteoTableWidget->setObjectName("mtw");
@@ -107,8 +105,8 @@ MeteoTableDialog::MeteoTableDialog (
 	this->lon = lon;
 	this->lat = lat;
 	this->locationName = locationName;
-	optionsDialog = NULL;
-	dataTable = NULL;
+    optionsDialog = nullptr;
+    dataTable = nullptr;
     this->setObjectName("mtd");
     if (Util::getSetting("showDarkSkin", true).toBool())
         this->setStyleSheet(mtStyleSheet);
@@ -120,7 +118,7 @@ MeteoTableDialog::MeteoTableDialog (
     }
     GriddedReader *reader = plotter->getReader();
     GriddedRecord *record;
-	if ((record=reader->getFirstRecord()) == NULL) {
+    if ((record=reader->getFirstRecord()) == nullptr) {
         QMessageBox::critical (this,
             	tr("Error"),tr("Can't create Meteotable\n\nGRIB area undefined."));
 		return;
@@ -208,8 +206,7 @@ MeteoTableDialog::MeteoTableDialog (
 MeteoTableDialog::~MeteoTableDialog()
 {
 	Util::setSetting("meteoTableDialogSize", size());
-	if (optionsDialog)
-		delete optionsDialog;
+    delete optionsDialog;
 }
 
 //-----------------------------------------
@@ -394,18 +391,18 @@ int MeteoTableDialog::SYLK_addData_waves (SylkFile &slk, int lig,int col, DataCo
 		curlig = lig;
 		if (pf->getWaveValues (dtc.dataType, &ht, &per, &dir)) {
 			if (tht != "") {
-				if (ht != GRIB_NOTDEF) {
+				if (GribDataIsDef(ht)) {
 					txt = Util::formatWaveHeight (ht, false);
 					slk.addCell (curlig, row, txt);
 				}
 				curlig ++;
 			}
-			if (dir != GRIB_NOTDEF) {
+			if (GribDataIsDef(dir)) {
 				txt = Util::formatWaveDirection (dir, false);
 				slk.addCell (curlig, row, txt);
 			}
 			curlig ++;
-			if (per != GRIB_NOTDEF) {
+			if (GribDataIsDef(per)) {
 				txt = Util::formatWavePeriod (per, false);
 				slk.addCell (curlig, row, txt);
 			}
@@ -500,7 +497,7 @@ int MeteoTableDialog::SYLK_addData_gen (SylkFile &slk, int lig,int col, DataCode
 		DataPointInfo *pinfo = *itp;
 		float val = pinfo->getDataValue (dtc);
 		QString txt = "";
-		if (val != GRIB_NOTDEF) {
+		if (GribDataIsDef(val)) {
 			switch (dtc.dataType) {
 				case GRB_SNOW_CATEG   : 
 				case GRB_FRZRAIN_CATEG: 

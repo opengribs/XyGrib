@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "DialogProxy.h"
 #include "Util.h"
 
-DialogLoadGRIB *globalDial = NULL;
+DialogLoadGRIB *globalDial;
 
 //-------------------------------------------------------------------------------
 QString DialogLoadGRIB::getFile (QNetworkAccessManager *netManager, QWidget *parent,
@@ -51,14 +51,14 @@ void DialogLoadGRIB::closeEvent (QCloseEvent *)
 {
     if (loadgrib) {
         loadgrib->deleteLater ();
-		loadgrib = NULL;
+        loadgrib = nullptr;
 	}
 }
 void DialogLoadGRIB::slotFinished (int)
 {
     if (loadgrib) {
         loadgrib->deleteLater ();
-		loadgrib = NULL;
+        loadgrib = nullptr;
 	}
 }
 
@@ -67,7 +67,7 @@ DialogLoadGRIB::DialogLoadGRIB (QNetworkAccessManager *netManager, QWidget *pare
 	: DialogBoxBase (parent)
 {
     oldcursor = cursor();
-    loadgrib = NULL;
+    loadgrib = nullptr;
 	networkManager = netManager;
 	savedFileName = "";
     setWindowTitle(tr("Download - GRIB"));
@@ -223,7 +223,7 @@ void DialogLoadGRIB::slotGribDataReceived (QByteArray *content, QString fileName
 	savedFileName = "";
 //    QFileInfo fi (fileName + ".bz2");
     QFileInfo fi (fileName);
-    fileName = Util::getSaveFileName (NULL,
+    fileName = Util::getSaveFileName (nullptr,
                  tr("Save GRIB file"), path+fi.fileName());
 	if (fileName != "")
     {
@@ -889,7 +889,7 @@ void DialogLoadGRIB::slotBtOK()
     btOK->setEnabled(false);
     if (loadgrib) {
         loadgrib->deleteLater ();
-		loadgrib = NULL;
+        loadgrib = nullptr;
 	}
     loadgrib = new FileLoaderGRIB (networkManager, this);
     assert(loadgrib);

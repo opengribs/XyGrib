@@ -126,7 +126,7 @@ int main (int argc, char *argv[])
 		//----------------------------------------------------------
         // first call of XyGrib : choice language
 		//----------------------------------------------------------
-		DialogChooseLang langChooser (NULL, "");
+        DialogChooseLang langChooser (nullptr, "");
 		langChooser.exec ();
         lang = langChooser.getLanguage();
         Util::setSetting("appLanguage", lang);
