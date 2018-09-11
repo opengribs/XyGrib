@@ -857,6 +857,12 @@ void DialogLoadGRIB::slotParameterUpdated ()
 
     }
 
+    int wavEstimate = estimate - atmEstimate;
+    // reduce wave estimate due to land overlapping by average of 40%
+    wavEstimate = wavEstimate * 0.6;
+    // now adjusted estimate is
+    estimate = atmEstimate + wavEstimate;
+
     // adjust for packing ~ 65%
     estimate = estimate * 0.65;
 
