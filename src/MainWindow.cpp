@@ -2319,7 +2319,7 @@ void MainWindow::slotRunMaintenanceTool()
     bool result;
     int res;
 #ifdef Q_OS_WIN
-    QString file = "xygrib_maintenancetool.exe";
+    QString file = "XyGribMaintenanceTool.exe";
 #else
     QString file = "XyGribMaintenanceTool";
 
@@ -2358,9 +2358,15 @@ void MainWindow::slotFinished()
         mbox.setWindowTitle(tr("An updated version is available"));
         mbox.setTextFormat(Qt::RichText);
 //        mbox.setStyleSheet("background:lightgrey;color:black;");
+#ifdef Q_OS_WIN
         mbox.setText(tr("A new version")+": "+newVer+" "
                      +tr("is available for update.")+"<br>"
-                     +tr("Please use the XyGrib Maintenance Tool to upgrade. It can be activatd from the Help Menu"));
+                     +tr("Please use the XyGrib Maintenance Tool to upgrade. It can be activated from the Help Menu"));
+#else
+        mbox.setText(tr("A new version")+": "+newVer+" "
+                     +tr("is available for update."));
+
+#endif
         mbox.exec();
 
     }
