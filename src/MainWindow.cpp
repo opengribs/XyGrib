@@ -29,6 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QComboBox>
 #include <QDesktopServices>
 #include <QUrl>
+#include <QProcess>
 
 #include "MainWindow.h"
 #include "MeteoTable.h"
@@ -407,6 +408,7 @@ mb->acMap_SelectMETARs->setVisible (false);	// TODO
     connect(mb->acHelp_Help, SIGNAL(triggered()), this, SLOT(slotHelp_Help()));
     connect(mb->acHelp_APropos, SIGNAL(triggered()), this, SLOT(slotHelp_APropos()));
     connect(mb->acCheckForUpdates, SIGNAL(triggered()), this, SLOT(slotCheckForUpdates()));
+    connect(mb->acRunMaintenanceTool, SIGNAL(triggered()), this, SLOT(slotRunMaintenanceTool()));
     connect(mb->acHelp_AProposQT, SIGNAL(triggered()), this, SLOT(slotHelp_AProposQT()));
 
     //-------------------------------------
@@ -2312,6 +2314,33 @@ void MainWindow::slotCheckForUpdates()
 }
 
 //-----------------------------------------------------
+void MainWindow::slotRunMaintenanceTool()
+{
+    bool result;
+    int res;
+#ifdef Q_OS_WIN
+    QString file = "xygrib_maintenancetool.exe";
+#else
+    QString file = "XyGribMaintenanceTool";
+
+#endif
+    QProcess process;
+//    process->setProgram(file);
+    result = process.startDetached(file);
+    if (!result){
+        QMessageBox::warning(this,tr("Failure"), tr("Unable to start XyGrib Maintenance Tool"));
+    } else {
+        QString question = tr("It is recommended to exit XyGrib while running the Maintenance Tool. Do you wish to exit XyGrib?");
+        res = QMessageBox::question(this,tr("Exit XyGrib?"),question, QMessageBox::Yes, QMessageBox::No);
+        if (res == QMessageBox::Yes){
+            exit(0);
+        }
+
+    }
+
+}
+
+//-----------------------------------------------------
 void MainWindow::slotFinished()
 {
     QByteArray data = reply->readAll ();
@@ -2330,8 +2359,8 @@ void MainWindow::slotFinished()
         mbox.setTextFormat(Qt::RichText);
 //        mbox.setStyleSheet("background:lightgrey;color:black;");
         mbox.setText(tr("A new version")+": "+newVer+" "
-                     +tr("is available for download.")+"<br><br>"
-                     +"<a style=\"color:lightblue;\" href=\"https://opengribs.org/en/downloads\">https://opengribs.org/en/downloads</a>");
+                     +tr("is available for update.")+"<br>"
+                     +tr("Please use the XyGrib Maintenance Tool to upgrade. It can be activatd from the Help Menu"));
         mbox.exec();
 
     }

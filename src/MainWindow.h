@@ -142,6 +142,7 @@ class MainWindow: public QMainWindow
         void slotSelectToggle();    // toolbar slot
 
         void slotCheckForUpdates();
+        void slotRunMaintenanceTool();
         void slotNetworkError(QNetworkReply::NetworkError);
         void slotFinished();
 
