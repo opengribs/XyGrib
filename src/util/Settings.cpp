@@ -399,9 +399,7 @@ void Settings::initializeGribFilesDir ()
 		if (Util::isDirWritable(dir)) {
 			return;			// ok, nothing to do
 		}
-		else {
-			path = "";
-		}
+        path = "";
 	}
 	if (path == "")
     {	// try xygrib_directory/grib

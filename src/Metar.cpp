@@ -58,7 +58,7 @@ void MetarWidget::projectionUpdated()
 //-------------------------------------------------------------------------------
 void MetarWidget::adjustGeometry()
 {
-	if (proj == NULL)
+    if (proj == nullptr)
 		return;
 	int  pi, pj;
 	bool ok = proj->map2screen_glob (airport.lon, airport.lat, &pi, &pj);
@@ -108,8 +108,7 @@ MetarWidgetFactory::~MetarWidgetFactory ()
 MetarWidget * MetarWidgetFactory::createMetarWidget 
 			( const QString &icao, bool isVisible, Projection *proj, QWidget *parent )
 {
-	MetarWidget *w = NULL;
-	w = new MetarWidget (mapAirports.value(icao), proj, parent);
+    MetarWidget *w = new MetarWidget (mapAirports.value(icao), proj, parent);
 	w->setVisible (isVisible);
 	return w;
 }
@@ -123,7 +122,7 @@ void MetarWidgetFactory::read_metar_list ()
 	mapCountries.clear ();
 	mapStates.clear ();
  	f = zu_open (qPrintable(Util::pathGis()+"stations_metar.txt.gz"), "rb");
-    if (f != NULL) {
+    if (f != nullptr) {
 		while (zu_fgets(buf, 512, f)) {
 			if (strlen(buf)>0) {
 				QString line = QString (buf);
@@ -143,7 +142,7 @@ void MetarWidgetFactory::read_metar_list ()
         zu_close(f);
     }
  	f = zu_open (qPrintable(Util::pathGis()+"countries_en.txt.gz"), "rb");
-    if (f != NULL) {
+    if (f != nullptr) {
 		while (zu_fgets(buf, 512, f)) {
 			if (strlen(buf)>0) {
 				QString line = QString (buf);
@@ -156,7 +155,7 @@ void MetarWidgetFactory::read_metar_list ()
         zu_close(f);
     }
  	f = zu_open (qPrintable(Util::pathGis()+"states_en.txt.gz"), "rb");
-    if (f != NULL) {
+    if (f != nullptr) {
 		while (zu_fgets(buf, 512, f)) {
 			if (strlen(buf)>0) {
 				QString line = QString (buf);

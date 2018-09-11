@@ -350,7 +350,7 @@ void MeteoTableWidget::addLine_WaveWhitecap (int type, int lig)
 		DataPointInfo * pinfo = *iter;
 		txt = "";
 		double v = pinfo->getWaveData (type);
-		if (v != GRIB_NOTDEF) {
+		if (GribDataIsDef(v)) {
 			txt = Util::formatPercentValue (v);
 			bgColor = QColor(plotter->getWhiteCapColor (v, true));
 		}
@@ -374,7 +374,7 @@ void MeteoTableWidget::addLine_WaveCompleteCell (int prvtype, int lig)
 		txt = "";
 		float ht, per, dir;
 		pinfo->getWaveValues (prvtype, &ht, &per, &dir);
-		if (ht != GRIB_NOTDEF) {
+		if (GribDataIsDef(ht)) {
 			txt = Util::formatWaveHeight (ht);
 			bgColor = QColor(plotter->getWaveHeightColor (ht, true));
 		}
@@ -382,11 +382,11 @@ void MeteoTableWidget::addLine_WaveCompleteCell (int prvtype, int lig)
 			bgColor = Qt::white;
 		}
 		txt += "\n";
-		if (dir != GRIB_NOTDEF) {
+		if (GribDataIsDef(dir)) {
 			txt += Util::formatWaveDirection (dir, true);
 		}
 		txt += "\n";
-		if (per != GRIB_NOTDEF) {
+		if (GribDataIsDef(per)) {
 			txt += Util::formatWavePeriod (per, true);
 		}
 		addCell_content (txt, layout,lig,col, 1,1, bgColor);
@@ -406,7 +406,7 @@ void MeteoTableWidget::addLine_WaveHeight (int type, int lig)
 		DataPointInfo * pinfo = *iter;
 		txt = "";
 		double v = pinfo->getWaveData (type);
-		if (v != GRIB_NOTDEF) {
+		if (GribDataIsDef(v)) {
 			txt = Util::formatWaveHeight (v);
 			bgColor = QColor(plotter->getWaveHeightColor (v, true));
 		}
@@ -504,7 +504,7 @@ void MeteoTableWidget::addLine_GeopotentialAltitude(const Altitude &alt, int lig
 		DataPointInfo * pinfo = *iter;
 		txt = "";
 		float v = pinfo->getDataValue (DataCode(GRB_GEOPOT_HGT,alt));
-		if (v != GRIB_NOTDEF) {
+		if (GribDataIsDef(v)) {
 			txt = Util::formatGeopotAltitude (v);
 			bgColor = QColor(plotter->getAltitudeColor(v, alt, true));
 		}
@@ -552,7 +552,7 @@ void MeteoTableWidget::addLine_Wind (const Altitude &alt, int lig)
 		txt = "";
 		bgColor = Qt::white;
 		if (pf->getWindValues (alt, &v, &dir)) {
-			if (dir != GRIB_NOTDEF) {
+			if (GribDataIsDef(dir)) {
 				QString tmp;
 				tmp.sprintf("%.0f", dir);
 				txt += tmp + tr(" °") + "\n";
@@ -587,7 +587,7 @@ void MeteoTableWidget::addLine_Current (const Altitude &alt, int lig)
 		txt = "";
 		bgColor = Qt::white;
 		if (pf->getCurrentValues (&v, &dir)) {
-			if (dir != GRIB_NOTDEF) {
+			if (GribDataIsDef(dir)) {
 				QString tmp;
 				tmp.sprintf("%.0f", dir);
 				txt += tmp + tr(" °") + "\n";
@@ -640,7 +640,7 @@ void MeteoTableWidget::addLine_HumidRel (const Altitude &alt, int lig)
 		txt = "";
 		double v = 0;
 		v = reader->getDateInterpolatedValue (DataCode(GRB_HUMID_REL,alt), lon,lat, date);
-		if (v != GRIB_NOTDEF) {
+		if (GribDataIsDef(v)) {
 			txt = Util::formatPercentValue(v);
 			bgColor = QColor(plotter->getHumidColor(v, true));
 		}
@@ -684,7 +684,7 @@ void MeteoTableWidget::addLine_Temperature(const Altitude &alt, uchar type, int 
 		else
 			v = reader->getDateInterpolatedValue (DataCode(type,alt), lon,lat, date);
 		txt = "";
-		if (v != GRIB_NOTDEF) {
+		if (GribDataIsDef(v)) {
 			txt = Util::formatTemperature(v);
 			bgColor = QColor(plotter->getTemperatureColor(v, true));
 		}
@@ -719,7 +719,7 @@ void MeteoTableWidget::addLine_DeltaTemperature(const Altitude &alt, uchar type,
 				break;
 		}
 		txt = "";
-		if (pinfo->temp != GRIB_NOTDEF && pinfo->dewPoint != GRIB_NOTDEF) {
+		if (GribDataIsDef(pinfo->temp) && GribDataIsDef(pinfo->dewPoint)) {
 			txt = Util::formatTemperature(v + 273.15);
 			bgColor = QColor(plotter->getDeltaTemperaturesColor(v, true));
 		}
@@ -900,7 +900,7 @@ void MeteoTableWidget::addLine_Categorical (uchar type, int lig)
 				v = pinfo->snowCateg;
 				break;
 		}
-		if (v != GRIB_NOTDEF) {
+		if (GribDataIsDef(v)) {
 			txt = Util::formatCategoricalData (v);
 			bgColor = QColor(plotter->getSnowDepthColor(v, true));
 		}
@@ -1095,7 +1095,7 @@ TableCell_Wind::TableCell_Wind (double vx, double vy, bool south,
 	windArrowsColor = QColor(40,40,40);
 	showWindArrows = Util::getSetting("MTABLE_showWindArrows", true).toBool();
 
-	if (showWindArrows && vx!=GRIB_NOTDEF && vy!=GRIB_NOTDEF)
+	if (showWindArrows && GribDataIsDef(vx) && GribDataIsDef(vy))
 		setMinimumHeight(label->minimumSizeHint().height()+50);
 }	
 //---------------------------------------------------------
@@ -1105,7 +1105,7 @@ void TableCell_Wind::paintEvent(QPaintEvent * e)
     QPainter pnt(this);
 	pnt.setRenderHint(QPainter::Antialiasing, true);
 
-	if (showWindArrows && vx != GRIB_NOTDEF && vx != GRIB_NOTDEF)
+	if (showWindArrows && GribDataIsDef(vx) && GribDataIsDef(vx))
 	{
     	plotter->drawWindArrowWithBarbs(
     			pnt, width()/2, 25, vx, vy, south, windArrowsColor);
@@ -1130,7 +1130,7 @@ TableCell_Current::TableCell_Current (double cx, double cy, bool south,
 	currentArrowsColor = QColor(40,40,40);
 	showCurrentArrows = Util::getSetting("MTABLE_showCurrentArrows", true).toBool();
 
-	if (showCurrentArrows && cx!=GRIB_NOTDEF && cy!=GRIB_NOTDEF)
+	if (showCurrentArrows && GribDataIsDef(cx) && GribDataIsDef(cy))
 		setMinimumHeight(label->minimumSizeHint().height()+50);
 }	
 //---------------------------------------------------------
@@ -1140,7 +1140,7 @@ void TableCell_Current::paintEvent(QPaintEvent * e)
     QPainter pnt(this);
 	pnt.setRenderHint(QPainter::Antialiasing, true);
 
-	if (showCurrentArrows && cx != GRIB_NOTDEF && cx != GRIB_NOTDEF)
+	if (showCurrentArrows && GribDataIsDef(cx) && GribDataIsDef(cy))
 	{
     	plotter->drawCurrentArrow (
     			pnt, width()/2, 25, cx, cy, south, currentArrowsColor);

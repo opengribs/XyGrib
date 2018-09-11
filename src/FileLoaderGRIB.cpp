@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QMessageBox>
 
 #include <cassert>
+#include <cmath>
 
 #include "FileLoaderGRIB.h"
 #include "Util.h"
@@ -35,8 +36,8 @@ FileLoaderGRIB::FileLoaderGRIB (QNetworkAccessManager *manager, QWidget *parent)
 	this->parent = parent;
     step = 0;
 	downloadError = false;
-	reply_step1 = NULL;
-	reply_step2 = NULL;
+    reply_step1 = nullptr;
+    reply_step2 = nullptr;
     scriptpath = "/";
 }
 //-------------------------------------------------------------------------------
@@ -44,11 +45,11 @@ FileLoaderGRIB::~FileLoaderGRIB ()
 {
 	if (reply_step1) {
 		reply_step1->deleteLater ();
-		reply_step1 = NULL;
+        reply_step1 = nullptr;
 	}
 	if (reply_step2) {
 		reply_step2->deleteLater ();
-		reply_step2 = NULL;
+        reply_step2 = nullptr;
 	}
 }
 
@@ -215,10 +216,10 @@ void FileLoaderGRIB::getGribFile(
 		QString now = QTime::currentTime().toString("HHmmss");
         QTextStream(&page) << phpfilename
                            << "model=" << amod
-                           << "&la1=" << floor(y0)
-                           << "&la2=" << ceil(y1)
-                           << "&lo1=" << floor(x0)
-                           << "&lo2=" << ceil(x1)
+                           << "&la1=" << std::floor(y0)
+                           << "&la2=" << std::ceil(y1)
+                           << "&lo1=" << std::floor(x0)
+                           << "&lo2=" << std::ceil(x1)
                            << "&intv=" << interval
                            << "&days=" << days
                            << "&cyc=" << cycle

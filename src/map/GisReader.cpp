@@ -73,7 +73,7 @@ GisReader::GisReader()
              Util::pathGis()+"countries_fr.txt.gz" : Util::pathGis()+"countries_en.txt.gz";
 			
     f = zu_open (qPrintable(fname), "rb");
-    if (f != NULL) {
+    if (f != nullptr) {
         long sz = zu_read(f, buf, szmax);
         QByteArray barr(buf, sz);
         QList<QByteArray> blist = barr.split('\n');
@@ -110,7 +110,7 @@ GisReader::GisReader()
 		if (fname.indexOf ("cities",0,Qt::CaseInsensitive) == 0) {
 			// DBGQS(fname);
 			f = zu_open( qPrintable(Util::pathGis()+fname), "rb");
-			if (f != NULL) {
+            if (f != nullptr) {
 				long sz = zu_read(f, buf, szmax);
 				QByteArray barr(buf, sz);
 				// barr.replace("\n","\r\n");

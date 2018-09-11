@@ -32,11 +32,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //=========================================================================================
 AnimImage::AnimImage () 
 {
-	pixmap = NULL;
+    pixmap = nullptr;
 }
 AnimImage::~AnimImage () 
 {
-	if (pixmap) delete pixmap;
+	delete pixmap;
 }
 
 //=========================================================================================
@@ -315,8 +315,8 @@ void GribAnimator::createImages()
 								lspois );
 		isEarthMapValid = true;
 		
- 		if (img->pixmap == NULL) {
-			QMessageBox::critical (NULL,
+        if (img->pixmap == nullptr) {
+            QMessageBox::critical (nullptr,
 				tr("Error"),
                 tr("Need more memory."));
 			delete img;
@@ -364,12 +364,9 @@ GribAnimator::~GribAnimator()
 // 	DBG ("destructor GribAnimator");
 	
 	Util::cleanVectorPointers (vectorImages);
-	
-	if (proj)
-		delete proj;	
-	
-	if (drawer)
-		delete drawer;
+
+    delete proj;
+    delete drawer;
 }
 
 //-------------------------------------------------------------------------------
@@ -381,7 +378,7 @@ GribAnimator::GribAnimator (Terrain *terre)
     if (Util::getSetting("showDarkSkin", true).toBool())
         this->setStyleSheet(animStyleSheet);
 
-	this->terre = terre;
+    this->terre = terre;
 	this->gribplot = terre->getGriddedPlotter();
 	
 	this->proj     = terre->getProjection()->clone();

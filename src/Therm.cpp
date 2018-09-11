@@ -96,14 +96,14 @@ double Therm::relHumidFromSpecific (double tempK, double hs)
 //----------------------------------------------------------------------
 double Therm::thetaEfromHR (double tempK, double hpa, double hr)
 {
-	if (hr==GRIB_NOTDEF || hpa==GRIB_NOTDEF || tempK==GRIB_NOTDEF)
+	if (! GribDataIsDef(hr) || ! GribDataIsDef(hpa) || ! GribDataIsDef(tempK))
 		return GRIB_NOTDEF;
 	return thetaEfromHS (tempK, hpa, specHumidFromRelative(tempK, hr));
 }
 //----------------------------------------------------------------------
 double Therm::thetaEfromHS (double tempK, double hpa, double hs)
 {
-	if (tempK==GRIB_NOTDEF || hpa==GRIB_NOTDEF || hs==GRIB_NOTDEF
+	if (! GribDataIsDef(tempK) || ! GribDataIsDef(hpa) || ! GribDataIsDef(hs)
 		|| hs==1.0 || hpa==0.0
 	) {
 		return GRIB_NOTDEF;
@@ -250,7 +250,7 @@ void Sounding::addSoundingPointK (double hpa, double tempK, double dewpK)
 //------------------------------------------------------
 void Sounding::addSoundingPointWind (double hpa, double vx, double vy)
 {
-	if (vx!=GRIB_NOTDEF && vy!=GRIB_NOTDEF) {
+	if (GribDataIsDef(vx) && GribDataIsDef(vy)) {
 		allSoundsWind << SoundingPointWind (hpa, vx, vy);
 		levelsAreValid = false;
 	}
@@ -338,7 +338,7 @@ double Sounding::getAvgTempCByAlt (double hpa1, double hpa2)
 	double res = 0;
 	for (double h=hpa1; h<=hpa2; h+=0.5) {
 		double t = getTempCByAlt (h);
-		if (t != GRIB_NOTDEF) {
+		if (GribDataIsDef(t)) {
 			n ++;
 			res += t;
 		}
@@ -353,7 +353,7 @@ double Sounding::getAvgDewpCByAlt (double hpa1, double hpa2)
 	double res = 0;
 	for (double h=hpa1; h<=hpa2; h+=0.5) {
 		double t = getDewpCByAlt (h);
-		if (t != GRIB_NOTDEF) {
+		if (GribDataIsDef(t)) {
 			n ++;
 			res += t;
 		}
@@ -560,7 +560,7 @@ void Sounding::compute_convective_levels (double hpa0max, double hpa0min)
 	{
 		TPoint tp = curveSaturatedFromLCL.points [i];
 		double temp = getTempCByAlt (tp.hpa);
-		if (tp.tempC!=GRIB_NOTDEF && temp!=GRIB_NOTDEF && tp.tempC > temp) {
+		if (GribDataIsDef(tp.tempC) && GribDataIsDef(temp) && tp.tempC > temp) {
 			LFC = tp;
 			//DBG ("found LFC : %g", tp.hpa);
 		}
@@ -593,7 +593,7 @@ void Sounding::compute_convective_levels (double hpa0max, double hpa0min)
 		TPoint tp = curveSaturatedFromLCL.points [i];
 		//DBG("hpa=%.2f temp=%.2f T=%.2f", tp.hpa, tp.tempC, getTempCByAlt (tp.hpa));
 		double temp = getTempCByAlt (tp.hpa);
-		if (tp.tempC!=GRIB_NOTDEF && temp!=GRIB_NOTDEF) 
+		if (GribDataIsDef(tp.tempC) && GribDataIsDef(temp)) 
 		{
 			if (tp.tempC < temp) {
 				if (! EL.ok()) 	{
@@ -646,7 +646,7 @@ void Sounding::compute_convective_levels (double hpa0max, double hpa0min)
 			TPoint tp = curveSaturatedFromLCL.points [i];
 			//DBG("hpa=%.2f temp=%.2f T=%.2f", tp.hpa, tp.tempC, getTempCByAlt (tp.hpa));
 			double temp = getTempCByAlt (tp.hpa);
-			if (tp.ok() && temp!=GRIB_NOTDEF) 
+			if (tp.ok() && GribDataIsDef(temp)) 
 			{
 				if (tp.tempC > temp) {
 					double tv = Therm::virtualTemperatureC  (temp, tp.hpa);

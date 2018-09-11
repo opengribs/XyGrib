@@ -22,6 +22,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define GRIB_NOTDEF -99999
 
+template <typename T> inline bool GribDataIsDef(T n) { return n != GRIB_NOTDEF;}
+
 enum DataCenterModel {
 	NOAA_GFS,
     DWD_ICON_GLOBAL,

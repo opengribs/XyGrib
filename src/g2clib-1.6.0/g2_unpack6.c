@@ -73,10 +73,9 @@ g2int g2_unpack6(unsigned char *cgrib,g2int *iofst,g2int ngpts,g2int *ibmap,
             ierr=6;
             return(ierr);
          }
-         else {
-            *bmap=lbmap;
-         }
-         intbmap=(g2int *)calloc(ngpts,sizeof(g2int));  
+         *bmap=lbmap;
+
+         intbmap=(g2int *)calloc(ngpts,sizeof(g2int));
          gbits(cgrib,intbmap,*iofst,1,0,ngpts);
          *iofst=*iofst+ngpts;
          for (j=0;j<ngpts;j++) {

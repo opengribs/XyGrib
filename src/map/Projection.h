@@ -42,19 +42,19 @@ Q_OBJECT
         virtual void setVisibleArea (double x0, double y0, double x1, double y1) = 0;
 		virtual void setVisibleAreaEarth () 	{setVisibleArea(-180,-85, 180,85);}
         
-        virtual int   getW ()   const   {return W;};    // taille de l'écran
-        virtual int   getH ()   const   {return H;};
-        virtual double getCX () const   {return CX;};   // centre
-        virtual double getCY () const   {return CY;};
-        virtual double getScale ()     const  {return scale;};
-        virtual double getCoefremp ()  const  {return coefremp;};
+        virtual int   getW ()   const   {return W;}    // taille de l'écran
+        virtual int   getH ()   const   {return H;}
+        virtual double getCX () const   {return CX;}   // centre
+        virtual double getCY () const   {return CY;}
+        virtual double getScale ()     const  {return scale;}
+        virtual double getCoefremp ()  const  {return coefremp;}
 		virtual bool  isCylindrical () const	 {return cylindrical;}
         
         // zone visible (longitude/latitude)
-        virtual double getXmin () const   {return xmin;};
-        virtual double getXmax () const   {return xmax;};
-        virtual double getYmin () const   {return ymin;};
-        virtual double getYmax () const   {return ymax;};
+        virtual double getXmin () const   {return xmin;}
+        virtual double getXmax () const   {return xmax;}
+        virtual double getYmin () const   {return ymin;}
+        virtual double getYmax () const   {return ymax;}
         virtual void   getVisibleArea (double *x0, double *y0, double *x1, double *y1) const
 										 {*x0=xmin; *y0=ymin; *x1=xmax; *y1=ymax;}
         

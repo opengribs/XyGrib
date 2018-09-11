@@ -63,7 +63,7 @@ void Grib2Reader::openFilePriv (const std::string fname, int nbrecs)
     // Ouverture du fichier
     //--------------------------------------------------------
     file = zu_open (fname.c_str(), "rb", ZU_COMPRESS_AUTO);
-    if (file == NULL) {
+    if (file == nullptr) {
         erreur("Can't open file: %s", fname.c_str());
         return;
     }
@@ -137,7 +137,7 @@ void Grib2Reader::readGrib2FileContent (int nbrecs)
 		iseek = lskip + lgrib;
 
 		cgrib = (unsigned char *) malloc (lgrib);
-		if (cgrib == NULL)
+        if (cgrib == nullptr)
 			break;
 
 		if (zu_seek (file, lskip, SEEK_SET) == 0 && zu_read(file, cgrib, lgrib) == lgrib)
@@ -163,7 +163,7 @@ void Grib2Reader::readGrib2FileContent (int nbrecs)
 				// 				idGrid
 				// extract fields
 				for (n=0; n<numfields; n++) {
-					gfld = NULL;
+                    gfld = nullptr;
 					ierr = g2_getfld (cgrib, n+1, unpack, expand, &gfld);
 					if (ierr == 0) {
 						idrec++;
@@ -214,7 +214,7 @@ void Grib2Reader::analyseRecords ()
 					{
 						double vx = recx->getValue(i,j);
 						double vy = recy->getValue(i,j);
-						if (vx!=GRIB_NOTDEF && vy!=GRIB_NOTDEF) {
+						if (GribDataIsDef(vx) && GribDataIsDef(vy)) {
 							//DBG("%d %d : %g %g : %g", i,j, vx,vy, sqrt(vx*vx+vy*vy));
 							recGust->setValue (i, j, sqrt(vx*vx+vy*vy));
 						}

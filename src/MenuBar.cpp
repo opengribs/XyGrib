@@ -50,7 +50,7 @@ void ZeroOneActionGroup::setCheckedAction (QAction *act, bool val, bool emitSign
 		if (val)
 			emit triggered (act);
 		else
-			emit triggered (NULL);
+            emit triggered (nullptr);
 	}
 }
 
@@ -437,9 +437,9 @@ MenuBar::MenuBar (QWidget *parent)
     //-------------------------------------
     // Autres objets de l'interface
     //-------------------------------------
-    acDatesGrib_prev = addAction ( NULL,
+    acDatesGrib_prev = addAction ( nullptr,
             tr("Last forecast [page up]"),tr("PgUp"),"",Util::pathImg("1leftarrow.png"));
-    acDatesGrib_next = addAction ( NULL,
+    acDatesGrib_next = addAction ( nullptr,
             tr("Next forecast [page down]"),tr("PgDown"),"",Util::pathImg("1rightarrow.png"));
 
     cbDatesGrib = new QComboBox ();
@@ -450,9 +450,9 @@ MenuBar::MenuBar (QWidget *parent)
 	acDatesGrib_prev->setEnabled (true);
 	acDatesGrib_next->setEnabled (true);
 
-    acPanToggle = addActionCheck(NULL,
+    acPanToggle = addActionCheck(nullptr,
                             tr("Toggle click to pan"), "", tr("Toggle click to pan"), Util::pathImg("cursor-openhand.png"));
-    acSelectToggle = addActionCheck(NULL,
+    acSelectToggle = addActionCheck(nullptr,
                              tr("Toggle click to select"), "", tr("Toggle click to select"), Util::pathImg("cursor-cross.png"));
 
 	updateFonts();
@@ -533,7 +533,7 @@ QAction* MenuBar::addAction (QMenu *menu,
         action->setIcon(QIcon(iconFileName));
 		action->setIconVisibleInMenu(true);
 	}
-    if (menu != NULL)
+    if (menu != nullptr)
         menu->addAction (action);
     return action;
 }
