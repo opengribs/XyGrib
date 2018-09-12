@@ -408,7 +408,9 @@ mb->acMap_SelectMETARs->setVisible (false);	// TODO
     connect(mb->acHelp_Help, SIGNAL(triggered()), this, SLOT(slotHelp_Help()));
     connect(mb->acHelp_APropos, SIGNAL(triggered()), this, SLOT(slotHelp_APropos()));
     connect(mb->acCheckForUpdates, SIGNAL(triggered()), this, SLOT(slotCheckForUpdates()));
+#ifdef Q_OS_WIN
     connect(mb->acRunMaintenanceTool, SIGNAL(triggered()), this, SLOT(slotRunMaintenanceTool()));
+#endif
     connect(mb->acHelp_AProposQT, SIGNAL(triggered()), this, SLOT(slotHelp_AProposQT()));
 
     //-------------------------------------
@@ -2309,6 +2311,7 @@ void MainWindow::slotCheckForUpdates()
              this, SLOT(slotFinished ()));
 
 }
+
 
 //-----------------------------------------------------
 void MainWindow::slotRunMaintenanceTool()
