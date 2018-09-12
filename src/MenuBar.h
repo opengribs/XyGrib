@@ -304,7 +304,9 @@ public:
     QAction *acHelp_Help;
     QAction *acHelp_APropos;
     QAction *acCheckForUpdates;
+#ifdef Q_OS_WIN
     QAction *acRunMaintenanceTool;
+#endif
     QAction *acHelp_AProposQT;
 
     //-------------------------------------
