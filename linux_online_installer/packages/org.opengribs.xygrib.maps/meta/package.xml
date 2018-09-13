@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+    <DisplayName>XyGrib Optional High Resolution Maps</DisplayName>
+    <Description>Additional GSHHS maps to enable map resolutions number 4 and 5 with 200m and 100m resolutions</Description>
+    <Version>1.0.0</Version>
+    <ReleaseDate>2018-03-01</ReleaseDate>
+    <Default>false</Default>
+	<SortingPriority>001</SortingPriority>
+    <Script>installscript.qs</Script>
+</Package>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Installer>
+    <Name>XyGrib</Name>
+    <Version>1.1.0.9</Version>
+    <Title>XyGrib</Title>
+    <Publisher>OpenGribs.org</Publisher>
+	<ProductUrl>https://opengribs.org/en/xygrib</ProductUrl>
+	<StartMenuDir>XyGrib</StartMenuDir>
+    <TargetDir>@ApplicationsDir@/XyGrib</TargetDir>
+	<MaintenanceToolName>XyGribMaintenanceTool</MaintenanceToolName>
+	<WizardStyle>Modern</WizardStyle>
+	<InstallerApplicationIcon>xyGrib_32</InstallerApplicationIcon>
+	<InstallerWindowIcon>xyGrib_32</InstallerWindowIcon>
+</Installer>
