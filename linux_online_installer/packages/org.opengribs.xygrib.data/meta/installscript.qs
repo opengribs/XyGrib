@@ -39,10 +39,9 @@ Component.prototype.createOperationsForArchive = function(archive)
 	var linuxfolder = "@HomeDir@/.local/share/openGribs/XyGrib";
     component.addOperation("Extract", archive, linuxfolder);
 	
-	//var hf = "@HomeDir@";
+	// get user name and chown the static data section
 	var uname = installer.environmentVariable("USER");
 	var own = uname + ":" + uname;
 	
-	//component.addOperation("Execute", "echo david > test.txt");
 	component.addElevatedOperation("Execute", "chown", "-R",  own, "@HomeDir@/.local/share/openGribs");
 }

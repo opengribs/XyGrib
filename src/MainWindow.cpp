@@ -408,9 +408,9 @@ mb->acMap_SelectMETARs->setVisible (false);	// TODO
     connect(mb->acHelp_Help, SIGNAL(triggered()), this, SLOT(slotHelp_Help()));
     connect(mb->acHelp_APropos, SIGNAL(triggered()), this, SLOT(slotHelp_APropos()));
     connect(mb->acCheckForUpdates, SIGNAL(triggered()), this, SLOT(slotCheckForUpdates()));
-#ifdef Q_OS_WIN
+//#ifdef Q_OS_WIN
     connect(mb->acRunMaintenanceTool, SIGNAL(triggered()), this, SLOT(slotRunMaintenanceTool()));
-#endif
+//#endif
     connect(mb->acHelp_AProposQT, SIGNAL(triggered()), this, SLOT(slotHelp_AProposQT()));
 
     //-------------------------------------
@@ -2319,14 +2319,13 @@ void MainWindow::slotRunMaintenanceTool()
     bool result;
     int res;
 #ifdef Q_OS_WIN
-    QString file = "XyGribMaintenanceTool.exe";
+    QString filepath = QCoreApplication::applicationDirPath() + "/XyGribMaintenanceTool.exe";
 #else
-    QString file = "XyGribMaintenanceTool";
+    QString filepath = QCoreApplication::applicationDirPath() + "/XyGribMaintenanceTool";
 
 #endif
     QProcess process;
-//    process->setProgram(file);
-    result = process.startDetached(file);
+    result = process.startDetached(filepath);
     if (!result){
         QMessageBox::warning(this,tr("Failure"), tr("Unable to start XyGrib Maintenance Tool"));
     } else {
@@ -2358,15 +2357,15 @@ void MainWindow::slotFinished()
         mbox.setWindowTitle(tr("An updated version is available"));
         mbox.setTextFormat(Qt::RichText);
 //        mbox.setStyleSheet("background:lightgrey;color:black;");
-#ifdef Q_OS_WIN
+//#ifdef Q_OS_WIN
         mbox.setText(tr("A new version")+": "+newVer+" "
                      +tr("is available for update.")+"<br>"
                      +tr("Please use the XyGrib Maintenance Tool to upgrade. It can be activated from the Help Menu"));
-#else
-        mbox.setText(tr("A new version")+": "+newVer+" "
-                     +tr("is available for update."));
+//#else
+//        mbox.setText(tr("A new version")+": "+newVer+" "
+//                     +tr("is available for update."));
 
-#endif
+//#endif
         mbox.exec();
 
     }

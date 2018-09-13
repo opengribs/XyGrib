@@ -419,10 +419,10 @@ MenuBar::MenuBar (QWidget *parent)
         				"",Util::pathImg("help.png"));
         acHelp_APropos = addAction (menuHelp, tr("About XyGrib"),"","","");
         acCheckForUpdates = addAction (menuHelp, tr("Check for updates"),"","","");
-#ifdef Q_OS_WIN
+//#ifdef Q_OS_WIN
         acRunMaintenanceTool = addAction (menuHelp, tr("Run XyGrib Maintenance Tool"),"",
                                           tr("To add, update or remove XyGrib components"),"");
-#endif
+//#endif
         acHelp_AProposQT = addAction (menuHelp, tr("About QT"),"","","");
 
     //======================================================================

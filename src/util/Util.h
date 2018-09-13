@@ -106,7 +106,7 @@ class Util : public QObject
     
     static QString   formatDayName (time_t t);
     static QString   formatDayName (QDate dt);
-    static QDateTime applyTimeZone (time_t t, QString *suffix=NULL);
+    static QDateTime applyTimeZone (time_t t, QString *suffix=nullptr);
     static int       getDayNum (time_t t);
 	static QString   getSunMoonAlmanac (time_t t, double lon, double lat);
     //-------------------------------------------------
