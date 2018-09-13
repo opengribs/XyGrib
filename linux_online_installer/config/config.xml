@@ -11,4 +11,10 @@
 	<WizardStyle>Modern</WizardStyle>
 	<InstallerApplicationIcon>xyGrib_32</InstallerApplicationIcon>
 	<InstallerWindowIcon>xyGrib_32</InstallerWindowIcon>
+	<RemoteRepositories>
+	<Repository>
+		<Url>https://opengribs.org/repository/linux</Url>
+	</Repository>
+    </RemoteRepositories>
+
 </Installer>
