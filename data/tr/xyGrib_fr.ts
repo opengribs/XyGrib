@@ -375,7 +375,7 @@
         <location filename="../../src/BoardPanel.cpp" line="264"/>
         <source>whitecap (prob)</source>
         <comment>Tr: SHORT TAG</comment>
-        <translation>Déferlantes (proba)</translation>
+        <translation>Déferlantes (probabilité)</translation>
     </message>
     <message>
         <location filename="../../src/BoardPanel.cpp" line="543"/>
@@ -408,7 +408,7 @@
     <message>
         <location filename="../../src/BoardPanel.cpp" line="558"/>
         <source>Reflectivity</source>
-        <translation>réflectivité</translation>
+        <translation>Réflectivité</translation>
     </message>
     <message>
         <location filename="../../src/BoardPanel.cpp" line="560"/>
@@ -445,19 +445,19 @@
         <location filename="../../src/BoardPanel.cpp" line="251"/>
         <source>sig  :</source>
         <comment>Tr: VERY SHORT TAG, same size as &apos;swell&apos; translation: significant</comment>
-        <translation>sig  :</translation>
+        <translation>sig :</translation>
     </message>
     <message>
         <location filename="../../src/BoardPanel.cpp" line="252"/>
         <source>max  :</source>
         <comment>Tr: VERY SHORT TAG, same size as &apos;swell&apos; translation: maximum</comment>
-        <translation></translation>
+        <translation>max :</translation>
     </message>
     <message>
         <location filename="../../src/BoardPanel.cpp" line="253"/>
         <source>swell:</source>
         <comment>Tr: VERY SHORT TAG: swell</comment>
-        <translation>houle:</translation>
+        <translation>houle :</translation>
     </message>
     <message>
         <location filename="../../src/BoardPanel.cpp" line="254"/>
@@ -475,7 +475,7 @@
         <location filename="../../src/BoardPanel.cpp" line="257"/>
         <source>scdy :</source>
         <comment>Tr: VERY SHORT TAG, same size as &apos;swell&apos; translation: secondary</comment>
-        <translation>secnd:</translation>
+        <translation>secondaire :</translation>
     </message>
     <message>
         <location filename="../../src/BoardPanel.cpp" line="546"/>
@@ -2818,7 +2818,7 @@ Actualisation 4 fois par jour.
     <message>
         <location filename="../../src/GUI/GraphicsParamsDialog.ui" line="403"/>
         <source>Geopotentials :</source>
-        <translation type="unfinished"></translation>
+        <translation>Altitude géopotentielle</translation>
     </message>
     <message>
         <location filename="../../src/GUI/GraphicsParamsDialog.ui" line="479"/>
@@ -2869,77 +2869,77 @@ Actualisation 4 fois par jour.
     <message>
         <location filename="../../src/GUI/GribLoadDialog.ui" line="13"/>
         <source>Réglages des Météotables</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../src/GUI/GribLoadDialog.ui" line="43"/>
         <source>Vent</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../src/GUI/GribLoadDialog.ui" line="56"/>
         <source>Précipitations</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../src/GUI/GribLoadDialog.ui" line="69"/>
         <source>Nébulosité</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../src/GUI/GribLoadDialog.ui" line="82"/>
         <source>Température</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../src/GUI/GribLoadDialog.ui" line="95"/>
         <source>Pression</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../src/GUI/GribLoadDialog.ui" line="108"/>
         <source>Point de rosée</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../src/GUI/GribLoadDialog.ui" line="121"/>
         <source>Ecart température-point de rosée</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../src/GUI/GribLoadDialog.ui" line="134"/>
         <source>Isotherme 0°C</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../src/GUI/GribLoadDialog.ui" line="147"/>
         <source>Neige (chute possible)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../src/GUI/GribLoadDialog.ui" line="160"/>
         <source>Neige (hauteur)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../src/GUI/GribLoadDialog.ui" line="173"/>
         <source>Pluie verglaçante (chute possible)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../src/GUI/GribLoadDialog.ui" line="186"/>
         <source>Température potentielle</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../src/GUI/GribLoadDialog.ui" line="203"/>
         <source>Valider</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../src/GUI/GribLoadDialog.ui" line="210"/>
         <source>Annuler</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -3247,22 +3247,22 @@ Actualisation 4 fois par jour.
     <message>
         <location filename="../../src/MainWindow.cpp" line="2331"/>
         <source>Failure</source>
-        <translation type="unfinished"></translation>
+        <translation>Echec</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="2331"/>
         <source>Unable to start XyGrib Maintenance Tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibilité de démarrer l&apos;outil de maintenance de XyGrib</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="2333"/>
         <source>It is recommended to exit XyGrib while running the Maintenance Tool. Do you wish to exit XyGrib?</source>
-        <translation type="unfinished"></translation>
+        <translation>Il est recommandé de quitter XyGrib pendant la procédude maintenance. Voulez-vous quitter l&apos;application ?</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="2334"/>
         <source>Exit XyGrib?</source>
-        <translation type="unfinished"></translation>
+        <translation>Quitter XyGrib</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="2358"/>
@@ -3279,12 +3279,12 @@ Actualisation 4 fois par jour.
         <location filename="../../src/MainWindow.cpp" line="2363"/>
         <location filename="../../src/MainWindow.cpp" line="2367"/>
         <source>is available for update.</source>
-        <translation type="unfinished"></translation>
+        <translation>est disponible pour une mise à jour</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="2364"/>
         <source>Please use the XyGrib Maintenance Tool to upgrade. It can be activated from the Help Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Merci d&apos;utiliser l&apos;outil de maintenance de XyGrib pour la mise à jour. Il est disponible dans le menu Aide.</translation>
     </message>
     <message>
         <source>is available for download.</source>
@@ -3413,7 +3413,7 @@ Désélection: Maj + clic gauche sur la carte en même temps</translation>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1391"/>
         <source>https://OpenGribs.org</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1661"/>
@@ -4621,12 +4621,12 @@ Désélection: Maj + clic gauche sur la carte en même temps</translation>
     <message>
         <location filename="../../src/MenuBar.cpp" line="423"/>
         <source>Run XyGrib Maintenance Tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Exécuter l&apos;outil de maintenance de XyGrib</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="424"/>
         <source>To add, update or remove XyGrib components</source>
-        <translation type="unfinished"></translation>
+        <translation>Pour ajouter, mettre à jour ou supprimer des composants de XyGrib</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="456"/>
@@ -5334,7 +5334,7 @@ Etes-vous sûr ?</translation>
     <message>
         <location filename="../../src/GUI/FindCityDialog.ui" line="91"/>
         <source>Result</source>
-        <translation type="unfinished"></translation>
+        <translation>Résultat</translation>
     </message>
     <message>
         <location filename="../../src/GUI/PoiEditorDialog.ui" line="90"/>
