@@ -76,8 +76,12 @@ MapDrawer::MapDrawer(const MapDrawer &model)
 //---------------------------------------------------------------------
 MapDrawer::~MapDrawer()
 {
-    delete gisReader;
-    delete gshhsReader;
+    if (gisReaderIsNew) {
+    	delete gisReader;
+    }
+    if (gshhsReaderIsNew) {
+        delete gshhsReader;
+    }
     delete imgAll;
     delete imgEarth;
 }
