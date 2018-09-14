@@ -1,12 +1,52 @@
 ************************************
 Instructions For Linux Online Installer
 ************************************
-Copy the release folder contents to the primary package data folder in the win_intaller structure replacing the place holder file
-Also include 'LICENCE' and 'README.md' in the primary package data folder
-Create an icons folder and add the xyGrib_32.ico to this folder
-Copy the "data" structure to the second package data folder in the win_installer structure replacing the place holder file
 
-Build new reposistory files by running: repogen --update-new-components -v -p packages repository
+First create the AppImage binary package
+****************************************
+
+Create a sandpit with the following directory and file structure
+-----------------------------------
+usr-
+   | bin - create and copy XyGrib executable
+   | lib - empty - deploytool will copy stuff needed from the release build
+   | plugins - empty - deploytool will copy stuff needed from the release build
+   | share     - create
+        | doc  - empty - deploy tool will copy stuff needed from the release build
+
+XyGrib.desktop (see contents below)
+XyGrib.png
+AppRun - will be created by deploytool - symbolic link to XyGrib executive
+-----------------------------------------------
+run:
+linuxdeployqt-continuous-x86_64.AppImage usr/bin/XyGrib -qmake=/home/david/Qt/5.11.1/gcc_64/bin/qmake -no-translations -bundle-non-qt-libs -appimage -verbose=2
+output is XyGrib-x86_64.AppImage
+RENAME THIS TO: XyGrib_x86_64.AppImage (The hyphen doesn't go down well with creating .desktop files)
+
+***************************************
+Now prepare the repository updates
+---------------------------------
+Prepare org.opengribs.xygrib.core.linux
+	copy the resulting renamed XyGrib_x86_64.AppImage to repository package for core.linux
+	Also include 'LICENCE' and 'README.md' in the primary package data folder
+	Create an icons folder and add the xyGrib_32.ico and xyGrib_32.png to this folder
+----------------------------------------------------------------------------------
+Prepare org.opengribs.xygrib.data
+	Copy the "data" structure to the second package data folder in the installer structure
+-------------------------------------------------------------------------------------------
+Prepare org.opengribs.xygrib.maps
+	Copy the "data" structure for the high resolution maps to the third package data folder in the installer structure
+-------------------------------------------------------------------------------------------
+
+Build the repository
+*********************
+Build new reposistory files by running: 
+repogen --update-new-components -v -p packages repository/linux
+or subsequent update use: repogen --update -v -p packages repository/linux
 upload the new repository files to the web server repository
 
-Build the installer: binarycreator --online-only -c config/config.xml -p packages XyGribInstaller.exe
+**************************************************************************************
+Build the installer
+-------------------
+Finaly from the root of the install framework, build the installer itself: 
+	binarycreator --online-only -c config/config.xml -p packages XyGrib_Linux_v<x.x.x.x>_Installer
