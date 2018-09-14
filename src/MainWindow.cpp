@@ -42,7 +42,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "AngleConverterDialog.h"
 #include "DataQString.h"
 //#include "CurveDrawer.h"
-
+#include <queue>
 
 //-----------------------------------------------------------
 void ThreadNewInstance::run ()
@@ -2321,13 +2321,17 @@ void MainWindow::slotRunMaintenanceTool()
 #ifdef Q_OS_WIN
     QString filepath = QCoreApplication::applicationDirPath() + "/XyGribMaintenanceTool.exe";
 #else
-    QString filepath = QCoreApplication::applicationDirPath() + "/XyGribMaintenanceTool";
+    // there is an issue with AppImage builds as applicationDirPath returns a path inside the image container
+    // ... so the install location on the outer file system needs to be searched
+
+    QStringList slist = {QCoreApplication::applicationDirPath(), "/opt/XyGrib/", "~/bin/XyGrib", "~/.local/XyGrib", "/usr/local/XyGrib",  "/usr/local/share/XyGrib", "/usr/share/XyGrib"};
+    QString filepath = QStandardPaths::findExecutable("XyGribMaintenanceTool", slist);
 
 #endif
     QProcess process;
     result = process.startDetached(filepath);
     if (!result){
-        QMessageBox::warning(this,tr("Failure"), tr("Unable to start XyGrib Maintenance Tool"));
+        QMessageBox::warning(this,tr("Failure"), tr("Unable to find the XyGrib Maintenance Tool. Please start it from the desktop facilities"));
     } else {
         QString question = tr("It is recommended to exit XyGrib while running the Maintenance Tool. Do you wish to exit XyGrib?");
         res = QMessageBox::question(this,tr("Exit XyGrib?"),question, QMessageBox::Yes, QMessageBox::No);

@@ -7,13 +7,14 @@
 	<ProductUrl>https://opengribs.org/en/xygrib</ProductUrl>
 	<StartMenuDir>XyGrib</StartMenuDir>
     <TargetDir>@ApplicationsDir@/XyGrib</TargetDir>
+	<RunProgram>@ApplicationsDirX86@/XyGrib/XyGrib_x86_64.AppImage</RunProgram>
 	<MaintenanceToolName>XyGribMaintenanceTool</MaintenanceToolName>
 	<WizardStyle>Modern</WizardStyle>
 	<InstallerApplicationIcon>xyGrib_32</InstallerApplicationIcon>
 	<InstallerWindowIcon>xyGrib_32</InstallerWindowIcon>
 	<RemoteRepositories>
 	<Repository>
-		<Url>https://opengribs.org/repository/linux</Url>
+		<Url>http://192.168.1.98/repository/linux</Url>
 	</Repository>
     </RemoteRepositories>
 
