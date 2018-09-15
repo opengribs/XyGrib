@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 3.1.0)
 project (XyGrib)
 set(VERSION_MAJOR 1)
 set(VERSION_MINOR 1)
-set(VERSION_PATCH 1-beta)
+set(VERSION_PATCH 1-beta-b)
 
 set(XYGRIB_VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 set(XYGRIB_VERSION_DATE "2018-09-15")
