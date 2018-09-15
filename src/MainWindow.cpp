@@ -186,7 +186,7 @@ void MainWindow::InitActionsStatus ()
 	// Set map quality
 	int quality = Util::getSetting("gshhsMapQuality", 2).toInt();
     for (int qual=4; qual>=0; qual--) {
-        if (! gshhsReader->gshhsFilesExists(qual)) {
+        if (! gshhsReader.get()->gshhsFilesExists(qual)) {
             switch (qual) {
                 case 0: menuBar->acMap_Quality1->setEnabled(false); break;
                 case 1: menuBar->acMap_Quality2->setEnabled(false); break;
@@ -476,8 +476,7 @@ MainWindow::MainWindow (int w, int h, QWidget *parent)
 	
     //--------------------------------------------------
     int mapQuality = 0;
-    gshhsReader = new GshhsReader (Util::pathGshhs().toStdString(), mapQuality);
-    assert(gshhsReader);
+    gshhsReader =  std::make_shared<GshhsReader>(Util::pathGshhs().toStdString(), mapQuality);
 	
     //--------------------------------------------------
     terre = new Terrain (this, proj, gshhsReader);

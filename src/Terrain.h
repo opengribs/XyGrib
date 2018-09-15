@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifndef TERRAIN_H
 #define TERRAIN_H
+#include <memory>
 
 #include <QWidget>
 #include <QToolBar>
@@ -42,7 +43,7 @@ class Terrain : public QWidget
     Q_OBJECT
 
 public:
-    Terrain (QWidget *parent, Projection *proj, GshhsReader *gshhsReader);
+    Terrain (QWidget *parent, Projection *proj, std::shared_ptr<GshhsReader> gshhsReader);
 
 	void    setCurrentDate (time_t t);
 	time_t  getCurrentDate ();
