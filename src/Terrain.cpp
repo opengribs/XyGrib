@@ -34,7 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------
 // Constructeur
 //---------------------------------------------------------
-Terrain::Terrain (QWidget *parent, Projection *proj, GshhsReader *gshhsReader)
+Terrain::Terrain (QWidget *parent, Projection *proj, std::shared_ptr<GshhsReader> gshhsReader)
     : QWidget(parent)
 {
 	setSizePolicy (QSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding));
@@ -314,14 +314,14 @@ void Terrain::setWaveArrowsType  (int type) {
 void Terrain::setMapQuality (int q) {
     indicateWaitingMap();
     if (quality != q) {
-        if (drawer->gshhsReader == nullptr)
+        if (drawer->gshhsReader.get() == nullptr)
             return;
         quality = q;
         pleaseWait = true;
         //update();
         QCursor oldcursor = cursor();
         setCursor(Qt::WaitCursor);
-            drawer->gshhsReader->setUserPreferredQuality(q);
+            drawer->gshhsReader.get()->setUserPreferredQuality(q);
             isEarthMapValid = false;
             update();
         setCursor(oldcursor);

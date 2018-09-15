@@ -22,6 +22,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QWidget>
 #include <QBitmap>
 
+#include <memory>
+
 #include "GshhsReader.h"
 #include "GisReader.h"
 #include "Projection.h"
@@ -38,7 +40,7 @@ class MapDrawer : public QObject
 friend class Terrain;	// TODO (or not) getters setters
 
 	public:
-		MapDrawer(GshhsReader *gshhsReader);
+		MapDrawer(std::shared_ptr<GshhsReader>  gshhsReader);
 		MapDrawer(const MapDrawer &model);
 		~MapDrawer();
 
@@ -82,11 +84,9 @@ friend class Terrain;	// TODO (or not) getters setters
 		QPixmap     *imgEarth;   // images précalculées pour accélérer l'affichage
 		QPixmap     *imgAll;
 		
-		GshhsReader *gshhsReader;
-		bool         gshhsReaderIsNew;
+		std::shared_ptr<GshhsReader> gshhsReader;
 		
-		GisReader	*gisReader;
-		bool		 gisReaderIsNew;
+		std::shared_ptr<GisReader> gisReader;
 		
 		int   showCitiesNamesLevel;
 		bool  showCountriesNames;
