@@ -49,7 +49,7 @@ class MenuBar : public QMenuBar
 {
     Q_OBJECT
 public:
-    MenuBar (QWidget *parent);
+    MenuBar (QWidget *parent, bool mtExists);
 	
 	void updateFonts ();
 
@@ -66,6 +66,8 @@ public:
 
     void updateListeDates  (std::set<time_t> *setDates, time_t currentDate);
     void updateCurrentDate (time_t currentDate);
+
+
     time_t  getDateGribById (int id);
 
 
@@ -348,6 +350,8 @@ private:
     QAction* addActionCheck (QMenu *menu,
                     QString title, QString shortcut, QString statustip,
                     QString iconFileName = "");
+
+    bool maintenanceToolExists;
 
 
 };

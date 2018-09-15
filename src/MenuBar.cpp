@@ -55,13 +55,15 @@ void ZeroOneActionGroup::setCheckedAction (QAction *act, bool val, bool emitSign
 }
 
 //===================================================================================
-MenuBar::MenuBar (QWidget *parent)
+MenuBar::MenuBar (QWidget *parent, bool mbe)
     : QMenuBar (parent)
 {
 #if defined (Q_OS_UNIX)
 	bool native = Util::getSetting("systemNativeMenuBar", false).toBool();
 	setNativeMenuBar (native);    // bug with some versions of ubuntu 
 #endif
+
+    this->maintenanceToolExists = mbe;
 
 	//======================================================================
     menuFile = new QMenu(tr("File"));
@@ -419,10 +421,11 @@ MenuBar::MenuBar (QWidget *parent)
         				"",Util::pathImg("help.png"));
         acHelp_APropos = addAction (menuHelp, tr("About XyGrib"),"","","");
         acCheckForUpdates = addAction (menuHelp, tr("Check for updates"),"","","");
-//#ifdef Q_OS_WIN
-        acRunMaintenanceTool = addAction (menuHelp, tr("Run XyGrib Maintenance Tool"),"",
+
+        if (maintenanceToolExists)
+            acRunMaintenanceTool = addAction (menuHelp, tr("Run XyGrib Maintenance Tool"),"",
                                           tr("To add, update or remove XyGrib components"),"");
-//#endif
+
         acHelp_AProposQT = addAction (menuHelp, tr("About QT"),"","","");
 
     //======================================================================
