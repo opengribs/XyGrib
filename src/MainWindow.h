@@ -62,15 +62,15 @@ class MainWindow: public QMainWindow
         MainWindow (int w, int h, QWidget *parent = 0);
         ~MainWindow();
 
-        void openMeteoDataFile (QString fileName);
-		
+        void openMeteoDataFile (QString fileName);	
 		void openSkewtDiagramWindow (double lon, double lat, 
 									 GriddedReader *reader = NULL, 
 									 time_t date = 0
 									);
-        void checkUpdates();
+        void checkUpdates();       
+        QString getMTLocation();
 
-    public slots:
+public slots:
 		void slotGenericAction ();
 		
         void slotOpenMeteotable ();
@@ -178,6 +178,7 @@ class MainWindow: public QMainWindow
         QNetworkReply *reply;
         bool downloadError;
         bool startCheckUpdateFlag = false;
+        QString maintenanceToolLocation = "";
 
 
         QMenu    *menuPopupBtRight;
@@ -220,6 +221,7 @@ class MainWindow: public QMainWindow
 		void createToolBar ();
 		void autoClose ();
         int versionCompare(QString v1, QString v2);
+        QString findMaintenanceTool();
 };
 
 #endif

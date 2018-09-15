@@ -408,9 +408,10 @@ mb->acMap_SelectMETARs->setVisible (false);	// TODO
     connect(mb->acHelp_Help, SIGNAL(triggered()), this, SLOT(slotHelp_Help()));
     connect(mb->acHelp_APropos, SIGNAL(triggered()), this, SLOT(slotHelp_APropos()));
     connect(mb->acCheckForUpdates, SIGNAL(triggered()), this, SLOT(slotCheckForUpdates()));
-//#ifdef Q_OS_WIN
-    connect(mb->acRunMaintenanceTool, SIGNAL(triggered()), this, SLOT(slotRunMaintenanceTool()));
-//#endif
+
+    if (maintenanceToolLocation != "")
+        connect(mb->acRunMaintenanceTool, SIGNAL(triggered()), this, SLOT(slotRunMaintenanceTool()));
+
     connect(mb->acHelp_AProposQT, SIGNAL(triggered()), this, SLOT(slotHelp_AProposQT()));
 
     //-------------------------------------
@@ -465,7 +466,8 @@ MainWindow::MainWindow (int w, int h, QWidget *parent)
 {
     setWindowIcon (QIcon (Util::pathImg("xyGrib_32.xpm")));
 
-    menuBar = new MenuBar(this);
+    maintenanceToolLocation = findMaintenanceTool(); // needed before menubar creation as MaintenanceTool menu item is conditional
+    menuBar = new MenuBar(this, (maintenanceToolLocation != ""));
     assert(menuBar);
     //---------------------------------------------------
 	// Projection
@@ -2318,18 +2320,8 @@ void MainWindow::slotRunMaintenanceTool()
 {
     bool result;
     int res;
-#ifdef Q_OS_WIN
-    QString filepath = QCoreApplication::applicationDirPath() + "/XyGribMaintenanceTool.exe";
-#else
-    // there is an issue with AppImage builds as applicationDirPath returns a path inside the image container
-    // ... so the install location on the outer file system needs to be searched
-
-    QStringList slist = {QCoreApplication::applicationDirPath(), "/opt/XyGrib/", "~/bin/XyGrib", "~/.local/XyGrib", "/usr/local/XyGrib",  "/usr/local/share/XyGrib", "/usr/share/XyGrib"};
-    QString filepath = QStandardPaths::findExecutable("XyGribMaintenanceTool", slist);
-
-#endif
     QProcess process;
-    result = process.startDetached(filepath);
+    result = process.startDetached(maintenanceToolLocation);
     if (!result){
         QMessageBox::warning(this,tr("Failure"), tr("Unable to find the XyGrib Maintenance Tool. Please start it from the desktop facilities"));
     } else {
@@ -2343,6 +2335,26 @@ void MainWindow::slotRunMaintenanceTool()
 
 }
 
+//-----------------------------------------------------
+QString MainWindow::findMaintenanceTool()
+{
+#ifdef Q_OS_WIN
+    QString filepath = QCoreApplication::applicationDirPath() + "/XyGribMaintenanceTool.exe";
+#else
+    // there is an issue with AppImage builds as applicationDirPath returns a path inside the image container
+    // ... so the install location on the outer file system needs to be searched
+
+    QStringList slist = {QCoreApplication::applicationDirPath(), "/opt/XyGrib/", "~/bin/XyGrib", "~/.local/XyGrib", "/usr/local/XyGrib",  "/usr/local/share/XyGrib", "/usr/share/XyGrib"};
+    QString filepath = QStandardPaths::findExecutable("XyGribMaintenanceTool", slist);
+
+#endif
+    return filepath;
+}
+//-----------------------------------------------------
+QString MainWindow::getMTLocation()
+{
+    return maintenanceToolLocation;
+}
 //-----------------------------------------------------
 void MainWindow::slotFinished()
 {
