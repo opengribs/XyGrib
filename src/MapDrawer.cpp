@@ -586,6 +586,13 @@ void MapDrawer::draw_MeteoData_Gridded
 		pnt.setPen(QColor (40,40,40));
 		plotter->draw_GridPoints (colorMapData, pnt, proj);
 	}
+
+	// cleanup
+	for (auto const &it :listIsobars) { delete it;}
+	for (auto const &it :listIsotherms0) { delete it;}
+	for (auto const &it :listGeopotential) { delete it;}
+	for (auto const &it :listIsotherms) { delete it;}
+	for (auto const &it :listLinesThetaE) { delete it;}
 }
 //-------------------------------------------------------------
 // Cartouche : dates de la prévision courante + infos générales
