@@ -13,21 +13,34 @@ usr-
    | plugins - empty - deploytool will copy stuff needed from the release build
    | share     - create
         | doc  - empty - deploy tool will copy stuff needed from the release build
+		| applications
+			XyGrib.desktop (* see contents below)
+		| icons
+			| hicolor
+				xyGrib_32.png
+			
 
-XyGrib.desktop (see contents below)
-XyGrib.png
-AppRun - will be created by deploytool - symbolic link to XyGrib executive
+
+
 -----------------------------------------------
 run:
-linuxdeployqt-continuous-x86_64.AppImage usr/bin/XyGrib -qmake=/home/david/Qt/5.11.1/gcc_64/bin/qmake -no-translations -bundle-non-qt-libs -appimage -verbose=2
+linuxdeployqt_april.AppImage usr/share/applications/XyGrib.desktop -qmake=/home/david/Qt/5.11.1/gcc_64/bin/qmake -no-translations -bundle-non-qt-libs -appimage -verbose=2
 output is XyGrib-x86_64.AppImage
-RENAME THIS TO: XyGrib_x86_64.AppImage (The hyphen doesn't go down well with creating .desktop files)
+RENAME THIS TO: XyGrib.Linux.AppImage (The hyphen doesn't go down well with creating .desktop files)
 
+*
+[Desktop Entry] 
+Type=Application
+Name=XyGrib
+Comment=Grib reader and weather visualization software
+Exec=XyGrib
+Icon=xyGrib_32
+Categories=Education;Science;Geoscience;
 ***************************************
 Now prepare the repository updates
 ---------------------------------
 Prepare org.opengribs.xygrib.core.linux
-	copy the resulting renamed XyGrib_x86_64.AppImage to repository package for core.linux
+	copy the resulting renamed XyGrib.Linux.AppImage to repository package for core.linux
 	Also include 'LICENCE' and 'README.md' in the primary package data folder
 	Create an icons folder and add the xyGrib_32.ico and xyGrib_32.png to this folder
 ----------------------------------------------------------------------------------

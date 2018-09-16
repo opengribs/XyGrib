@@ -38,7 +38,7 @@ Component.prototype.createOperations = function()
 
 	 component.addOperation("CreateDesktopEntry", 
 							"xygrib.desktop",
-							"Type=Application\nTerminal=false\nExec=@TargetDir@/XyGrib_x86_64.AppImage\nName=XyGrib\nIcon=@TargetDir@/icons/xyGrib_32.ico");
+							"Type=Application\nTerminal=false\nExec=@TargetDir@/XyGrib.AppImage\nName=XyGrib\nIcon=@TargetDir@/icons/xyGrib_32.ico");
 							
 	 component.addOperation("CreateDesktopEntry", 
 							"xygribmaintenancetool.desktop",

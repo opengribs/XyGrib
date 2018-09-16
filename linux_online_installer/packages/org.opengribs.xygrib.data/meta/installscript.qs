@@ -40,8 +40,16 @@ Component.prototype.createOperationsForArchive = function(archive)
     component.addOperation("Extract", archive, linuxfolder);
 	
 	// get user name and chown the static data section
-	var uname = installer.environmentVariable("USER");
-	var own = uname + ":" + uname;
-	
-	component.addElevatedOperation("Execute", "chown", "-R",  own, "@HomeDir@/.local/share/openGribs");
+	try
+	{
+		var uname = installer.environmentVariable("USER");
+		var own = uname + ":" + uname;	
+		component.addElevatedOperation("Execute", "chown", "-R",  own, "@HomeDir@/.local/share/openGribs");
+	}
+	catch(error)
+	{
+		var uname = installer.environmentVariable("USER");
+		var own = uname + ":users";	
+		component.addElevatedOperation("Execute", "chown", "-R",  own, "@HomeDir@/.local/share/openGribs");	
+	}
 }
