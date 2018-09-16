@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <QMessageBox>
 #include <QDir>
+#include <QPointer>
 
 #include "GribAnimator.h"
 #include "ImageWriter.h"
@@ -237,7 +238,7 @@ void GribAnimator::setAutoLoop(bool auto_)
 //---------------------------------------
 void GribAnimator::exitAnim()
 {
-closestatus=2;
+	closestatus=2;
 	close();
 }
 //---------------------------------------
@@ -280,6 +281,8 @@ void GribAnimator::createImages()
 	QPainter pnt;
 	std::set<time_t>::iterator iter;
 	int num=0;
+	// XXX hack, find if we have been destroyed by processEvents() loop
+	QPointer<GribAnimator> ref = this;
 
 	stackWidgets->setCurrentWidget(createAnimProgressBar);
     lbmessage->setFont(Font::getFont(FONT_StatusBar));
@@ -291,7 +294,7 @@ void GribAnimator::createImages()
 		time_t date = *iter;
 		
 //  		qApp->processEvents (); 
-		if (closestatus != 0) break;
+		if (ref == nullptr || closestatus != 0) break;
 		
 		currentImage = num;
 		lbmessage->setText(
@@ -302,7 +305,7 @@ void GribAnimator::createImages()
 					);
 		
 		qApp->processEvents ();
-		if (closestatus != 0) break;
+		if (ref == nullptr || closestatus != 0) break;
 		
 		AnimImage *img = new AnimImage();
 		assert(img);
@@ -328,8 +331,11 @@ void GribAnimator::createImages()
 		createAnimProgressBar->setCurrentValue (num+1);
 	}
 
-	if (closestatus == 0)
-		stackWidgets->setCurrentWidget(animCommand);
+	if (ref == nullptr  || closestatus != 0)
+		return;
+
+	stackWidgets->setCurrentWidget(animCommand);
+	rewindAnim();
 }
  
 //=============================================================================
@@ -360,7 +366,6 @@ QFrame *GribAnimator::createFrameGui(QWidget *parent)
 
 GribAnimator::~GribAnimator()
 {
-	closestatus=1;
 // 	DBG ("destructor GribAnimator");
 	
 	Util::cleanVectorPointers (vectorImages);
@@ -420,7 +425,6 @@ GribAnimator::GribAnimator (Terrain *terre)
 	
 	show();
 	createImages();
-	rewindAnim();
 }
 
 //---------------------------------------

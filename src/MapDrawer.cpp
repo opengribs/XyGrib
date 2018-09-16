@@ -30,17 +30,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "DataQString.h"
 
 //===========================================================
-MapDrawer::MapDrawer(GshhsReader *gshhsReader)
+MapDrawer::MapDrawer(std::shared_ptr<GshhsReader> gshhsReader)
 {
     imgEarth = nullptr;
     imgAll   = nullptr;
 
-    gisReader = new GisReader ();
-    assert (gisReader);
-    gisReaderIsNew = true;	
+    gisReader = std::make_shared<GisReader>();
 
 	this->gshhsReader = gshhsReader;
-	gshhsReaderIsNew = false;
 	
 	initGraphicsParameters();
 	updateGraphicsParameters();
@@ -51,11 +48,8 @@ MapDrawer::MapDrawer(const MapDrawer &model)
     imgEarth = nullptr;
     imgAll   = nullptr;
 	gisReader = model.gisReader;
-    gisReaderIsNew = false;		// don't delete pointer
     
-	this->gshhsReader = new GshhsReader (*model.gshhsReader);
-    assert (gshhsReader);
-	gshhsReaderIsNew = true;
+	this->gshhsReader = model.gshhsReader;
 	
 	colorMapData = model.colorMapData;
 	colorMapSmooth = model.colorMapSmooth;
@@ -76,8 +70,6 @@ MapDrawer::MapDrawer(const MapDrawer &model)
 //---------------------------------------------------------------------
 MapDrawer::~MapDrawer()
 {
-    delete gisReader;
-    delete gshhsReader;
     delete imgAll;
     delete imgEarth;
 }
@@ -232,12 +224,12 @@ void MapDrawer::draw_Map_Background(bool isEarthMapValid, Projection *proj)
 		imgEarth = new QPixmap(proj->getW(), proj->getH());
 		assert(imgEarth);
 
-        if (gshhsReader != nullptr)
+        if (gshhsReader.get() != nullptr)
 		{
 			QPainter pnt1(imgEarth);
 			pnt1.setRenderHint(QPainter::Antialiasing, false);
-			gshhsReader->drawBackground(pnt1, proj, seaColor, backgroundColor);
-			gshhsReader->drawContinents(pnt1, proj, seaColor, landColor);
+			gshhsReader.get()->drawBackground(pnt1, proj, seaColor, backgroundColor);
+			gshhsReader.get()->drawContinents(pnt1, proj, seaColor, landColor);
 		}
 	}
 	pnt.drawPixmap(0,0, *imgEarth);
@@ -245,18 +237,18 @@ void MapDrawer::draw_Map_Background(bool isEarthMapValid, Projection *proj)
 //----------------------------------------------------------------------
 void MapDrawer::draw_Map_Foreground(QPainter &pnt, Projection *proj)
 {
-    if (gshhsReader != nullptr)
+    if (gshhsReader.get() != nullptr)
 	{
 		pnt.setPen(seaBordersPen);
-		gshhsReader->drawSeaBorders(pnt, proj);
+		gshhsReader.get()->drawSeaBorders(pnt, proj);
 
 		if (showCountriesBorders) {
 			pnt.setPen(boundariesPen);
-			gshhsReader->drawBoundaries(pnt, proj);
+			gshhsReader.get()->drawBoundaries(pnt, proj);
 		}
 		if (showRivers) {
 			pnt.setPen(riversPen);
-			gshhsReader->drawRivers(pnt, proj);
+			gshhsReader.get()->drawRivers(pnt, proj);
 		}
 	}
 	if (showLonLatGrid) {
@@ -264,10 +256,10 @@ void MapDrawer::draw_Map_Foreground(QPainter &pnt, Projection *proj)
 		gr.drawLonLatGrid(pnt, proj);
 	}
 	if (showCountriesNames) {
-		gisReader->drawCountriesNames(pnt, proj);
+		gisReader.get()->drawCountriesNames(pnt, proj);
 	}
 	if (showCitiesNamesLevel > 0) {
-		gisReader->drawCitiesNames(pnt, proj, showCitiesNamesLevel);
+		gisReader.get()->drawCitiesNames(pnt, proj, showCitiesNamesLevel);
 	}
 }
 
@@ -594,6 +586,13 @@ void MapDrawer::draw_MeteoData_Gridded
 		pnt.setPen(QColor (40,40,40));
 		plotter->draw_GridPoints (colorMapData, pnt, proj);
 	}
+
+	// cleanup
+	for (auto const &it :listIsobars) { delete it;}
+	for (auto const &it :listIsotherms0) { delete it;}
+	for (auto const &it :listGeopotential) { delete it;}
+	for (auto const &it :listIsotherms) { delete it;}
+	for (auto const &it :listLinesThetaE) { delete it;}
 }
 //-------------------------------------------------------------
 // Cartouche : dates de la prévision courante + infos générales

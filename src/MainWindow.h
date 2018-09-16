@@ -19,6 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <memory>
+
 #include <QApplication>
 #include <QMainWindow>
 #include <QMouseEvent>
@@ -150,7 +152,7 @@ public slots:
         void signalMapQuality (int quality);
 
     private:
-        GshhsReader *gshhsReader;
+        std::shared_ptr<GshhsReader> gshhsReader;
         Projection  *proj;
         
         QString      gribFileName;
