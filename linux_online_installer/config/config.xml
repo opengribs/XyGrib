@@ -10,6 +10,9 @@
 	<RunProgram>@ApplicationsDirX86@/XyGrib/XyGrib.AppImage</RunProgram>
 	<MaintenanceToolName>XyGribMaintenanceTool</MaintenanceToolName>
 	<WizardStyle>Modern</WizardStyle>
+	<Logo>xyGrib_32.png</Logo>
+	<WizardDefaultWidth>620</WizardDefaultWidth>
+	<InstallActionColumnVisible>true</InstallActionColumnVisible>
 	<InstallerApplicationIcon>xyGrib_32</InstallerApplicationIcon>
 	<InstallerWindowIcon>xyGrib_32</InstallerWindowIcon>
 	<RemoteRepositories>
