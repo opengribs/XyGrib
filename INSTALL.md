@@ -1,4 +1,10 @@
-# Cmake build system
+# XyGrib ver 1.1.1 - Cmake build system
+
+This includes instructions to download sources and build XyGrib yourself. 
+
+There is an option to use pre-build binaries
+for all desktops by downloading the appropriate installer for your system. These are found both in
+https://gihub.com/opengribs/XyGrib/releases or on https://opengribs.org in the download section.
 
 ## Prerequisities
 
@@ -14,10 +20,6 @@
   - Ubuntu Trusty: `sudo apt-get install build-essential git cmake qt5-default libpng-dev libopenjpeg-dev libnova-dev libproj-dev zlib1g-dev libbz2-dev`
   - Fedora 28: `sudo yum install gcc git cmake qt5-devel libpng-devel openjpeg2-devel libnova-devel libproj-devel zlib-devel bzip2-devel
   - openSUSE Tumbleweed: `sudo zypper install gcc git cmake libqt5-qtbase-devel libpng-devel openjpeg2-devel libnova-devel libproj-devel zlib-devel libbz2-devel
-
-### Windows
-
-- TBD
 
 ## Build and package
 

@@ -3,6 +3,10 @@ Fork of zyGrib-8.0.1 under a new name and a new home https://opengribs.org
 
 Changes in version 1.1.1 :
 - Build system changed from qmake to cmake (Thanks to Pavel Kalian)
+- Major clean up and improvements to code and stability (Thanks to Didier)
+- Jpeg2000 compression in Grib files is now working properly. Wave data on the grib server will included this compression soon. (Thanks to Didier)
+- Application and data have been separated. The app goes to where application should be installed and static data goes to where applicaiton data needs should be located.
+- New installer system for binaries. The installer downloads app and static data from an online repository. Installation optional install of high resolution maps. It also installs a maintenance tool that can be used to install updates, add/remove components or uninstall all.
 
 
 Changes in version 1.1.0 :
@@ -30,6 +34,4 @@ Changes in version 1.0.1 :
 - Inclusion of German Hydrographic Office current gribs
 - Switchable dark/light skin (in Options menu)
 - Help points to Wiki (WIP)
-
-
 
