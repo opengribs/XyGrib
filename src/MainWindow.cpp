@@ -50,8 +50,8 @@ void ThreadNewInstance::run ()
 	QStringList args = QCoreApplication::arguments ();
 	if (args.size() >= 1) {
 		QString appname = args.at(0);
-		//DBGQS (appname);
-		QProcess::execute (appname+" -sw");
+        //DBGQS (appname);
+        QProcess::execute ("\"" + appname + "\" -sw");
 		exit ();
 	}
 }
