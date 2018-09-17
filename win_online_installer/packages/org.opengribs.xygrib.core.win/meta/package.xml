@@ -2,8 +2,8 @@
 <Package>
     <DisplayName>XyGrib Core Application Files</DisplayName>
     <Description>Executable and libraries needed to run the application.</Description>
-    <Version>1.1.0.9</Version>
-    <ReleaseDate>2018-09-15</ReleaseDate>
+    <Version>1.1.1</Version>
+    <ReleaseDate>2018-09-17</ReleaseDate>
     <Licenses>
         <License name="GNU General Public License Version 3" file="license.txt" />
     </Licenses>
