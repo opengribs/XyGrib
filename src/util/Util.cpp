@@ -39,6 +39,7 @@ static QHash <QString, QVariant> GLOB_hashSettings;
 
 void Util::setSettings (const QHash <QString, QVariant> &h)
 {
+	Settings::setUserSettings (h);
 }
 
 void Util::setSetting (const QString &key, const QVariant &value, bool sync)
