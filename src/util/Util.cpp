@@ -39,6 +39,11 @@ static QHash <QString, QVariant> GLOB_hashSettings;
 
 void Util::setSettings (const QHash <QString, QVariant> &h)
 {
+	QHash<QString, QVariant>::const_iterator i = h.constBegin();
+	while (i != h.constEnd()) {
+		GLOB_hashSettings.insert(i.key(), i.value());
+		++i;
+	}
 	Settings::setUserSettings (h);
 }
 
