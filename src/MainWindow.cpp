@@ -389,6 +389,7 @@ mb->acMap_SelectMETARs->setVisible (false);	// TODO
     connect(mb->acOptions_Units, SIGNAL(triggered()), dialogUnits, SLOT(exec()));
     connect(mb->acOptions_Fonts, SIGNAL(triggered()), dialogFonts, SLOT(exec()));
     connect(dialogUnits, SIGNAL(accepted()), terre, SLOT(slotMustRedraw()));
+    connect(dialogUnits, SIGNAL(accepted()), colorScaleWidget, SLOT(update()));
     connect(dialogUnits, SIGNAL(signalTimeZoneChanged()), this, SLOT(slotTimeZoneChanged()));
 	connect(dialogFonts, SIGNAL(accepted()), this, SLOT(slotChangeFonts()));
 
