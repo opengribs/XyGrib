@@ -36,6 +36,7 @@ DialogChooseLang::DialogChooseLang (QWidget *parent, QString defaultlang)
 						    "Choose your language",   
 						   1 )
 {
+    this->setWindowFlags(Qt::Window | Qt::WindowStaysOnTopHint);
 	btGroup = new QButtonGroup (this);
 	assert (btGroup);
 	// A. Degwerth [Cassidian]: added Arabic language selection
