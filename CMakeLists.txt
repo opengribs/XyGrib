@@ -30,6 +30,8 @@ endif()
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_PREFIX}/cmake") 
 
+set(CMAKE_FIND_FRAMEWORK LAST)
+
 # Find the QtWidgets library
 find_package(Qt5Widgets CONFIG REQUIRED)
 include_directories(${Qt5Widgets_INCLUDE_DIRS})
