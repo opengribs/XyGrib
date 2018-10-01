@@ -58,6 +58,7 @@ void ZeroOneActionGroup::setCheckedAction (QAction *act, bool val, bool emitSign
 MenuBar::MenuBar (QWidget *parent, bool mbe)
     : QMenuBar (parent)
 {
+
 #if defined (Q_OS_UNIX)
     #if defined (Q_OS_MACOS)
         bool native = Util::getSetting("systemNativeMenuBar", true).toBool();
@@ -131,7 +132,7 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
                     "");
         //--------------------------------
         menuColorMap->addSeparator();
-		menuViewOptions = new QMenu (tr("Options"));
+        menuViewOptions = new QMenu (tr("Weather Options"));
         menuColorMap->addMenu (menuViewOptions);
         //--------------------------------
         menuViewOptions->addSeparator();
@@ -697,6 +698,7 @@ void MenuBar::updateCurrentDate (time_t currentDate)
 		}
 	}
 }
+
 
 
 

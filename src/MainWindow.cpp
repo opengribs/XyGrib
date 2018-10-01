@@ -2320,6 +2320,7 @@ void MainWindow::slotRunMaintenanceTool()
 {
     bool result;
     int res;
+    DBGQS(maintenanceToolLocation);
     QProcess process;
     result = process.startDetached(maintenanceToolLocation);
     if (!result){
@@ -2340,6 +2341,15 @@ QString MainWindow::findMaintenanceTool()
 {
 #ifdef Q_OS_WIN
     QString filepath = "\"" + QCoreApplication::applicationDirPath() + "/XyGribMaintenanceTool.exe\"";
+#endif
+
+#ifdef Q_OS_MAC
+    QDir path(QCoreApplication::applicationDirPath());
+    path.cdUp();
+    path.cdUp();
+    path.cdUp();
+    QString filepath = path.absolutePath() + "/XyGribMaintenanceTool.app/Contents/MacOS/XyGribMaintenanceTool";
+
 #else
     // there is an issue with AppImage builds as applicationDirPath returns a path inside the image container
     // ... so the install location on the outer file system needs to be searched
@@ -2348,7 +2358,13 @@ QString MainWindow::findMaintenanceTool()
     QString filepath = QStandardPaths::findExecutable("XyGribMaintenanceTool", slist);
 
 #endif
-    DBGQS(filepath);
+    DBGQS("Expected file path is: "+filepath);
+    QFile f(filepath);
+    if(!f.exists()){
+        filepath = "";
+    }
+
+    DBGQS("After checking if exists filepath is: "+ filepath);
     return filepath;
 }
 //-----------------------------------------------------
