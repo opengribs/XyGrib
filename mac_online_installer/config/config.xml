@@ -6,8 +6,8 @@
     <Publisher>OpenGribs.org</Publisher>
 	<ProductUrl>https://opengribs.org/en/xygrib</ProductUrl>
 	<StartMenuDir>XyGrib</StartMenuDir>
-    <TargetDir>@ApplicationsDir@/XyGrib</TargetDir>
-	<RunProgram>@ApplicationsDir@/XyGrib/XyGrib.app/Contents/MacOS/XyGrib</RunProgram>
+    <TargetDir>/Applications/XyGrib</TargetDir>
+	<RunProgram>/Applications/XyGrib/XyGrib.app/Contents/MacOS/XyGrib</RunProgram>
 	<MaintenanceToolName>XyGribMaintenanceTool</MaintenanceToolName>
 	<WizardStyle>Modern</WizardStyle>
 	<Logo>xyGrib_32.png</Logo>
