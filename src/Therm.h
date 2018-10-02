@@ -21,8 +21,6 @@ class TPoint
 	public:
 		TPoint (double tempC=GRIB_NOTDEF, double hpa=GRIB_NOTDEF)
 						{this->tempC=tempC; this->hpa=hpa;}
-		TPoint& operator= (const TPoint &other)
-						{tempC=other.tempC; hpa=other.hpa; return *this;}
 		bool   ok ()  {return hpa!=GRIB_NOTDEF && tempC!=GRIB_NOTDEF;}
 		double hpa;      // altitude
 		double tempC;    // °C	
