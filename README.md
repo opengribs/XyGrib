@@ -1,6 +1,11 @@
 # XyGrib - Weather Forecast Visualization
 Fork of zyGrib-8.0.1 under a new name and a new home https://opengribs.org
 
+Changes in version 1.1.2 :
+- Mainly bug fixes regarding the saving of settings and a few others
+- New installer system applied now to Mac OS
+- Native menu system now used on Mac OS (Thanks to Theeko)
+
 Changes in version 1.1.1 :
 - Build system changed from qmake to cmake (Thanks to Pavel Kalian)
 - Major clean up and improvements to code and stability (Thanks to Didier)
