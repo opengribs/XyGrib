@@ -2320,27 +2320,37 @@ void MainWindow::slotRunMaintenanceTool()
 {
     bool result;
     int res;
-    DBGQS(maintenanceToolLocation);
     QProcess process;
-    result = process.startDetached(maintenanceToolLocation);
-    if (!result){
-        QMessageBox::warning(this,tr("Failure"), tr("Unable to find the XyGrib Maintenance Tool. Please start it from the desktop facilities"));
-    } else {
-        QString question = tr("It is recommended to exit XyGrib while running the Maintenance Tool. Do you wish to exit XyGrib?");
-        res = QMessageBox::question(this,tr("Exit XyGrib?"),question, QMessageBox::Yes, QMessageBox::No);
-        if (res == QMessageBox::Yes){
+
+//    DBGQS(maintenanceToolLocation);
+
+    QString question = tr("It is recommended to exit XyGrib while running the Maintenance Tool. Do you wish to exit XyGrib?");
+    res = QMessageBox::question(this,tr("Exit XyGrib?"),question, QMessageBox::Yes, QMessageBox::No);
+
+    if (res == QMessageBox::Yes){  // user wishes to exit
+        result = process.startDetached(maintenanceToolLocation);
+        if (!result){
+            QMessageBox::warning(this,tr("Failure"), tr("Unable to find the XyGrib Maintenance Tool. Please start it from the desktop facilities"));
+        } else {
             exit(0);
         }
 
+    } else { // user does not wish to exit
+        result = process.startDetached(maintenanceToolLocation);
+        if (!result){
+            QMessageBox::warning(this,tr("Failure"), tr("Unable to find the XyGrib Maintenance Tool. Please start it from the desktop facilities"));
+        }
     }
+
 
 }
 
 //-----------------------------------------------------
 QString MainWindow::findMaintenanceTool()
 {
+    QString filepath = "";
 #ifdef Q_OS_WIN
-    QString filepath = "\"" + QCoreApplication::applicationDirPath() + "/XyGribMaintenanceTool.exe\"";
+    filepath = "\"" + QCoreApplication::applicationDirPath() + "/XyGribMaintenanceTool.exe\"";
 #endif
 
 #ifdef Q_OS_MAC
@@ -2348,14 +2358,14 @@ QString MainWindow::findMaintenanceTool()
     path.cdUp();
     path.cdUp();
     path.cdUp();
-    QString filepath = path.absolutePath() + "/XyGribMaintenanceTool.app/Contents/MacOS/XyGribMaintenanceTool";
+    filepath = path.absolutePath() + "/XyGribMaintenanceTool.app/Contents/MacOS/XyGribMaintenanceTool";
 
 #else
     // there is an issue with AppImage builds as applicationDirPath returns a path inside the image container
     // ... so the install location on the outer file system needs to be searched
 
     QStringList slist = {QCoreApplication::applicationDirPath(), "/opt/XyGrib/", "~/bin/XyGrib", "~/.local/XyGrib", "/usr/local/XyGrib",  "/usr/local/share/XyGrib", "/usr/share/XyGrib"};
-    QString filepath = QStandardPaths::findExecutable("XyGribMaintenanceTool", slist);
+    filepath = QStandardPaths::findExecutable("XyGribMaintenanceTool", slist);
 
 #endif
     DBGQS("Expected file path is: "+filepath);
