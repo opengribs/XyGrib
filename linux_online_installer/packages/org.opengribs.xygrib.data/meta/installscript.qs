@@ -42,6 +42,9 @@ Component.prototype.createOperationsForArchive = function(archive)
 	// get user name and chown the static data section
 	var uname = installer.environmentVariable("USER");
 	var own = uname + ":" + uname;
+	if (systemInfo.productType === "opensuse") {
+		own = uname + ":users";
+	}
 	component.addElevatedOperation("Execute", "chown", "-R",  own, "@HomeDir@/.local/share/openGribs");
 
 }
