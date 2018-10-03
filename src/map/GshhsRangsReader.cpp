@@ -377,7 +377,8 @@ void GshhsRangsReader::drawGshhsRangsMapPlain( QPainter &pnt, Projection *proj,
             cxx -= 360;
         
         for (cy=cymin; cy<cymax; cy++) {
-            if (cxx>=0 && cxx<=359 && cy>=-90 && cy<=89)
+            assert(cxx>=0 && cxx<=359);
+            if (cy>=-90 && cy<=89)
             {
                 if (allCells[cxx][cy+90] == nullptr) {
 					cel = new GshhsRangsCell(fcat, fcel, frim, cxx, cy);
@@ -424,7 +425,8 @@ void GshhsRangsReader::drawGshhsRangsMapSeaBorders( QPainter &pnt, Projection *p
             cxx -= 360;
         
         for (cy=cymin; cy<cymax; cy++) {
-            if (cxx>=0 && cxx<=359 && cy>=-90 && cy<=89)
+            assert(cxx>=0 && cxx<=359);
+            if (cy>=-90 && cy<=89)
             {
                 if (allCells[cxx][cy+90] == nullptr) {
 					cel = new GshhsRangsCell(fcat, fcel, frim, cxx, cy);
