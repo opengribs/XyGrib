@@ -52,5 +52,5 @@ fi
 $DEPLOY usr/share/applications/xygrib.desktop -qmake=$QMK -no-translations -bundle-non-qt-libs -appimage -verbose=2
 
 ## rename it
-mv XyGrib-x86_64.AppImage XyGrib.Linux.AppImage
+mv XyGrib-x86_64.AppImage XyGrib.AppImage
 
