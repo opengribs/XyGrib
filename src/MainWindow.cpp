@@ -2359,8 +2359,9 @@ QString MainWindow::findMaintenanceTool()
     path.cdUp();
     path.cdUp();
     filepath = path.absolutePath() + "/XyGribMaintenanceTool.app/Contents/MacOS/XyGribMaintenanceTool";
+#endif
 
-#else
+#ifdef Q_OS_LINUX
     // there is an issue with AppImage builds as applicationDirPath returns a path inside the image container
     // ... so the install location on the outer file system needs to be searched
 
@@ -2369,13 +2370,8 @@ QString MainWindow::findMaintenanceTool()
 
 #endif
     DBGQS("Expected file path is: "+filepath);
-    QFile f(filepath);
-    if(!f.exists()){
-        filepath = "";
-    }
 
-    DBGQS("After checking if exists filepath is: "+ filepath);
-    return filepath;
+     return filepath;
 }
 //-----------------------------------------------------
 QString MainWindow::getMTLocation()
