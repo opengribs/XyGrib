@@ -25,7 +25,9 @@
 #
 # After running the script the installer.app should be in the mac_online_installer folder and the repository should be ready for upload
 #
+# UPDATE VERSION AND RELEASE DATES in xml files
 
+XVER="v1.1.2"
 
 ## run the Qt mac deployment tool to create the executable package
 cd deploy
@@ -84,8 +86,8 @@ if [ -z "$BINARYCREATOR" ]; then
   echo "Tool binarycreator not found, can't continue"
   exit 1
 fi
-$BINARYCREATOR --online-only -v -c config/config.xml -p packages XyGrib_Mac_Online_Installer/XyGrib_Mac_Online_Installer
-$BINARYCREATOR -v -c config/config.xml -p packages -e org.opengribs.xygrib.maps XyGrib_Mac_Offline_Installer/XyGrib_Mac_Offline_Installer
-$BINARYCREATOR -v --offline-only -c config/config.xml -p packages  XyGrib_Mac_Testing_Installer/XyGrib_Mac_Testing_Installer
+$BINARYCREATOR --online-only -v -c config/config.xml -p packages XyGrib_Mac_Online_Installer_$XVER/XyGrib_Mac_Online_Installer_$XVER
+$BINARYCREATOR -v -c config/config.xml -p packages -e org.opengribs.xygrib.maps XyGrib_Mac_Offline_Installer_$XVER/XyGrib_Mac_Offline_Installer_$XVER
+$BINARYCREATOR -v --offline-only -c config/config.xml -p packages  XyGrib_Mac_Testing_Installer_$XVER/XyGrib_Mac_Testing_Installer_$XVER
 
 echo "++++ All Done ++++"
