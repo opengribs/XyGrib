@@ -219,7 +219,7 @@ void  GribRecord::translateDataType ()
 		}
 	}
 	//------------------------------------------
-	// PredictWind EMCWF grib1
+    // PredictWind EMCWF grib1 Also ECMWF public data grib2
     // contributed by did-g
     //------------------------
     else if (idCenter==98 && (idModel==148 || idModel==149) && idGrid==255)
@@ -238,6 +238,11 @@ void  GribRecord::translateDataType ()
         {
             // dataType=2 levelType=1 levelValue=0
             levelType = LV_MSL;
+        }
+
+        if (getDataType() == GRB_PRESSURE && getLevelType() == LV_MSL)
+        {
+            dataType = GRB_PRESSURE_MSL;
         }
     }
     else if (idCenter==98 && idModel==114 && idGrid==255)
