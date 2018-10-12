@@ -453,10 +453,20 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
     cbDatesGrib = new QComboBox ();
     cbDatesGrib->setSizeAdjustPolicy (QComboBox::AdjustToContents);
     cbDatesGrib->addItem("-------------------------");
-    
+
 	cbDatesGrib->setEnabled (false);
 	acDatesGrib_prev->setEnabled (true);
 	acDatesGrib_next->setEnabled (true);
+
+    cbModelRect = new QComboBox ();
+    cbModelRect->setSizeAdjustPolicy (QComboBox::AdjustToContents);
+    cbModelRect->addItem(tr("Show Model Limits"));
+    cbModelRect->addItem("ICON-EU Nest");
+    cbModelRect->addItem("Arpege 0.1");
+    cbModelRect->addItem("NAM CONUS");
+    cbModelRect->addItem("NAM CACBN");
+    cbModelRect->addItem("NAM Hawai");
+    cbModelRect->addItem("EWAM");
 
     acPanToggle = addActionCheck(nullptr,
                             tr("Toggle click to pan"), "", tr("Toggle click to pan"), Util::pathImg("cursor-openhand.png"));

@@ -318,6 +318,8 @@ public:
     QAction *acDatesGrib_prev;
     QAction *acDatesGrib_next;
 
+    QComboBox *cbModelRect;  // to show coverage of non-global models
+
     QAction *acOptions_PanSelectToggle; // menu toggle
     QAction *acPanToggle;	// toolbar selector
     QAction *acSelectToggle;	// toolbar selector

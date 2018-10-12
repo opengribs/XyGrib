@@ -214,12 +214,25 @@ void FileLoaderGRIB::getGribFile(
 		QString phpfilename;
         phpfilename = scriptpath+ "getmygribs.php?";
 		QString now = QTime::currentTime().toString("HHmmss");
+//        QTextStream(&page) << phpfilename
+//                           << "model=" << amod
+//                           << "&la1=" << std::floor(y0)
+//                           << "&la2=" << std::ceil(y1)
+//                           << "&lo1=" << std::floor(x0)
+//                           << "&lo2=" << std::ceil(x1)
+//                           << "&intv=" << interval
+//                           << "&days=" << days
+//                           << "&cyc=" << cycle
+//                           << "&par=" << parameters
+//                           << "&wmdl=" << wmod
+//                           << "&wpar=" << waveParams
+//                           ;
         QTextStream(&page) << phpfilename
                            << "model=" << amod
-                           << "&la1=" << std::floor(y0)
-                           << "&la2=" << std::ceil(y1)
-                           << "&lo1=" << std::floor(x0)
-                           << "&lo2=" << std::ceil(x1)
+                           << "&la1=" << y0
+                           << "&la2=" << y1
+                           << "&lo1=" << x0
+                           << "&lo2=" << x1
                            << "&intv=" << interval
                            << "&days=" << days
                            << "&cyc=" << cycle

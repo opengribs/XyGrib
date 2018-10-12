@@ -366,6 +366,8 @@ void DialogLoadGRIB::updateParameters ()
     xmin = sbWest->cleanText().toDouble();
     xmax = sbEast->cleanText().toDouble();
 
+//    DBG("Dialog ymax etc are set to: %f,%f   %f,%f", xmin, ymin, xmax, ymax);
+
     if (cbModel->currentIndex() == 0)
         atmosphericModel = "None";
     else
@@ -404,6 +406,7 @@ void DialogLoadGRIB::updateParameters ()
         ymin = ym + 2*resolution;
         ymax = ym - 2*resolution;
     }
+//    DBG("Dialog ymax etc after manipulations: %f,%f   %f,%f", xmin, ymin, xmax, ymax);
 
     wind     = chkWind->isChecked();
     pressure = chkPressure->isChecked();
@@ -964,15 +967,23 @@ void DialogLoadGRIB::slotBtCancel()
 //-------------------------------------------------------------------------------
 void DialogLoadGRIB::setZone (double x0, double y0, double x1, double y1)
 {
+//    DBG("Original setting: %f, %f,   %f, %f", x0, y0, x1, y1);
 	double tmp;
 	if (x0 > x1)  { tmp=x0; x0=x1; x1=tmp; }
     if (y0 > y1)  { tmp=y0; y0=y1; y1=tmp; }
-	
-    sbNorth->setValue ( ceil (y1) );
-    sbSouth->setValue ( floor(y0) );
-    sbWest->setValue  ( floor(x0) );
-    sbEast->setValue  ( ceil (x1) );
-	
+//    DBG("After checking x0 > x1 etc: %f, %f,   %f, %f", x0, y0, x1, y1);
+
+//    sbNorth->setValue ( qCeil (y1) );
+//    sbSouth->setValue ( qFloor(y0) );
+//    sbWest->setValue  ( qFloor(x0) );
+//    sbEast->setValue  ( qCeil (x1) );
+    sbNorth->setValue ( y1 );
+    sbSouth->setValue ( y0 );
+    sbWest->setValue  ( x0 );
+    sbEast->setValue  ( x1 );
+
+//    DBG("After floor/ceiling: %f, %f,   %f, %f",sbWest, sbSouth, sbEast, sbNorth);
+
     progressBar->setRange (0,100);
     progressBar->setValue (0);
     slotParameterUpdated ();
@@ -994,26 +1005,26 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
     int sizemin = 0;
     sbNorth = new QDoubleSpinBox(this);
     assert(sbNorth);
-    sbNorth->setDecimals(0);
+    sbNorth->setDecimals(2);
     sbNorth->setMinimum(-90);
     sbNorth->setMaximum(90);
     // TODO suffix needs to be part of value. i.e. -25N is not acceptable
 //    sbNorth->setSuffix(tr(" °N"));
     sbSouth = new QDoubleSpinBox(this);
     assert(sbSouth);
-    sbSouth->setDecimals(0);
+    sbSouth->setDecimals(2);
     sbSouth->setMinimum(-90);
     sbSouth->setMaximum(90);
 //    sbSouth->setSuffix(tr(" °N"));
     sbWest = new QDoubleSpinBox(this);
     assert(sbWest);
-    sbWest->setDecimals(0);
+    sbWest->setDecimals(2);
     sbWest->setMinimum(-360);
     sbWest->setMaximum(360);
 //    sbWest->setSuffix(tr(" °E"));
     sbEast = new QDoubleSpinBox(this);
     assert(sbEast);
-    sbEast->setDecimals(0);
+    sbEast->setDecimals(2);
     sbEast->setMinimum(-360);
     sbEast->setMaximum(360);
 //    sbEast->setSuffix(tr(" °E"));

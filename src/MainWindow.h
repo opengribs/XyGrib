@@ -115,6 +115,8 @@ public slots:
         void slotDateGribChanged_prev ();
 		void slotTimeZoneChanged ();
 		void slotDateChooserChanged (time_t date, bool isMoving);
+
+        void slotModelRectChanged(int sel);
 		
 		void slot_GroupColorMap (QAction *);
 		void slot_GroupAltitude (QAction *);
@@ -139,7 +141,7 @@ public slots:
         void slotHelp_AProposQT ();
 		void slotUseJetStreamColorMap  (bool);
 
-	void slotPanSelectToggle(); // menu slot
+        void slotPanSelectToggle(); // menu slot
         void slotPanToggle();	    // toolbar slot
         void slotSelectToggle();    // toolbar slot
 

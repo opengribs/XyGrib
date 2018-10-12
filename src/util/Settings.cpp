@@ -60,8 +60,8 @@ void Settings::initializeSettingsDir ()
             path = dir.absolutePath();
         }
 	}
-    DBGQS("Settings path is: "+path);
-    DBGQS("Colors path is currently (appDataDir not yet set): "+Util::pathColors());
+//    DBGQS("Settings path is: "+path);
+//    DBGQS("Colors path is currently (appDataDir not yet set): "+Util::pathColors());
 
     if (path == "")
     {	// second option is to locate setting files under application current directory
@@ -509,7 +509,7 @@ bool Settings::findAppDataDir ()
     // before all let's check for valid appDataDir ini setting
     // ----------------------------------------------------
     appDataPathSetting = Settings::getUserSetting("appDataDir", "").toString();
-    DBGQS ("Ini setting is: " + appDataPathSetting);
+//    DBGQS ("Ini setting is: " + appDataPathSetting);
     if (appDataPathSetting != ""){
         // set dir to ini settings value
         dir = QDir(appDataPathSetting);
@@ -518,7 +518,7 @@ bool Settings::findAppDataDir ()
 
         if (maps.exists() && gis.exists()) { // we have the location
             path = dir.absolutePath();
-            DBGQS("Ini setting was good and is: " + path);
+//            DBGQS("Ini setting was good and is: " + path);
         }
     }
 
@@ -590,8 +590,8 @@ bool Settings::findAppDataDir ()
         // error message
         retval = false;
     }
-    DBGQS("Final AppDataPath is: "+path);
-    DBGQS("For sanity: Colors path is: "+Util::pathColors());
+//    DBGQS("Final AppDataPath is: "+path);
+//    DBGQS("For sanity: Colors path is: "+Util::pathColors());
     return retval;
  }
 

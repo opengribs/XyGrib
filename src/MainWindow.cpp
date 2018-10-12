@@ -209,10 +209,12 @@ void MainWindow::InitActionsStatus ()
 	menuBar->setQuality(quality);
 	terre->setMapQuality(quality);
 	//-------------------------------------
-	terre->setSpecialZone ( Util::getSetting ("specialZone_x0", 0).toDouble(),
-							Util::getSetting ("specialZone_y0", 0).toDouble(),
-							Util::getSetting ("specialZone_x1", 0).toDouble(),
-							Util::getSetting ("specialZone_y1", 0).toDouble() );
+//	terre->setSpecialZone ( Util::getSetting ("specialZone_x0", 0).toDouble(),
+//							Util::getSetting ("specialZone_y0", 0).toDouble(),
+//							Util::getSetting ("specialZone_x1", 0).toDouble(),
+//							Util::getSetting ("specialZone_y1", 0).toDouble() );
+    terre->setSpecialZone(27.0, 29.0, 35.0, 34.0);
+    // TODO set to modelRectangle based on model selector
 							
 	//-----------------------------------------
 	updateGriddedData ();
@@ -432,6 +434,9 @@ mb->acMap_SelectMETARs->setVisible (false);	// TODO
     connect(mb->acPanToggle, SIGNAL(triggered()), this, SLOT(slotPanToggle()));
     connect(mb->acSelectToggle, SIGNAL(triggered()), this, SLOT(slotSelectToggle()));
 
+    connect(mb->cbModelRect, SIGNAL(activated(int)),
+            this, SLOT(slotModelRectChanged(int)));
+
     //-------------------------------------
     // Autres signaux
     //-------------------------------------
@@ -594,6 +599,7 @@ void MainWindow::createToolBar ()
     toolBar->addAction(menuBar->acMap_Go_Up);
     toolBar->addAction(menuBar->acMap_Go_Down);
     toolBar->addSeparator();
+    toolBar->addWidget(menuBar->cbModelRect);
     toolBar->addAction(menuBar->acFile_Load_GRIB);
     toolBar->addAction(menuBar->acFile_GribServerStatus);
     toolBar->addAction(menuBar->acFile_Info_GRIB);
@@ -1430,6 +1436,7 @@ void MainWindow::slotFile_Load_GRIB ()
     if ( terre->getSelectedRectangle (&x0,&y0, &x1,&y1)
 		 || terre->getGribFileRectangle (&x0,&y0, &x1,&y1) )
     {
+//        DBG("Rect is: %f, %f,   %f, %f", x0, y0, x1, y1);
 		QString fname = DialogLoadGRIB::getFile (networkManager, this, x0,y0,x1,y1);
 		if (fname != "") {
 			openMeteoDataFile (fname);
@@ -1441,7 +1448,11 @@ void MainWindow::slotFile_Load_GRIB ()
             tr("Please select an area on the map."));
     }
 }
-
+//-----------------------------------------------
+void MainWindow::slotModelRectChanged(int sel)
+{
+    QMessageBox::information(this, "Testing", QString("Selection was: %1").arg(sel));
+}
 //-----------------------------------------------
 void MainWindow::slotFile_GribServerStatus()
 {
@@ -2369,7 +2380,7 @@ QString MainWindow::findMaintenanceTool()
     filepath = QStandardPaths::findExecutable("XyGribMaintenanceTool", slist);
 
 #endif
-    DBGQS("Expected file path is: "+filepath);
+//    DBGQS("Expected file path is: "+filepath);
 
      return filepath;
 }
