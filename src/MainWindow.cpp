@@ -213,8 +213,9 @@ void MainWindow::InitActionsStatus ()
 //							Util::getSetting ("specialZone_y0", 0).toDouble(),
 //							Util::getSetting ("specialZone_x1", 0).toDouble(),
 //							Util::getSetting ("specialZone_y1", 0).toDouble() );
-    terre->setSpecialZone(27.0, 29.0, 35.0, 34.0);
+
     // TODO set to modelRectangle based on model selector
+
 							
 	//-----------------------------------------
 	updateGriddedData ();
@@ -1451,7 +1452,18 @@ void MainWindow::slotFile_Load_GRIB ()
 //-----------------------------------------------
 void MainWindow::slotModelRectChanged(int sel)
 {
-    QMessageBox::information(this, "Testing", QString("Selection was: %1").arg(sel));
+//    QMessageBox::information(this, "Testing", QString("Selection was: %1").arg(sel));
+    if (sel == 0){
+        terre->showSpecialZone(false);
+        terre->slotMustRedraw();
+    } else {
+        terre->setSpecialZone(modelRectangles[sel-1][0],
+                              modelRectangles[sel-1][1],
+                              modelRectangles[sel-1][2],
+                              modelRectangles[sel-1][3]);
+        terre->showSpecialZone(true);
+        terre->slotMustRedraw();
+    }
 }
 //-----------------------------------------------
 void MainWindow::slotFile_GribServerStatus()
