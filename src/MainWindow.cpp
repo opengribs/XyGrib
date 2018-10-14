@@ -1859,6 +1859,19 @@ void MainWindow::setMenubarColorMapData (const DataCode &dtc, bool trigAction)
 }
 
 //=======================================================================
+static DataCode
+preferedIsobaricLevel(int dataType, GriddedReader *reader)
+{
+	DataCode dtc;
+    dtc.set (GRB_TYPE_NOT_DEFINED, LV_TYPE_NOT_DEFINED, 0);
+	for (auto level : {925, 850, 700, 600, 500, 400, 300, 200 } ) {
+        dtc.set (dataType, LV_ISOBARIC, level);
+        if (reader->hasData(dtc))
+            break;
+    }
+	return dtc;
+}
+
 void MainWindow::slot_GroupColorMap (QAction *act)
 {
     if (! terre->getGriddedPlotter() || ! terre->getGriddedPlotter()->isReaderOk())    {
@@ -1891,30 +1904,8 @@ void MainWindow::slot_GroupColorMap (QAction *act)
 		dtctmp.set (GRB_PRV_WIND_XY2D,LV_ABOV_GND,10); 
 		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
 			dtc = dtctmp;
-		dtctmp.set (GRB_PRV_WIND_XY2D,LV_ISOBARIC,925); 
-		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
-			dtc = dtctmp;
-		dtctmp.set (GRB_PRV_WIND_XY2D,LV_ISOBARIC,850); 
-		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
-			dtc = dtctmp;
-		dtctmp.set (GRB_PRV_WIND_XY2D,LV_ISOBARIC,700); 
-		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
-			dtc = dtctmp;
-		dtctmp.set (GRB_PRV_WIND_XY2D,LV_ISOBARIC,600); 
-		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
-			dtc = dtctmp;
-		dtctmp.set (GRB_PRV_WIND_XY2D,LV_ISOBARIC,500); 
-		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
-			dtc = dtctmp;
-		dtctmp.set (GRB_PRV_WIND_XY2D,LV_ISOBARIC,400); 
-		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
-			dtc = dtctmp;
-		dtctmp.set (GRB_PRV_WIND_XY2D,LV_ISOBARIC,300); 
-		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
-			dtc = dtctmp;
-		dtctmp.set (GRB_PRV_WIND_XY2D,LV_ISOBARIC,200); 
-		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
-			dtc = dtctmp;
+        if (dtc.dataType==GRB_TYPE_NOT_DEFINED)
+            dtc = preferedIsobaricLevel(GRB_PRV_WIND_XY2D, reader);
 	}
     // TODO this needs to be fixed there are a number of levels of current
     else if (act == mb->acView_CurrentColors)
@@ -1929,15 +1920,22 @@ void MainWindow::slot_GroupColorMap (QAction *act)
             if (reader->hasData(dtctmp))
                 dtc.set (GRB_PRECIP_RATE,LV_GND_SURF,0);
         }
-
-
     }
     else if (act == mb->acView_CloudColors)
     	dtc.set (GRB_CLOUD_TOT,LV_ATMOS_ALL,0);
     else if (act == mb->acView_HumidColors)
     	dtc.set (GRB_HUMID_REL,LV_ABOV_GND,2);
-    else if (act == mb->acView_TempColors)
-    	dtc.set (GRB_TEMP,LV_ABOV_GND,2);
+    else if (act == mb->acView_TempColors) {
+		dtc.set (GRB_TYPE_NOT_DEFINED,LV_TYPE_NOT_DEFINED,0);
+		dtctmp.set (GRB_TEMP,LV_ABOV_GND,2);
+		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
+			dtc = dtctmp;
+        dtctmp.set (GRB_TEMP,LV_ABOV_GND,0);
+		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
+			dtc = dtctmp;
+        if (dtc.dataType==GRB_TYPE_NOT_DEFINED)
+            dtc = preferedIsobaricLevel(GRB_TEMP, reader);
+    }
     else if (act == mb->acView_DeltaDewpointColors)
     	dtc.set (GRB_PRV_DIFF_TEMPDEW,LV_ABOV_GND,2);
     else if (act == mb->acView_SnowCateg)
@@ -1956,31 +1954,8 @@ void MainWindow::slot_GroupColorMap (QAction *act)
     //-----------------------------------
     else if (act == mb->acView_ThetaEColors)
 	{	// search "prefered" altitude for theta-e
-		dtc.set (GRB_TYPE_NOT_DEFINED,LV_TYPE_NOT_DEFINED,0); 
-		dtctmp.set (GRB_PRV_THETA_E,LV_ISOBARIC,850); 
-		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
-			dtc = dtctmp;
-		dtctmp.set (GRB_PRV_THETA_E,LV_ISOBARIC,925); 
-		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
-			dtc = dtctmp;
-		dtctmp.set (GRB_PRV_THETA_E,LV_ISOBARIC,700); 
-		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
-			dtc = dtctmp;
-		dtctmp.set (GRB_PRV_THETA_E,LV_ISOBARIC,600); 
-		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
-			dtc = dtctmp;
-		dtctmp.set (GRB_PRV_THETA_E,LV_ISOBARIC,500); 
-		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
-			dtc = dtctmp;
-		dtctmp.set (GRB_PRV_THETA_E,LV_ISOBARIC,400); 
-		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
-			dtc = dtctmp;
-		dtctmp.set (GRB_PRV_THETA_E,LV_ISOBARIC,300); 
-		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
-			dtc = dtctmp;
-		dtctmp.set (GRB_PRV_THETA_E,LV_ISOBARIC,200); 
-		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
-			dtc = dtctmp;
+	    dtc = preferedIsobaricLevel(GRB_PRV_THETA_E, reader);
+
 	}
 	//-----------------------------------
     else if (act == mb->acView_SigWaveHeight)
