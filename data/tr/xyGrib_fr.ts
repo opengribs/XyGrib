@@ -178,7 +178,7 @@
     <message>
         <location filename="../../src/GUI/AngleConverterWidget.ui" line="197"/>
         <source> rd</source>
-        <translation>rd</translation>
+        <translation> rd</translation>
     </message>
     <message>
         <location filename="../../src/GUI/AngleConverterWidget.ui" line="222"/>
@@ -188,7 +188,7 @@
     <message>
         <location filename="../../src/GUI/AngleConverterWidget.ui" line="232"/>
         <source> gr</source>
-        <translation>gr</translation>
+        <translation> gr</translation>
     </message>
 </context>
 <context>
@@ -999,7 +999,7 @@
         <location filename="../../src/DialogLoadGRIB.cpp" line="880"/>
         <location filename="../../src/DialogLoadGRIB.cpp~" line="871"/>
         <source> (max 50 MB) - NOTE: No sfc. or alt. parameters are selected!</source>
-        <translation> (max. 50 MB) - Note : aucun paramètre de surface ou d&apos;altitude sélectionné</translation>
+        <translation> (max. 50 MB) - Note : aucun paramètre de surface ou d&apos;altitude sélectionné!</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="882"/>
@@ -1109,7 +1109,7 @@
         <location filename="../../src/DialogLoadGRIB.cpp" line="1332"/>
         <location filename="../../src/DialogLoadGRIB.cpp~" line="1323"/>
         <source>Warning: Selecting this data significantly increases the size of the GRIB file.</source>
-        <translation>Cave at : Sélectionner ces données augmente significativement la taille du fichier grib</translation>
+        <translation>Cave at : Sélectionner ces données augmente significativement la taille du fichier grib.</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1359"/>
@@ -1145,13 +1145,13 @@
         <location filename="../../src/DialogLoadGRIB.cpp" line="1237"/>
         <location filename="../../src/DialogLoadGRIB.cpp~" line="1228"/>
         <source>Atmospheric Model :</source>
-        <translation>Modèle athmosphérique</translation>
+        <translation>Modèle athmosphérique :</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1245"/>
         <location filename="../../src/DialogLoadGRIB.cpp~" line="1236"/>
         <source>Wave Model :</source>
-        <translation>Modèle vagues</translation>
+        <translation>Modèle vagues :</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1258"/>
@@ -2131,7 +2131,7 @@
     <message>
         <location filename="../../src/GUI/GraphicsParamsDialog.ui" line="377"/>
         <source>Theta-e :</source>
-        <translation>Théta-e</translation>
+        <translation>Théta-e :</translation>
     </message>
     <message>
         <location filename="../../src/GUI/GraphicsParamsDialog.ui" line="403"/>
@@ -2515,7 +2515,7 @@
     <message>
         <location filename="../../src/MainWindow.cpp" line="2377"/>
         <source>is available for update.</source>
-        <translation>est disponible pour une mise à jour</translation>
+        <translation>est disponible pour une mise à jour.</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="2378"/>
@@ -2662,7 +2662,7 @@
     <message>
         <location filename="../../src/MainWindow.cpp" line="2325"/>
         <source>Unable to find the XyGrib Maintenance Tool. Please start it from the desktop facilities</source>
-        <translation>Impossible de trouver l&apos;outil de maintenance. Merci de le démarrer directement depuis votre gestionnaire de fichiers.</translation>
+        <translation>Impossible de trouver l&apos;outil de maintenance. Merci de le démarrer directement depuis votre gestionnaire de fichiers</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="204"/>
@@ -4219,7 +4219,7 @@ Point en dehors de la zone couverte par le fichier GRIB.</translation>
     <message>
         <location filename="../../src/GUI/MeteotableOptionsDialog.ui" line="37"/>
         <source>Cloud cover:</source>
-        <translation>Couverture nuageuse</translation>
+        <translation>Couverture nuageuse:</translation>
     </message>
     <message>
         <location filename="../../src/GUI/MeteotableOptionsDialog.ui" line="66"/>
@@ -4229,12 +4229,12 @@ Point en dehors de la zone couverte par le fichier GRIB.</translation>
     <message>
         <location filename="../../src/GUI/MeteotableOptionsDialog.ui" line="112"/>
         <source>Show wind arrows:</source>
-        <translation>Afficher les flèches de direction du vent</translation>
+        <translation>Afficher les flèches de direction du vent:</translation>
     </message>
     <message>
         <location filename="../../src/GUI/MeteotableOptionsDialog.ui" line="132"/>
         <source>Sun and Moon almanac:</source>
-        <translation>Almanach du soleil et de la lune</translation>
+        <translation>Almanach du soleil et de la lune:</translation>
     </message>
     <message>
         <location filename="../../src/GUI/MeteotableOptionsDialog.ui" line="171"/>
@@ -4272,7 +4272,7 @@ Point en dehors de la zone couverte par le fichier GRIB.</translation>
     <message>
         <location filename="../../src/map/POI.cpp" line="233"/>
         <source>Point of interest: </source>
-        <translation>Point d&apos;intérêt</translation>
+        <translation>Point d&apos;intérêt: </translation>
     </message>
 </context>
 <context>
@@ -4290,7 +4290,7 @@ Point en dehors de la zone couverte par le fichier GRIB.</translation>
     <message>
         <location filename="../../src/map/POI_Editor.cpp" line="52"/>
         <source>Point of interest: </source>
-        <translation>Point d&apos;intérêt :</translation>
+        <translation>Point d&apos;intérêt: </translation>
     </message>
     <message>
         <location filename="../../src/map/POI_Editor.cpp" line="103"/>
@@ -4300,7 +4300,7 @@ Point en dehors de la zone couverte par le fichier GRIB.</translation>
     <message>
         <location filename="../../src/map/POI_Editor.cpp" line="103"/>
         <source>Error: name is required.</source>
-        <translation>Erreur : un nom est requis</translation>
+        <translation>Erreur : un nom est requis.</translation>
     </message>
     <message>
         <location filename="../../src/map/POI_Editor.cpp" line="143"/>
@@ -4312,7 +4312,9 @@ Point en dehors de la zone couverte par le fichier GRIB.</translation>
         <source>The destruction of a point of interest is definitive.
 
 Are you sure ?</source>
-        <translation>La suppression du point d&apos;intérêt est définitive.</translation>
+        <translation>La suppression du point d&apos;intérêt est définitive.
+
+Etes-vous certain ?</translation>
     </message>
 </context>
 <context>
