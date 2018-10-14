@@ -492,7 +492,7 @@ void MapDrawer::draw_MeteoData_Gridded
 
 	if (showGeopotential) {
         pnt.setPen (geopotentialsPen);
-	addUsedDataCenterModel(geopotentialData, plotter);
+        addUsedDataCenterModel(geopotentialData, plotter);
 		plotter->complete_listIsolines (&listGeopotential,
 						   geopotentialData,
 						   geopotentialMin, geopotentialMax, geopotentialStep, proj);
@@ -570,13 +570,15 @@ void MapDrawer::draw_MeteoData_Gridded
 						Font::getFont(FONT_GRIB_PressHL),
 						QColor(0,0,0), pnt, proj);
 	}
-	if (showTemperatureLabels) {
+	if (showTemperatureLabels ) {
 		DataCode dtc (GRB_TEMP,temperatureLabelsAlt);
-		addUsedDataCenterModel (dtc, plotter);
-		plotter->draw_DATA_Labels (
+		if (plotter->hasData (dtc)) {
+			addUsedDataCenterModel (dtc, plotter);
+			plotter->draw_DATA_Labels (
 					dtc, Font::getFont(FONT_GRIB_Temp),
 					QColor(0,0,0),
 					Util::formatTemperature_short, pnt, proj);
+		}
 	}
 
 	//===================================================
@@ -651,9 +653,13 @@ void MapDrawer::draw_Cartouche_Gridded
 			datalist.append (tr("Isotherms")+" "+AltitudeStr::toStringShort(isothermsAltitude)+" "+tr("(°C)"));
 		if (showLinesThetaE)
 			datalist.append (tr("Theta-e")+" "+AltitudeStr::toStringShort(linesThetaEAltitude)+" "+tr("(°C)"));
-		if (showTemperatureLabels)
-			datalist.append (tr("Temperature")
+		if (showTemperatureLabels) {
+			DataCode dtc (GRB_TEMP,temperatureLabelsAlt);
+			if (plotter->hasData (dtc)) {
+				datalist.append (tr("Temperature label")
 					+" ("+AltitudeStr::toStringShort(temperatureLabelsAlt)+")");
+			}
+		}
 		if (showGeopotential)
 			datalist.append (tr("Geopotential")
 					+" "+AltitudeStr::toStringShort(geopotentialData.getAltitude())

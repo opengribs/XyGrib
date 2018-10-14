@@ -37,15 +37,6 @@ class Grib2RecordMarker {
 			this->levelType =levelType;
 			this->levelValue =levelValue;
 		}
-		Grib2RecordMarker(const Grib2RecordMarker &a)
-		{
-			this->id =a.id;
-			this->pdtnum =a.pdtnum;
-			this->paramcat =a.paramcat;
-			this->paramnumber =a.paramnumber;
-			this->levelType =a.levelType;
-			this->levelValue =a.levelValue;
-		}
 		bool operator== (const Grib2RecordMarker &a)   // same product, ignore altitude
 		{
 			return 	this->id==a.id && this->pdtnum ==a.pdtnum 
