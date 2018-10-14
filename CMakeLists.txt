@@ -209,6 +209,7 @@ set(PREFIX_PKGDATA ${PROJECT_NAME})
 endif()
 
 add_subdirectory(src)
+add_subdirectory(data/tr)
 
 # Installation
 # macOS bundle parameters
