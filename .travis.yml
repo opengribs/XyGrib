@@ -22,7 +22,7 @@ before_install:
 install:
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]];
       then 
-          sudo apt-get install build-essential git cmake qt5-default libpng-dev  libnova-dev libproj-dev zlib1g-dev libbz2-dev; 
+          sudo apt-get install build-essential git cmake qt5-default libpng-dev  libnova-dev libproj-dev zlib1g-dev libbz2-dev qttools5-dev-tools qttools5-dev;
       fi
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then grep -q trusty /etc/lsb-release || sudo apt-get install libopenjpeg-dev || true; fi
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]];
