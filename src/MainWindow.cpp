@@ -1923,8 +1923,14 @@ void MainWindow::slot_GroupColorMap (QAction *act)
     }
     else if (act == mb->acView_CloudColors)
     	dtc.set (GRB_CLOUD_TOT,LV_ATMOS_ALL,0);
-    else if (act == mb->acView_HumidColors)
-    	dtc.set (GRB_HUMID_REL,LV_ABOV_GND,2);
+    else if (act == mb->acView_HumidColors) {
+		dtc.set (GRB_TYPE_NOT_DEFINED,LV_TYPE_NOT_DEFINED,0);
+		dtctmp.set (GRB_HUMID_REL, LV_ABOV_GND, 2);
+		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
+			dtc = dtctmp;
+        if (dtc.dataType==GRB_TYPE_NOT_DEFINED)
+            dtc = preferedIsobaricLevel(GRB_HUMID_REL, reader);
+    }
     else if (act == mb->acView_TempColors) {
 		dtc.set (GRB_TYPE_NOT_DEFINED,LV_TYPE_NOT_DEFINED,0);
 		dtctmp.set (GRB_TEMP,LV_ABOV_GND,2);
