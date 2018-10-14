@@ -415,6 +415,8 @@ void Grib2Record::readAltitude (gribfield *gfld)
 		levelType = LV_TYPE_NOT_DEFINED;  // Boundary layer cloud layer
 	else if (surfaceType1==204)
 		levelType = LV_TYPE_NOT_DEFINED;  // Highest tropospheric freezing level
+    else if (surfaceType1==192)
+        levelType = LV_PRIVATE;           //icon ml_cape for instance
 	// Unknown level types
 	else {
 //        DBG("Unknown altitude: surfaceType1=%lld surfaceScale1=%lld surfaceValue1=%ld",surfaceType1 ,surfaceScale1, surfaceValue1);

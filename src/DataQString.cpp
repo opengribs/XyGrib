@@ -51,9 +51,13 @@ QString DataCodeStr::toString (const DataCenterModel &dcm)
         case DWD_EWAM :
             return "DWD-EWAM";
         case MF_ARPEGE_GLOBAL :
-            return "Arepege-Global";
+            return "Arpege-Global";
+        case MF_ARPEGE_EU :
+            return "Arpege-Europe";
         case MF_ARPEGE :
             return "Arpege";
+        case MF_AROME :
+            return "Arome";
         case OTHER_DATA_CENTER :
 		default:
 			return "";

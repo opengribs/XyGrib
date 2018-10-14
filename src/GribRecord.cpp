@@ -73,7 +73,7 @@ void  GribRecord::translateDataType ()
 	//------------------------
 	// Meteo France Arome/Arpege
 	//------------------------
-    else if (idCenter==84 && (idModel==204 || idModel==121) && idGrid==255) {
+    else if (idCenter==84 && (idModel==204 || idModel==121 || idModel==211) && idGrid==255) {
 
 		if ( (getDataType()==GRB_PRESSURE)
 			&& getLevelType()==LV_MSL
@@ -86,12 +86,15 @@ void  GribRecord::translateDataType ()
 				levelType  = LV_ATMOS_ALL;
 				levelValue = 0;
 		}
-        dataCenterModel = MF_ARPEGE;
+        if (idModel==211)
+            dataCenterModel = MF_ARPEGE;
+        else if (idModel==204)
+            dataCenterModel = MF_AROME;
 
 	}
-    else if (idCenter==84 && idModel==211 && idGrid==255){
-        dataCenterModel = MF_ARPEGE_GLOBAL;
-	}
+//    else if (idCenter==84 && idModel==211 && idGrid==255){
+//        dataCenterModel = MF_ARPEGE_GLOBAL;
+//	}
 	//------------------------
 	// CEP navimail
 	//------------------------
@@ -143,19 +146,24 @@ void  GribRecord::translateDataType ()
         dataCenterModel = SKIRON;
     }
     //----------------------------------------------
-    // DWD ICON Global
+    // DWD ICON Global and ICON-EU Nest
     //----------------------------------------------
-    else if (idCenter==78 && idModel==1 && idGrid==255 )
+    else if (idCenter==78 && idGrid==255 )
     {
-        dataCenterModel = DWD_ICON_GLOBAL;
-    }
-    //----------------------------------------------
-    //----------------------------------------------
-    // DWD ICON-EU nest
-    //----------------------------------------------
-    else if (idCenter==78 && idModel==2 && idGrid==255 )
-    {
-        dataCenterModel = DWD_ICON_EU;
+        if ( (getDataType()==GRB_CLOUD_TOT)
+            && getLevelType()==LV_GND_SURF
+            && getLevelValue()==0) {
+                levelType  = LV_ATMOS_ALL;
+                levelValue = 0;
+        }
+        if ( (getDataType()==GRB_CAPE)
+             && getLevelType()==LV_PRIVATE) {
+            levelType = LV_GND_SURF;        // is actually ML multi-layer type data
+        }
+        if (idModel==1) dataCenterModel = DWD_ICON_GLOBAL;
+        if (idModel==2) dataCenterModel = DWD_ICON_EU;
+
+
     }
     //----------------------------------------------
     // DWD EWAM

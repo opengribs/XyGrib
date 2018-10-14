@@ -324,9 +324,11 @@ void GribReader::readAllGribRecords (int nbrecs)
 			|| (rec->getDataType()==GRB_TEMP_POT
 					&& rec->getLevelType()==LV_SIGMA && rec->getLevelValue()==9950)
 			//-----------------------------------------
-			|| (rec->getDataType()==GRB_CAPE
-					&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
-			|| (rec->getDataType()==GRB_CIN
+            || (rec->getDataType()==GRB_CAPE
+                            && rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
+            || (rec->getDataType()==GRB_CAPE
+                            && rec->getLevelValue()==LV_PRIVATE && rec->getLevelValue()==0)
+            || (rec->getDataType()==GRB_CIN
 					&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
 			|| (rec->getDataType()==GRB_WIND_GUST
 					&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)

@@ -30,6 +30,8 @@ enum DataCenterModel {
     DWD_ICON_EU,
     MF_ARPEGE_GLOBAL,
     MF_ARPEGE,
+    MF_AROME,
+    MF_ARPEGE_EU,
 	NOAA_NCEP_WW3,
     DWD_GWAM,
     DWD_EWAM,
@@ -137,6 +139,7 @@ enum DataCenterModel {
 #define LV_SIGMA     107
 #define LV_ATMOS_ENT  10
 #define LV_ATMOS_ALL 200
+#define LV_PRIVATE   192  // an ICON specific level
 
 #define LV_CLOUD_LOW_BOTTOM 212
 #define LV_CLOUD_MID_BOTTOM 222
