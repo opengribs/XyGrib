@@ -360,12 +360,14 @@ void DialogLoadGRIB::saveParametersSettings ()
 void DialogLoadGRIB::updateParameters ()
 {
     double tmp, xm, ym;
-    
-    ymax = sbNorth->cleanText().toDouble();
-    ymin = sbSouth->cleanText().toDouble();
-    xmin = sbWest->cleanText().toDouble();
-    xmax = sbEast->cleanText().toDouble();
 
+    QLocale l =  QLocale();
+    ymax = l.toDouble(sbNorth->cleanText());
+    ymin = l.toDouble(sbSouth->cleanText());
+    xmin = l.toDouble(sbWest->cleanText());
+    xmax = l.toDouble(sbEast->cleanText());
+
+//    DBG("Language is: %d", l.language());
 //    DBG("Dialog ymax etc are set to: %f,%f   %f,%f", xmin, ymin, xmax, ymax);
 
     if (cbModel->currentIndex() == 0)
