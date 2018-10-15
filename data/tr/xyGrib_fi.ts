@@ -4,119 +4,119 @@
 <context>
     <name>AltitudeStr</name>
     <message>
-        <location filename="../../src/DataQString.cpp" line="68"/>
+        <location filename="../../src/DataQString.cpp" line="72"/>
         <source>surface</source>
         <translation>pinta</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="71"/>
+        <location filename="../../src/DataQString.cpp" line="75"/>
         <source>isotherm 0°C</source>
         <translation>isotermi 0°C</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="80"/>
+        <location filename="../../src/DataQString.cpp" line="84"/>
         <source>%1 hPa</source>
         <translation>%1 hPa</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="83"/>
+        <location filename="../../src/DataQString.cpp" line="87"/>
         <source>sea level</source>
         <translation>merenpinnan taso</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="86"/>
+        <location filename="../../src/DataQString.cpp" line="90"/>
         <source>%1 m above mean sea level</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="89"/>
+        <location filename="../../src/DataQString.cpp" line="93"/>
         <source>%1 m above ground</source>
         <translation>%1 m maanpinnan yläpuolella</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="92"/>
+        <location filename="../../src/DataQString.cpp" line="96"/>
         <source>sigma %1</source>
         <translation>sigma %1</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="95"/>
+        <location filename="../../src/DataQString.cpp" line="99"/>
         <source>atmosphere</source>
         <translation>atmosfääri</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="98"/>
+        <location filename="../../src/DataQString.cpp" line="102"/>
         <source>low cloud layer</source>
         <translation>matala pilvi kerros</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="101"/>
+        <location filename="../../src/DataQString.cpp" line="105"/>
         <source>middle cloud layer</source>
         <translation>keskipilvien kerros</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="104"/>
+        <location filename="../../src/DataQString.cpp" line="108"/>
         <source>high cloud layer</source>
         <translation>yläpilvien kerros</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="117"/>
-        <location filename="../../src/DataQString.cpp" line="145"/>
+        <location filename="../../src/DataQString.cpp" line="121"/>
+        <location filename="../../src/DataQString.cpp" line="149"/>
         <source>sfc</source>
         <translation>sfc</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="120"/>
+        <location filename="../../src/DataQString.cpp" line="124"/>
         <source>iso0°C</source>
         <translation>iso0°C</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="129"/>
+        <location filename="../../src/DataQString.cpp" line="133"/>
         <source>%1hpa</source>
         <translation>%1hPa</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="132"/>
         <location filename="../../src/DataQString.cpp" line="136"/>
+        <location filename="../../src/DataQString.cpp" line="140"/>
         <source>MSL</source>
         <translation>MSL</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="138"/>
+        <location filename="../../src/DataQString.cpp" line="142"/>
         <source>%1 m ab.MSL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="141"/>
+        <location filename="../../src/DataQString.cpp" line="145"/>
         <source>-%1 m</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="147"/>
+        <location filename="../../src/DataQString.cpp" line="151"/>
         <source>%1 m</source>
         <translation>%1 m</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="150"/>
+        <location filename="../../src/DataQString.cpp" line="154"/>
         <source>sigma%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="156"/>
+        <location filename="../../src/DataQString.cpp" line="160"/>
         <source>lowCldLay</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="159"/>
+        <location filename="../../src/DataQString.cpp" line="163"/>
         <source>midCldLay</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="162"/>
+        <location filename="../../src/DataQString.cpp" line="166"/>
         <source>higCldLay</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="153"/>
+        <location filename="../../src/DataQString.cpp" line="157"/>
         <source>atm</source>
         <translation>atm</translation>
     </message>
@@ -453,289 +453,289 @@
 <context>
     <name>DataCodeStr</name>
     <message>
-        <location filename="../../src/DataQString.cpp" line="179"/>
-        <location filename="../../src/DataQString.cpp" line="180"/>
+        <location filename="../../src/DataQString.cpp" line="183"/>
+        <location filename="../../src/DataQString.cpp" line="184"/>
         <source>Pressure</source>
         <translation>Ilmanpaine</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="180"/>
+        <location filename="../../src/DataQString.cpp" line="184"/>
         <source>MSL</source>
         <translation>MSL</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="182"/>
+        <location filename="../../src/DataQString.cpp" line="186"/>
         <source>Temperature</source>
         <translation>Lämpötila</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="183"/>
+        <location filename="../../src/DataQString.cpp" line="187"/>
         <source>Potential temperature</source>
         <translation>Mahdollinen lämpötila</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="184"/>
+        <location filename="../../src/DataQString.cpp" line="188"/>
         <source>Temperature max</source>
         <translation>Lämpötila maksimi</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="185"/>
+        <location filename="../../src/DataQString.cpp" line="189"/>
         <source>Temperature min</source>
         <translation>Lämpötila minimi</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="186"/>
+        <location filename="../../src/DataQString.cpp" line="190"/>
         <source>Dew point</source>
         <translation>Kastepiste</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="187"/>
+        <location filename="../../src/DataQString.cpp" line="191"/>
         <source>Current (Vx)</source>
         <translation>Nykyinen (Vx)</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="188"/>
+        <location filename="../../src/DataQString.cpp" line="192"/>
         <source>Current (Vy)</source>
         <translation>Nykyinen (Vy)</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="189"/>
+        <location filename="../../src/DataQString.cpp" line="193"/>
         <source>Wind (Vx)</source>
         <translation>Tuuli (Vx)</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="190"/>
+        <location filename="../../src/DataQString.cpp" line="194"/>
         <source>Wind (Vy)</source>
         <translation>Tuuli (Vy)</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="191"/>
+        <location filename="../../src/DataQString.cpp" line="195"/>
         <source>Wind (direction)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="192"/>
+        <location filename="../../src/DataQString.cpp" line="196"/>
         <source>Wind (speed)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="193"/>
+        <location filename="../../src/DataQString.cpp" line="197"/>
         <source>Specific humidity</source>
         <translation>Eritynent kosteus</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="194"/>
+        <location filename="../../src/DataQString.cpp" line="198"/>
         <source>Relative humidity</source>
         <translation>Suhteellinen kosteus</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="195"/>
+        <location filename="../../src/DataQString.cpp" line="199"/>
         <source>Precipitation rate</source>
         <translation>Sademäärä</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="196"/>
+        <location filename="../../src/DataQString.cpp" line="200"/>
         <source>Total precipitation</source>
         <translation>Kokonaissademäärä</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="197"/>
+        <location filename="../../src/DataQString.cpp" line="201"/>
         <source>Snow (depth)</source>
         <translation>Lumen syvyys</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="198"/>
+        <location filename="../../src/DataQString.cpp" line="202"/>
         <source>Cloud cover</source>
         <translation>Pilvipeite</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="199"/>
+        <location filename="../../src/DataQString.cpp" line="203"/>
         <source>Cloud cover (low)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="200"/>
+        <location filename="../../src/DataQString.cpp" line="204"/>
         <source>Cloud cover (middle)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="201"/>
+        <location filename="../../src/DataQString.cpp" line="205"/>
         <source>Cloud cover (high)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="202"/>
+        <location filename="../../src/DataQString.cpp" line="206"/>
         <source>Frozen rain possible</source>
         <translation>Jäätävän sateen mohdollisuus</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="203"/>
+        <location filename="../../src/DataQString.cpp" line="207"/>
         <source>Snowfall possible</source>
         <translation>Lumisateen mahdollisuus</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="204"/>
+        <location filename="../../src/DataQString.cpp" line="208"/>
         <source>CAPE</source>
         <translation>CAPE</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="205"/>
+        <location filename="../../src/DataQString.cpp" line="209"/>
         <source>CIN</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="207"/>
+        <location filename="../../src/DataQString.cpp" line="211"/>
         <source>Composite Reflectivity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="209"/>
+        <location filename="../../src/DataQString.cpp" line="213"/>
         <source>Wind</source>
         <translation>Tuuli</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="211"/>
+        <location filename="../../src/DataQString.cpp" line="215"/>
         <source>Gap temperature-dew point</source>
         <translation>Lämpötilan ja kastepisteen erotus</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="212"/>
+        <location filename="../../src/DataQString.cpp" line="216"/>
         <source>Theta-e</source>
         <translation>Theta-e</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="213"/>
+        <location filename="../../src/DataQString.cpp" line="217"/>
         <source>Wind gust</source>
         <translation>Puuskaisuus</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="214"/>
+        <location filename="../../src/DataQString.cpp" line="218"/>
         <source>Wind gust (Vx)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="215"/>
+        <location filename="../../src/DataQString.cpp" line="219"/>
         <source>Wind gust (VY)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="216"/>
+        <location filename="../../src/DataQString.cpp" line="220"/>
         <source>Current direction</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="217"/>
+        <location filename="../../src/DataQString.cpp" line="221"/>
         <source>Current</source>
         <translation type="unfinished">Nykyinen</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="220"/>
+        <location filename="../../src/DataQString.cpp" line="224"/>
         <source>Wind wave direction</source>
         <translation>Tuulen aiheuttamien aaltojen suunta</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="221"/>
+        <location filename="../../src/DataQString.cpp" line="225"/>
         <source>Wind wave height</source>
         <translation>Tuulen aiheuttamien aaltojen korkeus</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="222"/>
+        <location filename="../../src/DataQString.cpp" line="226"/>
         <source>Wind wave period</source>
         <translation>Tuulen aiheuttamien aaltojen kesto</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="223"/>
+        <location filename="../../src/DataQString.cpp" line="227"/>
         <source>Swell wave direction</source>
         <translation>Merenkäynnin aaltojen suunta</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="224"/>
+        <location filename="../../src/DataQString.cpp" line="228"/>
         <source>Swell wave height</source>
         <translation>Merenkäynnin aaltojen lorleus</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="225"/>
+        <location filename="../../src/DataQString.cpp" line="229"/>
         <source>Swell wave period</source>
         <translation>Merenkäynnin aaltojen kesto</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="226"/>
+        <location filename="../../src/DataQString.cpp" line="230"/>
         <source>Primary wave direction</source>
         <translation>Primääriaaltojen suunta</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="227"/>
+        <location filename="../../src/DataQString.cpp" line="231"/>
         <source>Primary wave period</source>
         <translation>Primääriaaltojen kesto</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="228"/>
+        <location filename="../../src/DataQString.cpp" line="232"/>
         <source>Secondary wave direction</source>
         <translation>Toissijaisten aaltojen suunta</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="229"/>
+        <location filename="../../src/DataQString.cpp" line="233"/>
         <source>Secondary wave period</source>
         <translation>Toissijaisten aaltojen kesto</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="233"/>
+        <location filename="../../src/DataQString.cpp" line="237"/>
         <source>Whitecap probability</source>
         <translation>Vaahtopäiden todennäköisyys</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="239"/>
+        <location filename="../../src/DataQString.cpp" line="243"/>
         <source>Primary wave</source>
         <translation>Primääriaalto</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="240"/>
+        <location filename="../../src/DataQString.cpp" line="244"/>
         <source>Secondary wave</source>
         <translation>Toissijainen aalto</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="230"/>
+        <location filename="../../src/DataQString.cpp" line="234"/>
         <source>Maximum wave direction</source>
         <translation>Maksimiaallon suunta</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="231"/>
+        <location filename="../../src/DataQString.cpp" line="235"/>
         <source>Maximum wave height</source>
         <translation>Maksimiaallon korkeus</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="232"/>
+        <location filename="../../src/DataQString.cpp" line="236"/>
         <source>Maximum wave period</source>
         <translation>Maksimiaallon kesto</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="219"/>
-        <location filename="../../src/DataQString.cpp" line="235"/>
+        <location filename="../../src/DataQString.cpp" line="223"/>
+        <location filename="../../src/DataQString.cpp" line="239"/>
         <source>Significant wave</source>
         <translation>Merkitsevä aalto</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="181"/>
+        <location filename="../../src/DataQString.cpp" line="185"/>
         <source>Geopotential height</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="210"/>
+        <location filename="../../src/DataQString.cpp" line="214"/>
         <source>Wind (jet stream)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="236"/>
+        <location filename="../../src/DataQString.cpp" line="240"/>
         <source>Maximum wave</source>
         <translation>Maksimiaalto</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="237"/>
+        <location filename="../../src/DataQString.cpp" line="241"/>
         <source>Swell</source>
         <translation>Merenkäynti</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="238"/>
+        <location filename="../../src/DataQString.cpp" line="242"/>
         <source>Wind wave</source>
         <translation>Tuulen aiheuttama aalto</translation>
     </message>
@@ -857,12 +857,12 @@
 <context>
     <name>DialogGraphicsParams</name>
     <message>
-        <location filename="../../src/DialogGraphicsParams.cpp" line="226"/>
+        <location filename="../../src/DialogGraphicsParams.cpp" line="227"/>
         <source>100 % -&gt; white</source>
         <translation>100 % -&gt; valkea</translation>
     </message>
     <message>
-        <location filename="../../src/DialogGraphicsParams.cpp" line="227"/>
+        <location filename="../../src/DialogGraphicsParams.cpp" line="228"/>
         <source>100 % -&gt; dark</source>
         <translation>100 % -&gt; tumma</translation>
     </message>
@@ -871,13 +871,11 @@
     <name>DialogLoadGRIB</name>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="73"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="73"/>
         <source>Download - GRIB</source>
         <translation>Lataa - GRIB</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="227"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="227"/>
         <source>Save GRIB file</source>
         <translation>Tallenna GRIB tiedosto</translation>
     </message>
@@ -885,435 +883,337 @@
         <location filename="../../src/DialogLoadGRIB.cpp" line="244"/>
         <location filename="../../src/DialogLoadGRIB.cpp" line="257"/>
         <location filename="../../src/DialogLoadGRIB.cpp" line="275"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="955"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1200"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="244"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="257"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="275"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="946"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1191"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="958"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1211"/>
         <source>Cancel</source>
         <translation>Peruuta</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="251"/>
         <location filename="../../src/DialogLoadGRIB.cpp" line="271"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="251"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="271"/>
         <source>Error</source>
         <translation>Virhe</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="252"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="252"/>
         <source>Can&apos;t write file.</source>
         <translation>Tiedostoa ei voida kirjoittaa.</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="272"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="272"/>
         <source>Error: </source>
         <translation>Virhe:</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="893"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="884"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="896"/>
         <source>Stop</source>
         <translation>Keskeytä</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="451"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="498"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="545"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="665"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="682"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="699"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1072"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="448"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="495"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="542"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="662"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="679"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="696"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1063"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="454"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="501"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="548"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="668"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="685"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="702"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1083"/>
         <source>Last</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="452"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="499"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="546"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="666"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="683"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="700"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1073"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="449"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="496"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="543"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="663"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="680"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="697"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1064"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="455"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="502"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="549"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="669"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="686"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="703"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1084"/>
         <source>0 hr</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="453"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="701"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1074"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="450"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="698"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1065"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="456"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="704"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1085"/>
         <source>6 hr</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="454"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="500"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="547"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="667"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="684"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="702"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1075"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="451"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="497"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="544"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="664"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="681"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="699"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1066"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="457"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="503"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="550"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="670"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="687"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="705"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1086"/>
         <source>12 hr</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="455"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="703"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1076"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="452"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="700"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1067"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="458"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="706"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1087"/>
         <source>18 hr</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="880"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="871"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="883"/>
         <source> (max 50 MB) - NOTE: No sfc. or alt. parameters are selected!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="882"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="873"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="885"/>
         <source> (max 50 MB)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1024"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1033"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1015"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1024"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1035"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1044"/>
         <source>None</source>
         <translation type="unfinished">Ei-mitään</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1090"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1081"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1101"/>
         <source>Total precipitation</source>
         <translation>Kokonaissademäärä</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1092"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1094"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1083"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1085"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1103"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1105"/>
         <source>Cloud cover</source>
         <translation>Pilvipeite</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1092"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1083"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1103"/>
         <source>total</source>
         <translation>yhteensä</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1094"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1085"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1105"/>
         <source>layers</source>
         <translation>kerrokset</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1100"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1091"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1111"/>
         <source>Isotherm 0°C</source>
         <translation>Isotermi 0°C</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1113"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1104"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1124"/>
         <source>CAPE</source>
         <translation type="unfinished">CAPE</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1113"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1115"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1104"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1106"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1124"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1126"/>
         <source>surface</source>
         <translation type="unfinished">pinta</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1115"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1106"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1126"/>
         <source>CIN</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1142"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1146"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1149"/>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1153"/>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1157"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1161"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1165"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1160"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1164"/>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1168"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1133"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1137"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1140"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1144"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1148"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1152"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1156"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1159"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1172"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1176"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1179"/>
         <source>mb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1276"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1267"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1287"/>
         <source>Run cycle:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1321"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1312"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1332"/>
         <source>Surface Data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1332"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1323"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1343"/>
         <source>Warning: Selecting this data significantly increases the size of the GRIB file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1359"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1350"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1370"/>
         <source>Altitude Data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1377"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1368"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1388"/>
         <source>Wave Data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1172"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1163"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1183"/>
         <source>Skewt-T</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1176"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1167"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1187"/>
         <source>All</source>
         <translation>Kaikki</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1186"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1177"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1197"/>
         <source>Significant height</source>
         <translation>Merkitsevä korkeus</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1188"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1179"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1199"/>
         <source>Swell</source>
         <translation>Merenkäynti</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1190"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1181"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1201"/>
         <source>Wind waves</source>
         <translation>Tuulen aiheuttama aallot</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1202"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1193"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1213"/>
         <source>Server status</source>
         <translation>Palvelimen tila</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1219"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1210"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1230"/>
         <source>Latitude min :</source>
         <translation>Latituudi min :</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1221"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1212"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1232"/>
         <source>Latitude max :</source>
         <translation>Latituudi max:</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1223"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1214"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1234"/>
         <source>Longitude min :</source>
         <translation>Longituudi min :</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1225"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1216"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1236"/>
         <source>Longitude max :</source>
         <translation>Longituudi max :</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1330"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1321"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1341"/>
         <source>Atmosphere: geopotential altitude, wind, temperature, theta-e, relative humidity.</source>
         <translation>Atmosfääri : geopotentiaalinen korkeus, tuuli, lämpötila, theta-e, suhteellinen kosteus.</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1111"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1102"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1122"/>
         <source>Snow (depth)</source>
         <translation>Lumen syvyys</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1107"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1098"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1118"/>
         <source>Snow (snowfall possible)</source>
         <translation>Lunta (lumisateen mahdollisuus)</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="297"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="297"/>
         <source>kb/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="301"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="301"/>
         <source>Mb/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="304"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="304"/>
         <source>Size: %1 kb      Done: %2 ko at %3 %4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1086"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1077"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1097"/>
         <source>Wind (10 m)</source>
         <translation>Tuuli 10 m korkeudessa</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="880"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="882"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="871"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="873"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="883"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="885"/>
         <source>Size: ≃ </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1088"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1079"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1099"/>
         <source>Mean sea level pressure</source>
         <translation>Ilmanpaine keskimerenpinnan tasolla</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1096"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1087"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1107"/>
         <source>Temperature (2 m)</source>
         <translation>Lämpötila (2 m)</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1098"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1089"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1109"/>
         <source>Relative humidity (2 m)</source>
         <translation>Suhteellinen kosteus (2 m)</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1109"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1100"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1120"/>
         <source>Frozen rain (rainfall possible)</source>
         <translation>Jäätävä sade (sade mahdollinen)</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1117"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1108"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1128"/>
         <source>Wind gust (surface)</source>
         <translation>Puuskainen tuuli (maanpinnan tasolla)</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1198"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1189"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1209"/>
         <source>Download</source>
         <translation>Lataa</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1204"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1195"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1215"/>
         <source>Connection</source>
         <translation>Yhteys</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1237"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1228"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1248"/>
         <source>Atmospheric Model :</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1245"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1236"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1256"/>
         <source>Wave Model :</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1258"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1249"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1269"/>
         <source>Resolution:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1260"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1251"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1271"/>
         <source>°</source>
         <translation type="unfinished">°</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1264"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1255"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1275"/>
         <source>Interval:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1266"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1257"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1277"/>
         <source>hours</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1270"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1261"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1281"/>
         <source>Period:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1272"/>
-        <location filename="../../src/DialogLoadGRIB.cpp~" line="1263"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1283"/>
         <source>days</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2018,42 +1918,42 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/FileLoaderGRIB.cpp" line="243"/>
+        <location filename="../../src/FileLoaderGRIB.cpp" line="256"/>
         <source>Bad Request</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/FileLoaderGRIB.cpp" line="243"/>
+        <location filename="../../src/FileLoaderGRIB.cpp" line="256"/>
         <source>No atmospheric or wave parameters were selected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/FileLoaderGRIB.cpp" line="296"/>
+        <location filename="../../src/FileLoaderGRIB.cpp" line="309"/>
         <source>Information</source>
         <translation>Informaatio</translation>
     </message>
     <message>
-        <location filename="../../src/FileLoaderGRIB.cpp" line="307"/>
+        <location filename="../../src/FileLoaderGRIB.cpp" line="320"/>
         <source>Total size : </source>
         <translation>Koko yhteensä :</translation>
     </message>
     <message>
-        <location filename="../../src/FileLoaderGRIB.cpp" line="333"/>
+        <location filename="../../src/FileLoaderGRIB.cpp" line="346"/>
         <source>Empty file.</source>
         <translation>Tyhjä tiedosto.</translation>
     </message>
     <message>
-        <location filename="../../src/FileLoaderGRIB.cpp" line="336"/>
+        <location filename="../../src/FileLoaderGRIB.cpp" line="349"/>
         <source>CheckSum control</source>
         <translation>CheckSum tarkistus</translation>
     </message>
     <message>
-        <location filename="../../src/FileLoaderGRIB.cpp" line="339"/>
+        <location filename="../../src/FileLoaderGRIB.cpp" line="352"/>
         <source>Finish</source>
         <translation>Valmis</translation>
     </message>
     <message>
-        <location filename="../../src/FileLoaderGRIB.cpp" line="345"/>
+        <location filename="../../src/FileLoaderGRIB.cpp" line="358"/>
         <source>Bad checksum.</source>
         <translation>Checksum virheellinen.</translation>
     </message>
@@ -2362,46 +2262,46 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="573"/>
+        <location filename="../../src/MainWindow.cpp" line="580"/>
         <source>Tools</source>
         <translation>Työkalut</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="203"/>
-        <location filename="../../src/MainWindow.cpp" line="864"/>
-        <location filename="../../src/MainWindow.cpp" line="935"/>
+        <location filename="../../src/MainWindow.cpp" line="872"/>
         <location filename="../../src/MainWindow.cpp" line="943"/>
+        <location filename="../../src/MainWindow.cpp" line="951"/>
         <source>Error</source>
         <translation>Virhe</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="818"/>
-        <location filename="../../src/MainWindow.cpp" line="865"/>
+        <location filename="../../src/MainWindow.cpp" line="826"/>
+        <location filename="../../src/MainWindow.cpp" line="873"/>
         <source>File :</source>
         <translation>Tiedosto:</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="820"/>
+        <location filename="../../src/MainWindow.cpp" line="828"/>
         <source>The header of this GRIB file do not respect standard format.</source>
         <translation>Tämän GRIB tiedoston tunnistetiedot eivät noudata vakiomuotoa.</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="822"/>
+        <location filename="../../src/MainWindow.cpp" line="830"/>
         <source>Despite efforts to interpret it, output may be incorrect.</source>
         <translation>Huolimatta tulkintayrityksista tulos voi olla virheellinen.</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="824"/>
+        <location filename="../../src/MainWindow.cpp" line="832"/>
         <source>Please inform the supplier of this file that the GDS section of the file header is ambiguous, particularly about data position.</source>
         <translation>Ole ystävällinen ja tiedota tämän tiedoston toimittajalle että tiedoston ylätunnisteen GDS osan olevan epäselvän, erityisesti datan sijoittelussa.</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="866"/>
+        <location filename="../../src/MainWindow.cpp" line="874"/>
         <source>Can&apos;t open file.</source>
         <translation>Tiedostoa ei voida avata.</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1377"/>
+        <location filename="../../src/MainWindow.cpp" line="1385"/>
         <source>Help</source>
         <translation>Apua</translation>
     </message>
@@ -2412,255 +2312,257 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1387"/>
+        <location filename="../../src/MainWindow.cpp" line="1395"/>
         <source>About</source>
         <translation>Yleistä</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1390"/>
+        <location filename="../../src/MainWindow.cpp" line="1398"/>
         <source>Version : </source>
         <translation>Versio : </translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1392"/>
+        <location filename="../../src/MainWindow.cpp" line="1400"/>
         <source>Licence : GNU GPL v3</source>
         <translation>Lisenssi : GNU GPL v3</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1413"/>
+        <location filename="../../src/MainWindow.cpp" line="1421"/>
         <source>Choose a GRIB file</source>
         <translation>Valitse GRIB tiedosto</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1439"/>
+        <location filename="../../src/MainWindow.cpp" line="1448"/>
         <source>Download a GRIB file</source>
         <translation>Lataa GRIB tiedosto</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1440"/>
+        <location filename="../../src/MainWindow.cpp" line="1449"/>
         <source>Please select an area on the map.</source>
         <translation>Ole hyvä ja valitse alue kartalta.</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1490"/>
-        <location filename="../../src/MainWindow.cpp" line="1498"/>
+        <location filename="../../src/MainWindow.cpp" line="1514"/>
+        <location filename="../../src/MainWindow.cpp" line="1522"/>
         <source>File information</source>
         <translation>Tiedoston info</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1491"/>
+        <location filename="../../src/MainWindow.cpp" line="1515"/>
         <source>File not loaded.</source>
         <translation>Tiedostoa ei ladattu.</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1506"/>
+        <location filename="../../src/MainWindow.cpp" line="1530"/>
         <source>Weather center %1</source>
         <translation>Säätilan keskipiste %1</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1507"/>
+        <location filename="../../src/MainWindow.cpp" line="1531"/>
         <source>Model %1</source>
         <translation>Malli %1</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1508"/>
+        <location filename="../../src/MainWindow.cpp" line="1532"/>
         <source>Grid %1</source>
         <translation>Ruudukko %1</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1552"/>
+        <location filename="../../src/MainWindow.cpp" line="1576"/>
         <source>Grid : %1x%2=%3 points</source>
         <translation>Ruudukko : %1x%2=%3 pistettä</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1561"/>
+        <location filename="../../src/MainWindow.cpp" line="1585"/>
         <source>Grid : %1 points</source>
         <translation>Ruudukko : %1 pistettä</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1579"/>
+        <location filename="../../src/MainWindow.cpp" line="1603"/>
         <source>Reference date: %1</source>
         <translation>Viitepäiväys : %1</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1584"/>
+        <location filename="../../src/MainWindow.cpp" line="1608"/>
         <source>GRIB file information</source>
         <translation>GRIB tiedoston tiedot</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2325"/>
+        <location filename="../../src/MainWindow.cpp" line="2331"/>
+        <location filename="../../src/MainWindow.cpp" line="2339"/>
         <source>Failure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2327"/>
+        <location filename="../../src/MainWindow.cpp" line="2325"/>
         <source>It is recommended to exit XyGrib while running the Maintenance Tool. Do you wish to exit XyGrib?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2328"/>
+        <location filename="../../src/MainWindow.cpp" line="2326"/>
         <source>Exit XyGrib?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2372"/>
+        <location filename="../../src/MainWindow.cpp" line="2394"/>
         <source>An updated version is available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2376"/>
+        <location filename="../../src/MainWindow.cpp" line="2398"/>
         <source>A new version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2377"/>
+        <location filename="../../src/MainWindow.cpp" line="2399"/>
         <source>is available for update.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2378"/>
+        <location filename="../../src/MainWindow.cpp" line="2400"/>
         <source>Please use the XyGrib Maintenance Tool to upgrade. It can be activated from the Help Menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2390"/>
+        <location filename="../../src/MainWindow.cpp" line="2412"/>
         <source>Version is up to date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2391"/>
+        <location filename="../../src/MainWindow.cpp" line="2413"/>
         <source>You have version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2392"/>
+        <location filename="../../src/MainWindow.cpp" line="2414"/>
         <source>which is the most current version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2406"/>
+        <location filename="../../src/MainWindow.cpp" line="2428"/>
         <source>Network Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="817"/>
+        <location filename="../../src/MainWindow.cpp" line="825"/>
         <source>Warning</source>
         <translation>Varoitus</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="867"/>
+        <location filename="../../src/MainWindow.cpp" line="875"/>
         <source>It&apos;s not a GRIB file,</source>
         <translation>Se ei ole GRIB tiedosto,</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1460"/>
-        <location filename="../../src/MainWindow.cpp" line="1477"/>
+        <location filename="../../src/MainWindow.cpp" line="1484"/>
+        <location filename="../../src/MainWindow.cpp" line="1501"/>
         <source>yes</source>
         <translation>Kyllä</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1464"/>
-        <location filename="../../src/MainWindow.cpp" line="1480"/>
+        <location filename="../../src/MainWindow.cpp" line="1488"/>
+        <location filename="../../src/MainWindow.cpp" line="1504"/>
         <source>no</source>
         <translation>Ei</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1503"/>
+        <location filename="../../src/MainWindow.cpp" line="1527"/>
         <source>File : %1
 </source>
         <translation>Tiedosto : %1
 </translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1504"/>
+        <location filename="../../src/MainWindow.cpp" line="1528"/>
         <source>Size : %1 bytes
 </source>
         <translation>Koko : %1 tavua
 </translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1512"/>
+        <location filename="../../src/MainWindow.cpp" line="1536"/>
         <source>%1 dates:
 </source>
         <translation>%1 päivämäärät :
 </translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1515"/>
+        <location filename="../../src/MainWindow.cpp" line="1539"/>
         <source>    from %1
 </source>
         <translation>   alkaen %1
 </translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1516"/>
+        <location filename="../../src/MainWindow.cpp" line="1540"/>
         <source>    to %1
 </source>
         <translation>   päättyen %1
 </translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="868"/>
+        <location filename="../../src/MainWindow.cpp" line="876"/>
         <source>or it contains unrecognized data,</source>
         <translation>tai se sisältää tuntematonta tietoa,</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="869"/>
+        <location filename="../../src/MainWindow.cpp" line="877"/>
         <source>or...</source>
         <translation>tai ...</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="944"/>
+        <location filename="../../src/MainWindow.cpp" line="952"/>
         <source>Can&apos;t create animation.</source>
         <translation>Animaatiota ei voida luoda.</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1378"/>
+        <location filename="../../src/MainWindow.cpp" line="1386"/>
         <source>Help is available at</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1388"/>
+        <location filename="../../src/MainWindow.cpp" line="1396"/>
         <source>XyGrib : GRIB files visualization</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1393"/>
+        <location filename="../../src/MainWindow.cpp" line="1401"/>
         <source>https://OpenGribs.org</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1519"/>
+        <location filename="../../src/MainWindow.cpp" line="1543"/>
         <source>Available data :</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1661"/>
+        <location filename="../../src/MainWindow.cpp" line="1685"/>
         <source>Change Skin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1662"/>
+        <location filename="../../src/MainWindow.cpp" line="1686"/>
         <source>For skin change to take effect XyGrib needs to be restarted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1672"/>
+        <location filename="../../src/MainWindow.cpp" line="1696"/>
         <source>Selected area: </source>
         <translation>Valitse alue:  </translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1680"/>
+        <location filename="../../src/MainWindow.cpp" line="1704"/>
         <source>(great circle dist:</source>
         <translation>(isoympyrä etäisyys:</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1682"/>
+        <location filename="../../src/MainWindow.cpp" line="1706"/>
         <source>  init.dir: %1°</source>
         <translation>    Alkava suunta: %1°</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2325"/>
+        <location filename="../../src/MainWindow.cpp" line="2331"/>
+        <location filename="../../src/MainWindow.cpp" line="2339"/>
         <source>Unable to find the XyGrib Maintenance Tool. Please start it from the desktop facilities</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2679,27 +2581,27 @@
         <translation>Tarkista ohjelman installointi.</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1469"/>
+        <location filename="../../src/MainWindow.cpp" line="1493"/>
         <source>no (computed with Magnus-Tetens formula)</source>
         <translation>ei (käännetty Magnus-Tetens mallilla)</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="936"/>
+        <location filename="../../src/MainWindow.cpp" line="944"/>
         <source>Can&apos;t create animation :</source>
         <translation>Animaatiota ei voida luoda :</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="937"/>
+        <location filename="../../src/MainWindow.cpp" line="945"/>
         <source>no GRIB file loaded.</source>
         <translation>GRIB tiedostoa ei ladattu.</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1499"/>
+        <location filename="../../src/MainWindow.cpp" line="1523"/>
         <source>Data error.</source>
         <translation>Tietovirhe.</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1573"/>
+        <location filename="../../src/MainWindow.cpp" line="1597"/>
         <source>Area :</source>
         <translation>Alue : </translation>
     </message>
@@ -2707,58 +2609,62 @@
 <context>
     <name>MapDrawer</name>
     <message>
-        <location filename="../../src/MapDrawer.cpp" line="639"/>
+        <location filename="../../src/MapDrawer.cpp" line="641"/>
         <source>Data: </source>
         <translation>Tiedot: </translation>
     </message>
     <message>
-        <location filename="../../src/MapDrawer.cpp" line="645"/>
+        <location filename="../../src/MapDrawer.cpp" line="647"/>
         <source>Isobars MSL (hPa)</source>
         <translation>Isobaarit MSL (hPa)</translation>
     </message>
     <message>
-        <location filename="../../src/MapDrawer.cpp" line="647"/>
+        <location filename="../../src/MapDrawer.cpp" line="649"/>
         <source>Isotherms 0°C</source>
         <translation>Isotermti 0°C</translation>
     </message>
     <message>
-        <location filename="../../src/MapDrawer.cpp" line="651"/>
+        <location filename="../../src/MapDrawer.cpp" line="653"/>
         <source>Isotherms</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MapDrawer.cpp" line="651"/>
         <location filename="../../src/MapDrawer.cpp" line="653"/>
+        <location filename="../../src/MapDrawer.cpp" line="655"/>
         <source>(°C)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MapDrawer.cpp" line="653"/>
+        <location filename="../../src/MapDrawer.cpp" line="655"/>
         <source>Theta-e</source>
         <translation type="unfinished">Theta-e</translation>
     </message>
     <message>
-        <location filename="../../src/MapDrawer.cpp" line="655"/>
-        <source>Temperature</source>
-        <translation>Lämpötila</translation>
+        <location filename="../../src/MapDrawer.cpp" line="659"/>
+        <source>Temperature label</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MapDrawer.cpp" line="658"/>
+        <source>Temperature</source>
+        <translation type="vanished">Lämpötila</translation>
+    </message>
+    <message>
+        <location filename="../../src/MapDrawer.cpp" line="664"/>
         <source>Geopotential</source>
         <translation>Geopotentiaali</translation>
     </message>
     <message>
-        <location filename="../../src/MapDrawer.cpp" line="664"/>
+        <location filename="../../src/MapDrawer.cpp" line="670"/>
         <source>Wind arrows</source>
         <translation>Tuulinuolet</translation>
     </message>
     <message>
-        <location filename="../../src/MapDrawer.cpp" line="667"/>
+        <location filename="../../src/MapDrawer.cpp" line="673"/>
         <source>Current arrows</source>
         <translation>Nykyiset nuolet</translation>
     </message>
     <message>
-        <location filename="../../src/MapDrawer.cpp" line="749"/>
+        <location filename="../../src/MapDrawer.cpp" line="755"/>
         <source>XyGrib</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2766,1177 +2672,1186 @@
 <context>
     <name>MenuBar</name>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="69"/>
+        <location filename="../../src/MenuBar.cpp" line="74"/>
         <source>File</source>
         <translation>Tiedosto</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="72"/>
+        <location filename="../../src/MenuBar.cpp" line="77"/>
         <source>Open</source>
         <translation>Avaa</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="72"/>
+        <location filename="../../src/MenuBar.cpp" line="77"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="73"/>
+        <location filename="../../src/MenuBar.cpp" line="78"/>
         <source>Open a GRIB file</source>
         <translation>Avaa GRIB tiedosto</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="75"/>
-        <location filename="../../src/MenuBar.cpp" line="76"/>
+        <location filename="../../src/MenuBar.cpp" line="80"/>
+        <location filename="../../src/MenuBar.cpp" line="81"/>
         <source>Close</source>
         <translation>Sulje</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="75"/>
+        <location filename="../../src/MenuBar.cpp" line="80"/>
         <source>Ctrl+W</source>
         <translation>Ctrl+W</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="392"/>
+        <location filename="../../src/MenuBar.cpp" line="397"/>
         <source>Internet parameters</source>
         <translation>Internet parametrit</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="405"/>
+        <location filename="../../src/MenuBar.cpp" line="410"/>
         <source>Dark Skin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="407"/>
+        <location filename="../../src/MenuBar.cpp" line="412"/>
         <source>Ctrl+G</source>
         <translation>Ctrl+G</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="90"/>
+        <location filename="../../src/MenuBar.cpp" line="95"/>
         <source>File information</source>
         <translation>Tiedoston ominaisuudet</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="90"/>
+        <location filename="../../src/MenuBar.cpp" line="95"/>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="91"/>
+        <location filename="../../src/MenuBar.cpp" line="96"/>
         <source>GRIB file information</source>
         <translation>GRIB tiedoston ominaisuudet</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="100"/>
+        <location filename="../../src/MenuBar.cpp" line="105"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="101"/>
+        <location filename="../../src/MenuBar.cpp" line="106"/>
         <source>Bye</source>
         <translation>Näkemiin</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="139"/>
+        <location filename="../../src/MenuBar.cpp" line="144"/>
         <source>Smooth colors</source>
         <translation>Huolitellut värit</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="123"/>
+        <location filename="../../src/MenuBar.cpp" line="128"/>
         <source>Wind arrows</source>
         <translation>Tuulinuolet</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="124"/>
+        <location filename="../../src/MenuBar.cpp" line="129"/>
         <source>Show wind arrows</source>
         <translation>Näytä tuulinuolet</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="142"/>
+        <location filename="../../src/MenuBar.cpp" line="147"/>
         <source>Wind barbs</source>
         <translation>Tuuliväkäset</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="143"/>
+        <location filename="../../src/MenuBar.cpp" line="148"/>
         <source>Show barbs on wind arrows</source>
         <translation>Näytä väkäset tuulinuolissa</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="183"/>
-        <location filename="../../src/MenuBar.cpp" line="224"/>
-        <location filename="../../src/MenuBar.cpp" line="245"/>
-        <location filename="../../src/MenuBar.cpp" line="269"/>
+        <location filename="../../src/MenuBar.cpp" line="188"/>
+        <location filename="../../src/MenuBar.cpp" line="229"/>
+        <location filename="../../src/MenuBar.cpp" line="250"/>
+        <location filename="../../src/MenuBar.cpp" line="274"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="184"/>
-        <location filename="../../src/MenuBar.cpp" line="225"/>
-        <location filename="../../src/MenuBar.cpp" line="246"/>
-        <location filename="../../src/MenuBar.cpp" line="270"/>
+        <location filename="../../src/MenuBar.cpp" line="189"/>
+        <location filename="../../src/MenuBar.cpp" line="230"/>
+        <location filename="../../src/MenuBar.cpp" line="251"/>
+        <location filename="../../src/MenuBar.cpp" line="275"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="185"/>
+        <location filename="../../src/MenuBar.cpp" line="190"/>
         <source>3</source>
         <translation>3</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="186"/>
+        <location filename="../../src/MenuBar.cpp" line="191"/>
         <source>4</source>
         <translation>4</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="187"/>
-        <location filename="../../src/MenuBar.cpp" line="226"/>
-        <location filename="../../src/MenuBar.cpp" line="247"/>
-        <location filename="../../src/MenuBar.cpp" line="271"/>
+        <location filename="../../src/MenuBar.cpp" line="192"/>
+        <location filename="../../src/MenuBar.cpp" line="231"/>
+        <location filename="../../src/MenuBar.cpp" line="252"/>
+        <location filename="../../src/MenuBar.cpp" line="276"/>
         <source>5</source>
         <translation>5</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="188"/>
+        <location filename="../../src/MenuBar.cpp" line="193"/>
         <source>6</source>
         <translation>6</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="189"/>
+        <location filename="../../src/MenuBar.cpp" line="194"/>
         <source>8</source>
         <translation>8</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="190"/>
-        <location filename="../../src/MenuBar.cpp" line="200"/>
-        <location filename="../../src/MenuBar.cpp" line="227"/>
-        <location filename="../../src/MenuBar.cpp" line="248"/>
-        <location filename="../../src/MenuBar.cpp" line="272"/>
+        <location filename="../../src/MenuBar.cpp" line="195"/>
+        <location filename="../../src/MenuBar.cpp" line="205"/>
+        <location filename="../../src/MenuBar.cpp" line="232"/>
+        <location filename="../../src/MenuBar.cpp" line="253"/>
+        <location filename="../../src/MenuBar.cpp" line="277"/>
         <source>10</source>
         <translation>10</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="191"/>
+        <location filename="../../src/MenuBar.cpp" line="196"/>
         <source>Isobars labels</source>
         <translation>Isobaarien nimiöt</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="192"/>
+        <location filename="../../src/MenuBar.cpp" line="197"/>
         <source>Pressure Low High</source>
         <translation>Ilmanpaine matala (L) korkea (H)</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="156"/>
+        <location filename="../../src/MenuBar.cpp" line="161"/>
         <source>Altitude</source>
         <translation>Korkeus</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="97"/>
+        <location filename="../../src/MenuBar.cpp" line="102"/>
         <source>Save current image</source>
         <translation>Talleta nykyinen kuva</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="159"/>
+        <location filename="../../src/MenuBar.cpp" line="164"/>
         <source>Sea level</source>
         <translation>Merenpinta</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="161"/>
+        <location filename="../../src/MenuBar.cpp" line="166"/>
         <source>Sigma 995</source>
         <translation>Sigma 995</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="162"/>
+        <location filename="../../src/MenuBar.cpp" line="167"/>
         <source>1 m above ground</source>
         <translation>1 m maanpinnan yläpuolella</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="163"/>
+        <location filename="../../src/MenuBar.cpp" line="168"/>
         <source>2 m above ground</source>
         <translation>2 m maanpinnan yläpuolella</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="164"/>
+        <location filename="../../src/MenuBar.cpp" line="169"/>
         <source>3 m above ground</source>
         <translation>3 m maanpinnan yläpuolella</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="165"/>
+        <location filename="../../src/MenuBar.cpp" line="170"/>
         <source>10 m above ground</source>
         <translation>10 m maanpinnan yläpuolella</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="166"/>
+        <location filename="../../src/MenuBar.cpp" line="171"/>
         <source>925 hPa (≈ 760 m)</source>
         <translation>925 hPa (≈ 760 m)</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="167"/>
+        <location filename="../../src/MenuBar.cpp" line="172"/>
         <source>850 hPa (≈ 1460 m)</source>
         <translation>850 hPa (≈ 1460 m)</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="168"/>
+        <location filename="../../src/MenuBar.cpp" line="173"/>
         <source>700 hPa (≈ 3000 m)</source>
         <translation>700 hPa (≈ 3000 m)</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="170"/>
+        <location filename="../../src/MenuBar.cpp" line="175"/>
         <source>500 hPa (≈ 5600 m)</source>
         <translation>500 hPa (≈ 5600 m)</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="172"/>
+        <location filename="../../src/MenuBar.cpp" line="177"/>
         <source>300 hPa (≈ 9200 m)</source>
         <translation>300 hPa (≈ 9200 m)</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="173"/>
+        <location filename="../../src/MenuBar.cpp" line="178"/>
         <source>200 hPa (≈ 11800 m)</source>
         <translation>200 hPa (≈ 11800 m)</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="174"/>
+        <location filename="../../src/MenuBar.cpp" line="179"/>
         <source>Atmosphere</source>
         <translation>Atmosfääri</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="253"/>
+        <location filename="../../src/MenuBar.cpp" line="258"/>
         <source>Geopotentials labels</source>
         <translation>Geopotentiaalien nimiöt</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="352"/>
+        <location filename="../../src/MenuBar.cpp" line="357"/>
         <source>Sea</source>
         <translation>Meri</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="371"/>
+        <location filename="../../src/MenuBar.cpp" line="376"/>
         <source>Current map</source>
         <translation>Nykyinen kartta</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="355"/>
+        <location filename="../../src/MenuBar.cpp" line="360"/>
         <source>Significant wave height</source>
         <translation>Merkitsevä aallon korkeus</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="356"/>
+        <location filename="../../src/MenuBar.cpp" line="361"/>
         <source>Maximum wave height</source>
         <translation>Maksimi aallon korkeus</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="123"/>
+        <location filename="../../src/MenuBar.cpp" line="128"/>
         <source>Ctrl+J</source>
         <translation>Ctrl+J</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="372"/>
+        <location filename="../../src/MenuBar.cpp" line="377"/>
         <source>Current arrows</source>
         <translation>Nykyiset nuolet</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="373"/>
+        <location filename="../../src/MenuBar.cpp" line="378"/>
         <source>Show current arrows</source>
         <translation>Näytä nykyiset nuolet</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="178"/>
+        <location filename="../../src/MenuBar.cpp" line="183"/>
         <source>Isobars (MSL)</source>
         <translation>Isobaarit (MSL)</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="180"/>
+        <location filename="../../src/MenuBar.cpp" line="185"/>
         <source>Isobars spacing (hPa)</source>
         <translation>Isobaarien jaottelu (hPa)</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="197"/>
+        <location filename="../../src/MenuBar.cpp" line="202"/>
         <source>Isotherms 0°C spacing (m)</source>
         <translation>Isotermien 0°C jaottelu (m)</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="135"/>
+        <location filename="../../src/MenuBar.cpp" line="140"/>
         <source>NOAA-GFS</source>
         <translation>NOAA-GFS</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="368"/>
+        <location filename="../../src/MenuBar.cpp" line="373"/>
         <source>FNMOC-WW3</source>
         <translation>FNMOC-WW3</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="368"/>
+        <location filename="../../src/MenuBar.cpp" line="373"/>
         <source>Duplicate missing wave records</source>
         <translation>Lukuisat puuttuvat aaltotiedot</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="144"/>
+        <location filename="../../src/MenuBar.cpp" line="149"/>
         <source>Thin wind arrows</source>
         <translation>Ohuet tuulinuolet</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="375"/>
+        <location filename="../../src/MenuBar.cpp" line="380"/>
         <source>Current arrows on Grib grid</source>
         <translation>Nykyiset nuolet GRIB ruudukossa</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="152"/>
+        <location filename="../../src/MenuBar.cpp" line="157"/>
         <source>Show GRIB grid</source>
         <translation>Näytä GRIB ruudukko</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="152"/>
+        <location filename="../../src/MenuBar.cpp" line="157"/>
         <source>Ctrl+X</source>
         <translation>Ctrl+X</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="153"/>
-        <location filename="../../src/MenuBar.cpp" line="154"/>
+        <location filename="../../src/MenuBar.cpp" line="158"/>
+        <location filename="../../src/MenuBar.cpp" line="159"/>
         <source>Show color scale</source>
         <translation>Näytä väriskaala</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="154"/>
+        <location filename="../../src/MenuBar.cpp" line="159"/>
         <source>Ctrl+Y</source>
         <translation>Ctrl+Y</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="393"/>
-        <location filename="../../src/MenuBar.cpp" line="394"/>
+        <location filename="../../src/MenuBar.cpp" line="398"/>
+        <location filename="../../src/MenuBar.cpp" line="399"/>
         <source>Show values panel</source>
         <translation>Näytä arvopaneeli</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="394"/>
+        <location filename="../../src/MenuBar.cpp" line="399"/>
         <source>Ctrl+V</source>
         <translation>Ctrl+V</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="277"/>
+        <location filename="../../src/MenuBar.cpp" line="282"/>
         <source>Earth</source>
         <translation>Maapallo</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="78"/>
+        <location filename="../../src/MenuBar.cpp" line="83"/>
         <source>New instance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="78"/>
+        <location filename="../../src/MenuBar.cpp" line="83"/>
         <source>Ctrl+Shift+N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="104"/>
+        <location filename="../../src/MenuBar.cpp" line="109"/>
         <source>Weather map</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="107"/>
+        <location filename="../../src/MenuBar.cpp" line="112"/>
         <source>Wind</source>
         <translation type="unfinished">Tuuli</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="108"/>
+        <location filename="../../src/MenuBar.cpp" line="113"/>
         <source>Precipitation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="110"/>
+        <location filename="../../src/MenuBar.cpp" line="115"/>
         <source>Relative humidity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="116"/>
+        <location filename="../../src/MenuBar.cpp" line="121"/>
         <source>CAPE</source>
         <translation type="unfinished">CAPE</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="117"/>
+        <location filename="../../src/MenuBar.cpp" line="122"/>
         <source>CIN</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="119"/>
+        <location filename="../../src/MenuBar.cpp" line="124"/>
         <source>Reflectivity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="120"/>
+        <location filename="../../src/MenuBar.cpp" line="125"/>
         <source>Theta-e</source>
         <translation type="unfinished">Theta-e</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="120"/>
+        <location filename="../../src/MenuBar.cpp" line="125"/>
         <source>Equivalent potential temperature</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="148"/>
+        <location filename="../../src/MenuBar.cpp" line="135"/>
+        <source>Weather Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="153"/>
         <source>Jet stream colors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="148"/>
+        <location filename="../../src/MenuBar.cpp" line="153"/>
         <source>Ctrl+Shift+J</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="169"/>
+        <location filename="../../src/MenuBar.cpp" line="174"/>
         <source>600 hPa (≈ 4200 m)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="171"/>
+        <location filename="../../src/MenuBar.cpp" line="176"/>
         <source>400 hPa (≈ 7200 m)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="176"/>
+        <location filename="../../src/MenuBar.cpp" line="181"/>
         <source>Isolines</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="210"/>
+        <location filename="../../src/MenuBar.cpp" line="215"/>
         <source>Isotherms (altitude)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="213"/>
-        <source>2 m</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="214"/>
-        <location filename="../../src/MenuBar.cpp" line="235"/>
-        <location filename="../../src/MenuBar.cpp" line="259"/>
-        <source>925 hpa</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="215"/>
-        <location filename="../../src/MenuBar.cpp" line="236"/>
-        <location filename="../../src/MenuBar.cpp" line="260"/>
-        <source>850 hpa</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="216"/>
-        <location filename="../../src/MenuBar.cpp" line="237"/>
-        <location filename="../../src/MenuBar.cpp" line="261"/>
-        <source>700 hpa</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="217"/>
-        <location filename="../../src/MenuBar.cpp" line="238"/>
-        <location filename="../../src/MenuBar.cpp" line="262"/>
-        <source>600 hpa</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../src/MenuBar.cpp" line="218"/>
-        <location filename="../../src/MenuBar.cpp" line="239"/>
-        <location filename="../../src/MenuBar.cpp" line="263"/>
-        <source>500 hpa</source>
+        <source>2 m</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="219"/>
         <location filename="../../src/MenuBar.cpp" line="240"/>
         <location filename="../../src/MenuBar.cpp" line="264"/>
-        <source>400 hpa</source>
+        <source>925 hpa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="220"/>
         <location filename="../../src/MenuBar.cpp" line="241"/>
         <location filename="../../src/MenuBar.cpp" line="265"/>
-        <source>300 hpa</source>
+        <source>850 hpa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="221"/>
         <location filename="../../src/MenuBar.cpp" line="242"/>
         <location filename="../../src/MenuBar.cpp" line="266"/>
-        <source>200 hpa</source>
+        <source>700 hpa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="222"/>
+        <location filename="../../src/MenuBar.cpp" line="243"/>
+        <location filename="../../src/MenuBar.cpp" line="267"/>
+        <source>600 hpa</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="223"/>
+        <location filename="../../src/MenuBar.cpp" line="244"/>
+        <location filename="../../src/MenuBar.cpp" line="268"/>
+        <source>500 hpa</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="224"/>
+        <location filename="../../src/MenuBar.cpp" line="245"/>
+        <location filename="../../src/MenuBar.cpp" line="269"/>
+        <source>400 hpa</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="225"/>
+        <location filename="../../src/MenuBar.cpp" line="246"/>
+        <location filename="../../src/MenuBar.cpp" line="270"/>
+        <source>300 hpa</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="226"/>
+        <location filename="../../src/MenuBar.cpp" line="247"/>
+        <location filename="../../src/MenuBar.cpp" line="271"/>
+        <source>200 hpa</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="227"/>
         <source>Isotherms spacing (°C)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="229"/>
+        <location filename="../../src/MenuBar.cpp" line="234"/>
         <source>Isotherms labels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="232"/>
+        <location filename="../../src/MenuBar.cpp" line="237"/>
         <source>Geopotential altitude</source>
         <translation type="unfinished">Geopotentiaalinen korkeus</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="243"/>
+        <location filename="../../src/MenuBar.cpp" line="248"/>
         <source>Geopotentials spacing (m)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="256"/>
+        <location filename="../../src/MenuBar.cpp" line="261"/>
         <source>Theta-e (altitude)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="267"/>
+        <location filename="../../src/MenuBar.cpp" line="272"/>
         <source>Theta-e spacing (°C)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="274"/>
+        <location filename="../../src/MenuBar.cpp" line="279"/>
         <source>Theta-e labels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="281"/>
-        <location filename="../../src/MenuBar.cpp" line="282"/>
-        <location filename="../../src/MenuBar.cpp" line="283"/>
-        <location filename="../../src/MenuBar.cpp" line="284"/>
-        <location filename="../../src/MenuBar.cpp" line="285"/>
+        <location filename="../../src/MenuBar.cpp" line="286"/>
+        <location filename="../../src/MenuBar.cpp" line="287"/>
+        <location filename="../../src/MenuBar.cpp" line="288"/>
+        <location filename="../../src/MenuBar.cpp" line="289"/>
+        <location filename="../../src/MenuBar.cpp" line="290"/>
         <source>Niveau de détail de la carte</source>
         <translation>Kartan yksityiskohtien taso</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="300"/>
+        <location filename="../../src/MenuBar.cpp" line="305"/>
         <source>Auto zoom on grib area</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="301"/>
+        <location filename="../../src/MenuBar.cpp" line="306"/>
         <source>Automatic zoom on grib area after file loading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="304"/>
+        <location filename="../../src/MenuBar.cpp" line="309"/>
         <source>Boundaries</source>
         <translation>Rajat</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="304"/>
+        <location filename="../../src/MenuBar.cpp" line="309"/>
         <source>Show boundaries</source>
         <translation>Näytä rajaj</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="305"/>
+        <location filename="../../src/MenuBar.cpp" line="310"/>
         <source>Rivers</source>
         <translation>Joet</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="305"/>
+        <location filename="../../src/MenuBar.cpp" line="310"/>
         <source>Show rivers</source>
         <translation>Näytä joet</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="315"/>
+        <location filename="../../src/MenuBar.cpp" line="320"/>
         <source>Level 5</source>
         <translation>Taso 5</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="317"/>
+        <location filename="../../src/MenuBar.cpp" line="322"/>
         <source>Find a city...</source>
         <translation>Etsi kaupunki ...</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="318"/>
+        <location filename="../../src/MenuBar.cpp" line="323"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="320"/>
+        <location filename="../../src/MenuBar.cpp" line="325"/>
         <source>METAR: show stations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="320"/>
+        <location filename="../../src/MenuBar.cpp" line="325"/>
         <source>Ctrl+K</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="320"/>
+        <location filename="../../src/MenuBar.cpp" line="325"/>
         <source>Display METAR stations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="321"/>
+        <location filename="../../src/MenuBar.cpp" line="326"/>
         <source>METAR: select stations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="321"/>
+        <location filename="../../src/MenuBar.cpp" line="326"/>
         <source>Select METAR stations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="321"/>
+        <location filename="../../src/MenuBar.cpp" line="326"/>
         <source>Ctrl+Shift+K</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="325"/>
-        <location filename="../../src/MenuBar.cpp" line="326"/>
+        <location filename="../../src/MenuBar.cpp" line="330"/>
+        <location filename="../../src/MenuBar.cpp" line="331"/>
         <source>Increase map scale</source>
         <translation>Kasvata kartan mittakaavaa [+]</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="328"/>
-        <location filename="../../src/MenuBar.cpp" line="329"/>
+        <location filename="../../src/MenuBar.cpp" line="333"/>
+        <location filename="../../src/MenuBar.cpp" line="334"/>
         <source>Reduce map scale</source>
         <translation>Vähennä kartan mittakaavaa [-]</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="335"/>
-        <location filename="../../src/MenuBar.cpp" line="336"/>
+        <location filename="../../src/MenuBar.cpp" line="340"/>
+        <location filename="../../src/MenuBar.cpp" line="341"/>
         <source>Show whole map</source>
         <translation>Näytä koko kartta</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="339"/>
+        <location filename="../../src/MenuBar.cpp" line="344"/>
         <source>Left</source>
         <translation>Vasen</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="339"/>
+        <location filename="../../src/MenuBar.cpp" line="344"/>
         <source>LEFT</source>
         <translation>VASEN</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="340"/>
-        <location filename="../../src/MenuBar.cpp" line="343"/>
-        <location filename="../../src/MenuBar.cpp" line="346"/>
-        <location filename="../../src/MenuBar.cpp" line="349"/>
+        <location filename="../../src/MenuBar.cpp" line="345"/>
+        <location filename="../../src/MenuBar.cpp" line="348"/>
+        <location filename="../../src/MenuBar.cpp" line="351"/>
+        <location filename="../../src/MenuBar.cpp" line="354"/>
         <source>Move</source>
         <translation>Siirrä</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="342"/>
+        <location filename="../../src/MenuBar.cpp" line="347"/>
         <source>Right</source>
         <translation>Oikea</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="342"/>
+        <location filename="../../src/MenuBar.cpp" line="347"/>
         <source>RIGHT</source>
         <translation>OIKEA</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="345"/>
+        <location filename="../../src/MenuBar.cpp" line="350"/>
         <source>Top</source>
         <translation>Ylös</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="345"/>
+        <location filename="../../src/MenuBar.cpp" line="350"/>
         <source>UP</source>
         <translation>YLÖS</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="348"/>
+        <location filename="../../src/MenuBar.cpp" line="353"/>
         <source>Down</source>
         <translation>Alas</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="348"/>
+        <location filename="../../src/MenuBar.cpp" line="353"/>
         <source>DOWN</source>
         <translation>ALAS</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="358"/>
+        <location filename="../../src/MenuBar.cpp" line="363"/>
         <source>Waves arrows</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="360"/>
+        <location filename="../../src/MenuBar.cpp" line="365"/>
         <source>Maximum wave</source>
         <translation type="unfinished">Maksimiaalto</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="361"/>
+        <location filename="../../src/MenuBar.cpp" line="366"/>
         <source>Swell</source>
         <translation type="unfinished">Merenkäynti</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="362"/>
+        <location filename="../../src/MenuBar.cpp" line="367"/>
         <source>Wind wave</source>
         <translation type="unfinished">Tuulen aiheuttama aalto</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="363"/>
+        <location filename="../../src/MenuBar.cpp" line="368"/>
         <source>Primary wave</source>
         <translation type="unfinished">Primääriaalto</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="364"/>
+        <location filename="../../src/MenuBar.cpp" line="369"/>
         <source>Secondary wave</source>
         <translation type="unfinished">Toissijainen aalto</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="409"/>
+        <location filename="../../src/MenuBar.cpp" line="414"/>
         <source>Click to Pan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="409"/>
-        <location filename="../../src/MenuBar.cpp" line="457"/>
+        <location filename="../../src/MenuBar.cpp" line="414"/>
+        <location filename="../../src/MenuBar.cpp" line="472"/>
         <source>Toggle click to pan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="426"/>
+        <location filename="../../src/MenuBar.cpp" line="431"/>
         <source>Run XyGrib Maintenance Tool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="427"/>
+        <location filename="../../src/MenuBar.cpp" line="432"/>
         <source>To add, update or remove XyGrib components</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="459"/>
+        <location filename="../../src/MenuBar.cpp" line="463"/>
+        <source>Show Model Limits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="474"/>
         <source>Toggle click to select</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="498"/>
+        <location filename="../../src/MenuBar.cpp" line="513"/>
         <source>SkewT-LogP diagram</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="130"/>
-        <location filename="../../src/MenuBar.cpp" line="390"/>
+        <location filename="../../src/MenuBar.cpp" line="395"/>
         <source>Options</source>
         <translation>Vaihtoehdot</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="398"/>
+        <location filename="../../src/MenuBar.cpp" line="403"/>
         <source>Date selector</source>
         <translation>Päiväyksen valinta</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="400"/>
+        <location filename="../../src/MenuBar.cpp" line="405"/>
         <source>Units</source>
         <translation>Yksiköt</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="400"/>
+        <location filename="../../src/MenuBar.cpp" line="405"/>
         <source>Ctrl+U</source>
         <translation>Ctrl+U</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="402"/>
+        <location filename="../../src/MenuBar.cpp" line="407"/>
         <source>Fonts</source>
         <translation>Fontit</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="402"/>
+        <location filename="../../src/MenuBar.cpp" line="407"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="414"/>
+        <location filename="../../src/MenuBar.cpp" line="419"/>
         <source>Language</source>
         <translation>Kieli</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="417"/>
-        <location filename="../../src/MenuBar.cpp" line="420"/>
+        <location filename="../../src/MenuBar.cpp" line="422"/>
+        <location filename="../../src/MenuBar.cpp" line="425"/>
         <source>Help</source>
         <translation>Apua</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="420"/>
+        <location filename="../../src/MenuBar.cpp" line="425"/>
         <source>Ctrl+H</source>
         <translation>Ctrl+H</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="100"/>
+        <location filename="../../src/MenuBar.cpp" line="105"/>
         <source>Quit</source>
         <translation>Lopeta</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="83"/>
+        <location filename="../../src/MenuBar.cpp" line="88"/>
         <source>Download</source>
         <translation>Lataa</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="97"/>
+        <location filename="../../src/MenuBar.cpp" line="102"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="160"/>
+        <location filename="../../src/MenuBar.cpp" line="165"/>
         <source>Surface</source>
         <translation>Pinta</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="357"/>
+        <location filename="../../src/MenuBar.cpp" line="362"/>
         <source>Whitecap probability</source>
         <translation>Vaahtopäiden todennäköisyys</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="193"/>
+        <location filename="../../src/MenuBar.cpp" line="198"/>
         <source>Show Low (L) and Hight (H) pressure points</source>
         <translation>Näytä matalan (L) ja korkean (H) paineen pisteet</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="79"/>
+        <location filename="../../src/MenuBar.cpp" line="84"/>
         <source>Open a new xyGrib instance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="111"/>
-        <location filename="../../src/MenuBar.cpp" line="126"/>
+        <location filename="../../src/MenuBar.cpp" line="116"/>
+        <location filename="../../src/MenuBar.cpp" line="131"/>
         <source>Temperature</source>
         <translation>Lämpötila</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="126"/>
+        <location filename="../../src/MenuBar.cpp" line="131"/>
         <source>Ctrl+T</source>
         <translation>Ctrl+T</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="306"/>
+        <location filename="../../src/MenuBar.cpp" line="311"/>
         <source>Countries names</source>
         <translation>Maannimet</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="306"/>
+        <location filename="../../src/MenuBar.cpp" line="311"/>
         <source>Display countries names</source>
         <translation>Näytä maannimet</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="308"/>
+        <location filename="../../src/MenuBar.cpp" line="313"/>
         <source>Cities names</source>
         <translation>Kaupunkien nimet</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="310"/>
-        <location filename="../../src/MenuBar.cpp" line="359"/>
+        <location filename="../../src/MenuBar.cpp" line="315"/>
+        <location filename="../../src/MenuBar.cpp" line="364"/>
         <source>None</source>
         <translation>Ei-mitään</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="311"/>
+        <location filename="../../src/MenuBar.cpp" line="316"/>
         <source>Level 1</source>
         <translation>Taso 1</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="312"/>
+        <location filename="../../src/MenuBar.cpp" line="317"/>
         <source>Level 2</source>
         <translation>Taso 2</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="313"/>
+        <location filename="../../src/MenuBar.cpp" line="318"/>
         <source>Level 3</source>
         <translation>Taso 3</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="314"/>
+        <location filename="../../src/MenuBar.cpp" line="319"/>
         <source>Level 4</source>
         <translation>Taso 4</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="331"/>
+        <location filename="../../src/MenuBar.cpp" line="336"/>
         <source>Zoom (selected zone or Grib file)</source>
         <translation>Zoomaa (valitulle kaistalle tai GRIB tiedostolle)</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="331"/>
+        <location filename="../../src/MenuBar.cpp" line="336"/>
         <source>Ctrl+Z</source>
         <translation>Ctrl+Z</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="332"/>
+        <location filename="../../src/MenuBar.cpp" line="337"/>
         <source>Zoom on the selected zone or on the Grib file area</source>
         <translation>Zoomaa valitulle kaistalle tai GRIB tiedoston alueelle</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="444"/>
+        <location filename="../../src/MenuBar.cpp" line="449"/>
         <source>Last forecast [page up]</source>
         <translation>Edellinen ennuste [PgUp]</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="444"/>
+        <location filename="../../src/MenuBar.cpp" line="449"/>
         <source>PgUp</source>
         <translation>PgUp</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="446"/>
+        <location filename="../../src/MenuBar.cpp" line="451"/>
         <source>Next forecast [page down]</source>
         <translation>Seuraava ennnuste [PgDown]</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="446"/>
+        <location filename="../../src/MenuBar.cpp" line="451"/>
         <source>PgDown</source>
         <translation>PgDown</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="298"/>
+        <location filename="../../src/MenuBar.cpp" line="303"/>
         <source>Great circle distance</source>
         <translation>Isoympyrä etäisyydet</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="109"/>
+        <location filename="../../src/MenuBar.cpp" line="114"/>
         <source>Cloud cover</source>
         <translation>Pilvipeite</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="422"/>
+        <location filename="../../src/MenuBar.cpp" line="427"/>
         <source>About XyGrib</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="423"/>
+        <location filename="../../src/MenuBar.cpp" line="428"/>
         <source>Check for updates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="496"/>
+        <location filename="../../src/MenuBar.cpp" line="511"/>
         <source>Meteotable</source>
         <translation>Meteotable</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="497"/>
+        <location filename="../../src/MenuBar.cpp" line="512"/>
         <source>Mark Point Of Interest</source>
         <translation>Merkitse Kiinnostava paikka</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="429"/>
+        <location filename="../../src/MenuBar.cpp" line="434"/>
         <source>About QT</source>
         <translation>Tietojar QT</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="318"/>
+        <location filename="../../src/MenuBar.cpp" line="323"/>
         <source>Point of interest</source>
         <translation>Kiinnostava paikka</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="318"/>
+        <location filename="../../src/MenuBar.cpp" line="323"/>
         <source>Display Points of interest</source>
         <translation>Näytä Kiinnostavat paikat</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="82"/>
+        <location filename="../../src/MenuBar.cpp" line="87"/>
         <source>Ctrl+D</source>
         <translation>Ctrl+D</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="407"/>
+        <location filename="../../src/MenuBar.cpp" line="412"/>
         <source>Graphical parameters</source>
         <translation>Graafiset parametrit</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="85"/>
+        <location filename="../../src/MenuBar.cpp" line="90"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="86"/>
+        <location filename="../../src/MenuBar.cpp" line="91"/>
         <source>GRIB file server status</source>
         <translation>GRIB tiedostojen palvelimen tila</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="94"/>
+        <location filename="../../src/MenuBar.cpp" line="99"/>
         <source>Create animation</source>
         <translation>Muodosta animaatio</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="94"/>
+        <location filename="../../src/MenuBar.cpp" line="99"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="95"/>
+        <location filename="../../src/MenuBar.cpp" line="100"/>
         <source>Create animation with GRIB data</source>
         <translation>Muodosta animaatio GRIB tiedoista</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="279"/>
+        <location filename="../../src/MenuBar.cpp" line="284"/>
         <source>Map quality</source>
         <translation>Kartan laatu</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="283"/>
+        <location filename="../../src/MenuBar.cpp" line="288"/>
         <source>Resolution 3 (1 km)</source>
         <translation>Resoluutio 3 (1 km)</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="288"/>
+        <location filename="../../src/MenuBar.cpp" line="293"/>
         <source>Projection</source>
         <translation>Projektio</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="290"/>
+        <location filename="../../src/MenuBar.cpp" line="295"/>
         <source>ZyGrib</source>
         <translation>ZyGrib</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="291"/>
+        <location filename="../../src/MenuBar.cpp" line="296"/>
         <source>Mercator</source>
         <translation>Merkator</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="292"/>
+        <location filename="../../src/MenuBar.cpp" line="297"/>
         <source>Miller</source>
         <translation>Miller</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="293"/>
+        <location filename="../../src/MenuBar.cpp" line="298"/>
         <source>Central Cylindric</source>
         <translation>Central Cylindric</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="112"/>
+        <location filename="../../src/MenuBar.cpp" line="117"/>
         <source>Gap temperature-dew point</source>
         <translation>Lämpötilan ja kastepisteen erotus</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="196"/>
+        <location filename="../../src/MenuBar.cpp" line="201"/>
         <source>Isotherms 0°C</source>
         <translation type="unfinished">Isotherme 0°C</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="201"/>
-        <location filename="../../src/MenuBar.cpp" line="249"/>
+        <location filename="../../src/MenuBar.cpp" line="206"/>
+        <location filename="../../src/MenuBar.cpp" line="254"/>
         <source>20</source>
         <translation>20</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="202"/>
-        <location filename="../../src/MenuBar.cpp" line="250"/>
+        <location filename="../../src/MenuBar.cpp" line="207"/>
+        <location filename="../../src/MenuBar.cpp" line="255"/>
         <source>50</source>
         <translation>50</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="203"/>
-        <location filename="../../src/MenuBar.cpp" line="251"/>
+        <location filename="../../src/MenuBar.cpp" line="208"/>
+        <location filename="../../src/MenuBar.cpp" line="256"/>
         <source>100</source>
         <translation>100</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="204"/>
+        <location filename="../../src/MenuBar.cpp" line="209"/>
         <source>200</source>
         <translation>200</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="205"/>
+        <location filename="../../src/MenuBar.cpp" line="210"/>
         <source>500</source>
         <translation>500</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="206"/>
+        <location filename="../../src/MenuBar.cpp" line="211"/>
         <source>1000</source>
         <translation>1000</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="207"/>
+        <location filename="../../src/MenuBar.cpp" line="212"/>
         <source>Isotherms 0°C labels</source>
         <translation>Isotermien 0°C nimiöt</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="294"/>
+        <location filename="../../src/MenuBar.cpp" line="299"/>
         <source>Equal cylindric</source>
         <translation>Equal cylindric</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="325"/>
+        <location filename="../../src/MenuBar.cpp" line="330"/>
         <source>+</source>
         <translation>+</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="328"/>
+        <location filename="../../src/MenuBar.cpp" line="333"/>
         <source>-</source>
         <translation>-</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="335"/>
+        <location filename="../../src/MenuBar.cpp" line="340"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="139"/>
+        <location filename="../../src/MenuBar.cpp" line="144"/>
         <source>Ctrl+F</source>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="281"/>
+        <location filename="../../src/MenuBar.cpp" line="286"/>
         <source>Resolution 1 (25 km)</source>
         <translation>Resolutio 1 (25 km)</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="282"/>
+        <location filename="../../src/MenuBar.cpp" line="287"/>
         <source>Resolution 2 (5 km)</source>
         <translation>Resolutio 2 (5 km)</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="284"/>
+        <location filename="../../src/MenuBar.cpp" line="289"/>
         <source>Resolution 4 (200 m)</source>
         <translation>Resolutio 4 (200 m)</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="285"/>
+        <location filename="../../src/MenuBar.cpp" line="290"/>
         <source>Resolution 5 (100 m)</source>
         <translation>Resolutio 5 (100 m)</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="82"/>
+        <location filename="../../src/MenuBar.cpp" line="87"/>
         <source>Download GRIB</source>
         <translation>Lataa GRIB</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="85"/>
+        <location filename="../../src/MenuBar.cpp" line="90"/>
         <source>GRIB server status</source>
         <translation>GRIB palvelimen tila</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="114"/>
+        <location filename="../../src/MenuBar.cpp" line="119"/>
         <source>Snow (depth)</source>
         <translation>Lumen syvyys</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="113"/>
+        <location filename="../../src/MenuBar.cpp" line="118"/>
         <source>Snow (snowfall possible)</source>
         <translation>Lunta (lumisateen mahdollisuus)</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="115"/>
+        <location filename="../../src/MenuBar.cpp" line="120"/>
         <source>Frozen rain (rainfall possible)</source>
         <translation>Jäätävä sade (sade mahdollinen)</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="135"/>
+        <location filename="../../src/MenuBar.cpp" line="140"/>
         <source>Duplicate first cumulative record</source>
         <translation>Lukuisat puuttuvat aaltotiedot</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="137"/>
+        <location filename="../../src/MenuBar.cpp" line="142"/>
         <source>Numerical data interpolation</source>
         <translation>Numeerisen tiedon interpolointi</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="146"/>
+        <location filename="../../src/MenuBar.cpp" line="151"/>
         <source>Wind arrows on Grib grid</source>
         <translation>Tuulinuolet GRIB ruudukkoon</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="151"/>
+        <location filename="../../src/MenuBar.cpp" line="156"/>
         <source>Show Grib grid</source>
         <translation>Näytä GRIB ruudukko</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="396"/>
+        <location filename="../../src/MenuBar.cpp" line="401"/>
         <source>Angle converter</source>
         <translation>Aste muunnin</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="299"/>
+        <location filename="../../src/MenuBar.cpp" line="304"/>
         <source>Longitudes-latitudes grid</source>
         <translation>Longituudi-latituudi ruudukko</translation>
     </message>
@@ -4664,126 +4579,126 @@ Oletko varma ?</translation>
 <context>
     <name>Util</name>
     <message>
-        <location filename="../../src/util/Util.cpp" line="257"/>
-        <location filename="../../src/util/Util.cpp" line="394"/>
+        <location filename="../../src/util/Util.cpp" line="262"/>
+        <location filename="../../src/util/Util.cpp" line="399"/>
         <source>°</source>
         <translation>°</translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="179"/>
-        <location filename="../../src/util/Util.cpp" line="193"/>
-        <location filename="../../src/util/Util.cpp" line="202"/>
-        <location filename="../../src/util/Util.cpp" line="210"/>
-        <location filename="../../src/util/Util.cpp" line="219"/>
-        <location filename="../../src/util/Util.cpp" line="356"/>
+        <location filename="../../src/util/Util.cpp" line="184"/>
+        <location filename="../../src/util/Util.cpp" line="198"/>
+        <location filename="../../src/util/Util.cpp" line="207"/>
+        <location filename="../../src/util/Util.cpp" line="215"/>
+        <location filename="../../src/util/Util.cpp" line="224"/>
+        <location filename="../../src/util/Util.cpp" line="361"/>
         <source>°C</source>
         <translation>°C</translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="180"/>
-        <location filename="../../src/util/Util.cpp" line="195"/>
-        <location filename="../../src/util/Util.cpp" line="212"/>
+        <location filename="../../src/util/Util.cpp" line="185"/>
+        <location filename="../../src/util/Util.cpp" line="200"/>
+        <location filename="../../src/util/Util.cpp" line="217"/>
         <source>°K</source>
         <translation>°K</translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="183"/>
-        <location filename="../../src/util/Util.cpp" line="198"/>
-        <location filename="../../src/util/Util.cpp" line="215"/>
+        <location filename="../../src/util/Util.cpp" line="188"/>
+        <location filename="../../src/util/Util.cpp" line="203"/>
+        <location filename="../../src/util/Util.cpp" line="220"/>
         <source>°F</source>
         <translation>°F</translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="234"/>
-        <location filename="../../src/util/Util.cpp" line="245"/>
-        <location filename="../../src/util/Util.cpp" line="362"/>
+        <location filename="../../src/util/Util.cpp" line="239"/>
+        <location filename="../../src/util/Util.cpp" line="250"/>
+        <location filename="../../src/util/Util.cpp" line="367"/>
         <source>km/h</source>
         <translation>km/h</translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="230"/>
+        <location filename="../../src/util/Util.cpp" line="235"/>
         <source>m/s</source>
         <translation>m/s</translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="238"/>
-        <location filename="../../src/util/Util.cpp" line="251"/>
-        <location filename="../../src/util/Util.cpp" line="366"/>
+        <location filename="../../src/util/Util.cpp" line="243"/>
+        <location filename="../../src/util/Util.cpp" line="256"/>
+        <location filename="../../src/util/Util.cpp" line="371"/>
         <source>kts</source>
         <translation>kts</translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="265"/>
-        <location filename="../../src/util/Util.cpp" line="268"/>
+        <location filename="../../src/util/Util.cpp" line="270"/>
+        <location filename="../../src/util/Util.cpp" line="273"/>
         <source>km</source>
         <translation>km</translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="335"/>
+        <location filename="../../src/util/Util.cpp" line="340"/>
         <source>dam</source>
         <translation>dam</translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="338"/>
+        <location filename="../../src/util/Util.cpp" line="343"/>
         <source>ft</source>
         <translation>ft</translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="341"/>
-        <location filename="../../src/util/Util.cpp" line="374"/>
-        <location filename="../../src/util/Util.cpp" line="375"/>
-        <location filename="../../src/util/Util.cpp" line="387"/>
-        <location filename="../../src/util/Util.cpp" line="493"/>
-        <location filename="../../src/util/Util.cpp" line="496"/>
-        <location filename="../../src/util/Util.cpp" line="531"/>
-        <location filename="../../src/util/Util.cpp" line="534"/>
+        <location filename="../../src/util/Util.cpp" line="346"/>
+        <location filename="../../src/util/Util.cpp" line="379"/>
+        <location filename="../../src/util/Util.cpp" line="380"/>
+        <location filename="../../src/util/Util.cpp" line="392"/>
+        <location filename="../../src/util/Util.cpp" line="498"/>
+        <location filename="../../src/util/Util.cpp" line="501"/>
+        <location filename="../../src/util/Util.cpp" line="536"/>
+        <location filename="../../src/util/Util.cpp" line="539"/>
         <source>m</source>
         <translation>m</translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="369"/>
+        <location filename="../../src/util/Util.cpp" line="374"/>
         <source>J/kg</source>
         <translation>J/kg</translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="372"/>
+        <location filename="../../src/util/Util.cpp" line="377"/>
         <source>dBZ</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="376"/>
+        <location filename="../../src/util/Util.cpp" line="381"/>
         <source>cm</source>
         <translation>cm</translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="380"/>
+        <location filename="../../src/util/Util.cpp" line="385"/>
         <source>mm/h</source>
         <translation>mm/h</translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="382"/>
+        <location filename="../../src/util/Util.cpp" line="387"/>
         <source>hPa</source>
         <translation>hPa</translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="400"/>
-        <location filename="../../src/util/Util.cpp" line="513"/>
+        <location filename="../../src/util/Util.cpp" line="405"/>
+        <location filename="../../src/util/Util.cpp" line="518"/>
         <source>s</source>
         <translation>s</translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="402"/>
+        <location filename="../../src/util/Util.cpp" line="407"/>
         <source>%</source>
         <translation>%</translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="554"/>
-        <location filename="../../src/util/Util.cpp" line="567"/>
+        <location filename="../../src/util/Util.cpp" line="559"/>
+        <location filename="../../src/util/Util.cpp" line="572"/>
         <source>dd°mm&apos;ss&quot;</source>
         <translation>dd°mm&apos;ss&quot;</translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="557"/>
+        <location filename="../../src/util/Util.cpp" line="562"/>
         <source>dd°mm,mm&apos;</source>
         <translation>dd°mm,mm&apos;</translation>
     </message>

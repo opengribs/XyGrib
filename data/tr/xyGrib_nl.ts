@@ -2046,7 +2046,7 @@
     </message>
     <message>
         <source>Temperature</source>
-        <translation>Temperatuur</translation>
+        <translation type="vanished">Temperatuur</translation>
     </message>
     <message>
         <source>Geopotential</source>
@@ -2067,6 +2067,10 @@
     <message>
         <source>XyGrib</source>
         <translation></translation>
+    </message>
+    <message>
+        <source>Temperature label</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2969,6 +2973,14 @@
     </message>
     <message>
         <source>To add, update or remove XyGrib components</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Weather Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Model Limits</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
