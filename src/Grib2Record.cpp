@@ -534,7 +534,7 @@ int Grib2Record::analyseProductType ()
 		}
         // added by david
         else if (paramcat==16) {//TABLE 4.2-0-16
-            if (paramnumber==5)
+            if (paramnumber==5 || paramnumber==196)
                 return GRB_COMP_REFL;
         }
 	}
