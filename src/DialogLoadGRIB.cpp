@@ -361,6 +361,7 @@ void DialogLoadGRIB::updateParameters ()
 {
     double tmp, xm, ym;
 
+    // use locale to extract values - helps deal with comma as decimal symbol
     QLocale l =  QLocale();
     ymax = l.toDouble(sbNorth->cleanText());
     ymin = l.toDouble(sbSouth->cleanText());
