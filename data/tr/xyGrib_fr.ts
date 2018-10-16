@@ -2642,7 +2642,7 @@
     <message>
         <location filename="../../src/MapDrawer.cpp" line="659"/>
         <source>Temperature label</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiquette des températures</translation>
     </message>
     <message>
         <source>Temperature</source>
@@ -3070,7 +3070,7 @@
     <message>
         <location filename="../../src/MenuBar.cpp" line="135"/>
         <source>Weather Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Options présentation graphique</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="153"/>
@@ -3381,7 +3381,7 @@
     <message>
         <location filename="../../src/MenuBar.cpp" line="463"/>
         <source>Show Model Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher la zone couverte du modèle</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="513"/>
