@@ -126,26 +126,31 @@ if(WIN32)
         NAME "libproj.a"
         PATHS
         $ENV{EXTERNLIBS}/lib
+         /opt/lib
         REQUIRED
     )
     find_path(PROJ4_INCLUDE_DIRS
          NAMES "proj_api.h"
          PATHS
          $ENV{EXTERNLIBS}/include
+         /opt/include
          REQUIRED
      )
 endif()
 if(WIN32)
+    message(STATUS "Search WIN32 BZIP2")
     find_library(BZIP2_LIBRARIES
         NAME "libbz2.a"
         PATHS
         $ENV{EXTERNLIBS}/lib
+         /opt/lib
         REQUIRED
     )
     find_path(BZIP2_INCLUDE_DIR
          NAMES "bzlib.h"
          PATHS
          $ENV{EXTERNLIBS}/include
+         /opt/include
          REQUIRED
      )
 else()
@@ -158,12 +163,14 @@ if(WIN32)
         NAME "libz.a"
         PATHS
         $ENV{EXTERNLIBS}/lib
+        /opt/lib
         REQUIRED
     )
     find_path(ZLIB_INCLUDE_DIR
          NAMES "zlib.h"
          PATHS
          $ENV{EXTERNLIBS}/include
+         /opt/include
          REQUIRED
      )
 else()
@@ -177,12 +184,14 @@ if(WIN32)
         NAME "libpng.a"
         PATHS
         $ENV{EXTERNLIBS}/lib
+        /opt/lib
         REQUIRED
     )
     find_path(PNG_INCLUDE_DIR
          NAMES "png.h"
          PATHS
          $ENV{EXTERNLIBS}/include
+         /opt/include
          REQUIRED
      )
 else()

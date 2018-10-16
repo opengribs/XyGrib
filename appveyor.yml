@@ -1,0 +1,97 @@
+clone_folder: c:\project\xygrib
+shallow_clone: true
+
+#branches:
+#  only:
+#    - master
+
+image:
+- Visual Studio 2015
+
+
+environment:
+
+  matrix:
+  - arch: 32
+    cc: MinGW
+    qt: 5.11.1
+    mode: release
+    QTDIR: C:\Qt\5.11.1\mingw53_32
+
+matrix:
+  fast_finish: false
+
+cache:
+  - Xygrib
+
+init:
+  - set vcarch=%arch%
+  - if "%arch%" == "x64" set vcarch=amd64
+  - if %cc%==VS2017 (
+      call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" %vcarch%
+    ) else if not %cc%==MinGW (
+      call "C:\Program Files (x86)\Microsoft Visual Studio %toolchain_version%.0\VC\vcvarsall.bat" %vcarch%
+    )
+  - echo NUMBER_OF_PROCESSORS=%NUMBER_OF_PROCESSORS%
+  - echo PROCESSOR_IDENTIFIER=%PROCESSOR_IDENTIFIER%
+  - echo QTDIR=%QTDIR%
+  - echo CC=%cc%
+
+#  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+  
+#install:
+
+before_build:
+  - set PATH=C:\MinGW\bin;%QTDIR%\bin;%PATH%
+  # - dir C:\MinGW\bin
+  - mkdir thirdparty
+  - cd thirdparty
+  # - ps: Start-FileDownload http://195.154.231.142/IFREMER/thirdpartylib.zip
+  - ps: Start-FileDownload https://github.com/opengribs/Xygrib-lib/releases/download/1.0/thirdpartylib.zip
+  - mkdir c:\opt
+  - cmd: 7z x -y thirdpartylib.zip -oc:\opt
+  - cd ..
+  - set EXTERNLIBS="\opt"
+  - dir %EXTERNLIBS%
+  - #set PATH="C:\MinGW\bin;%QTDIR%\bin;C:\Program Files (x86)\CMake\bin;C:\Windows\system32;C:\Windows"
+  - if %cc%==MinGW set PATH=C:\Qt\Tools\mingw%toolchain_version%_32\bin;%PATH%
+  - echo PATH=%PATH%
+  
+#  - install dep
+  - mkdir build
+  - cd build
+  # CMake refuses to generate MinGW Makefiles if sh.exe is in the Path
+  - ps: Get-Command sh.exe -All | Remove-Item
+  - set CC=C:\MinGW\bin\gcc
+  - set CXX=C:\MinGW\bin\g++
+  
+  - cmake -G "MinGW Makefiles"  ..
+
+
+build_script:
+#  - cmake --build . --target package --config release
+  - cmake --build . --target all --config release
+#  - ..\tools\ci\win\build.bat
+
+after_build:
+#  - ..\tools\ci\win\deploy_win.bat
+
+on_finish:
+#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
+test: off
+
+artifacts:
+  - path: 'build/src/*.exe'  # relative to repo root
+
+deploy:
+  description: 'release created by AppVeyor CI'
+  provider: GitHub
+  auth_token: '%GitHub_auth_token%'
+  artifact: installer,lib
+  draft: true
+  prerelease: true
+  on:
+    appveyor_repo_tag: true # deploy on tag push only
+    configuration: Release  # Debug contains non-redist MS DLLs
+    cc: MinGW
