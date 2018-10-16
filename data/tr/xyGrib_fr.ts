@@ -1079,7 +1079,7 @@
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1256"/>
         <source>Wave Model :</source>
-        <translation>Modèle vagues :</translation>
+        <translation type="unfinished">Modèle océanique :</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1269"/>
