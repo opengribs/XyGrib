@@ -3381,7 +3381,7 @@
     <message>
         <location filename="../../src/MenuBar.cpp" line="463"/>
         <source>Show Model Limits</source>
-        <translation>Afficher la zone couverte du modèle</translation>
+        <translation>Afficher la zone couverte par le modèle</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="513"/>
