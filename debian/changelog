@@ -1,5 +1,5 @@
-xygrib (1.1.1-1) unstable; urgency=medium
+xygrib (1.1.2-1) unstable; urgency=medium
 
-  * Initial release 
+  * Release 1.1.2 
 
- -- Oleg Roitburd <oroitburd@gmail.com>  Tue, 10 Jul 2018 09:44:01 +0200
+ -- Oleg Roitburd <oroitburd@gmail.com>  Tue, 16 Oct 2018 09:44:01 +0200
