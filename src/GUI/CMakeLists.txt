@@ -32,7 +32,7 @@ TextStyleEditorWidget.cpp
 qt5_wrap_ui(gui_gen_srcs ${GUI_UI})
 qt5_wrap_cpp(gui_mocs ${GUI_SRCS} ${GUI_HDRS} ${gui_gen_srcs})
 
-add_library(gui ${GUI_SRCS} ${gui_gen_srcs} ${gui_mocs})
+add_library(gui STATIC ${GUI_SRCS} ${gui_gen_srcs} ${gui_mocs})
 
 set(GUI_GENERATED_HEADERS "${CMAKE_CURRENT_BINARY_DIR}" PARENT_SCOPE)
 # - AUTOUIC version: set(GUI_GENERATED_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/gui_autogen/include" PARENT_SCOPE)
