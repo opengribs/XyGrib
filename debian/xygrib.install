@@ -1,7 +1,7 @@
-data/colors /usr/share/xygrib/
-data/img /usr/share/xygrib/
-data/tr /usr/share/xygrib/
-data/fonts /usr/share/xygrib/
+data/colors /usr/share/openGribs/XyGrib/data/
+data/img /usr/share/openGribs/XyGrib/data/
+data/tr /usr/share/openGribs/XyGrib/data/
+data/fonts /usr/share/openGribs/XyGrib/data/
 debian/tmp/usr/XyGrib/XyGrib /usr/bin
 debian/xygrib.desktop /usr/share/applications
 debian/xygrib.png /usr/share/pixmaps

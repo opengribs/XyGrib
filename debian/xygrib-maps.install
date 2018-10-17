@@ -1,2 +1,2 @@
-data/maps/gshhs/* /usr/share/maps/gshhs
-data/gis/* /usr/share/maps/gis
+data/maps/gshhs/* /usr/share/openGribs/XyGrib/data/maps/gshhs
+data/gis/* /usr/share/openGribs/XyGrib/data/gis
