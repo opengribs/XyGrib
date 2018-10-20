@@ -465,7 +465,7 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
     cbModelRect->addItem("Arpege 0.1");
     cbModelRect->addItem("NAM CONUS");
     cbModelRect->addItem("NAM CACBN");
-    cbModelRect->addItem("NAM Hawai");
+    cbModelRect->addItem("NAM PACIFIC");
     cbModelRect->addItem("EWAM");
 
     acPanToggle = addActionCheck(nullptr,

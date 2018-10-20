@@ -103,8 +103,11 @@ void FileLoaderGRIB::getGribFile(
     if (wind) {
         parameters += "W;";
     }
-    if (pressure) {
+    if (pressure && atmModel != "ECMWF") {
         parameters += "P;";
+    }
+    if (pressure && atmModel == "ECMWF"){
+        parameters += "p;";
     }
     if (rain) {
         parameters += "R;";
@@ -185,6 +188,8 @@ void FileLoaderGRIB::getGribFile(
         amod = "icon_p25_";
     } else if (atmModel == "Arpege"){
         amod = "arpege_p50_";
+    } else if (atmModel == "ECMWF"){
+        amod = "ecmwf_p50_";
     } else if (atmModel == "None"){
         amod = "none";
     }
@@ -212,8 +217,9 @@ void FileLoaderGRIB::getGribFile(
 
 
 		QString phpfilename;
-        phpfilename = scriptpath+ "getmygribs.php?";
-		QString now = QTime::currentTime().toString("HHmmss");
+//        phpfilename = scriptpath+ "getmygribs.php?";
+        phpfilename = scriptpath+ "get2.php?";
+        QString now = QTime::currentTime().toString("HHmmss");
 //        QTextStream(&page) << phpfilename
 //                           << "model=" << amod
 //                           << "&la1=" << std::floor(y0)

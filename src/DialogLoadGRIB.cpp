@@ -449,11 +449,19 @@ void DialogLoadGRIB::slotAtmModelSettings()
         cbResolution->setMinimumWidth (60);
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4"<<"5"<<"6"<<"7"<<"8"<<"9"<<"10");
-        ind = Util::getSetting("downloadIndNbDays", 7).toInt();
+        ind = Util::getSetting("downloadIndNbDays", 9).toInt();
         ind = Util::inRange(ind, 0, cbDays->count()-1);
         cbDays->setCurrentIndex(ind);
-        cbRunCycle->clear();
         ind = 0;
+        cbInterval->clear();
+        cbInterval->addItems(QStringList()<< "3"<<"6"<<"12");
+        cbInterval->setMinimumWidth (0);
+        ind = Util::getSetting("downloadIndInterval", 0).toInt();
+        if (ind == 24) ind = 3;
+        ind = Util::inRange(ind, 0, cbInterval->count()-1);
+        cbInterval->setCurrentIndex(ind);
+        ind = 0;
+        cbRunCycle->clear();
         cbRunCycle->insertItem (ind++, tr("Last"), "last");
         cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
         cbRunCycle->insertItem (ind++, tr("6 hr"), "06");
@@ -500,6 +508,14 @@ void DialogLoadGRIB::slotAtmModelSettings()
         ind = Util::inRange(ind, 0, cbDays->count()-1);
         cbDays->setCurrentIndex(ind);
         ind = 0;
+        cbInterval->clear();
+        cbInterval->addItems(QStringList()<< "3"<<"6"<<"12");
+        cbInterval->setMinimumWidth (0);
+        ind = Util::getSetting("downloadIndInterval", 0).toInt();
+        if (ind == 24) ind = 3;
+        ind = Util::inRange(ind, 0, cbInterval->count()-1);
+        cbInterval->setCurrentIndex(ind);
+        ind = 0;
         cbRunCycle->clear();
         cbRunCycle->insertItem (ind++, tr("Last"), "last");
         cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
@@ -543,9 +559,17 @@ void DialogLoadGRIB::slotAtmModelSettings()
         cbResolution->setMinimumWidth (60);
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4");
-        ind = Util::getSetting("downloadIndNbDays", 7).toInt();
+        ind = Util::getSetting("downloadIndNbDays", 3).toInt();
         ind = Util::inRange(ind, 0, cbDays->count()-1);
         cbDays->setCurrentIndex(ind);
+        ind = 0;
+        cbInterval->clear();
+        cbInterval->addItems(QStringList()<< "3"<<"6"<<"12");
+        cbInterval->setMinimumWidth (0);
+        ind = Util::getSetting("downloadIndInterval", 0).toInt();
+        if (ind == 24) ind = 3;
+        ind = Util::inRange(ind, 0, cbInterval->count()-1);
+        cbInterval->setCurrentIndex(ind);
         ind = 0;
         cbRunCycle->clear();
         cbRunCycle->insertItem (ind++, tr("Last"), "last");
@@ -575,6 +599,62 @@ void DialogLoadGRIB::slotAtmModelSettings()
         chkAltitude_SkewT->setEnabled(true);
 
         // deactivate unvalid parameters
+        chkSnowCateg->setEnabled(false); chkSnowCateg->setChecked(false);
+        chkFrzRainCateg->setEnabled(false); chkFrzRainCateg->setChecked(false);
+        chkCINsfc->setEnabled(false); chkCINsfc->setChecked(false);
+        chkIsotherm0->setEnabled(false); chkIsotherm0->setChecked(false);
+        chkSnowDepth->setEnabled(false); chkSnowDepth->setChecked(false);
+
+    }
+
+    else if (amod == "ECMWF")
+    {
+        cbResolution->clear();
+        cbResolution->addItem("0.5");
+        cbResolution->setMinimumWidth (60);
+        cbDays->clear();
+        cbDays->addItems(QStringList()<<"1"<<"2"<<"3"<<"4"<<"5"<<"6"<<"7"<<"8"<<"9"<<"10");
+        ind = Util::getSetting("downloadIndNbDays", 9).toInt();
+        ind = Util::inRange(ind, 0, cbDays->count()-1);
+        cbDays->setCurrentIndex(ind);
+        ind = 0;
+
+        cbInterval->clear();
+        cbInterval->addItems(QStringList()<< "24");
+//        cbInterval->setMinimumWidth (sizemin);
+//        ind = Util::getSetting("downloadIndInterval", 0).toInt();
+//        ind = Util::inRange(ind, 0, cbInterval->count()-1);
+        cbInterval->setCurrentIndex(0);
+
+//        ind = 0;
+        cbRunCycle->clear();
+        cbRunCycle->insertItem (ind++, tr("Last"), "last");
+        cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
+        cbRunCycle->insertItem (ind++, tr("12 hr"), "12");
+
+        // reactivate what might have been off
+        chkPressure->setEnabled(true);
+
+        chkAltitude200->setEnabled(false);
+        chkAltitude300->setEnabled(false);
+        chkAltitude400->setEnabled(false);
+        chkAltitude500->setEnabled(true);
+        chkAltitude600->setEnabled(false);
+        chkAltitude700->setEnabled(false);
+        chkAltitude850->setEnabled(true);
+        chkAltitude925->setEnabled(false);
+
+        chkAltitude_All->setEnabled(false);
+        chkAltitude_SkewT->setEnabled(false);
+
+        // deactivate unvalid parameters
+        chkWind->setEnabled(false); chkWind->setChecked(false);
+        chkGUSTsfc->setEnabled(false); chkGUSTsfc->setChecked(false);
+        chkTemp->setEnabled(false); chkTemp->setChecked(false);
+        chkCAPEsfc->setEnabled(false); chkCAPEsfc->setChecked(false);
+        chkCloud->setEnabled(false); chkCloud->setChecked(false);
+        chkHumid->setEnabled(false); chkHumid->setChecked(false);
+        chkRain->setEnabled(false); chkRain->setChecked(false);
         chkSnowCateg->setEnabled(false); chkSnowCateg->setChecked(false);
         chkFrzRainCateg->setEnabled(false); chkFrzRainCateg->setChecked(false);
         chkCINsfc->setEnabled(false); chkCINsfc->setChecked(false);
@@ -800,7 +880,10 @@ void DialogLoadGRIB::slotParameterUpdated ()
 	if (chkAltitude925->isChecked()) nbalt++;
 
     nbits = 12;
-    estimate += nbrec*nbalt*5*(head+(nbits*npts)/8+2 );
+    if (atmosphericModel == "ECMWF")
+        estimate += nbrec*nbalt*2*(head+(nbits*npts)/8+2 );
+    else
+        estimate += nbrec*nbalt*5*(head+(nbits*npts)/8+2 );
 	
 	int nbskewt = 0;
 	if (chkAltitude_SkewT->isChecked())
@@ -1035,7 +1118,7 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
     //model combobox
     cbModel = new QComboBox(this);
     assert(cbModel);
-    cbModel->addItems(QStringList()<< tr("None") << "GFS"<< "ICON" << "Arpege"  );
+    cbModel->addItems(QStringList()<< tr("None") << "GFS"<< "ICON" << "Arpege" << "ECMWF"  );
     cbModel->setMinimumWidth (sizemin);
     ind = Util::getSetting("downloadIndModel", 0).toInt();
     ind = Util::inRange(ind, 0, cbModel->count()-1);

@@ -1462,7 +1462,7 @@ void MainWindow::slotModelRectChanged(int sel)
                               modelRectangles[sel-1][2],
                               modelRectangles[sel-1][3]);
         terre->showSpecialZone(true);
-        terre->slotMustRedraw();
+        this->repaint();
     }
 }
 //-----------------------------------------------
