@@ -66,8 +66,12 @@ void FontSelector::btdefaultClicked()
 void FontSelector::btfontClicked()
 {
 	bool ok;
-	QFont newfont = QFontDialog::getFont (&ok, font, this, tr("Choose a font"));
-	if (ok) {
+ #if defined (Q_OS_MACOS)
+    QFont newfont = QFontDialog::getFont (&ok, font, this, tr("Choose a font"),QFontDialog::DontUseNativeDialog);
+#else
+    QFont newfont = QFontDialog::getFont (&ok, font, this, tr("Choose a font"));
+#endif
+    if (ok) {
 		font = newfont;
 		QString txt = font.family()+ QString(" %1"). arg(font.pointSize());
 		btfont->setFont (font);
