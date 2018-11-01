@@ -768,87 +768,87 @@
 <context>
     <name>DialogFonts</name>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="82"/>
+        <location filename="../../src/DialogFonts.cpp" line="86"/>
         <source>Fonts</source>
         <translation>Шрифты</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="107"/>
+        <location filename="../../src/DialogFonts.cpp" line="111"/>
         <source>Ok</source>
         <translation>ОК</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="108"/>
+        <location filename="../../src/DialogFonts.cpp" line="112"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="153"/>
+        <location filename="../../src/DialogFonts.cpp" line="157"/>
         <source>Main font</source>
         <translation>Основной шрифт</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="158"/>
+        <location filename="../../src/DialogFonts.cpp" line="162"/>
         <source>Dates list</source>
         <translation>Списки датам</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="163"/>
+        <location filename="../../src/DialogFonts.cpp" line="167"/>
         <source>Menus</source>
         <translation>Меню</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="168"/>
+        <location filename="../../src/DialogFonts.cpp" line="172"/>
         <source>Status bar</source>
         <translation>status bar</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="194"/>
+        <location filename="../../src/DialogFonts.cpp" line="198"/>
         <source>Cities (level 1)</source>
         <translation>Города (Уровень 1)</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="199"/>
+        <location filename="../../src/DialogFonts.cpp" line="203"/>
         <source>Cities (level 2)</source>
         <translation>Города (Уровень 2)</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="204"/>
+        <location filename="../../src/DialogFonts.cpp" line="208"/>
         <source>Cities (level 3)</source>
         <translation>Города (Уровень 3)</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="209"/>
+        <location filename="../../src/DialogFonts.cpp" line="213"/>
         <source>Cities (level 4)</source>
         <translation>Города (Уровень 4)</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="214"/>
+        <location filename="../../src/DialogFonts.cpp" line="218"/>
         <source>Cities (level 5)</source>
         <translation>Города (Уровень 5)</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="219"/>
+        <location filename="../../src/DialogFonts.cpp" line="223"/>
         <source>Countries names</source>
         <translation>Названия стран</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="178"/>
+        <location filename="../../src/DialogFonts.cpp" line="182"/>
         <source>Isobars</source>
         <translation>Изобары</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="93"/>
+        <location filename="../../src/DialogFonts.cpp" line="97"/>
         <source>Choice of fonts</source>
         <translation>Выбор шрифтов</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="183"/>
+        <location filename="../../src/DialogFonts.cpp" line="187"/>
         <source>Pressure H/L</source>
         <translation>Давление H/L</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="173"/>
+        <location filename="../../src/DialogFonts.cpp" line="177"/>
         <source>Temperature</source>
         <translation>Температура</translation>
     </message>
@@ -1968,7 +1968,8 @@
         <translation>Рестарт</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="69"/>
+        <location filename="../../src/DialogFonts.cpp" line="70"/>
+        <location filename="../../src/DialogFonts.cpp" line="72"/>
         <source>Choose a font</source>
         <translation>выбрать шрифт</translation>
     </message>
