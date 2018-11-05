@@ -1,6 +1,12 @@
 # XyGrib - Weather Forecast Visualization
 Fork of zyGrib-8.0.1 under a new name and a new home https://opengribs.org
 
+Changes in version 1.1.3 :
+- Major enhancement to Grib Server and to XyGrib adding large area regional models. These include NAM (CONUS, Central America & Carribean, Pacific & Hawai), ICON-EU and Arpege-EU.
+- ECMWF added to global models albeit a limited free public release of the model including some surface and altitude data at 0.5 deg resolution and 24hr temporal resolution.
+- Bug fixes
+- Maintenance improvements
+
 Changes in version 1.1.2 :
 - Mainly bug fixes regarding the saving of settings and a few others
 - New installer system applied now to Mac OS
