@@ -47,7 +47,7 @@ class FileLoaderGRIB : public QObject, FileLoader
 				bool cloud, bool temp, bool humid, bool isotherm0,
                 bool snowDepth,
 				bool snowCateg, bool frzRainCateg,
-                bool CAPEsfc, bool CINsfc,
+                bool CAPEsfc, bool CINsfc, bool reflectivity,
 				bool altitudeData200,
 				bool altitudeData300,
 				bool altitudeData400,

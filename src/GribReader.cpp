@@ -873,9 +873,9 @@ double 	GribReader::get2GribsInterpolatedValueByDate (
 bool GribReader::getZoneExtension (double *x0,double *y0, double *x1,double *y1)
 {
     if (ok) {
-		*x0 = getXmin ();
+        *x0 = (getXmin () > 180) ? getXmin() - 360 : getXmin();
 		*y0 = getYmin ();
-		*x1 = getXmax ();
+        *x1 = (getXmax () > 180) ? getXmax() - 360 : getXmax();
 		*y1 = getYmax ();
         return true;
     }

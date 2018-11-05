@@ -53,7 +53,7 @@ class DialogLoadGRIB : public DialogBoxBase
         void slotBtProxy();
         void slotGribDataReceived(QByteArray *content, QString fileName);
         void slotGribReadProgress(int step, int done, int total);
-        void slotGribFileError(QString error);
+        void slotGribLoadError(QString error);
         void slotGribMessage(QString msg);
         void slotGribStartLoadData();
         void slotAtmModelSettings();
@@ -101,6 +101,7 @@ class DialogLoadGRIB : public DialogBoxBase
         QCheckBox *chkSnowDepth;
         QCheckBox *chkCAPEsfc;
         QCheckBox *chkCINsfc;
+        QCheckBox *chkReflectivity;
         QCheckBox *chkGUSTsfc;
 //        QCheckBox *chkSUNSDsfc;
 		
@@ -141,7 +142,7 @@ class DialogLoadGRIB : public DialogBoxBase
 //        bool	tempMin, tempMax, snowDepth, snowCateg, frzRainCateg;
         bool	snowDepth, snowCateg, frzRainCateg;
         bool 	CAPEsfc, CINsfc, cloudLayers;
-		bool 	GUSTsfc;
+        bool 	reflectivity, GUSTsfc;
 //		bool 	SUNSDsfc;
 		
         void    updateParameters();

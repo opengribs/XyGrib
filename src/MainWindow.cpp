@@ -1438,7 +1438,14 @@ void MainWindow::slotFile_Load_GRIB ()
 		 || terre->getGribFileRectangle (&x0,&y0, &x1,&y1) )
     {
 //        DBG("Rect is: %f, %f,   %f, %f", x0, y0, x1, y1);
+        // open the grib download dialog
 		QString fname = DialogLoadGRIB::getFile (networkManager, this, x0,y0,x1,y1);
+
+        // Stop showing limited area model limits
+        menuBar->cbModelRect->setCurrentIndex(0);
+        slotModelRectChanged(0);
+
+        // open the returned file
 		if (fname != "") {
 			openMeteoDataFile (fname);
 		}

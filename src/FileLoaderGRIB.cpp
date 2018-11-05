@@ -76,7 +76,7 @@ void FileLoaderGRIB::getGribFile(
         bool cloud, bool temp, bool humid, bool isotherm0,
         bool snowDepth,
 		bool snowCateg, bool frzRainCateg,
-		bool CAPEsfc, bool CINsfc,
+        bool CAPEsfc, bool CINsfc, bool reflectivity,
 		bool altitudeData200,
 		bool altitudeData300,
 		bool altitudeData400,
@@ -145,6 +145,9 @@ void FileLoaderGRIB::getGribFile(
     if (CINsfc) {
         parameters += "i;";
     }
+    if (reflectivity) {
+        parameters += "r;";
+    }
     if (GUSTsfc) {
         parameters += "G;";
     }
@@ -190,6 +193,16 @@ void FileLoaderGRIB::getGribFile(
         amod = "arpege_p50_";
     } else if (atmModel == "ECMWF"){
         amod = "ecmwf_p50_";
+    } else if (atmModel == "NAM CONUS"){
+        amod = "nam_conus_12km_";
+    } else if (atmModel == "NAM CACBN"){
+        amod = "nam_cacbn_12km_";
+    } else if (atmModel == "NAM PACIFIC"){
+        amod = "nam_pacific_12km_";
+    } else if (atmModel == "ICON-EU"){
+        amod = "icon_eu_p06_";
+    } else if (atmModel == "Arpege-EU"){
+        amod = "arpege_eu_p10_";
     } else if (atmModel == "None"){
         amod = "none";
     }
@@ -216,23 +229,7 @@ void FileLoaderGRIB::getGribFile(
         emit signalGribReadProgress(step, 0, 0);
 
 
-		QString phpfilename;
-//        phpfilename = scriptpath+ "getmygribs.php?";
-        phpfilename = scriptpath+ "get2.php?";
-        QString now = QTime::currentTime().toString("HHmmss");
-//        QTextStream(&page) << phpfilename
-//                           << "model=" << amod
-//                           << "&la1=" << std::floor(y0)
-//                           << "&la2=" << std::ceil(y1)
-//                           << "&lo1=" << std::floor(x0)
-//                           << "&lo2=" << std::ceil(x1)
-//                           << "&intv=" << interval
-//                           << "&days=" << days
-//                           << "&cyc=" << cycle
-//                           << "&par=" << parameters
-//                           << "&wmdl=" << wmod
-//                           << "&wpar=" << waveParams
-//                           ;
+        QString phpfilename = scriptpath+ "getmygribs2.php?";
         QTextStream(&page) << phpfilename
                            << "model=" << amod
                            << "&la1=" << y0
@@ -312,7 +309,8 @@ DBG("slotFinished_step1");
 
         }else{ // message contains only the error message
             QString m = jsondata["message"].toString();
-            QMessageBox::warning(parent, tr("Information"), m);
+//            QMessageBox::warning(parent, tr("Information"), m);
+            emit signalGribLoadError(m);
             downloadError = true;
             reply_step1->close();
         }

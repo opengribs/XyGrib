@@ -87,6 +87,7 @@ DialogLoadGRIB::DialogLoadGRIB (QNetworkAccessManager *netManager, QWidget *pare
     snowCateg = true;
     CAPEsfc = true;
     CINsfc = true;
+    reflectivity = true;
     GUSTsfc = true;
 //    SUNSDsfc = false;
 
@@ -130,6 +131,7 @@ DialogLoadGRIB::DialogLoadGRIB (QNetworkAccessManager *netManager, QWidget *pare
     connect(chkSnowDepth, SIGNAL(stateChanged(int)), 	this, SLOT(slotParameterUpdated()));
     connect(chkCAPEsfc, SIGNAL(stateChanged(int)), 	this, SLOT(slotParameterUpdated()));
     connect(chkCINsfc, SIGNAL(stateChanged(int)), 	this, SLOT(slotParameterUpdated()));
+    connect(chkReflectivity, SIGNAL(stateChanged(int)), 	this, SLOT(slotParameterUpdated()));
     connect(chkGUSTsfc, SIGNAL(stateChanged(int)), 	this, SLOT(slotParameterUpdated()));
 	
     connect(chkAltitude_All, SIGNAL(stateChanged(int)), this, SLOT(slotAltitude_All()));
@@ -261,7 +263,7 @@ void DialogLoadGRIB::slotGribDataReceived (QByteArray *content, QString fileName
 }
 
 //----------------------------------------------------
-void DialogLoadGRIB::slotGribFileError (QString error)
+void DialogLoadGRIB::slotGribLoadError (QString error)
 {
 	setCursor(oldcursor);
     if (! loadInProgress)
@@ -337,8 +339,9 @@ void DialogLoadGRIB::saveParametersSettings ()
 	h.insert("downloadSnowCateg", snowCateg);
 	h.insert("downloadFrzRainCateg", frzRainCateg);
 	h.insert("downloadCAPEsfc", CAPEsfc);
-	h.insert("downloadCINsfc", CINsfc);
-	h.insert("downloadGUSTsfc", GUSTsfc);
+    h.insert("downloadCINsfc", CINsfc);
+    h.insert("downloadReflectivity", reflectivity);
+    h.insert("downloadGUSTsfc", GUSTsfc);
 //	Util::setSetting("downloadSUNSDsfc", SUNSDsfc);
 	
 	h.insert("downloadAltitudeData200",  chkAltitude200->isChecked());
@@ -382,6 +385,7 @@ void DialogLoadGRIB::updateParameters ()
         waveModel = cbWvModel->currentText();
 
     resolution = cbResolution->currentText().toDouble();
+    DBG("Resolution is: %d", resolution);
     interval   = cbInterval->currentText().toInt();
     days       = cbDays->currentText().toInt();
     cycle      = cbRunCycle->currentData().toString();
@@ -428,6 +432,7 @@ void DialogLoadGRIB::updateParameters ()
     frzRainCateg = chkFrzRainCateg->isChecked();
     CAPEsfc      = chkCAPEsfc->isChecked();
     CINsfc      = chkCINsfc->isChecked();
+    reflectivity      = chkReflectivity->isChecked();
     GUSTsfc      = chkGUSTsfc->isChecked();
 //    SUNSDsfc     = chkSUNSDsfc->isChecked();
 	
@@ -457,7 +462,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
         cbInterval->addItems(QStringList()<< "3"<<"6"<<"12");
         cbInterval->setMinimumWidth (0);
         ind = Util::getSetting("downloadIndInterval", 0).toInt();
-        if (ind == 24) ind = 3;
+        if (ind == 24 || ind == 1) ind = 3;
         ind = Util::inRange(ind, 0, cbInterval->count()-1);
         cbInterval->setCurrentIndex(ind);
         ind = 0;
@@ -495,6 +500,8 @@ void DialogLoadGRIB::slotAtmModelSettings()
         chkAltitude_All->setEnabled(true);
         chkAltitude_SkewT->setEnabled(true);
 
+        // deactivate unvalid parameters
+        chkReflectivity->setEnabled(false); chkReflectivity->setChecked(false);
 
     }
     else if (amod == "ICON")
@@ -512,7 +519,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
         cbInterval->addItems(QStringList()<< "3"<<"6"<<"12");
         cbInterval->setMinimumWidth (0);
         ind = Util::getSetting("downloadIndInterval", 0).toInt();
-        if (ind == 24) ind = 3;
+        if (ind == 24 || ind == 1) ind = 3;
         ind = Util::inRange(ind, 0, cbInterval->count()-1);
         cbInterval->setCurrentIndex(ind);
         ind = 0;
@@ -546,6 +553,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
         chkSnowCateg->setEnabled(false); chkSnowCateg->setChecked(false);
         chkFrzRainCateg->setEnabled(false); chkFrzRainCateg->setChecked(false);
         chkCINsfc->setEnabled(false); chkCINsfc->setChecked(false);
+        chkReflectivity->setEnabled(false); chkReflectivity->setChecked(false);
         chkAltitude200->setEnabled(false); chkAltitude200->setChecked(false);
         chkAltitude400->setEnabled(false); chkAltitude400->setChecked(false);
         chkAltitude600->setEnabled(false); chkAltitude600->setChecked(false);
@@ -567,7 +575,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
         cbInterval->addItems(QStringList()<< "3"<<"6"<<"12");
         cbInterval->setMinimumWidth (0);
         ind = Util::getSetting("downloadIndInterval", 0).toInt();
-        if (ind == 24) ind = 3;
+        if (ind == 24 || ind == 1) ind = 3;
         ind = Util::inRange(ind, 0, cbInterval->count()-1);
         cbInterval->setCurrentIndex(ind);
         ind = 0;
@@ -602,6 +610,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
         chkSnowCateg->setEnabled(false); chkSnowCateg->setChecked(false);
         chkFrzRainCateg->setEnabled(false); chkFrzRainCateg->setChecked(false);
         chkCINsfc->setEnabled(false); chkCINsfc->setChecked(false);
+        chkReflectivity->setEnabled(false); chkReflectivity->setChecked(false);
         chkIsotherm0->setEnabled(false); chkIsotherm0->setChecked(false);
         chkSnowDepth->setEnabled(false); chkSnowDepth->setChecked(false);
 
@@ -658,10 +667,370 @@ void DialogLoadGRIB::slotAtmModelSettings()
         chkSnowCateg->setEnabled(false); chkSnowCateg->setChecked(false);
         chkFrzRainCateg->setEnabled(false); chkFrzRainCateg->setChecked(false);
         chkCINsfc->setEnabled(false); chkCINsfc->setChecked(false);
+        chkReflectivity->setEnabled(false); chkReflectivity->setChecked(false);
         chkIsotherm0->setEnabled(false); chkIsotherm0->setChecked(false);
         chkSnowDepth->setEnabled(false); chkSnowDepth->setChecked(false);
 
     }
+    else if (amod == "NAM CONUS")
+    {
+        // set res, days, cyc options
+
+        cbResolution->clear();
+        cbResolution->addItems(QStringList()<< "0.11");
+        cbResolution->setMinimumWidth (60);
+        cbDays->clear();
+        cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4");
+        ind = Util::getSetting("downloadIndNbDays", 3).toInt();
+        ind = Util::inRange(ind, 0, cbDays->count()-1);
+        cbDays->setCurrentIndex(ind);
+        ind = 0;
+        cbInterval->clear();
+        cbInterval->addItems(QStringList()<<"1"<<"3"<<"6"<<"12");
+        cbInterval->setMinimumWidth (0);
+        ind = Util::getSetting("downloadIndInterval", 0).toInt();
+        if (ind == 24) ind = 1;
+        ind = Util::inRange(ind, 0, cbInterval->count()-1);
+        cbInterval->setCurrentIndex(ind);
+        ind = 0;
+        cbRunCycle->clear();
+        cbRunCycle->insertItem (ind++, tr("Last"), "last");
+        cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
+        cbRunCycle->insertItem (ind++, tr("6 hr"), "06");
+        cbRunCycle->insertItem (ind++, tr("12 hr"), "12");
+        cbRunCycle->insertItem (ind++, tr("18 hr"), "18");
+
+        // reactivate parameters that may have been disabled
+        chkWind->setEnabled(true);
+        chkGUSTsfc->setEnabled(true);
+        chkPressure->setEnabled(true);
+        chkTemp->setEnabled(true);
+        chkCAPEsfc->setEnabled(true);
+        chkCINsfc->setEnabled(true);
+        chkReflectivity->setEnabled(true);
+        chkCloud->setEnabled(true);
+        chkHumid->setEnabled(true);
+        chkRain->setEnabled(true);
+        chkSnowDepth->setEnabled(true);
+
+        chkAltitude200->setEnabled(true);
+        chkAltitude300->setEnabled(true);
+        chkAltitude400->setEnabled(true);
+        chkAltitude500->setEnabled(true);
+        chkAltitude600->setEnabled(true);
+        chkAltitude700->setEnabled(true);
+        chkAltitude850->setEnabled(true);
+        chkAltitude925->setEnabled(true);
+
+        chkAltitude_All->setEnabled(true);
+        chkAltitude_SkewT->setEnabled(true);
+
+        // deactivate unvalid parameters
+        chkSnowCateg->setEnabled(false); chkSnowCateg->setChecked(false);
+        chkFrzRainCateg->setEnabled(false); chkFrzRainCateg->setChecked(false);
+        chkIsotherm0->setEnabled(false); chkIsotherm0->setChecked(false);
+
+        chkAltitude200->setEnabled(false); chkAltitude200->setChecked(false);
+        chkAltitude300->setEnabled(false); chkAltitude300->setChecked(false);
+        chkAltitude400->setEnabled(false); chkAltitude400->setChecked(false);
+        chkAltitude500->setEnabled(false); chkAltitude500->setChecked(false);
+        chkAltitude600->setEnabled(false); chkAltitude600->setChecked(false);
+        chkAltitude700->setEnabled(false); chkAltitude700->setChecked(false);
+        chkAltitude850->setEnabled(false); chkAltitude850->setChecked(false);
+        chkAltitude925->setEnabled(false); chkAltitude925->setChecked(false);
+
+        chkAltitude_All->setEnabled(false); chkAltitude_All->setChecked(false);
+        chkAltitude_SkewT->setEnabled(false); chkAltitude_SkewT->setChecked(false);
+
+    }
+    else if (amod == "NAM CACBN")
+    {
+        // set res, days, cyc options
+
+        cbResolution->clear();
+        cbResolution->addItems(QStringList()<< "0.11");
+        cbResolution->setMinimumWidth (60);
+        cbDays->clear();
+        cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4");
+        ind = Util::getSetting("downloadIndNbDays", 3).toInt();
+        ind = Util::inRange(ind, 0, cbDays->count()-1);
+        cbDays->setCurrentIndex(ind);
+        ind = 0;
+        cbInterval->clear();
+        cbInterval->addItems(QStringList()<<"1"<<"3"<<"6"<<"12");
+        cbInterval->setMinimumWidth (0);
+        ind = Util::getSetting("downloadIndInterval", 0).toInt();
+        if (ind == 24) ind = 1;
+        ind = Util::inRange(ind, 0, cbInterval->count()-1);
+        cbInterval->setCurrentIndex(ind);
+        ind = 0;
+        cbRunCycle->clear();
+        cbRunCycle->insertItem (ind++, tr("Last"), "last");
+        cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
+        cbRunCycle->insertItem (ind++, tr("6 hr"), "06");
+        cbRunCycle->insertItem (ind++, tr("12 hr"), "12");
+        cbRunCycle->insertItem (ind++, tr("18 hr"), "18");
+
+        // reactivate parameters that may have been disabled
+        chkWind->setEnabled(true);
+        chkPressure->setEnabled(true);
+        chkTemp->setEnabled(true);
+        chkCAPEsfc->setEnabled(true);
+        chkCINsfc->setEnabled(true);
+        chkReflectivity->setEnabled(true);
+        chkCloud->setEnabled(true);
+        chkHumid->setEnabled(true);
+        chkRain->setEnabled(true);
+
+        chkAltitude200->setEnabled(true);
+        chkAltitude300->setEnabled(true);
+        chkAltitude400->setEnabled(true);
+        chkAltitude500->setEnabled(true);
+        chkAltitude600->setEnabled(true);
+        chkAltitude700->setEnabled(true);
+        chkAltitude850->setEnabled(true);
+        chkAltitude925->setEnabled(true);
+
+        chkAltitude_All->setEnabled(true);
+        chkAltitude_SkewT->setEnabled(true);
+
+        // deactivate unvalid parameters
+        chkSnowCateg->setEnabled(false); chkSnowCateg->setChecked(false);
+        chkFrzRainCateg->setEnabled(false); chkFrzRainCateg->setChecked(false);
+        chkIsotherm0->setEnabled(false); chkIsotherm0->setChecked(false);
+        chkGUSTsfc->setEnabled(false); chkGUSTsfc->setChecked(false);
+        chkSnowDepth->setEnabled(false); chkSnowDepth->setChecked(false);
+
+        chkAltitude200->setEnabled(false); chkAltitude200->setChecked(false);
+        chkAltitude300->setEnabled(false); chkAltitude300->setChecked(false);
+        chkAltitude400->setEnabled(false); chkAltitude400->setChecked(false);
+        chkAltitude500->setEnabled(false); chkAltitude500->setChecked(false);
+        chkAltitude600->setEnabled(false); chkAltitude600->setChecked(false);
+        chkAltitude700->setEnabled(false); chkAltitude700->setChecked(false);
+        chkAltitude850->setEnabled(false); chkAltitude850->setChecked(false);
+        chkAltitude925->setEnabled(false); chkAltitude925->setChecked(false);
+
+        chkAltitude_All->setEnabled(false); chkAltitude_All->setChecked(false);
+        chkAltitude_SkewT->setEnabled(false); chkAltitude_SkewT->setChecked(false);
+
+
+    }
+    else if (amod == "NAM PACIFIC")
+    {
+        // set res, days, cyc options
+
+        cbResolution->clear();
+        cbResolution->addItems(QStringList()<< "0.11");
+        cbResolution->setMinimumWidth (60);
+        cbDays->clear();
+        cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4");
+        ind = Util::getSetting("downloadIndNbDays", 3).toInt();
+        ind = Util::inRange(ind, 0, cbDays->count()-1);
+        cbDays->setCurrentIndex(ind);
+        ind = 0;
+        cbInterval->clear();
+        cbInterval->addItems(QStringList()<<"1"<<"3"<<"6"<<"12");
+        cbInterval->setMinimumWidth (0);
+        ind = Util::getSetting("downloadIndInterval", 0).toInt();
+        if (ind == 24) ind = 1;
+        ind = Util::inRange(ind, 0, cbInterval->count()-1);
+        cbInterval->setCurrentIndex(ind);
+        ind = 0;
+        cbRunCycle->clear();
+        cbRunCycle->insertItem (ind++, tr("Last"), "last");
+        cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
+        cbRunCycle->insertItem (ind++, tr("6 hr"), "06");
+        cbRunCycle->insertItem (ind++, tr("12 hr"), "12");
+        cbRunCycle->insertItem (ind++, tr("18 hr"), "18");
+
+        // reactivate parameters that may have been disabled
+        chkWind->setEnabled(true);
+        chkPressure->setEnabled(true);
+        chkTemp->setEnabled(true);
+        chkCAPEsfc->setEnabled(true);
+        chkCINsfc->setEnabled(true);
+        chkReflectivity->setEnabled(true);
+        chkCloud->setEnabled(true);
+        chkHumid->setEnabled(true);
+        chkRain->setEnabled(true);
+
+        chkAltitude200->setEnabled(true);
+        chkAltitude300->setEnabled(true);
+        chkAltitude400->setEnabled(true);
+        chkAltitude500->setEnabled(true);
+        chkAltitude600->setEnabled(true);
+        chkAltitude700->setEnabled(true);
+        chkAltitude850->setEnabled(true);
+        chkAltitude925->setEnabled(true);
+
+        chkAltitude_All->setEnabled(true);
+        chkAltitude_SkewT->setEnabled(true);
+
+        // deactivate unvalid parameters
+        chkSnowCateg->setEnabled(false); chkSnowCateg->setChecked(false);
+        chkFrzRainCateg->setEnabled(false); chkFrzRainCateg->setChecked(false);
+        chkIsotherm0->setEnabled(false); chkIsotherm0->setChecked(false);
+        chkGUSTsfc->setEnabled(false); chkGUSTsfc->setChecked(false);
+        chkSnowDepth->setEnabled(false); chkSnowDepth->setChecked(false);
+
+        chkAltitude200->setEnabled(false); chkAltitude200->setChecked(false);
+        chkAltitude300->setEnabled(false); chkAltitude300->setChecked(false);
+        chkAltitude400->setEnabled(false); chkAltitude400->setChecked(false);
+        chkAltitude500->setEnabled(false); chkAltitude500->setChecked(false);
+        chkAltitude600->setEnabled(false); chkAltitude600->setChecked(false);
+        chkAltitude700->setEnabled(false); chkAltitude700->setChecked(false);
+        chkAltitude850->setEnabled(false); chkAltitude850->setChecked(false);
+        chkAltitude925->setEnabled(false); chkAltitude925->setChecked(false);
+
+        chkAltitude_All->setEnabled(false); chkAltitude_All->setChecked(false);
+        chkAltitude_SkewT->setEnabled(false); chkAltitude_SkewT->setChecked(false);
+
+    }
+    else if (amod == "ICON-EU")
+    {
+        // set res, days, cyc options
+
+        cbResolution->clear();
+        cbResolution->addItems(QStringList()<< "0.06");
+        cbResolution->setMinimumWidth (60);
+        cbDays->clear();
+        cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4"<<"5");
+        ind = Util::getSetting("downloadIndNbDays", 4).toInt();
+        ind = Util::inRange(ind, 0, cbDays->count()-1);
+        cbDays->setCurrentIndex(ind);
+        ind = 0;
+        cbInterval->clear();
+        cbInterval->addItems(QStringList()<<"1"<<"3"<<"6"<<"12");
+        cbInterval->setMinimumWidth (0);
+        ind = Util::getSetting("downloadIndInterval", 0).toInt();
+        if (ind == 24) ind = 1;
+        ind = Util::inRange(ind, 0, cbInterval->count()-1);
+        cbInterval->setCurrentIndex(ind);
+        ind = 0;
+        cbRunCycle->clear();
+        cbRunCycle->insertItem (ind++, tr("Last"), "last");
+        cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
+        cbRunCycle->insertItem (ind++, tr("6 hr"), "06");
+        cbRunCycle->insertItem (ind++, tr("12 hr"), "12");
+        cbRunCycle->insertItem (ind++, tr("18 hr"), "18");
+
+        // reactivate parameters that may have been disabled
+        chkWind->setEnabled(true);
+        chkGUSTsfc->setEnabled(true);
+        chkPressure->setEnabled(true);
+        chkTemp->setEnabled(true);
+        chkCAPEsfc->setEnabled(true);
+        chkCloud->setEnabled(true);
+        chkHumid->setEnabled(true);
+        chkRain->setEnabled(true);
+        chkSnowDepth->setEnabled(true);
+
+        chkAltitude200->setEnabled(true);
+        chkAltitude300->setEnabled(true);
+        chkAltitude400->setEnabled(true);
+        chkAltitude500->setEnabled(true);
+        chkAltitude600->setEnabled(true);
+        chkAltitude700->setEnabled(true);
+        chkAltitude850->setEnabled(true);
+        chkAltitude925->setEnabled(true);
+
+        chkAltitude_All->setEnabled(true);
+        chkAltitude_SkewT->setEnabled(true);
+
+        // deactivate unvalid parameters
+        chkSnowCateg->setEnabled(false); chkSnowCateg->setChecked(false);
+        chkFrzRainCateg->setEnabled(false); chkFrzRainCateg->setChecked(false);
+        chkIsotherm0->setEnabled(false); chkIsotherm0->setChecked(false);
+        chkCINsfc->setEnabled(false); chkCINsfc->setChecked(false);
+        chkReflectivity->setEnabled(false); chkReflectivity->setChecked(false);
+
+        chkAltitude200->setEnabled(false); chkAltitude200->setChecked(false);
+        chkAltitude300->setEnabled(false); chkAltitude300->setChecked(false);
+        chkAltitude400->setEnabled(false); chkAltitude400->setChecked(false);
+        chkAltitude500->setEnabled(false); chkAltitude500->setChecked(false);
+        chkAltitude600->setEnabled(false); chkAltitude600->setChecked(false);
+        chkAltitude700->setEnabled(false); chkAltitude700->setChecked(false);
+        chkAltitude850->setEnabled(false); chkAltitude850->setChecked(false);
+        chkAltitude925->setEnabled(false); chkAltitude925->setChecked(false);
+
+        chkAltitude_All->setEnabled(false); chkAltitude_All->setChecked(false);
+        chkAltitude_SkewT->setEnabled(false); chkAltitude_SkewT->setChecked(false);
+
+
+    }
+    else if (amod == "Arpege-EU")
+    {
+        // set res, days, cyc options
+
+        cbResolution->clear();
+        cbResolution->addItems(QStringList()<< "0.1");
+        cbResolution->setMinimumWidth (60);
+        cbDays->clear();
+        cbDays->addItems(QStringList()<< "1"<<"2"<<"3");
+        ind = Util::getSetting("downloadIndNbDays", 2).toInt();
+        ind = Util::inRange(ind, 0, cbDays->count()-1);
+        cbDays->setCurrentIndex(ind);
+        ind = 0;
+        cbInterval->clear();
+        cbInterval->addItems(QStringList()<<"1"<<"3"<<"6"<<"12");
+        cbInterval->setMinimumWidth (0);
+        ind = Util::getSetting("downloadIndInterval", 0).toInt();
+        if (ind == 24) ind = 1;
+        ind = Util::inRange(ind, 0, cbInterval->count()-1);
+        cbInterval->setCurrentIndex(ind);
+        ind = 0;
+        cbRunCycle->clear();
+        cbRunCycle->insertItem (ind++, tr("Last"), "last");
+        cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
+        cbRunCycle->insertItem (ind++, tr("6 hr"), "06");
+        cbRunCycle->insertItem (ind++, tr("12 hr"), "12");
+        cbRunCycle->insertItem (ind++, tr("18 hr"), "18");
+
+        // reactivate parameters that may have been disabled
+        chkWind->setEnabled(true);
+        chkGUSTsfc->setEnabled(true);
+        chkPressure->setEnabled(true);
+        chkTemp->setEnabled(true);
+        chkCloud->setEnabled(true);
+        chkHumid->setEnabled(true);
+        chkRain->setEnabled(true);
+
+        chkAltitude200->setEnabled(true);
+        chkAltitude300->setEnabled(true);
+        chkAltitude400->setEnabled(true);
+        chkAltitude500->setEnabled(true);
+        chkAltitude600->setEnabled(true);
+        chkAltitude700->setEnabled(true);
+        chkAltitude850->setEnabled(true);
+        chkAltitude925->setEnabled(true);
+
+        chkAltitude_All->setEnabled(true);
+        chkAltitude_SkewT->setEnabled(true);
+
+        // deactivate unvalid parameters
+        chkSnowCateg->setEnabled(false); chkSnowCateg->setChecked(false);
+        chkFrzRainCateg->setEnabled(false); chkFrzRainCateg->setChecked(false);
+        chkIsotherm0->setEnabled(false); chkIsotherm0->setChecked(false);
+        chkCINsfc->setEnabled(false); chkCINsfc->setChecked(false);
+        chkReflectivity->setEnabled(false); chkReflectivity->setChecked(false);
+        chkSnowDepth->setEnabled(false); chkSnowDepth->setChecked(false);
+        chkCAPEsfc->setEnabled(false); chkCAPEsfc->setChecked(false);
+
+        chkAltitude200->setEnabled(false); chkAltitude200->setChecked(false);
+        chkAltitude300->setEnabled(false); chkAltitude300->setChecked(false);
+        chkAltitude400->setEnabled(false); chkAltitude400->setChecked(false);
+        chkAltitude500->setEnabled(false); chkAltitude500->setChecked(false);
+        chkAltitude600->setEnabled(false); chkAltitude600->setChecked(false);
+        chkAltitude700->setEnabled(false); chkAltitude700->setChecked(false);
+        chkAltitude850->setEnabled(false); chkAltitude850->setChecked(false);
+        chkAltitude925->setEnabled(false); chkAltitude925->setChecked(false);
+
+        chkAltitude_All->setEnabled(false); chkAltitude_All->setChecked(false);
+        chkAltitude_SkewT->setEnabled(false); chkAltitude_SkewT->setChecked(false);
+
+
+    }
+
     // check also for "None" by index (translatable text)
     else if (cbModel->currentIndex() == 0)
     {
@@ -822,6 +1191,7 @@ void DialogLoadGRIB::slotParameterUpdated ()
     int nbFrzRainCateg = frzRainCateg ?  nbrec-1  : 0;
     int nbCAPEsfc  = CAPEsfc ?  nbrec : 0;
     int nbCINsfc  = CINsfc ?  nbrec : 0;
+    int nbReflectivity  = reflectivity ?  nbrec : 0;
     int nbGUSTsfc  = GUSTsfc ?  nbrec : 0;
 //    int nbSUNSDsfc  = SUNSDsfc ?  nbrec : 0;
     
@@ -864,6 +1234,7 @@ void DialogLoadGRIB::slotParameterUpdated ()
 
     nbits = 11;
     estimate += nbCINsfc*(head+(nbits*npts)/8+2 );
+    estimate += nbReflectivity*(head+(nbits*npts)/8+2 );
 
     nbits = 9;
     estimate += nbGUSTsfc*(head+(nbits*npts)/8+2 );
@@ -993,7 +1364,7 @@ void DialogLoadGRIB::slotBtOK()
     connect(loadgrib, SIGNAL(signalGribReadProgress(int, int, int)),
             this,  SLOT(slotGribReadProgress(int, int, int)));
     connect(loadgrib, SIGNAL(signalGribLoadError(QString)),
-            this,  SLOT(slotGribFileError(QString)));
+            this,  SLOT(slotGribLoadError(QString)));
     connect(loadgrib, SIGNAL(signalGribSendMessage(QString)),
             this,  SLOT(slotGribMessage(QString)));
     connect(loadgrib, SIGNAL(signalGribStartLoadData()),
@@ -1003,7 +1374,7 @@ void DialogLoadGRIB::slotBtOK()
                     resolution, interval, days, cycle,
 					wind, pressure, rain, cloud, temp, humid, isotherm0,
                     snowDepth, snowCateg, frzRainCateg,
-					CAPEsfc, CINsfc,
+                    CAPEsfc, CINsfc, reflectivity,
 					chkAltitude200->isChecked(),
 					chkAltitude300->isChecked(),
 					chkAltitude400->isChecked(),
@@ -1059,16 +1430,10 @@ void DialogLoadGRIB::setZone (double x0, double y0, double x1, double y1)
     if (y0 > y1)  { tmp=y0; y0=y1; y1=tmp; }
 //    DBG("After checking x0 > x1 etc: %f, %f,   %f, %f", x0, y0, x1, y1);
 
-//    sbNorth->setValue ( qCeil (y1) );
-//    sbSouth->setValue ( qFloor(y0) );
-//    sbWest->setValue  ( qFloor(x0) );
-//    sbEast->setValue  ( qCeil (x1) );
     sbNorth->setValue ( y1 );
     sbSouth->setValue ( y0 );
     sbWest->setValue  ( x0 );
     sbEast->setValue  ( x1 );
-
-//    DBG("After floor/ceiling: %f, %f,   %f, %f",sbWest, sbSouth, sbEast, sbNorth);
 
     progressBar->setRange (0,100);
     progressBar->setValue (0);
@@ -1118,7 +1483,8 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
     //model combobox
     cbModel = new QComboBox(this);
     assert(cbModel);
-    cbModel->addItems(QStringList()<< tr("None") << "GFS"<< "ICON" << "Arpege" << "ECMWF"  );
+    cbModel->addItems(QStringList()<< tr("None") << "GFS"<< "ICON" << "Arpege" << "ECMWF"
+                                    << "NAM CONUS" << "NAM CACBN" << "NAM PACIFIC" << "ICON-EU" << "Arpege-EU" );
     cbModel->setMinimumWidth (sizemin);
     ind = Util::getSetting("downloadIndModel", 0).toInt();
     ind = Util::inRange(ind, 0, cbModel->count()-1);
@@ -1139,8 +1505,8 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
 	//------------------------------------------------
     cbResolution = new QComboBox(this);
     assert(cbResolution);
-    cbResolution->addItems(QStringList()<< "0.25"<< "0.5" << "1.0");
-    //gfs_p25_, gfs_p50_, gfs_1p0_, icon_p25_, arpege
+    cbResolution->addItems(QStringList()<< "0.06" << "0.1" << "0.11" << "0.25" << "0.5" << "1.0");
+    //icon_eu_p10_, arpege_eu_p10_, nam..._, gfs_p25_, gfs_p50_, gfs_1p0_, icon_p25_, arpege_p50_
     cbResolution->setMinimumWidth (50);
 	ind = Util::getSetting("downloadIndResolution", 0).toInt();
 	ind = Util::inRange(ind, 0, cbResolution->count()-1);
@@ -1149,7 +1515,7 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
     
     cbInterval = new QComboBox(this);
     assert(cbInterval);
-    cbInterval->addItems(QStringList()<< "3" << "6" << "12");
+    cbInterval->addItems(QStringList()<< "1" << "3" << "6" << "12");
     cbInterval->setMinimumWidth (sizemin);
 	ind = Util::getSetting("downloadIndInterval", 0).toInt();
 	ind = Util::inRange(ind, 0, cbInterval->count()-1);
@@ -1211,6 +1577,8 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
     assert(chkCAPEsfc);
     chkCINsfc     = new QCheckBox(tr("CIN")+" ("+tr("surface")+")");
     assert(chkCINsfc);
+    chkReflectivity     = new QCheckBox(tr("Reflectivity")+" ("+tr("atmosphere")+")");
+    assert(chkReflectivity);
     chkGUSTsfc     = new QCheckBox(tr("Wind gust (surface)"));
     assert(chkGUSTsfc);
 //    chkSUNSDsfc     = new QCheckBox(tr("Sunshine duration"));
@@ -1233,6 +1601,7 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
     chkFrzRainCateg->setChecked  (Util::getSetting("downloadFrzRainCateg", true).toBool());
     chkCAPEsfc->setChecked  (Util::getSetting("downloadCAPEsfc", true).toBool());
     chkCINsfc->setChecked  (Util::getSetting("downloadCINsfc", true).toBool());
+    chkReflectivity->setChecked  (Util::getSetting("downloadReflectivity", true).toBool());
     chkGUSTsfc->setChecked  (Util::getSetting("downloadGUSTsfc", true).toBool());
 //    chkSUNSDsfc->setChecked (Util::getSetting("downloadSUNSDsfc", false).toBool());
 	//----------------------------------------------------------------
@@ -1396,21 +1765,25 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
 		tgrid->addWidget( chkTemp ,      lig++, col, Qt::AlignLeft);
 //		tgrid->addWidget( chkTempMin ,   lig++, col, Qt::AlignLeft);
 //		tgrid->addWidget( chkTempMax ,   lig++, col, Qt::AlignLeft);
-		tgrid->addWidget( chkIsotherm0 , lig++, col, Qt::AlignLeft);
+        tgrid->addWidget( chkIsotherm0 , lig++, col, Qt::AlignLeft);
+        tgrid->addWidget( chkCAPEsfc , lig++, col, Qt::AlignLeft);
+        tgrid->addWidget( chkCINsfc , lig++, col, Qt::AlignLeft);
+
 		// CAPE + CIN in the same frame
-		ftmp2 = new QFrame(this);
-		assert (ftmp2);
-		tlay = new QHBoxLayout (ftmp2);
-		assert (tlay);
-		tlay->setContentsMargins (0,0,0,0);
-			tlay->addWidget( chkCAPEsfc );
-			tlay->addWidget( chkCINsfc );
-		tgrid->addWidget( ftmp2,  lig++, col, Qt::AlignLeft);
-    	// Colonne 2
+//		ftmp2 = new QFrame(this);
+//		assert (ftmp2);
+//		tlay = new QHBoxLayout (ftmp2);
+//		assert (tlay);
+//		tlay->setContentsMargins (0,0,0,0);
+//			tlay->addWidget( chkCAPEsfc );
+//			tlay->addWidget( chkCINsfc );
+//		tgrid->addWidget( ftmp2,  lig++, col, Qt::AlignLeft);
+        // Colonne 2
     	col = 1;
     	lig = 0;
-		tgrid->addWidget( chkCloud ,   lig++, col, Qt::AlignLeft);
-		tgrid->addWidget( chkHumid ,   lig++, col, Qt::AlignLeft);
+        tgrid->addWidget( chkReflectivity ,   lig++, col, Qt::AlignLeft);
+        tgrid->addWidget( chkCloud ,   lig++, col, Qt::AlignLeft);
+        tgrid->addWidget( chkHumid ,   lig++, col, Qt::AlignLeft);
 		tgrid->addWidget( chkRain ,    lig++, col, Qt::AlignLeft);
 		tgrid->addWidget( chkSnowCateg ,  lig++, col, Qt::AlignLeft);
 		tgrid->addWidget( chkSnowDepth ,  lig++, col, Qt::AlignLeft);
