@@ -32,7 +32,7 @@ DialogServerStatus::DialogServerStatus
 	QString page;
 	downloadError = false;
     reply_step1 = nullptr;
-    page = "/getstatus.php";
+    page = "/getstatus2.php";
     setWindowTitle (tr("Server"));
     QFrame *ftmp;
     QLabel *label;
@@ -161,7 +161,7 @@ QFrame *DialogServerStatus::createFrameGui(QWidget *parent)
     QFrame * ftmp;
     QLabel * label;
     QGridLayout  *lay = new QGridLayout(frm);
-	lay->setVerticalSpacing (0);
+    lay->setVerticalSpacing (0);
     int lig=0;
     //-------------------------
     lig ++;
@@ -176,15 +176,27 @@ QFrame *DialogServerStatus::createFrameGui(QWidget *parent)
     ar_statuses_keys.append("gfs");
     ar_statuses_keys.append("ico");
     ar_statuses_keys.append("arp");
+    ar_statuses_keys.append("ecm");
     ar_statuses_keys.append("ww3");
     ar_statuses_keys.append("gwa");
+    ar_statuses_keys.append("nco");
+    ar_statuses_keys.append("ncb");
+    ar_statuses_keys.append("npa");
+    ar_statuses_keys.append("ice");
+    ar_statuses_keys.append("are");
     ar_statuses_keys.append("ewa");
 
     ar_statuses.insert("gfs", "NOAA-GFS");
     ar_statuses.insert("ico", "ICON Global");
     ar_statuses.insert("arp", "Arpege Global");
+    ar_statuses.insert("ecm", "ECMWF");
     ar_statuses.insert("ww3", "WW3");
     ar_statuses.insert("gwa", "GWAM");
+    ar_statuses.insert("nco", "NAM CONUS");
+    ar_statuses.insert("ncb", "NAM CACBN");
+    ar_statuses.insert("npa", "NAM PACIFIC");
+    ar_statuses.insert("ice", "ICON-EU");
+    ar_statuses.insert("are", "Arpege-EU");
     ar_statuses.insert("ewa", "EWAM");
 
 

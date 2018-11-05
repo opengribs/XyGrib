@@ -62,9 +62,9 @@ class DialogServerStatus : public  DialogBoxBase
         QTime   timeLoad;
         QLabel *lbResponseStatus;
 
-        QLabel* ar_lbRunDate[6];
-        QLabel* ar_lbCurrentJob[6];
-        QLabel* ar_lbUpdateTime[6];
+        QLabel* ar_lbRunDate[12];
+        QLabel* ar_lbCurrentJob[12];
+        QLabel* ar_lbUpdateTime[12];
         QHash <QString, QString> ar_statuses;
         QList <QString> ar_statuses_keys;
 
