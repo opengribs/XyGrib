@@ -103,10 +103,10 @@ void FileLoaderGRIB::getGribFile(
     if (wind) {
         parameters += "W;";
     }
-    if (pressure && atmModel != "ECMWF") {
+    if (pressure && (atmModel != "ECMWF" && atmModel != "Arpege-EU")) {
         parameters += "P;";
     }
-    if (pressure && atmModel == "ECMWF"){
+    if (pressure && (atmModel == "ECMWF" || atmModel == "Arpege-EU")){
         parameters += "p;";
     }
     if (rain) {

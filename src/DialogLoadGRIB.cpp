@@ -1042,6 +1042,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
         chkIsotherm0->setEnabled(false); chkIsotherm0->setChecked(false);
         chkCAPEsfc->setEnabled(false); chkCAPEsfc->setChecked(false);
         chkCINsfc->setEnabled(false); chkCINsfc->setChecked(false);
+        chkReflectivity->setEnabled(false); chkReflectivity->setChecked(false);
         chkCloud->setEnabled(false); chkCloud->setChecked(false);
         chkHumid->setEnabled(false); chkHumid->setChecked(false);
         chkRain->setEnabled(false); chkRain->setChecked(false);
