@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QMessageBox>
 #include <cmath>
 #include <cassert>
+#include <QTabWidget>
 
 #include "DialogServerStatus.h"
 #include "Util.h"
@@ -170,6 +171,11 @@ QFrame *DialogServerStatus::createFrameGui(QWidget *parent)
     lbResponseStatus = new QLabel("", frm);
     lay->addWidget( lbResponseStatus, lig,1, Qt::AlignLeft);
 
+    lig ++;
+    ftmp = new QFrame(this);
+    ftmp->setFrameShape(QFrame::HLine);
+    lay->addWidget( ftmp, lig,0, 1, -1);
+
     //ar_statuses = new QHash <QString,const QString>();
     struct model {
         const QString name;
@@ -189,8 +195,22 @@ QFrame *DialogServerStatus::createFrameGui(QWidget *parent)
     };
     const std::list<model> m = { model_global, model_local };
 
+    lig++;
+    QTabWidget *tabWidget = new QTabWidget (frm);
+    lay->addWidget (tabWidget, lig,0, 1, -1);
+    int nlig = 0;
+
     for ( auto const & t : m )
     {
+	    QWidget  *tabbox;
+	    bool first = true;
+
+	    ftmp = new QFrame (this);
+	    tabbox = new QWidget (ftmp);
+	    QGridLayout  *vlay = new QGridLayout(tabbox);
+	    vlay->setVerticalSpacing (0);
+
+        int tab = 0;
         for (auto const & it : t.l)
         {
             auto key = std::get<0>(it);
@@ -198,37 +218,44 @@ QFrame *DialogServerStatus::createFrameGui(QWidget *parent)
 
             ar_statuses_keys.append(key);
             ar_statuses.insert(key, d);
-            lig ++;
-            ftmp = new QFrame(this); ftmp->setFrameShape(QFrame::HLine); lay->addWidget( ftmp, lig,0, 1, -1);
+            if (!first) {
+                tab ++;
+                ftmp = new QFrame(this);
+                ftmp->setFrameShape(QFrame::HLine);
+                vlay->addWidget( ftmp, tab,0, 1, -1);
+            }
+            first = false;
             //-------------------------
-            lig ++;
-
+            tab ++;
             label = new QLabel(d, frm);
             label->setFont (fontBold);
-            lay->addWidget( label,    lig,0, Qt::AlignLeft);
+            vlay->addWidget( label,    tab,0, Qt::AlignLeft);
             //-------------------------
-            lig ++;
+            tab ++;
             label = new QLabel(tr("Forecast date :"), frm);
-            lay->addWidget( label,    lig,0, Qt::AlignRight);
+            vlay->addWidget( label,    tab,0, Qt::AlignRight);
             label  = new QLabel("", frm);
-            lay->addWidget( label, lig,1, Qt::AlignLeft);
+            vlay->addWidget( label, tab,1, Qt::AlignLeft);
             ar_lbRunDate.push_back(label);
             //-------------------------
-            lig ++;
+            tab ++;
             label = new QLabel (tr("Update time :"), frm);
-            lay->addWidget (label,    lig,0, Qt::AlignRight);
+            vlay->addWidget (label,    tab,0, Qt::AlignRight);
             label = new QLabel ("", frm);
-            lay->addWidget (label, lig,1, Qt::AlignLeft);
+            vlay->addWidget (label, tab,1, Qt::AlignLeft);
             ar_lbUpdateTime.push_back(label);
             //-------------------------
-            lig ++;
+            tab ++;
             label = new QLabel(tr("Activity :"), frm);
-            lay->addWidget( label,    lig,0, Qt::AlignRight);
+            vlay->addWidget( label,    tab,0, Qt::AlignRight);
             label = new QLabel("", frm);
-            lay->addWidget( label, lig,1, Qt::AlignLeft);
+            vlay->addWidget( label, tab,1, Qt::AlignLeft);
             ar_lbCurrentJob.push_back(label);
         }
+        nlig = std::max(nlig, tab);
+        tabWidget->addTab (tabbox, t.name);
     }
+    lig += nlig;
 
     //-------------------------
 	// Messages
