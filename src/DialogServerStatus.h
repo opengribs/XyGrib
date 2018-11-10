@@ -62,9 +62,9 @@ class DialogServerStatus : public  DialogBoxBase
         QTime   timeLoad;
         QLabel *lbResponseStatus;
 
-        QLabel* ar_lbRunDate[12];
-        QLabel* ar_lbCurrentJob[12];
-        QLabel* ar_lbUpdateTime[12];
+        std::vector<QLabel* > ar_lbRunDate;
+        std::vector<QLabel* > ar_lbCurrentJob;
+        std::vector<QLabel* > ar_lbUpdateTime;
         QHash <QString, QString> ar_statuses;
         QList <QString> ar_statuses_keys;
 
