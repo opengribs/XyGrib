@@ -117,10 +117,12 @@ void DialogServerStatus::slotFinished()
         QJsonObject jsondata = jsondoc.object();
 
         QString sstatus, seta;
+        assert(static_cast<size_t>(ar_statuses_keys.count()) <= ar_lbRunDate.size());
+        assert(static_cast<size_t>(ar_statuses_keys.count()) <= ar_lbUpdateTime.size());
+        assert(static_cast<size_t>(ar_statuses_keys.count()) <= ar_lbCurrentJob.size());
 
         for ( int i=0; i< ar_statuses_keys.count(); i++)
         {
-
             QJsonObject srvstat_x = jsondata[ ar_statuses_keys[i]  ].toObject();
             ar_lbRunDate[i]->setText (srvstat_x["reference"].toString());
             ar_lbUpdateTime[i]->setText (srvstat_x["posted_at"].toString());
@@ -134,8 +136,6 @@ void DialogServerStatus::slotFinished()
                 sstatus = tr("Waiting");
             ar_lbCurrentJob[i]->setText (sstatus + seta);
         }
-
-
     }
 }
 
@@ -170,66 +170,64 @@ QFrame *DialogServerStatus::createFrameGui(QWidget *parent)
     lbResponseStatus = new QLabel("", frm);
     lay->addWidget( lbResponseStatus, lig,1, Qt::AlignLeft);
 
-
     //ar_statuses = new QHash <QString,const QString>();
+    struct model {
+        const QString name;
+        const std::list<std::pair<const char*, const char *>> l;
+    };
+    const model model_global = {
+        .name = tr("Global"),
+        .l = {{"gfs", "NOAA-GFS"}, {"ico", "ICON Global"}, {"arp", "Arpege Global"},
+              {"ecm", "ECMWF"}, {"ww3", "WW3"}, {"gwa", "GWAM"}
+             }
+    };
+    const model model_local = {
+        .name = tr("Regional"),
+        .l = {{"nco", "NAM CONUS"}, {"ncb", "NAM CACBN"}, {"npa", "NAM PACIFIC"},
+              {"ice", "ICON-EU"}, {"are", "Arpege-EU"}, {"ewa", "EWAM"}
+             }
+    };
+    const std::list<model> m = { model_global, model_local };
 
-    ar_statuses_keys.append("gfs");
-    ar_statuses_keys.append("ico");
-    ar_statuses_keys.append("arp");
-    ar_statuses_keys.append("ecm");
-    ar_statuses_keys.append("ww3");
-    ar_statuses_keys.append("gwa");
-    ar_statuses_keys.append("nco");
-    ar_statuses_keys.append("ncb");
-    ar_statuses_keys.append("npa");
-    ar_statuses_keys.append("ice");
-    ar_statuses_keys.append("are");
-    ar_statuses_keys.append("ewa");
-
-    ar_statuses.insert("gfs", "NOAA-GFS");
-    ar_statuses.insert("ico", "ICON Global");
-    ar_statuses.insert("arp", "Arpege Global");
-    ar_statuses.insert("ecm", "ECMWF");
-    ar_statuses.insert("ww3", "WW3");
-    ar_statuses.insert("gwa", "GWAM");
-    ar_statuses.insert("nco", "NAM CONUS");
-    ar_statuses.insert("ncb", "NAM CACBN");
-    ar_statuses.insert("npa", "NAM PACIFIC");
-    ar_statuses.insert("ice", "ICON-EU");
-    ar_statuses.insert("are", "Arpege-EU");
-    ar_statuses.insert("ewa", "EWAM");
-
-
-    for ( int i=0; i< ar_statuses.count(); i++)
+    for ( auto const & t : m )
     {
-        QString key = ar_statuses_keys.at(i);//  x.key();// ar_statuses.keys()[i];
-        lig ++;
-        ftmp = new QFrame(this); ftmp->setFrameShape(QFrame::HLine); lay->addWidget( ftmp, lig,0, 1, -1);
-        //-------------------------
-        lig ++;
+        for (auto const & it : t.l)
+        {
+            auto key = std::get<0>(it);
+            auto d = std::get<1>(it);
 
-        label = new QLabel(ar_statuses.value(key), frm);
-        label->setFont (fontBold);
-        lay->addWidget( label,    lig,0, Qt::AlignLeft);
-        //-------------------------
-        lig ++;
-        label = new QLabel(tr("Forecast date :"), frm);
-        lay->addWidget( label,    lig,0, Qt::AlignRight);
-        ar_lbRunDate[i] = new QLabel("", frm);
-        lay->addWidget( ar_lbRunDate[i], lig,1, Qt::AlignLeft);
-        //-------------------------
-        lig ++;
-        label = new QLabel (tr("Update time :"), frm);
-        lay->addWidget (label,    lig,0, Qt::AlignRight);
-        ar_lbUpdateTime[i] = new QLabel ("", frm);
-        lay->addWidget (ar_lbUpdateTime[i], lig,1, Qt::AlignLeft);
-        //-------------------------
-        lig ++;
-        label = new QLabel(tr("Activity :"), frm);
-        lay->addWidget( label,    lig,0, Qt::AlignRight);
-        ar_lbCurrentJob[i] = new QLabel("", frm);
-        lay->addWidget( ar_lbCurrentJob[i], lig,1, Qt::AlignLeft);
+            ar_statuses_keys.append(key);
+            ar_statuses.insert(key, d);
+            lig ++;
+            ftmp = new QFrame(this); ftmp->setFrameShape(QFrame::HLine); lay->addWidget( ftmp, lig,0, 1, -1);
+            //-------------------------
+            lig ++;
 
+            label = new QLabel(d, frm);
+            label->setFont (fontBold);
+            lay->addWidget( label,    lig,0, Qt::AlignLeft);
+            //-------------------------
+            lig ++;
+            label = new QLabel(tr("Forecast date :"), frm);
+            lay->addWidget( label,    lig,0, Qt::AlignRight);
+            label  = new QLabel("", frm);
+            lay->addWidget( label, lig,1, Qt::AlignLeft);
+            ar_lbRunDate.push_back(label);
+            //-------------------------
+            lig ++;
+            label = new QLabel (tr("Update time :"), frm);
+            lay->addWidget (label,    lig,0, Qt::AlignRight);
+            label = new QLabel ("", frm);
+            lay->addWidget (label, lig,1, Qt::AlignLeft);
+            ar_lbUpdateTime.push_back(label);
+            //-------------------------
+            lig ++;
+            label = new QLabel(tr("Activity :"), frm);
+            lay->addWidget( label,    lig,0, Qt::AlignRight);
+            label = new QLabel("", frm);
+            lay->addWidget( label, lig,1, Qt::AlignLeft);
+            ar_lbCurrentJob.push_back(label);
+        }
     }
 
     //-------------------------
