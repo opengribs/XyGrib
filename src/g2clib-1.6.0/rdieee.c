@@ -1,6 +1,6 @@
 #include "grib2.h"
 
-void rdieee(g2int *rieee,g2float *a,g2int num)
+void rdieee(const g2int *rieee,g2float *a,g2int num)
 //$$$  SUBPROGRAM DOCUMENTATION BLOCK
 //                .      .    .                                       .
 // SUBPROGRAM:    rdieee 
