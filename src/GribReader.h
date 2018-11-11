@@ -23,6 +23,7 @@ Lecture mise en mémoire d'un fichier GRIB
 
 #ifndef GRIBREADER_H
 #define GRIBREADER_H
+#include <cstdint>
 
 #include "RegularGridded.h"
 #include "GribRecord.h"
@@ -108,8 +109,7 @@ class GribReader : public RegularGridReader
 		bool   hasAltitude;
 		bool   ambiguousHeader;
 		
-        std::map < std::string,
-        		   std::vector<GribRecord *>* >  mapGribRecords;
+        std::map <uint64_t, std::vector<GribRecord *>* >  mapGribRecords;
 
         void   openFilePriv (const std::string fname, int nbrecs);
 		void   readGribFileContent (int nbrecs);
