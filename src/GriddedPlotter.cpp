@@ -695,14 +695,28 @@ void GriddedPlotter::draw_DATA_MinMax (
 
     int i, j, Ni, Nj, pi,pj;
     double x, y, v;
-          
+    double q1savLv = 9999999.9;
+    double q2savLv = 9999999.9;
+    double q3savLv = 9999999.9;
+    double q4savLv = 9999999.9;
+
+    double q1savHv = 0.0;
+    double q2savHv = 0.0;
+    double q3savHv = 0.0;
+    double q4savHv = 0.0;
+
+    double q1savHx, q1savHy, q1savLx, q1savLy;
+    double q2savHx, q2savHy, q2savLx, q2savLy;
+    double q3savHx, q3savHy, q3savLx, q3savLy;
+    double q4savHx, q4savHy, q4savLx, q4savLy;
+
     Ni = rec->getNi();
     Nj = rec->getNj();
 
     for (j=1; j<Nj-1; j++) {     // !!!! 1 to end-1
         for (i=1; i<Ni-1; i++) {
             v = rec->getValueOnRegularGrid (dtc, i, j );
-            if ( v < meanValue
+            if ( v <= meanValue
                    && v < rec->getValueOnRegularGrid (dtc, i-1, j-1 )  // Minima local ?
                    && v < rec->getValueOnRegularGrid (dtc, i-1, j   )
                    && v < rec->getValueOnRegularGrid (dtc, i-1, j+1 )
@@ -714,10 +728,38 @@ void GriddedPlotter::draw_DATA_MinMax (
             ) {
                 x = rec->getX(i);
                 y = rec->getY(j);
-                proj->map2screen(x,y, &pi, &pj);
-                pnt.drawText(pi-fmet.width('L')/2, pj+fmet.ascent()/2, minSymbol);
-                proj->map2screen(x-360.0,y, &pi, &pj);
-                pnt.drawText(pi-fmet.width('L')/2, pj+fmet.ascent()/2, minSymbol);
+
+                // in which quarter of the grid are we
+                if (i <= Ni/2 && j <= Nj/2) {
+                    // if we found a record low for the quarter - we save it
+                    if (v < q1savLv) {
+                        q1savLv = v;
+                        q1savLx = x;
+                        q1savLy = y;
+                    }
+                } else if (i <= Ni/2 && j > Nj/2) {
+                    // if we found a record low for the quarter - we save it
+                    if (v < q2savLv) {
+                        q2savLv = v;
+                        q2savLx = x;
+                        q2savLy = y;
+                    }
+                } else if (i > Ni/2 && j <= Nj/2) {
+                    // if we found a record low for the quarter - we save it
+                    if (v < q3savLv) {
+                        q3savLv = v;
+                        q3savLx = x;
+                        q3savLy = y;
+                    }
+                } else if (i > Ni/2 && j > Nj/2) {
+                    // if we found a record low for the quarter - we save it
+                    if (v < q4savLv) {
+                        q4savLv = v;
+                        q4savLx = x;
+                        q4savLy = y;
+                    }
+                }
+
             }
             else if ( v > meanValue
                    && v > rec->getValueOnRegularGrid (dtc, i-1, j-1 )  // Maxima local ?
@@ -731,14 +773,95 @@ void GriddedPlotter::draw_DATA_MinMax (
             ) {
                 x = rec->getX(i);
                 y = rec->getY(j);
-                proj->map2screen(x,y, &pi, &pj);
-                pnt.drawText(pi-fmet.width('H')/2, pj+fmet.ascent()/2, maxSymbol);
-                proj->map2screen(x-360.0,y, &pi, &pj);
-                pnt.drawText(pi-fmet.width('H')/2, pj+fmet.ascent()/2, maxSymbol);
+
+                // in which quarter of the grid are we
+                if (i <= Ni/2 && j <= Nj/2) {
+                    // if we found a record high for the quarter - we save it
+                    if (v > q1savHv) {
+                        q1savHv = v;
+                        q1savHx = x;
+                        q1savHy = y;
+                    }
+                } else if (i <= Ni/2 && j > Nj/2) {
+                    // if we found a record high for the quarter - we save it
+                    if (v > q2savHv) {
+                        q2savHv = v;
+                        q2savHx = x;
+                        q2savHy = y;
+                    }
+                } else if (i > Ni/2 && j <= Nj/2) {
+                    // if we found a record high for the quarter - we save it
+                    if (v > q3savHv) {
+                        q3savHv = v;
+                        q3savHx = x;
+                        q3savHy = y;
+                    }
+                } else if (i > Ni/2 && j > Nj/2) {
+                    // if we found a record high for the quarter - we save it
+                    if (v > q4savHv) {
+                        q4savHv = v;
+                        q4savHx = x;
+                        q4savHy = y;
+                    }
+                }
+
             }
         }
     }
-}
+    // now display the maxima and minima for each quarter
+    if (q1savLv < 9999999.9) {
+        proj->map2screen(q1savLx, q1savLy, &pi, &pj);
+        pnt.drawText(pi-fmet.width('L')/2, pj+fmet.ascent()/2, minSymbol);;
+        proj->map2screen(q1savLx-360.0,q1savLy, &pi, &pj);
+        pnt.drawText(pi-fmet.width('L')/2, pj+fmet.ascent()/2, minSymbol);;
+    }
+    if (q1savHv > 0.0) {
+        proj->map2screen(q1savHx, q1savHy, &pi, &pj);
+        pnt.drawText(pi-fmet.width('H')/2, pj+fmet.ascent()/2, maxSymbol);
+        proj->map2screen(q1savHx-360.0,q1savHy, &pi, &pj);
+        pnt.drawText(pi-fmet.width('H')/2, pj+fmet.ascent()/2, maxSymbol);
+    }
+    // next quarter
+    if (q2savLv < 9999999.9) {
+        proj->map2screen(q2savLx, q2savLy, &pi, &pj);
+        pnt.drawText(pi-fmet.width('L')/2, pj+fmet.ascent()/2, minSymbol);;
+        proj->map2screen(q2savLx-360.0,q2savLy, &pi, &pj);
+        pnt.drawText(pi-fmet.width('L')/2, pj+fmet.ascent()/2, minSymbol);;
+    }
+    if (q2savHv > 0.0) {
+        proj->map2screen(q2savHx, q2savHy, &pi, &pj);
+        pnt.drawText(pi-fmet.width('H')/2, pj+fmet.ascent()/2, maxSymbol);
+        proj->map2screen(q2savHx-360.0,q2savHy, &pi, &pj);
+        pnt.drawText(pi-fmet.width('H')/2, pj+fmet.ascent()/2, maxSymbol);
+    }
+    // next quarter
+    if (q3savLv < 9999999.9) {
+        proj->map2screen(q3savLx, q3savLy, &pi, &pj);
+        pnt.drawText(pi-fmet.width('L')/2, pj+fmet.ascent()/2, minSymbol);;
+        proj->map2screen(q3savLx-360.0,q3savLy, &pi, &pj);
+        pnt.drawText(pi-fmet.width('L')/2, pj+fmet.ascent()/2, minSymbol);;
+    }
+    if (q3savHv > 0.0) {
+        proj->map2screen(q3savHx, q3savHy, &pi, &pj);
+        pnt.drawText(pi-fmet.width('H')/2, pj+fmet.ascent()/2, maxSymbol);
+        proj->map2screen(q3savHx-360.0,q3savHy, &pi, &pj);
+        pnt.drawText(pi-fmet.width('H')/2, pj+fmet.ascent()/2, maxSymbol);
+    }
+    // last quarter
+    if (q4savLv < 9999999.9) {
+        proj->map2screen(q4savLx, q4savLy, &pi, &pj);
+        pnt.drawText(pi-fmet.width('L')/2, pj+fmet.ascent()/2, minSymbol);;
+        proj->map2screen(q4savLx-360.0,q4savLy, &pi, &pj);
+        pnt.drawText(pi-fmet.width('L')/2, pj+fmet.ascent()/2, minSymbol);;
+    }
+    if (q4savHv > 0.0) {
+        proj->map2screen(q4savHx, q4savHy, &pi, &pj);
+        pnt.drawText(pi-fmet.width('H')/2, pj+fmet.ascent()/2, maxSymbol);
+        proj->map2screen(q4savHx-360.0,q4savHy, &pi, &pj);
+        pnt.drawText(pi-fmet.width('H')/2, pj+fmet.ascent()/2, maxSymbol);
+    }
+
+ }
 
 //------------------------------------------------------------
 void GriddedPlotter::setCurrentDateClosestFromNow ()
