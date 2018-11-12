@@ -133,7 +133,7 @@ void MeteoTableWidget::createTable()
 	addCell_title_dataline ("", true, lig,col);
 	col ++;
 	QString actuel = "";
-	for (iter=sdates.begin(); iter!=sdates.end(); iter++)
+	for (iter=sdates.begin(); iter!=sdates.end(); ++iter)
 	{
 		time_t daterecord = *iter;
 		dstr = Util::formatDateLong (daterecord);
@@ -145,7 +145,7 @@ void MeteoTableWidget::createTable()
 			do
 			{
 				colspan ++;
-				iter2 ++;
+				++iter2;
 				dstr = Util::formatDateLong(*iter2);
 			} while (actuel==dstr);
 			addCell_title (actuel, true, layout, lig,col, 1,colspan);
@@ -163,7 +163,7 @@ void MeteoTableWidget::createTable()
 		addCell_title_dataline (tr("Sun")+"\n"+tr("Moon"), true, lig,col);
 		col ++;
 		QString actuel = "";
-		for (iter=sdates.begin(); iter!=sdates.end(); iter++)
+		for (iter=sdates.begin(); iter!=sdates.end(); ++iter)
 		{
 			time_t daterecord = *iter;
 			dstr = Util::formatDateLong (daterecord);
@@ -175,7 +175,7 @@ void MeteoTableWidget::createTable()
 				do
 				{
 					colspan ++;
-					iter2 ++;
+					++iter2;
 					dstr = Util::formatDateLong(*iter2);
 				} while (actuel==dstr);
 				addCell_SunMoonAlmanac (daterecord, lat, lon, layout, lig,col, 1,colspan);
@@ -342,7 +342,7 @@ void MeteoTableWidget::addLine_WaveWhitecap (int type, int lig)
 	int col = 0;
 	addCell_title_dataline  (tr("Whitecap (prob)"), true, lig,col);
 	col ++;
-	for (iter=lspinfos.begin(); iter!=lspinfos.end(); iter++, col++)
+	for (iter=lspinfos.begin(); iter!=lspinfos.end(); ++iter, col++)
 	{
 		DataPointInfo * pinfo = *iter;
 		txt = "";
@@ -365,7 +365,7 @@ void MeteoTableWidget::addLine_WaveCompleteCell (int prvtype, int lig)
 	int col = 0;
 	addCell_title_dataline (DataCodeStr::toString(prvtype), true, lig,col);
 	col ++;
-	for (iter=lspinfos.begin(); iter!=lspinfos.end(); iter++, col++)
+	for (iter=lspinfos.begin(); iter!=lspinfos.end(); ++iter, col++)
 	{
 		DataPointInfo * pinfo = *iter;
 		txt = "";
@@ -473,7 +473,7 @@ void MeteoTableWidget::addLine_Isotherm0Height(int lig)
 	int col = 0;
 	addCell_title_dataline (tr("Isotherm 0°C"), true, lig,col);
 	col ++;
-	for (iter=lspinfos.begin(); iter!=lspinfos.end(); iter++, col++)	{
+	for (iter=lspinfos.begin(); iter!=lspinfos.end(); ++iter, col++)	{
 		DataPointInfo * pinfo = *iter;
 		txt = "";
 		if (pinfo->hasIsotherm0HGT()) {
@@ -496,7 +496,7 @@ void MeteoTableWidget::addLine_GeopotentialAltitude(const Altitude &alt, int lig
 	addCell_title_dataline (tr("Geopotential altitude") +" ("+AltitudeStr::toStringShort(alt)+")", 
 				  true, lig,col);
 	col ++;
-	for (iter=lspinfos.begin(); iter!=lspinfos.end(); iter++, col++) {
+	for (iter=lspinfos.begin(); iter!=lspinfos.end(); ++iter, col++) {
 		DataPointInfo * pinfo = *iter;
 		txt = "";
 		float v = pinfo->getDataValue (DataCode(GRB_GEOPOT_HGT,alt));
@@ -630,7 +630,7 @@ void MeteoTableWidget::addLine_HumidRel (const Altitude &alt, int lig)
 	addCell_title_dataline  (tr("Relative humidity")+" ("+AltitudeStr::toStringShort(alt)+")", 
 					true, lig,col);
 	col ++;
-	for (it=lsdates.begin(); it!=lsdates.end(); it++, col++)
+	for (it=lsdates.begin(); it!=lsdates.end(); ++it, col++)
 	{
 		time_t date = *it;
 		txt = "";
@@ -669,7 +669,7 @@ void MeteoTableWidget::addLine_Temperature(const Altitude &alt, uchar type, int 
 	title += " ("+AltitudeStr::toStringShort(alt)+")";
 	addCell_title_dataline (title, true, lig,col);
 	col ++;
-	for (it=lsdates.begin(); it!=lsdates.end(); it++, col++) {
+	for (it=lsdates.begin(); it!=lsdates.end(); ++it, col++) {
 		time_t date = *it;
 		if (type == GRB_PRV_THETA_E) {
 			int P = alt.levelValue;	// 925 850 700 600 500 400 300 200

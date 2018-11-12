@@ -464,7 +464,7 @@ void  GribReader::removeFirstCumulativeRecord (DataCode dtc)
 		std::vector<GribRecord *> *liste = getListOfGribRecords (dtc);
 		if (liste != nullptr) {
 			std::vector<GribRecord *>::iterator it;
-			for (it=liste->begin(); it!=liste->end() && (*it)!=rec; it++)
+			for (it=liste->begin(); it!=liste->end() && (*it)!=rec; ++it)
 			{
 			}
 			assert(it!=liste->end());
@@ -495,14 +495,14 @@ void  GribReader::copyMissingWaveRecords (DataCode dtc)
 {
 	std::set<time_t>  setdates = getListDates();
 	std::set<time_t>::iterator itd, itd2;
-	for (itd=setdates.begin(); itd!=setdates.end(); itd++) {
+	for (itd=setdates.begin(); itd!=setdates.end(); ++itd) {
 		time_t date = *itd;
 		GribRecord *rec = getRecord (dtc, date);
 		if (rec != nullptr)
 			continue;
 		itd2 = itd;
 		do {
-			itd2 ++;	// next date
+			++itd2;	// next date
 			if (itd2 == setdates.end())
 				break;
 			time_t date2 = *itd2;
@@ -553,7 +553,7 @@ void  GribReader::removeMissingWaveRecords ()
 				itv = ls->erase (itv);
 			}
 			else {
-				itv ++;
+				++itv;
 			}
 		}
 	}
@@ -890,7 +890,7 @@ GribRecord * GribReader::getFirstGribRecord (DataCode dtc)
 {
 	std::set<time_t>::iterator it;
 	GribRecord *rec = nullptr;
-	for (it=setAllDates.begin(); rec== nullptr && it!=setAllDates.end(); it++)
+	for (it=setAllDates.begin(); rec== nullptr && it!=setAllDates.end(); ++it)
 	{
 		time_t date = *it;
 		rec = getRecord (dtc, date);

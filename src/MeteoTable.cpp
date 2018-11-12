@@ -278,7 +278,7 @@ void MeteoTableDialog::saveFileSYLK (SylkFile &slk)
 	// Dates
 	dl = 2;
 	dc = 4;
-	for (col=0,itp=lspinfos.begin(); itp!=lspinfos.end(); col++,itp++) {
+	for (col=0,itp=lspinfos.begin(); itp!=lspinfos.end(); ++col, ++itp) {
 		DataPointInfo *pinfo = *itp;
 		slk.addCell (dl, col+dc, Util::formatDateShort(pinfo->date));
 		slk.addCell (dl+1, col+dc, Util::formatTime(pinfo->date));
@@ -380,7 +380,7 @@ int MeteoTableDialog::SYLK_addData_waves (SylkFile &slk, int lig,int col, DataCo
 	//-----------------------------------------------------------------------
 	// Data
 	int row = col+3;
-	for (itp=lspinfos.begin(); itp!=lspinfos.end(); row++,itp++) 
+	for (itp=lspinfos.begin(); itp!=lspinfos.end(); row++, ++itp) 
 	{
 		DataPointInfo *pf = *itp;
 		float ht, per, dir;
@@ -427,7 +427,7 @@ int MeteoTableDialog::SYLK_addData_wind (SylkFile &slk, int lig,int col, DataCod
 	//-----------------------------------------------------------------------
 	// Data
 	int row = col+3;
-	for (itp=lspinfos.begin(); itp!=lspinfos.end(); row++,itp++) 
+	for (itp=lspinfos.begin(); itp!=lspinfos.end(); row++, ++itp)
 	{
 		DataPointInfo *pf = *itp;
 		float v, dir;

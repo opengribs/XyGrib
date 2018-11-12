@@ -254,7 +254,7 @@ void GisReader::drawCitiesNames (QPainter &pnt, Projection *proj, int level)
 		city->getRectName  (&pnt, proj, rect);
 		freePlace = true;
 		for (itz = lsZonesOccupees.begin(); 
-					freePlace && itz != lsZonesOccupees.end(); itz++) {
+					freePlace && itz != lsZonesOccupees.end(); ++itz) {
 			QRect *pr = *itz;
 			if (rect->intersects(*pr))
 				freePlace = false;

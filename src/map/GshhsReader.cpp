@@ -165,27 +165,27 @@ void GshhsReader::clearLists ()
     std::vector <GshhsPolygon*>::iterator itp;
     for (int qual=0; qual<5; qual++)
     {
-        for (itp=lsPoly_level1[qual]->begin(); itp != lsPoly_level1[qual]->end(); itp++) {
+        for (itp=lsPoly_level1[qual]->begin(); itp != lsPoly_level1[qual]->end(); ++itp) {
             delete *itp;
             *itp = nullptr;
         }
-        for (itp=lsPoly_level2[qual]->begin(); itp != lsPoly_level2[qual]->end(); itp++) {
+        for (itp=lsPoly_level2[qual]->begin(); itp != lsPoly_level2[qual]->end(); ++itp) {
             delete *itp;
             *itp = nullptr;
         }
-        for (itp=lsPoly_level3[qual]->begin(); itp != lsPoly_level3[qual]->end(); itp++) {
+        for (itp=lsPoly_level3[qual]->begin(); itp != lsPoly_level3[qual]->end(); ++itp) {
             delete *itp;
             *itp = nullptr;
         }
-        for (itp=lsPoly_level4[qual]->begin(); itp != lsPoly_level4[qual]->end(); itp++) {
+        for (itp=lsPoly_level4[qual]->begin(); itp != lsPoly_level4[qual]->end(); ++itp) {
             delete *itp;
             *itp = nullptr;
         }
-        for (itp=lsPoly_boundaries[qual]->begin(); itp != lsPoly_boundaries[qual]->end(); itp++) {
+        for (itp=lsPoly_boundaries[qual]->begin(); itp != lsPoly_boundaries[qual]->end(); ++itp) {
             delete *itp;
             *itp = nullptr;
         }
-        for (itp=lsPoly_rivers[qual]->begin(); itp != lsPoly_rivers[qual]->end(); itp++) {
+        for (itp=lsPoly_rivers[qual]->begin(); itp != lsPoly_rivers[qual]->end(); ++itp) {
             delete *itp;
             *itp = nullptr;
         }

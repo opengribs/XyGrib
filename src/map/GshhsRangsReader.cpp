@@ -226,8 +226,8 @@ void GshhsRangsCell::drawSeaBorderLines(QPainter &pnt, double dx, Projection *pr
 			x1 = x0;
 			y1 = y0;
 			
-			iterPoints++;
-			for ( ; iterPoints!=lsPts.end(); iterPoints++)
+			++iterPoints;
+			for ( ; iterPoints!=lsPts.end(); ++iterPoints)
 			{
 				pt = *iterPoints;
 				proj->map2screen(pt->x+dx, pt->y, &xx, &yy);

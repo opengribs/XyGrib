@@ -36,7 +36,7 @@ bool GriddedReader::hasDataType (int dataType) const
 	bool found = false;
 	std::set<DataCode> setdata = getAllDataCode ();
 	std::set<DataCode>::iterator it;
-	for (it=setdata.begin(); !found && it!=setdata.end(); it++) {
+	for (it=setdata.begin(); !found && it!=setdata.end(); ++it) {
 		DataCode dt2 = *it;
 		if (dt2.dataType == type)
 			found = true;
@@ -60,7 +60,7 @@ bool GriddedReader::hasData (const DataCode &dtc) const
 	bool found = false;
 	std::set<DataCode> setdata = getAllDataCode ();
 	std::set<DataCode>::iterator it;
-	for (it=setdata.begin(); !found && it!=setdata.end(); it++) {
+	for (it=setdata.begin(); !found && it!=setdata.end(); ++it) {
 		DataCode dt2 = *it;
 		if (dt2 == dtcsearch)
 			found = true;

@@ -277,7 +277,7 @@ void ImageWriter::saveAllImages ()
 				std::set<time_t>::iterator iter;
 				int num=1;
 				for (iter=plotter->getListDates()->begin();
-							iter!=plotter->getListDates()->end();   iter++, num++)
+							iter!=plotter->getListDates()->end(); ++iter, num++)
 				{
 					qApp->processEvents ();
 					time_t date = *iter;

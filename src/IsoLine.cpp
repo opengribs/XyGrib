@@ -56,7 +56,7 @@ void IsoLine::drawIsoLine (QPainter &pnt,
     //---------------------------------------------------------
     // Dessine les segments
     //---------------------------------------------------------
-    for (it=trace.begin(); it!=trace.end(); it++,nb++)
+    for (it=trace.begin(); it!=trace.end(); ++it,nb++)
     {
         Segment *seg = *it;
 
@@ -108,7 +108,7 @@ void IsoLine::drawIsoLineLabels(QPainter &pnt, QColor &couleur,
     //---------------------------------------------------------
     // Ecrit les labels
     //---------------------------------------------------------
-    for (it=trace.begin(); it!=trace.end(); it++,nb++)
+    for (it=trace.begin(); it!=trace.end(); ++it,nb++)
     {
         if (nb % density == 0) {
             Segment *seg = *it;

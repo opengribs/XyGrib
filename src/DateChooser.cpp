@@ -164,7 +164,7 @@ void DateChooser::setListDates (std::set<time_t> * setDates,
 		tabDates = new time_t [nbDates];
 		int i=0;
 		std::set<time_t>::iterator it;
-		for (it=setDates->begin(); it!=setDates->end(); it++, i++) {
+		for (it=setDates->begin(); it!=setDates->end(); ++it, i++) {
 			tabDates [i] = *it;
 			if (*it == currentDate)
 				current = i;
