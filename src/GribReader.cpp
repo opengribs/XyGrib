@@ -617,10 +617,12 @@ void GribReader::computeMissingData ()
 			dewpointDataStatus = COMPUTED_DATA;
 			for (auto date : setAllDates)
 			{
-                GribRecord *recModel = getRecord (DataCode(GRB_TEMP,LV_ABOV_GND,2),date);
-                if (recModel != nullptr)
+                GribRecord *recTemp = getRecord (DataCode(GRB_TEMP,LV_ABOV_GND,2),date);
+                GribRecord *recHumid = getRecord (DataCode(GRB_HUMID_REL,LV_ABOV_GND,2), date);
+                if (recTemp != nullptr && recHumid != nullptr)
 				{
 					// Crée un GribRecord avec les dewpoints calculés
+					GribRecord *recModel = recTemp;
 					GribRecord *recDewpoint = new GribRecord(*recModel);
                     recDewpoint->setDataType (GRB_DEWPOINT);
                     for (int i=0; i<recModel->getNi(); i++)
@@ -629,7 +631,9 @@ void GribReader::computeMissingData ()
                         {
                             double x = recModel->getX(i);
                             double y = recModel->getY(j);
-                            double dp = computeDewPoint(x, y, date);
+                            double temp = recTemp->getInterpolatedValue   (x, y);
+                            double humid = recHumid->getInterpolatedValue (x, y);
+                            double dp = DataRecordAbstract::dewpointHardy (temp, humid);
                             recDewpoint->setValue(i, j, dp);
                         }
                     }
