@@ -61,9 +61,8 @@ GribReader::~GribReader()
 //-------------------------------------------------------------------------------
 void GribReader::clean_all_vectors ()
 {
-	std::map < std::string, std::vector<GribRecord *>* >::iterator it;
-	for (it=mapGribRecords.begin(); it!=mapGribRecords.end(); it++) {
-		std::vector<GribRecord *> *ls = (*it).second;
+	for (auto const &it : mapGribRecords) {
+		std::vector<GribRecord *> *ls = it.second;
 		clean_vector( *ls );
 		delete ls;
 	}
@@ -86,8 +85,7 @@ void GribReader::storeRecordInMap (GribRecord *rec)
 		return;
 //    DBG ("%g %g   %g %g", rec->getXmin(),rec->getXmax(), getYmin(),getYmax());
 
-	std::map <std::string, std::vector<GribRecord *>* >::iterator it;
-	it = mapGribRecords.find(rec->getKey());
+	auto it = mapGribRecords.find(rec->getKey());
 	if (it == mapGribRecords.end())
 	{
 		mapGribRecords[rec->getKey()] = new std::vector<GribRecord *>;
@@ -363,9 +361,9 @@ void GribReader::readAllGribRecords (int nbrecs)
 			}
 			else {
 				fprintf(stderr,
-					"GribReader: id=%d unknown data: key=%s  idCenter==%d && idModel==%d && idGrid==%d\n",
+					"GribReader: id=%d unknown data: key=0x%lx  idCenter==%d && idModel==%d && idGrid==%d\n",
 					rec->getId(),
-					rec->getKey().c_str(),
+					rec->getKey(),
 					rec->getIdCenter(), rec->getIdModel(), rec->getIdGrid()
 					);
 			}
@@ -544,10 +542,9 @@ void  GribReader::copyMissingWaveRecords ()
 //---------------------------------------------------------------------------------
 void  GribReader::removeMissingWaveRecords ()
 {
-	std::map < std::string, std::vector<GribRecord *>* >::iterator it;
 	std::vector<GribRecord *>::iterator itv;
-	for (it=mapGribRecords.begin(); it!=mapGribRecords.end(); it++) {
-		std::vector<GribRecord *> *ls = (*it).second;
+	for (auto const & it: mapGribRecords) {
+		std::vector<GribRecord *> *ls = it.second;
 		for (itv=ls->begin(); itv!=ls->end();  ) {
 			GribRecord *rec = *itv;
 			if (rec && rec->isOk()
@@ -618,14 +615,14 @@ void GribReader::computeMissingData ()
 		   && getNumberOfGribRecords (DataCode(GRB_TEMP, LV_ABOV_GND, 2)) > 0)
 		{
 			dewpointDataStatus = COMPUTED_DATA;
-			std::set<time_t>::iterator iter;
-			for (iter=setAllDates.begin(); iter!=setAllDates.end(); iter++)
+			for (auto date : setAllDates)
 			{
-				time_t date = *iter;
-				GribRecord *recModel = getRecord (DataCode(GRB_TEMP,LV_ABOV_GND,2),date);
-                if (recModel != nullptr)
+                GribRecord *recTemp = getRecord (DataCode(GRB_TEMP,LV_ABOV_GND,2),date);
+                GribRecord *recHumid = getRecord (DataCode(GRB_HUMID_REL,LV_ABOV_GND,2), date);
+                if (recTemp != nullptr && recHumid != nullptr)
 				{
 					// Crée un GribRecord avec les dewpoints calculés
+					GribRecord *recModel = recTemp;
 					GribRecord *recDewpoint = new GribRecord(*recModel);
                     recDewpoint->setDataType (GRB_DEWPOINT);
                     for (int i=0; i<recModel->getNi(); i++)
@@ -634,7 +631,9 @@ void GribReader::computeMissingData ()
                         {
                             double x = recModel->getX(i);
                             double y = recModel->getY(j);
-                            double dp = computeDewPoint(x, y, date);
+                            double temp = recTemp->getInterpolatedValue   (x, y);
+                            double humid = recHumid->getInterpolatedValue (x, y);
+                            double dp = DataRecordAbstract::dewpointHardy (temp, humid);
                             recDewpoint->setValue(i, j, dp);
                         }
                     }
@@ -750,10 +749,9 @@ int GribReader::getDewpointDataStatus(int /*levelType*/,int /*levelValue*/)
 //---------------------------------------------------
 int GribReader::getTotalNumberOfGribRecords() {
 	int nb=0;
-	std::map < std::string, std::vector<GribRecord *>* >::iterator it;
-	for (it=mapGribRecords.begin(); it!=mapGribRecords.end(); it++)
+	for (auto const & it : mapGribRecords)
 	{
-		nb += (*it).second->size();
+		nb += it.second->size();
 	}
 	return nb;
 }
@@ -761,9 +759,8 @@ int GribReader::getTotalNumberOfGribRecords() {
 //---------------------------------------------------
 std::vector<GribRecord *> * GribReader::getFirstNonEmptyList()
 {
-    std::vector<GribRecord *> *ls = NULL;
-	std::map < std::string, std::vector<GribRecord *>* >::iterator it;
-	for (it=mapGribRecords.begin(); ls==NULL && it!=mapGribRecords.end(); it++)
+    std::vector<GribRecord *> *ls = nullptr;
+	for (auto it=mapGribRecords.begin(); ls==nullptr && it!=mapGribRecords.end(); ++it)
 	{
 		if ((*it).second->size()>0)
 			ls = (*it).second;
@@ -784,7 +781,7 @@ int GribReader::getNumberOfGribRecords (DataCode dtc)
 //---------------------------------------------------------------------
 std::vector<GribRecord *> * GribReader::getListOfGribRecords (DataCode dtc)
 {
-	std::string key = GribRecord::makeKey (dtc.dataType,dtc.levelType,dtc.levelValue);
+	auto key = GribRecord::makeKey (dtc.dataType, dtc.levelType, dtc.levelValue);
 	if (mapGribRecords.find(key) != mapGribRecords.end())
 		return mapGribRecords[key];
 
@@ -929,10 +926,9 @@ GribRecord * GribReader::getRecord (DataCode dtc, time_t date)
 void GribReader::createListDates()
 {   // Le set assure l'ordre et l'unicité des dates
     setAllDates.clear();
-	std::map < std::string, std::vector<GribRecord *>* >::iterator it;
-	for (it=mapGribRecords.begin(); it!=mapGribRecords.end(); it++)
+	for (auto const & it : mapGribRecords )
 	{
-		std::vector<GribRecord *> *ls = (*it).second;
+		std::vector<GribRecord *> *ls = it.second;
 		for (zuint i=0; i<ls->size(); i++) {
 			assert(ls->at(i)->isOk());
 			setAllDates.insert( ls->at(i)->getRecordCurrentDate() );
@@ -1075,11 +1071,10 @@ time_t  GribReader::getFirstRefDate ()
 time_t  GribReader::getRefDateForDataCenter (const DataCenterModel &dcm)
 {
 	time_t t, t2;
-	std::map < std::string, std::vector<GribRecord *>* >::iterator it;
 	t = 0;
-	for (it=mapGribRecords.begin(); it!=mapGribRecords.end(); it++)
+	for (auto const & it : mapGribRecords)
 	{
-		std::vector<GribRecord *> *ls = (*it).second;
+		std::vector<GribRecord *> *ls = it.second;
 		for (uint i=0; i<ls->size(); i++) {
 			if (ls->at(i)->getDataCenterModel() == dcm) {
 				t2 = ls->at(i)->getRecordRefDate (); 

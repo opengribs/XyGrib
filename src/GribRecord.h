@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <cmath>
 #include <stdint.h>
+#include <cstdint>
 
 #include "zuFile.h"
 #include "RegularGridded.h"
@@ -73,8 +74,8 @@ class GribRecord : public RegularGridRecord
         virtual int  getIdGrid()   const { return idGrid; }
 
         //-----------------------------------------
-        std::string getKey() const  { return dataKey; }
-		static std::string makeKey(int dataType,int levelType,int levelValue);
+        uint64_t getKey() const  { return dataKey; }
+		static uint64_t makeKey(int dataType,int levelType,int levelValue);
 
         //-----------------------------------------
         int    getPeriodP1() const  { return periodP1; }
@@ -141,7 +142,7 @@ class GribRecord : public RegularGridRecord
         bool   waveData;
 		
         bool   eof;   // fin de fichier atteinte lors de la lecture
-		std::string dataKey;
+		uint64_t dataKey;
 		char   strRefDate [32];
 		char   strCurDate [32];
 		bool   *boolBMStab;
