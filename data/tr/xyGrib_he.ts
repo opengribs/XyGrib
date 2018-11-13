@@ -1101,12 +1101,12 @@
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1589"/>
         <source>Reflectivity</source>
-        <translation type="unfinished">רפלקטיביות</translation>
+        <translation>רפלקטיביות</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1589"/>
         <source>atmosphere</source>
-        <translation type="unfinished">אטמוספירה</translation>
+        <translation>אטמוספירה</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1591"/>
@@ -1681,12 +1681,12 @@
     <message>
         <location filename="../../src/DialogServerStatus.cpp" line="185"/>
         <source>Global</source>
-        <translation type="unfinished"></translation>
+        <translation>מוגלים גלובלים</translation>
     </message>
     <message>
         <location filename="../../src/DialogServerStatus.cpp" line="191"/>
         <source>Regional</source>
-        <translation type="unfinished"></translation>
+        <translation>מוגלים אזוריים</translation>
     </message>
     <message>
         <location filename="../../src/DialogServerStatus.cpp" line="235"/>
