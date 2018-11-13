@@ -370,7 +370,7 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
 		menuSeaState->addMenu (menuWavesArrows);
         menuSeaState->addSeparator();
         acView_DuplicateMissingWaveRecords = addActionCheck (menuSeaState,
-        			tr("FNMOC-WW3")+": "+tr("Duplicate missing wave records"), "", "");
+                    tr("Duplicate missing wave records"), "", "");
 		// Currents
         menuSeaState->addSeparator();
 		acView_CurrentColors = addActionCheck (menuSeaState, tr("Current map"), "", "");
@@ -462,7 +462,7 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
     cbModelRect->setSizeAdjustPolicy (QComboBox::AdjustToContents);
     cbModelRect->addItem(tr("Show Model Limits"));
     cbModelRect->addItem("ICON-EU Nest");
-    cbModelRect->addItem("Arpege 0.1");
+    cbModelRect->addItem("Arpege-EU Nest");
     cbModelRect->addItem("NAM CONUS");
     cbModelRect->addItem("NAM CACBN");
     cbModelRect->addItem("NAM PACIFIC");
