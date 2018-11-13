@@ -930,6 +930,14 @@
         <source>Wave Data</source>
         <translation>Golfdata</translation>
     </message>
+    <message>
+        <source>Reflectivity</source>
+        <translation type="unfinished">Reflectiviteit</translation>
+    </message>
+    <message>
+        <source>atmosphere</source>
+        <translation type="unfinished">atmosfeer</translation>
+    </message>
 </context>
 <context>
     <name>DialogMeteotableOptions</name>
@@ -1266,6 +1274,14 @@
         <source>Waiting</source>
         <translation>Wacht op nieuwe data</translation>
     </message>
+    <message>
+        <source>Global</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Regional</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DialogUnits</name>
@@ -1486,7 +1502,7 @@
     </message>
     <message>
         <source>Information</source>
-        <translation>Informatie</translation>
+        <translation type="vanished">Informatie</translation>
     </message>
     <message>
         <source>Empty file.</source>
@@ -2274,10 +2290,6 @@
     <message>
         <source>Show GRIB grid</source>
         <translation>Toon roostepunten</translation>
-    </message>
-    <message>
-        <source>FNMOC-WW3</source>
-        <translation></translation>
     </message>
     <message>
         <source>Show boundaries</source>

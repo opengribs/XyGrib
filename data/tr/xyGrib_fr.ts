@@ -4,119 +4,119 @@
 <context>
     <name>AltitudeStr</name>
     <message>
-        <location filename="../../src/DataQString.cpp" line="72"/>
+        <location filename="../../src/DataQString.cpp" line="74"/>
         <source>surface</source>
         <translation>surface</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="75"/>
+        <location filename="../../src/DataQString.cpp" line="77"/>
         <source>isotherm 0°C</source>
         <translation>isotherme 0°C</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="84"/>
+        <location filename="../../src/DataQString.cpp" line="86"/>
         <source>%1 hPa</source>
         <translation>%1 hpa</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="87"/>
+        <location filename="../../src/DataQString.cpp" line="89"/>
         <source>sea level</source>
         <translation>niveau de la mer</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="90"/>
+        <location filename="../../src/DataQString.cpp" line="92"/>
         <source>%1 m above mean sea level</source>
         <translation>%1 au dessus du niveau de la mer</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="93"/>
+        <location filename="../../src/DataQString.cpp" line="95"/>
         <source>%1 m above ground</source>
         <translation>%1 m du sol</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="96"/>
+        <location filename="../../src/DataQString.cpp" line="98"/>
         <source>sigma %1</source>
         <translation>sigma %1</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="99"/>
+        <location filename="../../src/DataQString.cpp" line="101"/>
         <source>atmosphere</source>
         <translation>atmosphère</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="102"/>
+        <location filename="../../src/DataQString.cpp" line="104"/>
         <source>low cloud layer</source>
         <translation>nuages bas</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="105"/>
+        <location filename="../../src/DataQString.cpp" line="107"/>
         <source>middle cloud layer</source>
         <translation>nuages moyens</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="108"/>
+        <location filename="../../src/DataQString.cpp" line="110"/>
         <source>high cloud layer</source>
         <translation>nuages hauts</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="121"/>
-        <location filename="../../src/DataQString.cpp" line="149"/>
+        <location filename="../../src/DataQString.cpp" line="123"/>
+        <location filename="../../src/DataQString.cpp" line="151"/>
         <source>sfc</source>
         <translation>sfc</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="124"/>
+        <location filename="../../src/DataQString.cpp" line="126"/>
         <source>iso0°C</source>
         <translation>iso0°C</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="133"/>
+        <location filename="../../src/DataQString.cpp" line="135"/>
         <source>%1hpa</source>
         <translation>%1hpa</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="136"/>
-        <location filename="../../src/DataQString.cpp" line="140"/>
+        <location filename="../../src/DataQString.cpp" line="138"/>
+        <location filename="../../src/DataQString.cpp" line="142"/>
         <source>MSL</source>
         <translation>MSL</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="142"/>
+        <location filename="../../src/DataQString.cpp" line="144"/>
         <source>%1 m ab.MSL</source>
         <translation>%1 m au-dessus du niveau moyen de la mer</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="145"/>
+        <location filename="../../src/DataQString.cpp" line="147"/>
         <source>-%1 m</source>
         <translation>-%1 m</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="151"/>
+        <location filename="../../src/DataQString.cpp" line="153"/>
         <source>%1 m</source>
         <translation>%1 m</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="154"/>
+        <location filename="../../src/DataQString.cpp" line="156"/>
         <source>sigma%1</source>
         <translation>sigma%1</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="160"/>
+        <location filename="../../src/DataQString.cpp" line="162"/>
         <source>lowCldLay</source>
         <translation>nuages bas</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="163"/>
+        <location filename="../../src/DataQString.cpp" line="165"/>
         <source>midCldLay</source>
         <translation>nuages moyens</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="166"/>
+        <location filename="../../src/DataQString.cpp" line="168"/>
         <source>higCldLay</source>
         <translation>nuages hauts</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="157"/>
+        <location filename="../../src/DataQString.cpp" line="159"/>
         <source>atm</source>
         <translation>atm</translation>
     </message>
@@ -452,289 +452,289 @@
 <context>
     <name>DataCodeStr</name>
     <message>
-        <location filename="../../src/DataQString.cpp" line="183"/>
-        <location filename="../../src/DataQString.cpp" line="184"/>
+        <location filename="../../src/DataQString.cpp" line="185"/>
+        <location filename="../../src/DataQString.cpp" line="186"/>
         <source>Pressure</source>
         <translation>Pression</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="184"/>
+        <location filename="../../src/DataQString.cpp" line="186"/>
         <source>MSL</source>
         <translation>MSL</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="186"/>
+        <location filename="../../src/DataQString.cpp" line="188"/>
         <source>Temperature</source>
         <translation>Température</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="187"/>
+        <location filename="../../src/DataQString.cpp" line="189"/>
         <source>Potential temperature</source>
         <translation>Température potentielle</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="188"/>
+        <location filename="../../src/DataQString.cpp" line="190"/>
         <source>Temperature max</source>
         <translation>Température max</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="189"/>
+        <location filename="../../src/DataQString.cpp" line="191"/>
         <source>Temperature min</source>
         <translation>Température min</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="190"/>
+        <location filename="../../src/DataQString.cpp" line="192"/>
         <source>Dew point</source>
         <translation>Point de rosée</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="191"/>
+        <location filename="../../src/DataQString.cpp" line="193"/>
         <source>Current (Vx)</source>
         <translation>Courant (Vx)</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="192"/>
+        <location filename="../../src/DataQString.cpp" line="194"/>
         <source>Current (Vy)</source>
         <translation>Courant (Vy)</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="193"/>
+        <location filename="../../src/DataQString.cpp" line="195"/>
         <source>Wind (Vx)</source>
         <translation>Vent (Vx)</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="194"/>
+        <location filename="../../src/DataQString.cpp" line="196"/>
         <source>Wind (Vy)</source>
         <translation>Vent (Vy)</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="195"/>
+        <location filename="../../src/DataQString.cpp" line="197"/>
         <source>Wind (direction)</source>
         <translation>Vent (direction)</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="196"/>
+        <location filename="../../src/DataQString.cpp" line="198"/>
         <source>Wind (speed)</source>
         <translation>Vent (vitesse)</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="197"/>
+        <location filename="../../src/DataQString.cpp" line="199"/>
         <source>Specific humidity</source>
         <translation>Humidité spécifique</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="198"/>
+        <location filename="../../src/DataQString.cpp" line="200"/>
         <source>Relative humidity</source>
         <translation>Humidité relative</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="199"/>
+        <location filename="../../src/DataQString.cpp" line="201"/>
         <source>Precipitation rate</source>
         <translation>Taux de précipitations</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="200"/>
+        <location filename="../../src/DataQString.cpp" line="202"/>
         <source>Total precipitation</source>
         <translation>Cumul de précipitations</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="201"/>
+        <location filename="../../src/DataQString.cpp" line="203"/>
         <source>Snow (depth)</source>
         <translation>Neige (épaisseur)</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="202"/>
+        <location filename="../../src/DataQString.cpp" line="204"/>
         <source>Cloud cover</source>
         <translation>Nébulosité</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="203"/>
+        <location filename="../../src/DataQString.cpp" line="205"/>
         <source>Cloud cover (low)</source>
         <translation>Couverture nuage (basse)</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="204"/>
+        <location filename="../../src/DataQString.cpp" line="206"/>
         <source>Cloud cover (middle)</source>
         <translation>Couverture nuageuse (moyenne)</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="205"/>
+        <location filename="../../src/DataQString.cpp" line="207"/>
         <source>Cloud cover (high)</source>
         <translation>Couverture nuageuse (haute)</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="206"/>
+        <location filename="../../src/DataQString.cpp" line="208"/>
         <source>Frozen rain possible</source>
         <translation>Verglas (risque)</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="207"/>
+        <location filename="../../src/DataQString.cpp" line="209"/>
         <source>Snowfall possible</source>
         <translation>Neige (risque)</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="208"/>
+        <location filename="../../src/DataQString.cpp" line="210"/>
         <source>CAPE</source>
         <translation>CAPE</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="209"/>
+        <location filename="../../src/DataQString.cpp" line="211"/>
         <source>CIN</source>
         <translation>CIN</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="211"/>
+        <location filename="../../src/DataQString.cpp" line="213"/>
         <source>Composite Reflectivity</source>
         <translation>Réflectivité composite</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="213"/>
+        <location filename="../../src/DataQString.cpp" line="215"/>
         <source>Wind</source>
         <translation>Vent</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="215"/>
+        <location filename="../../src/DataQString.cpp" line="217"/>
         <source>Gap temperature-dew point</source>
         <translation>Ecart température-point de rosée</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="216"/>
+        <location filename="../../src/DataQString.cpp" line="218"/>
         <source>Theta-e</source>
         <translation>Théta-e</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="217"/>
+        <location filename="../../src/DataQString.cpp" line="219"/>
         <source>Wind gust</source>
         <translation>Rafales</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="218"/>
+        <location filename="../../src/DataQString.cpp" line="220"/>
         <source>Wind gust (Vx)</source>
         <translation>Rafales (Vx)</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="219"/>
+        <location filename="../../src/DataQString.cpp" line="221"/>
         <source>Wind gust (VY)</source>
         <translation>Rafales (Vy)</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="220"/>
+        <location filename="../../src/DataQString.cpp" line="222"/>
         <source>Current direction</source>
         <translation>Direction du courant</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="221"/>
+        <location filename="../../src/DataQString.cpp" line="223"/>
         <source>Current</source>
         <translation>Courant</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="243"/>
+        <location filename="../../src/DataQString.cpp" line="245"/>
         <source>Primary wave</source>
         <translation>Vagues primaires</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="244"/>
+        <location filename="../../src/DataQString.cpp" line="246"/>
         <source>Secondary wave</source>
         <translation>Vagues secondaires</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="224"/>
+        <location filename="../../src/DataQString.cpp" line="226"/>
         <source>Wind wave direction</source>
         <translation>Direction des vagues du vent</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="225"/>
+        <location filename="../../src/DataQString.cpp" line="227"/>
         <source>Wind wave height</source>
         <translation>Hauteur des vagues du vent</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="226"/>
+        <location filename="../../src/DataQString.cpp" line="228"/>
         <source>Wind wave period</source>
         <translation>Période des vagues du vent</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="227"/>
+        <location filename="../../src/DataQString.cpp" line="229"/>
         <source>Swell wave direction</source>
         <translation>Direction de la houle</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="228"/>
+        <location filename="../../src/DataQString.cpp" line="230"/>
         <source>Swell wave height</source>
         <translation>Hauteur de la houle</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="229"/>
+        <location filename="../../src/DataQString.cpp" line="231"/>
         <source>Swell wave period</source>
         <translation>Période de la houle</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="230"/>
+        <location filename="../../src/DataQString.cpp" line="232"/>
         <source>Primary wave direction</source>
         <translation>Direction des vagues primaires</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="231"/>
+        <location filename="../../src/DataQString.cpp" line="233"/>
         <source>Primary wave period</source>
         <translation>Période des vagues primaires</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="232"/>
+        <location filename="../../src/DataQString.cpp" line="234"/>
         <source>Secondary wave direction</source>
         <translation>Direction des vagues secondaires</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="233"/>
+        <location filename="../../src/DataQString.cpp" line="235"/>
         <source>Secondary wave period</source>
         <translation>Période des vagues secondaires</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="237"/>
+        <location filename="../../src/DataQString.cpp" line="239"/>
         <source>Whitecap probability</source>
         <translation>Probabilité de déferlantes</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="234"/>
+        <location filename="../../src/DataQString.cpp" line="236"/>
         <source>Maximum wave direction</source>
         <translation>Direction des vagues maximales</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="235"/>
+        <location filename="../../src/DataQString.cpp" line="237"/>
         <source>Maximum wave height</source>
         <translation>Hauteur des vagues maximales</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="236"/>
+        <location filename="../../src/DataQString.cpp" line="238"/>
         <source>Maximum wave period</source>
         <translation>Période des vagues maximales</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="223"/>
-        <location filename="../../src/DataQString.cpp" line="239"/>
+        <location filename="../../src/DataQString.cpp" line="225"/>
+        <location filename="../../src/DataQString.cpp" line="241"/>
         <source>Significant wave</source>
         <translation>Vagues significatives</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="185"/>
+        <location filename="../../src/DataQString.cpp" line="187"/>
         <source>Geopotential height</source>
         <translation>Altitude géopotentielle</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="214"/>
+        <location filename="../../src/DataQString.cpp" line="216"/>
         <source>Wind (jet stream)</source>
         <translation>Vent (jet stream)</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="240"/>
+        <location filename="../../src/DataQString.cpp" line="242"/>
         <source>Maximum wave</source>
         <translation>Vagues maximales</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="241"/>
+        <location filename="../../src/DataQString.cpp" line="243"/>
         <source>Swell</source>
         <translation>Houle</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="242"/>
+        <location filename="../../src/DataQString.cpp" line="244"/>
         <source>Wind wave</source>
         <translation>Vagues du vent</translation>
     </message>
@@ -768,87 +768,87 @@
 <context>
     <name>DialogFonts</name>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="82"/>
+        <location filename="../../src/DialogFonts.cpp" line="86"/>
         <source>Fonts</source>
         <translation>Fontes</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="107"/>
+        <location filename="../../src/DialogFonts.cpp" line="111"/>
         <source>Ok</source>
         <translation>Valider</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="108"/>
+        <location filename="../../src/DialogFonts.cpp" line="112"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="153"/>
+        <location filename="../../src/DialogFonts.cpp" line="157"/>
         <source>Main font</source>
         <translation>Fonte principale</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="158"/>
+        <location filename="../../src/DialogFonts.cpp" line="162"/>
         <source>Dates list</source>
         <translation>Liste de dates</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="163"/>
+        <location filename="../../src/DialogFonts.cpp" line="167"/>
         <source>Menus</source>
         <translation>Menus</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="168"/>
+        <location filename="../../src/DialogFonts.cpp" line="172"/>
         <source>Status bar</source>
         <translation>Barre de statut</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="194"/>
+        <location filename="../../src/DialogFonts.cpp" line="198"/>
         <source>Cities (level 1)</source>
         <translation>Villes (niveau 1)</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="199"/>
+        <location filename="../../src/DialogFonts.cpp" line="203"/>
         <source>Cities (level 2)</source>
         <translation>Villes (niveau 2)</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="204"/>
+        <location filename="../../src/DialogFonts.cpp" line="208"/>
         <source>Cities (level 3)</source>
         <translation>Villes (niveau 3)</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="209"/>
+        <location filename="../../src/DialogFonts.cpp" line="213"/>
         <source>Cities (level 4)</source>
         <translation>Villes (niveau 4)</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="214"/>
+        <location filename="../../src/DialogFonts.cpp" line="218"/>
         <source>Cities (level 5)</source>
         <translation>Villes (niveau 5)</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="219"/>
+        <location filename="../../src/DialogFonts.cpp" line="223"/>
         <source>Countries names</source>
         <translation>Noms des pays</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="178"/>
+        <location filename="../../src/DialogFonts.cpp" line="182"/>
         <source>Isobars</source>
         <translation>Isobares</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="93"/>
+        <location filename="../../src/DialogFonts.cpp" line="97"/>
         <source>Choice of fonts</source>
         <translation>Choix des polices</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="183"/>
+        <location filename="../../src/DialogFonts.cpp" line="187"/>
         <source>Pressure H/L</source>
         <translation>Pression H/L</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="173"/>
+        <location filename="../../src/DialogFonts.cpp" line="177"/>
         <source>Temperature</source>
         <translation>Température</translation>
     </message>
@@ -874,345 +874,383 @@
         <translation>Téléchargement - GRIB</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="227"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="229"/>
         <source>Save GRIB file</source>
         <translation>Sauvegarde du fichier GRIB</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="244"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="257"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="275"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="958"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1211"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="246"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="259"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="277"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1424"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1675"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="251"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="271"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="253"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="273"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="252"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="254"/>
         <source>Can&apos;t write file.</source>
         <translation>Ecriture du fichier impossible.</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="272"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="274"/>
         <source>Error: </source>
         <translation>Erreur : </translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="896"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1362"/>
         <source>Stop</source>
         <translation>Stop</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="454"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="501"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="548"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="668"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="685"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="702"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1083"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="470"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="527"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="583"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="640"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="697"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="768"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="840"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="911"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="983"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1121"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1141"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1161"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1544"/>
         <source>Last</source>
         <translation>Dernier</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="455"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="502"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="549"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="669"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="686"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="703"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1084"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="471"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="528"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="584"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="641"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="698"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="769"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="841"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="912"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="984"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1122"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1142"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1162"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1545"/>
         <source>0 hr</source>
         <translation>0h</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="456"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="704"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1085"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="472"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="699"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="770"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="842"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="913"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="985"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1163"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1546"/>
         <source>6 hr</source>
         <translation>6h</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="457"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="503"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="550"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="670"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="687"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="705"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1086"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="473"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="529"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="585"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="642"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="700"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="771"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="843"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="914"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="986"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1123"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1143"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1164"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1547"/>
         <source>12 hr</source>
         <translation>12h</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="458"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="706"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1087"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="474"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="701"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="772"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="844"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="915"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="987"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1165"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1548"/>
         <source>18 hr</source>
         <translation>18h</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="883"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1349"/>
         <source> (max 50 MB) - NOTE: No sfc. or alt. parameters are selected!</source>
         <translation> (max. 50 MB) - Note : aucun paramètre de surface ou d&apos;altitude sélectionné!</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="885"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1351"/>
         <source> (max 50 MB)</source>
         <translation> (max. 50 MB)</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1035"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1044"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1495"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1505"/>
         <source>None</source>
         <translation>Aucun</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1101"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1562"/>
         <source>Total precipitation</source>
         <translation>Cumul de précipitations</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1103"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1105"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1564"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1566"/>
         <source>Cloud cover</source>
         <translation>Nébulosité</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1103"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1564"/>
         <source>total</source>
         <translation>total</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1105"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1566"/>
         <source>layers</source>
         <translation>couches</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1111"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1572"/>
         <source>Isotherm 0°C</source>
         <translation>Isotherme 0°C</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1124"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1585"/>
         <source>CAPE</source>
         <translation>CAPE</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1124"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1126"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1585"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1587"/>
         <source>surface</source>
         <translation>surface</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1126"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1587"/>
         <source>CIN</source>
         <translation>CIN</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1128"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1589"/>
+        <source>Reflectivity</source>
+        <translation type="unfinished">Réflectivité</translation>
+    </message>
+    <message>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1589"/>
+        <source>atmosphere</source>
+        <translation type="unfinished">atmosphère</translation>
+    </message>
+    <message>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1591"/>
         <source>Wind gust (surface)</source>
         <translation>Rafales (surface)</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1153"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1157"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1160"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1164"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1168"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1172"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1176"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1179"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1617"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1621"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1624"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1628"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1632"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1636"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1640"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1643"/>
         <source>mb</source>
         <translation>mb</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1287"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1751"/>
         <source>Run cycle:</source>
         <translation>heure d&apos;exécution :</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1332"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1800"/>
         <source>Surface Data</source>
         <translation>Données de surface</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1343"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1811"/>
         <source>Warning: Selecting this data significantly increases the size of the GRIB file.</source>
         <translation>Cave at : Sélectionner ces données augmente significativement la taille du fichier grib.</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1370"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1838"/>
         <source>Altitude Data</source>
         <translation>Données d&apos;altitude</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1388"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1856"/>
         <source>Wave Data</source>
         <translation>Données vagues</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1183"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1647"/>
         <source>Skewt-T</source>
         <translation>Skewt-T</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1209"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1673"/>
         <source>Download</source>
         <translation>Téléchargement</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1215"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1679"/>
         <source>Connection</source>
         <translation>Connexion</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1248"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1712"/>
         <source>Atmospheric Model :</source>
         <translation>Modèle athmosphérique :</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1256"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1720"/>
         <source>Wave Model :</source>
         <translation>Modèle océanique :</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1269"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1733"/>
         <source>Resolution:</source>
         <translation>Résolution:</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1271"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1735"/>
         <source>°</source>
         <translation>°</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1275"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1739"/>
         <source>Interval:</source>
         <translation>Intervalle:</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1277"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1741"/>
         <source>hours</source>
         <translation>heures</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1281"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1745"/>
         <source>Period:</source>
         <translation>Durée:</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1283"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1747"/>
         <source>days</source>
         <translation>jours</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1187"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1651"/>
         <source>All</source>
         <translation>Tout</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1197"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1661"/>
         <source>Significant height</source>
         <translation>Hauteur significative</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1199"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1663"/>
         <source>Swell</source>
         <translation>Houle</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1201"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1665"/>
         <source>Wind waves</source>
         <translation>Vagues du vent</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1213"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1677"/>
         <source>Server status</source>
         <translation>Statut du serveur</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1230"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1694"/>
         <source>Latitude min :</source>
         <translation>Latitude min :</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1232"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1696"/>
         <source>Latitude max :</source>
         <translation>Latitude max :</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1234"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1698"/>
         <source>Longitude min :</source>
         <translation>Longitude min :</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1236"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1700"/>
         <source>Longitude max :</source>
         <translation>Longitude max :</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1341"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1809"/>
         <source>Atmosphere: geopotential altitude, wind, temperature, theta-e, relative humidity.</source>
         <translation>Atmosphère : altitude géopotentielle, vent, température, théta-e, humidité relative.</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1122"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1583"/>
         <source>Snow (depth)</source>
         <translation>Neige (épaisseur)</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1118"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1579"/>
         <source>Snow (snowfall possible)</source>
         <translation>Neige (chute possible)</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="297"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="299"/>
         <source>kb/s</source>
         <translation>kb/s</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="301"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="303"/>
         <source>Mb/s</source>
         <translation>Mb/s</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="304"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="306"/>
         <source>Size: %1 kb      Done: %2 ko at %3 %4</source>
         <translation>Taille : %1 kb      Effectué : %2 ko à %3 %4</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1097"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1558"/>
         <source>Wind (10 m)</source>
         <translation>Vent (10 m)</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="883"/>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="885"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1349"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1351"/>
         <source>Size: ≃ </source>
         <translation>Taille : ≃ </translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1099"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1560"/>
         <source>Mean sea level pressure</source>
         <translation>Pression au niveau de la mer</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1107"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1568"/>
         <source>Temperature (2 m)</source>
         <translation>Température (2 m)</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1109"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1570"/>
         <source>Relative humidity (2 m)</source>
         <translation>Humidité relative (2 m)</translation>
     </message>
     <message>
-        <location filename="../../src/DialogLoadGRIB.cpp" line="1120"/>
+        <location filename="../../src/DialogLoadGRIB.cpp" line="1581"/>
         <source>Frozen rain (rainfall possible)</source>
         <translation>Pluie verglaçante (chute possible)</translation>
     </message>
@@ -1595,62 +1633,72 @@
 <context>
     <name>DialogServerStatus</name>
     <message>
-        <location filename="../../src/DialogServerStatus.cpp" line="36"/>
+        <location filename="../../src/DialogServerStatus.cpp" line="37"/>
         <source>Server</source>
         <translation>Serveur</translation>
     </message>
     <message>
-        <location filename="../../src/DialogServerStatus.cpp" line="48"/>
+        <location filename="../../src/DialogServerStatus.cpp" line="49"/>
         <source>File server status</source>
         <translation>Statut du serveur de fichiers</translation>
     </message>
     <message>
-        <location filename="../../src/DialogServerStatus.cpp" line="61"/>
+        <location filename="../../src/DialogServerStatus.cpp" line="62"/>
         <source>Ok</source>
         <translation>Valider</translation>
     </message>
     <message>
-        <location filename="../../src/DialogServerStatus.cpp" line="96"/>
+        <location filename="../../src/DialogServerStatus.cpp" line="97"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../../src/DialogServerStatus.cpp" line="108"/>
+        <location filename="../../src/DialogServerStatus.cpp" line="109"/>
         <source>error</source>
         <translation>erreur</translation>
     </message>
     <message>
-        <location filename="../../src/DialogServerStatus.cpp" line="113"/>
+        <location filename="../../src/DialogServerStatus.cpp" line="114"/>
         <source>OK</source>
         <translation>Valider</translation>
     </message>
     <message>
-        <location filename="../../src/DialogServerStatus.cpp" line="132"/>
+        <location filename="../../src/DialogServerStatus.cpp" line="135"/>
         <source>Working</source>
         <translation>En exécution</translation>
     </message>
     <message>
-        <location filename="../../src/DialogServerStatus.cpp" line="134"/>
+        <location filename="../../src/DialogServerStatus.cpp" line="137"/>
         <source>Waiting</source>
         <translation>En attente</translation>
     </message>
     <message>
-        <location filename="../../src/DialogServerStatus.cpp" line="210"/>
+        <location filename="../../src/DialogServerStatus.cpp" line="185"/>
+        <source>Global</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DialogServerStatus.cpp" line="191"/>
+        <source>Regional</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DialogServerStatus.cpp" line="242"/>
         <source>Update time :</source>
         <translation>Heure de mise à jour :</translation>
     </message>
     <message>
-        <location filename="../../src/DialogServerStatus.cpp" line="216"/>
+        <location filename="../../src/DialogServerStatus.cpp" line="249"/>
         <source>Activity :</source>
         <translation>Activité :</translation>
     </message>
     <message>
-        <location filename="../../src/DialogServerStatus.cpp" line="168"/>
+        <location filename="../../src/DialogServerStatus.cpp" line="169"/>
         <source>Connection :</source>
         <translation>Connexion :</translation>
     </message>
     <message>
-        <location filename="../../src/DialogServerStatus.cpp" line="204"/>
+        <location filename="../../src/DialogServerStatus.cpp" line="235"/>
         <source>Forecast date :</source>
         <translation>Date de la prévision :</translation>
     </message>
@@ -1912,47 +1960,46 @@
 <context>
     <name>FileLoaderGRIB</name>
     <message>
-        <location filename="../../src/FileLoaderGRIB.cpp" line="210"/>
+        <location filename="../../src/FileLoaderGRIB.cpp" line="228"/>
         <source>Preparing file on server... Please wait...</source>
         <translation>Préparation du fichier sur le serveur... Veuillez patienter...</translation>
     </message>
     <message>
-        <location filename="../../src/FileLoaderGRIB.cpp" line="256"/>
+        <location filename="../../src/FileLoaderGRIB.cpp" line="259"/>
         <source>Bad Request</source>
         <translation>Mauvaise requête</translation>
     </message>
     <message>
-        <location filename="../../src/FileLoaderGRIB.cpp" line="256"/>
+        <location filename="../../src/FileLoaderGRIB.cpp" line="259"/>
         <source>No atmospheric or wave parameters were selected</source>
         <translation>Aucun paramètre athmospéhérique ou de vagues n&apos;a été sélectionné</translation>
     </message>
     <message>
-        <location filename="../../src/FileLoaderGRIB.cpp" line="309"/>
         <source>Information</source>
-        <translation>Information</translation>
+        <translation type="vanished">Information</translation>
     </message>
     <message>
-        <location filename="../../src/FileLoaderGRIB.cpp" line="320"/>
+        <location filename="../../src/FileLoaderGRIB.cpp" line="324"/>
         <source>Total size : </source>
         <translation>Taille totale : </translation>
     </message>
     <message>
-        <location filename="../../src/FileLoaderGRIB.cpp" line="346"/>
+        <location filename="../../src/FileLoaderGRIB.cpp" line="350"/>
         <source>Empty file.</source>
         <translation>Fichier vide.</translation>
     </message>
     <message>
-        <location filename="../../src/FileLoaderGRIB.cpp" line="349"/>
+        <location filename="../../src/FileLoaderGRIB.cpp" line="353"/>
         <source>CheckSum control</source>
         <translation>CheckSum control</translation>
     </message>
     <message>
-        <location filename="../../src/FileLoaderGRIB.cpp" line="352"/>
+        <location filename="../../src/FileLoaderGRIB.cpp" line="356"/>
         <source>Finish</source>
         <translation>Terminé</translation>
     </message>
     <message>
-        <location filename="../../src/FileLoaderGRIB.cpp" line="358"/>
+        <location filename="../../src/FileLoaderGRIB.cpp" line="362"/>
         <source>Bad checksum.</source>
         <translation>Checksum incorrect.</translation>
     </message>
@@ -1965,7 +2012,8 @@
         <translation>Raz</translation>
     </message>
     <message>
-        <location filename="../../src/DialogFonts.cpp" line="69"/>
+        <location filename="../../src/DialogFonts.cpp" line="70"/>
+        <location filename="../../src/DialogFonts.cpp" line="72"/>
         <source>Choose a font</source>
         <translation>Choisir une fonte</translation>
     </message>
@@ -2331,114 +2379,114 @@
         <translation>Choisir un fichier GRIB</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1448"/>
+        <location filename="../../src/MainWindow.cpp" line="1455"/>
         <source>Download a GRIB file</source>
         <translation>Téléchargement d&apos;un fichier GRIB</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1449"/>
+        <location filename="../../src/MainWindow.cpp" line="1456"/>
         <source>Please select an area on the map.</source>
         <translation>Vous devez sélectionner une zone de la carte.</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1514"/>
-        <location filename="../../src/MainWindow.cpp" line="1522"/>
+        <location filename="../../src/MainWindow.cpp" line="1521"/>
+        <location filename="../../src/MainWindow.cpp" line="1529"/>
         <source>File information</source>
         <translation>Informations sur le fichier</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1515"/>
+        <location filename="../../src/MainWindow.cpp" line="1522"/>
         <source>File not loaded.</source>
         <translation>Aucun fichier n&apos;est chargé.</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1530"/>
+        <location filename="../../src/MainWindow.cpp" line="1537"/>
         <source>Weather center %1</source>
         <translation>Centre météorologique %1</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1531"/>
+        <location filename="../../src/MainWindow.cpp" line="1538"/>
         <source>Model %1</source>
         <translation>Modèle %1</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1532"/>
+        <location filename="../../src/MainWindow.cpp" line="1539"/>
         <source>Grid %1</source>
         <translation>Grille %1</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1576"/>
+        <location filename="../../src/MainWindow.cpp" line="1583"/>
         <source>Grid : %1x%2=%3 points</source>
         <translation>Grille : %1x%2=%3 points</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1585"/>
+        <location filename="../../src/MainWindow.cpp" line="1592"/>
         <source>Grid : %1 points</source>
         <translation>Grille : %1 points</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1603"/>
+        <location filename="../../src/MainWindow.cpp" line="1610"/>
         <source>Reference date: %1</source>
         <translation>Date de référence : %1</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1608"/>
+        <location filename="../../src/MainWindow.cpp" line="1615"/>
         <source>GRIB file information</source>
         <translation>Informations sur le fichier GRIB</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2331"/>
-        <location filename="../../src/MainWindow.cpp" line="2339"/>
+        <location filename="../../src/MainWindow.cpp" line="2344"/>
+        <location filename="../../src/MainWindow.cpp" line="2352"/>
         <source>Failure</source>
         <translation>Echec</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2325"/>
+        <location filename="../../src/MainWindow.cpp" line="2338"/>
         <source>It is recommended to exit XyGrib while running the Maintenance Tool. Do you wish to exit XyGrib?</source>
         <translation>Il est recommandé de quitter XyGrib pendant la procédude maintenance. Voulez-vous quitter l&apos;application ?</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2326"/>
+        <location filename="../../src/MainWindow.cpp" line="2339"/>
         <source>Exit XyGrib?</source>
         <translation>Quitter XyGrib ?</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2394"/>
+        <location filename="../../src/MainWindow.cpp" line="2407"/>
         <source>An updated version is available</source>
         <translation>Une nouvelle version est disponible</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2398"/>
+        <location filename="../../src/MainWindow.cpp" line="2411"/>
         <source>A new version</source>
         <translation>Une nouvelle version</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2399"/>
+        <location filename="../../src/MainWindow.cpp" line="2412"/>
         <source>is available for update.</source>
         <translation>est disponible pour une mise à jour.</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2400"/>
+        <location filename="../../src/MainWindow.cpp" line="2413"/>
         <source>Please use the XyGrib Maintenance Tool to upgrade. It can be activated from the Help Menu</source>
         <translation>Merci d&apos;utiliser l&apos;outil de maintenance de XyGrib pour la mise à jour. Il est disponible dans le menu Aide</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2412"/>
+        <location filename="../../src/MainWindow.cpp" line="2425"/>
         <source>Version is up to date</source>
         <translation>Version à jour</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2413"/>
+        <location filename="../../src/MainWindow.cpp" line="2426"/>
         <source>You have version</source>
         <translation>Vous avez une version</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2414"/>
+        <location filename="../../src/MainWindow.cpp" line="2427"/>
         <source>which is the most current version</source>
         <translation>qui est la version la plus récente</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2428"/>
+        <location filename="../../src/MainWindow.cpp" line="2441"/>
         <source>Network Error</source>
         <translation>Erreur de réseau</translation>
     </message>
@@ -2453,47 +2501,47 @@
         <translation>Ce n&apos;est pas un fichier GRIB,</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1484"/>
-        <location filename="../../src/MainWindow.cpp" line="1501"/>
+        <location filename="../../src/MainWindow.cpp" line="1491"/>
+        <location filename="../../src/MainWindow.cpp" line="1508"/>
         <source>yes</source>
         <translation>oui</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1488"/>
-        <location filename="../../src/MainWindow.cpp" line="1504"/>
+        <location filename="../../src/MainWindow.cpp" line="1495"/>
+        <location filename="../../src/MainWindow.cpp" line="1511"/>
         <source>no</source>
         <translation>non</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1527"/>
+        <location filename="../../src/MainWindow.cpp" line="1534"/>
         <source>File : %1
 </source>
         <translation>Fichier : %1
 </translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1528"/>
+        <location filename="../../src/MainWindow.cpp" line="1535"/>
         <source>Size : %1 bytes
 </source>
         <translation>Taille : %1 octets
 </translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1536"/>
+        <location filename="../../src/MainWindow.cpp" line="1543"/>
         <source>%1 dates:
 </source>
         <translation>%1 dates :
 </translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1539"/>
+        <location filename="../../src/MainWindow.cpp" line="1546"/>
         <source>    from %1
 </source>
         <translation>    du %1
 </translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1540"/>
+        <location filename="../../src/MainWindow.cpp" line="1547"/>
         <source>    to %1
 </source>
         <translation>    au %1
@@ -2530,38 +2578,38 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1543"/>
+        <location filename="../../src/MainWindow.cpp" line="1550"/>
         <source>Available data :</source>
         <translation>Données disponibles :</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1685"/>
+        <location filename="../../src/MainWindow.cpp" line="1692"/>
         <source>Change Skin</source>
         <translation>Modifier l&apos;apparence</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1686"/>
+        <location filename="../../src/MainWindow.cpp" line="1693"/>
         <source>For skin change to take effect XyGrib needs to be restarted</source>
         <translation>Pour que l&apos;apparence prenne effet, il est nécessaire de redémarrer XyGrib</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1696"/>
+        <location filename="../../src/MainWindow.cpp" line="1703"/>
         <source>Selected area: </source>
         <translation>Sélection : </translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1704"/>
+        <location filename="../../src/MainWindow.cpp" line="1711"/>
         <source>(great circle dist:</source>
         <translation>(dist.orthodromique :</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1706"/>
+        <location filename="../../src/MainWindow.cpp" line="1713"/>
         <source>  init.dir: %1°</source>
         <translation>  dir. init : %1°</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2331"/>
-        <location filename="../../src/MainWindow.cpp" line="2339"/>
+        <location filename="../../src/MainWindow.cpp" line="2344"/>
+        <location filename="../../src/MainWindow.cpp" line="2352"/>
         <source>Unable to find the XyGrib Maintenance Tool. Please start it from the desktop facilities</source>
         <translation>Impossible de trouver l&apos;outil de maintenance. Merci de le démarrer directement depuis votre gestionnaire de fichiers</translation>
     </message>
@@ -2580,7 +2628,7 @@
         <translation>Vérifiez l&apos;installation du programme.</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1493"/>
+        <location filename="../../src/MainWindow.cpp" line="1500"/>
         <source>no (computed with Magnus-Tetens formula)</source>
         <translation>non (calculé par la formule de Magnus-Tetens)</translation>
     </message>
@@ -2595,12 +2643,12 @@
         <translation>pas de fichier GRIB chargé.</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1597"/>
+        <location filename="../../src/MainWindow.cpp" line="1604"/>
         <source>Area :</source>
         <translation>Etendue :</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1523"/>
+        <location filename="../../src/MainWindow.cpp" line="1530"/>
         <source>Data error.</source>
         <translation>Erreur de données.</translation>
     </message>
@@ -2952,11 +3000,6 @@
     <message>
         <location filename="../../src/MenuBar.cpp" line="140"/>
         <source>NOAA-GFS</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../src/MenuBar.cpp" line="373"/>
-        <source>FNMOC-WW3</source>
         <translation></translation>
     </message>
     <message>
