@@ -1121,6 +1121,9 @@ void DialogLoadGRIB::setWaveSelectors ()
         cbRunCycle->insertItem (ind++, tr("Last"), "last");
         cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
         cbRunCycle->insertItem (ind++, tr("12 hr"), "12");
+        cbInterval->clear();
+        cbInterval->addItems(QStringList()<<"3"<<"6"<<"12");
+        cbInterval->setMinimumWidth (0);
 
     }
     else if (cbWvModel->currentText() == "EWAM")
@@ -1138,6 +1141,9 @@ void DialogLoadGRIB::setWaveSelectors ()
         cbRunCycle->insertItem (ind++, tr("Last"), "last");
         cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
         cbRunCycle->insertItem (ind++, tr("12 hr"), "12");
+        cbInterval->clear();
+        cbInterval->addItems(QStringList()<<"3"<<"6"<<"12");
+        cbInterval->setMinimumWidth (0);
 
     }
     else if (cbWvModel->currentText() == "WW3")
@@ -1157,7 +1163,9 @@ void DialogLoadGRIB::setWaveSelectors ()
         cbRunCycle->insertItem (ind++, tr("6 hr"), "06");
         cbRunCycle->insertItem (ind++, tr("12 hr"), "12");
         cbRunCycle->insertItem (ind++, tr("18 hr"), "18");
-
+        cbInterval->clear();
+        cbInterval->addItems(QStringList()<<"3"<<"6"<<"12");
+        cbInterval->setMinimumWidth (0);
     }
 }
 //-------------------------------------------------------------------------------

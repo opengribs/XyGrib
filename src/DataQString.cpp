@@ -22,9 +22,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 QString DataCodeStr::toString (const DataCenterModel &dcm)
 {
 	switch (dcm) {
-		case NOAA_GFS :
-			return "NOAA-GFS";
-		case NOAA_NCEP_WW3 :
+        case NOAA_GFS :
+            return "NOAA-GFS";
+        case NOAA_NAM :
+            return "NOAA-NAM";
+        case NOAA_NCEP_WW3 :
 			return "NOAA-NCEP-WW3";
 		case METEOBLUE_NMM4 :
 			return "METEOBLUE-NMM4";
@@ -39,7 +41,7 @@ QString DataCodeStr::toString (const DataCenterModel &dcm)
         case DWD_ICON :
             return "DWD-ICON";
         case DWD_ICON_EU :
-            return "DWD-ICON_EU Nest";
+            return "DWD-ICON-EU Nest";
         case ECMWF :
             return "ECMWF";
         case ECMWF_WAVE :
@@ -53,7 +55,7 @@ QString DataCodeStr::toString (const DataCenterModel &dcm)
         case MF_ARPEGE_GLOBAL :
             return "Arpege-Global";
         case MF_ARPEGE_EU :
-            return "Arpege-Europe";
+            return "Arpege-EU nest";
         case MF_ARPEGE :
             return "Arpege";
         case MF_AROME :

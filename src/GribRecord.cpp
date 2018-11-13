@@ -70,9 +70,15 @@ void  GribRecord::translateDataType ()
 	) {
 		dataCenterModel = NOAA_NCEP_WW3;
 	}
-	//------------------------
-	// Meteo France Arome/Arpege
-	//------------------------
+    //------------------------
+    // NAM (CONUS, CACBN, PACIFIC)
+    //------------------------
+    else if (idCenter==7 && idModel==84) {
+        dataCenterModel = NOAA_NAM;
+    }
+    //------------------------
+    // Meteo France Arome/Arpege
+    //------------------------
     else if (idCenter==84 && (idModel==204 || idModel==121 || idModel==211) && idGrid==255) {
 
 		if ( (getDataType()==GRB_PRESSURE)
@@ -87,7 +93,10 @@ void  GribRecord::translateDataType ()
 				levelValue = 0;
 		}
         if (idModel==211)
-            dataCenterModel = MF_ARPEGE;
+            if (Di>=0.5)
+                dataCenterModel = MF_ARPEGE;
+            else
+                dataCenterModel = MF_ARPEGE_EU;
         else if (idModel==204)
             dataCenterModel = MF_AROME;
 
