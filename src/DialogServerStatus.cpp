@@ -73,8 +73,6 @@ DialogServerStatus::DialogServerStatus
     timeLoad.start();
     QNetworkRequest request = Util::makeNetworkRequest ("http://"+Util::getServerName()+page);
 	reply_step1 = manager->get (request);
-	connect (reply_step1, SIGNAL(downloadProgress (qint64,qint64)), 
-                    this, SLOT(downloadProgress (qint64,qint64)));
 	connect (reply_step1, SIGNAL(error(QNetworkReply::NetworkError)),
 					this, SLOT(slotNetworkError (QNetworkReply::NetworkError)));
     connect (reply_step1, SIGNAL(finished()),
