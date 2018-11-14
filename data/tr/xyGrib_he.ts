@@ -1649,57 +1649,57 @@
         <translation>אישור</translation>
     </message>
     <message>
-        <location filename="../../src/DialogServerStatus.cpp" line="97"/>
+        <location filename="../../src/DialogServerStatus.cpp" line="95"/>
         <source>Error</source>
         <translation>שגיאה</translation>
     </message>
     <message>
-        <location filename="../../src/DialogServerStatus.cpp" line="109"/>
+        <location filename="../../src/DialogServerStatus.cpp" line="107"/>
         <source>error</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/DialogServerStatus.cpp" line="114"/>
+        <location filename="../../src/DialogServerStatus.cpp" line="112"/>
         <source>OK</source>
         <translation>תקין</translation>
     </message>
     <message>
-        <location filename="../../src/DialogServerStatus.cpp" line="135"/>
+        <location filename="../../src/DialogServerStatus.cpp" line="133"/>
         <source>Working</source>
         <translation>בהכנה</translation>
     </message>
     <message>
-        <location filename="../../src/DialogServerStatus.cpp" line="137"/>
+        <location filename="../../src/DialogServerStatus.cpp" line="135"/>
         <source>Waiting</source>
         <translation>ממתין</translation>
     </message>
     <message>
-        <location filename="../../src/DialogServerStatus.cpp" line="169"/>
+        <location filename="../../src/DialogServerStatus.cpp" line="167"/>
         <source>Connection :</source>
         <translation>חיבור :</translation>
     </message>
     <message>
-        <location filename="../../src/DialogServerStatus.cpp" line="185"/>
+        <location filename="../../src/DialogServerStatus.cpp" line="183"/>
         <source>Global</source>
-        <translation>מוגלים גלובלים</translation>
+        <translation>מודלים גלובלים</translation>
     </message>
     <message>
-        <location filename="../../src/DialogServerStatus.cpp" line="191"/>
+        <location filename="../../src/DialogServerStatus.cpp" line="189"/>
         <source>Regional</source>
-        <translation>מוגלים אזוריים</translation>
+        <translation>מודלים אזוריים</translation>
     </message>
     <message>
-        <location filename="../../src/DialogServerStatus.cpp" line="235"/>
+        <location filename="../../src/DialogServerStatus.cpp" line="233"/>
         <source>Forecast date :</source>
         <translation>תאריך ייחוס :</translation>
     </message>
     <message>
-        <location filename="../../src/DialogServerStatus.cpp" line="242"/>
+        <location filename="../../src/DialogServerStatus.cpp" line="240"/>
         <source>Update time :</source>
         <translation>שעת עדכון :</translation>
     </message>
     <message>
-        <location filename="../../src/DialogServerStatus.cpp" line="249"/>
+        <location filename="../../src/DialogServerStatus.cpp" line="247"/>
         <source>Activity :</source>
         <translation>פעילות :</translation>
     </message>
