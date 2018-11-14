@@ -1044,12 +1044,12 @@
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1589"/>
         <source>Reflectivity</source>
-        <translation type="unfinished">Réflectivité</translation>
+        <translation>Réflectivité</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1589"/>
         <source>atmosphere</source>
-        <translation type="unfinished">atmosphère</translation>
+        <translation>atmosphère</translation>
     </message>
     <message>
         <location filename="../../src/DialogLoadGRIB.cpp" line="1591"/>
@@ -1675,12 +1675,12 @@
     <message>
         <location filename="../../src/DialogServerStatus.cpp" line="185"/>
         <source>Global</source>
-        <translation type="unfinished"></translation>
+        <translation>Mondial</translation>
     </message>
     <message>
         <location filename="../../src/DialogServerStatus.cpp" line="191"/>
         <source>Regional</source>
-        <translation type="unfinished"></translation>
+        <translation>Régional</translation>
     </message>
     <message>
         <location filename="../../src/DialogServerStatus.cpp" line="242"/>
