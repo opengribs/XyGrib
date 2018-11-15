@@ -4,8 +4,14 @@ Instructions For Windows Online Installer
 
 First create the binary deployment package
 *******************************************
-Run   windeployqt --no-translations --release --no-opengl-sw .\XyGrib.exe  in the release folder. 
+Copy the release version of the XyGrib.exe file to the deployment folder
+Run   windeployqt --no-translations --release --no-opengl-sw .\XyGrib.exe  in the deployment folder. 
 Add libopenjp2.dll (as this is missed for some reason)
+
+***************************************
+Now edit the installer config
+---------------------------------
+Edit the installer version number in config\config.xml
 
 ***************************************
 Now prepare the repository updates
@@ -13,14 +19,16 @@ Now prepare the repository updates
 Prepare org.opengribs.xygrib.core.win
 	Copy the release folder contents to the primary package data folder in the win_intaller structure 
 	Also include 'LICENCE' and 'README.md' in the primary package data folder
-	Create an icons folder and add the xyGrib_32.ico to this folder
-	
+	Create an icons folder and add the xyGrib_32.ico to this folder if missing
+	Edit the meta\package.xml file and set version number and release date
 ----------------------------------------------------------------------------------
 Prepare org.opengribs.xygrib.data
 	Copy the "data" structure to the second package data folder in the installer structure
+	Edit the meta\package.xml file and set version number and release date
 -------------------------------------------------------------------------------------------
 Prepare org.opengribs.xygrib.maps
 	Copy the "data" structure for the high resolution maps to the third package data folder in the installer structure
+	Most likely no changes to the meta\package.xml
 -------------------------------------------------------------------------------------------
 
 Build the repository
@@ -31,5 +39,8 @@ upload the new repository files to the web server repository
 **************************************************************************************
 Build the installer
 -------------------
-Build the installer: 
-binarycreator.exe --online-only -c config\config.xml -p packages XyGrib_Win_v<x.x.x.x>_Installer.exe
+Build the online installer: 
+binarycreator.exe --online-only -c config\config.xml -p packages XyGrib_Win_Online_Installer_v1.2.0.exe
+
+Build the offline installer:
+binarycreator.exe --offline-only -c config\config.xml -e org.opengribs.xygrib.maps -p packages XyGrib_Win_Offline_Installer_v1.2.0.exe
