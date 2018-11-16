@@ -37,7 +37,7 @@
     </message>
     <message>
         <source>middle cloud layer</source>
-        <translation>middelhoog wolkendek</translation>
+        <translation>middelhoge bewolking</translation>
     </message>
     <message>
         <source>atmosphere</source>
@@ -61,7 +61,7 @@
     </message>
     <message>
         <source>low cloud layer</source>
-        <translation>laag wolkendek</translation>
+        <translation>lage bewolking</translation>
     </message>
     <message>
         <source>sigma %1</source>
@@ -257,7 +257,7 @@
     </message>
     <message>
         <source>Weather data</source>
-        <translation type="unfinished">Weerdata op cursorpositie</translation>
+        <translation>Weerdata op cursorpositie</translation>
     </message>
     <message>
         <source>Current</source>
@@ -320,11 +320,11 @@
     </message>
     <message>
         <source>Reflectivity</source>
-        <translation>Reflectiviteit</translation>
+        <translation>Reflectie</translation>
     </message>
     <message>
         <source>Composite Reflectivity</source>
-        <translation>Samengestelde reflectiviteit</translation>
+        <translation>Reflectie</translation>
     </message>
 </context>
 <context>
@@ -389,7 +389,7 @@
     </message>
     <message>
         <source>Current (Vy)</source>
-        <translation>Stroming (Vx)</translation>
+        <translation>Stroming (Vy)</translation>
     </message>
     <message>
         <source>Secondary wave</source>
@@ -553,7 +553,7 @@
     </message>
     <message>
         <source>Composite Reflectivity</source>
-        <translation>Samengestelde reflectiviteit</translation>
+        <translation>Reflectie</translation>
     </message>
     <message>
         <source>Wind gust (Vx)</source>
@@ -606,7 +606,7 @@
     </message>
     <message>
         <source>Main font</source>
-        <translation>Hoofdletter</translation>
+        <translation>Hoofdlettertype</translation>
     </message>
     <message>
         <source>Fonts</source>
@@ -622,23 +622,23 @@
     </message>
     <message>
         <source>Cities (level 1)</source>
-        <translation>Plaatsnamen (level 1)</translation>
+        <translation>Plaatsnamen (niveau 1)</translation>
     </message>
     <message>
         <source>Cities (level 2)</source>
-        <translation>Plaatsnamen (level 2)</translation>
+        <translation>Plaatsnamen (niveau 2)</translation>
     </message>
     <message>
         <source>Cities (level 3)</source>
-        <translation>Plaatsnamen (level 3)</translation>
+        <translation>Plaatsnamen (niveau 3)</translation>
     </message>
     <message>
         <source>Cities (level 4)</source>
-        <translation>Plaatsnamen (level 4)</translation>
+        <translation>Plaatsnamen (niveau 4)</translation>
     </message>
     <message>
         <source>Cities (level 5)</source>
-        <translation>Plaatsnamen (level 5)</translation>
+        <translation>Plaatsnamen (niveau 5)</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -658,7 +658,7 @@
     </message>
     <message>
         <source>Dates list</source>
-        <translation>Datalijst</translation>
+        <translation>Datumbalk</translation>
     </message>
     <message>
         <source>Temperature</source>
@@ -888,7 +888,7 @@
     </message>
     <message>
         <source> (max 50 MB) - NOTE: No sfc. or alt. parameters are selected!</source>
-        <translation> (max 50 MB) -LET OP: Er zijn geen parameters geselecteerd!</translation>
+        <translation> (max 50 MB) -LET OP: Er is geen enkele parameters geselecteerd!</translation>
     </message>
     <message>
         <source> (max 50 MB)</source>
@@ -912,7 +912,7 @@
     </message>
     <message>
         <source>Run cycle:</source>
-        <translation>Run</translation>
+        <translation type="unfinished">Model run</translation>
     </message>
     <message>
         <source>Surface Data</source>
@@ -932,11 +932,11 @@
     </message>
     <message>
         <source>Reflectivity</source>
-        <translation type="unfinished">Reflectiviteit</translation>
+        <translation>Reflectie</translation>
     </message>
     <message>
         <source>atmosphere</source>
-        <translation type="unfinished">atmosfeer</translation>
+        <translation>atmosfeer</translation>
     </message>
 </context>
 <context>
@@ -1143,7 +1143,7 @@
     </message>
     <message>
         <source>Composite Reflectivity (atm)</source>
-        <translation>Samengestelde reflectiviteit (atm)</translation>
+        <translation>Samengestelde reflectie (atm)</translation>
     </message>
 </context>
 <context>
@@ -1240,7 +1240,7 @@
     </message>
     <message>
         <source>Activity :</source>
-        <translation>Activiteit: </translation>
+        <translation>Status: </translation>
     </message>
     <message>
         <source>Server</source>
@@ -1252,7 +1252,7 @@
     </message>
     <message>
         <source>Update time :</source>
-        <translation>Update :</translation>
+        <translation>Beschikbaar sinds:</translation>
     </message>
     <message>
         <source>Connection :</source>
@@ -1260,7 +1260,7 @@
     </message>
     <message>
         <source>Forecast date :</source>
-        <translation>Actuele voorspelling:</translation>
+        <translation type="unfinished">Model Run:</translation>
     </message>
     <message>
         <source>OK</source>
@@ -1276,11 +1276,11 @@
     </message>
     <message>
         <source>Global</source>
-        <translation type="unfinished"></translation>
+        <translation>Globaal</translation>
     </message>
     <message>
         <source>Regional</source>
-        <translation type="unfinished"></translation>
+        <translation>Regionaal</translation>
     </message>
 </context>
 <context>
@@ -1379,7 +1379,7 @@
     </message>
     <message>
         <source>foot (ft)</source>
-        <translation>foot (ft)</translation>
+        <translation>voet (ft)</translation>
     </message>
     <message>
         <source>dd,dd°</source>
@@ -1431,7 +1431,7 @@
     </message>
     <message>
         <source>Latitudes :</source>
-        <translation>Breedteº :</translation>
+        <translation>Breedte :</translation>
     </message>
     <message>
         <source> : Local</source>
@@ -1451,7 +1451,7 @@
     </message>
     <message>
         <source>Longitudes :</source>
-        <translation>Lengteº :</translation>
+        <translation>Lengte :</translation>
     </message>
     <message>
         <source>Coordinates :</source>
@@ -1463,7 +1463,7 @@
     </message>
     <message>
         <source>WARNING: You have choose local time.</source>
-        <translation>Lep op: U heeft de locale tijd gekozen.</translation>
+        <translation>Let op: Je hebt voor locale tijd gekozen.</translation>
     </message>
     <message>
         <source>gm (≈ meter)</source>
@@ -1592,7 +1592,7 @@
     </message>
     <message>
         <source>Geopotentials :</source>
-        <translation type="unfinished"></translation>
+        <translation>Geopotentiaal :</translation>
     </message>
 </context>
 <context>
@@ -1626,63 +1626,64 @@
     <name>GribLoadDialog</name>
     <message>
         <source>Réglages des Météotables</source>
-        <translation type="unfinished"></translation>
+        <translation>Instellingen Meteotabel</translation>
     </message>
     <message>
         <source>Vent</source>
-        <translation type="unfinished"></translation>
+        <translation>Wind</translation>
     </message>
     <message>
         <source>Précipitations</source>
-        <translation type="unfinished"></translation>
+        <translation>Neerslag</translation>
     </message>
     <message>
         <source>Nébulosité</source>
-        <translation type="unfinished"></translation>
+        <translation>Bewolking</translation>
     </message>
     <message>
         <source>Température</source>
-        <translation type="unfinished"></translation>
+        <translation>Temperatuur</translation>
     </message>
     <message>
         <source>Pression</source>
-        <translation type="unfinished"></translation>
+        <translation>Druk</translation>
     </message>
     <message>
         <source>Point de rosée</source>
-        <translation type="unfinished"></translation>
+        <translation>Dauwpunt</translation>
     </message>
     <message>
         <source>Ecart température-point de rosée</source>
-        <translation type="unfinished"></translation>
+        <translation>Verschil temperatuur-dauwpunt
+</translation>
     </message>
     <message>
         <source>Isotherme 0°C</source>
-        <translation type="unfinished"></translation>
+        <translation>Isotherm 0°C</translation>
     </message>
     <message>
         <source>Neige (chute possible)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sneeuwkans</translation>
     </message>
     <message>
         <source>Neige (hauteur)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sneeuwhoogte</translation>
     </message>
     <message>
         <source>Pluie verglaçante (chute possible)</source>
-        <translation type="unfinished"></translation>
+        <translation>IJzelkans</translation>
     </message>
     <message>
         <source>Température potentielle</source>
-        <translation type="unfinished"></translation>
+        <translation>Potentiele temperatuur</translation>
     </message>
     <message>
         <source>Valider</source>
-        <translation type="unfinished"></translation>
+        <translation>Bevestigen</translation>
     </message>
     <message>
         <source>Annuler</source>
-        <translation type="unfinished"></translation>
+        <translation>Annuleren</translation>
     </message>
 </context>
 <context>
@@ -1724,7 +1725,7 @@
     </message>
     <message>
         <source>Resize after</source>
-        <translation>Afmetingen later wijzigen</translation>
+        <translation>Afmetingen achteraf wijzigen</translation>
     </message>
     <message>
         <source>Height</source>
@@ -1979,7 +1980,7 @@
     </message>
     <message>
         <source>For skin change to take effect XyGrib needs to be restarted</source>
-        <translation type="unfinished">Start XyGrib opnieuw op om het uiterlijk van het programma aan te passen...</translation>
+        <translation>Start XyGrib opnieuw op om het uiterlijk van het programma aan te passen...</translation>
     </message>
     <message>
         <source>An updated version is available</source>
@@ -2007,35 +2008,35 @@
     </message>
     <message>
         <source>https://OpenGribs.org</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Failure</source>
-        <translation type="unfinished"></translation>
+        <translation>Mislukt</translation>
     </message>
     <message>
         <source>It is recommended to exit XyGrib while running the Maintenance Tool. Do you wish to exit XyGrib?</source>
-        <translation type="unfinished"></translation>
+        <translation>Het is aan te raden om XyGrib af te sluiten voor je onderhoud pleegt. Wil je XyGrib afsluiten?</translation>
     </message>
     <message>
         <source>Exit XyGrib?</source>
-        <translation type="unfinished"></translation>
+        <translation>XyGrib afsluiten?</translation>
     </message>
     <message>
         <source>is available for update.</source>
-        <translation type="unfinished"></translation>
+        <translation>is beschikbaar voor een update</translation>
     </message>
     <message>
         <source>Please use the XyGrib Maintenance Tool to upgrade. It can be activated from the Help Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebruik het XyGrib onderhoudsprogramma om te upgraden. Je vindt het in het Help menu</translation>
     </message>
     <message>
         <source>Available data :</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschikbare data :</translation>
     </message>
     <message>
         <source>Unable to find the XyGrib Maintenance Tool. Please start it from the desktop facilities</source>
-        <translation type="unfinished"></translation>
+        <translation>Het onderhoudsprogramma is niet gevonden. Voer de update handmatig uit. </translation>
     </message>
 </context>
 <context>
@@ -2086,7 +2087,7 @@
     </message>
     <message>
         <source>Temperature label</source>
-        <translation type="unfinished"></translation>
+        <translation>Temperatuur label</translation>
     </message>
 </context>
 <context>
@@ -2141,7 +2142,7 @@
     </message>
     <message>
         <source>UP</source>
-        <translation>UP</translation>
+        <translation></translation>
     </message>
     <message>
         <source>100</source>
@@ -2169,7 +2170,7 @@
     </message>
     <message>
         <source>DOWN</source>
-        <translation>DOWN</translation>
+        <translation></translation>
     </message>
     <message>
         <source>Down</source>
@@ -2185,7 +2186,7 @@
     </message>
     <message>
         <source>LEFT</source>
-        <translation>LEFT</translation>
+        <translation></translation>
     </message>
     <message>
         <source>Left</source>
@@ -2233,11 +2234,11 @@
     </message>
     <message>
         <source>File information</source>
-        <translation type="unfinished">Bestandsinformatie</translation>
+        <translation>Bestandsinformatie</translation>
     </message>
     <message>
         <source>RIGHT</source>
-        <translation>RIGHT</translation>
+        <translation></translation>
     </message>
     <message>
         <source>Right</source>
@@ -2289,7 +2290,7 @@
     </message>
     <message>
         <source>Show GRIB grid</source>
-        <translation>Toon roostepunten</translation>
+        <translation>Toon roosterpunten</translation>
     </message>
     <message>
         <source>Show boundaries</source>
@@ -2305,27 +2306,27 @@
     </message>
     <message>
         <source>Level 1</source>
-        <translation>Level 1</translation>
+        <translation>Niveau 1</translation>
     </message>
     <message>
         <source>Level 2</source>
-        <translation>Level 2</translation>
+        <translation>Niveau 2</translation>
     </message>
     <message>
         <source>Level 3</source>
-        <translation>Level 3</translation>
+        <translation>Niveau 3</translation>
     </message>
     <message>
         <source>Level 4</source>
-        <translation>Level 4</translation>
+        <translation>Niveau 4</translation>
     </message>
     <message>
         <source>Level 5</source>
-        <translation>Level 5</translation>
+        <translation>Niveau 5</translation>
     </message>
     <message>
         <source>Show values panel</source>
-        <translation type="unfinished">Venster met weer- en golfdata</translation>
+        <translation>Venster met weer- en golfdata</translation>
     </message>
     <message>
         <source>GRIB file information</source>
@@ -2333,7 +2334,7 @@
     </message>
     <message>
         <source>Duplicate first cumulative record</source>
-        <translation>Dupliceer eerste cumulatieve opname</translation>
+        <translation>Dupliceer eerste cumulatieve waarde</translation>
     </message>
     <message>
         <source>Next forecast [page down]</source>
@@ -2569,7 +2570,7 @@
     </message>
     <message>
         <source>Save current image</source>
-        <translation>Huidige afbeelding opslaan</translation>
+        <translation>Schermafbeelding maken</translation>
     </message>
     <message>
         <source>Countries names</source>
@@ -2593,7 +2594,7 @@
     </message>
     <message>
         <source>Reduce map scale</source>
-        <translation>Verklein kaartschaal</translation>
+        <translation>Uitzoomen</translation>
     </message>
     <message>
         <source>Current arrows</source>
@@ -2605,7 +2606,7 @@
     </message>
     <message>
         <source>Show Low (L) and Hight (H) pressure points</source>
-        <translation>Toon Hoog (H) en laag (L) drukgebied</translation>
+        <translation>Markeer Hoge (H) en lage (L) drukkernen</translation>
     </message>
     <message>
         <source>Find a city...</source>
@@ -2717,7 +2718,7 @@
     </message>
     <message>
         <source>Increase map scale</source>
-        <translation>Vergroot kaartschaal</translation>
+        <translation>Inzoomen</translation>
     </message>
     <message>
         <source>Show wind arrows</source>
@@ -2753,7 +2754,7 @@
     </message>
     <message>
         <source>METAR: show stations</source>
-        <translation></translation>
+        <translation>Metar: toon stations</translation>
     </message>
     <message>
         <source>Ctrl+K</source>
@@ -2761,15 +2762,15 @@
     </message>
     <message>
         <source>Display METAR stations</source>
-        <translation></translation>
+        <translation>Toon Metar stations</translation>
     </message>
     <message>
         <source>METAR: select stations</source>
-        <translation></translation>
+        <translation>METAR: selecteer stations</translation>
     </message>
     <message>
         <source>Select METAR stations</source>
-        <translation></translation>
+        <translation>Selecteer METAR stations</translation>
     </message>
     <message>
         <source>Waves arrows</source>
@@ -2845,7 +2846,7 @@
     </message>
     <message>
         <source>Isolines</source>
-        <translation></translation>
+        <translation>Isolijnen</translation>
     </message>
     <message>
         <source>Isotherms 0°C</source>
@@ -2953,11 +2954,11 @@
     </message>
     <message>
         <source>Reflectivity</source>
-        <translation>Reflectiviteit</translation>
+        <translation>Reflectie</translation>
     </message>
     <message>
         <source>Dark Skin</source>
-        <translation type="unfinished">Donker interface XyGrib</translation>
+        <translation>Donker interface XyGrib</translation>
     </message>
     <message>
         <source>About XyGrib</source>
@@ -2965,35 +2966,35 @@
     </message>
     <message>
         <source>Check for updates</source>
-        <translation>Controleer op updates</translation>
+        <translation>Controleer op nieuwe versies</translation>
     </message>
     <message>
         <source>Click to Pan</source>
-        <translation type="unfinished"></translation>
+        <translation>Klik om te verschuiven</translation>
     </message>
     <message>
         <source>Toggle click to pan</source>
-        <translation type="unfinished"></translation>
+        <translation>Klik om te verschuiven</translation>
     </message>
     <message>
         <source>Toggle click to select</source>
-        <translation type="unfinished"></translation>
+        <translation>Klik om te selecteren</translation>
     </message>
     <message>
         <source>Run XyGrib Maintenance Tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebruik het XyGrib onderhoudsprogramma</translation>
     </message>
     <message>
         <source>To add, update or remove XyGrib components</source>
-        <translation type="unfinished"></translation>
+        <translation>Toevoegen, updaten of verwijderen van XyGrib componenten</translation>
     </message>
     <message>
         <source>Weather Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Opties</translation>
     </message>
     <message>
         <source>Show Model Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Toon de modelgrenzen</translation>
     </message>
 </context>
 <context>
@@ -3199,7 +3200,7 @@ er is geen gribfile geladen.</translation>
     </message>
     <message>
         <source>Reflectivity (entire atmos)</source>
-        <translation>Reflectiviteit (volledige atmosfeer)</translation>
+        <translation>Reflectie (volledige atmosfeer)</translation>
     </message>
     <message>
         <source>dBZ</source>
@@ -3250,7 +3251,7 @@ er is geen gribfile geladen.</translation>
     </message>
     <message>
         <source>Available data</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschikbare data</translation>
     </message>
 </context>
 <context>
@@ -3270,7 +3271,7 @@ er is geen gribfile geladen.</translation>
         <source>The destruction of a point of interest is definitive.
 
 Are you sure ?</source>
-        <translation type="unfinished">Locatiepunt definitief verwijderen?</translation>
+        <translation>Locatiepunt definitief verwijderen?</translation>
     </message>
     <message>
         <source>Point %1</source>
@@ -3278,7 +3279,7 @@ Are you sure ?</source>
     </message>
     <message>
         <source>Error: name is required.</source>
-        <translation type="unfinished">Geef dit punt een naam.</translation>
+        <translation>Geef dit punt een naam.</translation>
     </message>
     <message>
         <source>Delete POI: %1</source>
@@ -3333,22 +3334,22 @@ Are you sure ?</source>
     </message>
     <message>
         <source>Delete this POI</source>
-        <translation type="unfinished">Verwijder punt</translation>
+        <translation>Verwijder punt</translation>
     </message>
     <message>
         <source>Result</source>
-        <translation type="unfinished"></translation>
+        <translation>Uitkomst</translation>
     </message>
 </context>
 <context>
     <name>PositionEditor</name>
     <message>
         <source>Longitude</source>
-        <translation>Lengteº</translation>
+        <translation>Lengte</translation>
     </message>
     <message>
         <source>Latitude</source>
-        <translation>Breedteº</translation>
+        <translation>Breedte</translation>
     </message>
 </context>
 <context>
@@ -3391,11 +3392,11 @@ Are you sure ?</source>
     </message>
     <message>
         <source>Longitude</source>
-        <translation>Lengteº</translation>
+        <translation>Lengte</translation>
     </message>
     <message>
         <source>Latitude</source>
-        <translation>Breedteº</translation>
+        <translation>Breedte</translation>
     </message>
 </context>
 <context>
@@ -3464,7 +3465,7 @@ Are you sure ?</source>
     </message>
     <message>
         <source>Save current image</source>
-        <translation>Huidige afbeelding opslaan</translation>
+        <translation>Schermafbeelding maken</translation>
     </message>
     <message>
         <source>T max: </source>
@@ -3496,7 +3497,7 @@ Are you sure ?</source>
     </message>
     <message>
         <source>Export data (spreadsheet file)</source>
-        <translation></translation>
+        <translation>Exporteer data (spreadsheet bestand)</translation>
     </message>
     <message>
         <source>Temperature</source>
