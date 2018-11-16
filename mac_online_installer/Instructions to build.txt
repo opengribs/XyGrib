@@ -4,7 +4,7 @@ Instructions For Mac Online & offline Installer
 
 Creates installer from already built application and data
 
-Copy the 'mac-deploy-and-installer.sh' script to the root of 'qtbuild' in the following folder structure:
+Copy the 'mac-deploy-and-installer.sh' script to the mac_online_installer of the 'qtbuild' tree as shown in the following folder structure:
 -- qtbuild 
 		-- deploy 								('XyGrib.app' as copied from Qt release build folder)
 		-- mac_online_installer					(structure as copied from the repository clone)
@@ -25,5 +25,6 @@ Copy the 'mac-deploy-and-installer.sh' script to the root of 'qtbuild' in the fo
 Also assumes that 'XyGrib.app' has been copied from the Qt release build folders to the 'deploy' folder
 That XyGrib 'data' structure and hires map 'data' structure are copied to respective 'data' folders ('data' appears in two levels in each case)
 
+Before running the script edit the version number variable.
 After running the script the installer.app should be in the mac_online_installer folder and the repository should be ready for upload
 
