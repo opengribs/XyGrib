@@ -34,17 +34,17 @@ class /*QDESIGNER_WIDGET_EXPORT*/ ColorEditorWidget
 {
     Q_OBJECT
 	public:
-		ColorEditorWidget(QWidget *parent = 0,
-						  QColor color    = Qt::white,
-						  QColor defaultColor = Qt::white );
+        ColorEditorWidget(QWidget *parent = 0,
+                          const QColor &color    = Qt::white,
+                          const QColor &defaultColor = Qt::white );
 		
 		QColor getColor()
 					{return testZone->getColor();}
 		
- 		void   setColor(QColor c)
+        void   setColor(const QColor &c)
  					{testZone->setColor(c);}
  					
- 		void   setDefaultColor(QColor c)
+        void   setDefaultColor(const QColor &c)
  					{defaultColor = c;}
 
 	private slots:

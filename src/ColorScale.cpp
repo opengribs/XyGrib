@@ -54,7 +54,7 @@ QRgb ColorScale::getColor (double v, bool smooth)
 }
 
 //--------------------------------------------
-bool ColorScale::readFile (QString filename, double kv, double offset)
+bool ColorScale::readFile (const QString& filename, double kv, double offset)
 {
 	ColorElement *ea, *eb;
 	char buf [1000];
@@ -127,14 +127,14 @@ bool ColorScale::readFile (QString filename, double kv, double offset)
 void ColorScale::dbg ()
 {
 	DBG("--- ColorScale (sz=%d) ---", (int)colors.size());
-	for (uint i=0; i<colors.size(); i++) {
-		colors[i] -> dbg();
+	for (auto & color : colors) {
+		color -> dbg();
 	}
 }
 //--------------------------------------------
 void ColorScale::addColor (ColorElement *color)
 {
-	if (color && ( colors.size()==0 
+	if (color && ( colors.empty() 
 				 || color->vmin==colors[colors.size()-1]->vmax)
 	) {
 		colors.push_back (color);

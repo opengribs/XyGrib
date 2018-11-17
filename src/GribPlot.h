@@ -37,7 +37,7 @@ class GribPlot : public RegularGridPlot
         GribPlot (const GribPlot &);
         virtual ~GribPlot ();
         
-		virtual void  loadFile (QString fileName,
+		virtual void  loadFile (const QString &fileName,
 						LongTaskProgress *taskProgress=NULL, int nbrecs=0);
 		
         GribReader *getReader()  const  {return gribReader != nullptr && gribReader->isOk()? gribReader: nullptr;}

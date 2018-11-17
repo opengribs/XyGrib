@@ -34,13 +34,13 @@ class DialogBoxColumn  : public DialogBoxBase
 		
 		DialogBoxColumn ( QWidget *parent, 
 						  int nbColumn, 
-						  QString windowTitle, QString title, 
+						  const QString& windowTitle, const QString& title, 
 						  int nbButtons=2 );
 				
 		bool isAccepted () {return accepted;}
 		
 	protected :
-		void addLabeledWidget (int column, QString label, QWidget *widget); 
+		void addLabeledWidget (int column, const QString& label, QWidget *widget); 
     
 	private slots:
         void slotBtOK();

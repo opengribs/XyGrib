@@ -715,10 +715,8 @@ void MapDrawer::draw_Cartouche_Gridded
 		//--------------------------------------------------
         datalist.clear ();
 		time_t  tref;
-		std::set<DataCenterModel>::iterator it;
-		for (it=setUsedDataCenters.begin(); it!=setUsedDataCenters.end(); it++) {
-			DataCenterModel dcm = *it;
-			tref = reader->getRefDateForDataCenter (dcm);
+		for (auto dcm : setUsedDataCenters) {
+				tref = reader->getRefDateForDataCenter (dcm);
 			// DBGN(tref);
 			if (tref != 0) {
 				QString stref = "Ref ";
@@ -728,7 +726,7 @@ void MapDrawer::draw_Cartouche_Gridded
 				datalist.append (stref);
 			}
 		}
-		if (datalist.size() > 0) {
+		if (!datalist.empty()) {
 			pnt.setFont (fontdate);
 			w = 0;  // get largest string data
 			for (int i = 0; i < datalist.size(); i++) {
@@ -773,7 +771,7 @@ QPixmap * MapDrawer::createPixmap_GriddedData (
 						bool isEarthMapValid, 
 						GriddedPlotter *plotter,
 						Projection *proj,
-						QList<POI*> lspois )
+						const QList<POI*>& lspois )
 {
 	QPixmap *pixmap = new QPixmap(proj->getW(), proj->getH());
 
@@ -788,9 +786,8 @@ QPixmap * MapDrawer::createPixmap_GriddedData (
 			this->draw_GSHHS (pnt, true, isEarthMapValid, proj);
 		}
 		// Ajoute les pOIs visibles
-		for (int i=0; i<lspois.size(); i++) {
-			POI *poi = lspois.at(i);
-			if (poi->isVisible()) {
+		for (auto poi : lspois) {
+            if (poi->isVisible()) {
 				poi->drawContent (pnt, proj, true);
 			}
 		}

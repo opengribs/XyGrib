@@ -48,8 +48,8 @@ DialogMeteotableOptions::DialogMeteotableOptions()
 //-------------------------------------------------------------------------
 DialogMeteotableOptions::~DialogMeteotableOptions()
 {
-	for (int i = 0; i < listAllOptionItems.size(); ++i) {
-		delete listAllOptionItems.at(i);
+	for (auto listAllOptionItem : listAllOptionItems) {
+		delete listAllOptionItem;
 	}
 }
 
@@ -72,9 +72,7 @@ void DialogMeteotableOptions::slotBtOK()
 	//----------------------------
 	// remove old items from ini file
 	QStringList listKeys = Settings::getAllKeys();
-	QStringList::const_iterator cstit;
-	for (cstit = listKeys.constBegin(); cstit != listKeys.constEnd(); cstit++) {
-		QString key = *cstit;
+	for (const auto & key : listKeys) {
 		if (key.startsWith("MTableData_vis_")
 			|| key.startsWith("MTableData_pos_")
 		) {
@@ -83,9 +81,8 @@ void DialogMeteotableOptions::slotBtOK()
 	}
 	//----------------------------
 	// write settings
-	for (int i = 0; i < listAllOptionItems.size(); ++i) {
-		MeteotableOptionItem *item = listAllOptionItems.at(i);
-		uint grbcode = item->dtc.toInt32 ();
+	for (auto item : listAllOptionItems) {
+			uint grbcode = item->dtc.toInt32 ();
 		Util::setSetting (getSettingName_vis(grbcode), item->visible, false);
 		Util::setSetting (getSettingName_pos(grbcode), item->pos, false);
 	}
@@ -157,9 +154,8 @@ void DialogMeteotableOptions::slotChangeVisibleItems()
 								MeteotableOptionItem::lessThan_byPos);
 	int posVis = 0;
 	int posNotVis = 0;
-	for (int i = 0; i < listAllOptionItems.size(); ++i) {
-		MeteotableOptionItem *item = listAllOptionItems.at(i);
-		if (item->visible) {
+	for (auto item : listAllOptionItems) {
+			if (item->visible) {
 			item->pos = posVis++;
 		}
 		else {
@@ -173,8 +169,8 @@ void DialogMeteotableOptions::slotChangeVisibleItems()
 int DialogMeteotableOptions::nbOptionItems (bool visibility) 
 {
 	int nb = 0;
-	for (int i = 0; i < listAllOptionItems.size(); ++i)
-		if (listAllOptionItems.at(i)->visible == visibility)
+	for (auto listAllOptionItem : listAllOptionItems)
+		if (listAllOptionItem->visible == visibility)
 			nb ++;
 	return nb;
 }
@@ -192,7 +188,7 @@ MeteotableOptionItem * DialogMeteotableOptions::getOptionItemByCode (int internc
 // GUI
 //=============================================================================
 void DialogMeteotableOptions::addData
-		( QString title, uchar grbtype, uchar leveltype, uint level,
+        ( const QString &title, uchar grbtype, uchar leveltype, uint level,
 		  bool defaultvis, int defaultpos )
 {
 	uint grbcode = DataCode (grbtype, leveltype, level).toInt32();
@@ -214,9 +210,8 @@ void DialogMeteotableOptions::updateListWidgetsItems ()
 	QList <MeteotableOptionItem *> listVisibleItems;
 	QList <MeteotableOptionItem *> listHiddenItems;
 	
-	for (int i = 0; i < listAllOptionItems.size(); ++i) {
-		MeteotableOptionItem *item = listAllOptionItems.at(i);
-		if (item->visible)
+	for (auto item : listAllOptionItems) {
+			if (item->visible)
 			listVisibleItems.append (item);
 		else
 			listHiddenItems.append (item);
@@ -232,14 +227,12 @@ void DialogMeteotableOptions::updateListWidgetsItems ()
 	listVisibleData->clear();
 	listHiddenData->clear();
 	
-	for (int i = 0; i < listVisibleItems.size(); ++i) {
-		MeteotableOptionItem *opt = listVisibleItems.at(i);
-        QListWidgetItem *item = new QListWidgetItem (opt->name, nullptr, opt->interncode);
+	for (auto opt : listVisibleItems) {
+		QListWidgetItem *item = new QListWidgetItem (opt->name, nullptr, opt->interncode);
 		listVisibleData->addItem (item);
 	}
-	for (int i = 0; i < listHiddenItems.size(); ++i) {
-		MeteotableOptionItem *opt = listHiddenItems.at(i);
-        QListWidgetItem *item = new QListWidgetItem (opt->name, nullptr, opt->interncode);
+	for (auto opt : listHiddenItems) {
+		QListWidgetItem *item = new QListWidgetItem (opt->name, nullptr, opt->interncode);
 		listHiddenData->addItem (item);
 	}
 }

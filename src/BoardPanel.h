@@ -68,7 +68,7 @@ class BoardPanel : public QDockWidget
 		
 		void mouseReleaseEvent (QMouseEvent *);
 		void createMenuPopup ();
-		void addAction (QString title,	QString settingName, 
+		void addAction (const QString& title,	const QString& settingName, 
 							BoardPanelCell *cell);
 		
 		QHash <QAction*,QString>  hashActionSettingName;
@@ -147,7 +147,7 @@ class BoardPanel : public QDockWidget
 		//QLabel     lbWaves_pek;	
 		QLabel     lbWaves_wcap;	
 		
-		QString  formatWave (QString title, float ht, float dir, float per);
+        QString  formatWave (const QString &title, float ht, float dir, float per);
 		Altitude lastDefinedTempAltitude;
 };
 

@@ -230,8 +230,8 @@ void Terrain::setProjection(Projection *proj)
     Util::setSetting("projectionScale",  proj->getScale());	
 	
 	QList<POI*> lpois = getListPOIs();
-	for (int i=0; i<lpois.size(); i++) {
-		lpois.at(i)->setProjection(proj);
+	for (auto lpoi : lpois) {
+		lpoi->setProjection(proj);
 	}
     isEarthMapValid = false;
 	mustRedraw = true;
@@ -645,7 +645,7 @@ bool  Terrain::getGribFileRectangle(double *x0, double *y0, double *x1, double *
 //---------------------------------------------------------
 // Grib files or ...
 //---------------------------------------------------------
-FileDataType Terrain::loadMeteoDataFile (QString fileName, bool zoom)
+FileDataType Terrain::loadMeteoDataFile (const QString& fileName, bool zoom)
 {
     indicateWaitingMap();
 	currentFileType = DATATYPE_NONE;
@@ -758,8 +758,8 @@ FileDataType Terrain::loadMeteoDataFile (QString fileName, bool zoom)
 	
 	if (cancelled)
 		return DATATYPE_CANCELLED;
-	else
-		return currentFileType;
+
+    return currentFileType;
 }
 
 //---------------------------------------------------------
@@ -768,9 +768,7 @@ GriddedPlotter *Terrain::getGriddedPlotter ()
     if (currentFileType == DATATYPE_GRIB) {
 		return griddedPlot;
     }
-	else {
-        return nullptr;
-	}
+    return nullptr;
 }
 
 //---------------------------------------------------------
@@ -1295,12 +1293,12 @@ void Terrain::setShowPOIs(bool show)
 	Util::setSetting("showPOIs", show);
 	// list of all the POI's
 	QList<POI*> lpois = getListPOIs();
-	for (int i=0; i<lpois.size(); i++)
+	for (auto lpoi : lpois)
 	{
 		if (show)
-			lpois.at(i)->setVisible(true);
+			lpoi->setVisible(true);
 		else
-			lpois.at(i)->setVisible(false);
+			lpoi->setVisible(false);
 	}
 }
 

@@ -51,7 +51,7 @@ public:
     MapDrawer   *getDrawer()      {return drawer;}
     Projection  *getProjection()  {return proj;}
     
-    FileDataType  loadMeteoDataFile (QString fileName, bool zoom);
+    FileDataType  loadMeteoDataFile (const QString& fileName, bool zoom);
 	FileDataType  getMeteoFileType()  {return currentFileType;}
 
 	void  closeMeteoDataFile();

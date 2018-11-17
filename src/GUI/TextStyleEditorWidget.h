@@ -14,8 +14,8 @@ class TextDisplayLabel : public QLabel
 	public:
 		TextDisplayLabel(QWidget *parent = 0);
 		
-		void setColors  (QColor textColor, QColor bgColor);
-		void changeFont (QFont ft);
+		void setColors  (const QColor& textColor, const QColor& bgColor);
+		void changeFont (const QFont& ft);
 		
 		QColor getTextColor() {return textColor;}
 		QColor getBgColor()   {return bgColor;}
@@ -61,14 +61,14 @@ class /*QDESIGNER_WIDGET_EXPORT*/ TextStyleEditorWidget
 {
     Q_OBJECT
 	public:
-		TextStyleEditorWidget ( QWidget *parent = 0,
-					QFont  fonte       = QFont("Helvetica",10),
-					QFont  defaultFont = QFont("Helvetica",10),
-					QColor textColor = Qt::black,
-					QColor bgColor   = Qt::white,
-					QColor defaultTextColor = Qt::black,
-					QColor defaultBgColor   =  Qt::white
-			);
+        TextStyleEditorWidget (QWidget *parent = 0,
+                    const QFont&  fonte       = QFont("Helvetica",10),
+                    const QFont &defaultFont = QFont("Helvetica",10),
+                    const QColor& textColor = Qt::black,
+                    const QColor& bgColor   = Qt::white,
+                    const QColor &defaultTextColor = Qt::black,
+                    const QColor &defaultBgColor   =  Qt::white
+            );
 
  		QColor getTextColor() {return testZoneLabel->getTextColor();}
  		QColor getBgColor()   {return testZoneLabel->getBgColor();}
@@ -87,7 +87,7 @@ class /*QDESIGNER_WIDGET_EXPORT*/ TextStyleEditorWidget
 
 	private slots:
 		void   slotRaz();
-		void   slotColorChanged(QColor);
+		void   slotColorChanged(const QColor&);
 		
 	private:
 		QFont  defaultFont;

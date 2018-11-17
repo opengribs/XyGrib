@@ -76,7 +76,7 @@ friend class Terrain;	// TODO (or not) getters setters
 						bool isEarthMapValid, 
 						GriddedPlotter *plotter,
 						Projection *proj,
-						QList<POI*> lspois );
+						const QList<POI*>& lspois );
 
         void	initGraphicsParameters  ();
 					

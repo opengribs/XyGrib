@@ -28,7 +28,7 @@ Grib2Reader::~Grib2Reader ()
 {
 }
 //-------------------------------------------------------------------------------
-void Grib2Reader::openFile (const std::string fname,
+void Grib2Reader::openFile (const std::string &fname,
 							LongTaskProgress *taskProgress, int nbrecs)
 {
 	allUnknownRecords.clear();
@@ -38,7 +38,7 @@ void Grib2Reader::openFile (const std::string fname,
 	setAllDates.clear ();
 	setAllDataCode.clear ();
 	
-    if (fname != "") {
+    if (!fname.empty()) {
         openFilePriv (fname, nbrecs);
 		createListDates ();
 		ok = getNumberOfDates() > 0;
@@ -53,7 +53,7 @@ void Grib2Reader::openFile (const std::string fname,
     }
 }
 //-------------------------------------------------------------------------------
-void Grib2Reader::openFilePriv (const std::string fname, int nbrecs)
+void Grib2Reader::openFilePriv (const std::string& fname, int nbrecs)
 {
 //     debug("Open file: %s", fname.c_str());
     fileName = fname;
@@ -198,11 +198,9 @@ void Grib2Reader::analyseRecords ()
 	DataCode dtcx (GRB_WIND_GUST_VX, alt);
 	DataCode dtcy (GRB_WIND_GUST_VY, alt);
 	if (hasData(dtcx) && ! hasData(DataCode(GRB_WIND_GUST, alt))) {
-		std::set<time_t>::iterator iter;
-		for (iter=setAllDates.begin(); iter!=setAllDates.end(); iter++)
+		for (long date : setAllDates)
 		{
-			time_t date = *iter;
-			GribRecord *recx = getRecord (dtcx, date);
+            GribRecord *recx = getRecord (dtcx, date);
 			GribRecord *recy = getRecord (dtcy, date);
 			if (recx && recy) {
 				GribRecord *recGust = new GribRecord (*recx);

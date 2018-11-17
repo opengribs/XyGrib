@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 //==============================================================================
 DialogBoxColumn::DialogBoxColumn (QWidget *parent,
-			int nbColumn, QString windowTitle, QString title, int nbButtons)
+			int nbColumn, const QString& windowTitle, const QString& title, int nbButtons)
 	: DialogBoxBase (parent)
 {
     setWindowTitle (windowTitle);
@@ -110,7 +110,7 @@ void DialogBoxColumn::slotBtCancel()
 }
 
 //-----------------------------------------------------------------------------
-void DialogBoxColumn::addLabeledWidget (int col, QString label, QWidget *widget)
+void DialogBoxColumn::addLabeledWidget (int col, const QString& label, QWidget *widget)
 {
 	if (col>=0 && col < nbColumn)
 	{

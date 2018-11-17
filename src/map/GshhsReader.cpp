@@ -94,10 +94,8 @@ GshhsPolygon_WDB::GshhsPolygon_WDB(ZUFILE *file_)
 //--------------------------------------------------------
 // Destructeur
 GshhsPolygon::~GshhsPolygon() {
-    std::vector <GshhsPoint *>::iterator itp;
-    for (itp=lsPoints.begin(); itp != lsPoints.end(); itp++) {
-        delete *itp;
-        *itp = NULL;
+    for (auto & lsPoint : lsPoints) {
+        delete lsPoint;
     }
     lsPoints.clear();
 }
@@ -110,7 +108,7 @@ GshhsPolygon::~GshhsPolygon() {
 //==========================================================
 //==========================================================
 //==========================================================
-GshhsReader::GshhsReader (std::string fpath, int quality)
+GshhsReader::GshhsReader (const std::string& fpath, int quality)
 {
     this->fpath = fpath;
     gshhsRangsReader = new GshhsRangsReader(fpath);
@@ -167,27 +165,27 @@ void GshhsReader::clearLists ()
     std::vector <GshhsPolygon*>::iterator itp;
     for (int qual=0; qual<5; qual++)
     {
-        for (itp=lsPoly_level1[qual]->begin(); itp != lsPoly_level1[qual]->end(); itp++) {
+        for (itp=lsPoly_level1[qual]->begin(); itp != lsPoly_level1[qual]->end(); ++itp) {
             delete *itp;
             *itp = nullptr;
         }
-        for (itp=lsPoly_level2[qual]->begin(); itp != lsPoly_level2[qual]->end(); itp++) {
+        for (itp=lsPoly_level2[qual]->begin(); itp != lsPoly_level2[qual]->end(); ++itp) {
             delete *itp;
             *itp = nullptr;
         }
-        for (itp=lsPoly_level3[qual]->begin(); itp != lsPoly_level3[qual]->end(); itp++) {
+        for (itp=lsPoly_level3[qual]->begin(); itp != lsPoly_level3[qual]->end(); ++itp) {
             delete *itp;
             *itp = nullptr;
         }
-        for (itp=lsPoly_level4[qual]->begin(); itp != lsPoly_level4[qual]->end(); itp++) {
+        for (itp=lsPoly_level4[qual]->begin(); itp != lsPoly_level4[qual]->end(); ++itp) {
             delete *itp;
             *itp = nullptr;
         }
-        for (itp=lsPoly_boundaries[qual]->begin(); itp != lsPoly_boundaries[qual]->end(); itp++) {
+        for (itp=lsPoly_boundaries[qual]->begin(); itp != lsPoly_boundaries[qual]->end(); ++itp) {
             delete *itp;
             *itp = nullptr;
         }
-        for (itp=lsPoly_rivers[qual]->begin(); itp != lsPoly_rivers[qual]->end(); itp++) {
+        for (itp=lsPoly_rivers[qual]->begin(); itp != lsPoly_rivers[qual]->end(); ++itp) {
             delete *itp;
             *itp = nullptr;
         }
@@ -258,7 +256,7 @@ void GshhsReader::readGshhsFiles()
     bool   ok;
 
 	// Bordures des continents (4 niveaux) (gshhs_[clihf].b)
-	if (lsPoly_level1[quality]->size() == 0) { // on ne lit qu'une fois le fichier
+	if (lsPoly_level1[quality]->empty()) { // on ne lit qu'une fois le fichier
 		fname = getFileName_gshhs(quality);
 		file = zu_open(fname.c_str(), "rb");
         if (file != nullptr) {
@@ -309,7 +307,7 @@ void GshhsReader::setQuality(int quality_) // 5 levels: 0=low ... 4=full
     }
         
     // Frontières politiques
-    if (lsPoly_boundaries[quality]->size() == 0) { // on ne lit qu'une fois le fichier
+    if (lsPoly_boundaries[quality]->empty()) { // on ne lit qu'une fois le fichier
         fname = getFileName_boundaries(quality);
         file = zu_open(fname.c_str(), "rb");
         if (file != nullptr) {
@@ -328,7 +326,7 @@ void GshhsReader::setQuality(int quality_) // 5 levels: 0=low ... 4=full
         }
     }
     // Rivières
-    if (lsPoly_rivers[quality]->size() == 0) { // on ne lit qu'une fois le fichier
+    if (lsPoly_rivers[quality]->empty()) { // on ne lit qu'une fois le fichier
         fname = getFileName_rivers(quality);
         file = zu_open(fname.c_str(), "rb");
         if (file != nullptr) {
@@ -391,14 +389,13 @@ int GshhsReader::GSHHS_scaledPoints(
     }
     
     double x, y;
-    std::vector <GshhsPoint *>::iterator itp;
     int xx, yy, oxx=0, oyy=0;
     int j = 0;
     
-    for  (itp=(pol->lsPoints).begin(); itp!=(pol->lsPoints).end(); itp++)
+    for  (auto & lsPoint : pol->lsPoints)
     {
-        x = (*itp)->lon+decx;
-        y = (*itp)->lat;
+        x = lsPoint->lon+decx;
+        y = lsPoint->lat;
         // Ajustement d'échelle
         proj->map2screen(x, y, &xx, &yy);
         if (j==0 || (oxx!=xx || oyy!=yy))  // élimine les ponts trop proches
@@ -419,17 +416,13 @@ void GshhsReader::GsshDrawPolygons(QPainter &pnt, std::vector <GshhsPolygon*> &l
                                 Projection *proj
         )
 {
-    std::vector <GshhsPolygon*>::iterator iter;
-    GshhsPolygon *pol;
-    int i;
     int nbp;
     
     int nbmax = 10000;
     QPoint *pts = new QPoint[nbmax];
     assert(pts);
     
-    for  (i=0, iter=lst.begin(); iter!=lst.end(); iter++,i++) {
-        pol = *iter;
+    for  (auto pol : lst) {
         assert(pol->isOk());
         
         if (nbmax < pol->n+2) {
@@ -456,17 +449,13 @@ void GshhsReader::GsshDrawLines(QPainter &pnt, std::vector <GshhsPolygon*> &lst,
                                 Projection *proj, bool isClosed
         )
 {
-    std::vector <GshhsPolygon*>::iterator iter;
-    GshhsPolygon *pol;
-    int i;
     int nbp;
     
     int nbmax = 10000;
     QPoint *pts = new QPoint[nbmax];
     assert(pts);
     
-    for  (i=0, iter=lst.begin(); iter!=lst.end(); iter++,i++) {
-        pol = *iter;
+    for  (auto pol : lst) {
         assert(pol->isOk());
         
         if (nbmax < pol->n+2) {
@@ -518,7 +507,7 @@ void GshhsReader::GsshDrawLines(QPainter &pnt, std::vector <GshhsPolygon*> &lst,
 
 //-----------------------------------------------------------------------
 void GshhsReader::drawBackground( QPainter &pnt, Projection *proj,
-            QColor seaColor, QColor backgroundColor
+            const QColor& seaColor, const QColor& backgroundColor
         )
 {
     // fond de carte
@@ -541,7 +530,7 @@ void GshhsReader::drawBackground( QPainter &pnt, Projection *proj,
 
 //-----------------------------------------------------------------------
 void GshhsReader::drawContinents( QPainter &pnt, Projection *proj,
-            QColor seaColor, QColor landColor
+            const QColor& seaColor, const QColor& landColor
         )
 {
 	selectBestQuality(proj);

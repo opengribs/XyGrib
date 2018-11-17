@@ -70,7 +70,7 @@ class GisCity : public GisPoint
 		int     level;
 		int     fontCode;
 
-        GisCity (QString country, QString name, int pop, float lon, float lat);
+        GisCity (const QString &country, const QString &name, int pop, float lon, float lat);
 		~GisCity() {}
         
         QString toText () {

@@ -32,9 +32,9 @@ GribPlot::GribPlot (const GribPlot &model)
 	: RegularGridPlot ()
 {
 	initNewGribPlot (model.mustInterpolateValues, model.drawWindArrowsOnGrid, model.drawCurrentArrowsOnGrid);	
-	loadFile (model.fileName);
-	duplicateFirstCumulativeRecord (model.mustDuplicateFirstCumulativeRecord);
-	duplicateMissingWaveRecords (model.mustDuplicateMissingWaveRecords);
+    GribPlot::loadFile (model.fileName);
+    GribPlot::duplicateFirstCumulativeRecord (model.mustDuplicateFirstCumulativeRecord);
+    GribPlot::duplicateMissingWaveRecords (model.mustDuplicateMissingWaveRecords);
 }
 //----------------------------------------------------
 GribPlot::~GribPlot() {
@@ -50,7 +50,7 @@ void GribPlot::initNewGribPlot(bool interpolateValues, bool windArrowsOnGribGrid
 	this->drawCurrentArrowsOnGrid = currentArrowsOnGribGrid;
 }
 //----------------------------------------------------
-void GribPlot::loadFile (QString fileName,
+void GribPlot::loadFile (const QString &fileName,
 						 LongTaskProgress * taskProgress, int nbrecs)
 {
 	this->fileName = fileName;
@@ -64,7 +64,7 @@ void GribPlot::loadFile (QString fileName,
     if (gribReader->isOk())
     {
         listDates = gribReader->getListDates();
-        setCurrentDate ( listDates.size()>0 ? *(listDates.begin()) : 0);
+        setCurrentDate ( !listDates.empty() ? *(listDates.begin()) : 0);
     }
 }
 

@@ -74,11 +74,11 @@ class ImageWriter : public QObject
 		Terrain  *terre;
 		QWidget  *parent;
 		
-		void saveSettings (ImageWriterDialog &dial, QString filename);
+		void saveSettings (ImageWriterDialog &dial, const QString& filename);
 		QImage * createImage (
 					time_t date, ImageWriterDialog &dial, 
 					int Winit, int Hinit);
-		QString createAnimImageFilename (QString prefix, int n);
+		QString createAnimImageFilename (const QString& prefix, int n);
 };
 
 

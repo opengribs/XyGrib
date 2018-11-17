@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "GisReader.h"
 
-GisCity::GisCity (QString country, QString name, int pop, float lon, float lat)
+GisCity::GisCity (const QString &country, const QString &name, int pop, float lon, float lat)
 	: GisPoint(lon, lat)
 {
 	this->country = country;
@@ -77,9 +77,8 @@ GisReader::GisReader()
         long sz = zu_read(f, buf, szmax);
         QByteArray barr(buf, sz);
         QList<QByteArray> blist = barr.split('\n');
-        for (int i=0; i < blist.size(); i++)
+        for (const auto & bline : blist)
         {
-            QByteArray bline = blist.at(i);
             QList<QByteArray> bwords = bline.split(';');
             if (bwords.size() == 4) {
                 country = new GisCountry(
@@ -104,8 +103,7 @@ GisReader::GisReader()
     QDir dir (Util::pathGis());
 	dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
 	QFileInfoList list = dir.entryInfoList();
-    for (int nf = 0; nf < list.size(); ++nf) {
-        QFileInfo fileInfo = list.at(nf);
+    for (const auto & fileInfo : list) {
         fname = fileInfo.fileName();
 		if (fname.indexOf ("cities",0,Qt::CaseInsensitive) == 0) {
 			// DBGQS(fname);
@@ -116,10 +114,9 @@ GisReader::GisReader()
 				// barr.replace("\n","\r\n");
 				QList<QByteArray> blist = barr.split('\n');
 				//DBG("%d", blist.size());
-				for (int i=0; i < blist.size(); i++)
+				for (const auto & bline : blist)
 				{
-					QByteArray bline = blist.at(i);
-					QList<QByteArray> bwords = bline.split(';');
+						QList<QByteArray> bwords = bline.split(';');
 					if (bwords.size() >= 5) {
 						city = new GisCity(
 									bwords.at(0).trimmed(),
@@ -151,19 +148,15 @@ GisReader::~GisReader() {
     clearLists();
 }
 
-//-----------------------------------------------------------------------
+//------------------------------------------------------
 void GisReader::clearLists() {
-    std::vector<GisPoint*>::iterator itp;
-    for (itp=lsCountries.begin(); itp != lsCountries.end(); itp++) {
-        delete *itp;
-        *itp = NULL;
+    for (auto & lsCountrie : lsCountries) {
+        delete lsCountrie;
     }
     lsCountries.clear();
     
-    std::vector<GisCity*>::iterator it2;
-    for (it2=lsCities.begin(); it2 != lsCities.end(); it2++) {
-        delete *it2;
-        *it2 = NULL;
+    for (auto & lsCitie : lsCities) {
+        delete lsCitie;
     }
     lsCities.clear();
 }
@@ -188,9 +181,8 @@ void GisReader::drawCountriesNames(QPainter &pnt, Projection *proj)
 {
     pnt.setPen(QColor(120,100,60));
     pnt.setFont(Font::getFont(FONT_MapCountry));
-    std::vector<GisPoint*>::iterator itp;
-    for (itp=lsCountries.begin(); itp != lsCountries.end(); itp++) {
-        (*itp)->draw(&pnt, proj);
+    for (auto & lsCountrie : lsCountries) {
+        lsCountrie->draw(&pnt, proj);
     }
 }
 
@@ -239,14 +231,12 @@ void GisReader::drawCitiesNames (QPainter &pnt, Projection *proj, int level)
     pnt.setBrush(QColor(0,0,0));
 	
     std::vector <GisCity*> lsVisibleCities;
-	std::vector <GisCity*>::iterator itp;
 
 	std::vector <QRect*> lsZonesOccupees;
 	std::vector <QRect*>::iterator itz;
 
-	for (itp=lsCities.begin(); itp != lsCities.end(); itp++) {
-		GisCity *p = *itp;
-		if (  (p->level <= level)
+	for (auto p : lsCities) {
+        if (  (p->level <= level)
 			&&  proj->isPointVisible(p->x, p->y) ) 
 		{
 			lsVisibleCities.push_back(p);
@@ -259,13 +249,12 @@ void GisReader::drawCitiesNames (QPainter &pnt, Projection *proj, int level)
 
 	// draw if place is free
 	bool freePlace;
-    for (itp=lsVisibleCities.begin(); itp != lsVisibleCities.end(); itp++) {
-		GisCity *city = *itp;
-		QRect *rect = new QRect();
+    for (auto city : lsVisibleCities) {
+			QRect *rect = new QRect();
 		city->getRectName  (&pnt, proj, rect);
 		freePlace = true;
 		for (itz = lsZonesOccupees.begin(); 
-					freePlace && itz != lsZonesOccupees.end(); itz++) {
+					freePlace && itz != lsZonesOccupees.end(); ++itz) {
 			QRect *pr = *itz;
 			if (rect->intersects(*pr))
 				freePlace = false;

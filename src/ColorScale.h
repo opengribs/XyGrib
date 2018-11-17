@@ -52,7 +52,7 @@ class ColorScale {
 		ColorScale ();
 		~ColorScale ();
 
-		bool readFile (QString filename, double kv, double offset);
+		bool readFile (const QString& filename, double kv, double offset);
 		void addColor (ColorElement *color);
 		QRgb getColor (double v, bool smooth);
 		void dbg ();

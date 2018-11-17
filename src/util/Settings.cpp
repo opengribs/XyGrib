@@ -377,7 +377,7 @@ uint Settings::getNewCodePOI()
  	for (int i=0; i<slist.size(); ++i)
  	{
 		bool ok;
-  		QString poicode = slist.at(i);
+  		const QString& poicode = slist.at(i);
   		v = poicode.toUInt (&ok);
   		if (ok  && v > max)
   			max = v;

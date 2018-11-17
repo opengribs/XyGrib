@@ -40,15 +40,15 @@ class POI : public QWidget
     	friend class POI_Editor;
 
 		// Create POI from old setting style (version<=3.3.0) : obsolete !
-        POI (QString seralizedPOI_oldFormat); //
+        POI (const QString& seralizedPOI_oldFormat); //
         
         POI (uint code);    // read POI from old native settings
         
         POI (uint code,     // read POI from .ini settings
 				Projection *proj, QWidget *ownerSlotsPOI, QWidget *parentWindow);
 
-        POI	(uint code, QString name, double lon, double lat,
-        			Projection *proj, QWidget *ownerSlotsPOI, QWidget *parentWindow);
+        POI	(uint code, const QString &name, double lon, double lat,
+                    Projection *proj, QWidget *ownerSlotsPOI, QWidget *parentWindow);
         
         void	writeSettings ();
         bool	isValid ()  {return valid;}
@@ -61,16 +61,16 @@ class POI : public QWidget
         double   getLongitude () {return lon;}
         double   getLatitude ()  {return lat;}
 
-        void setName      (QString name);
+        void setName      (const QString& name);
         void setLongitude (double lon) {this->lon=lon;}
         void setLatitude  (double lat) {this->lat=lat;}
         
 		QString serialize ();
 
-		void setDisplayParams ( QColor markColor,
-							    QFont  labelFont,
-								QColor textColor,
-								QColor bgColor     );
+        void setDisplayParams (const QColor &markColor,
+                                const QFont &labelFont,
+                                const QColor &textColor,
+                                const QColor& bgColor     );
 		// Restore background color for all selected POIs, TH20110103
 		static void restoreBgOfSelectedPOIs( void );
 

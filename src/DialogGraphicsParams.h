@@ -38,11 +38,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class DialogChooseLang : public DialogBoxColumn 
 { Q_OBJECT
 	public:
-		DialogChooseLang (QWidget *parent, QString defaultlang);
+		DialogChooseLang (QWidget *parent, const QString& defaultlang);
 		QString getLanguage ();
 		
 	private:
-		QRadioButton * addLanguage (QString name, QString iconfile);
+		QRadioButton * addLanguage (const QString& name, const QString& iconfile);
 		QButtonGroup *btGroup;
 		
 		QRadioButton *bt_de;

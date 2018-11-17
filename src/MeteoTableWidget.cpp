@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //-------------------------------------------------------------------------------
 MeteoTableWidget::MeteoTableWidget 
 			(GriddedPlotter *plotter, 
-			 double lon, double lat, QString locationName, QWidget *parent)
+             double lon, double lat, const QString &locationName, QWidget *parent)
 	: QWidget(parent)
 {
 	this->plotter = plotter;
@@ -49,7 +49,7 @@ MeteoTableWidget::MeteoTableWidget
 	createTable();
 }
 //----------------------------------------------------------------
-void MeteoTableWidget::addCell_title_dataline (QString txt, bool bold,
+void MeteoTableWidget::addCell_title_dataline (const QString& txt, bool bold,
 				int lig,int col)
 {
 	QColor bgcolor(200,200,255);
@@ -133,7 +133,7 @@ void MeteoTableWidget::createTable()
 	addCell_title_dataline ("", true, lig,col);
 	col ++;
 	QString actuel = "";
-	for (iter=sdates.begin(); iter!=sdates.end(); iter++)
+	for (iter=sdates.begin(); iter!=sdates.end(); ++iter)
 	{
 		time_t daterecord = *iter;
 		dstr = Util::formatDateLong (daterecord);
@@ -145,7 +145,7 @@ void MeteoTableWidget::createTable()
 			do
 			{
 				colspan ++;
-				iter2 ++;
+				++iter2;
 				dstr = Util::formatDateLong(*iter2);
 			} while (actuel==dstr);
 			addCell_title (actuel, true, layout, lig,col, 1,colspan);
@@ -163,7 +163,7 @@ void MeteoTableWidget::createTable()
 		addCell_title_dataline (tr("Sun")+"\n"+tr("Moon"), true, lig,col);
 		col ++;
 		QString actuel = "";
-		for (iter=sdates.begin(); iter!=sdates.end(); iter++)
+		for (iter=sdates.begin(); iter!=sdates.end(); ++iter)
 		{
 			time_t daterecord = *iter;
 			dstr = Util::formatDateLong (daterecord);
@@ -175,7 +175,7 @@ void MeteoTableWidget::createTable()
 				do
 				{
 					colspan ++;
-					iter2 ++;
+					++iter2;
 					dstr = Util::formatDateLong(*iter2);
 				} while (actuel==dstr);
 				addCell_SunMoonAlmanac (daterecord, lat, lon, layout, lig,col, 1,colspan);
@@ -192,9 +192,8 @@ void MeteoTableWidget::createTable()
 	lig ++;
 	addCell_title_dataline ("", true, lig,col);
 	col ++;
-	for (iter=sdates.begin(); iter!=sdates.end(); iter++)
+	for (long date : sdates)
 	{
-		time_t date = *iter;
 		addCell_title(Util::formatTime(date), false, layout, lig,col, 1,1,
 						dateproche==date);
 		col ++;
@@ -209,10 +208,8 @@ void MeteoTableWidget::createTable()
 	//-----------------------------------------------
 	lig ++;
 	createListVisibleGribData();
-	QList <MTGribData *>::iterator it;
-	for (it=listVisibleData.begin(); it!=listVisibleData.end(); it++) {
-		MTGribData *gr = *it;
-		int dataType   = gr->dtc.dataType;
+	for (auto gr : listVisibleData) {
+			int dataType   = gr->dtc.dataType;
 		int levelType  = gr->dtc.levelType;
 		int levelValue = gr->dtc.levelValue;
 		
@@ -345,7 +342,7 @@ void MeteoTableWidget::addLine_WaveWhitecap (int type, int lig)
 	int col = 0;
 	addCell_title_dataline  (tr("Whitecap (prob)"), true, lig,col);
 	col ++;
-	for (iter=lspinfos.begin(); iter!=lspinfos.end(); iter++, col++)
+	for (iter=lspinfos.begin(); iter!=lspinfos.end(); ++iter, col++)
 	{
 		DataPointInfo * pinfo = *iter;
 		txt = "";
@@ -368,7 +365,7 @@ void MeteoTableWidget::addLine_WaveCompleteCell (int prvtype, int lig)
 	int col = 0;
 	addCell_title_dataline (DataCodeStr::toString(prvtype), true, lig,col);
 	col ++;
-	for (iter=lspinfos.begin(); iter!=lspinfos.end(); iter++, col++)
+	for (iter=lspinfos.begin(); iter!=lspinfos.end(); ++iter, col++)
 	{
 		DataPointInfo * pinfo = *iter;
 		txt = "";
@@ -430,8 +427,7 @@ void MeteoTableWidget::createListVisibleGribData ()
 	QStringList listKeys = Settings::getAllKeys();
 	QStringList::const_iterator cstit;
 	bool foundMTableData = false;
-	for (cstit = listKeys.constBegin(); cstit != listKeys.constEnd(); cstit++) {
-		QString key = *cstit;
+	for (const auto & key : listKeys) {
 		if (key.startsWith("MTableData_vis_"))
 		{
 			foundMTableData = true;
@@ -477,7 +473,7 @@ void MeteoTableWidget::addLine_Isotherm0Height(int lig)
 	int col = 0;
 	addCell_title_dataline (tr("Isotherm 0°C"), true, lig,col);
 	col ++;
-	for (iter=lspinfos.begin(); iter!=lspinfos.end(); iter++, col++)	{
+	for (iter=lspinfos.begin(); iter!=lspinfos.end(); ++iter, col++)	{
 		DataPointInfo * pinfo = *iter;
 		txt = "";
 		if (pinfo->hasIsotherm0HGT()) {
@@ -500,7 +496,7 @@ void MeteoTableWidget::addLine_GeopotentialAltitude(const Altitude &alt, int lig
 	addCell_title_dataline (tr("Geopotential altitude") +" ("+AltitudeStr::toStringShort(alt)+")", 
 				  true, lig,col);
 	col ++;
-	for (iter=lspinfos.begin(); iter!=lspinfos.end(); iter++, col++) {
+	for (iter=lspinfos.begin(); iter!=lspinfos.end(); ++iter, col++) {
 		DataPointInfo * pinfo = *iter;
 		txt = "";
 		float v = pinfo->getDataValue (DataCode(GRB_GEOPOT_HGT,alt));
@@ -634,7 +630,7 @@ void MeteoTableWidget::addLine_HumidRel (const Altitude &alt, int lig)
 	addCell_title_dataline  (tr("Relative humidity")+" ("+AltitudeStr::toStringShort(alt)+")", 
 					true, lig,col);
 	col ++;
-	for (it=lsdates.begin(); it!=lsdates.end(); it++, col++)
+	for (it=lsdates.begin(); it!=lsdates.end(); ++it, col++)
 	{
 		time_t date = *it;
 		txt = "";
@@ -673,7 +669,7 @@ void MeteoTableWidget::addLine_Temperature(const Altitude &alt, uchar type, int 
 	title += " ("+AltitudeStr::toStringShort(alt)+")";
 	addCell_title_dataline (title, true, lig,col);
 	col ++;
-	for (it=lsdates.begin(); it!=lsdates.end(); it++, col++) {
+	for (it=lsdates.begin(); it!=lsdates.end(); ++it, col++) {
 		time_t date = *it;
 		if (type == GRB_PRV_THETA_E) {
 			int P = alt.levelValue;	// 925 850 700 600 500 400 300 200
@@ -961,11 +957,11 @@ void MeteoTableWidget::addCell_SkewT (
 }
 //----------------------------------------------------------------
 void MeteoTableWidget::addCell_content (
-				QString txt,
+				const QString& txt,
 				QGridLayout *layout,int lig,int col,
 				int    rowspan,
 				int    colspan,
-				QColor bgcolor,
+				const QColor& bgcolor,
 				int    cellType,
 				double  vx,
 				double  vy
@@ -992,7 +988,7 @@ void MeteoTableWidget::addCell_content (
 	layout->addWidget (cell, lig,col, rowspan,colspan );
 }
 //----------------------------------------------------------------
-void MeteoTableWidget::addCell_title (QString txt, bool bold,
+void MeteoTableWidget::addCell_title (const QString& txt, bool bold,
 				QGridLayout *layout,int lig,int col, int rowspan,int colspan,
 				bool isNowDate)
 {
@@ -1008,8 +1004,8 @@ void MeteoTableWidget::addCell_title (QString txt, bool bold,
 //===================================================================
 // TableCell : case seule
 //===================================================================
-TableCell::TableCell(QWidget *parent, QString txt, bool bold,
-						QColor bgcolor,
+TableCell::TableCell(QWidget *parent, const QString& txt, bool bold,
+                        const QColor &bgcolor,
 						Qt::Alignment alignment
 					)
 	: QWidget(parent)
@@ -1034,7 +1030,7 @@ TableCell::TableCell(QWidget *parent, QString txt, bool bold,
 	layout->addWidget(label, 0,0, alignment);
 }
 //----------------------------------------------------------
-void    TableCell::setContrastedTextColor(QColor bgcolor)
+void    TableCell::setContrastedTextColor(const QColor &bgcolor)
 {
 	QColor fgcolor = DataColors::getContrastedColor (bgcolor);
 	QPalette p;
@@ -1082,9 +1078,9 @@ void TableCell::paintEvent(QPaintEvent * /*event*/)
 // TableCell_Wind : case seule spécialisée pour le vent (flêche+barbules)
 //===================================================================
 TableCell_Wind::TableCell_Wind (double vx, double vy, bool south,
-        			GriddedPlotter *plotter,
-        			QWidget *parent, QString txt, bool bold,
-        			QColor bgcolor )
+                    GriddedPlotter *plotter,
+                    QWidget *parent, const QString &txt, bool bold,
+                    const QColor &bgcolor )
 	: TableCell(parent, txt, bold, bgcolor)
 {
 	this->vx = vx;
@@ -1118,8 +1114,8 @@ void TableCell_Wind::paintEvent(QPaintEvent * e)
 //===================================================================
 TableCell_Current::TableCell_Current (double cx, double cy, bool south,
         			GriddedPlotter *plotter,
-        			QWidget *parent, QString txt, bool bold,
-        			QColor bgcolor )
+        			QWidget *parent, const QString& txt, bool bold,
+        			const QColor& bgcolor )
 	: TableCell(parent, txt, bold, bgcolor)
 {
 	this->cx = cx;
@@ -1154,8 +1150,8 @@ void TableCell_Current::paintEvent(QPaintEvent * e)
 TableCell_Clouds::TableCell_Clouds (
 					double   val,
         			GriddedPlotter *plotter,
-        			QWidget  *parent, QString txt, bool bold,
-        			QColor bgcolor )
+        			QWidget  *parent, const QString& txt, bool bold,
+        			const QColor& bgcolor )
 	: TableCell(parent, txt, bold, bgcolor)
 {
 	this->plotter = plotter;
@@ -1191,7 +1187,7 @@ void TableCell_Clouds::paintEvent(QPaintEvent * e)
 // TableCell_SkewT
 //===================================================================
 TableCell_SkewT::TableCell_SkewT (QWidget *parent,
-					double lon, double lat,  QString locationName,
+                    double lon, double lat, const QString &locationName,
 					time_t date,
 					GriddedReader *reader)
 	: TableCell (parent)

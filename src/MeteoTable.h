@@ -37,7 +37,7 @@ class MeteoTableDialog : public QWidget
     public:
         MeteoTableDialog (
 					GriddedPlotter *plotter, 
-					double lon, double lat, QString locationName="");
+					double lon, double lat, const QString& locationName="");
         ~MeteoTableDialog();
 		
 		void saveFileSYLK (SylkFile &slk);

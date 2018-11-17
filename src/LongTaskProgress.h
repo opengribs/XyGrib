@@ -39,7 +39,7 @@ class LongTaskProgress : public QObject
 		LongTaskProgress (QWidget *parent=NULL);
 		~LongTaskProgress ();
 
-		void setWindowTitle (QString title);
+		void setWindowTitle (const QString& title);
 		void setValue (int value);
 		void setVisible (bool vis);
 		void setMessage (LongTaskMessageType msgtype);

@@ -39,11 +39,11 @@ class Grib2Reader : public GribReader
         Grib2Reader ();
         ~Grib2Reader ();
 		
-        virtual void  openFile (const std::string fname,
+        virtual void  openFile (const std::string &fname,
 						LongTaskProgress *taskProgress, int nbrecs);
 		
 	private:
-        void openFilePriv (const std::string fname, int nbrecs);
+        void openFilePriv (const std::string& fname, int nbrecs);
 		void readGrib2FileContent (int nbrecs);
 
 		void analyseRecords ();

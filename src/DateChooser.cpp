@@ -37,7 +37,7 @@ DateChooserPopup::DateChooserPopup (QWidget *parent)
 	setAutoFillBackground (true);
 }
 //-------------------------------------------------
-void DateChooserPopup::setText (QString txt)
+void DateChooserPopup::setText (const QString& txt)
 {
 	label.setText(txt);
 }
@@ -158,13 +158,13 @@ void DateChooser::setListDates (std::set<time_t> * setDates,
 	nbDates = 0;
 	this->currentDate = currentDate;
 	int current = 0;
-	if (setDates && setDates->size()>0)
+	if (setDates && !setDates->empty())
 	{
 		nbDates = setDates->size();
 		tabDates = new time_t [nbDates];
 		int i=0;
 		std::set<time_t>::iterator it;
-		for (it=setDates->begin(); it!=setDates->end(); it++, i++) {
+		for (it=setDates->begin(); it!=setDates->end(); ++it, i++) {
 			tabDates [i] = *it;
 			if (*it == currentDate)
 				current = i;

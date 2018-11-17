@@ -267,7 +267,7 @@ void BoardPanel::showDataPointInfo (
 
 }
 //===================================================================================
-QString BoardPanel::formatWave (QString title, float ht, float dir, float per)
+QString BoardPanel::formatWave (const QString &title, float ht, float dir, float per)
 {
 	QString r = title;
 	
@@ -560,7 +560,7 @@ void BoardPanel::createMenuPopup ()
 	addAction (tr("Waves"), "boardPanelWaves", cellWaves);
 }
 //-------------------------------------------------------
-void BoardPanel::addAction (QString title, QString settingName, 
+void BoardPanel::addAction (const QString& title, const QString& settingName, 
 									 BoardPanelCell *cell)
 {
 	QAction *ac = new QAction (title, menuPopup);

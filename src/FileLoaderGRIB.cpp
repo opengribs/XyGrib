@@ -68,10 +68,10 @@ void FileLoaderGRIB::stop ()
 
 //-------------------------------------------------------------------------------
 void FileLoaderGRIB::getGribFile(
-        QString atmModel,
+        const QString& atmModel,
         float x0, float x1, float y0, float y1,
         float resolution, int interval, int days,
-        QString cycle,
+        const QString& cycle,
         bool wind, bool pressure, bool rain,
         bool cloud, bool temp, bool humid, bool isotherm0,
         bool snowDepth,
@@ -87,7 +87,7 @@ void FileLoaderGRIB::getGribFile(
 		bool altitudeData925,
 		bool skewTData,
 		bool GUSTsfc,
-        QString wvModel,
+        const QString& wvModel,
         bool sgwh,
         bool swell,
         bool wwav

@@ -95,7 +95,7 @@ QWidget *MeteoTableDialog::createDataTable ()
 //===================================================================
 MeteoTableDialog::MeteoTableDialog (
 					GriddedPlotter *plotter, 
-					double lon, double lat, QString locationName)
+					double lon, double lat, const QString& locationName)
 	: QWidget (NULL, Qt::Window)
 {
 	setProperty ("objectType", "MeteoTableDialog");
@@ -155,11 +155,9 @@ MeteoTableDialog::MeteoTableDialog (
 	// Dates of the forecast (meteo center dependent)
 	//------------------------------------------------------------
 	std::set<DataCenterModel>  allDcm = reader->getAllDataCenterModel ();
-	std::set<DataCenterModel>::iterator it;
 	QString srefdates;
-	for (it=allDcm.begin(); it!=allDcm.end(); it++) {
-		DataCenterModel dcm = *it;
-		if (srefdates != "")
+	for (auto dcm : allDcm) {
+			if (srefdates != "")
 			srefdates += "\n";
 		srefdates += tr("Reference date: ")
 					+ DataCodeStr::toString (dcm)
@@ -267,7 +265,7 @@ void MeteoTableDialog::saveFileSYLK (SylkFile &slk)
 	std::vector <DataPointInfo *>::iterator itp;
 	DataPointInfo *pinfo;
 	
-	if (lspinfos.size() == 0) {
+	if (lspinfos.empty()) {
 		return;
 	}
 	//----------------------------------------
@@ -280,7 +278,7 @@ void MeteoTableDialog::saveFileSYLK (SylkFile &slk)
 	// Dates
 	dl = 2;
 	dc = 4;
-	for (col=0,itp=lspinfos.begin(); itp!=lspinfos.end(); col++,itp++) {
+	for (col=0,itp=lspinfos.begin(); itp!=lspinfos.end(); ++col, ++itp) {
 		DataPointInfo *pinfo = *itp;
 		slk.addCell (dl, col+dc, Util::formatDateShort(pinfo->date));
 		slk.addCell (dl+1, col+dc, Util::formatTime(pinfo->date));
@@ -289,9 +287,8 @@ void MeteoTableDialog::saveFileSYLK (SylkFile &slk)
 	// All Data
 	dl = 4;
 	dc = 1;
-	for (int j=0; j<listData.size(); j++) {
-		MTGribData *data = listData.at(j);
-		//DBG ("%d %s",data->dtc.dataType,qPrintable(DataCodeStr::toString(data->dtc.dataType)));
+	for (auto data : listData) {
+			//DBG ("%d %s",data->dtc.dataType,qPrintable(DataCodeStr::toString(data->dtc.dataType)));
 		switch (data->dtc.dataType) {
 			case GRB_PRV_WIND_XY2D    : 
 				dl += SYLK_addData_wind (slk, dl, dc, data->dtc);
@@ -383,7 +380,7 @@ int MeteoTableDialog::SYLK_addData_waves (SylkFile &slk, int lig,int col, DataCo
 	//-----------------------------------------------------------------------
 	// Data
 	int row = col+3;
-	for (itp=lspinfos.begin(); itp!=lspinfos.end(); row++,itp++) 
+	for (itp=lspinfos.begin(); itp!=lspinfos.end(); row++, ++itp) 
 	{
 		DataPointInfo *pf = *itp;
 		float ht, per, dir;
@@ -430,7 +427,7 @@ int MeteoTableDialog::SYLK_addData_wind (SylkFile &slk, int lig,int col, DataCod
 	//-----------------------------------------------------------------------
 	// Data
 	int row = col+3;
-	for (itp=lspinfos.begin(); itp!=lspinfos.end(); row++,itp++) 
+	for (itp=lspinfos.begin(); itp!=lspinfos.end(); row++, ++itp)
 	{
 		DataPointInfo *pf = *itp;
 		float v, dir;

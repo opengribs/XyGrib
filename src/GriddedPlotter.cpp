@@ -55,7 +55,7 @@ GriddedPlotter::GriddedPlotter ()
     currentArrowSpace = 28;      // distance mini entre flèches
     currentArrowSpaceOnGrid = 20;      // distance mini entre flèches
     
-	updateGraphicsParameters ();
+    GriddedPlotter::updateGraphicsParameters ();
 	
 	useJetStreamColorMap = false;
 }
@@ -169,7 +169,7 @@ void GriddedPlotter::drawCurrentArrow (
 			QPainter &pnt,
 			int i, int j, double cx, double cy,
 			bool /*south*/,
-			QColor arrowColor
+			const QColor& arrowColor
 	)
 {
     double vkn = sqrt(cx*cx+cy*cy)*3.6/1.852;
@@ -216,7 +216,7 @@ void GriddedPlotter::drawWindArrowWithBarbs (
 			QPainter &pnt,
 			int i, int j, double vx, double vy,
 			bool south,
-			QColor arrowColor
+			const QColor& arrowColor
 	)
 {
     GriddedPlotter::drawWindArrowWithBarbs_static (
@@ -232,7 +232,7 @@ void GriddedPlotter::drawWindArrowWithBarbs_static (
 					QPainter &pnt,
 					int i, int j, double vx, double vy,
 					bool south,
-        			QColor arrowColor,
+        			const QColor& arrowColor,
 					int  windBarbuleSize,
 					bool thinWindArrows
 	)
@@ -541,10 +541,9 @@ void GriddedPlotter::draw_listIsolines (
 						std::vector <IsoLine *> & listIsolines,
 						QPainter &pnt, const Projection *proj)
 {
-    std::vector <IsoLine *>::iterator it;
-    for(it=listIsolines.begin(); it!=listIsolines.end(); it++)
+    for(auto & listIsoline : listIsolines)
     {
-        (*it)->drawIsoLine (pnt, proj);
+        listIsoline->drawIsoLine (pnt, proj);
     }
 }
 //--------------------------------------------------------------------------
@@ -557,11 +556,10 @@ void GriddedPlotter::draw_listIsolines_labels (
 						int density 	// default -1
 					)
 {
-    std::vector <IsoLine *>::iterator it;
     int nbseg = 0;
-    for(it=listIsolines.begin(); it!=listIsolines.end(); it++)
+    for(auto & listIsoline : listIsolines)
     {
-        nbseg += (*it)->getNbSegments();
+        nbseg += listIsoline->getNbSegments();
     }
     int nbpix, first;
 	nbpix = proj->getW()*proj->getH();
@@ -575,10 +573,10 @@ void GriddedPlotter::draw_listIsolines_labels (
 			density = 20;
 	}
     first = 0; 
-    for(it=listIsolines.begin(); it!=listIsolines.end(); it++)
+    for(auto & listIsoline : listIsolines)
     {
         first += 20;
-        (*it)->drawIsoLineLabels (pnt, color, proj, density, first, coef,offset);
+        listIsoline->drawIsoLineLabels (pnt, color, proj, density, first, coef,offset);
     }
 }
 //----------------------------------------------------
@@ -639,8 +637,8 @@ void GriddedPlotter::analyseVisibleGridDensity
 //======================================================================
 void GriddedPlotter::draw_DATA_Labels (
 				DataCode dtc, 
-				QFont 	 labelsFont,
-				QColor   labelsColor,
+                const QFont 	&labelsFont,
+                const QColor   &labelsColor,
 				QString  (formatLabelFunction) (float v, bool withUnit),
 				QPainter &pnt, const Projection *proj)
 {
@@ -675,10 +673,10 @@ void GriddedPlotter::draw_DATA_Labels (
 void GriddedPlotter::draw_DATA_MinMax (
 						DataCode dtc, 
 						double   meanValue,
-						QString  minSymbol,
-						QString  maxSymbol,
-						QFont 	 labelsFont,
-						QColor   labelsColor,
+                        const QString  &minSymbol,
+                        const QString  &maxSymbol,
+                        const QFont 	 &labelsFont,
+                        const QColor   &labelsColor,
 						QPainter &pnt, const Projection *proj)
 {
 	GriddedReader *reader = getReader();

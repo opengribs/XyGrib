@@ -73,7 +73,7 @@ class GshhsRangsCell
             }
         
         void  drawMapPlain(QPainter &pnt, double dx, QPoint *pts, Projection *proj,
-                    QColor seaColor, QColor landColor );
+                    const QColor& seaColor, const QColor& landColor );
 
         void  drawSeaBorderLines(QPainter &pnt, double dx, Projection *proj);
 		
@@ -102,11 +102,11 @@ class GshhsRangsCell
 class GshhsRangsReader
 {
     public:
-        GshhsRangsReader(std::string path_);
+        GshhsRangsReader(const std::string &path_);
         ~GshhsRangsReader();
 
         void drawGshhsRangsMapPlain( QPainter &pnt, Projection *proj,
-                    QColor seaColor, QColor landColor );
+                    const QColor& seaColor, const QColor& landColor );
         
         void drawGshhsRangsMapSeaBorders( QPainter &pnt, Projection *proj);
         
@@ -115,8 +115,8 @@ class GshhsRangsReader
     private:
     	int currentQuality;
         std::string path;
-        FILE *fcat, *fcel, *frim;
-        GshhsRangsCell * allCells[360][180];
+        FILE *fcat{}, *fcel{}, *frim{};
+        GshhsRangsCell * allCells[360][180]{};
 };
 
 

@@ -35,7 +35,7 @@ QList<POI*> GLOB_listSelectedPOI;
 //-------------------------------------------------------------------------------
 // Read from old settings format (version <= 3.3.0)
 //-------------------------------------------------------------------------------
-POI::POI (QString seralizedPOI_oldFormat)//
+POI::POI (const QString& seralizedPOI_oldFormat)//
 				 // Projection *proj, QWidget *ownerSlotsPOI, QWidget *parentWindow)
     : QWidget(nullptr)
 {
@@ -63,7 +63,7 @@ POI::POI (QString seralizedPOI_oldFormat)//
 }
 
 //-------------------------------------------------------------------------------
-POI::POI(uint code, QString name, double lon, double lat,
+POI::POI(uint code, const QString &name, double lon, double lat,
 				 Projection *proj, QWidget *ownerSlotsPOI, QWidget *parentWindow)
 	: QWidget(parentWindow)
 {
@@ -109,10 +109,10 @@ POI::POI (uint code,
     widgetFocus = nullptr;
 }
 //-------------------------------------------------------------------------------
-void POI::setDisplayParams ( QColor markColor,
-						QFont  labelFont,
-						QColor textColor,
-						QColor bgColor     )
+void POI::setDisplayParams (const QColor& markColor,
+                        const QFont&  labelFont,
+                        const QColor& textColor,
+                        const QColor& bgColor     )
 {
 	this->markColor = markColor;
 	this->labelFont = labelFont;
@@ -227,7 +227,7 @@ QString POI::serialize()
 }
 
 //-------------------------------------------------------------------------------
-void POI::setName(QString name)
+void POI::setName(const QString& name)
 {
 	this->name=name;
 	setToolTip(tr("Point of interest: ")+name);
@@ -410,12 +410,12 @@ void  POI::timerClickEvent()
 // Restore background color for all selected POIs, TH20110103
 void POI::restoreBgOfSelectedPOIs()
 {
-	QList<POI*>::iterator iterPOI;
-	for( iterPOI = GLOB_listSelectedPOI.begin(); iterPOI != GLOB_listSelectedPOI.end(); iterPOI++ ) {
-		if( (*iterPOI)->isValid() ){
-			(*iterPOI)->labelBgColor = (*iterPOI)->labelBgColorMarkedPOI;
-			(*iterPOI)->labelBgColorMarkedPOI = QColor( QColor::Invalid );
-			(*iterPOI)->update();						
+
+	for(auto & iterPOI : GLOB_listSelectedPOI) {
+		if( iterPOI->isValid() ){
+			iterPOI->labelBgColor = iterPOI->labelBgColorMarkedPOI;
+			iterPOI->labelBgColorMarkedPOI = QColor( QColor::Invalid );
+			iterPOI->update();
 		}
 	}
 }

@@ -289,7 +289,7 @@ void GribAnimator::createImages()
 	closestatus=0;
 	bool isEarthMapValid = false;
 	for (iter=gribplot->getListDates()->begin();
-				iter!=gribplot->getListDates()->end();   iter++, num++)
+				iter!=gribplot->getListDates()->end();   ++iter, num++)
 	{
 		time_t date = *iter;
 		

@@ -95,8 +95,8 @@ void DialogProxy::slotUseProxyChanged ()
     lineProxyUserName->setEnabled (usep);
     lineProxyUserPassword->setEnabled (usep);
     cbProxyType->setEnabled (usep);
-	for (int i=0; i < listProxyLabels.size(); i++) {
-		listProxyLabels[i]->setEnabled (usep);
+	for (auto & listProxyLabel : listProxyLabels) {
+		listProxyLabel->setEnabled (usep);
 	}
 }
 //-------------------------------------------------------------------------------

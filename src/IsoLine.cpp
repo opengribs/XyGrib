@@ -37,10 +37,9 @@ IsoLine::IsoLine (DataCode dtc, double val, GriddedRecord *rec, int deltaI, int 
 //---------------------------------------------------------------
 IsoLine::~IsoLine()
 {
-    std::vector <Segment *>::iterator it;
-    for (it=trace.begin(); it!=trace.end(); it++) {
-        delete *it;
-        *it = nullptr;
+    for (auto & it : trace) {
+        delete it;
+        it = nullptr;
     }
     trace.clear();
 }
@@ -57,7 +56,7 @@ void IsoLine::drawIsoLine (QPainter &pnt,
     //---------------------------------------------------------
     // Dessine les segments
     //---------------------------------------------------------
-    for (it=trace.begin(); it!=trace.end(); it++,nb++)
+    for (it=trace.begin(); it!=trace.end(); ++it,nb++)
     {
         Segment *seg = *it;
 
@@ -109,7 +108,7 @@ void IsoLine::drawIsoLineLabels(QPainter &pnt, QColor &couleur,
     //---------------------------------------------------------
     // Ecrit les labels
     //---------------------------------------------------------
-    for (it=trace.begin(); it!=trace.end(); it++,nb++)
+    for (it=trace.begin(); it!=trace.end(); ++it,nb++)
     {
         if (nb % density == 0) {
             Segment *seg = *it;

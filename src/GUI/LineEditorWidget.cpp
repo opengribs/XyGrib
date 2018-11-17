@@ -10,6 +10,9 @@ LineTestZone::LineTestZone(QWidget *parent)
 	lineColor = Qt::yellow;
 }
 
+void LineTestZone::setLineColor(const QColor &c)
+{lineColor=c; update();}
+
 //----------------------------------------------------------------------
 void  LineTestZone::mouseReleaseEvent(QMouseEvent *)
 {
@@ -41,8 +44,8 @@ void LineTestZone::paintEvent(QPaintEvent *)
 //=================================================================================
 LineEditorWidget::LineEditorWidget (
 					QWidget *parent,
-					double width, 		QColor color,
-					double defaultWidth,	QColor defaultColor,
+                    double width, const QColor &color,
+                    double defaultWidth, const QColor &defaultColor,
 					double minWidth, double maxWidth
 				)
     : QWidget(parent)

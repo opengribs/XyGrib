@@ -208,7 +208,7 @@ DialogLoadGRIB::~DialogLoadGRIB()
 }
 
 //----------------------------------------------------
-void DialogLoadGRIB::slotGribMessage(QString msg)
+void DialogLoadGRIB::slotGribMessage(const QString& msg)
 {
     labelMsg->setText(msg);
 }
@@ -263,7 +263,7 @@ void DialogLoadGRIB::slotGribDataReceived (QByteArray *content, QString fileName
 }
 
 //----------------------------------------------------
-void DialogLoadGRIB::slotGribLoadError (QString error)
+void DialogLoadGRIB::slotGribLoadError (const QString& error)
 {
 	setCursor(oldcursor);
     if (! loadInProgress)

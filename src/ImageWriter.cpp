@@ -210,7 +210,7 @@ void ImageWriter::saveImage (time_t date)
 	}
 }
 //-------------------------------------------------
-void ImageWriter::saveSettings (ImageWriterDialog &dial, QString filename)
+void ImageWriter::saveSettings (ImageWriterDialog &dial, const QString& filename)
 {
 	Util::setSetting("imageSaveWidth", dial.getW(), false);
 	Util::setSetting("imageSaveHeight", dial.getH(), false);
@@ -277,7 +277,7 @@ void ImageWriter::saveAllImages ()
 				std::set<time_t>::iterator iter;
 				int num=1;
 				for (iter=plotter->getListDates()->begin();
-							iter!=plotter->getListDates()->end();   iter++, num++)
+							iter!=plotter->getListDates()->end(); ++iter, num++)
 				{
 					qApp->processEvents ();
 					time_t date = *iter;
@@ -295,7 +295,7 @@ void ImageWriter::saveAllImages ()
 	}
 }
 //-------------------------------------------------------
-QString ImageWriter::createAnimImageFilename (QString prefix, int n)
+QString ImageWriter::createAnimImageFilename (const QString& prefix, int n)
 {
 	return (prefix+"_%1.jpg").arg(n, 3, 10, QChar('0'));
 }

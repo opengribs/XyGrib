@@ -55,9 +55,9 @@ QColor DataColors::getContrastedColor (const QColor &base)
 {
 	double gris = 0.30*base.redF() + 0.59*base.greenF() + 0.11*base.blueF();
 	if (gris < 0.35)
-		return QColor(230,225,200);
-	else if (gris < 0.45)
-		return QColor(240,235,210);
+		return {230,225,200};
+    if (gris < 0.45)
+		return {240,235,210};
 
     return Qt::black;
 }

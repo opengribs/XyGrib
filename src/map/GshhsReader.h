@@ -102,16 +102,16 @@ class GshhsPolygon_WDB : public GshhsPolygon
 class GshhsReader
 {
     public:
-        GshhsReader (std::string fpath, int quality);
+        GshhsReader (const std::string& fpath, int quality);
         GshhsReader (const GshhsReader &model);
         ~GshhsReader();
         
         void setUserPreferredQuality (int quality); // 5 levels: 0=low ... 4=full
         
         void drawBackground (QPainter &pnt, Projection *proj,
-                QColor seaColor, QColor backgroundColor);
+                const QColor& seaColor, const QColor& backgroundColor);
         void drawContinents (QPainter &pnt, Projection *proj,
-                QColor seaColor, QColor landColor);
+                const QColor& seaColor, const QColor& landColor);
                 
         void drawSeaBorders (QPainter &pnt, Projection *proj);
         void drawBoundaries (QPainter &pnt, Projection *proj);

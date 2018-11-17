@@ -14,12 +14,12 @@ class /*QDESIGNER_WIDGET_EXPORT*/ PositionEditorWidget
 
 public:
     PositionEditorWidget
-     				( QWidget *parent = 0,
-					  double lat = 0,
-    				  double lon = 0,
-					  QString userOrient_lat="Auto",  /* "Auto" "North+" "South+" */
-					  QString userOrient_lon="Auto"   /* "Auto" "East+" "West+"   */
-					);
+                    (QWidget *parent = 0,
+                      double lat = 0,
+                      double lon = 0,
+                      const QString &userOrient_lat="Auto",  /* "Auto" "North+" "South+" */
+                      const QString &userOrient_lon="Auto"   /* "Auto" "East+" "West+"   */
+                    );
 	
 	void setLatitude (double val);
 	void setLongitude(double val);

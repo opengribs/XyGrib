@@ -128,7 +128,7 @@ void Util::setApplicationProxy ()
 		{
 			QNetworkProxyQuery proxq = QNetworkProxyQuery (QUrl("http://"+getServerName()+"/index.php"));
 			QList<QNetworkProxy> list = QNetworkProxyFactory::systemProxyForQuery (proxq);
-			if (list.size() > 0) {
+			if (!list.empty()) {
 				QNetworkProxy pr2 = list [0];
 				QNetworkProxy::setApplicationProxy (pr2);
 			}
@@ -146,7 +146,7 @@ void Util::setApplicationProxy ()
 	}
 }
 //-------------------------------------------------------------------------------
-QNetworkRequest Util::makeNetworkRequest (QString url)
+QNetworkRequest Util::makeNetworkRequest (const QString& url)
 {
 	QNetworkRequest request;
      request.setRawHeader ("User-Agent",qPrintable(Version::getAppName()+"/"+Version::getVersion()) );
@@ -185,12 +185,10 @@ float Util::convertTemperature (float tempKelvin)
     if (unit == tr("°K")) {
         return tempKelvin;
     }
-    else if (unit == tr("°F")) {
-        return 1.8*(tempKelvin-273.15)+32.0;
+    if (unit == tr("°F")) {
+        return 1.8f*(tempKelvin-273.15f)+32.0f;
     }
-    else  {
-        return tempKelvin-273.15;
-    }
+    return tempKelvin-273.15f;
 }
 //-------------------------------------------------------
 QString Util::formatTemperature (float tempKelvin, bool withUnit)
@@ -595,9 +593,9 @@ QString Util::formatDegres (float x, bool inf100)     // 123.4 -> 123°24.00'
 QString Util::formatPosition(float x, float y)  // 123°24.00'W 45°67.89'N
 {
     if ( Util::getSetting("orderLatitudeLongitude", true).toBool() )
-		return formatLatitude(y)+" "+formatLongitude(x);
-	else
-		return formatLongitude(x)+" "+formatLatitude(y);
+        return formatLatitude(y)+" "+formatLongitude(x);
+
+    return formatLongitude(x)+" "+formatLatitude(y);
 }
 //---------------------------------------------------------------------
 QString Util::formatLongitude(float x)
@@ -840,7 +838,7 @@ time_t Util::timestampSetHour (time_t t, int hour, int min, int sec)
 	return mktime (&dt);
 }
 //------------------------------------
-void Util::dumpchars (unsigned char *buf, size_t offset, size_t len)
+void Util::dumpchars (const unsigned char *buf, size_t offset, size_t len)
 {
 	for (size_t i=0; i<len; i++) {
 		unsigned char c = buf[i+offset];
