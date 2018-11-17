@@ -132,10 +132,12 @@ void GribPlot::draw_GridPoints (const DataCode &dtc, QPainter &pnt, const Projec
         {
             //if (rec->hasValue(i,j))
             {
-                proj->map2screen(rec->getX(i), rec->getY(j), &px,&py);
+                double lon, lat;
+                rec->getXY(i, j, &lon , &lat);
+                proj->map2screen(lon, lat, &px,&py);
                 pnt.drawLine(px-dl,py, px+dl,py);
                 pnt.drawLine(px,py-dl, px,py+dl);
-                proj->map2screen(rec->getX(i)-360.0, rec->getY(j), &px,&py);
+                proj->map2screen(lon -360.0, lat, &px,&py);
                 pnt.drawLine(px-dl,py, px+dl,py);
                 pnt.drawLine(px,py-dl, px,py+dl);
             }
@@ -180,8 +182,7 @@ void GribPlot::draw_WIND_Arrows (
     	{
 			for (int gj=0; gj<recx->getNj(); gj++)
 			{
-				x = recx->getX(gi);
-				y = recx->getY(gj);
+				recx->getXY(gi, gj, &x, &y);
 				
                 //----------------------------------------------------------------------
                 if (! recx->isXInMap(x))
@@ -214,15 +215,21 @@ void GribPlot::draw_WIND_Arrows (
 			j0 = 0;
 		}
 		else {
+			double lon, lat;
+
 			if (recx->getDeltaY() > 0)
-				proj->map2screen (recx->getX(0), recx->getY(recx->getNj()-1), &i0, &j0);
+				recx->getXY(0, recx->getNj()-1, &lon, &lat);
 			else
-				proj->map2screen (recx->getX(0), recx->getY(0), &i0, &j0);
+				recx->getXY(0, 0, &lon, &lat);
+			proj->map2screen (lon, lat, &i0, &j0);
 			if (i0 > W) {
-				if (recx->getDeltaY() > 0)
-					proj->map2screen (recx->getX(0)-360, recx->getY(recx->getNj()-1), &i0, &j0);
+				if (recx->getDeltaY() > 0) {
+					recx->getXY(0, recx->getNj()-1, &lon, &lat);
+					lon -= 360.;
+				}
 				else
-					proj->map2screen (recx->getX(0), recx->getY(0), &i0, &j0);
+					recx->getXY(0, 0, &lon, &lat);
+				proj->map2screen (lon, lat, &i0, &j0);
 			}
 		}
 		if (j0<0) {
@@ -290,16 +297,14 @@ void GribPlot::draw_CURRENT_Arrows (
     	int oldi=-1000, oldj=-1000;
     	for (int gi=0; gi<recx->getNi(); gi++)
     	{
-			x = recx->getX(gi);
-			y = recx->getY(0);
+			recx->getXY(gi, 0, &x, &y);
 			proj->map2screen(x,y, &i,&j);
 			if (true || abs(i-oldi)>=space)
 			{
 				oldi = i;
 				for (int gj=0; gj<recx->getNj(); gj++)
 				{
-					x = recx->getX(gi);
-					y = recx->getY(gj);
+					recx->getXY(gi, gj, &x, &y);
 					proj->map2screen(x,y, &i,&j);
 					
 						//----------------------------------------------------------------------
@@ -475,16 +480,14 @@ void GribPlot::draw_WAVES_Arrows (
     	int oldi=-1000, oldj=-1000;
     	for (int gi=0; gi<recDir->getNi(); gi++)
     	{
-			x = recDir->getX(gi);
-			y = recDir->getY(0);
+			recDir->getXY(gi, 0, &x, &y);
 			proj->map2screen(x,y, &i,&j);
 			if (true || abs(i-oldi)>=space)
 			{
 				oldi = i;
 				for (int gj=0; gj<recDir->getNj(); gj++)
 				{
-					x = recDir->getX(gi);
-					y = recDir->getY(gj);
+					recDir->getXY(gi, gj, &x, &y);
 					proj->map2screen(x,y, &i,&j);
 						//----------------------------------------------------------------------
 						if (! recDir->isXInMap(x))

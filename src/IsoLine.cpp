@@ -154,29 +154,31 @@ void Segment::intersectionAreteGrille (
 					GriddedRecord *rec, double val,
 					DataCode dtc )
 {
-    double a,b, pa, pb, dec;
+    double xa, xb, ya, yb, pa, pb, dec;
+
     pa = rec->getValueOnRegularGrid (dtc, i,j);
     pb = rec->getValueOnRegularGrid (dtc, k,l);
+
     // Abscisse
-    a = rec->getX(i);
-    b = rec->getX(k);
+    rec->getXY(i, j, &xa, &ya);
+    rec->getXY(k, l, &xb, &yb);
+
     if (pb != pa)
         dec = (val-pa)/(pb-pa);
     else
         dec = 0.5;
     if (fabs(dec)>1)
         dec = 0.5;
-    *x = a+(b-a)*dec;
+    *x = xa+(xb-xa)*dec;
+
     // Ordonnée
-    a = rec->getY(j);
-    b = rec->getY(l);
     if (pb != pa)
         dec = (val-pa)/(pb-pa);
     else
         dec = 0.5;
     if (fabs(dec)>1)
         dec = 0.5;
-    *y = a+(b-a)*dec;
+    *y = ya+(yb-ya)*dec;
 }
 //---------------------------------------------------------------
 void Segment::traduitCode (int I, int J, char c1, int &i, int &j) {
