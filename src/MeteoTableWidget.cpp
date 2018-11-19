@@ -67,7 +67,6 @@ QWidget * MeteoTableWidget::getDataHeaders ()
 //------------------------------------------------------------------------
 void MeteoTableWidget::showEvent (QShowEvent */*event*/)
 {
-	QRect r;
 	// Adjust header height to row height
 	for (int j=0; j<layout->rowCount(); j++) 
 	{
@@ -335,7 +334,6 @@ void MeteoTableWidget::createTable()
 //-----------------------------------------------------------------
 void MeteoTableWidget::addLine_WaveWhitecap (int type, int lig)
 {
-	std::vector <time_t>::iterator it; 
 	std::vector <DataPointInfo *>::iterator iter; 
 	QColor    bgColor = Qt::white;
 	QString   txt;
@@ -535,7 +533,6 @@ void MeteoTableWidget::addLine_Pressure(const Altitude &alt, int lig)
 void MeteoTableWidget::addLine_Wind (const Altitude &alt, int lig)
 {
 	std::vector <DataPointInfo *>::iterator iter; 
-	std::vector <time_t>::iterator it; 
 	QColor    bgColor = Qt::white;
 	QString   txt;
 	int col = 0;
@@ -570,7 +567,6 @@ void MeteoTableWidget::addLine_Wind (const Altitude &alt, int lig)
 void MeteoTableWidget::addLine_Current (const Altitude &alt, int lig)
 {
 	std::vector <DataPointInfo *>::iterator iter; 
-	std::vector <time_t>::iterator it; 
 	QColor    bgColor = Qt::white;
 	QString   txt;
 	int col = 0;
@@ -622,7 +618,6 @@ void MeteoTableWidget::addLine_GUSTsfc(int lig)
 void MeteoTableWidget::addLine_HumidRel (const Altitude &alt, int lig)
 {
 	std::vector <time_t>::iterator it; 
-	std::vector <DataPointInfo *>::iterator iter; 
 	QColor    bgColor = Qt::white;
 	QString   txt;
 	int col = 0;
