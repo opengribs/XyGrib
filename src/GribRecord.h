@@ -96,7 +96,7 @@ class GribRecord : public RegularGridRecord
 						{ return ok ? Ni*Nj/((xmax-xmin)*(-ymin)) : 0; }
 
         // coordonnées d'un point de la grille
-        void getXY(int i, int j, double *lon, double *lat) const {
+        void getXY(int i, int j, double *lon, double *lat) const override {
                 *lon = getX(i);
                 *lat = getY(j);
             }
@@ -138,8 +138,8 @@ class GribRecord : public RegularGridRecord
         virtual void  print (const char *title);
 
     private:
-        double  getX(int i) const   { return ok ? xmin+i*Di : GRIB_NOTDEF;}
-        double  getY(int j) const   { return ok ? ymin+j*Dj : GRIB_NOTDEF;}
+        double  getX(int i) const override { return ok ? xmin+i*Di : GRIB_NOTDEF;}
+        double  getY(int j) const override { return ok ? ymin+j*Dj : GRIB_NOTDEF;}
 
     protected:
         int    id;         // unique identifiant
