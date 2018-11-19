@@ -108,10 +108,10 @@ class GribRecord : public RegularGridRecord
 							double px, double py,
 							bool interpolate=true) const;
 
-		virtual double  getInterpolatedValue (
+		double  getInterpolatedValue (
 							DataCode dtc,
 							double px, double py,
-							bool interpolate=true ) const;
+							bool interpolate=true ) const override;
 		 
         double getValueOnRegularGrid (
 						DataCode dtc, int i, int j ) const override;
