@@ -395,7 +395,6 @@ void  SkewT::draw_oneMixingRatioCurve (double mixr, QPainter &pnt)
 	mixr = mixr / 1000.0;		// g/kg => kg/kg
 	PersPath path (this);
 	hpa = hpaMax;
-	QPointF pt;
 	for (hpa=hpaMax; hpa > hpaMin; hpa -= 50) 
 	{
 		tempC = Therm::tempFromMixingRatio (mixr, hpa);
@@ -448,7 +447,7 @@ void  SkewT::draw_temperatureScale (QPainter &pnt, bool withLabels)
 		}
 		else {  // line starts outside of X axis
 			QLineF lineTemp (i0, j0, i1, j1);
-			QPointF intertop, interleft;
+			QPointF interleft;
 			if (lineTemp.intersect (lineLeft, &interleft) == QLineF::BoundedIntersection
 			) {
 				QPoint pl = interleft.toPoint ();
