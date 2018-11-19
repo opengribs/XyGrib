@@ -395,24 +395,9 @@ fprintf(stderr,"hasBMS=%d isScanIpositive=%d isScanJpositive=%d isAdjacentI=%d\n
 }
 
 //-------------------------------------------------------------------------------
-// Constructor
-//-------------------------------------------------------------------------------
-GribRecord::GribRecord ()
-{
-	ok = false;
-    data = nullptr;
-    BMSbits = nullptr;
-    boolBMStab = nullptr;
-	periodP1 = 0;
-	periodP2 = 0;
-	waveData = false;
-	verticalOrientationIsAmbiguous = false;
-}
-
-//-------------------------------------------------------------------------------
 // Lecture depuis un fichier
 //-------------------------------------------------------------------------------
-GribRecord::GribRecord (ZUFILE* file, int id_) : GribRecord()
+GribRecord::GribRecord (ZUFILE* file, int id_)
 {
     id = id_;
     seekStart = zu_tell(file);

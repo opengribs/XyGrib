@@ -39,7 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class GribRecord : public RegularGridRecord  
 { 
     public:
-        GribRecord ();
+        GribRecord () = default;
         GribRecord (ZUFILE* file, int id_);
         GribRecord (const GribRecord &rec);
         ~GribRecord ();
@@ -136,16 +136,16 @@ class GribRecord : public RegularGridRecord
         virtual void  print (const char *title);
 
     protected:
-        int    id;    // unique identifiant
-        bool   ok;    // validité des données
+        int    id;         // unique identifiant
+        bool   ok{false};    // validité des données
         bool   knownData; 	// type de donnée connu
-        bool   waveData;
+        bool   waveData{false};
 		
         bool   eof;   // fin de fichier atteinte lors de la lecture
 		uint64_t dataKey;
 		char   strRefDate [32];
 		char   strCurDate [32];
-		bool   *boolBMStab;
+		bool   *boolBMStab{};
 
         //---------------------------------------------
         // SECTION 0: THE INDICATOR SECTION (IS)
@@ -167,7 +167,7 @@ class GribRecord : public RegularGridRecord
         bool   hasGDS;
         bool   hasBMS;
         zuint  refyear, refmonth, refday, refhour, refminute;
-        zuchar periodP1, periodP2;
+        zuchar periodP1{0}, periodP2{0};
         zuchar timeRange{255};
         zuint  periodsec;    // period in seconds
         time_t refDate;      // Reference date
@@ -190,7 +190,7 @@ class GribRecord : public RegularGridRecord
         // SECTION 3: BIT MAP SECTION (BMS)
         zuint  fileOffset3;
         zuint  sectionSize3;
-        zuchar *BMSbits;
+        zuchar *BMSbits{};
         // SECTION 4: BINARY DATA SECTION (BDS)
         zuint  fileOffset4;
         zuint  sectionSize4;
@@ -203,7 +203,7 @@ class GribRecord : public RegularGridRecord
         double scaleFactorEpow2;
         double refValue;
         zuint  nbBitsInPack;
-        double  *data;
+        double  *data{};
         // SECTION 5: END SECTION (ES)
 
         //---------------------------------------------
@@ -240,7 +240,7 @@ class GribRecord : public RegularGridRecord
 		// original values (to detect ambiguous headers)
 		double savXmin,savXmax, savYmin,savYmax;
 		double savDi, savDj;
-		bool   verticalOrientationIsAmbiguous;
+		bool   verticalOrientationIsAmbiguous{false};
 };
 
 //==========================================================================
