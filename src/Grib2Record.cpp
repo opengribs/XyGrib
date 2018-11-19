@@ -19,15 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "Grib2Record.h"
 
 //----------------------------------------
-Grib2Record::Grib2Record ()
-{	
-}
-
-//----------------------------------------
-Grib2Record::~Grib2Record ()
-{	
-}
-//----------------------------------------
 // david added discipline
 Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate, int dscpl)
 {

@@ -57,10 +57,10 @@ class Grib2RecordMarker {
 class Grib2Record : public GribRecord
 {
 	public:
-		Grib2Record ();
+		Grib2Record () = default;
         // changed by david for discipline
         Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate, int dscpl);
-		~Grib2Record ();
+		~Grib2Record () = default;
 		
 		Grib2RecordMarker getGrib2RecordMarker ()
 			{ return Grib2RecordMarker(id, pdtnum, paramcat, paramnumber,levelType,levelValue); }
