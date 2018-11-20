@@ -160,9 +160,9 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 	if (ok && hasBMS) { // replace the BMS bits table with a faster bool table
         boolBMStab = new bool [Ni*Nj];
 		assert (boolBMStab);
-		for (int i=0; i<Ni; i++) {
-			for (int j=0; j<Nj; j++) {
-				ind = j*Ni+i;
+		for (int j=0; j<Nj; j++) {
+			for (int i=0; i<Ni; i++) {
+				int ind = j*Ni+i;
 				boolBMStab [ind] = gfld->bmap[ind];
 			}
 		}
@@ -633,6 +633,7 @@ void Grib2Record::print (const char *title)
 	if (ok) {
 		fprintf(stderr,"====== Grib2Record %d : %s\n", id, title);
 		fprintf(stderr,"idCenter=%d idModel=%d idGrid=%d\n", idCenter,idModel,idGrid);
+		fprintf(stderr,"scanFlags= 0x%x\n", scanFlags);
 		fprintf(stderr,"data=%s alt=%s\n", qPrintable(DataCodeStr::toString_name(dataType)), qPrintable(AltitudeStr::toStringShort(Altitude(levelType,levelValue))) );
 		fprintf(stderr,"dataType=%d levelType=%d levelValue=%d\n", dataType, levelType,levelValue);
 		fprintf(stderr,"hour=%02g  cur=%s  ref=%s\n", (curDate-refDate)/3600.0,strCurDate,strRefDate);
@@ -641,6 +642,7 @@ void Grib2Record::print (const char *title)
 		fprintf(stderr,"hasDiDj=%d Ni=%d Nj=%d    entireWorldInLongitude=%d\n", hasDiDj, Ni,Nj, (int)entireWorldInLongitude);
 // 		fprintf(stderr,"savDi,savDj=(%f %f)\n", hasDiDj, savDi,savDj);
 		fprintf(stderr,"final     Di,Dj=(%f %f)\n", Di,Dj);
+		fprintf(stderr,"scanFlags=0x%x\n", scanFlags);
 		fprintf(stderr,"hasBMS=%d isScanIpositive=%d isScanJpositive=%d isAdjacentI=%d\n",
 							hasBMS, isScanIpositive,isScanJpositive,isAdjacentI );
 	}
