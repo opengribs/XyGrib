@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "DataDefines.h"
 #include "DataMeteoAbstract.h"
+#include "GridType.h"
 
 //====================================================================
 class GriddedRecord : public DataRecordAbstract
@@ -88,8 +89,6 @@ class GriddedRecord : public DataRecordAbstract
 		bool   entireWorldInLongitude;
 
 	protected:
-        virtual double  getX (int i) const = 0;
-        virtual double  getY (int j) const = 0;
 		double xmin,xmax, ymin,ymax;
 		bool   duplicated;
 		DataCenterModel    dataCenterModel;

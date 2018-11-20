@@ -637,6 +637,7 @@ GribRecord::GribRecord (ZUFILE* file, int id_)
 	
 	checkOrientation ();
     if (ok) {
+        grid = std::make_shared<PlateCarree>(Ni, Nj, xmin, ymin, Di, Dj);
 		translateDataType ();
 		setDataType (dataType);
 		

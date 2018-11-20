@@ -81,6 +81,7 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 		xmin -= 360.0;
         xmax -= 360.0;
     }
+    grid = std::make_shared<PlateCarree>(Ni, Nj, xmin, ymin, Di, Dj);
 	resolFlags = gfld->igdtmpl[13];
 	hasDiDj = (resolFlags&0x10)!=0 && (resolFlags&0x20)!=0;
 	isUeastVnorth =  (resolFlags&0x08) ==0;
