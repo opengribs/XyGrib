@@ -168,7 +168,7 @@ class GribRecord : public RegularGridRecord
         bool   hasBMS;
         zuint  refyear, refmonth, refday, refhour, refminute;
         zuchar periodP1, periodP2;
-        zuchar timeRange;
+        zuchar timeRange{255};
         zuint  periodsec;    // period in seconds
         time_t refDate;      // Reference date
         time_t curDate;      // Current date
