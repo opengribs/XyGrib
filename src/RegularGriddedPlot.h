@@ -1,5 +1,5 @@
 /**********************************************************************
-XyGrib: meteorological GRIB file viewer
+zyGrib: meteorological GRIB file viewer
 Copyright (C) 2008-2012 - Jacques Zaninetti - http://www.zygrib.org
 
 This program is free software: you can redistribute it and/or modify
@@ -16,39 +16,22 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ***********************************************************************/
 
-/*************************
-Lecture mise en mémoire d'un fichier GRIB
+#ifndef REGULARGRIDDEDPLOT_H
+#define REGULARGRIDDEDPLOT_H
 
-*************************/
+#include <QString>
 
-#ifndef GRIB2READER_H
-#define GRIB2READER_H
-
-#include "GribReader.h"
-#include "Grib2Record.h"
-extern "C" {
-    #include <grib2.h>
-}
+#include "GriddedPlotter.h"
 
 //===============================================================
-class Grib2Reader : public GribReader
+class RegularGridPlot : public GriddedPlotter
 {
     public:
-        Grib2Reader ();
-        ~Grib2Reader ();
-		
-        virtual void  openFile (const std::string &fname,
-						LongTaskProgress *taskProgress, int nbrecs);
-		
-	private:
-        void openFilePriv (const std::string& fname, int nbrecs);
-		void readGrib2FileContent (int nbrecs);
+        RegularGridPlot () {}
+        virtual ~RegularGridPlot() {}
 
-		void analyseRecords ();
-		QList<Grib2RecordMarker> allUnknownRecords;
-		
-		void seekgb_zu (ZUFILE *lugb,g2int iseek,g2int mseek,g2int *lskip,g2int *lgrib);
-
+	protected:
+		QString fileName;
 };
 
 

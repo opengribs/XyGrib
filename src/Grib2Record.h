@@ -24,6 +24,7 @@ extern "C" {
 }
 
 #include "GribRecord.h"
+#include "DataQString.h"
 
 //----------------------------------------
 class Grib2RecordMarker {
