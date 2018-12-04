@@ -128,7 +128,7 @@ void Grib2Reader::readGrib2FileContent (int nbrecs)
     g2int expand=1;
 	int idrec=0;
     while (ierr==0 && taskProgress->continueDownload) {
-		qApp->processEvents ();
+		//qApp->processEvents ();
 		seekgb_zu (file, iseek, 64*1024, &lskip, &lgrib);
 		taskProgress->setValue ((int)(100.0*idrec/nbrecs));
         //DBG("READ FIELD : idrec=%d lskip=%ld lgrib=%ld", idrec, lskip, lgrib);
