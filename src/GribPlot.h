@@ -23,6 +23,8 @@ Dessin des données GRIB (avec QT)
 #ifndef GRIBPLOT_H
 #define GRIBPLOT_H
 
+#include <QPainter>
+
 #include "RegularGridded.h"
 
 #include "GribReader.h"
