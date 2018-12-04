@@ -49,6 +49,7 @@ MeteoTable.h
 MeteoTableWidget.h
 MeteotableOptionsDialog.h
 RegularGridded.h
+RegularGriddedPlot.h
 SkewT.h
 Stylesheet.h
 Terrain.h

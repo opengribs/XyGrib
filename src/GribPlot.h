@@ -25,7 +25,7 @@ Dessin des données GRIB (avec QT)
 
 #include <QPainter>
 
-#include "RegularGridded.h"
+#include "RegularGriddedPlot.h"
 
 #include "GribReader.h"
 #include "DataPointInfo.h"

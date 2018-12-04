@@ -27,6 +27,7 @@ Lecture mise en mémoire d'un fichier GRIB
 
 #include "RegularGridded.h"
 #include "GribRecord.h"
+#include "LongTaskProgress.h"
 #include "zuFile.h"
 
 //===============================================================
