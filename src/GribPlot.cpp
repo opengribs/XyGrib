@@ -50,10 +50,13 @@ void GribPlot::initNewGribPlot(bool interpolateValues, bool windArrowsOnGribGrid
 	this->drawCurrentArrowsOnGrid = currentArrowsOnGribGrid;
 }
 //----------------------------------------------------
-void GribPlot::loadGrib (LongTaskProgress * taskProgress, int nbrecs)
+void GribPlot::loadFile (const QString &fileName, LongTaskProgress * taskProgress, int nbrecs)
 {
 	listDates.clear();
     
+    delete gribReader;
+	
+	gribReader = new GribReader ();
 	if (taskProgress != nullptr) 
 	{
 	    QObject::connect(gribReader, &LongTaskMessage::valueChanged,
