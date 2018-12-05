@@ -82,6 +82,8 @@ class GribPlot : public RegularGridPlot
 						QPainter &pnt, const Projection *proj );
     
     protected:
+		void  loadGrib (LongTaskProgress *taskProgress, int nbrecs);
+
         void       	initNewGribPlot (
 						bool interpolateValues=true, 
 						bool windArrowsOnGribGrid=true,
