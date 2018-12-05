@@ -1,6 +1,7 @@
 /**********************************************************************
 XyGrib: meteorological GRIB file viewer
-Copyright (C) 2008-2012 - Jacques Zaninetti - http://www.zygrib.org
+
+Copyright (C) 2018 - opengrib - http://www.xygrib.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -14,40 +15,40 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 ***********************************************************************/
 
-#ifndef LONGTASKPROGRESS_H
-#define LONGTASKPROGRESS_H
+#ifndef LONGTASKMESSAGE_H
+#define LONGTASKMESSAGE_H
 
-#include <QProgressDialog>
-#include "LongTaskMessage.h"
+#include <QObject>
 
 //-----------------------------------------
-class LongTaskProgress : public QObject
+class LongTaskMessage :public QObject
 {
 Q_OBJECT
+public:
 
-	public:
-			
-		LongTaskProgress (QWidget *parent=NULL);
-		~LongTaskProgress ();
+    enum LongTaskMessageType
+	{
+		LTASK_OPEN_FILE,
+		LTASK_ANALYSE_DATA,
+		LTASK_PREPARE_MAPS,
+		LTASK_UNCOMPRESS_FILE
+	};
 
-		void setWindowTitle (const QString& title);
-		void setVisible (bool vis);
-		QProgressDialog *progress;
+    LongTaskMessage() = default;
+    ~LongTaskMessage() = default;
 
-		bool continueDownload;
+    bool continueDownload{true};
 
 public slots:
-    	void setValue(int value);
-    	void setMessage(LongTaskMessage::LongTaskMessageType msgtype);
-
-    	void downloadCanceled();
+    void cancel();
 
 signals:
-    	void newMessage(LongTaskMessage::LongTaskMessageType msgtype);
-    	void valueChanged(int newValue);
-    	void canceled();
+    void newMessage(LongTaskMessage::LongTaskMessageType type);
+    // gauge 1 -- 100 %
+    void valueChanged(int newValue);
 };
 
 #endif
