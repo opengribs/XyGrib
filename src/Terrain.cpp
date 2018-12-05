@@ -659,7 +659,7 @@ FileDataType Terrain::loadMeteoDataFile (const QString& fileName, bool zoom)
 		delete griddedPlot;
         griddedPlot = nullptr;
 	}
-	taskProgress->setMessage (LTASK_OPEN_FILE);
+	taskProgress->setMessage (LongTaskMessage::LTASK_OPEN_FILE);
 	taskProgress->setValue (0);
     //--------------------------------------------------------
     // Ouverture du fichier
@@ -674,7 +674,9 @@ FileDataType Terrain::loadMeteoDataFile (const QString& fileName, bool zoom)
             taskProgress = nullptr;
 	        return DATATYPE_NONE;
 		}
-		nbrecs = GribReader::countGribRecords (file, taskProgress);
+		GribReader r;
+	    QObject::connect(taskProgress, &LongTaskProgress::canceled, &r, &LongTaskMessage::cancel);
+		nbrecs = r.countGribRecords (file);
 		zu_close(file);
 	}
 

@@ -44,7 +44,18 @@ void Grib2Plot::loadFile (const QString &fileName,
 
 //
 	gribReader = new Grib2Reader ();
-    gribReader->openFile (qPrintable(fileName), taskProgress, nbrecs);
+	if (taskProgress != nullptr)
+	{
+	    QObject::connect(gribReader, &LongTaskMessage::valueChanged,
+	            taskProgress,   &LongTaskProgress::setValue);
+
+	    QObject::connect(gribReader, &LongTaskMessage::newMessage,
+	            taskProgress,   &LongTaskProgress::setMessage);
+
+	    QObject::connect(taskProgress,   &LongTaskProgress::canceled,
+	    		gribReader, &LongTaskMessage::cancel);
+    }
+    gribReader->openFile (qPrintable(fileName),  nbrecs);
     if (gribReader->isOk())
     {
         listDates = gribReader->getListDates();

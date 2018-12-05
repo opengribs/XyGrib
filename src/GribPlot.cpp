@@ -50,8 +50,7 @@ void GribPlot::initNewGribPlot(bool interpolateValues, bool windArrowsOnGribGrid
 	this->drawCurrentArrowsOnGrid = currentArrowsOnGribGrid;
 }
 //----------------------------------------------------
-void GribPlot::loadFile (const QString &fileName,
-						 LongTaskProgress * taskProgress, int nbrecs)
+void GribPlot::loadFile (const QString &fileName, LongTaskProgress * taskProgress, int nbrecs)
 {
 	this->fileName = fileName;
 	listDates.clear();
@@ -59,8 +58,18 @@ void GribPlot::loadFile (const QString &fileName,
     delete gribReader;
 	
 	gribReader = new GribReader ();
+	if (taskProgress != nullptr) 
+	{
+	    QObject::connect(gribReader, &LongTaskMessage::valueChanged,
+	            taskProgress, &LongTaskProgress::setValue);
 
-    gribReader->openFile (qPrintable(fileName), taskProgress, nbrecs);
+	    QObject::connect(gribReader, &LongTaskMessage::newMessage,
+	            taskProgress, &LongTaskProgress::setMessage);
+
+	    QObject::connect(taskProgress,   &LongTaskProgress::canceled,
+	    		gribReader, &LongTaskMessage::cancel);
+    }
+    gribReader->openFile (qPrintable(fileName), nbrecs);
     if (gribReader->isOk())
     {
         listDates = gribReader->getListDates();

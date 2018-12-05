@@ -36,11 +36,9 @@ GribReader::GribReader()
 	ymax = -1e300;
 }
 //-------------------------------------------------------------------------------
-void GribReader::openFile (const std::string &fname,
-							LongTaskProgress *taskProgress, int nbrecs)
+void GribReader::openFile (const std::string &fname, int nbrecs)
 {
-	this->taskProgress = taskProgress;
-	taskProgress->continueDownload = true;
+	continueDownload = true;
 	setAllDataCenterModel.clear();
 	setAllDates.clear ();
 	setAllDataCode.clear ();
@@ -131,7 +129,7 @@ void GribReader::readAllGribRecords (int nbrecs)
 	bool eof;
     do {
 		if (id%4 == 1)
-			taskProgress->setValue ((int)(100.0*id/nbrecs));
+			emit valueChanged ((int)(100.0*id/nbrecs));
 		
 		id ++;
 
@@ -367,10 +365,10 @@ void GribReader::readAllGribRecords (int nbrecs)
 					);
 			}
 		}
-    } while (taskProgress->continueDownload && !eof);
+    } while (continueDownload && !eof);
 
     delete rec;
-	if (! taskProgress->continueDownload)
+	if (! continueDownload)
 		ok = false;
 }
 //---------------------------------------------------------------------------------
@@ -949,11 +947,9 @@ void GribReader::openFilePriv (const std::string& fname, int nbrecs)
         return;
     }
     
-	taskProgress->setMessage (LTASK_OPEN_FILE);
-	taskProgress->setValue (0);
+	emit newMessage (LongTaskMessage::LTASK_OPEN_FILE);
     if (nbrecs > 0) {
-		taskProgress->setMessage (LTASK_PREPARE_MAPS);
-		taskProgress->setValue (0);
+		emit newMessage (LongTaskMessage::LTASK_PREPARE_MAPS);
 		readGribFileContent (nbrecs);
 		// should be done once after opening all files.
 		computeAccumulationRecords ();
@@ -999,7 +995,7 @@ void GribReader::openFilePriv (const std::string& fname, int nbrecs)
 // 	return nb;
 // }
 //-------------------------------------------------------------------------------
-int GribReader::countGribRecords (ZUFILE *f, LongTaskProgress *taskProgress)
+int GribReader::countGribRecords (ZUFILE *f)
 {
 	//qint64 fsize = zu_filesize(f);
 	qint64 i=0;
@@ -1010,7 +1006,7 @@ int GribReader::countGribRecords (ZUFILE *f, LongTaskProgress *taskProgress)
 	int nblus;
 	char buf[sizebuf];
 	zu_rewind (f);
-	while (taskProgress->continueDownload && (nblus=zu_read(f,buf,sizebuf))>0) {
+	while (continueDownload && (nblus=zu_read(f,buf,sizebuf))>0) {
 		for (i=0; i<nblus; i++) {
 			c = buf[i];
 			if (  (j==0 && c=='G')
@@ -1028,7 +1024,7 @@ int GribReader::countGribRecords (ZUFILE *f, LongTaskProgress *taskProgress)
 			}
 		}
 	}
-	if (! taskProgress->continueDownload)
+	if (! continueDownload)
 		nb = 0;
 	zu_rewind (f);
 	return nb;

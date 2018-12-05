@@ -28,12 +28,10 @@ Grib2Reader::~Grib2Reader ()
 {
 }
 //-------------------------------------------------------------------------------
-void Grib2Reader::openFile (const std::string &fname,
-							LongTaskProgress *taskProgress, int nbrecs)
+void Grib2Reader::openFile (const std::string &fname, int nbrecs)
 {
 	allUnknownRecords.clear();
-	this->taskProgress = taskProgress;
-	taskProgress->continueDownload = true;
+	continueDownload = true;
 	setAllDataCenterModel.clear();
 	setAllDates.clear ();
 	setAllDataCode.clear ();
@@ -67,12 +65,10 @@ void Grib2Reader::openFilePriv (const std::string& fname, int nbrecs)
         erreur("Can't open file: %s", fname.c_str());
         return;
     }
-	taskProgress->setMessage (LTASK_OPEN_FILE);
-	taskProgress->setValue (0);
+	emit newMessage (LongTaskMessage::LTASK_OPEN_FILE);
 	//DBG("nbrecs=%d", nbrecs);
     if (nbrecs > 0) {
-		taskProgress->setMessage (LTASK_PREPARE_MAPS);
-		taskProgress->setValue (0);
+		emit newMessage (LongTaskMessage::LTASK_PREPARE_MAPS);
 		readGrib2FileContent (nbrecs);
 	}
 	else {
@@ -127,10 +123,10 @@ void Grib2Reader::readGrib2FileContent (int nbrecs)
     gribfield  *gfld;
     g2int expand=1;
 	int idrec=0;
-    while (ierr==0 && taskProgress->continueDownload) {
+    while (ierr==0 && continueDownload) {
 		//qApp->processEvents ();
 		seekgb_zu (file, iseek, 64*1024, &lskip, &lgrib);
-		taskProgress->setValue ((int)(100.0*idrec/nbrecs));
+		emit valueChanged ((int)(100.0*idrec/nbrecs));
         //DBG("READ FIELD : idrec=%d lskip=%ld lgrib=%ld", idrec, lskip, lgrib);
 		if (lgrib == 0)
 			break;    // end loop at EOF or problem
