@@ -28,12 +28,52 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 //        ok = false;
 //        return;
 //	}
-	if (!(gfld->griddef==0 && gfld->igdtnum==0 && gfld->igdtlen>=19)) {
-		// ! Latitude/Longitude grid
-//		DBG ("Unsupported grid type: %ld", gfld->igdtnum);
+
+	if (gfld->igdtnum == 0) {
+		// regular lat/long
+		double coefangle = 1e-6;
+
+		if (!(gfld->griddef==0 && gfld->igdtlen>=19)) {
+			// ! Latitude/Longitude grid
+			DBG ("Unsupported grid type: %ld", gfld->igdtnum);
+			ok = false;
+			return;
+		}
+		scanFlags = gfld->igdtmpl[18];
+		resolFlags = gfld->igdtmpl[13];
+		if (gfld->igdtmpl[9]!=0 && gfld->igdtmpl[10]!=0)
+			coefangle = (double)(gfld->igdtmpl[9])/gfld->igdtmpl[10];
+		ymin = gfld->igdtmpl[11]*coefangle;
+		xmin = gfld->igdtmpl[12]*coefangle;
+		ymax = gfld->igdtmpl[14]*coefangle;
+		xmax = gfld->igdtmpl[15]*coefangle;
+		Di = gfld->igdtmpl[16]*coefangle;
+		Dj = gfld->igdtmpl[17]*coefangle;
+	}
+	else if (gfld->igdtnum == 10) {
+		// Mercator
+		scanFlags  = gfld->igdtmpl[15];
+		resolFlags = gfld->igdtmpl[11];
+		ymin = gfld->igdtmpl[9]/1000000.;
+		xmin = gfld->igdtmpl[10]/1000000.;
+		//double laD  = gfld->igdtmpl[12]/1000000.;
+		ymax = gfld->igdtmpl[13]/1000000.;
+		xmax = gfld->igdtmpl[14]/1000000.;
+		Di = gfld->igdtmpl[17];
+		Dj = gfld->igdtmpl[18];
+
+	}
+/*
+	else if( gfld->igdtnum == 30 ) {
+		scanFlags = gfld->igdtmpl[17];
+    }
+*/
+    else {
+		DBG ("Unsupported grid type: %ld", gfld->igdtnum);
 		ok = false;
 		return;
-	}	
+	}
+
 	//------------------------------------------------
 	// General infos
 	//------------------------------------------------
@@ -59,19 +99,10 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 					|| gfld->igdtmpl[0]==8);
 	Ni = gfld->igdtmpl[7];
 	Nj = gfld->igdtmpl[8];
-	double coefangle = 1e-6;
-	if (gfld->igdtmpl[9]!=0 && gfld->igdtmpl[10]!=0)
-		coefangle = (double)(gfld->igdtmpl[9])/gfld->igdtmpl[10];
-	ymin = gfld->igdtmpl[11]*coefangle;
-	xmin = gfld->igdtmpl[12]*coefangle;
-	ymax = gfld->igdtmpl[14]*coefangle;
-	xmax = gfld->igdtmpl[15]*coefangle;
 	savXmin = xmin;
 	savXmax = xmax;
 	savYmin = ymin;
 	savYmax = ymax;
-	Di = gfld->igdtmpl[16]*coefangle;
-	Dj = gfld->igdtmpl[17]*coefangle;
 	savDi = Di;
 	savDj = Dj;
     while ( xmin> xmax   &&  Di >0) {   // horizontal size > 360 °
@@ -116,19 +147,20 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
         xmax += 360.0;
     }
 
-	resolFlags = gfld->igdtmpl[13];
+	if (gfld->igdtnum == 0) {
+	    grid = std::make_shared<PlateCarree>(Ni, Nj, xmin, ymin, Di, Dj);
+	}
+	else if (gfld->igdtnum == 10) {
+	    grid = std::make_shared<Mercator>(Ni, Nj, xmin, ymin, xmax, ymax, Di, Dj);
+	}
+	else if( gfld->igdtnum == 30 ) {
+		scanFlags = gfld->igdtmpl[17];
+    }
 	hasDiDj = (resolFlags&0x10)!=0 && (resolFlags&0x20)!=0;
 	isUeastVnorth =  (resolFlags&0x08) ==0;
-	scanFlags = gfld->igdtmpl[18];
 	isScanIpositive = (scanFlags&0x80) ==0;
 	isScanJpositive = (scanFlags&0x40) !=0;
 	isAdjacentI     = (scanFlags&0x20) ==0;
-    grid = std::make_shared<PlateCarree>(Ni, Nj, xmin, ymin, Di, Dj);
-	bool allRowsScanSameDir = (scanFlags&0x10) ==0;
-	if (! allRowsScanSameDir) {
-		erreur ("Unsupported grid type: allRowsScanSameDir=%d", (int)allRowsScanSameDir);
-		ok = false;
-	}
 	//----------------------------------------
 	// BMS
 	//----------------------------------------
@@ -264,6 +296,11 @@ void Grib2Record::analyseProductDefinitionTemplate (gribfield  *gfld)
 		case 4: /* difference */
 		    timeRange = 5;
 		    break;
+		default:
+            DBG("id=%d: pdtnum: %d unknown proc code %d", id, pdtnum, (int)gfld->ipdtmpl[23]);
+            pdtnum = -1;
+            ok = false;
+            return;
         }
 	    switch(gfld->ipdtmpl[25]) { // time_unit, table 4.4
 	    case 1:  // hour

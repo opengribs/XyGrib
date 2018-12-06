@@ -638,10 +638,10 @@ GribRecord::GribRecord (ZUFILE* file, int id_)
 	checkOrientation ();
     if (ok) {
         grid = std::make_shared<PlateCarree>(Ni, Nj, xmin, ymin, Di, Dj);
-		translateDataType ();
-		setDataType (dataType);
-		
-		entireWorldInLongitude = (fabs(xmax-xmin)>=360.0)||(fabs(xmax-360.0+Di-xmin) < fabs(Di/20));
+        translateDataType ();
+        setDataType (dataType);
+
+        entireWorldInLongitude = (fabs(xmax-xmin)>=360.0)||(fabs(xmax-360.0+Di-xmin) < fabs(Di/20));
 		//DBG("xmin=%g xmax=%g Di=%g %g entireWorldInLongitude=%d : ", xmin, xmax, Di, 
 		//			fabs(xmax-360.0+Di-xmin),(int)entireWorldInLongitude);
 		//this->print("");
