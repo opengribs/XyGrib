@@ -812,6 +812,9 @@ void  Terrain::setSpecialZone  (double x0, double y0, double x1, double y1)
 	specialZoneY0 = y0;
 	specialZoneX1 = x1;
 	specialZoneY1 = y1;
+
+    // we need to show the special zone after selecting it
+    zoomOnZone(x0, y0, x1, y1);
 }
 
 //---------------------------------------------------------
