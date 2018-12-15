@@ -305,7 +305,9 @@ public:
 
     QAction *acHelp_Help;
     QAction *acHelp_APropos;
+#ifndef NO_UPDATE // deactivates SW update if cmake -DCMAKE_CXX_FLAGS="-DNO_UPDATE=1"
     QAction *acCheckForUpdates;
+#endif
 //#ifdef Q_OS_WIN
     QAction *acRunMaintenanceTool;
 //#endif

@@ -425,7 +425,11 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
         				tr("Help"), tr("Ctrl+H"),
         				"",Util::pathImg("help.png"));
         acHelp_APropos = addAction (menuHelp, tr("About XyGrib"),"","","");
+#ifndef NO_UPDATE   // deactivates SW update if cmake -DCMAKE_CXX_FLAGS="-DNO_UPDATE=1"
         acCheckForUpdates = addAction (menuHelp, tr("Check for updates"),"","","");
+#else
+        DBGS(SW update option was deactivated at compilation time);
+#endif
 
         if (maintenanceToolExists)
             acRunMaintenanceTool = addAction (menuHelp, tr("Run XyGrib Maintenance Tool"),"",

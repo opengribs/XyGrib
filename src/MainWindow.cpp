@@ -411,7 +411,9 @@ mb->acMap_SelectMETARs->setVisible (false);	// TODO
     //-------------------------------------------------------
     connect(mb->acHelp_Help, SIGNAL(triggered()), this, SLOT(slotHelp_Help()));
     connect(mb->acHelp_APropos, SIGNAL(triggered()), this, SLOT(slotHelp_APropos()));
+#ifndef NO_UPDATE // deactivates SW update if cmake -DCMAKE_CXX_FLAGS="-DNO_UPDATE=1"
     connect(mb->acCheckForUpdates, SIGNAL(triggered()), this, SLOT(slotCheckForUpdates()));
+#endif
 
     if (maintenanceToolLocation != "")
         connect(mb->acRunMaintenanceTool, SIGNAL(triggered()), this, SLOT(slotRunMaintenanceTool()));
