@@ -534,12 +534,12 @@ bool Settings::findAppDataDir ()
         // in windows binaries it does exist for sure. This will put app data in c:/user/AppData/Roaming...
         dir = QDir(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
 #else
-        dir = QDir(QStandardPaths::writableLocation(QStandardPaths::DataLocation));
+        dir = QDir(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation));
 #endif
         QDir maps = QDir(dir.absolutePath() + "/data/maps");
         QDir gis = QDir(dir.absolutePath() + "/data/gis");
 
-        DBGQS("Searching in: " + dir.absolutePath());
+        DBGQS("option1: Searching in: " + dir.absolutePath());
         if (maps.exists() && gis.exists()) { // we have the location
             path = dir.absolutePath();
             Settings::setUserSetting("appDataDir", path); // store the location in settings
@@ -550,10 +550,33 @@ bool Settings::findAppDataDir ()
     if (path == "")
     {	// second option is to locate app data files in shared area
 
-        slist = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
+        slist = QStandardPaths::standardLocations(QStandardPaths::AppLocalDataLocation);
         foreach (QString str, slist)
         {
-            DBGQS("Searching in: " + str);
+            DBGQS("option2: Searching in: " + str);
+
+            dir = QDir(str);
+            QDir maps = QDir(dir.absolutePath() + "/data/maps");
+            QDir gis = QDir(dir.absolutePath() + "/data/gis");
+
+            if (maps.exists() && gis.exists()) { // we have the location
+                path = dir.absolutePath();
+                Settings::setUserSetting("appDataDir", path); // store the location in settings
+                DBGQS("Shared location search was good and is: " + path);
+                break;
+            }
+        }
+    }
+
+      if (path == "")
+    {	// third option is to locate app data files in shared area use in Linux packaging
+
+        slist = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
+        foreach (QString str, slist)
+        {
+            // typical install directory by packager will be in /usr/share/XyGrib
+            str = str+"/"+QCoreApplication::applicationName();
+            DBGQS("option3: Searching in: " + str);
 
             dir = QDir(str);
             QDir maps = QDir(dir.absolutePath() + "/data/maps");
@@ -569,9 +592,9 @@ bool Settings::findAppDataDir ()
     }
 
     if (path == "")
-    {	// third option is to look under application current directory
+    {	// forth option is to look under application current directory
         dir = QDir::current();
-        DBGQS("Searching in current dir: " + dir.absolutePath());
+        DBGQS("option4: Searching in current dir: " + dir.absolutePath());
         QDir maps = QDir(dir.absolutePath() + "/data/maps");
         QDir gis = QDir(dir.absolutePath() + "/data/gis");
 

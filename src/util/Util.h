@@ -34,7 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "DataDefines.h"
 
-//#define DEBUG
+// #define DEBUG
 
 #ifdef DEBUG
 #define DBG(...) { 	\
