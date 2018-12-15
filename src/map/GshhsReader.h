@@ -66,8 +66,8 @@ class GshhsPolygon
         virtual ~GshhsPolygon();
         
         int  getLevel()     {return flag&255;}
-        int  isGreenwich()  {return greenwich;}
-        int  isAntarctic()  {return antarctic;}
+        bool  isGreenwich()  {return greenwich;}
+        bool isAntarctic()  {return antarctic;}
         bool isOk()         {return ok;}
         //----------------------
         int id;				/* Unique polygon id number, starting at 0 */

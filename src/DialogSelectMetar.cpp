@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <cstdlib>
 #include <cmath>
 #include <cassert>
-#include <time.h>
+#include <ctime>
 
 #include "DialogSelectMetar.h"
 #include "Util.h"

@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  
 #include <cmath>
 #include <cassert>
-#include <stdint.h>
+#include <cstdint>
 
 #include <QMessageBox>
 #include <QDir>

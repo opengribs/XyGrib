@@ -33,7 +33,7 @@ GshhsPolygon::GshhsPolygon(ZUFILE *file_)
     south = GshhsPolygon::readInt4() * 1e-6;
     north = GshhsPolygon::readInt4() * 1e-6;
     area  = GshhsPolygon::readInt4();
-    greenwich = GshhsPolygon::readInt2();
+    greenwich = (GshhsPolygon::readInt2() != 0);
     GshhsPolygon::readInt2();   // source
 
     if (ok)
