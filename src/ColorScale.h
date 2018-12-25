@@ -49,7 +49,6 @@ class ColorElement {
 //------------------------------------------------
 class ColorScale {
 	public:
-		ColorScale ();
 		~ColorScale ();
 
 		bool readFile (const QString& filename, double kv, double offset);
@@ -60,7 +59,7 @@ class ColorScale {
 		std::vector <ColorElement *> colors;
 	
 	private:
-		int transparence;
+		int transparence{255};
 };
 
 
