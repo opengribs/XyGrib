@@ -268,6 +268,11 @@ class GriddedPlotter :
 				DataCode dtc1, DataCode dtc2, 
 				QRgb (DataColors::*function_getColor) (double v, bool smooth)
 			);
+		void  drawColorMapGeneric_Abs_Delta_2D (
+				QPainter &pnt, const Projection *proj, bool smooth,
+				DataCode dtcX, DataCode dtcY, DataCode dtc2,
+				QRgb (DataColors::*function_getColor) (double v, bool smooth)
+			);
 		
 		void analyseVisibleGridDensity (const Projection *proj, GriddedRecord *rec, 
 										double coef, int *deltaI, int *deltaJ);

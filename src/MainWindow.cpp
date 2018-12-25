@@ -748,6 +748,9 @@ void MainWindow::openMeteoDataFile (const QString& fileName)
 			menuBar->acView_Barbules->setEnabled(ok);
 			menuBar->acView_ThinWindArrows->setEnabled(ok);
 
+			ok = plotter->hasDataType (GRB_WIND_GUST);
+			menuBar->acView_GustColors->setEnabled(ok);
+
             ok = plotter->hasDataType (GRB_PRECIP_TOT);
             menuBar->acView_RainColors->setEnabled(ok);
             if (!ok)
@@ -1804,6 +1807,9 @@ void MainWindow::setMenubarColorMapData (const DataCode &dtc, bool trigAction)
     QAction  *act = nullptr;
 	switch (dtc.dataType)
 	{
+	    case GRB_WIND_GUST :
+			act = mb->acView_GustColors;
+	        break;
 		case GRB_PRV_WIND_XY2D :
 		case GRB_PRV_WIND_JET :
 			act = mb->acView_WindColors;
@@ -1911,6 +1917,8 @@ void MainWindow::slot_GroupColorMap (QAction *act)
         if (dtc.dataType==GRB_TYPE_NOT_DEFINED)
             dtc = preferedIsobaricLevel(GRB_PRV_WIND_XY2D, reader);
 	}
+    else if (act == mb->acView_GustColors)
+    	dtc.set (GRB_WIND_GUST, LV_GND_SURF, 0);
     // TODO this needs to be fixed there are a number of levels of current
     else if (act == mb->acView_CurrentColors)
     	dtc.set (GRB_PRV_CUR_XY2D,LV_GND_SURF,0);

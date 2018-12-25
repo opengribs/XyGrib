@@ -386,6 +386,13 @@ void GribPlot::draw_ColoredMapPlain (
 							DataCode (GRB_DEWPOINT, dtc.levelType,dtc.levelValue),
 							DataColors::function_getColor );
 			break;
+		case GRB_WIND_GUST :
+			drawColorMapGeneric_Abs_Delta_2D (pnt,proj,smooth, 
+							DataCode (GRB_WIND_VX, LV_ABOV_GND, 10),
+							DataCode (GRB_WIND_VY, LV_ABOV_GND, 10),
+							dtc,
+							DataColors::function_getColor );
+			break;
 		case GRB_TEMP :
 		case GRB_CLOUD_TOT : 
 		case GRB_PRECIP_TOT :
