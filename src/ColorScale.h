@@ -30,37 +30,37 @@ class ColorElement {
 	public:
 		ColorElement (double vmin, double vmax, 
 					  int ra, int ga, int ba,
-					  int rb, int gb, int bb);
+					  int rb, int gb, int bb, int alpha = 255);
 
-		QRgb getColor (double v, bool smooth, int transp);
+		QRgb getColor (double v, bool smooth, int transp) const;
 		
-		bool isIn   (double v) {return v>=vmin && v<=vmax;}
-		bool isLow  (double v) {return v<vmin;}
-		bool isHigh (double v) {return v>vmax;}
+		bool isIn   (double v) const {return v>=vmin && v<=vmax;}
+		bool isLow  (double v) const {return v<vmin;}
+		bool isHigh (double v) const {return v>vmax;}
 		
 		void dbg ();
 	
 		double vmin, vmax;   // vmin < value <= vmax
 		int ra, ga, ba;      // rgb for vmin value
 		int rb, gb, bb;      // rgb for vmax value
+		int alpha{255};
 };
 
 
 //------------------------------------------------
 class ColorScale {
 	public:
-		ColorScale ();
 		~ColorScale ();
 
 		bool readFile (const QString& filename, double kv, double offset);
 		void addColor (ColorElement *color);
-		QRgb getColor (double v, bool smooth);
+		QRgb getColor (double v, bool smooth) const;
 		void dbg ();
 		
 		std::vector <ColorElement *> colors;
 	
 	private:
-		int transparence;
+		int transparence{255};
 };
 
 

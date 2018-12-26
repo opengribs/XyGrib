@@ -110,6 +110,7 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
     //======================================================================
 		acView_GroupColorMap = new ZeroOneActionGroup(menuColorMap);
 			acView_WindColors = addGroup (acView_GroupColorMap, menuColorMap, tr("Wind"), "", "");
+			acView_GustColors = addGroup (acView_GroupColorMap, menuColorMap, tr("Gust"), "", "");
 			acView_RainColors = addGroup (acView_GroupColorMap, menuColorMap, tr("Precipitation"),"","");
 			acView_CloudColors = addGroup (acView_GroupColorMap, menuColorMap, tr("Cloud cover"), "","");
 			acView_HumidColors = addGroup (acView_GroupColorMap, menuColorMap, tr("Relative humidity"),"","");

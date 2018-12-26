@@ -486,6 +486,60 @@ void  GriddedPlotter::drawColorMapGeneric_2D (
 	pnt.drawImage(0,0,*image);
     delete image;
 }
+
+//--------------------------------------------------------------------------
+//--------------------------------------------------------------------------
+void  GriddedPlotter::drawColorMapGeneric_Abs_Delta_2D (
+		QPainter &pnt, const Projection *proj, bool smooth,
+		DataCode dtcX, DataCode dtcY, DataCode dtc2,
+		QRgb (DataColors::*function_getColor) (double v, bool smooth)
+	)
+{
+    assert( getReader() != nullptr);
+    GriddedRecord *recX = getReader()->getRecord (dtcX, currentDate);
+    GriddedRecord *recY = getReader()->getRecord (dtcY, currentDate);
+    if (recX == nullptr || recY == nullptr)
+        return;
+
+	GriddedRecord *rec2 = getReader()->getRecord (dtc2, currentDate);
+    if (rec2 == nullptr )
+        return;
+
+    int i, j;
+    double x, y, vx, vy, v, v2;
+    int W = proj->getW();
+    int H = proj->getH();
+    QRgb   rgb;
+    QImage *image = new QImage(W,H,QImage::Format_ARGB32);
+    image->fill( qRgba(0,0,0,0));
+    for (i=0; i<W-1; i+=2) {
+        for (j=0; j<H-1; j+=2)
+        {
+            proj->screen2map(i,j, &x, &y);
+
+            if (! recX->isXInMap(x))
+                x += 360.0;    // tour complet ?
+            if (recX->isPointInMap(x, y))
+            {
+                vx = recX->getInterpolatedValue (dtcX, x, y, mustInterpolateValues);
+                vy = recY->getInterpolatedValue (dtcY, x, y, mustInterpolateValues);
+                v2 = rec2->getInterpolatedValue (dtc2, x, y, mustInterpolateValues);
+
+                if (GribDataIsDef(vx) && GribDataIsDef(vy) && GribDataIsDef(v2))
+                {
+                    v = fabs(sqrt(vx*vx+vy*vy) -v2);
+                    rgb = (this->*function_getColor) (v, smooth);
+                    image->setPixel(i,  j, rgb);
+                    image->setPixel(i+1,j, rgb);
+                    image->setPixel(i,  j+1, rgb);
+                    image->setPixel(i+1,j+1, rgb);
+                }
+            }
+        }
+    }
+	pnt.drawImage(0,0,*image);
+    delete image;
+}
 //--------------------------------------------------------------------------
 // Carte de couleurs générique de la différence entre 2 champs
 //--------------------------------------------------------------------------

@@ -357,6 +357,7 @@ QString Util::getDataUnit (const DataCode &dtc)
 		case GRB_PRV_DIFF_TEMPDEW : 
 		case GRB_PRV_THETA_E      : 
 			return Util::getSetting("unitsTemp", tr("°C")).toString();
+		case GRB_WIND_GUST  :
 		case GRB_WIND_VX    : 
 		case GRB_WIND_VY    : 
 		case GRB_WIND_SPEED : 

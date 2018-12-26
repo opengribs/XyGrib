@@ -23,16 +23,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //----------------------------------------------------
 // ColorScale
 //----------------------------------------------------
-ColorScale::ColorScale () {
-	transparence = 255;
-}
-//--------------------------------------------
 ColorScale::~ColorScale () {
 	Util::cleanVectorPointers (colors);
 }
 
 //--------------------------------------------
-QRgb ColorScale::getColor (double v, bool smooth)
+QRgb ColorScale::getColor (double v, bool smooth) const
 {	
 	int imin = 0;
 	int imax = colors.size()-1;
@@ -63,26 +59,31 @@ bool ColorScale::readFile (const QString& filename, double kv, double offset)
 	if (f) {	
 		char *oldlocale = setlocale (LC_NUMERIC, "C");
 		double va = -1e300;		// previous element values
-		int ra=0, ga=0, ba=0;   
+		int ra=0, ga=0, ba=0;
+		int ralpha = 255;
 
 		double v;
 		int r, g, b;
+		int alpha;
 		while (zu_fgets(buf, 1000, f)) {
-			if (strlen(buf)>0  &&  buf[0]!='#')
-			{
-				if (sscanf(buf, "%lf %d %d %d", &v,&r,&g,&b) == 4) {
-					v = v*kv + offset;
-					if (v > va) {
-						ea = new ColorElement (va, v, ra,ga,ba, r,g,b);
-						assert (ea);
-						colors.push_back (ea);
-						ra=r; ga=g; ba=b;
-						va=v;
-					}
-					else {
-						DBG("Error: %g %d %d %d : %g >= %lf", v,r,g,b, va,v);
-					}
-				}
+			if (strlen(buf) == 0 || buf[0] =='#')
+				continue;
+			if (sscanf(buf, "%lf %d %d %d %d", &v,&r,&g,&b, &alpha) != 5) {
+				alpha = 255;
+				if (sscanf(buf, "%lf %d %d %d", &v,&r,&g,&b) != 4)
+					continue;
+			}
+			v = v*kv + offset;
+			if (v > va) {
+				ea = new ColorElement (va, v, ra,ga,ba, r,g,b, ralpha);
+				assert (ea);
+				colors.push_back (ea);
+				ra=r; ga=g; ba=b;
+				ralpha=alpha;
+				va=v;
+			}
+			else {
+				DBG("Error: %g %d %d %d : %g >= %lf", v,r,g,b, va,v);
 			}
 		}
 		zu_close(f);
@@ -151,7 +152,7 @@ void ColorElement::dbg ()
 
 ColorElement::ColorElement (double vmin, double vmax, 
 							 int ra, int ga, int ba,
-							 int rb, int gb, int bb
+							 int rb, int gb, int bb, int alpha
 ) {
 	if (vmin >= vmax) {
 		DBG ("Color error: vmin=%g vmax=%g", vmin, vmax);
@@ -165,10 +166,12 @@ ColorElement::ColorElement (double vmin, double vmax,
 	this->vmax = vmax;
 	this->ra = ra;  this->ga = ga;  this->ba = ba;
 	this->rb = rb;  this->gb = gb;  this->bb = bb;
+	this->alpha = alpha;
 }
 //--------------------------------------------
-QRgb ColorElement::getColor (double v, bool smooth, int transp)
+QRgb ColorElement::getColor (double v, bool smooth, int transp) const
 {
+	transp = (alpha * transp)/255;
 	if (v <= vmin)
 		return qRgba (ra,ga,ba, transp);
 	else if (v >= vmax)
@@ -185,5 +188,3 @@ QRgb ColorElement::getColor (double v, bool smooth, int transp)
 				   (int) ((1-k)*ga + k*gb + 0.5),
 				   (int) ((1-k)*ba + k*bb + 0.5),  transp );
 }
-
-

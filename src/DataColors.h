@@ -41,6 +41,7 @@ class DataColors    // inherited by GriddedPlotter
 				= Util::getSetting(settingName,"white").toString()=="white"; }
 		
         QRgb   getWindColor     (double v, bool smooth);
+        QRgb   getGustColor     (double v, bool smooth);
         QRgb   getWindJetColor  (double v, bool smooth);
         QRgb   getAltitudeColor (double v, const Altitude &alt, bool smooth);
         QRgb   getRainColor     (double mm, bool smooth);
@@ -68,6 +69,7 @@ class DataColors    // inherited by GriddedPlotter
 
 	protected:
 		ColorScale colors_Wind;
+		ColorScale colors_Gust;
 		ColorScale colors_Wind_Jet;
 		ColorScale colors_Current;
 		ColorScale colors_Temp;

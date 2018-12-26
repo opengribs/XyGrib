@@ -96,6 +96,7 @@ public:
     //------------------------------------------
     ZeroOneActionGroup *acView_GroupColorMap;
 		QAction *acView_WindColors;
+		QAction *acView_GustColors;
 		QAction *acView_CurrentColors;
 		QAction *acView_RainColors;
 		QAction *acView_CloudColors;

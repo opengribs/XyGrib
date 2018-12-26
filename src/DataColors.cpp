@@ -27,6 +27,7 @@ DataColors::DataColors ()
 	function_getColor = &DataColors::getWindColor;	// why not
 	
  	colors_Wind.readFile (Util::pathColors()+"colors_wind_kts.txt", 1.852/3.6, 0);
+ 	colors_Gust.readFile (Util::pathColors()+"colors_gust_kts.txt", 1.852/3.6, 0);
 	colors_Wind_Jet.readFile (Util::pathColors()+"colors_wind_jet_kts.txt", 1.852/3.6, 0);
 	colors_Current.readFile (Util::pathColors()+"colors_current_kts.txt", 1.852/3.6, 0);
 	colors_Temp.readFile (Util::pathColors()+"colors_temp_celcius.txt", 1, 273.15);
@@ -65,6 +66,10 @@ QColor DataColors::getContrastedColor (const QColor &base)
 QRgb DataColors::getWindColor (double v, bool smooth)  {
 	return colors_Wind.getColor (v, smooth);
 }	
+//--------------------------------------------------------------------------
+QRgb DataColors::getGustColor (double v, bool smooth)  {
+	return colors_Gust.getColor (v, smooth);
+}
 //--------------------------------------------------------------------------
 QRgb DataColors::getWindJetColor (double v, bool smooth)  {
 	return colors_Wind_Jet.getColor (v, smooth);
@@ -192,6 +197,9 @@ QRgb  DataColors::pasteToWindColorScale
 void DataColors::setColorDataTypeFunction (const DataCode &dtc)
 {
 	switch (dtc.dataType) {
+		case GRB_WIND_GUST :
+			function_getColor = &DataColors::getGustColor;
+			break;
 		case GRB_PRV_WIND_XY2D :
 			function_getColor = &DataColors::getWindColor;
 			break;
@@ -262,6 +270,8 @@ void DataColors::setColorDataTypeFunction (const DataCode &dtc)
 QRgb DataColors::getDataCodeColor (const DataCode &dtc, double v, bool smooth)
 {
 	switch (dtc.dataType) {
+		case GRB_WIND_GUST :
+			return DataColors::getGustColor (v, smooth);
 		case GRB_PRV_WIND_XY2D :
 			return DataColors::getWindColor (v, smooth);
 		case GRB_PRV_WIND_JET :
@@ -313,6 +323,8 @@ ColorScale *DataColors::getColorScale (const DataCode &dtc)
 {
 // 	DBGQS(DataCodeStr::toString(dtc));
 	switch (dtc.dataType) {
+		case GRB_WIND_GUST :
+			return &colors_Gust;
 		case GRB_PRV_WIND_XY2D :
 			return &colors_Wind;
 		case GRB_PRV_WIND_JET :
