@@ -152,6 +152,8 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
         			tr("Wind arrows on Grib grid"), "", "");
         acView_useJetSTreamColorMap = addActionCheck (menuViewOptions,
         			tr("Jet stream colors"), tr("Ctrl+Shift+J"), "");
+        acView_useAbsoluteGustSpeed = addActionCheck (menuViewOptions,
+        			tr("Absolute Gust speed"), "", "");
 		
         menuViewOptions->addSeparator();
         acView_GribGrid = addActionCheck (menuViewOptions, tr("Show Grib grid"), 

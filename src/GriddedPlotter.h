@@ -102,6 +102,8 @@ class GriddedPlotter :
 							{mustDuplicateMissingWaveRecords = b;}
 		virtual void setUseJetStreamColorMap (bool b)
 							{useJetStreamColorMap = b;}
+		virtual void setUseGustColorAbsolute (bool b);
+
         virtual Altitude getWindAltitude () 
 							{return windAltitude;}
 		
@@ -235,6 +237,7 @@ class GriddedPlotter :
 		bool    mustDuplicateMissingWaveRecords;
 		bool    thinWindArrows;
 		bool 	useJetStreamColorMap;
+		bool    useGustColorAbsolute;
 
 		Altitude windAltitude;		  // current wind altitude
 		Altitude currentAltitude;	  // current altitude

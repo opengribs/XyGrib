@@ -387,7 +387,11 @@ void GribPlot::draw_ColoredMapPlain (
 							DataColors::function_getColor );
 			break;
 		case GRB_WIND_GUST :
-			drawColorMapGeneric_Abs_Delta_2D (pnt,proj,smooth, 
+			if (useGustColorAbsolute)
+				drawColorMapGeneric_1D (pnt,proj,smooth, dtc,
+							DataColors::function_getColor);
+			else
+				drawColorMapGeneric_Abs_Delta_2D (pnt,proj,smooth,
 							DataCode (GRB_WIND_VX, LV_ABOV_GND, 10),
 							DataCode (GRB_WIND_VY, LV_ABOV_GND, 10),
 							dtc,

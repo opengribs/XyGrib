@@ -172,6 +172,7 @@ void MainWindow::InitActionsStatus ()
     menuBar->acView_InterpolateValues->setChecked(Util::getSetting("interpolateValues", true).toBool());
     menuBar->acView_WindArrowsOnGribGrid->setChecked(Util::getSetting("windArrowsOnGribGrid", false).toBool());
     menuBar->acView_useJetSTreamColorMap->setChecked(Util::getSetting("useJetStreamColorMap", false).toBool());
+    menuBar->acView_useAbsoluteGustSpeed->setChecked(Util::getSetting("useAbsoluteGustSpeed", false).toBool());
 
     menuBar->acView_CurrentArrowsOnGribGrid->setChecked(Util::getSetting("currentArrowsOnGribGrid", false).toBool());
 
@@ -326,8 +327,12 @@ mb->acMap_SelectMETARs->setVisible (false);	// TODO
             terre,  SLOT(setInterpolateValues(bool)));
     connect(mb->acView_WindArrowsOnGribGrid, SIGNAL(triggered(bool)),
             terre,  SLOT(setWindArrowsOnGribGrid(bool)));
+
     connect(mb->acView_useJetSTreamColorMap, SIGNAL(triggered(bool)),
             this,  SLOT(slotUseJetStreamColorMap(bool)));
+    connect(mb->acView_useAbsoluteGustSpeed, SIGNAL(triggered(bool)),
+            this,  SLOT(slotUseAbsoluteGustSpeed(bool)));
+
     connect(mb->acView_ShowColorScale, SIGNAL(triggered(bool)),
             this,  SLOT(slotShowColorScale(bool)));
     connect(mb->acView_ShowBoardPanel, SIGNAL(triggered(bool)),
@@ -894,6 +899,12 @@ void MainWindow::slotUseJetStreamColorMap (bool b)
 	Util::setSetting ("useJetStreamColorMap", b);
 	updateGriddedData ();
 }
+//-------------------------------------------------------
+void MainWindow::slotUseAbsoluteGustSpeed (bool b) 
+{
+	Util::setSetting ("useAbsoluteGustSpeed", b);
+	updateGriddedData ();
+}
 //--------------------------------------------------------------
 // Ajuste les paramètres des cartes colorées.
 // Essaye de réutiliser les paramètres d'affichage précédents
@@ -918,6 +929,8 @@ void MainWindow::updateGriddedData ()
 			else
 				dtc.dataType = GRB_PRV_WIND_XY2D;
 		}
+		bool useGustColorAbsolute = Util::getSetting("useAbsoluteGustSpeed", false).toBool();
+
 		// Data existe ?
 		DataCode dtc2 = dtc;
 		if (dtc2.dataType == GRB_PRV_WIND_JET)
@@ -925,6 +938,7 @@ void MainWindow::updateGriddedData ()
 		if (! reader->hasData(dtc2)) {
 			dtc = DataCode (GRB_TYPE_NOT_DEFINED, LV_TYPE_NOT_DEFINED, 0);
 		}
+
 		//-----------------------------------------
 		setMenubarAltitudeData (dtc);
 		setMenubarColorMapData (dtc, true);
@@ -932,6 +946,7 @@ void MainWindow::updateGriddedData ()
 			colorScaleWidget->setColorScale (terre->getGriddedPlotter(), dtc);
 		}
 		menuBar->acView_useJetSTreamColorMap->setChecked (useJetStreamColorMap);
+		menuBar->acView_useAbsoluteGustSpeed->setChecked (useGustColorAbsolute);
 		terre->setColorMapData (dtc);
 	}
 }
