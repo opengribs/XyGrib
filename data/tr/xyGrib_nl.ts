@@ -2996,6 +2996,10 @@
         <source>Show Model Limits</source>
         <translation>Toon de modelgrenzen</translation>
     </message>
+    <message>
+        <source>Gust</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MeteoTableDialog</name>
