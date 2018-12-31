@@ -1926,9 +1926,6 @@ void MainWindow::slot_GroupColorMap (QAction *act)
 		dtctmp.set (GRB_PRV_WIND_XY2D,LV_ABOV_GND,3); 
 		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
 			dtc = dtctmp;
-		dtctmp.set (GRB_PRV_WIND_XY2D,LV_ABOV_GND,10); 
-		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
-			dtc = dtctmp;
         if (dtc.dataType==GRB_TYPE_NOT_DEFINED)
             dtc = preferedIsobaricLevel(GRB_PRV_WIND_XY2D, reader);
 	}
