@@ -172,7 +172,7 @@ void MainWindow::InitActionsStatus ()
     menuBar->acView_InterpolateValues->setChecked(Util::getSetting("interpolateValues", true).toBool());
     menuBar->acView_WindArrowsOnGribGrid->setChecked(Util::getSetting("windArrowsOnGribGrid", false).toBool());
     menuBar->acView_useJetSTreamColorMap->setChecked(Util::getSetting("useJetStreamColorMap", false).toBool());
-    menuBar->acView_useAbsoluteGustSpeed->setChecked(Util::getSetting("useAbsoluteGustSpeed", false).toBool());
+    menuBar->acView_useAbsoluteGustSpeed->setChecked(Util::getSetting("useAbsoluteGustSpeed", true).toBool());
 
     menuBar->acView_CurrentArrowsOnGribGrid->setChecked(Util::getSetting("currentArrowsOnGribGrid", false).toBool());
 
@@ -929,7 +929,7 @@ void MainWindow::updateGriddedData ()
 			else
 				dtc.dataType = GRB_PRV_WIND_XY2D;
 		}
-		bool useGustColorAbsolute = Util::getSetting("useAbsoluteGustSpeed", false).toBool();
+        bool useGustColorAbsolute = Util::getSetting("useAbsoluteGustSpeed", true).toBool();
 
 		// Data existe ?
 		DataCode dtc2 = dtc;

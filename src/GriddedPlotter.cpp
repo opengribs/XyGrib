@@ -58,7 +58,7 @@ GriddedPlotter::GriddedPlotter ()
     GriddedPlotter::updateGraphicsParameters ();
 	
 	useJetStreamColorMap = false;
-	setUseGustColorAbsolute(Util::getSetting("useAbsoluteGustSpeed", false).toBool());
+    setUseGustColorAbsolute(Util::getSetting("useAbsoluteGustSpeed", true).toBool());
 }
 
 //--------------------------------------------------------------------
