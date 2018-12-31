@@ -413,7 +413,7 @@
     </message>
     <message>
         <source>Wind gust</source>
-        <translation>Windvlagen</translation>
+        <translation type="vanished">Windvlagen</translation>
     </message>
     <message>
         <source>Wind wave</source>
@@ -574,6 +574,14 @@
     <message>
         <source>Geopotential height</source>
         <translation>Geopotentiële hoogte</translation>
+    </message>
+    <message>
+        <source>Absolute wind gust</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Relative wind gust</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2094,11 +2102,11 @@
     <name>MenuBar</name>
     <message>
         <source>+</source>
-        <translation>+</translation>
+        <translation type="vanished">+</translation>
     </message>
     <message>
         <source>-</source>
-        <translation>-</translation>
+        <translation type="vanished">-</translation>
     </message>
     <message>
         <source>1</source>
@@ -2141,10 +2149,6 @@
         <translation>50</translation>
     </message>
     <message>
-        <source>UP</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>100</source>
         <translation>100</translation>
     </message>
@@ -2169,10 +2173,6 @@
         <translation>1000</translation>
     </message>
     <message>
-        <source>DOWN</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Down</source>
         <translation>naar beneden</translation>
     </message>
@@ -2183,10 +2183,6 @@
     <message>
         <source>Help</source>
         <translation>Help</translation>
-    </message>
-    <message>
-        <source>LEFT</source>
-        <translation></translation>
     </message>
     <message>
         <source>Left</source>
@@ -2206,7 +2202,7 @@
     </message>
     <message>
         <source>PgUp</source>
-        <translation>PgUp</translation>
+        <translation type="vanished">PgUp</translation>
     </message>
     <message>
         <source>Quit</source>
@@ -2235,10 +2231,6 @@
     <message>
         <source>File information</source>
         <translation>Bestandsinformatie</translation>
-    </message>
-    <message>
-        <source>RIGHT</source>
-        <translation></translation>
     </message>
     <message>
         <source>Right</source>
@@ -2382,87 +2374,63 @@
     </message>
     <message>
         <source>Ctrl+A</source>
-        <translation>Ctrl+A</translation>
+        <translation type="vanished">Ctrl+A</translation>
     </message>
     <message>
         <source>Ctrl+D</source>
-        <translation>Ctrl+D</translation>
+        <translation type="vanished">Ctrl+D</translation>
     </message>
     <message>
         <source>Ctrl+E</source>
-        <translation>Ctrl+E</translation>
+        <translation type="vanished">Ctrl+E</translation>
     </message>
     <message>
         <source>Ctrl+F</source>
-        <translation>Ctrl+F</translation>
+        <translation type="vanished">Ctrl+F</translation>
     </message>
     <message>
         <source>Ctrl+G</source>
-        <translation>Ctrl+G</translation>
+        <translation type="vanished">Ctrl+G</translation>
     </message>
     <message>
         <source>Ctrl+H</source>
-        <translation>Ctrl+H</translation>
+        <translation type="vanished">Ctrl+H</translation>
     </message>
     <message>
         <source>Ctrl+I</source>
-        <translation>Ctrl+I</translation>
-    </message>
-    <message>
-        <source>Ctrl+J</source>
-        <translation></translation>
+        <translation type="vanished">Ctrl+I</translation>
     </message>
     <message>
         <source>Ctrl+M</source>
-        <translation>Ctrl+M</translation>
-    </message>
-    <message>
-        <source>Ctrl+N</source>
-        <translation></translation>
+        <translation type="vanished">Ctrl+M</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
+        <translation type="vanished">Ctrl+O</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
+        <translation type="vanished">Ctrl+Q</translation>
     </message>
     <message>
         <source>Ctrl+R</source>
-        <translation>Ctrl+R</translation>
-    </message>
-    <message>
-        <source>Ctrl+S</source>
-        <translation></translation>
+        <translation type="vanished">Ctrl+R</translation>
     </message>
     <message>
         <source>Ctrl+T</source>
-        <translation>Ctrl+T</translation>
+        <translation type="vanished">Ctrl+T</translation>
     </message>
     <message>
         <source>Ctrl+U</source>
-        <translation>Ctrl+U</translation>
-    </message>
-    <message>
-        <source>Ctrl+V</source>
-        <translation></translation>
+        <translation type="vanished">Ctrl+U</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation>Ctrl+W</translation>
-    </message>
-    <message>
-        <source>Ctrl+X</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Ctrl+Y</source>
-        <translation></translation>
+        <translation type="vanished">Ctrl+W</translation>
     </message>
     <message>
         <source>Ctrl+Z</source>
-        <translation>CTRL+Z</translation>
+        <translation type="vanished">CTRL+Z</translation>
     </message>
     <message>
         <source>Boundaries</source>
@@ -2482,7 +2450,7 @@
     </message>
     <message>
         <source>PgDown</source>
-        <translation>PgDown</translation>
+        <translation type="vanished">PgDown</translation>
     </message>
     <message>
         <source>Display Points of interest</source>
@@ -2757,10 +2725,6 @@
         <translation>Metar: toon stations</translation>
     </message>
     <message>
-        <source>Ctrl+K</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Display METAR stations</source>
         <translation>Toon Metar stations</translation>
     </message>
@@ -2807,10 +2771,6 @@
     <message>
         <source>New instance</source>
         <translation>Nieuwe sessie</translation>
-    </message>
-    <message>
-        <source>Ctrl+Shift+N</source>
-        <translation></translation>
     </message>
     <message>
         <source>Weather map</source>
@@ -2941,14 +2901,6 @@
         <translation>Jet Stream kleuren</translation>
     </message>
     <message>
-        <source>Ctrl+Shift+J</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Ctrl+Shift+K</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Open a new xyGrib instance</source>
         <translation>Open een nieuwe XyGrib sessie</translation>
     </message>
@@ -2997,7 +2949,11 @@
         <translation>Toon de modelgrenzen</translation>
     </message>
     <message>
-        <source>Gust</source>
+        <source>Absolute Gust speed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Gusts</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
