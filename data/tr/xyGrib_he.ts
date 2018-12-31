@@ -2545,8 +2545,8 @@
         <translation>נתונים זמינים :</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2362"/>
-        <location filename="../../src/MainWindow.cpp" line="2370"/>
+        <location filename="../../src/MainWindow.cpp" line="2367"/>
+        <location filename="../../src/MainWindow.cpp" line="2375"/>
         <source>Unable to find the XyGrib Maintenance Tool. Please start it from the desktop facilities</source>
         <translation>אננו מוצא את תוכנה השרות של XyGrib. נא להפעיל אותו ישירות מממשק המשתמש</translation>
     </message>
@@ -2601,58 +2601,58 @@
         <translation>  כיוון התחלתי: %1°</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2362"/>
-        <location filename="../../src/MainWindow.cpp" line="2370"/>
+        <location filename="../../src/MainWindow.cpp" line="2367"/>
+        <location filename="../../src/MainWindow.cpp" line="2375"/>
         <source>Failure</source>
         <translation>כשלון</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2356"/>
+        <location filename="../../src/MainWindow.cpp" line="2361"/>
         <source>It is recommended to exit XyGrib while running the Maintenance Tool. Do you wish to exit XyGrib?</source>
         <translation>מומלץ לצאת מתוכת XyGrib בעת ביצוע עדכוני תוכנה. האם לצאת?</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2357"/>
+        <location filename="../../src/MainWindow.cpp" line="2362"/>
         <source>Exit XyGrib?</source>
         <translation>לצאת מXyGrib?</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2425"/>
+        <location filename="../../src/MainWindow.cpp" line="2430"/>
         <source>An updated version is available</source>
         <translation>גרסה מעודכנת יותר זמינה כעת</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2429"/>
+        <location filename="../../src/MainWindow.cpp" line="2434"/>
         <source>A new version</source>
         <translation>גירסה חדשה</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2430"/>
+        <location filename="../../src/MainWindow.cpp" line="2435"/>
         <source>is available for update.</source>
         <translation>זמין לעדכון.</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2431"/>
+        <location filename="../../src/MainWindow.cpp" line="2436"/>
         <source>Please use the XyGrib Maintenance Tool to upgrade. It can be activated from the Help Menu</source>
         <translation>נא להשתמש בתוכנת העדכון XyGribMaintenanceTool לביצוע העדכון. ניתן להפעיל אותו מתפריט העזרה</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2443"/>
+        <location filename="../../src/MainWindow.cpp" line="2448"/>
         <source>Version is up to date</source>
         <translation>הגירסה מעודכנת</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2444"/>
+        <location filename="../../src/MainWindow.cpp" line="2449"/>
         <source>You have version</source>
         <translation>מותקנת גרסה</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2445"/>
+        <location filename="../../src/MainWindow.cpp" line="2450"/>
         <source>which is the most current version</source>
         <translation>אשר מעודכנת</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2459"/>
+        <location filename="../../src/MainWindow.cpp" line="2464"/>
         <source>Network Error</source>
         <translation>שגיאת רשת</translation>
     </message>
