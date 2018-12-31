@@ -74,35 +74,35 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
     menuFile = new QMenu(tr("File"));
     //======================================================================
         acFile_Open = addAction (menuFile,
-        			tr("Open"), tr("Ctrl+O"),
+                    tr("Open"), "Ctrl+O",
                     tr("Open a GRIB file"), Util::pathImg("fileopen.png"));
         acFile_Close = addAction (menuFile,
-        			tr("Close"), tr("Ctrl+W"),
+                    tr("Close"), "Ctrl+W",
                     tr("Close"), Util::pathImg("fileclose.png"));
         acFile_NewInstance = addAction (menuFile,
-        			tr("New instance"), tr("Ctrl+Shift+N"),
+                    tr("New instance"), "Ctrl+Shift+N",
                     tr("Open a new xyGrib instance"), "");
         menuFile->addSeparator();
         acFile_Load_GRIB = addAction (menuFile,
-        			tr("Download GRIB"), tr("Ctrl+D"),
+                    tr("Download GRIB"), "Ctrl+D",
                     tr("Download"), Util::pathImg("network.png"));
         acFile_GribServerStatus = addAction (menuFile,
-        			tr("GRIB server status"), tr("Ctrl+R"),
+                    tr("GRIB server status"), "Ctrl+R",
                     tr("GRIB file server status"), Util::pathImg("connect_no.png"));
 
         menuFile->addSeparator();
         acFile_Info_GRIB = addAction (menuFile,
-        			tr("File information"), tr("Ctrl+I"),
+                    tr("File information"), "Ctrl+I",
                     tr("GRIB file information"), Util::pathImg("info.png"));
         menuFile->addSeparator();
         ac_CreateAnimation = addAction (menuFile,
-        			tr("Create animation"), tr("Ctrl+A"),
+                    tr("Create animation"), "Ctrl+A",
                     tr("Create animation with GRIB data"), Util::pathImg("anim.png"));
         ac_ExportImage = addAction (menuFile,
-        			tr("Save current image"), tr("Ctrl+S"),"",Util::pathImg("media-floppy.png"));
+                    tr("Save current image"), "Ctrl+S","",Util::pathImg("media-floppy.png"));
         menuFile->addSeparator();
         acFile_Quit = addAction (menuFile,
-                    tr("Quit"), tr("Ctrl+Q"),
+                    tr("Quit"), "Ctrl+Q",
                     tr("Bye"), Util::pathImg("exit.png"));
 				
     //======================================================================
@@ -126,10 +126,10 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
             acView_ThetaEColors = addGroup (acView_GroupColorMap, menuColorMap, tr("Theta-e"), "", tr("Equivalent potential temperature"));
         //--------------------------------
         menuColorMap->addSeparator();
-        acView_WindArrow = addActionCheck (menuColorMap, tr("Wind arrows"), tr("Ctrl+J"),
+        acView_WindArrow = addActionCheck (menuColorMap, tr("Wind arrows"), "Ctrl+J",
                     tr("Show wind arrows"));
         acView_TemperatureLabels = addActionCheck (menuColorMap,
-        			tr("Temperature")+" (2m)", tr("Ctrl+T"),
+                    tr("Temperature")+" (2m)", "Ctrl+T",
                     "");
         //--------------------------------
         menuColorMap->addSeparator();
@@ -142,7 +142,7 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
         acView_InterpolateValues = addActionCheck (menuViewOptions,
         			tr("Numerical data interpolation"), "", "");
         acView_ColorMapSmooth = addActionCheck (menuViewOptions,
-        			tr("Smooth colors"), tr("Ctrl+F"), "");
+                    tr("Smooth colors"), "Ctrl+F", "");
         //--------------------------------
         menuViewOptions->addSeparator();
         acView_Barbules = addActionCheck (menuViewOptions, tr("Wind barbs"), "",
@@ -151,15 +151,15 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
         acView_WindArrowsOnGribGrid = addActionCheck (menuViewOptions,
         			tr("Wind arrows on Grib grid"), "", "");
         acView_useJetSTreamColorMap = addActionCheck (menuViewOptions,
-        			tr("Jet stream colors"), tr("Ctrl+Shift+J"), "");
+                    tr("Jet stream colors"), "Ctrl+Shift+J", "");
         acView_useAbsoluteGustSpeed = addActionCheck (menuViewOptions,
         			tr("Absolute Gust speed"), "", "");
 		
         menuViewOptions->addSeparator();
         acView_GribGrid = addActionCheck (menuViewOptions, tr("Show Grib grid"), 
-					tr("Ctrl+X"), tr("Show GRIB grid"));
+                    "Ctrl+X", tr("Show GRIB grid"));
         acView_ShowColorScale = addActionCheck (menuViewOptions, tr("Show color scale"),
-					tr("Ctrl+Y"), tr("Show color scale"));
+                    "Ctrl+Y", tr("Show color scale"));
     //======================================================================
 	menuAltitude = new QMenu (tr("Altitude"));
     //======================================================================
@@ -323,37 +323,37 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
             acMap_CitiesNames5 = addGroup (acMap_GroupCitiesNames, menuCitiesNames, tr("Level 5")+" (>= 0)", "", "");
             menuMap->addMenu(menuCitiesNames);
         acMap_FindCity = addAction (menuMap, tr("Find a city..."), "", "");
-        acMap_ShowPOIs = addActionCheck (menuMap, tr("Point of interest"), tr("Ctrl+N"), tr("Display Points of interest"));
+        acMap_ShowPOIs = addActionCheck (menuMap, tr("Point of interest"), "Ctrl+N", tr("Display Points of interest"));
 
-        acMap_ShowMETARs = addActionCheck (menuMap, tr("METAR: show stations"), tr("Ctrl+K"), tr("Display METAR stations"));
-        acMap_SelectMETARs = addAction (menuMap, tr("METAR: select stations"), tr("Ctrl+Shift+K"), tr("Select METAR stations"));
+        acMap_ShowMETARs = addActionCheck (menuMap, tr("METAR: show stations"), "Ctrl+K", tr("Display METAR stations"));
+        acMap_SelectMETARs = addAction (menuMap, tr("METAR: select stations"), "Ctrl+Shift+K", tr("Select METAR stations"));
 
         menuMap->addSeparator();
         acMap_Zoom_In = addAction (menuMap,
-        				tr("Increase map scale"), tr("+"),
+                        tr("Increase map scale"), "+",
                         tr("Increase map scale"), Util::pathImg("viewmag+.png"));
         acMap_Zoom_Out = addAction (menuMap,
-        				tr("Reduce map scale"), tr("-"),
+                        tr("Reduce map scale"), "-",
                         tr("Reduce map scale"), Util::pathImg("viewmag-.png"));
         acMap_Zoom_Sel = addAction (menuMap,
-                        tr("Zoom (selected zone or Grib file)"), tr("Ctrl+Z"),
+                        tr("Zoom (selected zone or Grib file)"), "Ctrl+Z",
                         tr("Zoom on the selected zone or on the Grib file area"),
                         Util::pathImg("viewmagfit.png"));
         acMap_Zoom_All = addAction (menuMap,
-        				tr("Show whole map"), tr("Ctrl+M"),
+                        tr("Show whole map"), "Ctrl+M",
                         tr("Show whole map"), Util::pathImg("viewmag1.png"));
         menuMap->addSeparator();
         acMap_Go_Left = addAction (menuMap,
-        				tr("Left"), tr("LEFT"),
+                        tr("Left"), "LEFT",
                         tr("Move"), Util::pathImg("back.png"));
         acMap_Go_Right = addAction (menuMap,
-        				tr("Right"), tr("RIGHT"),
+                        tr("Right"), "RIGHT",
                         tr("Move"), Util::pathImg("forward.png"));
         acMap_Go_Up   = addAction (menuMap,
-        				tr("Top"), tr("UP"),
+                        tr("Top"), "UP",
                         tr("Move"), Util::pathImg("up.png"));
         acMap_Go_Down = addAction (menuMap,
-        				tr("Down"), tr("DOWN"),
+                        tr("Down"), "DOWN",
                         tr("Move"), Util::pathImg("down.png"));
 	
     //======================================================================
@@ -399,33 +399,33 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
     //======================================================================
         acOptions_Proxy = addAction (menuOptions, tr("Internet parameters"),"","","");
         acView_ShowBoardPanel = addActionCheck (menuOptions, tr("Show values panel"),
-					tr("Ctrl+V"), tr("Show values panel"));
+                    "Ctrl+V", tr("Show values panel"));
         acOptions_AngleConverter = addAction (menuOptions,
         				tr("Angle converter"), "", "","");
         acOptions_DateChooser = addActionCheck (menuOptions, 
 						tr("Date selector"), "", "");
         acOptions_Units = addAction (menuOptions,
-        				tr("Units"), tr("Ctrl+U"), "","");
+                        tr("Units"), "Ctrl+U", "","");
         acOptions_Fonts = addAction (menuOptions,
-                        tr("Fonts"), tr("Ctrl+E"), "","");
+                        tr("Fonts"), "Ctrl+E", "","");
         // for dark skin selection
         acOptions_DarkSkin = addActionCheck (menuOptions,
                         tr("Dark Skin"), "", "","");
         acOptions_GraphicsParams = addAction (menuOptions,
-						tr("Graphical parameters"), tr("Ctrl+G"), "","");
+                        tr("Graphical parameters"), "Ctrl+G", "","");
     acOptions_PanSelectToggle = addActionCheck (menuOptions,
-						tr("Click to Pan"), tr("Toggle click to pan"), "");
+                        tr("Click to Pan"), "", "");
 		//----------------------------------------------------
 		QString lang = Util::getSetting("appLanguage", "").toString();
 		QString flagIconName = (lang == "") ? "" : Util::pathImg("drapeau_")+lang+".png";
         acOptions_Language = addAction (menuOptions,
-						tr("Language"), tr("Language"), "",flagIconName);
+                        tr("Language"), "", "",flagIconName);
 
     //======================================================================
     menuHelp = new QMenu(tr("Help"));
     //======================================================================
         acHelp_Help = addAction (menuHelp,
-        				tr("Help"), tr("Ctrl+H"),
+                        tr("Help"), "Ctrl+H",
         				"",Util::pathImg("help.png"));
         acHelp_APropos = addAction (menuHelp, tr("About XyGrib"),"","","");
         acCheckForUpdates = addAction (menuHelp, tr("Check for updates"),"","","");
@@ -449,9 +449,9 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
     // Autres objets de l'interface
     //-------------------------------------
     acDatesGrib_prev = addAction ( nullptr,
-            tr("Last forecast [page up]"),tr("PgUp"),"",Util::pathImg("1leftarrow.png"));
+            tr("Last forecast [page up]"), "PgUp", "", Util::pathImg("1leftarrow.png"));
     acDatesGrib_next = addAction ( nullptr,
-            tr("Next forecast [page down]"),tr("PgDown"),"",Util::pathImg("1rightarrow.png"));
+            tr("Next forecast [page down]"), "PgDown", "", Util::pathImg("1rightarrow.png"));
 
     cbDatesGrib = new QComboBox ();
     cbDatesGrib->setSizeAdjustPolicy (QComboBox::AdjustToContents);
