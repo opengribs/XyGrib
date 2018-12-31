@@ -1926,14 +1926,19 @@ void MainWindow::slot_GroupColorMap (QAction *act)
 		dtctmp.set (GRB_PRV_WIND_XY2D,LV_ABOV_GND,3); 
 		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
 			dtc = dtctmp;
-		dtctmp.set (GRB_PRV_WIND_XY2D,LV_ABOV_GND,10); 
-		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
-			dtc = dtctmp;
         if (dtc.dataType==GRB_TYPE_NOT_DEFINED)
             dtc = preferedIsobaricLevel(GRB_PRV_WIND_XY2D, reader);
 	}
     else if (act == mb->acView_GustColors)
-    	dtc.set (GRB_WIND_GUST, LV_GND_SURF, 0);
+    {
+		dtc.set (GRB_TYPE_NOT_DEFINED,LV_TYPE_NOT_DEFINED,0);
+		dtctmp.set (GRB_WIND_GUST,LV_ABOV_GND,10);
+		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
+			dtc = dtctmp;
+		dtctmp.set (GRB_WIND_GUST,LV_GND_SURF, 0);
+		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
+			dtc = dtctmp;
+    }
     // TODO this needs to be fixed there are a number of levels of current
     else if (act == mb->acView_CurrentColors)
     	dtc.set (GRB_PRV_CUR_XY2D,LV_GND_SURF,0);
