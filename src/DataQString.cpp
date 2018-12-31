@@ -216,7 +216,11 @@ QString DataCodeStr::toString_name (const DataCode &dtc)
 		case GRB_PRV_WIND_JET     : return tr("Wind (jet stream)");
 		case GRB_PRV_DIFF_TEMPDEW : return tr("Gap temperature-dew point");
 		case GRB_PRV_THETA_E      : return tr("Theta-e");
-		case GRB_WIND_GUST    : return tr("Wind gust");
+        case GRB_WIND_GUST    :
+            if (Util::getSetting("useAbsoluteGustSpeed", true).toBool())
+                return tr("Absolute wind gust");
+            else
+                return tr("Relative wind gust");
 		case GRB_WIND_GUST_VX : return tr("Wind gust (Vx)");
 		case GRB_WIND_GUST_VY : return tr("Wind gust (VY)");
 		case GRB_PRV_CUR_DIR    : return tr("Current direction");
