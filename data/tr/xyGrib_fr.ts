@@ -644,12 +644,12 @@
     <message>
         <location filename="../../src/DataQString.cpp" line="221"/>
         <source>Absolute wind gust</source>
-        <translation type="unfinished"></translation>
+        <translation>Vitesse absolue des rafales</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="223"/>
         <source>Relative wind gust</source>
-        <translation type="unfinished"></translation>
+        <translation>Ecart vitesse rafale - vent</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="231"/>
@@ -2444,58 +2444,58 @@
         <translation>Informations sur le fichier GRIB</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2362"/>
-        <location filename="../../src/MainWindow.cpp" line="2370"/>
+        <location filename="../../src/MainWindow.cpp" line="2367"/>
+        <location filename="../../src/MainWindow.cpp" line="2375"/>
         <source>Failure</source>
         <translation>Echec</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2356"/>
+        <location filename="../../src/MainWindow.cpp" line="2361"/>
         <source>It is recommended to exit XyGrib while running the Maintenance Tool. Do you wish to exit XyGrib?</source>
         <translation>Il est recommandé de quitter XyGrib pendant la procédude maintenance. Voulez-vous quitter l&apos;application ?</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2357"/>
+        <location filename="../../src/MainWindow.cpp" line="2362"/>
         <source>Exit XyGrib?</source>
         <translation>Quitter XyGrib ?</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2425"/>
+        <location filename="../../src/MainWindow.cpp" line="2430"/>
         <source>An updated version is available</source>
         <translation>Une nouvelle version est disponible</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2429"/>
+        <location filename="../../src/MainWindow.cpp" line="2434"/>
         <source>A new version</source>
         <translation>Une nouvelle version</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2430"/>
+        <location filename="../../src/MainWindow.cpp" line="2435"/>
         <source>is available for update.</source>
         <translation>est disponible pour une mise à jour.</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2431"/>
+        <location filename="../../src/MainWindow.cpp" line="2436"/>
         <source>Please use the XyGrib Maintenance Tool to upgrade. It can be activated from the Help Menu</source>
         <translation>Merci d&apos;utiliser l&apos;outil de maintenance de XyGrib pour la mise à jour. Il est disponible dans le menu Aide</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2443"/>
+        <location filename="../../src/MainWindow.cpp" line="2448"/>
         <source>Version is up to date</source>
         <translation>Version à jour</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2444"/>
+        <location filename="../../src/MainWindow.cpp" line="2449"/>
         <source>You have version</source>
         <translation>Vous avez une version</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2445"/>
+        <location filename="../../src/MainWindow.cpp" line="2450"/>
         <source>which is the most current version</source>
         <translation>qui est la version la plus récente</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2459"/>
+        <location filename="../../src/MainWindow.cpp" line="2464"/>
         <source>Network Error</source>
         <translation>Erreur de réseau</translation>
     </message>
@@ -2617,8 +2617,8 @@
         <translation>  dir. init : %1°</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2362"/>
-        <location filename="../../src/MainWindow.cpp" line="2370"/>
+        <location filename="../../src/MainWindow.cpp" line="2367"/>
+        <location filename="../../src/MainWindow.cpp" line="2375"/>
         <source>Unable to find the XyGrib Maintenance Tool. Please start it from the desktop facilities</source>
         <translation>Impossible de trouver l&apos;outil de maintenance. Merci de le démarrer directement depuis votre gestionnaire de fichiers</translation>
     </message>
@@ -2894,12 +2894,12 @@
     <message>
         <location filename="../../src/MenuBar.cpp" line="113"/>
         <source>Gusts</source>
-        <translation type="unfinished"></translation>
+        <translation>Rafales</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="156"/>
         <source>Absolute Gust speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Vitesse absolue des rafales</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="167"/>
