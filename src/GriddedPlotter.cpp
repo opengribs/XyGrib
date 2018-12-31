@@ -58,12 +58,22 @@ GriddedPlotter::GriddedPlotter ()
     GriddedPlotter::updateGraphicsParameters ();
 	
 	useJetStreamColorMap = false;
+	setUseGustColorAbsolute(Util::getSetting("useAbsoluteGustSpeed", false).toBool());
 }
 
 //--------------------------------------------------------------------
 GriddedPlotter::~GriddedPlotter ()
 {
 	listDates.clear();
+}
+//---------------------------------------------------
+void GriddedPlotter::setUseGustColorAbsolute (bool b)
+{
+	useGustColorAbsolute = b;
+	if (b)
+ 	    colors_Gust.readFile (Util::pathColors()+"colors_wind_kts.txt", 1.852/3.6, 0);
+ 	else
+ 	    colors_Gust.readFile (Util::pathColors()+"colors_gust_kts.txt", 1.852/3.6, 0);
 }
 //---------------------------------------------------
 void GriddedPlotter::updateGraphicsParameters ()

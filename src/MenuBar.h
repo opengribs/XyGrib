@@ -133,6 +133,8 @@ public:
 	QAction *acView_InterpolateValues;
 	QAction *acView_WindArrowsOnGribGrid;
 	QAction *acView_useJetSTreamColorMap;
+	QAction *acView_useAbsoluteGustSpeed;
+
 	QAction *acView_CurrentArrowsOnGribGrid;
 
     QAction *acView_WindArrow;

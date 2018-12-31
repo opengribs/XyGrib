@@ -141,6 +141,7 @@ public slots:
         void slotHelp_APropos ();
         void slotHelp_AProposQT ();
 		void slotUseJetStreamColorMap  (bool);
+		void slotUseAbsoluteGustSpeed (bool b);
 
         void slotPanSelectToggle(); // menu slot
         void slotPanToggle();	    // toolbar slot

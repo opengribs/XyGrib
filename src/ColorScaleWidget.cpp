@@ -86,6 +86,7 @@ QString ColorScaleGraph::formatValue (double v)
 {
 	float t0, tv;
 	switch (dtc.dataType) {
+		case GRB_WIND_GUST :
 		case GRB_PRV_WIND_XY2D :
 		case GRB_PRV_WIND_JET :
 			return Util::formatSpeed_Wind (v, false);

@@ -379,6 +379,8 @@ void Terrain::setColorMapData (const DataCode &dtc)
         if (griddedPlot!=nullptr && griddedPlot->isReaderOk()) {
 			griddedPlot->setUseJetStreamColorMap (
 						Util::getSetting("useJetStreamColorMap", false).toBool());
+			griddedPlot->setUseGustColorAbsolute (
+						Util::getSetting("useAbsoluteGustSpeed", false).toBool());
 		}
         mustRedraw = true;
         update();
@@ -729,6 +731,9 @@ FileDataType Terrain::loadMeteoDataFile (const QString& fileName, bool zoom)
 				griddedPlot_Temp->setCurrentDateClosestFromNow ();
 				griddedPlot_Temp->setUseJetStreamColorMap (
 								Util::getSetting("useJetStreamColorMap", false).toBool());
+				griddedPlot_Temp->setUseGustColorAbsolute (
+								Util::getSetting("useAbsoluteGustSpeed", false).toBool());
+
 				break;
 			default :
 				break;
