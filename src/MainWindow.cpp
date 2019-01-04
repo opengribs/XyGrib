@@ -917,7 +917,7 @@ void MainWindow::updateGriddedData ()
 	{
 		GriddedReader *reader = plotter->getReader();
 		QString strdtc;
-		DataCode dtc;
+        DataCode dtc, dtctmp;
 		strdtc = DataCodeStr::serialize (DataCode(GRB_PRV_WIND_XY2D,LV_ABOV_GND,10));
 		strdtc = Util::getSetting ("colorMapData", strdtc).toString();
 		dtc = DataCodeStr::unserialize (strdtc);
@@ -929,12 +929,23 @@ void MainWindow::updateGriddedData ()
 			else
 				dtc.dataType = GRB_PRV_WIND_XY2D;
 		}
+        if (dtc.dataType==GRB_WIND_GUST) {
+            dtc.set (GRB_TYPE_NOT_DEFINED,LV_TYPE_NOT_DEFINED,0);
+            dtctmp.set (GRB_WIND_GUST,LV_ABOV_GND,10);
+            if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
+                dtc = dtctmp;
+            dtctmp.set (GRB_WIND_GUST,LV_GND_SURF, 0);
+            if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
+                dtc = dtctmp;
+        }
+
         bool useGustColorAbsolute = Util::getSetting("useAbsoluteGustSpeed", true).toBool();
 
-		// Data existe ?
+        // Data exists ?
 		DataCode dtc2 = dtc;
 		if (dtc2.dataType == GRB_PRV_WIND_JET)
 			dtc2.dataType = GRB_PRV_WIND_XY2D;
+
 		if (! reader->hasData(dtc2)) {
 			dtc = DataCode (GRB_TYPE_NOT_DEFINED, LV_TYPE_NOT_DEFINED, 0);
 		}
