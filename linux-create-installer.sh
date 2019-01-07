@@ -27,16 +27,17 @@
 # After running the script the compiled installers should be in the linux_online_installer folder and the repository should be ready for upload
 #
 
-XVER="1.1.2"
+XVER="1.2.2"
 
 ## go to the installer build folder
 cd linux_online_installer
 
 ## check that the AppImage exits and executable bit is set
-if [ -z "packages/org.opengribs.xygrib.core.linux/data/XyGrib.AppImage" ]; then
+if [ ! -f "packages/org.opengribs.xygrib.core.linux/data/XyGrib.AppImage" ]; then
 	echo "XyGrib.AppImage is not in the core data folder, can't continue"
 	exit 1
 fi
+
 chmod a+x packages/org.opengribs.xygrib.core.linux/data/XyGrib.AppImage
 
 ## build the repository which should be empty (new one each time)

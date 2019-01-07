@@ -2,8 +2,8 @@
 <Package>
     <DisplayName>XyGrib Static Data</DisplayName>
     <Description>Data needed by XyGrib such as maps, gis info, color schemes and translations</Description>
-    <Version>1.2.0</Version>
-    <ReleaseDate>2018-11-16</ReleaseDate>
+    <Version>1.2.2</Version>
+    <ReleaseDate>2019-01-08</ReleaseDate>
     <Default>true</Default>
 	<SortingPriority>002</SortingPriority>
     <Script>installscript.qs</Script>

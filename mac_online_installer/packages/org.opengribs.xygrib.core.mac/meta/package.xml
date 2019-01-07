@@ -2,8 +2,8 @@
 <Package>
     <DisplayName>XyGrib Mac Core Application Files</DisplayName>
     <Description>Executable and libraries needed to run the application.</Description>
-    <Version>1.2.0</Version>
-    <ReleaseDate>2018-11-16</ReleaseDate>
+    <Version>1.2.2</Version>
+    <ReleaseDate>2019-01-08</ReleaseDate>
     <Licenses>
         <License name="GNU General Public License Version 3" file="license.txt" />
     </Licenses>

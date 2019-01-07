@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Installer>
     <Name>XyGrib</Name>
-    <Version>1.2.0</Version>
+    <Version>1.2.2</Version>
     <Title>XyGrib</Title>
     <Publisher>OpenGribs.org</Publisher>
 	<ProductUrl>https://opengribs.org/en/xygrib</ProductUrl>

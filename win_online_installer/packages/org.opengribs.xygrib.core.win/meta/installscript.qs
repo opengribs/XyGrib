@@ -41,33 +41,36 @@ Component.prototype.createOperations = function()
             "workingDirectory=@TargetDir@", "iconPath=@TargetDir@/XyGrib.exe", "IconID=1",
              "description=Run XyGrib Weather Visualization");
  
- component.addOperation("CreateShortcut", "@TargetDir@/XyGribMaintenanceTool.exe", "@StartMenuDir@/XyGribMaintenanceTool.lnk",
+		component.addOperation("CreateShortcut", "@TargetDir@/XyGribMaintenanceTool.exe", "@StartMenuDir@/XyGribMaintenanceTool.lnk",
             "workingDirectory=@TargetDir@", "iconPath=@TargetDir@/XyGrib.exe", "IconID=1",
              "description=Run XyGrib Weather Visualization");
 			 
-		component.addOperation("RegisterFileType",
-                       "grb2",
-                       "@TargetDir@\\XyGrib.exe \"%1\"",
-                       "XyGrib Files",
-                       "application/x-binary",
-                       "@TargetDir@\\XyGrib.exe",
-                       "ProgId=XyGrib.grb2");  
-					   
-		component.addOperation("RegisterFileType",
-                       "grib2",
-                       "@TargetDir@\\XyGrib.exe \"%1\"",
-                       "XyGrib Files",
-                       "application/x-binary",
-                       "@TargetDir@\\XyGrib.exe",
-                       "ProgId=XyGrib.grib2");  
-					   
-		component.addOperation("RegisterFileType",
-                       "grb",
-                       "@TargetDir@\\XyGrib.exe \"%1\"",
-                       "XyGrib Files",
-                       "application/x-binary",
-                       "@TargetDir@\\XyGrib.exe",
-                       "ProgId=XyGrib.grb");  
+		if (installer.isInstaller()) {
+			 
+			component.addOperation("RegisterFileType",
+						   "grb2",
+						   "@TargetDir@\\XyGrib.exe \"%1\"",
+						   "XyGrib Files",
+						   "application/x-binary",
+						   "@TargetDir@\\XyGrib.exe",
+						   "ProgId=XyGrib.grb2");  
+						   
+			component.addOperation("RegisterFileType",
+						   "grib2",
+						   "@TargetDir@\\XyGrib.exe \"%1\"",
+						   "XyGrib Files",
+						   "application/x-binary",
+						   "@TargetDir@\\XyGrib.exe",
+						   "ProgId=XyGrib.grib2");  
+						   
+			component.addOperation("RegisterFileType",
+						   "grb",
+						   "@TargetDir@\\XyGrib.exe \"%1\"",
+						   "XyGrib Files",
+						   "application/x-binary",
+						   "@TargetDir@\\XyGrib.exe",
+						   "ProgId=XyGrib.grb");
+		}
 					   					   
     }
 }
