@@ -1,6 +1,15 @@
 # XyGrib - Weather Forecast Visualization
 Fork of zyGrib-8.0.1 under a new name and a new home https://opengribs.org
 
+Changes in version 1.2.2 :
+- New feature - Gust color map that can show absolute gust velocity values or relative (delta) values above the wind speed. Absolute gust velocity is the default. This can be changed in the weather options sub-menu.
+- Transparency added to lowest color values for Precipitation, CAPE, Reflectivity, Gust (delta) and Snow. This improves the color overlay displays.
+- Functionality for viewing non-global model coverage is improved and now zooms on the shaded area.
+- Cloud display problems with ICON gribs is fixed.
+- Enforcement of minimum area for grib requests is fixed. "Bad Request" errors are no longer returned on very small area requests.
+- Several other bugs were fixed and several code stability improvements were included.
+
+
 Changes in version 1.2.0 :
 - Major enhancement to Grib Server and to XyGrib with the addition of large area regional models. These include NAM (CONUS, Central America & Carribean, Pacific & Hawai), ICON-EU and Arpege-EU.
 - ECMWF added to global models albeit a limited free public release of the model including some surface and altitude data at 0.5 deg resolution and 24hr temporal resolution.
