@@ -385,7 +385,7 @@ void DialogLoadGRIB::updateParameters ()
         waveModel = cbWvModel->currentText();
 
     resolution = cbResolution->currentText().toDouble();
-    DBG("Resolution is: %d", resolution);
+//    DBG("Resolution is: %d", resolution);
     interval   = cbInterval->currentText().toInt();
     days       = cbDays->currentText().toInt();
     cycle      = cbRunCycle->currentData().toString();
@@ -410,8 +410,8 @@ void DialogLoadGRIB::updateParameters ()
     }
     if (fabs(ymin-ymax) < 2*resolution) {
         ym = (ymin+ymax)/2;
-        ymin = ym + 2*resolution;
-        ymax = ym - 2*resolution;
+        ymin = ym - 2*resolution;
+        ymax = ym + 2*resolution;
     }
 //    DBG("Dialog ymax etc after manipulations: %f,%f   %f,%f", xmin, ymin, xmax, ymax);
 
