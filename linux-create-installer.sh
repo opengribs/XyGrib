@@ -9,7 +9,7 @@
 #				-- config
 #				-- packages
 #						-- org.opengribs.xygrib.core.mac	
-#								-- data 		(copy the XyGrib.Linux.AppImage, LICENSE & README.md to here)
+#								-- data 		(copy the XyGrib.AppImage, LICENSE & README.md to here)
 #										--icons
 #												xyGrib.ico
 #												xyGrib.png				
