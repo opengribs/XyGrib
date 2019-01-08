@@ -2,8 +2,8 @@ XyGrib est un clone de zyGrib (https://opengribs.org/fr)
 
 Les changements dans la version 1.2.2
 
-- Nouvelle fonctionnalité - Carte des rafales de vent : affichage soit des valeurs absolues de vitesse de rafale ou les valeurs relatives (écart entre la rafale et la vitesse moyenne). La vitesse de rafale absolue est la valeur par défaut. Cela peut être modifié dans le sous-menu des options présentation graphique du menu Cartes météo.
-- La transparence a été ajoutée aux valeurs de couleur les plus basses pour les précipitations, CAPE, réflectivité, Rafales (delta) et Neige. Cela améliore les affichages de superposition de couleurs.
+- Nouvelle fonctionnalité - Carte des rafales de vent : affichage soit des valeurs absolues de vitesse de rafale ou les valeurs relatives (écart entre la rafale et la vitesse moyenne du vent). La vitesse de rafale absolue est la valeur par défaut. Cela peut être modifié dans le sous-menu des options présentation graphique du menu Cartes météo.
+- La transparence a été ajoutée aux valeurs de couleur les plus basses pour les variables Précipitations, CAPE, Réflectivité, Rafales (écart) et Neige. Cela améliore les affichages de superposition de couleurs.
 - La fonctionnalité d'affichage de la couverture des modèles régionaux est améliorée et zoome directement sur la zone ombrée du modèle choisi.
 - Les problèmes d'affichage de la couverture nuageuse avec les gribs ICON sont corrigés.
 - De toutes petites surfaces peuvent maintenant être sélectionnées. Ce n'est plus considéré comme une erreur ("Bad request")
