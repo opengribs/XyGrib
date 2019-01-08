@@ -1,6 +1,12 @@
+xygrib (1.2.2-1) unstable; urgency=medium
+
+  * Release 1.2.2
+
+ -- Oleg Roitburd <oroitburd@gmail.com>  Wed, 14 Nov 2018 21:25:15 +0100
+
 xygrib (1.2.1-9) unstable; urgency=medium
 
-  * Release 1.2.1.9
+  * Release 1.2.1-9
 
  -- Dominique Hausser <dominique@hausser.ch>  Mon, 31 Dec 2018 17:10:15 +0100
 
