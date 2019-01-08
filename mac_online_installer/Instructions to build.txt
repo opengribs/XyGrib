@@ -26,5 +26,6 @@ Also assumes that 'XyGrib.app' has been copied from the Qt release build folders
 That XyGrib 'data' structure and hires map 'data' structure are copied to respective 'data' folders ('data' appears in two levels in each case)
 
 Before running the script edit the version number variable.
-After running the script the installer.app should be in the mac_online_installer folder and the repository should be ready for upload
+After running the script the installer.apps should be in the mac_online_installer folder and the repository should be ready for upload
+Last job is to create dmg files by using Disk Utility and creating image from a folder. The dmg's get updloaded to the release binaries on github
 
