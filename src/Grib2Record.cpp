@@ -81,7 +81,41 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 		xmin -= 360.0;
         xmax -= 360.0;
     }
-    grid = std::make_shared<PlateCarree>(Ni, Nj, xmin, ymin, Di, Dj);
+	// checkOrientation ();
+	if (xmin==xmax) {
+		if (Di >= 0)
+			xmin = xmin-360.0;
+		else
+			xmin = xmin+360.0;
+		Di = 360.0/Ni;
+	}
+	if (Ni<=1 || Nj<=1) {
+		DBG ("Record %d: Ni=%d Nj=%d",id,Ni,Nj);
+		ok = false;
+		return;
+	}
+	else {
+		Di = (xmax-xmin) / (Ni-1);
+		Dj = (ymax-ymin) / (Nj-1);
+	}
+	double v;
+	if (xmin > xmax)
+	{
+		//printf("GribRecord::checkOrientation (): xmin>xmax => must reverse data\n");
+		v=xmin;  xmin=xmax;  xmax=v;
+		Di = fabs(Di);
+	}
+	if (ymin > ymax)
+	{
+		//printf("GribRecord::checkOrientation (): ymin>ymax => must reverse data\n");
+		v=ymin;  ymin=ymax;  ymax=v;
+		Dj = fabs(Dj);
+	}
+    while (xmin<=-180) {
+        xmin += 360.0;
+        xmax += 360.0;
+    }
+
 	resolFlags = gfld->igdtmpl[13];
 	hasDiDj = (resolFlags&0x10)!=0 && (resolFlags&0x20)!=0;
 	isUeastVnorth =  (resolFlags&0x08) ==0;
@@ -89,18 +123,11 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 	isScanIpositive = (scanFlags&0x80) ==0;
 	isScanJpositive = (scanFlags&0x40) !=0;
 	isAdjacentI     = (scanFlags&0x20) ==0;
+    grid = std::make_shared<PlateCarree>(Ni, Nj, xmin, ymin, Di, Dj);
 	bool allRowsScanSameDir = (scanFlags&0x10) ==0;
 	if (! allRowsScanSameDir) {
 		erreur ("Unsupported grid type: allRowsScanSameDir=%d", (int)allRowsScanSameDir);
 		ok = false;
-	}
-	if (Ni<=1 || Nj<=1) {
-		DBG ("Record %d: Ni=%d Nj=%d",id,Ni,Nj);
-		ok = false;
-	}
-	else { 
-		Di = (xmax-xmin) / (Ni-1);
-		Dj = (ymax-ymin) / (Nj-1);
 	}
 	//----------------------------------------
 	// BMS
@@ -118,41 +145,31 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
     this->data = std::shared_ptr<data_t>(ptr, std::default_delete<data_t[]>());
 
     // Read data in the order given by isAdjacentI
-    int i, j;
-    int ind, indgfld=0;
-    if (isAdjacentI) {
-        for (j=0; j<Nj; j++) {
-            for (i=0; i<Ni; i++, indgfld++) {
-                if (!hasDiDj && !isScanJpositive) {
-                    ind = (Nj-1 -j)*Ni+i;
-                }
-                else {
-                    ind = j*Ni+i;
-                }
-                if (!hasBMS || gfld->bmap[ind]) {
-                    data.get()[ind] = gfld->fld[indgfld];
-                }
-                else {
-                    data.get()[ind] = GRIB_NOTDEF;
-                }
-            }
-        }
-    }
-    else {
-        for (i=0; i<Ni; i++) {
-            for (j=0; j<Nj; j++, indgfld++) {
-                if (!hasDiDj && !isScanJpositive) {
-                    ind = (Nj-1 -j)*Ni+i;
-                }
-                else {
-                    ind = j*Ni+i;
-                }
-                if (!hasBMS || gfld->bmap[ind]) {
-                    data.get()[ind] = gfld->fld[indgfld];
-                }
-                else {
-                    data.get()[ind] = GRIB_NOTDEF;
-                }
+	for (int j=0; j<Nj; j++) {
+		for (int i=0; i<Ni; i++) {
+			int indgfld;
+			switch(scanFlags){
+				case 0:   /* 0000 0000 */ indgfld = (Nj -j -1)*Ni +i;          break;
+				case 128: /* 1000 0000 */ indgfld = (Nj -j -1)*Ni +(Ni -i -1); break;
+				case 64:  /* 0100 0000 */ indgfld =          j*Ni +i;          break;
+				case 192: /* 1100 0000 */ indgfld =          j*Ni +(Ni -i -1); break;
+				case 32:  /* 0010 0000 */ indgfld =          i*Nj +(Nj -j -1); break;
+				case 160: /* 1010 0000 */ indgfld = (Ni -i -1)*Nj +(Ni -i -1); break;
+				case 96:  /* 0110 0000 */ indgfld =          i*Nj +j;          break;
+				case 224: /* 1110 0000 */ indgfld = (Ni -i -1)*Nj +j;          break;
+				case 80:  /* 0101 0000 */ indgfld = ( j % 2 == 0 ?
+                                                j*Ni +i :
+                                                j*Ni +(Ni -i -1) );            break;
+				default:
+					ok = false;
+					return;
+			}
+			int ind = j*Ni +i;
+			if (!hasBMS || gfld->bmap[indgfld]) {
+				data.get()[ind] = gfld->fld[indgfld];
+			}
+            else {
+                data.get()[ind] = GRIB_NOTDEF;
             }
         }
     }
@@ -172,7 +189,6 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 	//----------------------------------------
 	// end
 	//----------------------------------------
-	checkOrientation ();
 	if (ok) {
 		editionNumber = 2;
 		translateDataType ();
