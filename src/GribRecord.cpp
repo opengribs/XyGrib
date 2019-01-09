@@ -434,8 +434,8 @@ GribRecord::GribRecord (ZUFILE* file, int id_)
 	if (ok && hasBMS) { // replace the BMS bits table with a faster bool table
         boolBMStab = new bool [Ni*Nj];
 		assert (boolBMStab);
-		for (int i=0; i<Ni; i++) {
-			for (int j=0; j<Nj; j++) {
+        for (int j=0; j<Nj; j++) {
+		    for (int i=0; i<Ni; i++) {
 				boolBMStab [j*Ni+i] = hasValueInBitBMS (i,j);
 			}
 		}
