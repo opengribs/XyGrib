@@ -130,7 +130,7 @@ void GribPlot::draw_GridPoints (const DataCode &dtc, QPainter &pnt, const Projec
     for (i=0; i<rec->getNi(); i+=deltaI)
         for (j=0; j<rec->getNj(); j+=deltaJ)
         {
-            //if (rec->hasValue(i,j))
+            if (rec->hasValue(i,j))
             {
                 double lon, lat;
                 rec->getXY(i, j, &lon , &lat);
