@@ -126,13 +126,31 @@ void GribPlot::draw_GridPoints (const DataCode &dtc, QPainter &pnt, const Projec
 			return;
 	int deltaI, deltaJ;
 	analyseVisibleGridDensity (proj, rec, 6, &deltaI, &deltaJ);
-    int px,py, i,j, dl=2;
-    for (i=0; i<rec->getNi(); i+=deltaI)
-        for (j=0; j<rec->getNj(); j+=deltaJ)
+    int px,py, px1, py1;
+    const int dl=2;
+	double lon, lat;
+
+    /*
+	  XXX display a warning
+    */
+    rec->getXY(0, 0, &lon , &lat);
+	proj->map2screen(lon, lat, &px,&py);
+    rec->getXY(1, 0, &lon , &lat);
+	proj->map2screen(lon, lat, &px1, &py1);
+	if (abs(px -px1) < dl *4)
+		return;
+    rec->getXY(0, 0, &lon , &lat);
+	proj->map2screen(lon, lat, &px,&py);
+    rec->getXY(0, 1, &lon , &lat);
+	proj->map2screen(lon, lat, &px1, &py1);
+	if (abs(py -py1) < dl *4)
+		return;
+
+    for (int i=0; i<rec->getNi(); i+=deltaI)
+        for (int j=0; j<rec->getNj(); j+=deltaJ)
         {
             if (rec->hasValue(i,j))
             {
-                double lon, lat;
                 rec->getXY(i, j, &lon , &lat);
                 proj->map2screen(lon, lat, &px,&py);
                 pnt.drawLine(px-dl,py, px+dl,py);
