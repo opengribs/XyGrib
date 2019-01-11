@@ -85,7 +85,9 @@ void BoardPanel::showDataPointInfo (
 	if (cellPressure->isVisible()) {
 		if (pf.hasPressureMSL())
 			lbPres.setText (Util::formatPressure (pf.pressureMSL));
-		else
+		else if (pf.hasPressureSFC())
+			lbPres.setText (Util::formatPressure (pf.pressureSFC));
+        else
 			lbPres.setText("");
 	}
 	if (cellGust->isVisible()) {

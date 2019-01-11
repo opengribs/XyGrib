@@ -86,7 +86,7 @@ void  GribRecord::translateDataType ()
 			&& getLevelValue()==0) {
 				dataType  = GRB_PRESSURE_MSL;
 		}
-		if ( (getDataType()==GRB_CLOUD_TOT)
+		else if ( (getDataType()==GRB_CLOUD_TOT)
 			&& getLevelType()==LV_GND_SURF
 			&& getLevelValue()==0) {
 				levelType  = LV_ATMOS_ALL;

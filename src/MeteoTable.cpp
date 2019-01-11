@@ -538,6 +538,7 @@ int MeteoTableDialog::SYLK_addData_gen (SylkFile &slk, int lig,int col, DataCode
 				case GRB_WIND_GUST	  : 
 					txt = Util::formatSpeed_Wind (val, false); 
 					break;
+				case GRB_PRESSURE :
 				case GRB_PRESSURE_MSL : 
 					txt = Util::formatPressure (val, false); 
 					break;

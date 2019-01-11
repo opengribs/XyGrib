@@ -769,6 +769,8 @@ void MainWindow::openMeteoDataFile (const QString& fileName)
 			menuBar->acView_DeltaDewpointColors->setEnabled(ok);
 
 			ok = plotter->hasData (GRB_PRESSURE_MSL,LV_MSL,0);
+            if (!ok)
+                ok = plotter->hasData (GRB_PRESSURE, LV_GND_SURF,0);
 			menuBar->acView_Isobars->setEnabled(ok);
 			menuBar->acView_IsobarsLabels->setEnabled(ok);
 			menuBar->acView_PressureMinMax->setEnabled(ok);

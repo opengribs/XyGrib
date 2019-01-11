@@ -461,8 +461,11 @@ void MapDrawer::draw_MeteoData_Gridded
 	std::vector <IsoLine *> listIsotherms;
 	std::vector <IsoLine *> listLinesThetaE;
 
-	if (! plotter->hasData (GRB_PRESSURE_MSL,LV_MSL,0))
-		showIsobars = false;
+	if (! plotter->hasData (GRB_PRESSURE_MSL,LV_MSL,0)) {
+		if (! plotter->hasData (GRB_PRESSURE, LV_GND_SURF,0))
+			showIsobars = false;
+	}
+
 	if (! plotter->hasData (GRB_GEOPOT_HGT,LV_ISOTHERM0,0))
 		showIsotherms0 = false;
 	if (! plotter->hasData (geopotentialData))
@@ -475,6 +478,9 @@ void MapDrawer::draw_MeteoData_Gridded
 	if (showIsobars) {
 		pnt.setPen (isobarsPen);
 		DataCode dtc (GRB_PRESSURE_MSL,LV_MSL,0);
+		if (! plotter->hasData (dtc)) {
+			dtc = {GRB_PRESSURE, LV_GND_SURF,0};
+		}
 		addUsedDataCenterModel (dtc, plotter);
 		plotter->complete_listIsolines (&listIsobars, dtc,
 						   84000, 112000, isobarsStep*100, proj);
@@ -643,8 +649,13 @@ void MapDrawer::draw_Cartouche_Gridded
 		if (colorMapData.dataType != GRB_TYPE_NOT_DEFINED)
 			datalist.append (DataCodeStr::toString_levelShort (colorMapData));
 		
-		if (showIsobars)
-			datalist.append (tr("Isobars MSL (hPa)"));
+		if (showIsobars) {
+			DataCode dtc (GRB_PRESSURE_MSL,LV_MSL,0);
+			if (! plotter->hasData (dtc))
+				datalist.append (tr("Isobars sfc (hPa)"));
+			else
+				datalist.append (tr("Isobars MSL (hPa)"));
+		}
 		if (showIsotherms0)
 			datalist.append (tr("Isotherms 0°C") 
 				+" (" 

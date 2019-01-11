@@ -192,6 +192,9 @@ void MeteoTableWidget::createTable()
 	lig ++;
 	addCell_title_dataline ("", true, lig,col);
 	col ++;
+	bool msl = true;
+	bool pressure = false;
+
 	for (long date : sdates)
 	{
 		addCell_title(Util::formatTime(date), false, layout, lig,col, 1,1,
@@ -200,6 +203,16 @@ void MeteoTableWidget::createTable()
 
 		// Grib data for this point and this date
 		pinfo = new DataPointInfo (reader, lon,lat, date);
+		if (pinfo->hasPressureMSL() )
+		{
+			pressure = true;
+			msl = true;
+		}
+		if (pressure == false && pinfo->hasPressureSFC())
+		{
+			pressure = true;
+			msl = false;
+		}
 		lspinfos.push_back (pinfo);
 		lsdates.push_back (date);
 	}
@@ -222,6 +235,12 @@ void MeteoTableWidget::createTable()
 			addLine_Current (alt, lig++);
 		}
 		else if (dataType==GRB_PRESSURE_MSL && levelType==LV_MSL && levelValue==0){
+			Altitude alt (levelType, levelValue);
+			if (msl == false)
+				alt = {LV_GND_SURF, 0 };
+			addLine_Pressure (alt, lig++);
+		}
+		else if (dataType==GRB_PRESSURE && levelType==LV_GND_SURF && levelValue==0){
 			Altitude alt (levelType, levelValue);
 			addLine_Pressure (alt, lig++);
 		}
@@ -525,6 +544,10 @@ void MeteoTableWidget::addLine_Pressure(const Altitude &alt, int lig)
 		if (pinfo->hasPressureMSL()) {
 			txt = Util::formatPressure (pinfo->pressureMSL);
 			bgColor = QColor(plotter->getPressureColor(pinfo->pressureMSL, true));
+		}
+		else if (pinfo->hasPressureSFC()) {
+			txt = Util::formatPressure (pinfo->pressureSFC);
+			bgColor = QColor(plotter->getPressureColor(pinfo->pressureSFC, true));
 		}
 		else
 			bgColor = Qt::white;

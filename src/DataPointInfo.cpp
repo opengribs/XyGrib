@@ -49,6 +49,7 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
         rain = getValue(DataCode(GRB_PRECIP_RATE,LV_GND_SURF,0));
 
     pressureMSL = getValue(DataCode(GRB_PRESSURE_MSL,LV_MSL,0));
+    pressureSFC = getValue(DataCode(GRB_PRESSURE, LV_GND_SURF,0));
 	//----------------------------------------
 	// Waves
 	//----------------------------------------
@@ -243,6 +244,10 @@ float DataPointInfo::getDataValue (const DataCode &dtc) const
 			return snowDepth;
 		case GRB_PRESSURE_MSL : 
 			return pressureMSL;
+		case GRB_PRESSURE :
+			if (dtc.levelType==LV_GND_SURF && dtc.levelValue==0)
+				return pressureSFC;
+			return GRIB_NOTDEF;
 		case GRB_PRECIP_TOT   : 
         case GRB_PRECIP_RATE  :
             return rain;
@@ -268,8 +273,7 @@ float DataPointInfo::getDataValue (const DataCode &dtc) const
 				assert (idx >= 0);
 				return hTemp [idx];
 			}
-			else
-				return temp;
+			return temp;
 		case GRB_GEOPOT_HGT   :
 			if (dtc.levelType == LV_ISOTHERM0)
 				return isotherm0HGT;
@@ -285,24 +289,21 @@ float DataPointInfo::getDataValue (const DataCode &dtc) const
 				assert (idx >= 0);
 				return hHumidRel [idx];
 			}
-			else
-				return humidRel;
+			return humidRel;
 		case GRB_HUMID_SPEC   : 
 			if (dtc.getAltitude().levelType == LV_ISOBARIC) {
 				int idx = dtc.getAltitude().index();
 				assert (idx >= 0);
 				return hHumidSpec [idx];
 			}
-			else
-				return humidSpec;
+			return humidSpec;
 		case GRB_PRV_THETA_E      : 
 			if (dtc.getAltitude().levelType == LV_ISOBARIC) {
 				int idx = dtc.getAltitude().index();
 				assert (idx >= 0);
 				return hThetae [idx];
 			}
-			else
-				return GRIB_NOTDEF;
+			return GRIB_NOTDEF;
 		//-----------------------------------
 		// Waves
 		//-----------------------------------

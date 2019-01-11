@@ -383,6 +383,7 @@ QString Util::getDataUnit (const DataCode &dtc)
 		case GRB_PRECIP_TOT   : 
 			return tr("mm/h");
 		case GRB_PRESSURE_MSL : 
+		case GRB_PRESSURE :
 			return tr("hPa");
 		case GRB_WAV_SIG_HT : 
 		case GRB_WAV_WND_HT : 
