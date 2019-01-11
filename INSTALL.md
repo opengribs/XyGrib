@@ -62,11 +62,14 @@ make
 ```
 - Install
 ```
-cmake -DCMAKE_INSTALL_PREFIX=/wherever .. (as it do not respect rules of most linux distro suggestion is : cmake -DCMAKE_INSTALL_PREFIX=/opt ..)
+cmake -DCMAKE_INSTALL_PREFIX=/wherever ..
 sudo make install
 ```
 - Package
- - TBD
+ - Debian / Ubuntu (This create 1 deb for the app and 1 deb for the supplementary maps)
+```
+dpkg-buildpackage -b
+```
 
 ### Windows
 

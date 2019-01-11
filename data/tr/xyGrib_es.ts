@@ -604,7 +604,7 @@
     </message>
     <message>
         <source>Wind gust</source>
-        <translation type="vanished">Racha de viento</translation>
+        <translation>Racha de viento</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="224"/>
@@ -725,12 +725,12 @@
     <message>
         <location filename="../../src/DataQString.cpp" line="221"/>
         <source>Absolute wind gust</source>
-        <translation type="unfinished"></translation>
+        <translation>Racha absoluta de viento</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="223"/>
         <source>Relative wind gust</source>
-        <translation type="unfinished"></translation>
+        <translation>Racha relativa de viento</translation>
     </message>
     <message>
         <location filename="../../src/DataQString.cpp" line="246"/>
@@ -2591,7 +2591,7 @@
     <message>
         <location filename="../../src/MainWindow.cpp" line="1567"/>
         <source>Available data :</source>
-        <translation>Datos disponibles</translation>
+        <translation>Datos disponibles :</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="1707"/>
@@ -2731,7 +2731,7 @@
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation type="vanished">Ctrl+O</translation>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="78"/>
@@ -2746,7 +2746,7 @@
     </message>
     <message>
         <source>Ctrl+W</source>
-        <translation type="vanished">Ctrl+W</translation>
+        <translation>Ctrl+W</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="400"/>
@@ -2760,7 +2760,7 @@
     </message>
     <message>
         <source>Ctrl+G</source>
-        <translation type="vanished">Ctrl+G</translation>
+        <translation>Ctrl+G</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="95"/>
@@ -2769,7 +2769,7 @@
     </message>
     <message>
         <source>Ctrl+I</source>
-        <translation type="vanished">Ctrl+I</translation>
+        <translation>Ctrl+I</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="96"/>
@@ -2778,7 +2778,7 @@
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation type="vanished">Ctrl+Q</translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="106"/>
@@ -2891,12 +2891,12 @@
     <message>
         <location filename="../../src/MenuBar.cpp" line="113"/>
         <source>Gusts</source>
-        <translation type="unfinished"></translation>
+        <translation>Rachas</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="156"/>
         <source>Absolute Gust speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Velocidad absoluta de las rachas</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="167"/>
@@ -2990,7 +2990,7 @@
     </message>
     <message>
         <source>Ctrl+J</source>
-        <translation type="vanished">Ctrl+J</translation>
+        <translation>Ctrl+J</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="380"/>
@@ -3044,7 +3044,7 @@
     </message>
     <message>
         <source>Ctrl+X</source>
-        <translation type="vanished">Ctrl+X</translation>
+        <translation>Ctrl+X</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="161"/>
@@ -3054,7 +3054,7 @@
     </message>
     <message>
         <source>Ctrl+Y</source>
-        <translation type="vanished">Ctrl+Y</translation>
+        <translation>Ctrl+Y</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="401"/>
@@ -3064,7 +3064,7 @@
     </message>
     <message>
         <source>Ctrl+V</source>
-        <translation type="vanished">Ctrl+V</translation>
+        <translation>Ctrl+V</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="285"/>
@@ -3078,7 +3078,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+N</source>
-        <translation type="vanished">Ctrl+Shift+N</translation>
+        <translation>Ctrl+Shift+N</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="109"/>
@@ -3302,7 +3302,7 @@
     </message>
     <message>
         <source>Ctrl+N</source>
-        <translation type="vanished">Ctrl+N</translation>
+        <translation>Ctrl+N</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="328"/>
@@ -3311,7 +3311,7 @@
     </message>
     <message>
         <source>Ctrl+K</source>
-        <translation type="vanished">Ctrl+K</translation>
+        <translation>Ctrl+K</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="328"/>
@@ -3330,7 +3330,7 @@
     </message>
     <message>
         <source>Ctrl+Shift+K</source>
-        <translation type="vanished">Ctrl+Mayús+K</translation>
+        <translation>Ctrl+Mayús+K</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="333"/>
@@ -3357,7 +3357,7 @@
     </message>
     <message>
         <source>LEFT</source>
-        <translation type="vanished">IZQUIERDA</translation>
+        <translation>IZQUIERDA</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="348"/>
@@ -3374,7 +3374,7 @@
     </message>
     <message>
         <source>RIGHT</source>
-        <translation type="vanished">DERECHA</translation>
+        <translation>DERECHA</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="353"/>
@@ -3383,7 +3383,7 @@
     </message>
     <message>
         <source>UP</source>
-        <translation type="vanished">ARRIBA</translation>
+        <translation>ARRIBA</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="356"/>
@@ -3392,7 +3392,7 @@
     </message>
     <message>
         <source>DOWN</source>
-        <translation type="vanished">ABAJO</translation>
+        <translation>ABAJO</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="366"/>
@@ -3436,7 +3436,7 @@
     </message>
     <message>
         <source>Ctrl+S</source>
-        <translation type="vanished">Ctrl+S</translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="365"/>
@@ -3455,7 +3455,7 @@
     </message>
     <message>
         <source>Ctrl+U</source>
-        <translation type="vanished">Ctrl+U</translation>
+        <translation>Ctrl+U</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="410"/>
@@ -3464,7 +3464,7 @@
     </message>
     <message>
         <source>Ctrl+E</source>
-        <translation type="vanished">Ctrl+E</translation>
+        <translation>Ctrl+E</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="417"/>
@@ -3489,7 +3489,7 @@
     </message>
     <message>
         <source>Ctrl+H</source>
-        <translation type="vanished">Ctrl+H</translation>
+        <translation>Ctrl+H</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="105"/>
@@ -3519,7 +3519,7 @@
     </message>
     <message>
         <source>Ctrl+T</source>
-        <translation type="vanished">Ctrl+T</translation>
+        <translation>Ctrl+T</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="314"/>
@@ -3569,7 +3569,7 @@
     </message>
     <message>
         <source>Ctrl+Z</source>
-        <translation type="vanished">Ctrl+Z</translation>
+        <translation>Ctrl+Z</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="340"/>
@@ -3583,7 +3583,7 @@
     </message>
     <message>
         <source>PgUp</source>
-        <translation type="vanished">PgUp</translation>
+        <translation>PgUp</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="454"/>
@@ -3592,7 +3592,7 @@
     </message>
     <message>
         <source>PgDown</source>
-        <translation type="vanished">PgDown</translation>
+        <translation>PgDown</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="306"/>
@@ -3661,7 +3661,7 @@
     </message>
     <message>
         <source>Ctrl+D</source>
-        <translation type="vanished">Ctrl+D</translation>
+        <translation>Ctrl+D</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="415"/>
@@ -3670,7 +3670,7 @@
     </message>
     <message>
         <source>Ctrl+R</source>
-        <translation type="vanished">Ctrl+R</translation>
+        <translation>Ctrl+R</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="91"/>
@@ -3684,7 +3684,7 @@
     </message>
     <message>
         <source>Ctrl+A</source>
-        <translation type="vanished">Ctrl+A</translation>
+        <translation>Ctrl+A</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="100"/>
@@ -3781,19 +3781,19 @@
     </message>
     <message>
         <source>+</source>
-        <translation type="vanished">+</translation>
+        <translation>+</translation>
     </message>
     <message>
         <source>-</source>
-        <translation type="vanished">-</translation>
+        <translation>-</translation>
     </message>
     <message>
         <source>Ctrl+M</source>
-        <translation type="vanished">Ctrl+M</translation>
+        <translation>Ctrl+M</translation>
     </message>
     <message>
         <source>Ctrl+F</source>
-        <translation type="vanished">Ctrl+F</translation>
+        <translation>Ctrl+F</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="289"/>
