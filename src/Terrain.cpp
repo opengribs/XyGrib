@@ -831,7 +831,12 @@ void  Terrain::showSpecialZone (bool b)
 //---------------------------------------------------------
 void Terrain::zoomOnZone (double x0, double y0, double x1, double y1)
 {
+	DBG("zoom on x0 %f x1 %f\n", x0, x1);
 	double mh, mv;
+	if (x0 > x1) {
+		x0 -= 360.;
+		DBG("NEW zoom on x0 %f x1 %f\n", x0, x1);
+	}
 	mh = fabs(x0-x1)*0.05;
 	mv = fabs(y0-y1)*0.05;
 	proj->setVisibleArea (x0-mh,y0-mv, x1+mh,y1+mv);
