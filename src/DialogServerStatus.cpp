@@ -188,7 +188,7 @@ QFrame *DialogServerStatus::createFrameGui(QWidget *parent)
     const model model_local = {
         .name = tr("Regional"),
         .l = {{"nco", "NAM CONUS"}, {"ncb", "NAM CACBN"}, {"npa", "NAM PACIFIC"},
-              {"ice", "ICON-EU"}, {"are", "Arpege-EU"}, {"ewa", "EWAM"}
+              {"ice", "ICON-EU"}, {"are", "Arpege-EU"}, {"aro", "Arome 0.025°"}, {"ewa", "EWAM"}
              }
     };
     const std::list<model> m = { model_global, model_local };

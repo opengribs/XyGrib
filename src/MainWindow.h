@@ -228,7 +228,8 @@ public slots:
 		void autoClose ();
         int versionCompare(QString v1, QString v2);
         QString findMaintenanceTool();
-        const double modelRectangles[6][4] = {{-23.5, 29.5, 45.0, 70.5 },       // ICON-EU Nest
+        const double modelRectangles[7][4] = {{-8, 38, 12, 53 },                // Arome 0.025
+                                        {-23.5, 29.5, 45.0, 70.5 },             // ICON-EU Nest
                                         {-32.0, 20.0, 42.0, 72.0},              // Arpege 0.1 deg
                                         {-152.879, 12.220, -49.416, 61.310},    // NAM CONUS
                                         {-100.0, 0.138, -60.148, 30.054},       // NAM CACBN

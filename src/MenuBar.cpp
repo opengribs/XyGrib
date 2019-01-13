@@ -464,6 +464,7 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
     cbModelRect = new QComboBox ();
     cbModelRect->setSizeAdjustPolicy (QComboBox::AdjustToContents);
     cbModelRect->addItem(tr("Show Model Limits"));
+    cbModelRect->addItem("Arome 0.025°");
     cbModelRect->addItem("ICON-EU Nest");
     cbModelRect->addItem("Arpege-EU Nest");
     cbModelRect->addItem("NAM CONUS");

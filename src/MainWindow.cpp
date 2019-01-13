@@ -1466,6 +1466,12 @@ void MainWindow::slotFile_Load_GRIB ()
 		 || terre->getGribFileRectangle (&x0,&y0, &x1,&y1) )
     {
 //        DBG("Rect is: %f, %f,   %f, %f", x0, y0, x1, y1);
+
+        if ( x0 > 180.0)
+            x0 = x0 - 360.0;
+        if ( x1 > 180.0)
+            x1 = x1 -360.0;
+
         // open the grib download dialog
 		QString fname = DialogLoadGRIB::getFile (networkManager, this, x0,y0,x1,y1);
 

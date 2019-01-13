@@ -103,10 +103,10 @@ void FileLoaderGRIB::getGribFile(
     if (wind) {
         parameters += "W;";
     }
-    if (pressure && (atmModel != "ECMWF" && atmModel != "Arpege-EU")) {
+    if (pressure && (atmModel != "ECMWF" && atmModel != "Arpege-EU" && atmModel != "Arome 0.025°")) {
         parameters += "P;";
     }
-    if (pressure && (atmModel == "ECMWF" || atmModel == "Arpege-EU")){
+    if (pressure && (atmModel == "ECMWF" || atmModel == "Arpege-EU" || atmModel == "Arome 0.025°")){
         parameters += "p;";
     }
     if (rain) {
@@ -203,6 +203,8 @@ void FileLoaderGRIB::getGribFile(
         amod = "icon_eu_p06_";
     } else if (atmModel == "Arpege-EU"){
         amod = "arpege_eu_p10_";
+    } else if (atmModel == "Arome 0.025°"){
+        amod = "arome_p025_";
     } else if (atmModel == "None"){
         amod = "none";
     }
@@ -230,8 +232,12 @@ void FileLoaderGRIB::getGribFile(
 
 
         QString phpfilename = scriptpath+ "getmygribs2.php?";
+        QString appVer = Version::getVersion();
+        QString ptype = QSysInfo::productType();
         QTextStream(&page) << phpfilename
-                           << "model=" << amod
+                           << "osys=" << ptype
+                           << "&ver=" << appVer
+                           << "&model=" << amod
                            << "&la1=" << y0
                            << "&la2=" << y1
                            << "&lo1=" << x0
