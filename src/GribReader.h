@@ -27,17 +27,17 @@ Lecture mise en mémoire d'un fichier GRIB
 
 #include "RegularGridded.h"
 #include "GribRecord.h"
+#include "LongTaskMessage.h"
 #include "zuFile.h"
 
 //===============================================================
-class GribReader : public RegularGridReader
+class GribReader : public RegularGridReader, public LongTaskMessage
 {
     public:
         GribReader ();
         ~GribReader ();
 		
-        virtual void  openFile (const std::string &fname,
-                        LongTaskProgress *taskProgress, int nbrecs);
+        virtual void  openFile (const std::string &fname, int nbrecs);
 		
 		virtual FileDataType getReaderFileDataType () 
 					{return DATATYPE_GRIB;};
@@ -90,11 +90,10 @@ class GribReader : public RegularGridReader
 		virtual bool hasAltitudeData () const  {return hasAltitude;}
 		bool    hasAmbiguousHeader ()  {return ambiguousHeader;}
 		
-		static int countGribRecords (ZUFILE *f, LongTaskProgress *taskProgress);
+		int countGribRecords (ZUFILE *f);
 
 	protected:
         ZUFILE *file;
-		LongTaskProgress *taskProgress;
         void clean_vector(std::vector<GribRecord *> &ls);
         void clean_all_vectors();
         void   createListDates ();

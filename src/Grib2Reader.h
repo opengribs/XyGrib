@@ -24,10 +24,8 @@ Lecture mise en mémoire d'un fichier GRIB
 #ifndef GRIB2READER_H
 #define GRIB2READER_H
 
-#include "RegularGridded.h"
 #include "GribReader.h"
 #include "Grib2Record.h"
-#include "zuFile.h"
 extern "C" {
     #include <grib2.h>
 }
@@ -39,8 +37,7 @@ class Grib2Reader : public GribReader
         Grib2Reader ();
         ~Grib2Reader ();
 		
-        virtual void  openFile (const std::string &fname,
-						LongTaskProgress *taskProgress, int nbrecs);
+        virtual void  openFile (const std::string &fname, int nbrecs);
 		
 	private:
         void openFilePriv (const std::string& fname, int nbrecs);

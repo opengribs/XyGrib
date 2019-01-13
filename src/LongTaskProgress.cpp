@@ -18,6 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
+#include <QApplication>
+
 #include "Util.h" 
 #include "LongTaskProgress.h" 
 
@@ -39,7 +41,7 @@ LongTaskProgress::LongTaskProgress (QWidget *parent)
 	continueDownload = true; 
 	
 	setWindowTitle (tr("Open file"));
-	setMessage (LTASK_OPEN_FILE);
+	setMessage (LongTaskMessage::LTASK_OPEN_FILE);
 	setVisible (false);
 	
 	connect (progress,  SIGNAL(canceled()), this, SLOT(downloadCanceled()));
@@ -55,6 +57,8 @@ LongTaskProgress::~LongTaskProgress ()
 void LongTaskProgress::downloadCanceled ()
 { 
 	continueDownload = false;
+	// Reader
+	emit canceled();
 }
 
 //------------------------------------------------------------
@@ -79,23 +83,24 @@ void LongTaskProgress::setVisible (bool vis)
 }
 
 //------------------------------------------------------------
-void LongTaskProgress::setMessage (LongTaskMessageType msgtype)
+void LongTaskProgress::setMessage (LongTaskMessage::LongTaskMessageType msgtype)
 {
 	switch (msgtype) {
-		case LTASK_OPEN_FILE :
+		case LongTaskMessage::LTASK_OPEN_FILE :
 			progress->setLabelText (QObject::tr("Loading file..."));
+			setValue(0);
 			break;
-		case LTASK_ANALYSE_DATA :
+		case LongTaskMessage::LTASK_ANALYSE_DATA :
 			progress->setLabelText (QObject::tr("Analyse data..."));
 			break;
-		case LTASK_PREPARE_MAPS :
+		case LongTaskMessage::LTASK_PREPARE_MAPS :
 			progress->setLabelText (QObject::tr("Prepare maps..."));
+			setValue(0);
 			break;
-		case LTASK_UNCOMPRESS_FILE :
+		case LongTaskMessage::LTASK_UNCOMPRESS_FILE :
 			progress->setLabelText (QObject::tr("Uncompress file..."));
 			break;
 	}
-	
 	qApp->processEvents ();
 }
 

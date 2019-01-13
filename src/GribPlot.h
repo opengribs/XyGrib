@@ -23,7 +23,9 @@ Dessin des données GRIB (avec QT)
 #ifndef GRIBPLOT_H
 #define GRIBPLOT_H
 
-#include "RegularGridded.h"
+#include <QPainter>
+
+#include "RegularGriddedPlot.h"
 
 #include "GribReader.h"
 #include "DataPointInfo.h"
@@ -80,6 +82,8 @@ class GribPlot : public RegularGridPlot
 						QPainter &pnt, const Projection *proj );
     
     protected:
+		void  loadGrib (LongTaskProgress *taskProgress, int nbrecs);
+
         void       	initNewGribPlot (
 						bool interpolateValues=true, 
 						bool windArrowsOnGribGrid=true,

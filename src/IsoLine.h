@@ -28,7 +28,6 @@ Dessin des données GRIB (avec QT)
 #include <vector>
 #include <set>
 
-#include <QApplication>
 #include <QPainter>
 
 #include "GriddedRecord.h"

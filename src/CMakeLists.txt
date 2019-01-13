@@ -40,6 +40,7 @@ ImageWriter.h
 IrregularGridded.h
 IsoLine.h
 LonLatGrid.h
+LongTaskMessage.h
 LongTaskProgress.h
 MainWindow.h
 MapDrawer.h
@@ -49,6 +50,7 @@ MeteoTable.h
 MeteoTableWidget.h
 MeteotableOptionsDialog.h
 RegularGridded.h
+RegularGriddedPlot.h
 SkewT.h
 Stylesheet.h
 Terrain.h
@@ -89,6 +91,7 @@ ImageWriter.cpp
 IrregularGridded.cpp
 IsoLine.cpp
 LonLatGrid.cpp
+LongTaskMessage.cpp
 LongTaskProgress.cpp
 MainWindow.cpp
 MapDrawer.cpp

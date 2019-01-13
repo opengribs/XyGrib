@@ -1,6 +1,7 @@
 /**********************************************************************
 XyGrib: meteorological GRIB file viewer
-Copyright (C) 2008-2012 - Jacques Zaninetti - http://www.zygrib.org
+
+Copyright (C) 2018 - opengrib - http://www.xygrib.org
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -14,31 +15,13 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 ***********************************************************************/
 
-#include "Grib2Plot.h"
+#include "LongTaskMessage.h"
 
-//---------------------------------------------------
-Grib2Plot::Grib2Plot ()
+void
+LongTaskMessage::cancel()
 {
+    continueDownload = false;
 }
-//---------------------------------------------------
-Grib2Plot::Grib2Plot (const Grib2Plot &other)
-	: GribPlot (other)
-{
-}
-//---------------------------------------------------
-Grib2Plot::~Grib2Plot ()
-{
-}
-//----------------------------------------------------
-void Grib2Plot::loadFile (const QString &fileName,
-						 LongTaskProgress * taskProgress, int nbrecs)
-{
-	this->fileName = fileName;
-    delete gribReader;
-	gribReader = new Grib2Reader();
-	loadGrib(taskProgress, nbrecs);
-}
-
-

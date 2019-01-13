@@ -1,5 +1,5 @@
 /**********************************************************************
-XyGrib: meteorological GRIB file viewer
+zyGrib: meteorological GRIB file viewer
 Copyright (C) 2008-2012 - Jacques Zaninetti - http://www.zygrib.org
 
 This program is free software: you can redistribute it and/or modify
@@ -16,38 +16,23 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ***********************************************************************/
 
-#ifndef LONGTASKPROGRESS_H
-#define LONGTASKPROGRESS_H
+#ifndef REGULARGRIDDEDPLOT_H
+#define REGULARGRIDDEDPLOT_H
 
-#include <QProgressDialog>
-#include "LongTaskMessage.h"
+#include <QString>
 
-//-----------------------------------------
-class LongTaskProgress : public QObject
+#include "GriddedPlotter.h"
+
+//===============================================================
+class RegularGridPlot : public GriddedPlotter
 {
-Q_OBJECT
+    public:
+        RegularGridPlot () {}
+        virtual ~RegularGridPlot() {}
 
-	public:
-			
-		LongTaskProgress (QWidget *parent=NULL);
-		~LongTaskProgress ();
-
-		void setWindowTitle (const QString& title);
-		void setVisible (bool vis);
-		QProgressDialog *progress;
-
-		bool continueDownload;
-
-public slots:
-    	void setValue(int value);
-    	void setMessage(LongTaskMessage::LongTaskMessageType msgtype);
-
-    	void downloadCanceled();
-
-signals:
-    	void newMessage(LongTaskMessage::LongTaskMessageType msgtype);
-    	void valueChanged(int newValue);
-    	void canceled();
+	protected:
+		QString fileName;
 };
+
 
 #endif

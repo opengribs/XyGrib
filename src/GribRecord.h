@@ -39,7 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class GribRecord : public RegularGridRecord  
 { 
     public:
-        GribRecord ();
+        GribRecord () = default;
         GribRecord (ZUFILE* file, int id_);
         GribRecord (const GribRecord &rec);
         ~GribRecord ();
@@ -48,7 +48,7 @@ class GribRecord : public RegularGridRecord
         void   substract(const GribRecord &rec, bool positive=true);
         void   average(const GribRecord &rec);
 
-        bool  isOk ()  const   		{return ok;}
+        bool  isOk ()  const override {return ok;}
         bool  isDataKnown ()  const {return knownData;}
         int   getId ()  const   	{return id;}
 		bool  isOrientationAmbiguous () const 
@@ -69,9 +69,9 @@ class GribRecord : public RegularGridRecord
 		void    translateDataType();  // adapte les codes des différents centres météo
         //-----------------------------------------
 
-        virtual int  getIdCenter() const { return idCenter; }
-        virtual int  getIdModel()  const { return idModel; }
-        virtual int  getIdGrid()   const { return idGrid; }
+        int  getIdCenter() const override { return idCenter; }
+        int  getIdModel()  const override { return idModel; }
+        int  getIdGrid()   const override { return idGrid; }
 
         //-----------------------------------------
         uint64_t getKey() const  { return dataKey; }
@@ -83,16 +83,16 @@ class GribRecord : public RegularGridRecord
         zuchar getTimeRange() const { return timeRange; }
 
         // Nombre de points de la grille
-        int     getNi() const    { return Ni; }
-        int     getNj() const    { return Nj; }
+        int     getNi() const override { return Ni; }
+        int     getNj() const override { return Nj; }
         double  getDi() const    { return Di; }
         double  getDj() const    { return Dj; }
-        double  getDeltaX() const    { return Di; }
-        double  getDeltaY() const    { return Dj; }
+        double  getDeltaX() const override { return Di; }
+        double  getDeltaY() const override { return Dj; }
 		
-        virtual int    getTotalNumberOfPoints ()  const
+        int    getTotalNumberOfPoints ()  const override
 						{ return ok ? Ni*Nj : 0; }
-        virtual double getAveragePointsDensity () const
+        double getAveragePointsDensity () const override
 						{ return ok ? Ni*Nj/((xmax-xmin)*(-ymin)) : 0; }
 
         // coordonnées d'un point de la grille
@@ -108,13 +108,13 @@ class GribRecord : public RegularGridRecord
 							double px, double py,
 							bool interpolate=true) const;
 
-		virtual double  getInterpolatedValue (
+		double  getInterpolatedValue (
 							DataCode dtc,
 							double px, double py,
-							bool interpolate=true ) const;
+							bool interpolate=true ) const override;
 		 
- 		virtual double getValueOnRegularGrid ( 
-						DataCode dtc, int i, int j ) const;
+        double getValueOnRegularGrid (
+						DataCode dtc, int i, int j ) const override;
 
         void setValue (int i, int j, double v)
         		{ if (i>=0 && i<Ni && j>=0 && j<Nj)
@@ -124,28 +124,28 @@ class GribRecord : public RegularGridRecord
         inline bool   hasValue (int i, int j) const;
 
         // Date de référence (création du fichier)
-        time_t getRecordRefDate () const         { return refDate; }
-        const char* getStrRecordRefDate () const { return strRefDate; }
+        time_t getRecordRefDate () const override { return refDate; }
+        const char* getStrRecordRefDate () const  { return strRefDate; }
 
         // Date courante des prévisions
-        time_t getRecordCurrentDate () const     { return curDate; }
-        const char* getStrRecordCurDate () const { return strCurDate; }
+        time_t getRecordCurrentDate () const override { return curDate; }
+        const char* getStrRecordCurDate () const      { return strCurDate; }
         void  setRecordCurrentDate (time_t t);
 		
         bool  isEof () const   {return eof;};
         virtual void  print (const char *title);
 
     protected:
-        int    id;    // unique identifiant
-        bool   ok;    // validité des données
+        int    id;         // unique identifiant
+        bool   ok{false};    // validité des données
         bool   knownData; 	// type de donnée connu
-        bool   waveData;
+        bool   waveData{false};
 		
         bool   eof;   // fin de fichier atteinte lors de la lecture
 		uint64_t dataKey;
 		char   strRefDate [32];
 		char   strCurDate [32];
-		bool   *boolBMStab;
+		bool   *boolBMStab{};
 
         //---------------------------------------------
         // SECTION 0: THE INDICATOR SECTION (IS)
@@ -167,7 +167,7 @@ class GribRecord : public RegularGridRecord
         bool   hasGDS;
         bool   hasBMS;
         zuint  refyear, refmonth, refday, refhour, refminute;
-        zuchar periodP1, periodP2;
+        zuchar periodP1{0}, periodP2{0};
         zuchar timeRange{255};
         zuint  periodsec;    // period in seconds
         time_t refDate;      // Reference date
@@ -190,7 +190,7 @@ class GribRecord : public RegularGridRecord
         // SECTION 3: BIT MAP SECTION (BMS)
         zuint  fileOffset3;
         zuint  sectionSize3;
-        zuchar *BMSbits;
+        zuchar *BMSbits{};
         // SECTION 4: BINARY DATA SECTION (BDS)
         zuint  fileOffset4;
         zuint  sectionSize4;
@@ -203,7 +203,7 @@ class GribRecord : public RegularGridRecord
         double scaleFactorEpow2;
         double refValue;
         zuint  nbBitsInPack;
-        double  *data;
+        double  *data{};
         // SECTION 5: END SECTION (ES)
 
         //---------------------------------------------
@@ -240,7 +240,7 @@ class GribRecord : public RegularGridRecord
 		// original values (to detect ambiguous headers)
 		double savXmin,savXmax, savYmin,savYmax;
 		double savDi, savDj;
-		bool   verticalOrientationIsAmbiguous;
+		bool   verticalOrientationIsAmbiguous{false};
 };
 
 //==========================================================================

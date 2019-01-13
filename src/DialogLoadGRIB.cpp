@@ -1452,7 +1452,7 @@ void DialogLoadGRIB::setZone (double x0, double y0, double x1, double y1)
 QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
 {
     int ind, lig,col;
-    QFrame * ftmp, *ftmp2;
+    QFrame * ftmp;
     QFrame * frm = new QFrame(parent);
     assert(frm);
     QVBoxLayout  *lay = new QVBoxLayout(frm);
