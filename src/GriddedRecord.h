@@ -50,7 +50,7 @@ class GriddedRecord : public DataRecordAbstract
 						{ return y>=ymin && y<=ymax; }
         virtual bool isPointInMap(double x, double y) const
 						{ return isXInMap(x) && isYInMap(y); }
-		
+
         virtual double  getInterpolatedValue (
 							DataCode dtc,
 							double px, double py,
@@ -71,10 +71,9 @@ class GriddedRecord : public DataRecordAbstract
 						
 		virtual int     getNi () const = 0;
         virtual int     getNj () const = 0;
-        virtual double  getX (int i) const = 0;
-        virtual double  getY (int j) const = 0;
         virtual double  getDeltaX () const = 0;
         virtual double  getDeltaY () const = 0;
+        virtual void getXY(int i, int j, double *lon, double *lat) const = 0;
 								
         virtual int    getTotalNumberOfPoints ()  const = 0;
         virtual double getAveragePointsDensity () const = 0;
@@ -87,8 +86,10 @@ class GriddedRecord : public DataRecordAbstract
         virtual double  getHeight () const {return ymax-ymin;}
         
 		bool   entireWorldInLongitude;
-						
+
 	protected:
+        virtual double  getX (int i) const = 0;
+        virtual double  getY (int j) const = 0;
 		double xmin,xmax, ymin,ymax;
 		bool   duplicated;
 		DataCenterModel    dataCenterModel;

@@ -788,8 +788,7 @@ void GriddedPlotter::draw_DATA_MinMax (
                    && v < rec->getValueOnRegularGrid (dtc, i+1, j   )
                    && v < rec->getValueOnRegularGrid (dtc, i+1, j+1 )
             ) {
-                x = rec->getX(i);
-                y = rec->getY(j);
+                rec->getXY(i, j, &x, &y);
 
                 // in which quarter of the grid are we
                 if (i <= Ni/2 && j <= Nj/2) {
@@ -833,8 +832,7 @@ void GriddedPlotter::draw_DATA_MinMax (
                    && v > rec->getValueOnRegularGrid (dtc, i+1, j   )
                    && v > rec->getValueOnRegularGrid (dtc, i+1, j+1 )
             ) {
-                x = rec->getX(i);
-                y = rec->getY(j);
+                rec->getXY(i, j, &x, &y);
 
                 // in which quarter of the grid are we
                 if (i <= Ni/2 && j <= Nj/2) {

@@ -588,8 +588,8 @@ void GribReader::computeMissingData ()
                 {
                     for (int j=0; j<recModel->getNj(); j++)
                     {
-                        double x = recModel->getX(i);
-                        double y = recModel->getY(j);
+                        double x, y;
+                        recModel->getXY(i,j, &x, &y);
                         double dp = computeHumidRel (x, y, date);
                         recHumidRel->setValue(i, j, dp);
                     }
@@ -625,8 +625,9 @@ void GribReader::computeMissingData ()
                     {
                         for (int j=0; j<recModel->getNj(); j++)
                         {
-                            double x = recModel->getX(i);
-                            double y = recModel->getY(j);
+                            double x,y;
+
+                            recModel->getXY(i,j, &x, &y);
                             double temp = recTemp->getInterpolatedValue   (x, y);
                             double humid = recHumid->getInterpolatedValue (x, y);
                             double dp = DataRecordAbstract::dewpointHardy (temp, humid);
