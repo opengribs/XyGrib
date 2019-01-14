@@ -697,11 +697,241 @@ void MainWindow::slotTimeZoneChanged()
     }
 }
 //-------------------------------------------------
+void MainWindow::disableMenubarItems()
+{
+	menuBar->acView_TempColors->setEnabled(false);
+	menuBar->acView_TemperatureLabels->setEnabled(false);
+
+	menuBar->acView_SnowCateg->setEnabled(false);
+	menuBar->acView_SnowDepth->setEnabled(false);
+
+	menuBar->acView_FrzRainCateg->setEnabled(false);
+
+	menuBar->acView_CAPEsfc->setEnabled (false);
+    menuBar->acView_CINsfc->setEnabled (false);
+
+    menuBar->acView_ReflectColors->setEnabled (false);
+    menuBar->acView_ThetaEColors->setEnabled (false);
+
+	menuBar->acView_WindColors->setEnabled(false);
+	menuBar->acView_WindArrow->setEnabled(false);
+	menuBar->acView_Barbules->setEnabled(false);
+	menuBar->acView_ThinWindArrows->setEnabled(false);
+
+	menuBar->acView_GustColors->setEnabled(false);
+
+    menuBar->acView_RainColors->setEnabled(false);
+    menuBar->acView_RainColors->setEnabled(false);
+	menuBar->acView_CloudColors->setEnabled(false);
+	menuBar->acView_HumidColors->setEnabled(false);
+	menuBar->acView_DeltaDewpointColors->setEnabled(false);
+
+	menuBar->acView_Isobars->setEnabled(false);
+	menuBar->acView_IsobarsLabels->setEnabled(false);
+	menuBar->acView_PressureMinMax->setEnabled(false);
+	menuBar->menuIsobarsStep->setEnabled(false);
+
+	menuBar->acView_Isotherms0->setEnabled(false);
+	menuBar->acView_Isotherms0Labels->setEnabled(false);
+	menuBar->acView_GroupIsotherms0Step->setEnabled(false);
+	menuBar->menuIsotherms0Step->setEnabled(false);
+	//------------------------------------------------
+	menuBar->acView_Isotherms_2m->setEnabled (false);
+	menuBar->acView_Isotherms_925hpa->setEnabled (false);
+	menuBar->acView_Isotherms_850hpa->setEnabled (false);
+	menuBar->acView_Isotherms_700hpa->setEnabled (false);
+	menuBar->acView_Isotherms_500hpa->setEnabled (false);
+	menuBar->acView_Isotherms_300hpa->setEnabled (false);
+	menuBar->acView_Isotherms_200hpa->setEnabled (false);
+	menuBar->acView_Isotherms_400hpa->setEnabled (false);
+	menuBar->acView_Isotherms_600hpa->setEnabled (false);
+	menuBar->menuIsotherms->setEnabled (false);
+	menuBar->acView_Isotherms_Labels->setEnabled (false);
+	menuBar->menuIsotherms_Step->setEnabled (false);
+
+	// Set altitude menus
+	menuBar->acAlt_GeopotLine_925hpa->setEnabled (false);
+	menuBar->acAlt_GeopotLine_850hpa->setEnabled (false);
+	menuBar->acAlt_GeopotLine_700hpa->setEnabled (false);
+	menuBar->acAlt_GeopotLine_500hpa->setEnabled (false);
+	menuBar->acAlt_GeopotLine_300hpa->setEnabled (false);
+	menuBar->acAlt_GeopotLine_200hpa->setEnabled (false);
+	menuBar->acAlt_GeopotLine_400hpa->setEnabled (false);
+	menuBar->acAlt_GeopotLine_600hpa->setEnabled (false);
+	menuBar->menuGeopotStep->setEnabled (false);
+	menuBar->acAlt_GeopotLabels->setEnabled (false);
+
+	// Sea current
+    menuBar->acView_CurrentColors->setEnabled(false);
+    menuBar->acView_CurrentArrow->setEnabled(false);
+    menuBar->acView_CurrentArrowsOnGribGrid->setEnabled(false);
+
+	// Waves
+	menuBar->acView_SigWaveHeight->setEnabled (false);
+	menuBar->acView_MaxWaveHeight->setEnabled (false);
+	menuBar->acView_WhiteCapProb->setEnabled (false);
+    menuBar->menuWavesArrows->setEnabled (false);
+    menuBar->acView_DuplicateMissingWaveRecords->setEnabled (false);
+	menuBar->acView_WavesArrows_none->setEnabled (false);
+	menuBar->acView_WavesArrows_max->setEnabled (false);
+	menuBar->acView_WavesArrows_swell->setEnabled (false);
+	menuBar->acView_WavesArrows_wind->setEnabled (false);
+	menuBar->acView_WavesArrows_prim->setEnabled (false);
+	menuBar->acView_WavesArrows_scdy->setEnabled (false);
+}
+//-------------------------------------------------
+void MainWindow::setMenubarItems()
+{
+	GriddedPlotter *plotter = terre->getGriddedPlotter();
+    if (plotter == nullptr || !plotter->isReaderOk())
+        return;
+
+    menuBar->menuColorMap->setEnabled (true);
+	menuBar->menuIsolines->setEnabled (true);
+ 
+	if (plotter->hasDataType (GRB_TEMP) ) {
+	    menuBar->acView_TempColors->setEnabled(true);
+	    menuBar->acView_TemperatureLabels->setEnabled(true);
+    }
+
+	if (plotter->hasDataType (GRB_SNOW_CATEG)) menuBar->acView_SnowCateg->setEnabled(true);
+	if (plotter->hasDataType (GRB_SNOW_DEPTH)) menuBar->acView_SnowDepth->setEnabled(true);
+
+	if (plotter->hasDataType (GRB_FRZRAIN_CATEG)) menuBar->acView_FrzRainCateg->setEnabled(true);
+
+	if (plotter->hasDataType (GRB_CAPE)) menuBar->acView_CAPEsfc->setEnabled (true);
+    if (plotter->hasDataType (GRB_CIN)) menuBar->acView_CINsfc->setEnabled (true);
+
+    if (plotter->hasDataType (GRB_COMP_REFL)) menuBar->acView_ReflectColors->setEnabled (true);
+    if (plotter->hasDataType (GRB_PRV_THETA_E)) menuBar->acView_ThetaEColors->setEnabled (true);
+
+	if ( plotter->hasDataType (GRB_WIND_VX)) {
+	    menuBar->acView_WindColors->setEnabled(true);
+	    menuBar->acView_WindArrow->setEnabled(true);
+	    menuBar->acView_Barbules->setEnabled(true);
+	    menuBar->acView_ThinWindArrows->setEnabled(true);
+    }
+
+	if (plotter->hasDataType (GRB_WIND_GUST)) menuBar->acView_GustColors->setEnabled(true);
+
+	bool ok;
+    ok = plotter->hasDataType (GRB_PRECIP_TOT) || plotter->hasDataType (GRB_PRECIP_RATE);
+    if (ok) menuBar->acView_RainColors->setEnabled( true);
+
+    if (plotter->hasDataType (GRB_CLOUD_TOT)) menuBar->acView_CloudColors->setEnabled(true);
+	if (plotter->hasDataType (GRB_HUMID_REL)) menuBar->acView_HumidColors->setEnabled(true);
+	if (plotter->hasDataType (GRB_DEWPOINT))  menuBar->acView_DeltaDewpointColors->setEnabled(true);
+
+	ok = plotter->hasData (GRB_PRESSURE_MSL,LV_MSL,0);
+    if (ok) {
+	    menuBar->acView_Isobars->setEnabled(ok);
+    	menuBar->acView_IsobarsLabels->setEnabled(ok);
+    	menuBar->acView_PressureMinMax->setEnabled(ok);
+    	menuBar->menuIsobarsStep->setEnabled(ok);
+    }
+
+	if (plotter->hasData (GRB_GEOPOT_HGT,LV_ISOTHERM0,0)) {
+    	menuBar->acView_Isotherms0->setEnabled(true);
+    	menuBar->acView_Isotherms0Labels->setEnabled(true);
+    	menuBar->acView_GroupIsotherms0Step->setEnabled(true);
+    	menuBar->menuIsotherms0Step->setEnabled(true);
+    }
+	//------------------------------------------------
+	bool ok2,ok3,ok4,ok5,ok6,ok7,ok8,ok9,ok10,ok11;
+	ok2 = plotter->hasData (GRB_TEMP,LV_ABOV_GND,2);
+	if (ok2) menuBar->acView_Isotherms_2m->setEnabled (ok2);
+
+	ok3 = plotter->hasData (GRB_TEMP,LV_ISOBARIC,925);
+	if (ok3) menuBar->acView_Isotherms_925hpa->setEnabled (ok3);
+
+	ok4 = plotter->hasData (GRB_TEMP,LV_ISOBARIC,850);
+	if (ok4) menuBar->acView_Isotherms_850hpa->setEnabled (ok4);
+
+	ok5 = plotter->hasData (GRB_TEMP,LV_ISOBARIC,700);
+	if (ok5) menuBar->acView_Isotherms_700hpa->setEnabled (ok5);
+
+	ok6 = plotter->hasData (GRB_TEMP,LV_ISOBARIC,500);
+	if (ok6) menuBar->acView_Isotherms_500hpa->setEnabled (ok6);
+
+	ok7 = plotter->hasData (GRB_TEMP,LV_ISOBARIC,300);
+	if (ok7) menuBar->acView_Isotherms_300hpa->setEnabled (ok7);
+
+	ok8 = plotter->hasData (GRB_TEMP,LV_ISOBARIC,200);
+	if (ok8) menuBar->acView_Isotherms_200hpa->setEnabled (ok8);
+
+	ok9 = plotter->hasData (GRB_TEMP,LV_ISOBARIC,400);
+	if (ok9) menuBar->acView_Isotherms_400hpa->setEnabled (ok9);
+
+	ok10 = plotter->hasData (GRB_TEMP,LV_ISOBARIC,600);
+	if (ok10) menuBar->acView_Isotherms_600hpa->setEnabled (ok10);
+
+	ok = ok2 || ok3 || ok4 || ok5 || ok6 || ok7 || ok8 || ok9 || ok10;
+	if (ok) {
+    	menuBar->menuIsotherms->setEnabled (ok);
+    	menuBar->acView_Isotherms_Labels->setEnabled (ok);
+    	menuBar->menuIsotherms_Step->setEnabled (ok);
+    }
+
+	// Set altitude menus
+	ok9 = plotter->hasData (GRB_GEOPOT_HGT,LV_ISOBARIC,925);
+	if (ok9) menuBar->acAlt_GeopotLine_925hpa->setEnabled (ok9);
+
+	ok8 = plotter->hasData (GRB_GEOPOT_HGT,LV_ISOBARIC,850);
+	if (ok8) menuBar->acAlt_GeopotLine_850hpa->setEnabled (ok8);
+
+	ok7 = plotter->hasData (GRB_GEOPOT_HGT,LV_ISOBARIC,700);
+	if (ok7) menuBar->acAlt_GeopotLine_700hpa->setEnabled (ok7);
+
+	ok5 = plotter->hasData (GRB_GEOPOT_HGT,LV_ISOBARIC,500);
+	if (ok5) menuBar->acAlt_GeopotLine_500hpa->setEnabled (ok5);
+
+	ok3 = plotter->hasData (GRB_GEOPOT_HGT,LV_ISOBARIC,300);
+	if (ok3) menuBar->acAlt_GeopotLine_300hpa->setEnabled (ok3);
+
+	ok2 = plotter->hasData (GRB_GEOPOT_HGT,LV_ISOBARIC,200);
+	if (ok2) menuBar->acAlt_GeopotLine_200hpa->setEnabled (ok2);
+
+	ok10 = plotter->hasData (GRB_GEOPOT_HGT,LV_ISOBARIC,400);
+	if (ok10) menuBar->acAlt_GeopotLine_400hpa->setEnabled (ok10);
+
+	ok11 = plotter->hasData (GRB_GEOPOT_HGT,LV_ISOBARIC,600);
+	if (ok11) menuBar->acAlt_GeopotLine_600hpa->setEnabled (ok11);
+
+	ok = ok9 || ok8 || ok7 || ok5 || ok3 || ok2 || ok10 || ok11;
+	if (ok) {
+    	menuBar->menuGeopotStep->setEnabled (ok);
+    	menuBar->acAlt_GeopotLabels->setEnabled (ok);
+    }
+	//------------------------------------------------------
+	// Common actions to all gridded data file
+	//------------------------------------------------------
+	// Sea current
+	if (plotter->hasDataType (GRB_CUR_VX)) {
+    	menuBar->acView_CurrentColors->setEnabled(true);
+    	menuBar->acView_CurrentArrow->setEnabled(true);
+    	menuBar->acView_CurrentArrowsOnGribGrid->setEnabled(true);
+    }
+	// Waves
+	if (plotter->hasWaveDataType (GRB_WAV_SIG_HT)) menuBar->acView_SigWaveHeight->setEnabled (true);
+	if (plotter->hasWaveDataType (GRB_WAV_MAX_HT)) menuBar->acView_MaxWaveHeight->setEnabled (true);
+	if (plotter->hasWaveDataType (GRB_WAV_WHITCAP_PROB)) menuBar->acView_WhiteCapProb->setEnabled (true);
+	if (plotter->hasWaveDataType ()) {
+	    menuBar->menuWavesArrows->setEnabled (true);
+	    menuBar->acView_DuplicateMissingWaveRecords->setEnabled (true);
+	    menuBar->acView_WavesArrows_none->setEnabled (true);
+    }
+	if (plotter->hasWaveDataType (GRB_WAV_MAX_DIR)) menuBar->acView_WavesArrows_max->setEnabled (true);
+	if (plotter->hasWaveDataType (GRB_WAV_SWL_DIR)) menuBar->acView_WavesArrows_swell->setEnabled (true);
+	if (plotter->hasWaveDataType (GRB_WAV_WND_DIR)) menuBar->acView_WavesArrows_wind->setEnabled (true);
+	if (plotter->hasWaveDataType (GRB_WAV_PRIM_DIR)) menuBar->acView_WavesArrows_prim->setEnabled (true);
+	if (plotter->hasWaveDataType (GRB_WAV_SCDY_DIR)) menuBar->acView_WavesArrows_scdy->setEnabled (true);
+}
+
+//-------------------------------------------------
 void MainWindow::openMeteoDataFile (const QString& fileName)
 {
 	QCursor oldcursor = cursor();
 	setCursor(Qt::WaitCursor);
-	bool ok,ok2,ok3,ok4,ok5,ok6,ok7,ok8,ok9,ok10,ok11;
 	FileDataType meteoFileType = DATATYPE_NONE;
     colorScaleWidget->setColorScale (nullptr, DataCode());
     dateChooser->reset ();
@@ -717,6 +947,8 @@ void MainWindow::openMeteoDataFile (const QString& fileName)
 	GriddedPlotter *plotter = terre->getGriddedPlotter();
     if (plotter!=nullptr && plotter->isReaderOk())
 	{
+	    disableMenubarItems();
+	    setMenubarItems();
 		//------------------------------------------------
 		if (meteoFileType == DATATYPE_GRIB)
 		//------------------------------------------------
@@ -726,103 +958,6 @@ void MainWindow::openMeteoDataFile (const QString& fileName)
 									   plotter->getCurrentDate() );
 			gribFileName = fileName;
 
-			menuBar->menuColorMap->setEnabled (true);
-			menuBar->menuIsolines->setEnabled (true);
- 
-			ok = plotter->hasDataType (GRB_TEMP);
-			menuBar->acView_TempColors->setEnabled(ok); 
-			menuBar->acView_TemperatureLabels->setEnabled(ok);
-
-			ok = plotter->hasDataType (GRB_SNOW_CATEG);
-			menuBar->acView_SnowCateg->setEnabled(ok);
-			ok = plotter->hasDataType (GRB_SNOW_DEPTH);
-			menuBar->acView_SnowDepth->setEnabled(ok);
-
-			ok = plotter->hasDataType (GRB_FRZRAIN_CATEG);
-			menuBar->acView_FrzRainCateg->setEnabled(ok);
-
-			menuBar->acView_CAPEsfc->setEnabled (plotter->hasDataType (GRB_CAPE));
-            menuBar->acView_CINsfc->setEnabled (plotter->hasDataType (GRB_CIN));
-            // added by david
-            menuBar->acView_ReflectColors->setEnabled (plotter->hasDataType (GRB_COMP_REFL));
-            menuBar->acView_ThetaEColors->setEnabled (plotter->hasDataType (GRB_PRV_THETA_E));
-
-			ok = plotter->hasDataType (GRB_WIND_VX);
-			menuBar->acView_WindColors->setEnabled(ok);
-			menuBar->acView_WindArrow->setEnabled(ok);
-			menuBar->acView_Barbules->setEnabled(ok);
-			menuBar->acView_ThinWindArrows->setEnabled(ok);
-
-			ok = plotter->hasDataType (GRB_WIND_GUST);
-			menuBar->acView_GustColors->setEnabled(ok);
-
-            ok = plotter->hasDataType (GRB_PRECIP_TOT);
-            menuBar->acView_RainColors->setEnabled(ok);
-            if (!ok)
-                ok = plotter->hasDataType (GRB_PRECIP_RATE);
-            menuBar->acView_RainColors->setEnabled(ok);
-            ok = plotter->hasDataType (GRB_CLOUD_TOT);
-			menuBar->acView_CloudColors->setEnabled(ok);
-			ok = plotter->hasDataType (GRB_HUMID_REL);
-			menuBar->acView_HumidColors->setEnabled(ok);
-			ok = plotter->hasDataType (GRB_DEWPOINT);
-			menuBar->acView_DeltaDewpointColors->setEnabled(ok);
-
-			ok = plotter->hasData (GRB_PRESSURE_MSL,LV_MSL,0);
-			menuBar->acView_Isobars->setEnabled(ok);
-			menuBar->acView_IsobarsLabels->setEnabled(ok);
-			menuBar->acView_PressureMinMax->setEnabled(ok);
-			menuBar->menuIsobarsStep->setEnabled(ok);
-
-			ok = plotter->hasData (GRB_GEOPOT_HGT,LV_ISOTHERM0,0);
-			menuBar->acView_Isotherms0->setEnabled(ok);
-			menuBar->acView_Isotherms0Labels->setEnabled(ok);
-			menuBar->acView_GroupIsotherms0Step->setEnabled(ok);
-			menuBar->menuIsotherms0Step->setEnabled(ok);
-			//------------------------------------------------
-			ok2 = plotter->hasData (GRB_TEMP,LV_ABOV_GND,2);
-			menuBar->acView_Isotherms_2m->setEnabled (ok2);
-			ok3 = plotter->hasData (GRB_TEMP,LV_ISOBARIC,925);
-			menuBar->acView_Isotherms_925hpa->setEnabled (ok3);
-			ok4 = plotter->hasData (GRB_TEMP,LV_ISOBARIC,850);
-			menuBar->acView_Isotherms_850hpa->setEnabled (ok4);
-			ok5 = plotter->hasData (GRB_TEMP,LV_ISOBARIC,700);
-			menuBar->acView_Isotherms_700hpa->setEnabled (ok5);
-			ok6 = plotter->hasData (GRB_TEMP,LV_ISOBARIC,500);
-			menuBar->acView_Isotherms_500hpa->setEnabled (ok6);
-			ok7 = plotter->hasData (GRB_TEMP,LV_ISOBARIC,300);
-			menuBar->acView_Isotherms_300hpa->setEnabled (ok7);
-			ok8 = plotter->hasData (GRB_TEMP,LV_ISOBARIC,200);
-			menuBar->acView_Isotherms_200hpa->setEnabled (ok8);
-			ok9 = plotter->hasData (GRB_TEMP,LV_ISOBARIC,400);
-			menuBar->acView_Isotherms_400hpa->setEnabled (ok9);
-			ok10 = plotter->hasData (GRB_TEMP,LV_ISOBARIC,600);
-			menuBar->acView_Isotherms_600hpa->setEnabled (ok10);
-			ok = ok2 || ok3 || ok4 || ok5 || ok6 || ok7 || ok8 || ok9 || ok10;
-			menuBar->menuIsotherms->setEnabled (ok);
-			menuBar->acView_Isotherms_Labels->setEnabled (ok);
-			menuBar->menuIsotherms_Step->setEnabled (ok);
-
-			// Set altitude menus
-			ok9 = plotter->hasData (GRB_GEOPOT_HGT,LV_ISOBARIC,925);
-			menuBar->acAlt_GeopotLine_925hpa->setEnabled (ok9);
-			ok8 = plotter->hasData (GRB_GEOPOT_HGT,LV_ISOBARIC,850);
-			menuBar->acAlt_GeopotLine_850hpa->setEnabled (ok8);
-			ok7 = plotter->hasData (GRB_GEOPOT_HGT,LV_ISOBARIC,700);
-			menuBar->acAlt_GeopotLine_700hpa->setEnabled (ok7);
-			ok5 = plotter->hasData (GRB_GEOPOT_HGT,LV_ISOBARIC,500);
-			menuBar->acAlt_GeopotLine_500hpa->setEnabled (ok5);
-			ok3 = plotter->hasData (GRB_GEOPOT_HGT,LV_ISOBARIC,300);
-			menuBar->acAlt_GeopotLine_300hpa->setEnabled (ok3);
-			ok2 = plotter->hasData (GRB_GEOPOT_HGT,LV_ISOBARIC,200);
-			menuBar->acAlt_GeopotLine_200hpa->setEnabled (ok2);
-			ok10 = plotter->hasData (GRB_GEOPOT_HGT,LV_ISOBARIC,400);
-			menuBar->acAlt_GeopotLine_400hpa->setEnabled (ok10);
-			ok11 = plotter->hasData (GRB_GEOPOT_HGT,LV_ISOBARIC,600);
-			menuBar->acAlt_GeopotLine_600hpa->setEnabled (ok11);
-			ok = ok9 || ok8 || ok7 || ok5 || ok3 || ok2 || ok10 || ok11;
-			menuBar->menuGeopotStep->setEnabled (ok);
-			menuBar->acAlt_GeopotLabels->setEnabled (ok);
 			menuBar->acView_DuplicateFirstCumulativeRecord->setEnabled (true);
 			menuBar->acView_DuplicateMissingWaveRecords->setEnabled (true);
 			
@@ -843,26 +978,6 @@ void MainWindow::openMeteoDataFile (const QString& fileName)
 				);
 			}
 		}
-		//------------------------------------------------------
-		// Common actions to all gridded data file
-		//------------------------------------------------------
-		// Sea current
-		ok = plotter->hasDataType (GRB_CUR_VX);
-		menuBar->acView_CurrentColors->setEnabled(ok);
-		menuBar->acView_CurrentArrow->setEnabled(ok);
-		menuBar->acView_CurrentArrowsOnGribGrid->setEnabled(ok);
-		// Waves
-		menuBar->acView_SigWaveHeight->setEnabled (plotter->hasWaveDataType (GRB_WAV_SIG_HT));
-		menuBar->acView_MaxWaveHeight->setEnabled (plotter->hasWaveDataType (GRB_WAV_MAX_HT));
-		menuBar->acView_WhiteCapProb->setEnabled (plotter->hasWaveDataType (GRB_WAV_WHITCAP_PROB));
-		menuBar->menuWavesArrows->setEnabled (plotter->hasWaveDataType ());
-		menuBar->acView_DuplicateMissingWaveRecords->setEnabled (plotter->hasWaveDataType ());
-		menuBar->acView_WavesArrows_none->setEnabled (plotter->hasWaveDataType ());
-		menuBar->acView_WavesArrows_max->setEnabled (plotter->hasWaveDataType (GRB_WAV_MAX_DIR));
-		menuBar->acView_WavesArrows_swell->setEnabled (plotter->hasWaveDataType (GRB_WAV_SWL_DIR));
-		menuBar->acView_WavesArrows_wind->setEnabled (plotter->hasWaveDataType (GRB_WAV_WND_DIR));
-		menuBar->acView_WavesArrows_prim->setEnabled (plotter->hasWaveDataType (GRB_WAV_PRIM_DIR));
-		menuBar->acView_WavesArrows_scdy->setEnabled (plotter->hasWaveDataType (GRB_WAV_SCDY_DIR));
 		//------------------------------------------------
 		menuBar->acDatesGrib_prev->setEnabled (true);
 		menuBar->acDatesGrib_next->setEnabled (true);
