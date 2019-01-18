@@ -24,6 +24,7 @@ Lecture mise en mémoire d'un fichier GRIB
 #ifndef GRIBREADER_H
 #define GRIBREADER_H
 #include <cstdint>
+#include <memory>
 
 #include "RegularGridded.h"
 #include "GribRecord.h"
@@ -103,18 +104,18 @@ class GribReader : public RegularGridReader, public LongTaskMessage
 		
 		
     private:
-		std::vector<GribRecord *> * getListOfGribRecords (DataCode dtc);
+		std::vector<std::shared_ptr<GribRecord>> * getListOfGribRecords (DataCode dtc);
         int	   dewpointDataStatus;
 		bool   hasAltitude;
 		bool   ambiguousHeader;
 		
-        std::map <uint64_t, std::vector<GribRecord *>* >  mapGribRecords;
+        std::map <uint64_t, std::vector<std::shared_ptr<GribRecord>>* >  mapGribRecords;
 
         void   openFilePriv (const QString& fname, int nbrecs);
 		void   readGribFileContent (int nbrecs);
 		void   readAllGribRecords  (int nbrecs);
         
-        std::vector<GribRecord *> * getFirstNonEmptyList();
+        std::vector<std::shared_ptr<GribRecord>> *  getFirstNonEmptyList();
 		
 		double   computeDewPoint (double lon, double lat, time_t date);
 		double   computeHumidRel (double lon, double lat, time_t date);

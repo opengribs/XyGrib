@@ -60,8 +60,8 @@ GribReader::~GribReader()
 void GribReader::clean_all_vectors ()
 {
 	for (auto const &it : mapGribRecords) {
-		std::vector<GribRecord *> *ls = it.second;
-		clean_vector( *ls );
+		std::vector<std::shared_ptr<GribRecord>> *ls = it.second;
+		// clean_vector( *ls );
 		delete ls;
 	}
 	mapGribRecords.clear();
@@ -85,11 +85,11 @@ void GribReader::storeRecordInMap (GribRecord *rec)
 	auto it = mapGribRecords.find(rec->getKey());
 	if (it == mapGribRecords.end())
 	{
-		mapGribRecords[rec->getKey()] = new std::vector<GribRecord *>;
+		mapGribRecords[rec->getKey()] = new std::vector<std::shared_ptr<GribRecord>>;
 		assert(mapGribRecords[rec->getKey()]);
 	}
 	
-	mapGribRecords [rec->getKey()]->push_back (rec);
+	mapGribRecords [rec->getKey()]->push_back (std::shared_ptr<GribRecord>(rec));
 	
 	if (xmin > rec->getXmin()) xmin = rec->getXmin();
 	if (xmax < rec->getXmax()) xmax = rec->getXmax();
@@ -469,14 +469,14 @@ void  GribReader::removeFirstCumulativeRecord (DataCode dtc)
 
 	if (rec!= nullptr && rec->getRecordCurrentDate() == dateref)
 	{
-		std::vector<GribRecord *> *liste = getListOfGribRecords (dtc);
+		auto liste = getListOfGribRecords (dtc);
 		if (liste != nullptr) {
-			std::vector<GribRecord *>::iterator it;
-			for (it=liste->begin(); it!=liste->end() && (*it)!=rec; ++it)
+			std::vector<std::shared_ptr<GribRecord>>::iterator it;
+			for (it=liste->begin(); it!=liste->end() && (*it).get() !=rec; ++it)
 			{
 			}
 			assert(it!=liste->end());
-			if ((*it) == rec) {
+			if ((*it).get() == rec) {
 				liste->erase(it);
 			}
 		}
@@ -551,15 +551,14 @@ void  GribReader::copyMissingWaveRecords ()
 //---------------------------------------------------------------------------------
 void  GribReader::removeMissingWaveRecords ()
 {
-	std::vector<GribRecord *>::iterator itv;
+	std::vector<std::shared_ptr<GribRecord>>::iterator itv;
 	for (auto const & it: mapGribRecords) {
-		std::vector<GribRecord *> *ls = it.second;
+		auto ls = it.second;
 		for (itv=ls->begin(); itv!=ls->end();  ) {
-			GribRecord *rec = *itv;
+			GribRecord *rec = (*itv).get();
 			if (rec && rec->isOk()
 				  && rec->isWaveData() && rec->isDuplicated()) 
 			{
-				delete rec;
 				itv = ls->erase (itv);
 			}
 			else {
@@ -762,9 +761,9 @@ int GribReader::getTotalNumberOfGribRecords() {
 }
 
 //---------------------------------------------------
-std::vector<GribRecord *> * GribReader::getFirstNonEmptyList()
+std::vector<std::shared_ptr<GribRecord>> *  GribReader::getFirstNonEmptyList()
 {
-    std::vector<GribRecord *> *ls = nullptr;
+    std::vector<std::shared_ptr<GribRecord>> *ls = nullptr;
 	for (auto it=mapGribRecords.begin(); ls==nullptr && it!=mapGribRecords.end(); ++it)
 	{
 		if (!(*it).second->empty())
@@ -776,7 +775,7 @@ std::vector<GribRecord *> * GribReader::getFirstNonEmptyList()
 //---------------------------------------------------
 int GribReader::getNumberOfGribRecords (DataCode dtc)
 {
-	std::vector<GribRecord *> *liste = getListOfGribRecords (dtc);
+	auto liste = getListOfGribRecords (dtc);
 	if (liste != nullptr)
 		return liste->size();
 	else
@@ -784,7 +783,7 @@ int GribReader::getNumberOfGribRecords (DataCode dtc)
 }
 
 //---------------------------------------------------------------------
-std::vector<GribRecord *> * GribReader::getListOfGribRecords (DataCode dtc)
+std::vector<std::shared_ptr<GribRecord>> * GribReader::getListOfGribRecords (DataCode dtc)
 {
 	auto key = GribRecord::makeKey (dtc.dataType, dtc.levelType, dtc.levelValue);
 	if (mapGribRecords.find(key) != mapGribRecords.end())
@@ -821,13 +820,13 @@ void GribReader::findGribsAroundDate (DataCode dtc, time_t date,
 							GribRecord **before, GribRecord **after)
 {
 	// Cherche les GribRecord qui encadrent la date
-	std::vector<GribRecord *> *ls = getListOfGribRecords (dtc);
+	auto ls = getListOfGribRecords (dtc);
     *before = nullptr;
     *after  = nullptr;
 	zuint nb = ls->size();
     for (zuint i=0; i<nb && *before==nullptr && *after==nullptr; i++)
 	{
-		GribRecord *rec = (*ls)[i];
+		GribRecord *rec = (*ls)[i].get();
 		assert(rec->isOk());
 		if (rec->getRecordCurrentDate() == date) {
 			*before = rec;
@@ -888,12 +887,13 @@ bool GribReader::getZoneExtension (double *x0,double *y0, double *x1,double *y1)
 // Premier GribRecord trouvé (pour récupérer la grille)
 GribRecord * GribReader::getFirstGribRecord()
 {
-    std::vector<GribRecord *> *ls = getFirstNonEmptyList();
-    if (ls == nullptr)
+    auto ls = getFirstNonEmptyList();
+    if (ls == nullptr) {
     	return nullptr;
-
-	assert(ls->at(0)->isOk());
-	return ls->at(0);
+	}
+	GribRecord *ret = ls->at(0).get();
+	assert(ret->isOk());
+	return ret;
 }
 //---------------------------------------------------
 // Premier GribRecord (par date) pour un type donné
@@ -912,14 +912,15 @@ GribRecord * GribReader::getFirstGribRecord (DataCode dtc)
 //---------------------------------------------------
 GribRecord * GribReader::getRecord (DataCode dtc, time_t date)
 {
-    std::vector<GribRecord *> *ls = getListOfGribRecords (dtc);
+    auto ls = getListOfGribRecords (dtc);
     GribRecord *res = nullptr;
     if (ls != nullptr) {
         // Cherche le premier enregistrement à la bonne date
         zuint nb = ls->size();
         for (zuint i=0; i<nb && res==nullptr; i++) {
-            if ((*ls)[i]->isOk() && (*ls)[i]->getRecordCurrentDate() == date) {
-                res = (*ls)[i];
+        	GribRecord *p = (*ls)[i].get();
+            if (p->isOk() && p->getRecordCurrentDate() == date) {
+                res = p;
 			}
         }
     }
@@ -933,7 +934,7 @@ void GribReader::createListDates()
     setAllDates.clear();
 	for (auto const & it : mapGribRecords )
 	{
-		std::vector<GribRecord *> *ls = it.second;
+		std::vector<std::shared_ptr<GribRecord>> *ls = it.second;
 		for (auto & l : *ls) {
 			assert(l->isOk());
 			setAllDates.insert( l->getRecordCurrentDate() );
@@ -1075,7 +1076,7 @@ time_t  GribReader::getRefDateForDataCenter (const DataCenterModel &dcm)
 	t = 0;
 	for (auto const & it : mapGribRecords)
 	{
-		std::vector<GribRecord *> *ls = it.second;
+		std::vector<std::shared_ptr<GribRecord>> *ls = it.second;
 		for (auto & l : *ls) {
 			if (l->getDataCenterModel() == dcm) {
 				t2 = l->getRecordRefDate (); 
