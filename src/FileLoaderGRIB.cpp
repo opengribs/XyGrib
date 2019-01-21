@@ -234,8 +234,9 @@ void FileLoaderGRIB::getGribFile(
         QString phpfilename = scriptpath+ "getmygribs2.php?";
         QString appVer = Version::getVersion();
         QString ptype = "Unknown";
-        if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
-            ptype = QSysInfo::productType();
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
+        ptype = QSysInfo::productType();
+#endif
         QTextStream(&page) << phpfilename
                            << "osys=" << ptype
                            << "&ver=" << appVer
