@@ -77,6 +77,13 @@ void  GribRecord::translateDataType ()
         dataCenterModel = NOAA_NAM;
     }
     //------------------------
+    // GLOBAL GFS ENSEMBLE 
+    // https://nomads.ncep.noaa.gov/txt_descriptions/GFS_Ensemble_high_resolution_doc.shtml
+    //------------------------
+    else if (idCenter==7 && idModel==107) {
+        dataCenterModel = NOAA_GFS_ENSEMBLE;
+    }
+    //------------------------
     // Meteo France Arome/Arpege
     //------------------------
     else if (idCenter==84 && (idModel==204 || idModel==121 || idModel==211) && idGrid==255) {

@@ -24,6 +24,8 @@ QString DataCodeStr::toString (const DataCenterModel &dcm)
 	switch (dcm) {
         case NOAA_GFS :
             return "NOAA-GFS";
+        case NOAA_GFS_ENSEMBLE :
+            return "NOAA-GFS-ENSEMBLE";
         case NOAA_NAM :
             return "NOAA-NAM";
         case NOAA_NCEP_WW3 :
