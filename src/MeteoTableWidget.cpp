@@ -112,6 +112,26 @@ void MeteoTableWidget::addCell_SunMoonAlmanac (time_t t, double lat, double lon,
 }
 
 //-------------------------------------------------------------------------------
+static int date_span(std::set<time_t> sdates, std::set<time_t>::iterator iter)
+{
+	int colspan = 0;
+	QString dstr;
+	QString actuel;
+
+	time_t daterecord = *iter;
+	dstr = Util::formatDateLong (daterecord);
+	actuel = dstr;
+	do
+	{
+		colspan ++;
+		++iter;
+		if (iter == sdates.end())
+        	break;
+		dstr = Util::formatDateLong(*iter);
+	} while (actuel==dstr);
+	return colspan;
+}
+
 void MeteoTableWidget::createTable() 
 {
 	reader = plotter->getReader();
@@ -120,7 +140,6 @@ void MeteoTableWidget::createTable()
 	
 	std::set<time_t> sdates = reader->getListDates();
 	std::set<time_t>::iterator iter;
-	std::set<time_t>::iterator iter2;
 	int lig, col, colspan;
 	QString dstr;
 	bool showSunMoonAlmanac = Util::getSetting("MTABLE_showSunMoonAlmanac", true).toBool();
@@ -138,15 +157,8 @@ void MeteoTableWidget::createTable()
 		dstr = Util::formatDateLong (daterecord);
 		if (dstr != actuel)
 		{
-			colspan = 0;
 			actuel = dstr;
-			iter2 = iter;
-			do
-			{
-				colspan ++;
-				++iter2;
-				dstr = Util::formatDateLong(*iter2);
-			} while (actuel==dstr);
+			colspan = date_span(sdates, iter);
 			addCell_title (actuel, true, layout, lig,col, 1,colspan);
 			col += colspan;
 		}
@@ -168,17 +180,8 @@ void MeteoTableWidget::createTable()
 			dstr = Util::formatDateLong (daterecord);
 			if (dstr != actuel)
 			{
-				colspan = 0;
 				actuel = dstr;
-				iter2 = iter;
-				do
-				{
-					colspan ++;
-					++iter2;
-                    if (iter2 == sdates.end())
-                        break;
-                    dstr = Util::formatDateLong(*iter2);
-				} while (actuel==dstr);
+				colspan = date_span(sdates, iter);
 				addCell_SunMoonAlmanac (daterecord, lat, lon, layout, lig,col, 1,colspan);
 				col += colspan;
 			}
