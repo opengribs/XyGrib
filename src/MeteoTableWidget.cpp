@@ -175,7 +175,9 @@ void MeteoTableWidget::createTable()
 				{
 					colspan ++;
 					++iter2;
-					dstr = Util::formatDateLong(*iter2);
+                    if (iter2 == sdates.end())
+                        break;
+                    dstr = Util::formatDateLong(*iter2);
 				} while (actuel==dstr);
 				addCell_SunMoonAlmanac (daterecord, lat, lon, layout, lig,col, 1,colspan);
 				col += colspan;
