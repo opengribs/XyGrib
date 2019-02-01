@@ -112,56 +112,41 @@ void MeteoTableWidget::addCell_SunMoonAlmanac (time_t t, double lat, double lon,
 }
 
 //-------------------------------------------------------------------------------
-static int date_span(std::set<time_t> sdates, std::set<time_t>::iterator iter)
-{
-	int colspan = 0;
-	QString dstr;
-	QString actuel;
-
-	time_t daterecord = *iter;
-	dstr = Util::formatDateLong (daterecord);
-	actuel = dstr;
-	do
-	{
-		colspan ++;
-		++iter;
-		if (iter == sdates.end())
-        	break;
-		dstr = Util::formatDateLong(*iter);
-	} while (actuel==dstr);
-	return colspan;
-}
-
 void MeteoTableWidget::createTable() 
 {
 	reader = plotter->getReader();
 	if (!reader)
 		return;
 	
-	std::set<time_t> sdates = reader->getListDates();
-	std::set<time_t>::iterator iter;
 	int lig, col, colspan;
 	QString dstr;
 	bool showSunMoonAlmanac = Util::getSetting("MTABLE_showSunMoonAlmanac", true).toBool();
 	//-----------------------------------------------
 	// Titre 1 : une colonne par jour, regroupant plusieurs horaires
 	//-----------------------------------------------
+	colspan = 0;
 	col = 0;
 	lig = 0;
 	addCell_title_dataline ("", true, lig,col);
 	col ++;
 	QString actuel = "";
-	for (iter=sdates.begin(); iter!=sdates.end(); ++iter)
+	std::set<time_t> sdates = reader->getListDates();
+	for (auto daterecord : sdates)
 	{
-		time_t daterecord = *iter;
 		dstr = Util::formatDateLong (daterecord);
 		if (dstr != actuel)
 		{
+			if (colspan != 0) {
+				addCell_title (actuel, true, layout, lig,col, 1,colspan);
+				col += colspan;
+				colspan = 0;
+			}
 			actuel = dstr;
-			colspan = date_span(sdates, iter);
-			addCell_title (actuel, true, layout, lig,col, 1,colspan);
-			col += colspan;
 		}
+		colspan++;
+	}
+	if (colspan != 0) {
+		addCell_title (actuel, true, layout, lig,col, 1,colspan);
 	}
 			
 	//-----------------------------------------------
@@ -170,21 +155,29 @@ void MeteoTableWidget::createTable()
 	if (showSunMoonAlmanac)
 	{
 		col = 0;
+		colspan = 0;
 		lig ++;
 		addCell_title_dataline (tr("Sun")+"\n"+tr("Moon"), true, lig,col);
 		col ++;
-		QString actuel = "";
-		for (iter=sdates.begin(); iter!=sdates.end(); ++iter)
+		actuel = "";
+		time_t dt = 0;
+		for (auto daterecord : sdates)
 		{
-			time_t daterecord = *iter;
 			dstr = Util::formatDateLong (daterecord);
 			if (dstr != actuel)
 			{
+				if (colspan != 0) {
+					addCell_SunMoonAlmanac (dt, lat, lon, layout, lig,col, 1,colspan);
+					col += colspan;
+					colspan = 0;
+				}
 				actuel = dstr;
-				colspan = date_span(sdates, iter);
-				addCell_SunMoonAlmanac (daterecord, lat, lon, layout, lig,col, 1,colspan);
-				col += colspan;
+				dt = daterecord;
 			}
+			colspan++;
+		}
+		if (colspan != 0) {
+			addCell_SunMoonAlmanac (dt, lat, lon, layout, lig,col, 1,colspan);
 		}
 	}	
 	//-----------------------------------------------
