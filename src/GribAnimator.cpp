@@ -377,7 +377,8 @@ GribAnimator::~GribAnimator()
 //-------------------------------------------------------------------------------
 GribAnimator::GribAnimator (Terrain *terre)
 {
-	setModal(false); 
+	setModal(false);
+	setAttribute(Qt::WA_DeleteOnClose);
     setWindowTitle(tr("Animation"));
     setWindowIcon (QIcon (Util::pathImg("xyGrib_32.xpm")));
     if (Util::getSetting("showDarkSkin", true).toBool())

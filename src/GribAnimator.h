@@ -158,7 +158,6 @@ class GribAnimator : public QDialog
         
         QGridLayout *layout;
         QFrame * createFrameGui(QWidget *parent);
-		void closeEvent(QCloseEvent *) {delete this;};
 };
 
 

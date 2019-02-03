@@ -34,6 +34,7 @@ POI_Editor::POI_Editor(uint code, double lon, double lat,
 {
 	setupUi(this);
 	modeCreation = true;
+	setAttribute(Qt::WA_DeleteOnClose);
 	setWindowTitle(tr("New Point of interest"));
 	this->poi = new POI(code, tr("Point %1").arg(code), lon, lat, proj, ownerMeteotable, parentWindow);
 	assert(this->poi);
@@ -47,6 +48,7 @@ POI_Editor::POI_Editor(POI *poi_, QWidget *parent)
 {
 	setupUi(this);
 	setModal(false);
+	setAttribute(Qt::WA_DeleteOnClose);
 	this->poi = poi_;
 	modeCreation = false;
 	setWindowTitle(tr("Point of interest: ")+poi->getName());
@@ -125,7 +127,7 @@ void POI_Editor::btOkClicked()
 	if (modeCreation) {
 		poi->show();
 	}
-	delete this;	
+	accept();
 }
 //---------------------------------------
 void POI_Editor::btCancelClicked()
@@ -133,7 +135,7 @@ void POI_Editor::btCancelClicked()
 	if (modeCreation) {
 		delete poi;
 	}
-	delete this;
+	accept();
 }
 //---------------------------------------
 void POI_Editor::btDeleteClicked()
@@ -148,12 +150,12 @@ void POI_Editor::btDeleteClicked()
 		{
 			Settings::deleteSettingsPOI(poi->getCode());
 			delete poi;
-			delete this;
+			accept();
 		}
 	}
 	else {
 		delete poi;
-		delete this;
+		accept();
 	}
 }
 
