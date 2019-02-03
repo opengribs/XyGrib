@@ -73,7 +73,7 @@ class MeteoTableDialog : public QWidget
 
 
 
-		void closeEvent(QCloseEvent *) {delete this;};
+		void closeEvent(QCloseEvent *) {deleteLater();};
 		
 		int  SYLK_addData_gen   (SylkFile &slk, int lig,int col, DataCode dtc);
 		int  SYLK_addData_wind  (SylkFile &slk, int lig,int col, DataCode dtc);
@@ -84,7 +84,7 @@ class MeteoTableDialog : public QWidget
 		void slotBtOptions ();
 		void slotBtExport ();
 		void slotOptionsChanged ();
-		void reject ()	{delete this;};
+		void reject ()	{deleteLater();};
 };
 
 

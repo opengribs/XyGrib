@@ -58,7 +58,6 @@ Q_OBJECT
     	POI   *poi;
     	bool  modeCreation;
 		
-		void closeEvent(QCloseEvent *) {delete this;};
 		void updateInterface();
 	
 	private slots:
