@@ -1,6 +1,13 @@
 # XyGrib - Weather Forecast Visualization
 Fork of zyGrib-8.0.1 under a new name and a new home https://opengribs.org
 
+Changes in version 1.2.4
+- New feature - Arome 0.025 deg regional model has been added covering all of France and neigbouring areas
+- Grib grid only shown if there is weather display selected and if zoom factor allows it (no more black out)
+- Many code improvements thanks to Didier
+- Bug fixes including crashes on closing POI Editor or opening MeteoTable
+
+
 Changes in version 1.2.2 :
 - New feature - Gust color map that can show absolute gust velocity values or relative (delta) values above the wind speed. Absolute gust velocity is the default. This can be changed in the weather options sub-menu.
 - Transparency added to lowest color values for Precipitation, CAPE, Reflectivity, Gust (delta) and Snow. This improves the color overlay displays.

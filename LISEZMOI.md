@@ -1,5 +1,13 @@
 XyGrib est un clone de zyGrib (https://opengribs.org/fr)
 
+Les changements dans la version 1.2.4
+
+- New feature - Arome 0.025 deg regional model has been added covering all of France and neigbouring areas
+- Grib grid only shown if there is weather display selected and if zoom factor allows it (no more black out)
+- Many code improvements thanks to Didier
+- Bug fixes including crashes on closing POI Editor or opening MeteoTable
+
+
 Les changements dans la version 1.2.2
 
 - Nouvelle fonctionnalité - Carte des rafales de vent : affichage soit des valeurs absolues de vitesse de rafale ou les valeurs relatives (écart entre la rafale et la vitesse moyenne du vent). La vitesse de rafale absolue est la valeur par défaut. Cela peut être modifié dans le sous-menu des options présentation graphique du menu Cartes météo.
