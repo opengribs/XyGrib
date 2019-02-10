@@ -2979,7 +2979,7 @@
     <message>
         <location filename="../../src/MenuBar.cpp" line="360"/>
         <source>Sea</source>
-        <translation>Mer</translation>
+        <translation>Carte océan</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="379"/>
@@ -3077,7 +3077,7 @@
     <message>
         <location filename="../../src/MenuBar.cpp" line="109"/>
         <source>Weather map</source>
-        <translation>Carte météo</translation>
+        <translation>Carte atmosphère</translation>
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="112"/>
