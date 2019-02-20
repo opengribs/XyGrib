@@ -53,6 +53,7 @@ enum DataCenterModel {
     DWD_ICON,
     ECMWF,
     ECMWF_WAVE,
+    ECMWF_ERA5,
 	OTHER_DATA_CENTER
 };
 //--------------------------------------------------------
