@@ -28,7 +28,7 @@ Grib2Reader::~Grib2Reader ()
 {
 }
 //-------------------------------------------------------------------------------
-void Grib2Reader::openFile (const std::string &fname, int nbrecs)
+void Grib2Reader::openFile (const QString &fname, int nbrecs)
 {
 	allUnknownRecords.clear();
 	continueDownload = true;
@@ -36,7 +36,7 @@ void Grib2Reader::openFile (const std::string &fname, int nbrecs)
 	setAllDates.clear ();
 	setAllDataCode.clear ();
 	
-    if (!fname.empty()) {
+    if (!fname.isEmpty()) {
         openFilePriv (fname, nbrecs);
 		createListDates ();
 		ok = getNumberOfDates() > 0;
@@ -51,7 +51,7 @@ void Grib2Reader::openFile (const std::string &fname, int nbrecs)
     }
 }
 //-------------------------------------------------------------------------------
-void Grib2Reader::openFilePriv (const std::string& fname, int nbrecs)
+void Grib2Reader::openFilePriv (const QString& fname, int nbrecs)
 {
 //     debug("Open file: %s", fname.c_str());
     fileName = fname;
@@ -60,9 +60,9 @@ void Grib2Reader::openFilePriv (const std::string& fname, int nbrecs)
     //--------------------------------------------------------
     // Ouverture du fichier
     //--------------------------------------------------------
-    file = zu_open (fname.c_str(), "rb", ZU_COMPRESS_AUTO);
+    file = zu_open (qPrintable(fname), "rb", ZU_COMPRESS_AUTO);
     if (file == nullptr) {
-        erreur("Can't open file: %s", fname.c_str());
+        erreur("Can't open file: %s", qPrintable(fname));
         return;
     }
 	emit newMessage (LongTaskMessage::LTASK_OPEN_FILE);

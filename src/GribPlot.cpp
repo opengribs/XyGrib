@@ -65,7 +65,7 @@ void GribPlot::loadGrib (LongTaskProgress * taskProgress, int nbrecs)
 	    QObject::connect(taskProgress,   &LongTaskProgress::canceled,
 	    		gribReader, &LongTaskMessage::cancel);
     }
-    gribReader->openFile (qPrintable(fileName), nbrecs);
+    gribReader->openFile (fileName, nbrecs);
     if (gribReader->isOk())
     {
         listDates = gribReader->getListDates();

@@ -102,7 +102,7 @@ class GshhsRangsCell
 class GshhsRangsReader
 {
     public:
-        GshhsRangsReader(const std::string &path_);
+        GshhsRangsReader(const QString &path_);
         ~GshhsRangsReader();
 
         void drawGshhsRangsMapPlain( QPainter &pnt, Projection *proj,
@@ -114,7 +114,7 @@ class GshhsRangsReader
 
     private:
     	int currentQuality;
-        std::string path;
+        QString path;
         FILE *fcat{}, *fcel{}, *frim{};
         GshhsRangsCell * allCells[360][180]{};
 };

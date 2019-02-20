@@ -282,7 +282,7 @@ void GshhsRangsCell::drawSeaBorderLines(QPainter &pnt, double dx, Projection *pr
 //========================================================================
 //========================================================================
 //========================================================================
-GshhsRangsReader::GshhsRangsReader(const std::string &rangspath)
+GshhsRangsReader::GshhsRangsReader(const QString &rangspath)
 {
     path = rangspath+"/";
 	currentQuality = -1;
@@ -325,9 +325,9 @@ void GshhsRangsReader::setQuality(int quality)  // 5 levels: 0=low ... 4=full
 		if (frim)
 			fclose(frim);
 		
-		fcat = fopen( (path+"rangs_"+txtn+".cat").c_str(), "rb");
-		fcel = fopen( (path+"rangs_"+txtn+".cel").c_str(), "rb");
-		frim = fopen( (path+"gshhs_"+txtn+".rim").c_str(), "rb");
+		fcat = fopen( qPrintable(path+"rangs_"+txtn+".cat"), "rb");
+		fcel = fopen( qPrintable(path+"rangs_"+txtn+".cel"), "rb");
+		frim = fopen( qPrintable(path+"gshhs_"+txtn+".rim"), "rb");
 		
 		for (auto & allCell : allCells) {
 			for (auto & j : allCell) {
