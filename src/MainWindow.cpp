@@ -488,7 +488,7 @@ MainWindow::MainWindow (int w, int h, QWidget *parent)
 	
     //--------------------------------------------------
     int mapQuality = 0;
-    gshhsReader =  std::make_shared<GshhsReader>(Util::pathGshhs().toStdString(), mapQuality);
+    gshhsReader =  std::make_shared<GshhsReader>(Util::pathGshhs(), mapQuality);
 	
     //--------------------------------------------------
     terre = new Terrain (this, proj, gshhsReader);
@@ -1560,7 +1560,9 @@ void MainWindow::slotFile_Info_GRIB ()
 		return;
     }
     QString msg;
-	msg += tr("File : %1\n") .arg( reader->getFileName().c_str());
+    QString f = QString::fromStdString(reader->getFileName());
+
+	msg += tr("File : %1\n") .arg( qPrintable(f));
 	msg += tr("Size : %1 bytes\n") .arg(reader->getFileSize());
 	msg += "\n";
 	msg += tr("Weather center %1") .arg(record->getIdCenter());

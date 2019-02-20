@@ -108,7 +108,7 @@ GshhsPolygon::~GshhsPolygon() {
 //==========================================================
 //==========================================================
 //==========================================================
-GshhsReader::GshhsReader (const std::string& fpath, int quality)
+GshhsReader::GshhsReader (const QString& fpath, int quality)
 {
     this->fpath = fpath;
     gshhsRangsReader = new GshhsRangsReader(fpath);
@@ -199,9 +199,9 @@ void GshhsReader::clearLists ()
 }
 //-----------------------------------------------------------------------
 // extension du nom de fichier gshhs selon la qualité
-std::string GshhsReader::getNameExtension(int quality)
+QString GshhsReader::getNameExtension(int quality)
 {
-    std::string ext;
+    QString ext;
     switch (quality) {
         case 0: ext = "c"; break;
         case 1: ext = "l"; break;
@@ -213,52 +213,52 @@ std::string GshhsReader::getNameExtension(int quality)
     return ext;
 }
 //-----------------------------------------------------------------------
-std::string GshhsReader::getFileName_gshhs (int quality)
+QString GshhsReader::getFileName_gshhs (int quality)
 {
     // Lit le .rim de RANGS à la place du fichier initial
     char txtn[16];
     if (quality < 0)   quality = 0;
     if (quality > 4)   quality = 4;
     snprintf(txtn, 10, "%d", 4-quality);   // précision inversée :(
-    std::string fname;
+    QString fname;
     fname = fpath+"/"+"gshhs_" + txtn + ".rim";
 	//printf("%s\n", fname.c_str());
     return fname;
 }
-std::string GshhsReader::getFileName_boundaries (int quality) {
-    std::string fname, ext;
-    ext = getNameExtension(quality);
+QString GshhsReader::getFileName_boundaries (int quality) {
+    QString fname;
+    auto ext = getNameExtension(quality);
     fname = fpath+"/"+"wdb_borders_" + ext + ".b";
     return fname;
 }
-std::string GshhsReader::getFileName_rivers (int quality) {
-    std::string fname, ext;
-    ext = getNameExtension(quality);
+QString GshhsReader::getFileName_rivers (int quality) {
+    QString fname;
+    auto  ext = getNameExtension(quality);
     fname = fpath+"/"+"wdb_rivers_" + ext + ".b";
     return fname;
 }
 //-----------------------------------------------------------------------
 bool GshhsReader::gshhsFilesExists(int quality)
 {
-    if (zu_can_read_file (getFileName_gshhs(quality).c_str() ) == 0)
+    if (zu_can_read_file (qPrintable(getFileName_gshhs(quality))) == 0)
         return false;
-    if (zu_can_read_file (getFileName_boundaries(quality).c_str() ) == 0)
+    if (zu_can_read_file (qPrintable(getFileName_boundaries(quality))) == 0)
         return false;
-    if (zu_can_read_file (getFileName_rivers(quality).c_str() ) == 0)
+    if (zu_can_read_file (qPrintable(getFileName_rivers(quality))) == 0)
         return false;
     return true;
 }
 //-----------------------------------------------------------------------
 void GshhsReader::readGshhsFiles()
 {
-    std::string fname;
+    QString fname;
     ZUFILE *file;
     bool   ok;
 
 	// Bordures des continents (4 niveaux) (gshhs_[clihf].b)
 	if (lsPoly_level1[quality]->empty()) { // on ne lit qu'une fois le fichier
 		fname = getFileName_gshhs(quality);
-		file = zu_open(fname.c_str(), "rb");
+		file = zu_open(qPrintable(fname), "rb");
         if (file != nullptr) {
 			
 			ok = true;
@@ -292,7 +292,7 @@ void GshhsReader::setUserPreferredQuality(int quality_) // 5 levels: 0=low ... 4
 //-----------------------------------------------------------------------
 void GshhsReader::setQuality(int quality_) // 5 levels: 0=low ... 4=full
 {
-    std::string fname;
+    QString fname;
     ZUFILE *file;
     bool   ok;
 
@@ -309,7 +309,7 @@ void GshhsReader::setQuality(int quality_) // 5 levels: 0=low ... 4=full
     // Frontières politiques
     if (lsPoly_boundaries[quality]->empty()) { // on ne lit qu'une fois le fichier
         fname = getFileName_boundaries(quality);
-        file = zu_open(fname.c_str(), "rb");
+        file = zu_open(qPrintable(fname), "rb");
         if (file != nullptr) {
             ok = true;
             while (ok) {
@@ -328,7 +328,7 @@ void GshhsReader::setQuality(int quality_) // 5 levels: 0=low ... 4=full
     // Rivières
     if (lsPoly_rivers[quality]->empty()) { // on ne lit qu'une fois le fichier
         fname = getFileName_rivers(quality);
-        file = zu_open(fname.c_str(), "rb");
+        file = zu_open(qPrintable(fname), "rb");
         if (file != nullptr) {
             ok = true;
             while (ok) {

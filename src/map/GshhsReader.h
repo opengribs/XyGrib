@@ -102,7 +102,7 @@ class GshhsPolygon_WDB : public GshhsPolygon
 class GshhsReader
 {
     public:
-        GshhsReader (const std::string& fpath, int quality);
+        GshhsReader (const QString& fpath, int quality);
         GshhsReader (const GshhsReader &model);
         ~GshhsReader();
         
@@ -125,15 +125,15 @@ class GshhsReader
         void setQuality (int quality);
 		void selectBestQuality (Projection *proj);
 
-        std::string fpath;     // directory containing gshhs files
+        QString fpath;     // directory containing gshhs files
         
         GshhsRangsReader * gshhsRangsReader;
         bool               isUsingRangsReader;
         
-        std::string getNameExtension (int quality);
-        std::string getFileName_gshhs (int quality);
-        std::string getFileName_boundaries (int quality);
-        std::string getFileName_rivers (int quality);
+        QString getNameExtension (int quality);
+        QString getFileName_gshhs (int quality);
+        QString getFileName_boundaries (int quality);
+        QString getFileName_rivers (int quality);
         void		readGshhsFiles ();
         
         //-----------------------------------------------------
