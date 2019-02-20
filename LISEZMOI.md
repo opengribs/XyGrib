@@ -2,11 +2,10 @@ XyGrib est un clone de zyGrib (https://opengribs.org/fr)
 
 Les changements dans la version 1.2.4
 
-- New feature - Arome 0.025 deg regional model has been added covering all of France and neigbouring areas
-- Grib grid only shown if there is weather display selected and if zoom factor allows it (no more black out)
-- Many code improvements thanks to Didier
-- Bug fixes including crashes on closing POI Editor or opening MeteoTable
-
+- Nouveau modèle régional ajouté : Arome 0.025 deg couverture France et régions environnantes
+- La grille du Grib n'est visible que si l'échelle est appropriée, plus d'écran noir !)
+- Nombreuses améliorations du code : Merci à Didier
+- Corrections de bugs en particulier correction du crash arrivant dans certains cas en éditant un POI ou en ouvrant une MétéoTable
 
 Les changements dans la version 1.2.2
 
