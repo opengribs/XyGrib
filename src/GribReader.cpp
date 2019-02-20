@@ -157,6 +157,9 @@ void GribReader::readAllGribRecords (int nbrecs)
 			|| ( (rec->getDataType()==GRB_TMIN || rec->getDataType()==GRB_TMAX)
 					&& rec->getLevelType()==LV_ABOV_GND && rec->getLevelValue()==2)
 			//-----------------------------------------
+			|| ( rec->getDataType()==GRB_DEWPOINT
+					&& rec->getLevelType()==LV_ABOV_GND && rec->getLevelValue()==2)
+			//-----------------------------------------
 			|| (rec->getDataType()==GRB_TEMP
 					&& rec->getLevelType()==LV_ABOV_GND && rec->getLevelValue()==2)
 			|| (rec->getDataType()==GRB_TEMP
@@ -358,10 +361,11 @@ void GribReader::readAllGribRecords (int nbrecs)
 			}
 			else {
 				fprintf(stderr,
-					"GribReader: id=%d unknown data: key=0x%lx  idCenter==%d && idModel==%d && idGrid==%d\n",
+					"GribReader: id=%d unknown data: key=0x%lx  idCenter==%d && idModel==%d && idGrid==%d dataType==%d\n",
 					rec->getId(),
 					rec->getKey(),
-					rec->getIdCenter(), rec->getIdModel(), rec->getIdGrid()
+					rec->getIdCenter(), rec->getIdModel(), rec->getIdGrid(),
+					rec->getDataType()
 					);
 			}
 		}

@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ***********************************************************************/
 
-#include <time.h>
+#include <ctime>
 
 #include "GribRecord.h"
 
@@ -75,6 +75,13 @@ void  GribRecord::translateDataType ()
     //------------------------
     else if (idCenter==7 && idModel==84) {
         dataCenterModel = NOAA_NAM;
+    }
+    //------------------------
+    // GLOBAL GFS ENSEMBLE 
+    // https://nomads.ncep.noaa.gov/txt_descriptions/GFS_Ensemble_high_resolution_doc.shtml
+    //------------------------
+    else if (idCenter==7 && idModel==107) {
+        dataCenterModel = NOAA_GFS_ENSEMBLE;
     }
     //------------------------
     // Meteo France Arome/Arpege
@@ -143,7 +150,7 @@ void  GribRecord::translateDataType ()
 	//----------------------------------------------
 	// FNMOC WW3 equatorial america and europa
 	//----------------------------------------------
-	else if (idCenter==58 && idModel==11 && idGrid==255) 
+	else if (idCenter==58 && idModel==11 && idGrid==255)
 	{
 		dataCenterModel = FNMOC_WW3_EQAM;
 	}
@@ -235,6 +242,89 @@ void  GribRecord::translateDataType ()
 			levelValue = 0;
 		}
 	}
+	//----------------------------------------------
+	// ECMWF ERA5
+	//----------------------------------------------
+    else if (idCenter==98 && (idModel==145|| idModel==255 ) && idGrid==255 && tableVersion == 128)
+    {
+        dataCenterModel = ECMWF_ERA5;
+        if (getLevelType()==LV_GND_SURF && getLevelValue()==0) {
+            if (getDataType() == 141) // Snow depth  (m of water equivalent)
+            {
+                dataType = GRB_SNOW_DEPTH;
+            }
+            else if (getDataType() == 151)
+            {
+                dataType = GRB_PRESSURE_MSL;
+                levelType = LV_MSL;
+            }
+            else if (getDataType() == 165 || getDataType() == 166)
+            {
+                if (getDataType() == 165)
+                    dataType = GRB_WIND_VX;
+                if (getDataType()== 166)
+                    dataType = GRB_WIND_VY;
+                levelType = LV_ABOV_GND;
+                levelValue = 10;
+            }
+            else if (getDataType() == 167)
+            {
+                dataType = GRB_TEMP;
+                levelType = LV_ABOV_GND;
+                levelValue = 2;
+            }
+            else if (getDataType() == 168)
+            {
+                dataType = GRB_DEWPOINT;
+                levelType = LV_ABOV_GND;
+                levelValue = 2;
+            }
+            else if (getDataType() == 34)
+            {
+                dataType = -1; // Sea surface temperature (K)
+            }
+            else if (getDataType() == 164)
+            {
+                dataType = GRB_CLOUD_TOT;
+                levelType = LV_ATMOS_ALL;
+            }
+            else if (getDataType() == 228)
+            {
+                dataType = GRB_PRECIP_TOT;
+                // m/h -> mm/h
+                multiplyAllData( 1000.0 );
+            }
+        }
+    }
+    else if (idCenter==98 && idModel==145 && idGrid==255 && tableVersion == 228)
+    {
+        dataCenterModel = ECMWF_ERA5;
+        if (getLevelType()==LV_GND_SURF && getLevelValue()==0) {
+            if (getDataType() == 29)
+            {
+                dataType = GRB_WIND_GUST;
+                // levelValue = 10; // XXX really 10 but we only display 0
+            }
+        }
+    }
+	//----------------------------------------------
+	// ECMWF ERA5 WAVE
+	//----------------------------------------------
+    else if (idCenter==98 && idModel==111 && idGrid==255 && tableVersion == 140)
+    {
+        dataCenterModel = ECMWF_ERA5;
+        switch (getDataType()) {
+        case 229: // SWH Significant height of combined wind waves and swell (m)
+            dataType = 100;
+            break;
+        case 230: // MWD Mean wave direction (Degree true)
+            dataType = 101; // XXX right parameter?
+            break;
+        case 232: // MWP Mean wave period  (s)
+            dataType = 102; // XXX right parameter?
+            break;
+        }
+    }
 	//------------------------------------------
     // PredictWind EMCWF grib1 Also ECMWF public data grib2
     // contributed by did-g
@@ -434,8 +524,8 @@ GribRecord::GribRecord (ZUFILE* file, int id_)
 	if (ok && hasBMS) { // replace the BMS bits table with a faster bool table
         boolBMStab = new bool [Ni*Nj];
 		assert (boolBMStab);
-		for (int i=0; i<Ni; i++) {
-			for (int j=0; j<Nj; j++) {
+        for (int j=0; j<Nj; j++) {
+		    for (int i=0; i<Ni; i++) {
 				boolBMStab [j*Ni+i] = hasValueInBitBMS (i,j);
 			}
 		}

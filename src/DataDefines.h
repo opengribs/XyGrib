@@ -26,6 +26,7 @@ template <typename T> inline bool GribDataIsDef(T n) { return n != GRIB_NOTDEF;}
 
 enum DataCenterModel {
 	NOAA_GFS,
+	NOAA_GFS_ENSEMBLE,
     NOAA_NAM,
     DWD_ICON_GLOBAL,
     DWD_ICON_EU,
@@ -52,6 +53,7 @@ enum DataCenterModel {
     DWD_ICON,
     ECMWF,
     ECMWF_WAVE,
+    ECMWF_ERA5,
 	OTHER_DATA_CENTER
 };
 //--------------------------------------------------------

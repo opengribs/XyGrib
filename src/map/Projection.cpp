@@ -173,11 +173,11 @@ bool Projection::map2screen_glob (double lon, double lat, int *pi, int *pj) cons
 		map2screen(lon, lat, pi, pj);
 		return true;
 	}
-	else if (isPointVisible(lon-360, lat)) {
+	if (isPointVisible(lon-360, lat)) {
 		map2screen(lon-360, lat, pi, pj);
 		return true;
 	}
-	else if (isPointVisible(lon+360, lat)) {
+	if (isPointVisible(lon+360, lat)) {
 		map2screen(lon+360, lat, pi, pj);
 		return true;
 	}

@@ -24,6 +24,8 @@ QString DataCodeStr::toString (const DataCenterModel &dcm)
 	switch (dcm) {
         case NOAA_GFS :
             return "NOAA-GFS";
+        case NOAA_GFS_ENSEMBLE :
+            return "NOAA-GFS-ENSEMBLE";
         case NOAA_NAM :
             return "NOAA-NAM";
         case NOAA_NCEP_WW3 :
@@ -46,6 +48,8 @@ QString DataCodeStr::toString (const DataCenterModel &dcm)
             return "ECMWF";
         case ECMWF_WAVE :
             return "ECMWF-WAVE";
+        case ECMWF_ERA5:
+            return "ECMWF-ERA5";
         case DWD_ICON_GLOBAL :
             return "DWD-ICON-Global";
         case DWD_GWAM :
