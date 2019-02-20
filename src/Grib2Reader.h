@@ -37,10 +37,10 @@ class Grib2Reader : public GribReader
         Grib2Reader ();
         ~Grib2Reader ();
 		
-        virtual void  openFile (const std::string &fname, int nbrecs);
+        virtual void  openFile (const QString &fname, int nbrecs);
 		
 	private:
-        void openFilePriv (const std::string& fname, int nbrecs);
+        void openFilePriv (const QString& fname, int nbrecs);
 		void readGrib2FileContent (int nbrecs);
 
 		void analyseRecords ();

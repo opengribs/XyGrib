@@ -36,14 +36,14 @@ GribReader::GribReader()
 	ymax = -1e300;
 }
 //-------------------------------------------------------------------------------
-void GribReader::openFile (const std::string &fname, int nbrecs)
+void GribReader::openFile (const QString &fname, int nbrecs)
 {
 	continueDownload = true;
 	setAllDataCenterModel.clear();
 	setAllDates.clear ();
 	setAllDataCode.clear ();
 	
-    if (!fname.empty()) {
+    if (!fname.isEmpty()) {
         openFilePriv (fname, nbrecs);
     }
     else {
@@ -933,7 +933,7 @@ void GribReader::createListDates()
 //-------------------------------------------------------------------------------
 // Lecture complète d'un fichier GRIB
 //-------------------------------------------------------------------------------
-void GribReader::openFilePriv (const std::string& fname, int nbrecs)
+void GribReader::openFilePriv (const QString& fname, int nbrecs)
 {
 //     debug("Open file: %s", fname.c_str());
     fileName = fname;
@@ -942,9 +942,9 @@ void GribReader::openFilePriv (const std::string& fname, int nbrecs)
     //--------------------------------------------------------
     // Ouverture du fichier
     //--------------------------------------------------------
-    file = zu_open (fname.c_str(), "rb", ZU_COMPRESS_AUTO);
+    file = zu_open (qPrintable(fname), "rb", ZU_COMPRESS_AUTO);
     if (file == nullptr) {
-        erreur("Can't open file: %s", fname.c_str());
+        erreur("Can't open file: %s", qPrintable(fname));
         return;
     }
     

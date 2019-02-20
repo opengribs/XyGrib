@@ -37,7 +37,7 @@ class GribReader : public RegularGridReader, public LongTaskMessage
         GribReader ();
         ~GribReader ();
 		
-        virtual void  openFile (const std::string &fname, int nbrecs);
+        virtual void  openFile (const QString &fname, int nbrecs);
 		
 		virtual FileDataType getReaderFileDataType () 
 					{return DATATYPE_GRIB;};
@@ -110,7 +110,7 @@ class GribReader : public RegularGridReader, public LongTaskMessage
 		
         std::map <uint64_t, std::vector<GribRecord *>* >  mapGribRecords;
 
-        void   openFilePriv (const std::string& fname, int nbrecs);
+        void   openFilePriv (const QString& fname, int nbrecs);
 		void   readGribFileContent (int nbrecs);
 		void   readAllGribRecords  (int nbrecs);
         

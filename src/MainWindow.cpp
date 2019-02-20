@@ -1560,9 +1560,8 @@ void MainWindow::slotFile_Info_GRIB ()
 		return;
     }
     QString msg;
-    QString f = QString::fromStdString(reader->getFileName());
 
-	msg += tr("File : %1\n") .arg( qPrintable(f));
+	msg += tr("File : %1\n") .arg(reader->getFileName());
 	msg += tr("Size : %1 bytes\n") .arg(reader->getFileSize());
 	msg += "\n";
 	msg += tr("Weather center %1") .arg(record->getIdCenter());

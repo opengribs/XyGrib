@@ -42,7 +42,7 @@ class GriddedReader : public DataReaderAbstract
 
 		//virtual void openFile (const std::string fname) = 0;
 		long  getFileSize ()          {return fileSize;}
-		std::string getFileName ()    {return fileName;}
+		QString getFileName ()    {return fileName;}
 
 		/// Give the englobing rectangle of all data.
 		virtual bool getZoneExtension 
@@ -88,7 +88,7 @@ class GriddedReader : public DataReaderAbstract
 		
 	protected:
         bool   ok;
-        std::string fileName;
+        QString fileName;
         long    fileSize;
 		double xmin,xmax, ymin,ymax;
 
