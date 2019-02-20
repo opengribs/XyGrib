@@ -1577,7 +1577,7 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
     assert(cbResolution);
     cbResolution->addItems(QStringList()<< "0.025" << "0.06" << "0.1" << "0.11" << "0.25" << "0.5" << "1.0");
     //arome_025, icon_eu_p10_, arpege_eu_p10_, nam..._, gfs_p25_, gfs_p50_, gfs_1p0_, icon_p25_, arpege_p50_
-    cbResolution->setMinimumWidth (60);
+    cbResolution->setMinimumWidth (65);
 	ind = Util::getSetting("downloadIndResolution", 0).toInt();
 	ind = Util::inRange(ind, 0, cbResolution->count()-1);
     cbResolution->setCurrentIndex(ind);
