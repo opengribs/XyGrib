@@ -103,7 +103,7 @@ class GribRecord : public RegularGridRecord
 
         // Valeur pour un point de la grille
         double getValue (int i, int j) const 
-							{ return ok ? data[j*Ni+i] : GRIB_NOTDEF;}
+							{ return ok && i>=0 && i<Ni && j>=0 && j<Nj ? data[j*Ni+i] : GRIB_NOTDEF;}
 		
         // Valeur pour un point quelconque
         double  getInterpolatedValue (
@@ -138,8 +138,8 @@ class GribRecord : public RegularGridRecord
         virtual void  print (const char *title);
 
     private:
-        double  getX(int i) const override { return ok ? xmin+i*Di : GRIB_NOTDEF;}
-        double  getY(int j) const override { return ok ? ymin+j*Dj : GRIB_NOTDEF;}
+        double  getX(int i) const override { return ok && i>= 0 && i < Ni? xmin+i*Di : GRIB_NOTDEF;}
+        double  getY(int j) const override { return ok && j >= 0 && j < Nj? ymin+j*Dj : GRIB_NOTDEF;}
 
     protected:
         int    id;         // unique identifiant
