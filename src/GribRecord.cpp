@@ -315,13 +315,13 @@ void  GribRecord::translateDataType ()
         dataCenterModel = ECMWF_ERA5;
         switch (getDataType()) {
         case 229: // SWH Significant height of combined wind waves and swell (m)
-            dataType = 100;
+            dataType = GRB_WAV_SIG_HT;
             break;
         case 230: // MWD Mean wave direction (Degree true)
-            dataType = 101; // XXX right parameter?
+            dataType = GRB_WAV_PRIM_DIR;
             break;
-        case 232: // MWP Mean wave period  (s)
-            dataType = 102; // XXX right parameter?
+        case 232: // MWP Mean wave period (s)
+            dataType = GRB_WAV_PRIM_PER;
             break;
         }
     }
