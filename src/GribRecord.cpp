@@ -287,6 +287,7 @@ void  GribRecord::translateDataType ()
             {
                 dataType = GRB_CLOUD_TOT;
                 levelType = LV_ATMOS_ALL;
+                multiplyAllData( 100.0 );
             }
             else if (getDataType() == 228)
             {
