@@ -55,14 +55,27 @@ void Projection::updateBoundaries () {
     
     xmin = x0;
     xmax = x1;
-    
+    double ofs{360.};
+    double dec{360.};
+
+    if (xmax > ofs) {
+    	xmax -= dec;
+    	xmin -= dec;
+    	CX -= dec;
+    }
+    else if (xmin < -ofs) {
+    	xmax += dec;
+    	xmin += dec;
+    	CX += dec;
+    }
+
 	if (y0 < y1) {
 		double a = y1; y1 = y0; y0 = a;
 	}
     ymin = y1;
     ymax = y0;
 		    
-//printf("Projection::updateBoundaries X(%f %f) Y(%f %f)\n", xmin,xmax, ymin,ymax);
+// printf("Projection::updateBoundaries X(%f %f) Y(%f %f)\n", xmin,xmax, ymin,ymax);
 
 	if (W*H != 0)
 		coefremp = 10000.0*fabs( ((xmax-xmin)*(ymax-ymin)) / (W*H) );
