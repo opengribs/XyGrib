@@ -287,6 +287,7 @@ void  GribRecord::translateDataType ()
             {
                 dataType = GRB_CLOUD_TOT;
                 levelType = LV_ATMOS_ALL;
+                multiplyAllData( 100.0 );
             }
             else if (getDataType() == 228)
             {
@@ -315,13 +316,13 @@ void  GribRecord::translateDataType ()
         dataCenterModel = ECMWF_ERA5;
         switch (getDataType()) {
         case 229: // SWH Significant height of combined wind waves and swell (m)
-            dataType = 100;
+            dataType = GRB_WAV_SIG_HT;
             break;
         case 230: // MWD Mean wave direction (Degree true)
-            dataType = 101; // XXX right parameter?
+            dataType = GRB_WAV_PRIM_DIR;
             break;
-        case 232: // MWP Mean wave period  (s)
-            dataType = 102; // XXX right parameter?
+        case 232: // MWP Mean wave period (s)
+            dataType = GRB_WAV_PRIM_PER;
             break;
         }
     }
@@ -1329,6 +1330,8 @@ double GribRecord::getInterpolatedValue (double px, double py, bool interpolate)
 		}
     } 
     else {
+        if (px < xmin)
+            px += 360.;
 		pi = (px-xmin)/Di;
 		i0 = (int) floor(pi);  // point 00
 		i1 = i0+1;
@@ -1463,8 +1466,7 @@ double GribRecord::getValueOnRegularGrid (DataCode dtc, int i, int j ) const
 {
 	if ( getDataCode() != dtc )
 		return GRIB_NOTDEF;
-	else
-		return getValue (i,j);
+    return getValue (i,j);
 }
 //--------------------------------------------------------------------------
 double  GribRecord::getInterpolatedValue (
@@ -1474,8 +1476,7 @@ double  GribRecord::getInterpolatedValue (
 {
 	if ( getDataCode() != dtc )
 		return GRIB_NOTDEF;
-	else
-		return getInterpolatedValueUsingRegularGrid (dtc,px,py,interpolate);
+    return getInterpolatedValueUsingRegularGrid (dtc,px,py,interpolate);
 }
 
 
