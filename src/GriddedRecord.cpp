@@ -63,8 +63,11 @@ double  GriddedRecord::getInterpolatedValueUsingRegularGrid (
 			while (px< 0)
 				px += 360;
 		}
-    } 
-    
+    }
+    else {
+        if (px < xmin)
+            px += 360.;
+    }
     pi = (px-xmin)/getDeltaX();
     i0 = (int) floor(pi);  // point 00
 	i1 = i0+1;

@@ -1329,6 +1329,8 @@ double GribRecord::getInterpolatedValue (double px, double py, bool interpolate)
 		}
     } 
     else {
+        if (px < xmin)
+            px += 360.;
 		pi = (px-xmin)/Di;
 		i0 = (int) floor(pi);  // point 00
 		i1 = i0+1;
@@ -1463,8 +1465,7 @@ double GribRecord::getValueOnRegularGrid (DataCode dtc, int i, int j ) const
 {
 	if ( getDataCode() != dtc )
 		return GRIB_NOTDEF;
-	else
-		return getValue (i,j);
+    return getValue (i,j);
 }
 //--------------------------------------------------------------------------
 double  GribRecord::getInterpolatedValue (
@@ -1474,8 +1475,7 @@ double  GribRecord::getInterpolatedValue (
 {
 	if ( getDataCode() != dtc )
 		return GRIB_NOTDEF;
-	else
-		return getInterpolatedValueUsingRegularGrid (dtc,px,py,interpolate);
+    return getInterpolatedValueUsingRegularGrid (dtc,px,py,interpolate);
 }
 
 
