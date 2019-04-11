@@ -138,8 +138,8 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
 		windDir_10m = polar_dir(vx_10m, vy_10m);
 	}
 	else {
-		windSpeed_10m = GRIB_NOTDEF;
-		windDir_10m = GRIB_NOTDEF;
+		windSpeed_10m = getValue(DataCode(GRB_WIND_SPEED,LV_ABOV_GND,10));
+		windDir_10m = getValue(DataCode(GRB_WIND_DIR,LV_ABOV_GND,10));
 	}
 	//-----------------------------------------
 	// Wind surface
@@ -151,8 +151,8 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
 		windDir_gnd = polar_dir(vx_gnd, vy_gnd);
 	}
 	else {
-		windSpeed_gnd = GRIB_NOTDEF;
-		windDir_gnd = GRIB_NOTDEF;
+		windSpeed_gnd = getValue(DataCode(GRB_WIND_SPEED,LV_GND_SURF,0));
+		windDir_gnd = getValue(DataCode(GRB_WIND_DIR,LV_GND_SURF,0));
 	}
 	//-----------------------------------------
     // Current

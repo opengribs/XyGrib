@@ -223,8 +223,7 @@ QString DataCodeStr::toString_name (const DataCode &dtc)
         case GRB_WIND_GUST    :
             if (Util::getSetting("useAbsoluteGustSpeed", true).toBool())
                 return tr("Absolute wind gust");
-            else
-                return tr("Relative wind gust");
+			return tr("Relative wind gust");
 		case GRB_WIND_GUST_VX : return tr("Wind gust (Vx)");
 		case GRB_WIND_GUST_VY : return tr("Wind gust (VY)");
 		case GRB_PRV_CUR_DIR    : return tr("Current direction");

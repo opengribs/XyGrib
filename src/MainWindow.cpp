@@ -811,6 +811,9 @@ void MainWindow::setMenubarItems()
 	    menuBar->acView_Barbules->setEnabled(true);
 	    menuBar->acView_ThinWindArrows->setEnabled(true);
     }
+    else if ( plotter->hasDataType (GRB_WIND_SPEED)) {
+	    menuBar->acView_WindColors->setEnabled(true);
+    }
 
 	if (plotter->hasDataType (GRB_WIND_GUST)) menuBar->acView_GustColors->setEnabled(true);
 
@@ -1953,6 +1956,7 @@ void MainWindow::setMenubarColorMapData (const DataCode &dtc, bool trigAction)
 	    case GRB_WIND_GUST :
 			act = mb->acView_GustColors;
 	        break;
+	    case GRB_WIND_SPEED :
 		case GRB_PRV_WIND_XY2D :
 		case GRB_PRV_WIND_JET :
 			act = mb->acView_WindColors;
@@ -2042,18 +2046,27 @@ void MainWindow::slot_GroupColorMap (QAction *act)
 		dtctmp.set (GRB_PRV_WIND_XY2D,LV_MSL,0); 
 		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
 			dtc = dtctmp;
+
 		dtctmp.set (GRB_PRV_WIND_XY2D,LV_GND_SURF,0); 
 		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
 			dtc = dtctmp;
+
 		dtctmp.set (GRB_PRV_WIND_XY2D,LV_ABOV_GND,1); 
 		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
 			dtc = dtctmp;
+
 		dtctmp.set (GRB_PRV_WIND_XY2D,LV_ABOV_GND,2); 
 		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
 			dtc = dtctmp;
+
 		dtctmp.set (GRB_PRV_WIND_XY2D,LV_ABOV_GND,3); 
 		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
 			dtc = dtctmp;
+
+    	dtctmp.set (GRB_WIND_SPEED,LV_ABOV_GND,10);
+		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
+			dtc = dtctmp;
+
         if (dtc.dataType==GRB_TYPE_NOT_DEFINED)
             dtc = preferedIsobaricLevel(GRB_PRV_WIND_XY2D, reader);
 	}

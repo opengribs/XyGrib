@@ -423,16 +423,24 @@ void GribPlot::draw_ColoredMapPlain (
 							DataColors::function_getColor );
 			break;
 		case GRB_WIND_GUST :
-			if (useGustColorAbsolute)
-				drawColorMapGeneric_1D (pnt,proj,smooth, dtc,
-							DataColors::function_getColor);
-			else
-				drawColorMapGeneric_Abs_Delta_2D (pnt,proj,smooth,
+			if (!useGustColorAbsolute) {
+				if (hasData (GRB_WIND_VX, LV_ABOV_GND, 10)) {
+					drawColorMapGeneric_Abs_Delta_2D (pnt,proj,smooth,
 							DataCode (GRB_WIND_VX, LV_ABOV_GND, 10),
 							DataCode (GRB_WIND_VY, LV_ABOV_GND, 10),
 							dtc,
 							DataColors::function_getColor );
-			break;
+					break;
+				}
+				if (hasData (GRB_WIND_SPEED, LV_ABOV_GND, 10)) {
+					drawColorMapGeneric_Abs_Delta_Data (pnt,proj,smooth,
+							DataCode (GRB_WIND_GUST, dtc.levelType, dtc.levelValue),
+							DataCode (GRB_WIND_SPEED, LV_ABOV_GND, 10),
+							DataColors::function_getColor );
+					break;
+				}
+			}
+			// fall through
 		case GRB_TEMP :
 		case GRB_CLOUD_TOT : 
 		case GRB_PRECIP_TOT :
@@ -451,6 +459,7 @@ void GribPlot::draw_ColoredMapPlain (
 		case GRB_WAV_SIG_HT :
 		case GRB_WAV_MAX_HT :
 		case GRB_WAV_WHITCAP_PROB :
+		case GRB_WIND_SPEED :
 			drawColorMapGeneric_1D (pnt,proj,smooth, dtc, DataColors::function_getColor);
 			break;
 		default :
