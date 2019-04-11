@@ -77,6 +77,7 @@ class GriddedReader : public DataReaderAbstract
 		virtual GriddedRecord *getRecord (DataCode dtc, time_t date) = 0;
 		
 		virtual std::set<DataCode> getAllDataCode () const {return setAllDataCode;}
+		virtual int getDataTypeAlias (int dataType) const;
 		virtual bool hasData (const DataCode &dtc) const;
 		virtual bool hasDataType (int dataType) const;
 		virtual bool hasAltitudeData () const = 0;
