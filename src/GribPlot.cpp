@@ -127,12 +127,9 @@ void GribPlot::draw_GridPoints (const DataCode &dtc, QPainter &pnt, const Projec
     }
 //     GribRecord *rec = gribReader->getFirstGribRecord ();
 	DataCode dd;
-	if (dtc.dataType == GRB_PRV_WIND_XY2D)
-		dd = DataCode (GRB_WIND_VX, dtc.levelType, dtc.levelValue);
-	else if (dtc.dataType == GRB_PRV_CUR_XY2D)
-		dd = DataCode (GRB_CUR_VX, dtc.levelType, dtc.levelValue);
-	else
-		dd = dtc;
+	int type = gribReader->getDataTypeAlias(dtc.dataType);
+
+	dd = DataCode (type, dtc.levelType, dtc.levelValue);
 		
     GribRecord *rec = gribReader->getRecord (dd, getCurrentDate());
 	if (! rec)
