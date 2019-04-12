@@ -192,7 +192,8 @@ void GribReader::readAllGribRecords (int nbrecs)
 			//-----------------------------------------
 			// Current
 			//-----------------------------------------
-			|| ( (rec->getDataType()==GRB_CUR_VX || rec->getDataType()==GRB_CUR_VY)
+			|| ( (rec->getDataType()==GRB_CUR_VX || rec->getDataType()==GRB_CUR_VY
+			      || rec->getDataType()==GRB_CUR_DIR || rec->getDataType()==GRB_CUR_SPEED)
                     /*&& rec->getLevelType()==LV_GND_SURF
                     && rec->getLevelValue()==0*/ )
 			//-----------------------------------------

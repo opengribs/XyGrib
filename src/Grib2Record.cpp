@@ -450,6 +450,10 @@ int Grib2Record::analyseProductType ()
             if (paramnumber==11)
                 return GRB_WAV_PRIM_PER;
         } else if (paramcat==1){
+            if (paramnumber==0)
+                return GRB_CUR_DIR;
+            if (paramnumber==1)
+                return GRB_CUR_SPEED;
             if (paramnumber==2)
                 return GRB_CUR_VX;
             if (paramnumber==3)

@@ -366,6 +366,7 @@ QString Util::getDataUnit (const DataCode &dtc)
 			return Util::getSetting("unitsWindSpeed", tr("km/h")).toString();
 		case GRB_CUR_VX      : 
 		case GRB_CUR_VY      : 
+		case GRB_CUR_SPEED :
 		case GRB_PRV_CUR_XY2D    : 
 			return Util::getSetting("unitsCurrentSpeed", tr("kts")).toString();
 		case GRB_CAPE 		  : 
@@ -389,6 +390,7 @@ QString Util::getDataUnit (const DataCode &dtc)
 		case GRB_WAV_SWL_HT : 
 		case GRB_WAV_MAX_HT : 
 			return tr("m");
+		case GRB_CUR_DIR :
 		case GRB_WIND_DIR : 
 		case GRB_WAV_WND_DIR : 
 		case GRB_WAV_SWL_DIR : 

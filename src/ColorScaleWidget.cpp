@@ -91,6 +91,7 @@ QString ColorScaleGraph::formatValue (double v)
 		case GRB_PRV_WIND_XY2D :
 		case GRB_PRV_WIND_JET :
 			return Util::formatSpeed_Wind (v, false);
+		case GRB_CUR_SPEED :
 		case GRB_PRV_CUR_XY2D :
 			return Util::formatSpeed_Current (v, false);
 		case GRB_PRV_DIFF_TEMPDEW :

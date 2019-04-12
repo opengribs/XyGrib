@@ -210,6 +210,7 @@ void DataColors::setColorDataTypeFunction (const DataCode &dtc)
 		case GRB_PRV_THETA_E :
 			function_getColor = &DataColors::getThetaEColor;
 			break;
+		case GRB_CUR_SPEED :
 		case GRB_PRV_CUR_XY2D :
 			function_getColor = &DataColors::getCurrentColor;
 			break;
@@ -280,6 +281,7 @@ QRgb DataColors::getDataCodeColor (const DataCode &dtc, double v, bool smooth)
 			return DataColors::getWindJetColor (v, smooth);
 		case GRB_PRV_THETA_E :
 			return DataColors::getThetaEColor (v, smooth);
+		case GRB_CUR_SPEED :
 		case GRB_PRV_CUR_XY2D :
 			return DataColors::getCurrentColor (v, smooth);
 		case GRB_PRV_DIFF_TEMPDEW :
@@ -334,6 +336,7 @@ ColorScale *DataColors::getColorScale (const DataCode &dtc)
 			return &colors_Wind_Jet;
 		case GRB_PRV_THETA_E :
 			return &colors_ThetaE;
+		case GRB_CUR_SPEED :
 		case GRB_PRV_CUR_XY2D :
 			 return &colors_Current;
 		case GRB_PRV_DIFF_TEMPDEW :

@@ -400,6 +400,11 @@ void MapDrawer::draw_MeteoData_Gridded
             colorMapData.levelType = LV_BLW_SURF;
             colorMapData.levelValue = 3;
         }
+		else if (plotter->hasData (DataCode(GRB_CUR_SPEED, LV_GND_SURF,0))
+		 && plotter->hasData (DataCode(GRB_CUR_DIR, LV_GND_SURF,0)) )
+		{
+			currentArrowsAltitude = Altitude (LV_GND_SURF,0);
+		}
         else {
 			hasCurrentForArrows = false;
 		}
