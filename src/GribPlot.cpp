@@ -418,7 +418,7 @@ void GribPlot::draw_ColoredMapPlain (
 		dtc.dataType = GRB_PRV_WIND_XY2D;
 	}
 	DataCode dtc2 = dtc;
-	if (useJetStreamColorMap && dtc.dataType==GRB_PRV_WIND_XY2D) {
+	if (useJetStreamColorMap && (dtc.dataType==GRB_PRV_WIND_XY2D || dtc.dataType==GRB_WIND_SPEED)) {
 		dtc2.dataType = GRB_PRV_WIND_JET;
 	}
 	DataColors::setColorDataTypeFunction (dtc2);
