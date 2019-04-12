@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 int GriddedReader::getDataTypeAlias (int dataType) const
 {
-	if (dataType == GRB_PRV_WIND_XY2D)
+	if (dataType == GRB_PRV_WIND_XY2D || dataType==GRB_PRV_WIND_JET)
 		return GRB_WIND_VX;
 	if (dataType == GRB_PRV_CUR_XY2D)
 		return GRB_CUR_VX;

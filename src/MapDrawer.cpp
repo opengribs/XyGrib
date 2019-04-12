@@ -608,11 +608,8 @@ void MapDrawer::draw_Cartouche_Gridded
 	//------------------------------------------
 	QString origine, duplicated;
 	DataCode dtmp = colorMapData;
-	if (dtmp.dataType==GRB_PRV_WIND_XY2D || dtmp.dataType==GRB_PRV_WIND_JET)
-			dtmp.dataType = GRB_WIND_VX;
-	else if (dtmp.dataType == GRB_PRV_CUR_XY2D)
-			dtmp.dataType = GRB_CUR_VX;
-	
+	dtmp.dataType = reader->getDataTypeAlias(dtmp.dataType);
+
 	GriddedRecord *rec = reader->getRecord (dtmp, plotter->getCurrentDate());
 	if (rec != nullptr) {
 		origine = DataCodeStr::toString (rec->getDataCenterModel());
