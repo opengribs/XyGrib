@@ -140,6 +140,12 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
 	else {
 		windSpeed_10m = getValue(DataCode(GRB_WIND_SPEED,LV_ABOV_GND,10));
 		windDir_10m = getValue(DataCode(GRB_WIND_DIR,LV_ABOV_GND,10));
+		if (GribDataIsDef(windSpeed_10m) && GribDataIsDef(windDir_10m)) {
+			double ang = windDir_10m/180.0*M_PI;
+			double si= windSpeed_10m*sin(ang),  co= windSpeed_10m*cos(ang);
+			vx_10m = -si;
+			vy_10m = -co;
+		}
 	}
 	//-----------------------------------------
 	// Wind surface
@@ -153,6 +159,12 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
 	else {
 		windSpeed_gnd = getValue(DataCode(GRB_WIND_SPEED,LV_GND_SURF,0));
 		windDir_gnd = getValue(DataCode(GRB_WIND_DIR,LV_GND_SURF,0));
+		if (GribDataIsDef(windSpeed_gnd) && GribDataIsDef(windDir_gnd)) {
+			double ang = windDir_gnd/180.0*M_PI;
+			double si= windSpeed_gnd*sin(ang),  co= windSpeed_gnd*cos(ang);
+			vx_gnd = -si;
+			vy_gnd = -co;
+		}
 	}
 	//-----------------------------------------
     // Current
