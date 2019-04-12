@@ -458,7 +458,7 @@ int Grib2Record::analyseProductType ()
     }
 
 
-    if (pdtnum==0 || pdtnum== 2  || pdtnum== 12 ) {
+    else if (pdtnum==0 || pdtnum== 2  || pdtnum== 12 ) {
 		if (paramcat==0) {//TABLE 4.2-0-0
 			if (paramnumber==0)
 				return GRB_TEMP;
