@@ -813,6 +813,11 @@ void MainWindow::setMenubarItems()
     }
     else if ( plotter->hasDataType (GRB_WIND_SPEED)) {
 	    menuBar->acView_WindColors->setEnabled(true);
+	    if ( plotter->hasDataType (GRB_WIND_DIR)) {
+	        menuBar->acView_WindArrow->setEnabled(true);
+	        menuBar->acView_Barbules->setEnabled(true);
+	        menuBar->acView_ThinWindArrows->setEnabled(true);
+	    }
     }
 
 	if (plotter->hasDataType (GRB_WIND_GUST)) menuBar->acView_GustColors->setEnabled(true);

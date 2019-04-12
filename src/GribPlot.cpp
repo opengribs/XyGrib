@@ -193,6 +193,17 @@ void GribPlot::draw_WIND_Arrows (
 								(DataCode(GRB_WIND_VX,altitude),currentDate);
     GribRecord *recy = gribReader->getRecord 
 								(DataCode(GRB_WIND_VY,altitude),currentDate);
+
+	bool polar = false;
+    if (recx == nullptr || recy == nullptr) {
+    	polar = true;
+    	recx = gribReader->getRecord
+								(DataCode(GRB_WIND_SPEED,altitude),currentDate);
+		recy = gribReader->getRecord 
+								(DataCode(GRB_WIND_DIR,altitude),currentDate);
+    }
+
+
     if (recx == nullptr || recy == nullptr)
         return;        
 	
@@ -227,6 +238,14 @@ void GribPlot::draw_WIND_Arrows (
                     vy = recy->getInterpolatedValue(x, y, mustInterpolateValues);
                     if (GribDataIsDef(vx) && GribDataIsDef(vy))
                     {
+                    	if (polar) {
+                    		// vy angle
+                    		// vx speed
+                    		double ang = vy/180.0*M_PI;
+                    		double si=vx*sin(ang),  co=vx*cos(ang);
+                    		vx = -si;
+                    		vy = -co;
+                    	}
                         if (barbules)
                             drawWindArrowWithBarbs(pnt, i,j, vx,vy, (y<0), arrowsColor);
                         else
@@ -279,6 +298,12 @@ void GribPlot::draw_WIND_Arrows (
 					vy = recy->getInterpolatedValue(x, y, mustInterpolateValues);
 					if (GribDataIsDef(vx) && GribDataIsDef(vy))
 					{
+                    	if (polar) {
+                    		double ang = vy/180.0*M_PI;
+                    		double si=vx*sin(ang),  co=vx*cos(ang);
+                    		vx = -si;
+                    		vy = -co;
+                    	}
 						if (barbules)
 							drawWindArrowWithBarbs(pnt, i,j, vx,vy, (y<0), arrowsColor);
 						else

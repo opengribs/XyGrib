@@ -373,6 +373,11 @@ void MapDrawer::draw_MeteoData_Gridded
 		else if (plotter->hasData (DataCode(GRB_PRV_WIND_XY2D,LV_GND_SURF,0))) {
 			windArrowsAltitude = Altitude (LV_GND_SURF,0);
 		}
+		else if (plotter->hasData (DataCode(GRB_WIND_SPEED,LV_ABOV_GND,10))
+		 && plotter->hasData (DataCode(GRB_WIND_DIR,LV_ABOV_GND,10)) )
+		{
+			windArrowsAltitude = Altitude (LV_ABOV_GND,10);
+		}
 		else {
 			hasWindForArrows = false;
 		}
