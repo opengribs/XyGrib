@@ -127,12 +127,9 @@ void GribPlot::draw_GridPoints (const DataCode &dtc, QPainter &pnt, const Projec
     }
 //     GribRecord *rec = gribReader->getFirstGribRecord ();
 	DataCode dd;
-	if (dtc.dataType == GRB_PRV_WIND_XY2D)
-		dd = DataCode (GRB_WIND_VX, dtc.levelType, dtc.levelValue);
-	else if (dtc.dataType == GRB_PRV_CUR_XY2D)
-		dd = DataCode (GRB_CUR_VX, dtc.levelType, dtc.levelValue);
-	else
-		dd = dtc;
+	int type = gribReader->getDataTypeAlias(dtc.dataType);
+
+	dd = DataCode (type, dtc.levelType, dtc.levelValue);
 		
     GribRecord *rec = gribReader->getRecord (dd, getCurrentDate());
 	if (! rec)
@@ -193,6 +190,17 @@ void GribPlot::draw_WIND_Arrows (
 								(DataCode(GRB_WIND_VX,altitude),currentDate);
     GribRecord *recy = gribReader->getRecord 
 								(DataCode(GRB_WIND_VY,altitude),currentDate);
+
+	bool polar = false;
+    if (recx == nullptr || recy == nullptr) {
+    	polar = true;
+    	recx = gribReader->getRecord
+								(DataCode(GRB_WIND_SPEED,altitude),currentDate);
+		recy = gribReader->getRecord 
+								(DataCode(GRB_WIND_DIR,altitude),currentDate);
+    }
+
+
     if (recx == nullptr || recy == nullptr)
         return;        
 	
@@ -227,6 +235,14 @@ void GribPlot::draw_WIND_Arrows (
                     vy = recy->getInterpolatedValue(x, y, mustInterpolateValues);
                     if (GribDataIsDef(vx) && GribDataIsDef(vy))
                     {
+                    	if (polar) {
+                    		// vy angle
+                    		// vx speed
+                    		double ang = vy/180.0*M_PI;
+                    		double si=vx*sin(ang),  co=vx*cos(ang);
+                    		vx = -si;
+                    		vy = -co;
+                    	}
                         if (barbules)
                             drawWindArrowWithBarbs(pnt, i,j, vx,vy, (y<0), arrowsColor);
                         else
@@ -279,6 +295,12 @@ void GribPlot::draw_WIND_Arrows (
 					vy = recy->getInterpolatedValue(x, y, mustInterpolateValues);
 					if (GribDataIsDef(vx) && GribDataIsDef(vy))
 					{
+                    	if (polar) {
+                    		double ang = vy/180.0*M_PI;
+                    		double si=vx*sin(ang),  co=vx*cos(ang);
+                    		vx = -si;
+                    		vy = -co;
+                    	}
 						if (barbules)
 							drawWindArrowWithBarbs(pnt, i,j, vx,vy, (y<0), arrowsColor);
 						else
@@ -396,7 +418,7 @@ void GribPlot::draw_ColoredMapPlain (
 		dtc.dataType = GRB_PRV_WIND_XY2D;
 	}
 	DataCode dtc2 = dtc;
-	if (useJetStreamColorMap && dtc.dataType==GRB_PRV_WIND_XY2D) {
+	if (useJetStreamColorMap && (dtc.dataType==GRB_PRV_WIND_XY2D || dtc.dataType==GRB_WIND_SPEED)) {
 		dtc2.dataType = GRB_PRV_WIND_JET;
 	}
 	DataColors::setColorDataTypeFunction (dtc2);
@@ -423,16 +445,24 @@ void GribPlot::draw_ColoredMapPlain (
 							DataColors::function_getColor );
 			break;
 		case GRB_WIND_GUST :
-			if (useGustColorAbsolute)
-				drawColorMapGeneric_1D (pnt,proj,smooth, dtc,
-							DataColors::function_getColor);
-			else
-				drawColorMapGeneric_Abs_Delta_2D (pnt,proj,smooth,
+			if (!useGustColorAbsolute) {
+				if (hasData (GRB_WIND_VX, LV_ABOV_GND, 10)) {
+					drawColorMapGeneric_Abs_Delta_2D (pnt,proj,smooth,
 							DataCode (GRB_WIND_VX, LV_ABOV_GND, 10),
 							DataCode (GRB_WIND_VY, LV_ABOV_GND, 10),
 							dtc,
 							DataColors::function_getColor );
-			break;
+					break;
+				}
+				if (hasData (GRB_WIND_SPEED, LV_ABOV_GND, 10)) {
+					drawColorMapGeneric_Abs_Delta_Data (pnt,proj,smooth,
+							DataCode (GRB_WIND_GUST, dtc.levelType, dtc.levelValue),
+							DataCode (GRB_WIND_SPEED, LV_ABOV_GND, 10),
+							DataColors::function_getColor );
+					break;
+				}
+			}
+			// fall through
 		case GRB_TEMP :
 		case GRB_CLOUD_TOT : 
 		case GRB_PRECIP_TOT :
@@ -451,6 +481,7 @@ void GribPlot::draw_ColoredMapPlain (
 		case GRB_WAV_SIG_HT :
 		case GRB_WAV_MAX_HT :
 		case GRB_WAV_WHITCAP_PROB :
+		case GRB_WIND_SPEED :
 			drawColorMapGeneric_1D (pnt,proj,smooth, dtc, DataColors::function_getColor);
 			break;
 		default :

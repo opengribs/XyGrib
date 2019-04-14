@@ -195,6 +195,9 @@ public slots:
 		
 		void    createAllMETARs ();
 		
+        void    disableMenubarItems();
+        void    setMenubarItems();
+
         void    InitActionsStatus();
 		void 	setMenubarColorMapData (const DataCode &dtc, bool trigAction=true);
 		void 	setMenubarAltitudeData (DataCode dtc);

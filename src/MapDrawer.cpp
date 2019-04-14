@@ -330,18 +330,12 @@ void MapDrawer::draw_GSHHS_and_GriddedData (
 //===================================================================
 void MapDrawer::addUsedDataCenterModel (const DataCode &dtc, GriddedPlotter *plotter)
 {
-	int type;
-	if (dtc.dataType == GRB_PRV_WIND_XY2D)
-		type = GRB_WIND_VX;
-	else if (dtc.dataType == GRB_PRV_CUR_XY2D)
-		type = GRB_CUR_VX;
-	else if (dtc.dataType == GRB_PRV_DIFF_TEMPDEW)
-		type = GRB_DEWPOINT;
-	else
-		type = dtc.dataType;
+	auto reader = plotter->getReader();
+	assert(reader != nullptr);
 
-	assert(plotter->getReader() != nullptr);
-	GriddedRecord *rec = plotter->getReader()->getRecord 
+	int type = reader->getDataTypeAlias(dtc.dataType);
+
+	GriddedRecord *rec = reader->getRecord
 			(DataCode(type,dtc.levelType,dtc.levelValue),  plotter->getCurrentDate());
 	if (rec != nullptr) {
 		setUsedDataCenters.insert (rec->getDataCenterModel());
@@ -378,6 +372,11 @@ void MapDrawer::draw_MeteoData_Gridded
 		}
 		else if (plotter->hasData (DataCode(GRB_PRV_WIND_XY2D,LV_GND_SURF,0))) {
 			windArrowsAltitude = Altitude (LV_GND_SURF,0);
+		}
+		else if (plotter->hasData (DataCode(GRB_WIND_SPEED,LV_ABOV_GND,10))
+		 && plotter->hasData (DataCode(GRB_WIND_DIR,LV_ABOV_GND,10)) )
+		{
+			windArrowsAltitude = Altitude (LV_ABOV_GND,10);
 		}
 		else {
 			hasWindForArrows = false;
@@ -609,11 +608,8 @@ void MapDrawer::draw_Cartouche_Gridded
 	//------------------------------------------
 	QString origine, duplicated;
 	DataCode dtmp = colorMapData;
-	if (dtmp.dataType==GRB_PRV_WIND_XY2D || dtmp.dataType==GRB_PRV_WIND_JET)
-			dtmp.dataType = GRB_WIND_VX;
-	else if (dtmp.dataType == GRB_PRV_CUR_XY2D)
-			dtmp.dataType = GRB_CUR_VX;
-	
+	dtmp.dataType = reader->getDataTypeAlias(dtmp.dataType);
+
 	GriddedRecord *rec = reader->getRecord (dtmp, plotter->getCurrentDate());
 	if (rec != nullptr) {
 		origine = DataCodeStr::toString (rec->getDataCenterModel());

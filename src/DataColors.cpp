@@ -200,6 +200,7 @@ void DataColors::setColorDataTypeFunction (const DataCode &dtc)
 		case GRB_WIND_GUST :
 			function_getColor = &DataColors::getGustColor;
 			break;
+		case GRB_WIND_SPEED :
 		case GRB_PRV_WIND_XY2D :
 			function_getColor = &DataColors::getWindColor;
 			break;
@@ -272,6 +273,7 @@ QRgb DataColors::getDataCodeColor (const DataCode &dtc, double v, bool smooth)
 	switch (dtc.dataType) {
 		case GRB_WIND_GUST :
 			return DataColors::getGustColor (v, smooth);
+		case GRB_WIND_SPEED :
 		case GRB_PRV_WIND_XY2D :
 			return DataColors::getWindColor (v, smooth);
 		case GRB_PRV_WIND_JET :
@@ -325,6 +327,7 @@ ColorScale *DataColors::getColorScale (const DataCode &dtc)
 	switch (dtc.dataType) {
 		case GRB_WIND_GUST :
 			return &colors_Gust;
+		case GRB_WIND_SPEED :
 		case GRB_PRV_WIND_XY2D :
 			return &colors_Wind;
 		case GRB_PRV_WIND_JET :

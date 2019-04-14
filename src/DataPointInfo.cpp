@@ -21,6 +21,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <cmath>
 
+static float polar_dir(float vx, float vy)
+{
+	float dir = -std::atan2(-vx, vy) *180.0f/M_PI + 180.f;
+	if (dir < 0.f)
+		return dir +360.f;
+	if (dir >= 360.f)
+		return dir -360.f;
+	return dir;
+}
+
 DataPointInfo::DataPointInfo (GriddedReader *reader,
                     double x, double y, time_t  date )
 {
@@ -125,13 +135,17 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
 	vy_10m = getValue(DataCode(GRB_WIND_VY,LV_ABOV_GND,10));
     if (GribDataIsDef(vx_10m) && GribDataIsDef(vy_10m)) {
 		windSpeed_10m = std::sqrt (vx_10m*vx_10m + vy_10m*vy_10m);
-		windDir_10m = - std::atan2 (-vx_10m, vy_10m) *180.0/M_PI + 180;
-		if (windDir_10m < 0)    windDir_10m += 360.0;
-		else if (windDir_10m >= 360) windDir_10m -= 360.0;
+		windDir_10m = polar_dir(vx_10m, vy_10m);
 	}
 	else {
-		windSpeed_10m = GRIB_NOTDEF;
-		windDir_10m = GRIB_NOTDEF;
+		windSpeed_10m = getValue(DataCode(GRB_WIND_SPEED,LV_ABOV_GND,10));
+		windDir_10m = getValue(DataCode(GRB_WIND_DIR,LV_ABOV_GND,10));
+		if (GribDataIsDef(windSpeed_10m) && GribDataIsDef(windDir_10m)) {
+			double ang = windDir_10m/180.0*M_PI;
+			double si= windSpeed_10m*sin(ang),  co= windSpeed_10m*cos(ang);
+			vx_10m = -si;
+			vy_10m = -co;
+		}
 	}
 	//-----------------------------------------
 	// Wind surface
@@ -140,13 +154,17 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
 	vy_gnd = getValue(DataCode(GRB_WIND_VY,LV_GND_SURF,0));
     if (GribDataIsDef(vx_gnd) && GribDataIsDef(vy_gnd)) {
 		windSpeed_gnd = std::sqrt (vx_gnd*vx_gnd + vy_gnd*vy_gnd);
-		windDir_gnd = - std::atan2 (-vx_gnd, vy_gnd) *180.0/M_PI + 180;
-		if (windDir_gnd < 0)    windDir_gnd += 360.0;
-		else if (windDir_gnd >= 360) windDir_gnd -= 360.0;
+		windDir_gnd = polar_dir(vx_gnd, vy_gnd);
 	}
 	else {
-		windSpeed_gnd = GRIB_NOTDEF;
-		windDir_gnd = GRIB_NOTDEF;
+		windSpeed_gnd = getValue(DataCode(GRB_WIND_SPEED,LV_GND_SURF,0));
+		windDir_gnd = getValue(DataCode(GRB_WIND_DIR,LV_GND_SURF,0));
+		if (GribDataIsDef(windSpeed_gnd) && GribDataIsDef(windDir_gnd)) {
+			double ang = windDir_gnd/180.0*M_PI;
+			double si= windSpeed_gnd*sin(ang),  co= windSpeed_gnd*cos(ang);
+			vx_gnd = -si;
+			vy_gnd = -co;
+		}
 	}
 	//-----------------------------------------
     // Current
@@ -169,9 +187,8 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
 
     if (GribDataIsDef(cx) && GribDataIsDef(cy)) {
 		currentSpeed = std::sqrt (cx*cx + cy*cy);
-		currentDir = - std::atan2 (-cx, cy) *180.0/M_PI;
-		if (currentDir < 0)    currentDir += 360.0;
-		else if (currentDir >= 360) currentDir -= 360.0;
+		// unlike wind current direction is to X not from X
+		currentDir = polar_dir(-cx, -cy);
 	}
 	else {
 		currentSpeed = GRIB_NOTDEF;
