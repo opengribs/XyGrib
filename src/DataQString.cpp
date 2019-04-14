@@ -194,8 +194,10 @@ QString DataCodeStr::toString_name (const DataCode &dtc)
 		case GRB_TMAX         : return tr("Temperature max");
 		case GRB_TMIN         : return tr("Temperature min");
 		case GRB_DEWPOINT     : return tr("Dew point");
-		case GRB_CUR_VX      : return tr("Current (Vx)");
-		case GRB_CUR_VY      : return tr("Current (Vy)");
+		case GRB_CUR_VX       : return tr("Current (Vx)");
+		case GRB_CUR_VY       : return tr("Current (Vy)");
+		case GRB_CUR_DIR      : return tr("Current (direction)");
+		case GRB_CUR_SPEED    : return tr("Current (speed)");
 		case GRB_WIND_VX      : return tr("Wind (Vx)");
 		case GRB_WIND_VY      : return tr("Wind (Vy)");
 		case GRB_WIND_DIR     : return tr("Wind (direction)");

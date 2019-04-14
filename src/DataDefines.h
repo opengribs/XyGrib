@@ -90,6 +90,8 @@ enum DataCenterModel {
 #define GRB_WIND_GUST 	  180   /* m/s */
 #define GRB_WIND_GUST_VX  181   /* m/s */
 #define GRB_WIND_GUST_VY  182   /* m/s */
+#define GRB_CUR_DIR       183   /* °      */
+#define GRB_CUR_SPEED     184   /* m/s    */
 // added by david
 #define GRB_COMP_REFL     212   /* dBZ */
 //----------------------------------------------------

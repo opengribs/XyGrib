@@ -191,8 +191,14 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
 		currentDir = polar_dir(-cx, -cy);
 	}
 	else {
-		currentSpeed = GRIB_NOTDEF;
-		currentDir = GRIB_NOTDEF;
+		currentSpeed = getValue(DataCode(GRB_CUR_SPEED,LV_GND_SURF,0));
+		currentDir = getValue(DataCode(GRB_CUR_DIR,LV_GND_SURF,0));;
+		if (GribDataIsDef(currentSpeed) && GribDataIsDef(currentDir)) {
+			double ang = currentDir/180.0*M_PI;
+			double si= currentSpeed*sin(ang),  co= currentSpeed*cos(ang);
+			cx = -si;
+			cy = -co;
+		}
 	}
 	//-------------------------------------------------------------
 	// Data in altitude

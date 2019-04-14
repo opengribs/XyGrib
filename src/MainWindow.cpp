@@ -919,6 +919,14 @@ void MainWindow::setMenubarItems()
     	menuBar->acView_CurrentArrow->setEnabled(true);
     	menuBar->acView_CurrentArrowsOnGribGrid->setEnabled(true);
     }
+    else if ( plotter->hasDataType (GRB_CUR_SPEED)) {
+	    menuBar->acView_CurrentColors->setEnabled(true);
+	    if ( plotter->hasDataType (GRB_CUR_DIR)) {
+	        menuBar->acView_CurrentArrow->setEnabled(true);
+	        menuBar->acView_CurrentArrowsOnGribGrid->setEnabled(true);
+	    }
+    }
+
 	// Waves
 	if (plotter->hasWaveDataType (GRB_WAV_SIG_HT)) menuBar->acView_SigWaveHeight->setEnabled (true);
 	if (plotter->hasWaveDataType (GRB_WAV_MAX_HT)) menuBar->acView_MaxWaveHeight->setEnabled (true);
@@ -1966,6 +1974,7 @@ void MainWindow::setMenubarColorMapData (const DataCode &dtc, bool trigAction)
 		case GRB_PRV_WIND_JET :
 			act = mb->acView_WindColors;
 			break;
+		case GRB_CUR_SPEED :
 		case GRB_PRV_CUR_XY2D :
 			act = mb->acView_CurrentColors;
 			break;
@@ -2086,9 +2095,16 @@ void MainWindow::slot_GroupColorMap (QAction *act)
 			dtc = dtctmp;
     }
     // TODO this needs to be fixed there are a number of levels of current
-    else if (act == mb->acView_CurrentColors)
-    	dtc.set (GRB_PRV_CUR_XY2D,LV_GND_SURF,0);
+    else if (act == mb->acView_CurrentColors) {
+		dtc.set (GRB_TYPE_NOT_DEFINED,LV_TYPE_NOT_DEFINED,0); 
+    	dtctmp.set (GRB_PRV_CUR_XY2D,LV_GND_SURF,0);
+		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
+			dtc = dtctmp;
 
+		dtctmp.set (GRB_CUR_SPEED,LV_GND_SURF, 0);
+		if (dtc.dataType==GRB_TYPE_NOT_DEFINED && reader->hasData(dtctmp))
+			dtc = dtctmp;
+    }
     else if (act == mb->acView_RainColors){
         dtctmp.set (GRB_PRECIP_TOT,LV_GND_SURF,0);
         if (reader->hasData(dtctmp)){

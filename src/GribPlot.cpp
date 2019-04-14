@@ -335,6 +335,15 @@ void GribPlot::draw_CURRENT_Arrows (
 								(DataCode(GRB_CUR_VX,altitude),currentDate);
     GribRecord *recy = gribReader->getRecord 
 								(DataCode(GRB_CUR_VY,altitude),currentDate);
+	bool polar = false;
+    if (recx == nullptr || recy == nullptr) {
+    	polar = true;
+    	recx = gribReader->getRecord
+								(DataCode(GRB_CUR_SPEED,altitude),currentDate);
+		recy = gribReader->getRecord 
+								(DataCode(GRB_CUR_DIR,altitude),currentDate);
+    }
+
     if (recx == nullptr || recy == nullptr)
         return;        
     int i, j;
@@ -372,6 +381,12 @@ void GribPlot::draw_CURRENT_Arrows (
 								vy = recy->getInterpolatedValue(x, y, mustInterpolateValues);
 								if (GribDataIsDef(vx) && GribDataIsDef(vy))
 								{
+									if (polar) {
+										double ang = vy/180.0*M_PI;
+										double si=vx*sin(ang),  co=vx*cos(ang);
+										vx = -si;
+										vy = -co;
+									}
 									drawCurrentArrow(pnt, i,j, vx,vy);
 								}
 							}
@@ -395,6 +410,12 @@ void GribPlot::draw_CURRENT_Arrows (
 					vy = recy->getInterpolatedValue(x, y, mustInterpolateValues);
 					if (GribDataIsDef(vx) && GribDataIsDef(vy))
 					{
+						if (polar) {
+							double ang = vy/180.0*M_PI;
+							double si=vx*sin(ang),  co=vx*cos(ang);
+							vx = -si;
+							vy = -co;
+						}
 						drawCurrentArrow(pnt, i,j, vx,vy);
 					}
 				}
@@ -482,6 +503,7 @@ void GribPlot::draw_ColoredMapPlain (
 		case GRB_WAV_MAX_HT :
 		case GRB_WAV_WHITCAP_PROB :
 		case GRB_WIND_SPEED :
+		case GRB_CUR_SPEED :
 			drawColorMapGeneric_1D (pnt,proj,smooth, dtc, DataColors::function_getColor);
 			break;
 		default :
