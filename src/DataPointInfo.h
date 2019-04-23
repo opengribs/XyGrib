@@ -137,10 +137,12 @@ class DataPointInfo
         float   wave_max_ht;
         float   wave_swl_ht;
         float   wave_wnd_ht;
+        float   wave_per;
         float   wave_swl_per;
         float   wave_wnd_per;
         float   wave_pr_per;
         float   wave_scdy_per;
+        float   wave_dir;
         float   wave_swl_dir;
         float   wave_wnd_dir;
         float   wave_pr_dir;

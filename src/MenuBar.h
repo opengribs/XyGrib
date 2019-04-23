@@ -119,6 +119,7 @@ public:
 		QAction *acView_WhiteCapProb;
     QActionGroup *acView_GroupWavesArrows;
         QAction *acView_WavesArrows_none;
+        QAction *acView_WavesArrows_sig;
         QAction *acView_WavesArrows_max;
         QAction *acView_WavesArrows_swell;
         QAction *acView_WavesArrows_wind;

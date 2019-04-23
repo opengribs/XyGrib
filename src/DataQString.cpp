@@ -231,7 +231,9 @@ QString DataCodeStr::toString_name (const DataCode &dtc)
 		case GRB_PRV_CUR_DIR    : return tr("Current direction");
 		case GRB_PRV_CUR_XY2D   : return tr("Current");
 		
-		case GRB_WAV_SIG_HT	   : return tr("Significant wave");
+		case GRB_WAV_SIG_HT	   : return tr("Significant wave height");
+		case GRB_WAV_DIR       : return tr("Combined wind waves and swell direction");
+		case GRB_WAV_PER       : return tr("Combined wind waves and swell mean period");
 		case GRB_WAV_WND_DIR   : return tr("Wind wave direction");
 		case GRB_WAV_WND_HT    : return tr("Wind wave height");
 		case GRB_WAV_WND_PER   : return tr("Wind wave period");
@@ -247,7 +249,7 @@ QString DataCodeStr::toString_name (const DataCode &dtc)
 		case GRB_WAV_MAX_PER   : return tr("Maximum wave period");
 		case GRB_WAV_WHITCAP_PROB  : return tr("Whitecap probability");
 		
-		case GRB_PRV_WAV_SIG   : return tr("Significant wave");
+		case GRB_PRV_WAV_SIG   : return tr("Wind waves and swell");
 		case GRB_PRV_WAV_MAX   : return tr("Maximum wave");
 		case GRB_PRV_WAV_SWL   : return tr("Swell");
 		case GRB_PRV_WAV_WND   : return tr("Wind wave");

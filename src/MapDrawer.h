@@ -136,6 +136,7 @@ friend class Terrain;	// TODO (or not) getters setters
 		bool  showCurrentArrows;
 		bool  hasCurrentForArrows;
 		int   showWaveArrowsType;
+		bool  hasWaveForArrows;
 		
 		Altitude currentArrowsAltitude;
 		

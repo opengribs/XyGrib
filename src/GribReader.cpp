@@ -339,6 +339,8 @@ void GribReader::readAllGribRecords (int nbrecs)
             //-----------------------------------------
 			|| (rec->getLevelType()==LV_GND_SURF
 				&& (   rec->getDataType()==GRB_WAV_SIG_HT
+					|| rec->getDataType()==GRB_WAV_DIR
+					|| rec->getDataType()==GRB_WAV_PER
 					|| rec->getDataType()==GRB_WAV_WND_DIR
 					|| rec->getDataType()==GRB_WAV_WND_HT
 					|| rec->getDataType()==GRB_WAV_WND_PER
@@ -526,6 +528,8 @@ void  GribReader::copyMissingWaveRecords (DataCode dtc)
 void  GribReader::copyMissingWaveRecords ()
 {
 	copyMissingWaveRecords (DataCode(GRB_WAV_SIG_HT,LV_GND_SURF,0));
+	copyMissingWaveRecords (DataCode(GRB_WAV_DIR,LV_GND_SURF,0));
+	copyMissingWaveRecords (DataCode(GRB_WAV_PER,LV_GND_SURF,0));
 	copyMissingWaveRecords (DataCode(GRB_WAV_WND_DIR,LV_GND_SURF,0));
 	copyMissingWaveRecords (DataCode(GRB_WAV_WND_HT,LV_GND_SURF,0));
 	copyMissingWaveRecords (DataCode(GRB_WAV_WND_PER,LV_GND_SURF,0));

@@ -392,12 +392,14 @@ QString Util::getDataUnit (const DataCode &dtc)
 			return tr("m");
 		case GRB_CUR_DIR :
 		case GRB_WIND_DIR : 
+		case GRB_WAV_DIR :
 		case GRB_WAV_WND_DIR : 
 		case GRB_WAV_SWL_DIR : 
 		case GRB_WAV_MAX_DIR : 
 		case GRB_WAV_PRIM_DIR : 
 		case GRB_WAV_SCDY_DIR : 
 			return tr("°");
+		case GRB_WAV_PER :
 		case GRB_WAV_WND_PER : 
 		case GRB_WAV_SWL_PER : 
 		case GRB_WAV_MAX_PER : 

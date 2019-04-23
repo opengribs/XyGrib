@@ -308,7 +308,8 @@ void MeteoTableWidget::createTable()
 		){
 			addLine_WaveHeight (dataType, lig++);
 		}
-		else if (dataType==GRB_PRV_WAV_MAX
+		else if (dataType==GRB_PRV_WAV_SIG
+				|| dataType==GRB_PRV_WAV_MAX
 				|| dataType==GRB_PRV_WAV_WND
 				|| dataType==GRB_PRV_WAV_SWL
 				|| dataType==GRB_PRV_WAV_PRIM

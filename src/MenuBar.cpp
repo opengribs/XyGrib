@@ -365,6 +365,7 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
 		acView_WhiteCapProb = addActionCheck (menuSeaState, tr("Whitecap probability"), "", "");
 		menuWavesArrows = new QMenu (tr("Waves arrows"));
 			acView_WavesArrows_none = addActionCheck (menuWavesArrows, tr("None"), "", "");
+			acView_WavesArrows_sig = addActionCheck (menuWavesArrows, tr("Combined wave and swell"), "", "");
 			acView_WavesArrows_max = addActionCheck (menuWavesArrows, tr("Maximum wave"), "", "");
 			acView_WavesArrows_swell = addActionCheck (menuWavesArrows, tr("Swell"), "", "");
 			acView_WavesArrows_wind = addActionCheck (menuWavesArrows, tr("Wind wave"), "", "");
@@ -384,6 +385,7 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
 		// Waves arrows type
 		acView_GroupWavesArrows = new QActionGroup (menuWavesArrows);
 			acView_GroupWavesArrows->addAction (acView_WavesArrows_none);
+			acView_GroupWavesArrows->addAction (acView_WavesArrows_sig);
 			acView_GroupWavesArrows->addAction (acView_WavesArrows_max);
 			acView_GroupWavesArrows->addAction (acView_WavesArrows_swell);
 			acView_GroupWavesArrows->addAction (acView_WavesArrows_wind);
@@ -654,6 +656,7 @@ void MenuBar::setCitiesNamesLevel (int level) {
 void MenuBar::setWaveArrowsType (int type) {
     switch (type) {
         case GRB_TYPE_NOT_DEFINED: acView_WavesArrows_none->setChecked(true); break;
+        case GRB_PRV_WAV_SIG:  acView_WavesArrows_sig->setChecked(true); break;
         case GRB_PRV_WAV_MAX:  acView_WavesArrows_max->setChecked(true); break;
         case GRB_PRV_WAV_SWL:  acView_WavesArrows_swell->setChecked(true); break;
         case GRB_PRV_WAV_WND:  acView_WavesArrows_wind->setChecked(true); break;

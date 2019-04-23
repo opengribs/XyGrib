@@ -303,6 +303,7 @@ void MeteoTableDialog::saveFileSYLK (SylkFile &slk)
 			case GRB_WIND_VY      : 
 			case GRB_PRV_WIND_DIR     : 
 				break;
+			case GRB_PRV_WAV_SIG : 
 			case GRB_PRV_WAV_MAX : 
 			case GRB_PRV_WAV_SWL : 
 			case GRB_PRV_WAV_WND : 
@@ -328,6 +329,11 @@ int MeteoTableDialog::SYLK_addData_waves (SylkFile &slk, int lig,int col, DataCo
 	udir = Util::getDataUnit (GRB_WAV_MAX_DIR);
 	uper = Util::getDataUnit (GRB_WAV_MAX_PER);
 	switch (dtc.dataType) {
+		case GRB_PRV_WAV_SIG:
+			tht  = DataCodeStr::toString_name (GRB_WAV_SIG_HT);
+			tdir = DataCodeStr::toString_name (GRB_WAV_DIR);
+			tper = DataCodeStr::toString_name (GRB_WAV_PER);
+			break;
 		case GRB_PRV_WAV_MAX:
 			tht  = DataCodeStr::toString_name (GRB_WAV_MAX_HT);
 			tdir = DataCodeStr::toString_name (GRB_WAV_MAX_DIR);

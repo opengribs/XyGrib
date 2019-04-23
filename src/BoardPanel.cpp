@@ -248,7 +248,7 @@ void BoardPanel::showDataPointInfo (
 	// Waves
 	//------------------------------------------------
 	if (cellWaves->isVisible()) {
-		lbWaves_sig.setText (formatWave(tr("sig  :","Tr: VERY SHORT TAG, same size as 'swell' translation: significant"),pf.wave_sig_ht, GRIB_NOTDEF, GRIB_NOTDEF));
+		lbWaves_sig.setText (formatWave(tr("sig  :","Tr: VERY SHORT TAG, same size as 'swell' translation: significant"),pf.wave_sig_ht, pf.wave_dir, pf.wave_per));
 		lbWaves_max.setText (formatWave(tr("max  :","Tr: VERY SHORT TAG, same size as 'swell' translation: maximum"),pf.wave_max_ht, pf.wave_max_dir, pf.wave_max_per));
 		lbWaves_swl.setText (formatWave(tr("swell:","Tr: VERY SHORT TAG: swell"),pf.wave_swl_ht, pf.wave_swl_dir, pf.wave_swl_per));
 		lbWaves_wnd.setText (formatWave(tr("wind :","Tr: VERY SHORT TAG, same size as 'swell' translation: wind"),pf.wave_wnd_ht, pf.wave_wnd_dir, pf.wave_wnd_per));

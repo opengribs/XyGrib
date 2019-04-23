@@ -315,6 +315,7 @@ void DialogMeteotableOptions::createDataLists()
     //----------------------------------
 	int type;
 	type = GRB_WAV_SIG_HT; addData (tr("Waves")+": "+DataCodeStr::toString(type), type,LV_GND_SURF,0, defaultvis,defaultpos++);
+	type = GRB_PRV_WAV_SIG; addData (tr("Waves")+": "+DataCodeStr::toString(type), type,LV_GND_SURF,0, defaultvis,defaultpos++);
 	type = GRB_PRV_WAV_MAX; addData (tr("Waves")+": "+DataCodeStr::toString(type), type,LV_GND_SURF,0, defaultvis,defaultpos++);
 	type = GRB_PRV_WAV_WND; addData (tr("Waves")+": "+DataCodeStr::toString(type), type,LV_GND_SURF,0, defaultvis,defaultpos++);
 	type = GRB_PRV_WAV_SWL; addData (tr("Waves")+": "+DataCodeStr::toString(type), type,LV_GND_SURF,0, defaultvis,defaultpos++);
