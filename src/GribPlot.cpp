@@ -523,7 +523,11 @@ void GribPlot::draw_WAVES_Arrows (
         return;
     QColor waveArrowColor (0,0,0);
     GribRecord *recDir, *recPer;
-	if (dtc.dataType == GRB_PRV_WAV_PRIM) {
+	if (dtc.dataType == GRB_PRV_WAV_SIG) {
+		recDir = gribReader->getRecord (DataCode(GRB_WAV_DIR,LV_GND_SURF,0), currentDate);
+//		recPer = gribReader->getRecord (DataCode(GRB_WAV__PER,LV_GND_SURF,0), currentDate);
+	}
+	else if (dtc.dataType == GRB_PRV_WAV_PRIM) {
 		recDir = gribReader->getRecord (DataCode(GRB_WAV_PRIM_DIR,LV_GND_SURF,0), currentDate);
 //		recPer = gribReader->getRecord (DataCode(GRB_WAV_PRIM_PER,LV_GND_SURF,0), currentDate);
 	}

@@ -67,12 +67,14 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
 	wave_swl_ht = getValue(DataCode(GRB_WAV_SWL_HT,LV_GND_SURF,0));
 	wave_wnd_ht = getValue(DataCode(GRB_WAV_WND_HT,LV_GND_SURF,0));
 
+	wave_per     = getValue(DataCode(GRB_WAV_PER,LV_GND_SURF,0));
 	wave_wnd_per = getValue(DataCode(GRB_WAV_WND_PER,LV_GND_SURF,0));
 	wave_swl_per = getValue(DataCode(GRB_WAV_SWL_PER,LV_GND_SURF,0));
 	wave_pr_per = getValue(DataCode(GRB_WAV_PRIM_PER,LV_GND_SURF,0));
 	wave_scdy_per = getValue(DataCode(GRB_WAV_SCDY_PER,LV_GND_SURF,0));
 	wave_max_per = getValue(DataCode(GRB_WAV_MAX_PER,LV_GND_SURF,0));
 
+	wave_dir     = getValue(DataCode(GRB_WAV_DIR,LV_GND_SURF,0));
 	wave_wnd_dir = getValue(DataCode(GRB_WAV_WND_DIR,LV_GND_SURF,0));
 	wave_swl_dir = getValue(DataCode(GRB_WAV_SWL_DIR,LV_GND_SURF,0));
 	wave_pr_dir = getValue(DataCode(GRB_WAV_PRIM_DIR,LV_GND_SURF,0));
@@ -331,10 +333,14 @@ float DataPointInfo::getDataValue (const DataCode &dtc) const
 		//-----------------------------------
 		case GRB_WAV_SIG_HT:
 				return wave_sig_ht;
+		case GRB_WAV_DIR:
+				return wave_dir;
 		case GRB_WAV_WND_DIR:
 				return wave_wnd_dir;
 		case GRB_WAV_WND_HT:
 				return wave_wnd_ht;
+		case GRB_WAV_PER:
+				return wave_per;
 		case GRB_WAV_WND_PER:
 				return wave_wnd_per;
 		case GRB_WAV_SWL_DIR:
@@ -377,6 +383,11 @@ bool DataPointInfo::getWaveValues (int prvtype,
 							float *ht, float *per, float *dir)  const
 {	
 	switch (prvtype) {
+		case GRB_PRV_WAV_SIG:
+			*ht  = getWaveData (GRB_WAV_SIG_HT);
+			*dir = getWaveData (GRB_WAV_DIR);
+			*per = getWaveData (GRB_WAV_PER);
+			break;
 		case GRB_PRV_WAV_MAX:
 			*ht  = getWaveData (GRB_WAV_MAX_HT);
 			*dir = getWaveData (GRB_WAV_MAX_DIR);

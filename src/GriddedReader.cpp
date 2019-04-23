@@ -122,7 +122,9 @@ bool GriddedReader::hasWaveDataType (int dataType)  const
 	bool ok = false;
 	switch (dataType) {
 		case GRB_PRV_WAV_SIG :
-			ok = hasDataType (GRB_WAV_SIG_HT);
+			ok = hasDataType (GRB_WAV_SIG_HT)
+			  || hasDataType (GRB_WAV_DIR)
+			  || hasDataType (GRB_WAV_PER);
 			break;
 		case GRB_PRV_WAV_MAX :
 			ok = hasDataType (GRB_WAV_MAX_DIR)
@@ -149,6 +151,8 @@ bool GriddedReader::hasWaveDataType (int dataType)  const
 			break;
 		case GRB_TYPE_NOT_DEFINED :
 			ok = hasDataType (GRB_WAV_SIG_HT)
+			  || hasDataType (GRB_WAV_DIR)
+			  || hasDataType (GRB_WAV_PER)
 			  || hasDataType (GRB_WAV_MAX_DIR)
 			  || hasDataType (GRB_WAV_MAX_HT)
 			  || hasDataType (GRB_WAV_MAX_PER)

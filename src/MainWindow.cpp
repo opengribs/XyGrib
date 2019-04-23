@@ -773,6 +773,7 @@ void MainWindow::disableMenubarItems()
     menuBar->menuWavesArrows->setEnabled (false);
     menuBar->acView_DuplicateMissingWaveRecords->setEnabled (false);
 	menuBar->acView_WavesArrows_none->setEnabled (false);
+	menuBar->acView_WavesArrows_sig->setEnabled (false);
 	menuBar->acView_WavesArrows_max->setEnabled (false);
 	menuBar->acView_WavesArrows_swell->setEnabled (false);
 	menuBar->acView_WavesArrows_wind->setEnabled (false);
@@ -936,6 +937,7 @@ void MainWindow::setMenubarItems()
 	    menuBar->acView_DuplicateMissingWaveRecords->setEnabled (true);
 	    menuBar->acView_WavesArrows_none->setEnabled (true);
     }
+	if (plotter->hasWaveDataType (GRB_WAV_DIR)) menuBar->acView_WavesArrows_sig->setEnabled (true);
 	if (plotter->hasWaveDataType (GRB_WAV_MAX_DIR)) menuBar->acView_WavesArrows_max->setEnabled (true);
 	if (plotter->hasWaveDataType (GRB_WAV_SWL_DIR)) menuBar->acView_WavesArrows_swell->setEnabled (true);
 	if (plotter->hasWaveDataType (GRB_WAV_WND_DIR)) menuBar->acView_WavesArrows_wind->setEnabled (true);
@@ -2411,6 +2413,8 @@ void MainWindow::slot_GroupWavesArrows (QAction *act)
     MenuBar  *mb = menuBar;
     if (act == mb->acView_WavesArrows_none)
 		terre->setWaveArrowsType (GRB_TYPE_NOT_DEFINED);
+    else if (act == mb->acView_WavesArrows_sig)
+		terre->setWaveArrowsType (GRB_PRV_WAV_SIG);
     else if (act == mb->acView_WavesArrows_max)
 		terre->setWaveArrowsType (GRB_PRV_WAV_MAX);
     else if (act == mb->acView_WavesArrows_swell)

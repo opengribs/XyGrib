@@ -389,6 +389,8 @@ void  GribRecord::translateDataType ()
 	if (this->knownData) {
 		switch (getDataType()) {
 			case GRB_WAV_SIG_HT:
+			case GRB_WAV_DIR:
+			case GRB_WAV_PER:
 			case GRB_WAV_WND_DIR:
 			case GRB_WAV_WND_HT:
 			case GRB_WAV_WND_PER:
