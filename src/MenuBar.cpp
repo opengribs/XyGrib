@@ -365,7 +365,7 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
 		acView_WhiteCapProb = addActionCheck (menuSeaState, tr("Whitecap probability"), "", "");
 		menuWavesArrows = new QMenu (tr("Waves arrows"));
 			acView_WavesArrows_none = addActionCheck (menuWavesArrows, tr("None"), "", "");
-			acView_WavesArrows_sig = addActionCheck (menuWavesArrows, tr("Mean wave and swell"), "", "");
+			acView_WavesArrows_sig = addActionCheck (menuWavesArrows, tr("Combined wave and swell"), "", "");
 			acView_WavesArrows_max = addActionCheck (menuWavesArrows, tr("Maximum wave"), "", "");
 			acView_WavesArrows_swell = addActionCheck (menuWavesArrows, tr("Swell"), "", "");
 			acView_WavesArrows_wind = addActionCheck (menuWavesArrows, tr("Wind wave"), "", "");
