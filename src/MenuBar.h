@@ -67,6 +67,7 @@ public:
     void updateListeDates  (std::set<time_t> *setDates, time_t currentDate);
     void updateCurrentDate (time_t currentDate);
 
+    void updateDateSelector();
 
     time_t  getDateGribById (int id);
 

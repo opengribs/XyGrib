@@ -458,10 +458,7 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
     cbDatesGrib = new QComboBox ();
     cbDatesGrib->setSizeAdjustPolicy (QComboBox::AdjustToContents);
     cbDatesGrib->addItem("-------------------------");
-
-	cbDatesGrib->setEnabled (false);
-	acDatesGrib_prev->setEnabled (true);
-	acDatesGrib_next->setEnabled (true);
+    updateDateSelector();
 
     cbModelRect = new QComboBox ();
     cbModelRect->setSizeAdjustPolicy (QComboBox::AdjustToContents);
@@ -671,7 +668,7 @@ void MenuBar::updateListeDates(std::set<time_t> *setDates, time_t currentDate)
 {
     listGribDates.clear();
     // Construit un vector à partir du set (plus pratique)
-    for (long setDate : *setDates) {
+    if (setDates) for (long setDate : *setDates) {
         listGribDates.push_back(setDate);
     }
 
@@ -679,30 +676,47 @@ void MenuBar::updateListeDates(std::set<time_t> *setDates, time_t currentDate)
     while (cbDatesGrib->count() > 0) {
         cbDatesGrib->removeItem(0);
     }
+    auto nbe_dates = listGribDates.size();
     for (long tps : listGribDates) {
         QString str = Util::formatDateTimeLong(tps);
         //printf("%s\n", qPrintable(str));
         cbDatesGrib->addItem(str);
     }
-	
-	updateCurrentDate (currentDate);
+    if ( nbe_dates > 1) {
+        updateDateSelector( );
+        updateCurrentDate (currentDate);
+        return;
+    }
+    if (nbe_dates == 0) {
+        cbDatesGrib->addItem("-------------------------");
+    }
+    updateDateSelector();
 }
+
+void MenuBar::updateDateSelector()
+{
+    bool enable = listGribDates.size() > 1;
+    acDatesGrib_prev->setEnabled (enable);
+	acDatesGrib_next->setEnabled (enable);
+	cbDatesGrib->setEnabled (enable);
+}
+
 //------------------------------------------------------------
 time_t  MenuBar::getDateGribById(int id)
 {
     if (listGribDates.size() > (uint)id)
         return listGribDates[id];
-    else
-        return (time_t)0;
+
+    return (time_t)0;
 }
 //------------------------------------------------------------
 void MenuBar::updateCurrentDate (time_t currentDate)
 {
-	acDatesGrib_prev->setEnabled (true);
-	acDatesGrib_next->setEnabled (true);
 	QString strCurrentDate = Util::formatDateTimeLong (currentDate);
 	int id = cbDatesGrib->findText (strCurrentDate);
-	if (id >= 0) {
+	if (id >= 0 && listGribDates.size() > 1) {
+	    acDatesGrib_prev->setEnabled (true);
+	    acDatesGrib_next->setEnabled (true);
 		cbDatesGrib->setCurrentIndex (id);
 		if (id == 0) {
 			acDatesGrib_prev->setEnabled (false);
