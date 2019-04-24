@@ -997,9 +997,8 @@ void MainWindow::openMeteoDataFile (const QString& fileName)
 			}
 		}
 		//------------------------------------------------
-		menuBar->acDatesGrib_prev->setEnabled (true);
-		menuBar->acDatesGrib_next->setEnabled (true);
-		menuBar->cbDatesGrib->setEnabled (true);
+		menuBar->updateDateSelector( );
+
 		dateChooser->setGriddedPlotter (plotter);
 		dateChooser->setVisible (Util::getSetting("showDateChooser", true).toBool());
 		//-----------------------------------------------
@@ -1020,9 +1019,7 @@ void MainWindow::openMeteoDataFile (const QString& fileName)
 		}
         dateChooser->setGriddedPlotter (nullptr);
 		dateChooser->setVisible (false);
-		menuBar->acDatesGrib_prev->setEnabled (false);
-		menuBar->acDatesGrib_next->setEnabled (false);
-		menuBar->cbDatesGrib->setEnabled (false);
+		menuBar->updateListeDates({} , 0);
 	}
 	setCursor(oldcursor);
 }
@@ -1214,6 +1211,8 @@ void MainWindow::slotFile_Close()
     colorScaleWidget->setColorScale (nullptr, DataCode());
     terre->closeMeteoDataFile ();
 	dateChooser->reset ();
+	menuBar->updateListeDates( {}, 0);
+
 	// close opened windows related to the file
 	QObjectList allobjs = children();
 	foreach (QObject *obj, allobjs) {
