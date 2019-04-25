@@ -113,8 +113,8 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 	// Data
 	//----------------------------------------
 	size_t size = Ni*Nj;
-	this->data = new double[size];
-	assert (this->data);
+	auto ptr = new double[size];
+    this->data = std::shared_ptr<double>(ptr, std::default_delete<double[]>());
 
     // Read data in the order given by isAdjacentI
     int i, j;
@@ -129,10 +129,10 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
                     ind = j*Ni+i;
                 }
                 if (!hasBMS || gfld->bmap[ind]) {
-                    data[ind] = gfld->fld[indgfld];
+                    data.get()[ind] = gfld->fld[indgfld];
                 }
                 else {
-                    data[ind] = GRIB_NOTDEF;
+                    data.get()[ind] = GRIB_NOTDEF;
                 }
             }
         }
@@ -147,10 +147,10 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
                     ind = j*Ni+i;
                 }
                 if (!hasBMS || gfld->bmap[ind]) {
-                    data[ind] = gfld->fld[indgfld];
+                    data.get()[ind] = gfld->fld[indgfld];
                 }
                 else {
-                    data[ind] = GRIB_NOTDEF;
+                    data.get()[ind] = GRIB_NOTDEF;
                 }
             }
         }

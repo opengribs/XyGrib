@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <cmath>
 #include <stdint.h>
 #include <cstdint>
+#include <memory>
 
 #include "zuFile.h"
 #include "RegularGridded.h"
@@ -41,7 +42,7 @@ class GribRecord : public RegularGridRecord
     public:
         GribRecord () = default;
         GribRecord (ZUFILE* file, int id_);
-        GribRecord (const GribRecord &rec);
+        GribRecord (const GribRecord &rec, bool copy = true);
         ~GribRecord ();
 
         void   multiplyAllData(double k);
@@ -103,7 +104,7 @@ class GribRecord : public RegularGridRecord
 
         // Valeur pour un point de la grille
         double getValue (int i, int j) const 
-							{ return ok && i>=0 && i<Ni && j>=0 && j<Nj ? data[j*Ni+i] : GRIB_NOTDEF;}
+							{ return ok && i>=0 && i<Ni && j>=0 && j<Nj ? data.get()[j*Ni+i] : GRIB_NOTDEF;}
 		
         // Valeur pour un point quelconque
         double  getInterpolatedValue (
@@ -120,7 +121,7 @@ class GribRecord : public RegularGridRecord
 
         void setValue (int i, int j, double v)
         		{ if (i>=0 && i<Ni && j>=0 && j<Nj)
-        			data[j*Ni+i] = v; }
+        			data.get()[j*Ni+i] = v; }
 
         // La valeur est-elle définie (grille à trous) ?
         inline bool   hasValue (int i, int j) const;
@@ -209,7 +210,7 @@ class GribRecord : public RegularGridRecord
         double scaleFactorEpow2;
         double refValue;
         zuint  nbBitsInPack;
-        double  *data{};
+        std::shared_ptr<double> data;
         // SECTION 5: END SECTION (ES)
 
         //---------------------------------------------
@@ -268,7 +269,7 @@ inline bool   GribRecord::hasValue (int i, int j) const
         return false;
     }
     if (boolBMStab == nullptr) {
-        return data[j*Ni+i] != GRIB_NOTDEF;
+        return data.get()[j*Ni+i] != GRIB_NOTDEF;
     }
 	return boolBMStab [j*Ni+i];
 }

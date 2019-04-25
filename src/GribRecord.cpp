@@ -551,18 +551,20 @@ GribRecord::GribRecord (ZUFILE* file, int id_)
 //-------------------------------------------------------------------------------
 // Constructeur de recopie
 //-------------------------------------------------------------------------------
-GribRecord::GribRecord (const GribRecord &rec)
+GribRecord::GribRecord (const GribRecord &rec, bool copy)
 {
     *this = rec;
 	setDuplicated (true);
-    // recopie les champs de bits
-    if (rec.data != nullptr) {
+    if (rec.data != nullptr && copy) {
         int size = rec.Ni*rec.Nj;
-        this->data = new double[size];
-		assert (this->data);
-        for (int i=0; i<size; i++)
-            this->data[i] = rec.data[i];
+        auto ptr = new double[size];
+        for (int i=0; i<size; i++) {
+            ptr[i] = rec.data.get()[i];
+        }
+        this->data = std::shared_ptr<double>(ptr, std::default_delete<double[]>());
     }
+
+    // recopie les champs de bits
     if (rec.BMSbits != nullptr) {
         int size = rec.sectionSize3-6;
         this->BMSbits = new zuchar[size];
@@ -582,7 +584,6 @@ GribRecord::GribRecord (const GribRecord &rec)
 //--------------------------------------------------------------------------
 GribRecord::~GribRecord()
 {
-    delete [] data;
     delete [] BMSbits;
     delete [] boolBMStab;
 }
@@ -640,9 +641,9 @@ void GribRecord::reverseData (char orientation) // orientation = 'H' or 'V'
 		for (j=0; j<Nj; j++) {
 			for (i1=0,i2=Ni-1;  i1<i2;  i1++,i2--) // Reverse line j
 			{
-				v = data [j*Ni+i1];
-				data [j*Ni+i1] = data [j*Ni+i2];
-				data [j*Ni+i2] = v;
+				v = data.get() [j*Ni+i1];
+				data.get() [j*Ni+i1] = data.get() [j*Ni+i2];
+				data.get() [j*Ni+i2] = v;
 				if (boolBMStab) {
 					b = boolBMStab [j*Ni+i1];
 					boolBMStab [j*Ni+i1] = boolBMStab [j*Ni+i2];
@@ -656,9 +657,9 @@ void GribRecord::reverseData (char orientation) // orientation = 'H' or 'V'
 		for (i=0; i<Ni; i++) {
 			for (j1=0,j2=Nj-1;  j1<j2;  j1++,j2--) // Reverse row i
 			{
-				v = data [j1*Ni+i];
-				data [j1*Ni+i] = data [j2*Ni+i];
-				data [j2*Ni+i] = v;
+				v = data.get() [j1*Ni+i];
+				data.get() [j1*Ni+i] = data.get() [j2*Ni+i];
+				data.get() [j2*Ni+i] = v;
 				if (boolBMStab) {
 					b = boolBMStab [j1*Ni+i];
 					boolBMStab [j1*Ni+i] = boolBMStab [j2*Ni+i];
@@ -694,7 +695,7 @@ void  GribRecord::multiplyAllData(double k)
 		for (int i=0; i<Ni; i++)
 		{
 			if (hasValue(i,j)) {
-				data[j*Ni+i] *= k;
+				data.get()[j*Ni+i] *= k;
 			}
 		}
 	}
@@ -734,12 +735,12 @@ void GribRecord::average(const GribRecord &rec)
     zuint size = Ni *Nj;
     double diff = d2 -d1;
     for (zuint i=0; i<size; i++) {
-        if (! GribDataIsDef(rec.data[i]))
+        if (! GribDataIsDef(rec.data.get()[i]))
            continue;
-        if (! GribDataIsDef(data[i]))
+        if (! GribDataIsDef(data.get()[i]))
            continue;
 
-        data[i] = (data[i]*d2 -rec.data[i]*d1)/diff;
+        data.get()[i] = (data.get()[i]*d2 -rec.data.get()[i]*d1)/diff;
     }
 }
 
@@ -758,20 +759,20 @@ void GribRecord::substract(const GribRecord &rec, bool pos)
 
     zuint size = Ni *Nj;
     for (zuint i=0; i<size; i++) {
-        if (rec.data[i] == GRIB_NOTDEF)
+        if (rec.data.get()[i] == GRIB_NOTDEF)
            continue;
-        if (! GribDataIsDef(data[i])) {
-            data[i] = -rec.data[i];
+        if (! GribDataIsDef(data.get()[i])) {
+            data.get()[i] = -rec.data.get()[i];
             // XXX BMSbits
             if (boolBMStab) {
                 boolBMStab [i] = true;
             }
         }
         else
-            data[i] -= rec.data[i];
-        if (data[i] < 0. && pos) {
+            data.get()[i] -= rec.data.get()[i];
+        if (pos && data.get()[i] < 0.) {
             // clamp data ...
-            data[i] = 0.;
+            data.get()[i] = 0.;
         }
     }
 }
@@ -1021,7 +1022,8 @@ bool GribRecord::readGribSection4_BDS(ZUFILE* file) {
     }
 
     // Allocate memory for the data
-    data = new double[Ni*Nj];
+	auto ptr = new double[Ni*Nj];
+    data = std::shared_ptr<double>(ptr, std::default_delete<double[]>());
     if (!data) {
         erreur("Record %d: out of memory",id);
         ok = false;
@@ -1060,11 +1062,11 @@ bool GribRecord::readGribSection4_BDS(ZUFILE* file) {
                 }
                 if (hasValueInBitBMS(i,j)) {
                     x = readPackedBits(buf, startbit, nbBitsInPack);
-                    data[ind] = (refValue + x*scaleFactorEpow2)/decimalFactorD;
+                    data.get()[ind] = (refValue + x*scaleFactorEpow2)/decimalFactorD;
                     startbit += nbBitsInPack;
                 }
                 else {
-                    data[ind] = GRIB_NOTDEF;
+                    data.get()[ind] = GRIB_NOTDEF;
                 }
             }
         }
@@ -1081,10 +1083,10 @@ bool GribRecord::readGribSection4_BDS(ZUFILE* file) {
                 if (hasValueInBitBMS(i,j)) {
                     x = readPackedBits(buf, startbit, nbBitsInPack);
                     startbit += nbBitsInPack;
-                    data[ind] = (refValue + x*scaleFactorEpow2)/decimalFactorD;
+                    data.get()[ind] = (refValue + x*scaleFactorEpow2)/decimalFactorD;
                 }
                 else {
-                    data[ind] = GRIB_NOTDEF;
+                    data.get()[ind] = GRIB_NOTDEF;
                 }
             }
         }

@@ -489,7 +489,7 @@ void  GribReader::copyFirstCumulativeRecord (DataCode dtc)
 		rec = getFirstGribRecord (dtc);
 		if (rec != nullptr)
 		{
-			GribRecord *r2 = new GribRecord (*rec);
+			GribRecord *r2 = new GribRecord (*rec, false);
 			r2->setRecordCurrentDate (dateref);    // 1er enregistrement factice
 			storeRecordInMap (r2);
 		}
@@ -515,7 +515,7 @@ void  GribReader::copyMissingWaveRecords (DataCode dtc)
 			if (rec2) {
 				if (!rec2->isDuplicated()) {
 					// create a copied record from date2
-					GribRecord *r2 = new GribRecord (*rec2);
+					GribRecord *r2 = new GribRecord (*rec2, false);
 					r2->setRecordCurrentDate (date);
 					storeRecordInMap (r2);
 				}
