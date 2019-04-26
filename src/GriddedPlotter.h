@@ -94,6 +94,8 @@ class GriddedPlotter :
 							{drawWindArrowsOnGrid = b;}
 		virtual void setCurrentArrowsOnGrid  (bool b)
 							{drawCurrentArrowsOnGrid = b;}
+		virtual void interpolateMissingRecords (bool b)
+							{mustInterpolateMissingRecords = b;}
 		virtual void duplicateFirstCumulativeRecord (bool b)
 							{mustDuplicateFirstCumulativeRecord = b;}
 		virtual void duplicateMissingWaveRecords (bool b)
@@ -232,6 +234,7 @@ class GriddedPlotter :
 		bool    drawWindArrowsOnGrid;
 		bool    drawCurrentArrowsOnGrid;
 		bool	mustDuplicateFirstCumulativeRecord;
+		bool    mustInterpolateMissingRecords;
 		bool    mustDuplicateMissingWaveRecords;
 		bool    thinWindArrows;
 		bool 	useJetStreamColorMap;

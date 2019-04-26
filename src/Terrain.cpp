@@ -67,6 +67,7 @@ Terrain::Terrain (QWidget *parent, Projection *proj, std::shared_ptr<GshhsReader
     //----------------------------------------------------------------------------
     showOrthodromie   = Util::getSetting("showOrthodromie", false).toBool();
     duplicateFirstCumulativeRecord = Util::getSetting("duplicateFirstCumulativeRecord", true).toBool();
+    interpolateMissingRecords = Util::getSetting("interpolateMissingRecords", true).toBool();
     duplicateMissingWaveRecords = Util::getSetting("duplicateMissingWaveRecords", true).toBool();
     interpolateValues = Util::getSetting("interpolateValues", true).toBool();
     windArrowsOnGribGrid = Util::getSetting("windArrowsOnGribGrid", false).toBool();
@@ -344,6 +345,16 @@ void Terrain::setDuplicateFirstCumulativeRecord (bool b) {
         duplicateFirstCumulativeRecord = b;
         Util::setSetting("duplicateFirstCumulativeRecord", b);
 	    griddedPlot->duplicateFirstCumulativeRecord (b);
+        mustRedraw = true;
+        update();
+    }
+}
+//-------------------------------------------------------
+void Terrain::setInterpolateMissingRecords (bool b) {
+    if (interpolateMissingRecords != b) {
+        interpolateMissingRecords = b;
+        Util::setSetting("interpolateMissingRecords", b);
+	    griddedPlot->interpolateMissingRecords (b);
         mustRedraw = true;
         update();
     }
@@ -710,6 +721,7 @@ FileDataType Terrain::loadMeteoDataFile (const QString& fileName, bool zoom)
 				griddedPlot_Temp->setInterpolateValues (interpolateValues);
 				griddedPlot_Temp->setWindArrowsOnGrid  (windArrowsOnGribGrid);
 				griddedPlot_Temp->setCurrentArrowsOnGrid  (currentArrowsOnGribGrid);
+				griddedPlot_Temp->interpolateMissingRecords (interpolateMissingRecords);
 				griddedPlot_Temp->duplicateFirstCumulativeRecord (duplicateFirstCumulativeRecord);
 				griddedPlot_Temp->duplicateMissingWaveRecords (duplicateMissingWaveRecords);
 				griddedPlot_Temp->setCurrentDateClosestFromNow ();

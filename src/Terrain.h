@@ -108,6 +108,7 @@ public slots :
     void updateGraphicsParameters ();
     
     void setColorMapSmooth 	  (bool);
+    void setInterpolateMissingRecords(bool);
     void setDuplicateFirstCumulativeRecord 	  (bool);
     void setDuplicateMissingWaveRecords 	  (bool);
     void setInterpolateValues 	  (bool);
@@ -226,6 +227,7 @@ private:
     // Flags indiquant les éléments à dessiner
     //-----------------------------------------------
     bool  showOrthodromie;
+    bool  interpolateMissingRecords;
     bool  duplicateFirstCumulativeRecord;
 	bool  duplicateMissingWaveRecords;
     bool  interpolateValues;

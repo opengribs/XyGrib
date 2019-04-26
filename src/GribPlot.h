@@ -49,6 +49,7 @@ class GribPlot : public RegularGridPlot
 		virtual bool  isReaderOk() const  
 						{return gribReader!=nullptr && gribReader->isOk();}
 
+		virtual void interpolateMissingRecords (bool b);
 		virtual void duplicateFirstCumulativeRecord (bool b);
 		virtual void duplicateMissingWaveRecords (bool b);
 

@@ -682,6 +682,36 @@ void  GribReader::copyMissingWaveRecords (DataCode dtc)
 	}
 }
 //---------------------------------------------------------------------------------
+void  GribReader::interpolateMissingRecords (DataCode dtc)
+{
+	std::set<time_t>  setdates = getListDates();
+	std::set<time_t>::iterator itd, itd2;
+	for (itd=setdates.begin(); itd!=setdates.end(); ++itd) {
+		time_t date = *itd;
+		GribRecord *rec = getRecord (dtc, date);
+		if (rec != nullptr)
+			continue;
+		itd2 = itd;
+		do {
+			++itd2;	// next date
+			if (itd2 == setdates.end())
+				break;
+			time_t date2 = *itd2;
+			GribRecord *rec2 = getRecord (dtc, date2);
+			if (rec2) {
+				if (!rec2->isInterpolated()) {
+					// create a copied record from date2
+					GribRecord *r2 = new GribRecord (*rec2, false);
+					r2->setRecordCurrentDate (date);
+					r2->setInterpolated(true);
+					storeRecordInMap (r2);
+				}
+				break;
+			}
+		} while (1);
+	}
+}
+//---------------------------------------------------------------------------------
 void  GribReader::copyMissingWaveRecords ()
 {
 	copyMissingWaveRecords (DataCode(GRB_WAV_SIG_HT,LV_GND_SURF,0));
@@ -712,6 +742,54 @@ void  GribReader::removeMissingWaveRecords ()
 			GribRecord *rec = (*itv).get();
 			if (rec && rec->isOk()
 				  && rec->isWaveData() && rec->isDuplicated()) 
+			{
+				itv = ls->erase (itv);
+			}
+			else {
+				++itv;
+			}
+		}
+	}
+}
+//---------------------------------------------------------------------------------
+void GribReader::interpolateMissingRecords ()
+{
+	interpolateMissingRecords (DataCode(GRB_WIND_GUST,LV_GND_SURF,0));
+	interpolateMissingRecords (DataCode(GRB_WIND_GUST,LV_ABOV_GND,10));
+	interpolateMissingRecords (DataCode(GRB_TEMP,LV_ABOV_GND,2));
+	interpolateMissingRecords (DataCode(GRB_HUMID_REL, LV_ABOV_GND, 2));
+	interpolateMissingRecords (DataCode(GRB_DEWPOINT, LV_ABOV_GND, 2));
+
+	interpolateMissingRecords (DataCode(GRB_TMIN, LV_ABOV_GND, 2));
+	interpolateMissingRecords (DataCode(GRB_TMAX, LV_ABOV_GND, 2));
+
+    interpolateMissingRecords (DataCode(GRB_CLOUD_TOT,   LV_ATMOS_ALL, 0));
+	interpolateMissingRecords (DataCode(GRB_PRECIP_TOT,  LV_GND_SURF, 0));
+	interpolateMissingRecords (DataCode(GRB_PRECIP_RATE, LV_GND_SURF, 0));
+	interpolateMissingRecords (DataCode(GRB_SNOW_CATEG,  LV_GND_SURF, 0));
+	interpolateMissingRecords (DataCode(GRB_FRZRAIN_CATEG, LV_GND_SURF, 0));
+
+	interpolateMissingRecords (DataCode(GRB_WIND_VX,LV_ABOV_GND,10));
+	interpolateMissingRecords (DataCode(GRB_WIND_VY,LV_ABOV_GND,10));
+
+	interpolateMissingRecords (DataCode(GRB_WIND_SPEED,LV_ABOV_GND,10));
+	interpolateMissingRecords (DataCode(GRB_WIND_DIR,LV_ABOV_GND,10));
+
+	interpolateMissingRecords (DataCode(GRB_WIND_VX,LV_GND_SURF,0));
+	interpolateMissingRecords (DataCode(GRB_WIND_VY,LV_GND_SURF,0));
+}
+
+//---------------------------------------------------------------------------------
+void GribReader::removeInterpolateRecords ()
+{
+	std::vector<std::shared_ptr<GribRecord>>::iterator itv;
+	for (auto const & it: mapGribRecords) {
+		std::vector<std::shared_ptr<GribRecord>> *ls = it.second;
+		
+		for (itv=ls->begin(); itv!=ls->end();  ) {
+			GribRecord *rec = (*itv).get();
+			if (rec && rec->isOk()
+				  && ! rec->isWaveData() && rec->isInterpolated()) 
 			{
 				itv = ls->erase (itv);
 			}
