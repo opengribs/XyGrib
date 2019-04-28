@@ -699,7 +699,7 @@ void MeteoTableWidget::addLine_DeltaTemperature(const Altitude &alt, uchar type,
 			break;
 	}
 	col ++;
-	for (iter=lspinfos.begin(); iter!=lspinfos.end(); iter++, col++)
+	for (iter=lspinfos.begin(); iter!=lspinfos.end(); ++iter, col++)
 	{
 		DataPointInfo * pinfo = *iter;
 		switch (type) {
@@ -728,7 +728,7 @@ void MeteoTableWidget::addLine_DewPoint(const Altitude &alt, int lig)
 	addCell_title_dataline (tr("Dew point")+" ("+AltitudeStr::toStringShort(alt)+")", 
 				  true, lig,col);
 	col ++;
-	for (iter=lspinfos.begin(); iter!=lspinfos.end(); iter++, col++)
+	for (iter=lspinfos.begin(); iter!=lspinfos.end(); ++iter, col++)
 	{
 		DataPointInfo * pinfo = *iter;
 		txt = "";
@@ -751,14 +751,13 @@ void MeteoTableWidget::addLine_CAPEsfc (int lig)
 	int col = 0;
 	addCell_title_dataline (tr("CAPE (surface)"), true, lig,col);
 	col ++;
-	for (iter=lspinfos.begin(); iter!=lspinfos.end(); iter++, col++)
+	for (iter=lspinfos.begin(); iter!=lspinfos.end(); ++iter, col++)
 	{
 		DataPointInfo * pinfo = *iter;
 		txt = "";
 		if (pinfo->hasCAPEsfc()) {
 			double v = pinfo->CAPEsfc;
-			txt.sprintf("%d ", qRound(v));
-			txt += tr("J/kg");
+			txt = Util::formatCAPEsfc(v);
 			bgColor = QColor(plotter->getCAPEColor(v, true));
 		}
 		else
@@ -775,14 +774,13 @@ void MeteoTableWidget::addLine_CINsfc (int lig)
     int col = 0;
     addCell_title_dataline (tr("CIN (surface)"), true, lig,col);
     col ++;
-    for (iter=lspinfos.begin(); iter!=lspinfos.end(); iter++, col++)
+    for (iter=lspinfos.begin(); iter!=lspinfos.end(); ++iter, col++)
     {
         DataPointInfo * pinfo = *iter;
         txt = "";
         if (pinfo->hasCINsfc()) {
             double v = pinfo->CINsfc;
-            txt.sprintf("%d ", qRound(v));
-            txt += tr("J/kg");
+			txt = Util::formatCAPEsfc(v);
             bgColor = QColor(plotter->getCINColor(v, true));
         }
         else
@@ -799,14 +797,13 @@ void MeteoTableWidget::addLine_Reflectivity (int lig)
     int col = 0;
     addCell_title_dataline (tr("Reflectivity (entire atmos)"), true, lig,col);
     col ++;
-    for (iter=lspinfos.begin(); iter!=lspinfos.end(); iter++, col++)
+    for (iter=lspinfos.begin(); iter!=lspinfos.end(); ++iter, col++)
     {
         DataPointInfo * pinfo = *iter;
         txt = "";
         if (pinfo->hasCompReflect()) {
             double v = pinfo->compReflect;
-            txt.sprintf("%d ", qRound(v));
-            txt += tr("dBZ");
+            txt = Util::formatReflect(v);
             bgColor = QColor(plotter->getReflectColor(v, true));
         }
         else
@@ -823,7 +820,7 @@ void MeteoTableWidget::addLine_Rain(int lig)
 	int col = 0;
 	addCell_title_dataline (tr("Precipitation"), true, lig,col);
 	col ++;
-	for (iter=lspinfos.begin(); iter!=lspinfos.end(); iter++, col++)
+	for (iter=lspinfos.begin(); iter!=lspinfos.end(); ++iter, col++)
 	{
 		DataPointInfo * pinfo = *iter;
 		txt = "";
@@ -847,7 +844,7 @@ void MeteoTableWidget::addLine_CloudCover (int lig)
 	int col = 0;
 	addCell_title_dataline (tr("Cloud cover"), true, lig,col);
 	col ++;
-	for (iter=lspinfos.begin(); iter!=lspinfos.end(); iter++, col++)
+	for (iter=lspinfos.begin(); iter!=lspinfos.end(); ++iter, col++)
 	{
 		DataPointInfo * pinfo = *iter;
 		txt = "";
@@ -879,7 +876,7 @@ void MeteoTableWidget::addLine_Categorical (uchar type, int lig)
 			break;
 	}
 	col ++;
-	for (iter=lspinfos.begin(); iter!=lspinfos.end(); iter++, col++)
+	for (iter=lspinfos.begin(); iter!=lspinfos.end(); ++iter, col++)
 	{
 		DataPointInfo * pinfo = *iter;
 		switch (type) {
@@ -909,13 +906,12 @@ void MeteoTableWidget::addLine_SnowDepth (int lig)
 	double v = -1000;
 	addCell_title_dataline (tr("Snow"), true, lig,col);
 	col ++;
-	for (iter=lspinfos.begin(); iter!=lspinfos.end(); iter++, col++)
+	for (iter=lspinfos.begin(); iter!=lspinfos.end(); ++iter, col++)
 	{
 		DataPointInfo * pinfo = *iter;
 		v = pinfo->snowDepth;
 		txt = "";
 		if (v >= 0) {
-			txt.sprintf("%.2f", v);
 			txt = Util::formatSnowDepth(v);
 			bgColor = QColor(plotter->getSnowDepthColor(v, true));
 		}
@@ -931,7 +927,7 @@ void MeteoTableWidget::addLine_SkewT (int lig)
 	int col = 0;
 	addCell_title_dataline (tr("SkewT-LogP"), true, lig,col);
 	col ++;
-	for (iter=lspinfos.begin(); iter!=lspinfos.end(); iter++, col++)
+	for (iter=lspinfos.begin(); iter!=lspinfos.end(); ++iter, col++)
 	{
 		DataPointInfo *pinfo = *iter;
 		addCell_SkewT (layout,lig,col, pinfo->date);
