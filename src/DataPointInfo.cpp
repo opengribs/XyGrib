@@ -201,6 +201,14 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
 			cx = -si;
 			cy = -co;
 		}
+		if (GribDataIsDef(currentDir)) {
+			// XXX I convert UV this way but what about other?
+			currentDir -= 180.;
+			if (currentDir < 0.)
+				currentDir += 360.;
+			if (currentDir >= 360.)
+				currentDir -=360.;
+		}
 	}
 	//-------------------------------------------------------------
 	// Data in altitude
