@@ -522,33 +522,38 @@ void GribPlot::draw_WAVES_Arrows (
     if (!isReaderOk() || dtc.dataType == GRB_TYPE_NOT_DEFINED)
         return;
     QColor waveArrowColor (0,0,0);
-    GribRecord *recDir, *recPer;
+    GribRecord *recDir, *recPer, *recHt;
+    recDir = nullptr;
+    recPer = nullptr;
+    recHt  = nullptr;
+
 	if (dtc.dataType == GRB_PRV_WAV_SIG) {
 		recDir = gribReader->getRecord (DataCode(GRB_WAV_DIR,LV_GND_SURF,0), currentDate);
-//		recPer = gribReader->getRecord (DataCode(GRB_WAV__PER,LV_GND_SURF,0), currentDate);
+		recPer = gribReader->getRecord (DataCode(GRB_WAV_PER,LV_GND_SURF,0), currentDate);
+		recHt  = gribReader->getRecord (DataCode(GRB_WAV_SIG_HT,LV_GND_SURF,0), currentDate);
 	}
 	else if (dtc.dataType == GRB_PRV_WAV_PRIM) {
 		recDir = gribReader->getRecord (DataCode(GRB_WAV_PRIM_DIR,LV_GND_SURF,0), currentDate);
-//		recPer = gribReader->getRecord (DataCode(GRB_WAV_PRIM_PER,LV_GND_SURF,0), currentDate);
+		recPer = gribReader->getRecord (DataCode(GRB_WAV_PRIM_PER,LV_GND_SURF,0), currentDate);
 	}
 	else if (dtc.dataType == GRB_PRV_WAV_SCDY) {
 		recDir = gribReader->getRecord (DataCode(GRB_WAV_SCDY_DIR,LV_GND_SURF,0), currentDate);
-//		recPer = gribReader->getRecord (DataCode(GRB_WAV_SCDY_PER,LV_GND_SURF,0), currentDate);
+		recPer = gribReader->getRecord (DataCode(GRB_WAV_SCDY_PER,LV_GND_SURF,0), currentDate);
 	}
 	else if (dtc.dataType == GRB_PRV_WAV_MAX) {
 		recDir = gribReader->getRecord (DataCode(GRB_WAV_MAX_DIR,LV_GND_SURF,0), currentDate);
-//		recPer = gribReader->getRecord (DataCode(GRB_WAV_MAX_PER,LV_GND_SURF,0), currentDate);
+		recPer = gribReader->getRecord (DataCode(GRB_WAV_MAX_PER,LV_GND_SURF,0), currentDate);
+		recHt  = gribReader->getRecord (DataCode(GRB_WAV_MAX_HT,LV_GND_SURF,0), currentDate);
 	}
 	else if (dtc.dataType == GRB_PRV_WAV_SWL) {
 		recDir = gribReader->getRecord (DataCode(GRB_WAV_SWL_DIR,LV_GND_SURF,0), currentDate);
-//		recPer = gribReader->getRecord (DataCode(GRB_WAV_SWL_PER,LV_GND_SURF,0), currentDate);
+		recPer = gribReader->getRecord (DataCode(GRB_WAV_SWL_PER,LV_GND_SURF,0), currentDate);
+		recHt  = gribReader->getRecord (DataCode(GRB_WAV_SWL_HT,LV_GND_SURF,0), currentDate);
 	}
 	else if (dtc.dataType == GRB_PRV_WAV_WND) {
 		recDir = gribReader->getRecord (DataCode(GRB_WAV_WND_DIR,LV_GND_SURF,0), currentDate);
-//		recPer = gribReader->getRecord (DataCode(GRB_WAV_WND_PER,LV_GND_SURF,0), currentDate);
-	}
-	else {
-        recDir = recPer = nullptr;
+		recPer = gribReader->getRecord (DataCode(GRB_WAV_WND_PER,LV_GND_SURF,0), currentDate);
+		recHt   = gribReader->getRecord (DataCode(GRB_WAV_WND_HT,LV_GND_SURF,0), currentDate);
 	}
 //    if (recDir==NULL || recPer==NULL)
     if (recDir==nullptr)
@@ -587,9 +592,12 @@ void GribPlot::draw_WAVES_Arrows (
                                 vxy = recDir->getInterpolatedValue(x, y, mustInterpolateValues);
 //                                vy = recPer->getInterpolatedValue(x, y, mustInterpolateValues);
 //                                if (vxy != GRIB_NOTDEF && vy != GRIB_NOTDEF)
-                                if (GribDataIsDef(vxy))
-                                {
+                                if (GribDataIsDef(vxy)) {
 //                                    drawWaveArrow (pnt, i,j, vxy,vy);
+                                    if (recHt && recHt->getInterpolatedValue(x, y, mustInterpolateValues) < 0.01)
+                                    	continue;
+                                    if (recPer && recPer->getInterpolatedValue(x, y, mustInterpolateValues) < 0.01)
+                                    	continue;
                                     drawWaveArrow (pnt, i,j, vxy);
                                 }
 							}
@@ -614,6 +622,10 @@ void GribPlot::draw_WAVES_Arrows (
                     if (GribDataIsDef(vxy))
 					{
 //                        drawWaveArrow (pnt, i,j, vx,vy);
+                        if (recHt && recHt->getInterpolatedValue(x, y, mustInterpolateValues) < 0.01)
+                        	continue;
+                        if (recPer && recPer->getInterpolatedValue(x, y, mustInterpolateValues) < 0.01)
+                        	continue;
                         drawWaveArrow (pnt, i,j, vxy);
                     }
 				}
