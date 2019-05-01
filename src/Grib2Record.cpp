@@ -155,6 +155,8 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
             }
         }
     }
+#if 0
+	// don't keep BMS around nothing is using it (GRIB_NOTDEF)
 	if (ok && hasBMS) { // replace the BMS bits table with a faster bool table
         boolBMStab = new bool [Ni*Nj];
 		assert (boolBMStab);
@@ -165,6 +167,7 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 			}
 		}
 	}
+#endif
 	//----------------------------------------
 	// end
 	//----------------------------------------
