@@ -113,8 +113,8 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 	// Data
 	//----------------------------------------
 	size_t size = Ni*Nj;
-	auto ptr = new double[size];
-    this->data = std::shared_ptr<double>(ptr, std::default_delete<double[]>());
+	auto ptr = new data_t[size];
+    this->data = std::shared_ptr<data_t>(ptr, std::default_delete<data_t[]>());
 
     // Read data in the order given by isAdjacentI
     int i, j;

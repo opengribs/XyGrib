@@ -31,7 +31,7 @@ GriddedRecord::GriddedRecord ()
 //=====================================================================
 // Interpolation using a regular rectangular grid
 //=====================================================================
-double  GriddedRecord::getInterpolatedValueUsingRegularGrid (
+data_t  GriddedRecord::getInterpolatedValueUsingRegularGrid (
 				DataCode dtc, 
 				double px, double py,
 				bool interpolateValues) const

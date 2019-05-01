@@ -557,11 +557,11 @@ GribRecord::GribRecord (const GribRecord &rec, bool copy)
 	setDuplicated (true);
     if (rec.data != nullptr && copy) {
         int size = rec.Ni*rec.Nj;
-        auto ptr = new double[size];
+        auto ptr = new data_t[size];
         for (int i=0; i<size; i++) {
             ptr[i] = rec.data.get()[i];
         }
-        this->data = std::shared_ptr<double>(ptr, std::default_delete<double[]>());
+        this->data = std::shared_ptr<data_t>(ptr, std::default_delete<data_t[]>());
     }
 
     // recopie les champs de bits
@@ -634,7 +634,7 @@ void  GribRecord::checkOrientation ()
 void GribRecord::reverseData (char orientation) // orientation = 'H' or 'V'
 {
 	int i, j, i1, j1, i2, j2;
-	double v;
+	data_t v;
 	bool b;
 	if (orientation == 'H') 
 	{
@@ -689,8 +689,9 @@ uint64_t GribRecord::makeKey(int dataType,int levelType,int levelValue)
     return (((static_cast<uint64_t>(dataType) << 16) | static_cast<uint64_t>(levelType)) << 32) | levelValue;
 }
 //-------------------------------------------------------------------------------
-void  GribRecord::multiplyAllData(double k)
+void  GribRecord::multiplyAllData(double val)
 {
+    data_t k = val;
 	for (int j=0; j<Nj; j++) {
 		for (int i=0; i<Ni; i++)
 		{
@@ -1022,8 +1023,8 @@ bool GribRecord::readGribSection4_BDS(ZUFILE* file) {
     }
 
     // Allocate memory for the data
-	auto ptr = new double[Ni*Nj];
-    data = std::shared_ptr<double>(ptr, std::default_delete<double[]>());
+	auto ptr = new data_t[Ni*Nj];
+    data = std::shared_ptr<data_t>(ptr, std::default_delete<data_t[]>());
     if (!data) {
         erreur("Record %d: out of memory",id);
         ok = false;
@@ -1289,7 +1290,7 @@ zuint GribRecord::periodSeconds(zuchar unit,zuchar P1,zuchar P2,zuchar range) {
 
 
 //===============================================================================================
-double GribRecord::getInterpolatedValue (double px, double py, bool interpolate) const
+data_t GribRecord::getInterpolatedValue (double px, double py, bool interpolate) const
 {
     double val; 
 	double eps = 1e-4;
@@ -1466,14 +1467,14 @@ double GribRecord::getInterpolatedValue (double px, double py, bool interpolate)
     return val;
 }
 //--------------------------------------------------------------------------
-double GribRecord::getValueOnRegularGrid (DataCode dtc, int i, int j ) const
+data_t GribRecord::getValueOnRegularGrid (DataCode dtc, int i, int j ) const
 {
 	if ( getDataCode() != dtc )
 		return GRIB_NOTDEF;
     return getValue (i,j);
 }
 //--------------------------------------------------------------------------
-double  GribRecord::getInterpolatedValue (
+data_t  GribRecord::getInterpolatedValue (
 						DataCode dtc,
 						double px, double py,
 						bool interpolate) const 

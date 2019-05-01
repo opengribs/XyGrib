@@ -33,12 +33,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define debug(format, ...)  {if(DEBUG_INFO)  {fprintf(stderr,format,__VA_ARGS__);fprintf(stderr,"\n");}}
 #define erreur(format, ...) {if(DEBUG_ERROR) {fprintf(stderr,"ERROR: ");fprintf(stderr,format,__VA_ARGS__);fprintf(stderr,"\n");}}
 
-#define zuint  uint32_t
-#define zuchar uint8_t
+using zuint = uint32_t;
+using zuchar = uint8_t;
 
 //----------------------------------------------
 class GribRecord : public RegularGridRecord  
-{ 
+{
     public:
         GribRecord () = default;
         GribRecord (ZUFILE* file, int id_);
@@ -103,20 +103,20 @@ class GribRecord : public RegularGridRecord
             }
 
         // Valeur pour un point de la grille
-        double getValue (int i, int j) const 
+        data_t getValue (int i, int j) const 
 							{ return ok && i>=0 && i<Ni && j>=0 && j<Nj ? data.get()[j*Ni+i] : GRIB_NOTDEF;}
 		
         // Valeur pour un point quelconque
-        double  getInterpolatedValue (
+        data_t  getInterpolatedValue (
 							double px, double py,
 							bool interpolate=true) const;
 
-		double  getInterpolatedValue (
+		data_t  getInterpolatedValue (
 							DataCode dtc,
 							double px, double py,
 							bool interpolate=true ) const override;
 		 
-        double getValueOnRegularGrid (
+        data_t getValueOnRegularGrid (
 						DataCode dtc, int i, int j ) const override;
 
         void setValue (int i, int j, double v)
@@ -210,7 +210,7 @@ class GribRecord : public RegularGridRecord
         double scaleFactorEpow2;
         double refValue;
         zuint  nbBitsInPack;
-        std::shared_ptr<double> data;
+        std::shared_ptr<data_t> data;
         // SECTION 5: END SECTION (ES)
 
         //---------------------------------------------
