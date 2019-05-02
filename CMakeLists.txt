@@ -123,6 +123,14 @@ find_path(OPENJPEG_INCLUDE_DIR
  )
 include_directories(${OPENJPEG_INCLUDE_DIR})
 
+include(cmake/FindAEC.cmake)
+if(AEC_FOUND)
+    add_definitions("-DUSE_AEC")
+    include_directories(${AEC_INCLUDE_DIRS})
+else()
+    message(STATUS "AEC library not found!")
+endif()
+
 if(NOT WIN32)
     include(cmake/FindPROJ4.cmake)
     if(NOT PROJ4_FOUND)

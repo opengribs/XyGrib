@@ -2,7 +2,7 @@ Source: xygrib
 Section: utils
 Priority: optional
 Maintainer: Oleg Roitburd <oroitburd@gmail.com>
-Build-Depends: debhelper (>= 9),cmake,qt5-default,libpng-dev,libopenjp2-7-dev,libnova-dev,libproj-dev,zlib1g-dev,libbz2-dev,qttools5-dev-tools,qttools5-dev
+Build-Depends: debhelper (>= 9),cmake,qt5-default,libpng-dev,libaec-dev,libopenjp2-7-dev,libnova-dev,libproj-dev,zlib1g-dev,libbz2-dev,qttools5-dev-tools,qttools5-dev
 Standards-Version: 3.9.8
 Homepage: https://github.com/opengribs/XyGrib.git
 #Vcs-Git: https://anonscm.debian.org/collab-maint/xygrib.git

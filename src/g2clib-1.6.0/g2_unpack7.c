@@ -15,6 +15,80 @@ g2int specunpack(unsigned char *,g2int *,g2int,g2int,g2int, g2int, g2float *);
   g2int jpcunpack(unsigned char *,g2int,g2int *,g2int, g2float *);
 #endif  /* USE_JPEG2000 */
 
+#ifdef USE_AEC
+#include <libaec.h>
+
+g2int aecunpack(unsigned char *cpack,g2int len,g2int *idrstmpl,g2int ndpts,
+                g2float *fld)
+{
+    struct aec_stream strm;
+    int status;
+    int numBitsNeeded;
+    size_t size;
+
+    g2int  *ifld;
+
+    g2int  j,nbits,iret,width,height;
+    g2float  ref,bscale,dscale;
+    unsigned char *ctemp;
+
+    rdieee(idrstmpl+0,&ref,1);                   // 11
+    bscale = int_power(2.0,idrstmpl[1]);         // 15-16
+    dscale = int_power(10.0,-idrstmpl[2]);       // 17-18
+    nbits = idrstmpl[3];                         // 19
+
+//
+//  if nbits equals 0, we have a constant field where the reference value
+//  is the data value at each gridpoint
+//
+    if (nbits == 0) {
+        for (j=0;j<ndpts;j++) {
+            fld[j]=ref;
+        }
+        return 0;
+    }
+
+    strm.bits_per_sample = nbits;
+    strm.flags = idrstmpl[5];             // 21
+    strm.block_size = idrstmpl[6];        // 22
+    strm.rsi = idrstmpl[7];               // 23-24
+
+    strm.next_in = cpack;
+    strm.avail_in = len;
+
+
+    numBitsNeeded = (int) nbits;
+    size = ((numBitsNeeded + 7)/8) * (size_t) ndpts;
+    ifld=(g2int *)calloc(ndpts,sizeof(g2int));
+    ctemp=(unsigned char *)calloc(size, 1);
+    if ( ifld == NULL || ctemp == NULL) {
+      fprintf(stderr,"Could not allocate space in jpcunpack.\n  Data field NOT upacked.\n");
+      free(ctemp);
+      free(ifld);
+      return 1;
+    }
+
+    strm.next_out = ctemp;
+    strm.avail_out = size;
+    iret = 0;
+    status = aec_buffer_decode(&strm);
+
+    if (status == AEC_OK) {
+        gbits(ctemp,ifld,0,((nbits +7)/8)*8,0,ndpts);
+        for (j=0;j<ndpts;j++) {
+            fld[j]=(((g2float)ifld[j]*bscale)+ref)*dscale;
+        }
+    }
+    else {
+        fprintf(stderr, "unpk: aec decode error %d",status);
+        iret = 2;
+    }
+    free(ctemp);
+    free(ifld);
+
+    return iret;
+}
+#endif
 
 static float DoubleToFloatClamp(double val) {
    if (val >= FLT_MAX) return FLT_MAX;
@@ -198,6 +272,11 @@ g2int g2_unpack7(unsigned char *cgrib,g2int *iofst,g2int igdsnum,g2int *igdstmpl
         pngunpack(cgrib+ipos,lensec-5,idrstmpl,ndpts,lfld);
         }
 #endif  /* USE_PNG */
+#ifdef USE_AEC
+      else if (idrsnum == 42) {
+        aecunpack(cgrib+ipos,lensec-5,idrstmpl,ndpts,lfld);
+        }
+#endif
       else {
         fprintf(stderr,"g2_unpack7: Data Representation Template 5.%d not yet implemented.\n",(int)idrsnum);
         ierr=4;

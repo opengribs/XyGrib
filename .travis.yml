@@ -9,6 +9,13 @@ matrix:
       env:
         - BUILD_NAME=trusty
 
+    - os: linux
+      compiler: gcc
+      dist: xenial
+      sudo: required
+      env:
+        - BUILD_NAME=xenial
+
     - os: osx
       compiler: clang
       env:
@@ -22,9 +29,9 @@ before_install:
 install:
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]];
       then 
-          sudo apt-get install build-essential git cmake qt5-default libpng-dev  libnova-dev libproj-dev zlib1g-dev libbz2-dev qttools5-dev-tools qttools5-dev;
+          sudo apt-get install build-essential git cmake qt5-default libpng-dev libproj-dev libnova-dev zlib1g-dev libbz2-dev qttools5-dev-tools qttools5-dev;
       fi
-    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then grep -q trusty /etc/lsb-release || sudo apt-get install libopenjpeg-dev || true; fi
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then grep -q trusty /etc/lsb-release || sudo apt-get install libaec-dev libopenjp2-7-dev || true; fi
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]];
       then 
           if [[ "$BUILD_NAME" == "trusty" ]]; 
