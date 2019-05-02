@@ -113,8 +113,8 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 	// Data
 	//----------------------------------------
 	size_t size = Ni*Nj;
-	this->data = new double[size];
-	assert (this->data);
+	auto ptr = new data_t[size];
+    this->data = std::shared_ptr<data_t>(ptr, std::default_delete<data_t[]>());
 
     // Read data in the order given by isAdjacentI
     int i, j;
@@ -129,10 +129,10 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
                     ind = j*Ni+i;
                 }
                 if (!hasBMS || gfld->bmap[ind]) {
-                    data[ind] = gfld->fld[indgfld];
+                    data.get()[ind] = gfld->fld[indgfld];
                 }
                 else {
-                    data[ind] = GRIB_NOTDEF;
+                    data.get()[ind] = GRIB_NOTDEF;
                 }
             }
         }
@@ -147,14 +147,16 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
                     ind = j*Ni+i;
                 }
                 if (!hasBMS || gfld->bmap[ind]) {
-                    data[ind] = gfld->fld[indgfld];
+                    data.get()[ind] = gfld->fld[indgfld];
                 }
                 else {
-                    data[ind] = GRIB_NOTDEF;
+                    data.get()[ind] = GRIB_NOTDEF;
                 }
             }
         }
     }
+#if 0
+	// don't keep BMS around nothing is using it (GRIB_NOTDEF)
 	if (ok && hasBMS) { // replace the BMS bits table with a faster bool table
         boolBMStab = new bool [Ni*Nj];
 		assert (boolBMStab);
@@ -165,6 +167,7 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 			}
 		}
 	}
+#endif
 	//----------------------------------------
 	// end
 	//----------------------------------------

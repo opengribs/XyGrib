@@ -51,7 +51,7 @@ class GriddedRecord : public DataRecordAbstract
         virtual bool isPointInMap(double x, double y) const
 						{ return isXInMap(x) && isYInMap(y); }
 
-        virtual double  getInterpolatedValue (
+        virtual data_t  getInterpolatedValue (
 							DataCode dtc,
 							double px, double py,
 							bool interpolate=true ) const = 0;
@@ -62,9 +62,9 @@ class GriddedRecord : public DataRecordAbstract
 		
 		/** All records must have (or simulate) a rectangular regular grid.
 		*/ 
-		virtual double getValueOnRegularGrid ( 
+		virtual data_t getValueOnRegularGrid ( 
 								DataCode dtc, int i, int j ) const = 0;
-		virtual double  getInterpolatedValueUsingRegularGrid (
+		virtual data_t  getInterpolatedValueUsingRegularGrid (
 								DataCode dtc, 
 								double px, double py,
 								bool interpolateValues) const;

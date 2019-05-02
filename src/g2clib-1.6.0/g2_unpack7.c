@@ -3,6 +3,7 @@
 #include <memory.h>
 #include <string.h>
 #include "grib2.h"
+#include <float.h>
 
 g2int simunpack(unsigned char *,g2int *, g2int,g2float *);
 int comunpack(unsigned char *,g2int,g2int,g2int *,g2int,g2float *);
@@ -13,6 +14,13 @@ g2int specunpack(unsigned char *,g2int *,g2int,g2int,g2int, g2int, g2float *);
 #ifdef USE_JPEG2000
   g2int jpcunpack(unsigned char *,g2int,g2int *,g2int, g2float *);
 #endif  /* USE_JPEG2000 */
+
+
+static float DoubleToFloatClamp(double val) {
+   if (val >= FLT_MAX) return FLT_MAX;
+   if (val <= -FLT_MAX) return -FLT_MAX;
+   return (float)val;
+}
 
 g2int g2_unpack7(unsigned char *cgrib,g2int *iofst,g2int igdsnum,g2int *igdstmpl,
                g2int idrsnum,g2int *idrstmpl,g2int ndpts,g2float **fld)
@@ -109,6 +117,61 @@ g2int g2_unpack7(unsigned char *cgrib,g2int *iofst,g2int igdsnum,g2int *igdstmpl
       else if (idrsnum == 2 || idrsnum == 3) {
         if (comunpack(cgrib+ipos,lensec,idrsnum,idrstmpl,ndpts,lfld) != 0) {
           return 7;
+        }
+      }
+      else if( idrsnum == 4 ) {
+        // Grid point data - IEEE Floating Point Data
+        static const int one = 1;
+        int is_lsb = *((char*)&one) == 1;
+        if (idrstmpl[0] == 1) {
+          // IEEE754 single precision
+          memcpy(lfld, cgrib+ipos, 4 * ndpts );
+          if( is_lsb ) {
+              int i;
+              unsigned char* ch_fld = (unsigned char*) lfld;
+              for(i=0;i<ndpts;i++)
+              {
+                  unsigned char temp = ch_fld[i*4];
+                  ch_fld[i*4] = ch_fld[i*4+3];
+                  ch_fld[i*4+3] = temp;
+                  temp = ch_fld[i*4+1];
+                  ch_fld[i*4+1] = ch_fld[i*4+2];
+                  ch_fld[i*4+2] = temp;
+              }
+          }
+        }
+        else if( idrstmpl[0] == 2) {
+          // IEEE754 double precision
+          // FIXME? due to the interface: we downgrade it to float
+          int i;
+          unsigned char* src = cgrib+ipos;
+          if( is_lsb ) {
+              for(i=0;i<ndpts;i++) {
+                  unsigned char temp[8];
+                  double d;
+                  {
+                    int j;
+                    for(j = 0; j < 8; j++ )
+                      temp[j] = src[i * 8 + 7 - j];
+                  }
+                  memcpy(&d, temp, 8);
+                  lfld[i] = DoubleToFloatClamp(d);
+              }
+          }
+          else {
+              for(i=0;i<ndpts;i++) {
+                  double d;
+                  memcpy(&d, src + i * 8, 8);
+                  lfld[i] = DoubleToFloatClamp(d);
+              }
+          }
+        }
+        else {
+            fprintf(stderr,"g2_unpack7: Invalid precision=%ld for Data Section 5.4.\n", idrstmpl[0]);
+            ierr=5;
+            free(lfld);
+            *fld=0;     //NULL
+            return(ierr);
         }
       }
       else if (idrsnum == 50) {            // Spectral Simple

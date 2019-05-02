@@ -94,6 +94,8 @@ class DataColors    // inherited by GriddedPlotter
 		QRgb  pasteToWindColorScale (double v, double min, double max, bool smooth);
 		
 		QRgb (DataColors::*function_getColor) (double v, bool smooth);
+	private:
+		auto getFunctionColor(const DataCode &dtc) -> QRgb (DataColors::*)(double v, bool smooth);
 };
 
 #endif

@@ -191,11 +191,16 @@ void Grib2Reader::analyseRecords ()
 	// Make a speed wind gust record from a vx and a vy records
 	// TODO : display also gust direction
 	Altitude alt (LV_ABOV_GND, 10);
+	if (hasData(DataCode(GRB_WIND_GUST, alt)))
+		return;
+
 	DataCode dtcx (GRB_WIND_GUST_VX, alt);
 	DataCode dtcy (GRB_WIND_GUST_VY, alt);
-	if (hasData(dtcx) && ! hasData(DataCode(GRB_WIND_GUST, alt))) {
-		for (long date : setAllDates)
-		{
+	if (!hasData(dtcx) || !hasData(dtcy))
+		return;
+
+	for (long date : setAllDates)
+	{
             GribRecord *recx = getRecord (dtcx, date);
 			GribRecord *recy = getRecord (dtcy, date);
 			if (recx && recy) {
@@ -219,7 +224,6 @@ void Grib2Reader::analyseRecords ()
 				storeRecordInMap (recGust);
 				//recGust->print("recGust");
 			}
-		}
 	}
 }
 
