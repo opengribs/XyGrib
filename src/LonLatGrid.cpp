@@ -83,7 +83,7 @@ void LonLatGrid::drawLongitude (QPainter &pnt, Projection *proj)
 {
 	int  min = (int) floor (proj->getXmin());
 	int  max = (int) ceil  (proj->getXmax());
-	double pixperdeg = proj->getW()/abs(max-min);
+	double pixperdeg = (int)(proj->getW()/std::abs(max-min));
 	double delta = computeDeltaGrid(&min, pixperdeg);
 	
 	QColor gridColor(40,40,40);
@@ -107,7 +107,7 @@ void LonLatGrid::drawLatitude (QPainter &pnt, Projection *proj)
 {
 	int  min = (int) floor (proj->getYmin());
 	int  max = (int) ceil  (proj->getYmax());
-	double pixperdeg = proj->getW()/abs(max-min);	
+	double pixperdeg = (int)(proj->getW()/std::abs(max-min));
 	double delta = computeDeltaGrid(&min, pixperdeg);
 	
 	QColor gridColor(40,40,40);
