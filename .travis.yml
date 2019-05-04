@@ -43,11 +43,20 @@ install:
               cd build;
               cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_CODEC=OFF -DOPJ_USE_THREAD=OFF;
               make;
-              sudo make install;
-              cd ../..;
+              sudo make install && cd ../..;
           fi;
       fi
-    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew tap indilib/indi; brew install git cmake libnova openjpeg libpng qt5; export PATH="/usr/local/opt/qt5/bin:$PATH";  echo 'export PATH="/usr/local/opt/qt5/bin:$PATH"' >> ~/.bash_profile; fi
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]];
+      then
+        brew tap indilib/indi;
+        brew install git cmake libnova openjpeg libpng qt5;
+        export PATH="/usr/local/opt/qt5/bin:$PATH";
+        echo 'export PATH="/usr/local/opt/qt5/bin:$PATH"' >> ~/.bash_profile;
+        wget https://github.com/MathisRosenhauer/libaec/releases/download/v1.0.4/libaec-1.0.4.tar.gz;
+        tar xzf libaec-1.0.4.tar.gz;
+        mkdir libaec-1.0.4/build;
+        cd libaec-1.0.4/build && cmake .. -DCMAKE_BUILD_TYPE=Release && make && sudo make install && cd ../..;
+      fi
 
 script:
     - mkdir build && cd build
