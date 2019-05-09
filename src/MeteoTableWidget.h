@@ -30,6 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MTABLE_CLOUD_CELL   2
 #define MTABLE_CURRENT_CELL 3
 #define MTABLE_SKEWT_CELL   4
+#define MTABLE_WAVE_CELL    5
 
 
 //===================================================================
@@ -111,11 +112,29 @@ class TableCell_Current : public TableCell
         			const QColor& bgcolor
 				);
     protected:
-    	QColor    windArrowsColor;
     	QColor    currentArrowsColor;
     	double 	  cx, cy;
     	bool	  south;
     	bool	  showCurrentArrows;
+    	GriddedPlotter *plotter;
+	    void  	paintEvent(QPaintEvent *event);
+};
+
+//===================================================================
+class TableCell_Wave : public TableCell
+{ Q_OBJECT
+    public:
+        TableCell_Wave(
+        			double cx, double cy, bool south,
+        			GriddedPlotter  *plotter,
+        			QWidget *parent, const QString& txt, bool bold,
+        			const QColor& bgcolor
+				);
+    protected:
+    	QColor    waveArrowsColor;
+    	double 	  cx, cy;
+    	bool	  south;
+    	bool	  showWaveArrows;
     	GriddedPlotter *plotter;
 	    void  	paintEvent(QPaintEvent *event);
 };

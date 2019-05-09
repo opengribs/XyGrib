@@ -367,23 +367,24 @@ void MeteoTableWidget::addLine_WaveCompleteCell (int prvtype, int lig)
 		DataPointInfo * pinfo = *iter;
 		txt = "";
 		float ht, per, dir;
-		pinfo->getWaveValues (prvtype, &ht, &per, &dir);
-		if (GribDataIsDef(ht)) {
-			txt = Util::formatWaveHeight (ht);
-			bgColor = QColor(plotter->getWaveHeightColor (ht, true));
+		bgColor = Qt::white;
+		if (pinfo->getWaveValues (prvtype, &ht, &per, &dir)) {
+			if (GribDataIsDef(ht)) {
+				txt = Util::formatWaveHeight (ht);
+				bgColor = QColor(plotter->getWaveHeightColor (ht, true));
+			}
+			txt += "\n";
+			if (GribDataIsDef(dir)) {
+				txt += Util::formatWaveDirection (dir, true);
+			}
+			txt += "\n";
+			if (GribDataIsDef(per)) {
+				txt += Util::formatWavePeriod (per, true);
+			}
 		}
-		else {
-			bgColor = Qt::white;
-		}
-		txt += "\n";
-		if (GribDataIsDef(dir)) {
-			txt += Util::formatWaveDirection (dir, true);
-		}
-		txt += "\n";
-		if (GribDataIsDef(per)) {
-			txt += Util::formatWavePeriod (per, true);
-		}
-		addCell_content (txt, layout,lig,col, 1,1, bgColor);
+		float wx, wy;
+		pinfo->getWaveWxWy (prvtype, &wx, &wy);
+		addCell_content (txt, layout,lig,col, 1,1, bgColor, MTABLE_WAVE_CELL,wx,wy);
 	}
 }
 //-----------------------------------------------------------------
@@ -572,7 +573,7 @@ void MeteoTableWidget::addLine_Current (const Altitude &alt, int lig)
 	addCell_title_dataline (tr("Current")+" ("+AltitudeStr::toStringShort(alt)+")", 
 					layout, lig,col);
 	col ++;
-	for (iter=lspinfos.begin(); iter!=lspinfos.end(); iter++, col++) {
+	for (iter=lspinfos.begin(); iter!=lspinfos.end(); ++iter, col++) {
 		DataPointInfo * pf = *iter;
 		float v, dir;
 		txt = "";
@@ -966,6 +967,10 @@ void MeteoTableWidget::addCell_content (
 	 	cell = new TableCell_Current (vx, vy, (lat<0), plotter,
 	 				this, txt, false, bgcolor);
  	}
+ 	else if (cellType == MTABLE_WAVE_CELL) {
+	 	cell = new TableCell_Wave (vx, vy, (lat<0), plotter,
+	 				this, txt, false, bgcolor);
+ 	}
  	else if (cellType == MTABLE_CLOUD_CELL) {
 	 	cell = new TableCell_Clouds (vx, plotter,
 	 				this, txt, false, bgcolor);
@@ -1118,7 +1123,7 @@ TableCell_Current::TableCell_Current (double cx, double cy, bool south,
 
 	if (showCurrentArrows && GribDataIsDef(cx) && GribDataIsDef(cy))
 		setMinimumHeight(label->minimumSizeHint().height()+50);
-}	
+}
 //---------------------------------------------------------
 void TableCell_Current::paintEvent(QPaintEvent * e)
 {
@@ -1133,6 +1138,39 @@ void TableCell_Current::paintEvent(QPaintEvent * e)
 	}
 }
 
+//====================================================================
+// TableCell_Current : case seule spécialisée pour les vagues (flêche)
+//====================================================================
+TableCell_Wave::TableCell_Wave (double cx, double cy, bool south,
+        			GriddedPlotter *plotter,
+        			QWidget *parent, const QString& txt, bool bold,
+        			const QColor& bgcolor )
+	: TableCell(parent, txt, bold, bgcolor)
+{
+	this->cx = cx;
+	this->cy = cy;
+	this->south = south;
+	this->plotter = plotter;
+
+	waveArrowsColor = QColor(40,40,40);
+	showWaveArrows = Util::getSetting("MTABLE_showWaveArrows", true).toBool();
+
+	if (showWaveArrows && GribDataIsDef(cx) && GribDataIsDef(cy))
+		setMinimumHeight(label->minimumSizeHint().height()+50);
+}
+//---------------------------------------------------------
+void TableCell_Wave::paintEvent(QPaintEvent * e)
+{
+	TableCell::paintEvent(e);
+    QPainter pnt(this);
+	pnt.setRenderHint(QPainter::Antialiasing, true);
+
+	if (showWaveArrows && GribDataIsDef(cx) && GribDataIsDef(cy))
+	{
+    	plotter->drawCurrentArrow(
+    			pnt, width()/2, 25, cx, cy, south, waveArrowsColor);
+	}
+}
 
 //===================================================================
 // TableCell_Clouds : case seule spécialisée pour la nébulosité
