@@ -99,14 +99,17 @@ void  GribRecord::translateDataType ()
 				levelType  = LV_ATMOS_ALL;
 				levelValue = 0;
 		}
-        if (idModel==211)
+        if (idModel==211) {
             if (Di>=0.5)
                 dataCenterModel = MF_ARPEGE;
             else
                 dataCenterModel = MF_ARPEGE_EU;
+        }
         else if (idModel==204)
             dataCenterModel = MF_AROME;
-
+	}
+	else if ( idCenter==85 && idModel==26 ) {
+		dataCenterModel = MF_WAM;
 	}
 //    else if (idCenter==84 && idModel==211 && idGrid==255){
 //        dataCenterModel = MF_ARPEGE_GLOBAL;
@@ -114,9 +117,7 @@ void  GribRecord::translateDataType ()
 	//------------------------
 	// CEP navimail
 	//------------------------
-	else if (   
-                (idCenter==85 && idModel==1 && idGrid==255)
-	) {
+	else if ( idCenter==85 && idModel==1 && idGrid==255 ) {
 		dataCenterModel = NORWAY_METNO;
 	}
 	//------------------------

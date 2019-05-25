@@ -36,6 +36,7 @@ enum DataCenterModel {
     MF_ARPEGE,
     MF_AROME,
     MF_ARPEGE_EU,
+    MF_WAM,
 	NOAA_NCEP_WW3,
     DWD_GWAM,
     DWD_EWAM,

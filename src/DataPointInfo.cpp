@@ -430,6 +430,26 @@ bool DataPointInfo::getWaveValues (int prvtype,
     return GribDataIsDef(*ht) || GribDataIsDef(*dir) || GribDataIsDef(*per);
 }
 //--------------------------------------------------------
+void DataPointInfo::getWaveWxWy (int prvtype, float *wx, float *wy)  const
+{
+	float ht;
+	float per;
+	float dir;
+
+	*wx = GRIB_NOTDEF;
+	*wy = GRIB_NOTDEF;
+
+	if (!getWaveValues (prvtype, &ht, &per, &dir))
+		return;
+	if (!GribDataIsDef(dir) || !GribDataIsDef(per))
+		return;
+
+	double ang = dir/180.0*M_PI;
+	double si= per*sin(ang),  co= per*cos(ang);
+	*wx = -si;
+	*wy = -co;
+}
+//--------------------------------------------------------
 float DataPointInfo::getWaveData (int type)  const
 {	
 	return getDataValue (DataCode(type,LV_GND_SURF,0));
