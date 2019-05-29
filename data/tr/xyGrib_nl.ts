@@ -381,7 +381,7 @@
     </message>
     <message>
         <source>Significant wave</source>
-        <translation>Significante golf</translation>
+        <translation type="vanished">Significante golf</translation>
     </message>
     <message>
         <source>Current (Vx)</source>
@@ -581,6 +581,30 @@
     </message>
     <message>
         <source>Relative wind gust</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current (direction)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current (speed)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Significant wave height</source>
+        <translation type="unfinished">Significante golfhoogte</translation>
+    </message>
+    <message>
+        <source>Combined wind waves and swell direction</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Combined wind waves and swell mean period</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wind waves and swell</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2097,6 +2121,30 @@
         <source>Temperature label</source>
         <translation>Temperatuur label</translation>
     </message>
+    <message>
+        <source>Combined wind and swell wave arrows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Primary wave arrows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Secondary wave arrows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum wave arrows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Swell arrows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wind wave arrows</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MenuBar</name>
@@ -2956,6 +3004,10 @@
         <source>Gusts</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Combined wave and swell</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MeteoTableDialog</name>
@@ -3052,7 +3104,7 @@ er is geen gribfile geladen.</translation>
     </message>
     <message>
         <source>J/kg</source>
-        <translation>J/kg</translation>
+        <translation type="vanished">J/kg</translation>
     </message>
     <message>
         <source>Snow</source>
@@ -3161,10 +3213,6 @@ er is geen gribfile geladen.</translation>
     <message>
         <source>Reflectivity (entire atmos)</source>
         <translation>Reflectie (volledige atmosfeer)</translation>
-    </message>
-    <message>
-        <source>dBZ</source>
-        <translation></translation>
     </message>
 </context>
 <context>

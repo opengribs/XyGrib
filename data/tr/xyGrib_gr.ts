@@ -4,119 +4,119 @@
 <context>
     <name>AltitudeStr</name>
     <message>
-        <location filename="../../src/DataQString.cpp" line="74"/>
+        <location filename="../../src/DataQString.cpp" line="80"/>
         <source>surface</source>
         <translation>Επιφάνεια</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="77"/>
+        <location filename="../../src/DataQString.cpp" line="83"/>
         <source>isotherm 0°C</source>
         <translation>Ισόθερμη 0°C</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="86"/>
+        <location filename="../../src/DataQString.cpp" line="92"/>
         <source>%1 hPa</source>
         <translation>%1 hPa</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="89"/>
+        <location filename="../../src/DataQString.cpp" line="95"/>
         <source>sea level</source>
         <translation>επίπεδο θάλασσας</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="92"/>
+        <location filename="../../src/DataQString.cpp" line="98"/>
         <source>%1 m above mean sea level</source>
         <translation>%1m από το μέσο επίπεδα θάλασσας</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="95"/>
+        <location filename="../../src/DataQString.cpp" line="101"/>
         <source>%1 m above ground</source>
         <translation>%1 m από το έδαφος</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="98"/>
+        <location filename="../../src/DataQString.cpp" line="104"/>
         <source>sigma %1</source>
         <translation>sigma %1</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="101"/>
+        <location filename="../../src/DataQString.cpp" line="107"/>
         <source>atmosphere</source>
         <translation>ατμόσφαιρα</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="104"/>
+        <location filename="../../src/DataQString.cpp" line="110"/>
         <source>low cloud layer</source>
         <translation>χαμηλή νέφωση</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="107"/>
+        <location filename="../../src/DataQString.cpp" line="113"/>
         <source>middle cloud layer</source>
         <translation>μεσαία νέφωση</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="110"/>
+        <location filename="../../src/DataQString.cpp" line="116"/>
         <source>high cloud layer</source>
         <translation>υψηλή νέφωση</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="123"/>
-        <location filename="../../src/DataQString.cpp" line="151"/>
+        <location filename="../../src/DataQString.cpp" line="129"/>
+        <location filename="../../src/DataQString.cpp" line="157"/>
         <source>sfc</source>
         <translation>επιφ</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="126"/>
+        <location filename="../../src/DataQString.cpp" line="132"/>
         <source>iso0°C</source>
         <translation>ισο0°C</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="135"/>
+        <location filename="../../src/DataQString.cpp" line="141"/>
         <source>%1hpa</source>
         <translation>%1hPa</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="138"/>
-        <location filename="../../src/DataQString.cpp" line="142"/>
+        <location filename="../../src/DataQString.cpp" line="144"/>
+        <location filename="../../src/DataQString.cpp" line="148"/>
         <source>MSL</source>
         <translation>MSL</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="144"/>
+        <location filename="../../src/DataQString.cpp" line="150"/>
         <source>%1 m ab.MSL</source>
         <translation>%1 m ab.MSL</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="147"/>
+        <location filename="../../src/DataQString.cpp" line="153"/>
         <source>-%1 m</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="153"/>
+        <location filename="../../src/DataQString.cpp" line="159"/>
         <source>%1 m</source>
         <translation>%1 m</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="156"/>
+        <location filename="../../src/DataQString.cpp" line="162"/>
         <source>sigma%1</source>
         <translation>sigma%1</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="162"/>
+        <location filename="../../src/DataQString.cpp" line="168"/>
         <source>lowCldLay</source>
         <translation>χαμηλήΝεφ</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="165"/>
+        <location filename="../../src/DataQString.cpp" line="171"/>
         <source>midCldLay</source>
         <translation>μεσαίαΝεφ</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="168"/>
+        <location filename="../../src/DataQString.cpp" line="174"/>
         <source>higCldLay</source>
         <translation>υψηλήΝεφ</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="159"/>
+        <location filename="../../src/DataQString.cpp" line="165"/>
         <source>atm</source>
         <translation>atm</translation>
     </message>
@@ -444,7 +444,7 @@
 <context>
     <name>ColorScaleWidget</name>
     <message>
-        <location filename="../../src/ColorScaleWidget.cpp" line="135"/>
+        <location filename="../../src/ColorScaleWidget.cpp" line="137"/>
         <source>Colors</source>
         <translation>Χρώματα</translation>
     </message>
@@ -452,174 +452,199 @@
 <context>
     <name>DataCodeStr</name>
     <message>
-        <location filename="../../src/DataQString.cpp" line="185"/>
-        <location filename="../../src/DataQString.cpp" line="186"/>
+        <location filename="../../src/DataQString.cpp" line="191"/>
+        <location filename="../../src/DataQString.cpp" line="192"/>
         <source>Pressure</source>
         <translation>Πίεση</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="186"/>
+        <location filename="../../src/DataQString.cpp" line="192"/>
         <source>MSL</source>
         <translation>MSL</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="187"/>
+        <location filename="../../src/DataQString.cpp" line="193"/>
         <source>Geopotential height</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="188"/>
+        <location filename="../../src/DataQString.cpp" line="194"/>
         <source>Temperature</source>
         <translation>Θερμοκρασία</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="189"/>
+        <location filename="../../src/DataQString.cpp" line="195"/>
         <source>Potential temperature</source>
         <translation>Δυνητική θερμοκρασία</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="190"/>
+        <location filename="../../src/DataQString.cpp" line="196"/>
         <source>Temperature max</source>
         <translation>Μέγιστη θερμοκρασία</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="191"/>
+        <location filename="../../src/DataQString.cpp" line="197"/>
         <source>Temperature min</source>
         <translation>Ελάχιστη θερμοκρασία</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="192"/>
+        <location filename="../../src/DataQString.cpp" line="198"/>
         <source>Dew point</source>
         <translation>Σημείο Δρόσου</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="193"/>
+        <location filename="../../src/DataQString.cpp" line="199"/>
         <source>Current (Vx)</source>
         <translation>(Vx) Τώρα</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="194"/>
+        <location filename="../../src/DataQString.cpp" line="200"/>
         <source>Current (Vy)</source>
         <translation>(Vy) Τώρα</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="195"/>
+        <location filename="../../src/DataQString.cpp" line="201"/>
+        <source>Current (direction)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DataQString.cpp" line="202"/>
+        <source>Current (speed)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DataQString.cpp" line="203"/>
         <source>Wind (Vx)</source>
         <translation>Άνεμος (Vx)</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="196"/>
+        <location filename="../../src/DataQString.cpp" line="204"/>
         <source>Wind (Vy)</source>
         <translation>Άνεμος (Vy)</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="197"/>
+        <location filename="../../src/DataQString.cpp" line="205"/>
         <source>Wind (direction)</source>
         <translation>Διεύθυνση Ανέμου</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="198"/>
+        <location filename="../../src/DataQString.cpp" line="206"/>
         <source>Wind (speed)</source>
         <translation>Ταχύτητα Ανέμου</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="199"/>
+        <location filename="../../src/DataQString.cpp" line="207"/>
         <source>Specific humidity</source>
         <translation>Ειδική υγρασία</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="200"/>
+        <location filename="../../src/DataQString.cpp" line="208"/>
         <source>Relative humidity</source>
         <translation>Σχετική Υγρασία</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="201"/>
+        <location filename="../../src/DataQString.cpp" line="209"/>
         <source>Precipitation rate</source>
         <translation>Ραγδαιότητα Υετού</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="202"/>
+        <location filename="../../src/DataQString.cpp" line="210"/>
         <source>Total precipitation</source>
         <translation>Συνολικός υετός</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="203"/>
+        <location filename="../../src/DataQString.cpp" line="211"/>
         <source>Snow (depth)</source>
         <translation>Χιόνι (πάχος)</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="204"/>
+        <location filename="../../src/DataQString.cpp" line="212"/>
         <source>Cloud cover</source>
         <translation>Νέφωση</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="205"/>
+        <location filename="../../src/DataQString.cpp" line="213"/>
         <source>Cloud cover (low)</source>
         <translation>χαμηλή νέφωση</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="206"/>
+        <location filename="../../src/DataQString.cpp" line="214"/>
         <source>Cloud cover (middle)</source>
         <translation>μεσαία νέφωση</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="207"/>
+        <location filename="../../src/DataQString.cpp" line="215"/>
         <source>Cloud cover (high)</source>
         <translation>υψηλή νέφωση</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="208"/>
+        <location filename="../../src/DataQString.cpp" line="216"/>
         <source>Frozen rain possible</source>
         <translation>Πιθανόν παγωμένη βροχή</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="209"/>
+        <location filename="../../src/DataQString.cpp" line="217"/>
         <source>Snowfall possible</source>
         <translation>Πιθανή χιονόπτωση</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="210"/>
+        <location filename="../../src/DataQString.cpp" line="218"/>
         <source>CAPE</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="211"/>
+        <location filename="../../src/DataQString.cpp" line="219"/>
         <source>CIN</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="213"/>
+        <location filename="../../src/DataQString.cpp" line="221"/>
         <source>Composite Reflectivity</source>
         <translation>Συνολική ανακλαστικότητα</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="215"/>
+        <location filename="../../src/DataQString.cpp" line="223"/>
         <source>Wind</source>
         <translation>Άνεμος</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="216"/>
+        <location filename="../../src/DataQString.cpp" line="224"/>
         <source>Wind (jet stream)</source>
         <translation>Άνεμος (αεροχείμαρρος)</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="217"/>
+        <location filename="../../src/DataQString.cpp" line="225"/>
         <source>Gap temperature-dew point</source>
         <translation>Διαφορά θερμοκρασίας-σημείου δρόσου</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="218"/>
+        <location filename="../../src/DataQString.cpp" line="226"/>
         <source>Theta-e</source>
         <translation>Theta-e</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="221"/>
+        <location filename="../../src/DataQString.cpp" line="229"/>
         <source>Absolute wind gust</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="223"/>
+        <location filename="../../src/DataQString.cpp" line="230"/>
         <source>Relative wind gust</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DataQString.cpp" line="236"/>
+        <source>Significant wave height</source>
+        <translation type="unfinished">Κυματισμός</translation>
+    </message>
+    <message>
+        <location filename="../../src/DataQString.cpp" line="237"/>
+        <source>Combined wind waves and swell direction</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DataQString.cpp" line="238"/>
+        <source>Combined wind waves and swell mean period</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -627,123 +652,126 @@
         <translation type="vanished">Ριπή</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="224"/>
+        <location filename="../../src/DataQString.cpp" line="231"/>
         <source>Wind gust (Vx)</source>
         <translation>Ριπή (Vx)</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="225"/>
+        <location filename="../../src/DataQString.cpp" line="232"/>
         <source>Wind gust (VY)</source>
         <translation>Ριπή (VY)</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="226"/>
+        <location filename="../../src/DataQString.cpp" line="233"/>
         <source>Current direction</source>
         <translation>Διεύθυνση τώρα</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="227"/>
+        <location filename="../../src/DataQString.cpp" line="234"/>
         <source>Current</source>
         <translation>Τώρα</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="229"/>
-        <location filename="../../src/DataQString.cpp" line="245"/>
         <source>Significant wave</source>
-        <translation>Κυματισμός</translation>
+        <translation type="vanished">Κυματισμός</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="230"/>
+        <location filename="../../src/DataQString.cpp" line="239"/>
         <source>Wind wave direction</source>
         <translation>Διεύθυνση κύματος ανέμου</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="231"/>
+        <location filename="../../src/DataQString.cpp" line="240"/>
         <source>Wind wave height</source>
         <translation>Ύψος κύματος ανέμου</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="232"/>
+        <location filename="../../src/DataQString.cpp" line="241"/>
         <source>Wind wave period</source>
         <translation>Περίοδος κύματος ανέμου</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="233"/>
+        <location filename="../../src/DataQString.cpp" line="242"/>
         <source>Swell wave direction</source>
         <translation>Διεύθυνση κύματος swell</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="234"/>
+        <location filename="../../src/DataQString.cpp" line="243"/>
         <source>Swell wave height</source>
         <translation>Ύψος κύματος swell</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="235"/>
+        <location filename="../../src/DataQString.cpp" line="244"/>
         <source>Swell wave period</source>
         <translation>Περίοδος κύματος swell</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="236"/>
+        <location filename="../../src/DataQString.cpp" line="245"/>
         <source>Primary wave direction</source>
         <translation>Διεύθυνση κύριου κύματος ανέμου</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="237"/>
+        <location filename="../../src/DataQString.cpp" line="246"/>
         <source>Primary wave period</source>
         <translation>Περίοδος κύριου κύματος ανέμου</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="238"/>
+        <location filename="../../src/DataQString.cpp" line="247"/>
         <source>Secondary wave direction</source>
         <translation>Διεύθυνση δευτερεύοντος κύματος ανέμου</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="239"/>
+        <location filename="../../src/DataQString.cpp" line="248"/>
         <source>Secondary wave period</source>
         <translation>Περίοδος δευτερεύοντος κύματος ανέμου</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="240"/>
+        <location filename="../../src/DataQString.cpp" line="249"/>
         <source>Maximum wave direction</source>
         <translation>Μέγιστη διεύθυνση κύματος ανέμου</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="241"/>
+        <location filename="../../src/DataQString.cpp" line="250"/>
         <source>Maximum wave height</source>
         <translation>Μέγιστο ύψος κύματος ανέμου</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="242"/>
+        <location filename="../../src/DataQString.cpp" line="251"/>
         <source>Maximum wave period</source>
         <translation>Μέγιστη περίοδος κύριου κύματος ανέμου</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="243"/>
+        <location filename="../../src/DataQString.cpp" line="252"/>
         <source>Whitecap probability</source>
         <translation>Πιθανότητα whitecap</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="246"/>
+        <location filename="../../src/DataQString.cpp" line="254"/>
+        <source>Wind waves and swell</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/DataQString.cpp" line="255"/>
         <source>Maximum wave</source>
         <translation>Μέγιστο κύμα</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="247"/>
+        <location filename="../../src/DataQString.cpp" line="256"/>
         <source>Swell</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="248"/>
+        <location filename="../../src/DataQString.cpp" line="257"/>
         <source>Wind wave</source>
         <translation>Κύμα ανέμου</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="249"/>
+        <location filename="../../src/DataQString.cpp" line="258"/>
         <source>Primary wave</source>
         <translation>Κύριο κύμα</translation>
     </message>
     <message>
-        <location filename="../../src/DataQString.cpp" line="250"/>
+        <location filename="../../src/DataQString.cpp" line="259"/>
         <source>Secondary wave</source>
         <translation>Δευτερεύον ΄κύμα</translation>
     </message>
@@ -1543,6 +1571,7 @@
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="321"/>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="322"/>
         <location filename="../../src/MeteotableOptionsDialog.cpp" line="323"/>
+        <location filename="../../src/MeteotableOptionsDialog.cpp" line="324"/>
         <source>Waves</source>
         <translation>Κύματα</translation>
     </message>
@@ -2324,9 +2353,9 @@
     <name>MainWindow</name>
     <message>
         <location filename="../../src/MainWindow.cpp" line="204"/>
-        <location filename="../../src/MainWindow.cpp" line="880"/>
-        <location filename="../../src/MainWindow.cpp" line="972"/>
-        <location filename="../../src/MainWindow.cpp" line="980"/>
+        <location filename="../../src/MainWindow.cpp" line="1012"/>
+        <location filename="../../src/MainWindow.cpp" line="1102"/>
+        <location filename="../../src/MainWindow.cpp" line="1110"/>
         <source>Error</source>
         <translation>Πρόβλημα</translation>
     </message>
@@ -2350,308 +2379,308 @@
         <translation>Εργαλεία</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="833"/>
+        <location filename="../../src/MainWindow.cpp" line="986"/>
         <source>Warning</source>
         <translation>Προσοχή</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="834"/>
-        <location filename="../../src/MainWindow.cpp" line="881"/>
+        <location filename="../../src/MainWindow.cpp" line="987"/>
+        <location filename="../../src/MainWindow.cpp" line="1013"/>
         <source>File :</source>
         <translation>Αρχείο :</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="836"/>
+        <location filename="../../src/MainWindow.cpp" line="989"/>
         <source>The header of this GRIB file do not respect standard format.</source>
         <translation>Η επικεφαλίδα του GRIB δεν είναι σωστή.</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="838"/>
+        <location filename="../../src/MainWindow.cpp" line="991"/>
         <source>Despite efforts to interpret it, output may be incorrect.</source>
         <translation>Παρόλο τις προσπάθειες, το αποτέλεσμα ίσως δεν είναι σωστό.</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="840"/>
+        <location filename="../../src/MainWindow.cpp" line="993"/>
         <source>Please inform the supplier of this file that the GDS section of the file header is ambiguous, particularly about data position.</source>
         <translation>Παρακαλώ ενημερώστε τον πάροχο αυτού του αρχείου ότι το κομμάτι του αρχείου GDS δεν είναι σωστό.</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="882"/>
+        <location filename="../../src/MainWindow.cpp" line="1014"/>
         <source>Can&apos;t open file.</source>
         <translation>Αδύνατο το άνοιγμα αρχείου.</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="883"/>
+        <location filename="../../src/MainWindow.cpp" line="1015"/>
         <source>It&apos;s not a GRIB file,</source>
         <translation>Δεν είναι αρχείο GRIB,</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="884"/>
+        <location filename="../../src/MainWindow.cpp" line="1016"/>
         <source>or it contains unrecognized data,</source>
         <translation>ή περιέχει μη αναγνωρίσιμα αρχεία,</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="885"/>
+        <location filename="../../src/MainWindow.cpp" line="1017"/>
         <source>or...</source>
         <translation>ή...</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="973"/>
+        <location filename="../../src/MainWindow.cpp" line="1103"/>
         <source>Can&apos;t create animation :</source>
         <translation>Αδύνατη η δημιουργία animation :</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="974"/>
+        <location filename="../../src/MainWindow.cpp" line="1104"/>
         <source>no GRIB file loaded.</source>
         <translation>δεν φορτώθηκε αρχείο GRIB.</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="981"/>
+        <location filename="../../src/MainWindow.cpp" line="1111"/>
         <source>Can&apos;t create animation.</source>
         <translation>Αδύνατη η δημιουργία animation.</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1413"/>
+        <location filename="../../src/MainWindow.cpp" line="1545"/>
         <source>Help</source>
         <translation>Βοήθεια</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1423"/>
+        <location filename="../../src/MainWindow.cpp" line="1555"/>
         <source>About</source>
         <translation>Σχετικά</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1426"/>
+        <location filename="../../src/MainWindow.cpp" line="1558"/>
         <source>Version : </source>
         <translation>Έκδοση: </translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1428"/>
+        <location filename="../../src/MainWindow.cpp" line="1560"/>
         <source>Licence : GNU GPL v3</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1449"/>
+        <location filename="../../src/MainWindow.cpp" line="1581"/>
         <source>Choose a GRIB file</source>
         <translation>Επιλέξτε - GRIB</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1485"/>
+        <location filename="../../src/MainWindow.cpp" line="1617"/>
         <source>Please select an area on the map.</source>
         <translation>Παρακαλώ επιλέξτε μια περιοχή στον χάρτη.</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1484"/>
+        <location filename="../../src/MainWindow.cpp" line="1616"/>
         <source>Download a GRIB file</source>
         <translation>Κατεβάστε - GRIB</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1414"/>
+        <location filename="../../src/MainWindow.cpp" line="1546"/>
         <source>Help is available at</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1424"/>
+        <location filename="../../src/MainWindow.cpp" line="1556"/>
         <source>XyGrib : GRIB files visualization</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1429"/>
+        <location filename="../../src/MainWindow.cpp" line="1561"/>
         <source>https://OpenGribs.org</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1520"/>
-        <location filename="../../src/MainWindow.cpp" line="1537"/>
+        <location filename="../../src/MainWindow.cpp" line="1652"/>
+        <location filename="../../src/MainWindow.cpp" line="1669"/>
         <source>yes</source>
         <translation>ναι</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1524"/>
-        <location filename="../../src/MainWindow.cpp" line="1540"/>
+        <location filename="../../src/MainWindow.cpp" line="1656"/>
+        <location filename="../../src/MainWindow.cpp" line="1672"/>
         <source>no</source>
         <translation>όχι</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1529"/>
+        <location filename="../../src/MainWindow.cpp" line="1661"/>
         <source>no (computed with Magnus-Tetens formula)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1550"/>
-        <location filename="../../src/MainWindow.cpp" line="1558"/>
+        <location filename="../../src/MainWindow.cpp" line="1682"/>
+        <location filename="../../src/MainWindow.cpp" line="1690"/>
         <source>File information</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1551"/>
+        <location filename="../../src/MainWindow.cpp" line="1683"/>
         <source>File not loaded.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1559"/>
+        <location filename="../../src/MainWindow.cpp" line="1691"/>
         <source>Data error.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1563"/>
+        <location filename="../../src/MainWindow.cpp" line="1696"/>
         <source>File : %1
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1564"/>
+        <location filename="../../src/MainWindow.cpp" line="1697"/>
         <source>Size : %1 bytes
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1566"/>
+        <location filename="../../src/MainWindow.cpp" line="1699"/>
         <source>Weather center %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1567"/>
+        <location filename="../../src/MainWindow.cpp" line="1700"/>
         <source>Model %1</source>
         <translation>Μοντέλο %1</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1568"/>
+        <location filename="../../src/MainWindow.cpp" line="1701"/>
         <source>Grid %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1572"/>
+        <location filename="../../src/MainWindow.cpp" line="1705"/>
         <source>%1 dates:
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1575"/>
+        <location filename="../../src/MainWindow.cpp" line="1708"/>
         <source>    from %1
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1576"/>
+        <location filename="../../src/MainWindow.cpp" line="1709"/>
         <source>    to %1
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1579"/>
+        <location filename="../../src/MainWindow.cpp" line="1712"/>
         <source>Available data :</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2379"/>
-        <location filename="../../src/MainWindow.cpp" line="2387"/>
+        <location filename="../../src/MainWindow.cpp" line="2532"/>
+        <location filename="../../src/MainWindow.cpp" line="2540"/>
         <source>Unable to find the XyGrib Maintenance Tool. Please start it from the desktop facilities</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1610"/>
+        <location filename="../../src/MainWindow.cpp" line="1743"/>
         <source>Grid : %1x%2=%3 points</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1619"/>
+        <location filename="../../src/MainWindow.cpp" line="1752"/>
         <source>Grid : %1 points</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1631"/>
+        <location filename="../../src/MainWindow.cpp" line="1764"/>
         <source>Area :</source>
         <translation>Περιοχή :</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1637"/>
+        <location filename="../../src/MainWindow.cpp" line="1770"/>
         <source>Reference date: %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1642"/>
+        <location filename="../../src/MainWindow.cpp" line="1775"/>
         <source>GRIB file information</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1719"/>
+        <location filename="../../src/MainWindow.cpp" line="1852"/>
         <source>Change Skin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1720"/>
+        <location filename="../../src/MainWindow.cpp" line="1853"/>
         <source>For skin change to take effect XyGrib needs to be restarted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1730"/>
+        <location filename="../../src/MainWindow.cpp" line="1863"/>
         <source>Selected area: </source>
         <translation>Επιλογή περιοχής: </translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1738"/>
+        <location filename="../../src/MainWindow.cpp" line="1871"/>
         <source>(great circle dist:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="1740"/>
+        <location filename="../../src/MainWindow.cpp" line="1873"/>
         <source>  init.dir: %1°</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2379"/>
-        <location filename="../../src/MainWindow.cpp" line="2387"/>
+        <location filename="../../src/MainWindow.cpp" line="2532"/>
+        <location filename="../../src/MainWindow.cpp" line="2540"/>
         <source>Failure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2373"/>
+        <location filename="../../src/MainWindow.cpp" line="2526"/>
         <source>It is recommended to exit XyGrib while running the Maintenance Tool. Do you wish to exit XyGrib?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2374"/>
+        <location filename="../../src/MainWindow.cpp" line="2527"/>
         <source>Exit XyGrib?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2442"/>
+        <location filename="../../src/MainWindow.cpp" line="2595"/>
         <source>An updated version is available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2446"/>
+        <location filename="../../src/MainWindow.cpp" line="2599"/>
         <source>A new version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2447"/>
+        <location filename="../../src/MainWindow.cpp" line="2600"/>
         <source>is available for update.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2448"/>
+        <location filename="../../src/MainWindow.cpp" line="2601"/>
         <source>Please use the XyGrib Maintenance Tool to upgrade. It can be activated from the Help Menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2460"/>
+        <location filename="../../src/MainWindow.cpp" line="2613"/>
         <source>Version is up to date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2461"/>
+        <location filename="../../src/MainWindow.cpp" line="2614"/>
         <source>You have version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2462"/>
+        <location filename="../../src/MainWindow.cpp" line="2615"/>
         <source>which is the most current version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="2476"/>
+        <location filename="../../src/MainWindow.cpp" line="2629"/>
         <source>Network Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2659,38 +2688,38 @@
 <context>
     <name>MapDrawer</name>
     <message>
-        <location filename="../../src/MapDrawer.cpp" line="641"/>
+        <location filename="../../src/MapDrawer.cpp" line="665"/>
         <source>Data: </source>
         <translation>Δεδομένα: </translation>
     </message>
     <message>
-        <location filename="../../src/MapDrawer.cpp" line="647"/>
+        <location filename="../../src/MapDrawer.cpp" line="671"/>
         <source>Isobars MSL (hPa)</source>
         <translation>Ισοβαρείς MSL (hPa)</translation>
     </message>
     <message>
-        <location filename="../../src/MapDrawer.cpp" line="649"/>
+        <location filename="../../src/MapDrawer.cpp" line="673"/>
         <source>Isotherms 0°C</source>
         <translation>Ισόθερμες 0°C</translation>
     </message>
     <message>
-        <location filename="../../src/MapDrawer.cpp" line="653"/>
+        <location filename="../../src/MapDrawer.cpp" line="677"/>
         <source>Isotherms</source>
         <translation>Ισόθερμες</translation>
     </message>
     <message>
-        <location filename="../../src/MapDrawer.cpp" line="653"/>
-        <location filename="../../src/MapDrawer.cpp" line="655"/>
+        <location filename="../../src/MapDrawer.cpp" line="677"/>
+        <location filename="../../src/MapDrawer.cpp" line="679"/>
         <source>(°C)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MapDrawer.cpp" line="655"/>
+        <location filename="../../src/MapDrawer.cpp" line="679"/>
         <source>Theta-e</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MapDrawer.cpp" line="659"/>
+        <location filename="../../src/MapDrawer.cpp" line="683"/>
         <source>Temperature label</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2699,22 +2728,52 @@
         <translation type="vanished">Θερμοκρασία</translation>
     </message>
     <message>
-        <location filename="../../src/MapDrawer.cpp" line="664"/>
+        <location filename="../../src/MapDrawer.cpp" line="688"/>
         <source>Geopotential</source>
         <translation>Γεωδυναμικό</translation>
     </message>
     <message>
-        <location filename="../../src/MapDrawer.cpp" line="670"/>
+        <location filename="../../src/MapDrawer.cpp" line="694"/>
         <source>Wind arrows</source>
         <translation>Βελάκια ανέμου</translation>
     </message>
     <message>
-        <location filename="../../src/MapDrawer.cpp" line="673"/>
+        <location filename="../../src/MapDrawer.cpp" line="697"/>
         <source>Current arrows</source>
         <translation>Βελάκια τώρα</translation>
     </message>
     <message>
-        <location filename="../../src/MapDrawer.cpp" line="753"/>
+        <location filename="../../src/MapDrawer.cpp" line="701"/>
+        <source>Combined wind and swell wave arrows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MapDrawer.cpp" line="704"/>
+        <source>Primary wave arrows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MapDrawer.cpp" line="707"/>
+        <source>Secondary wave arrows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MapDrawer.cpp" line="710"/>
+        <source>Maximum wave arrows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MapDrawer.cpp" line="713"/>
+        <source>Swell arrows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MapDrawer.cpp" line="716"/>
+        <source>Wind wave arrows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MapDrawer.cpp" line="798"/>
         <source>XyGrib</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3135,173 +3194,178 @@
     </message>
     <message>
         <location filename="../../src/MenuBar.cpp" line="368"/>
+        <source>Combined wave and swell</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MenuBar.cpp" line="369"/>
         <source>Maximum wave</source>
         <translation>Μέγιστο κύμα</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="369"/>
+        <location filename="../../src/MenuBar.cpp" line="370"/>
         <source>Swell</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="370"/>
+        <location filename="../../src/MenuBar.cpp" line="371"/>
         <source>Wind wave</source>
         <translation>Κύμα ανέμου</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="371"/>
+        <location filename="../../src/MenuBar.cpp" line="372"/>
         <source>Primary wave</source>
         <translation>Κύριο κύμα</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="372"/>
+        <location filename="../../src/MenuBar.cpp" line="373"/>
         <source>Secondary wave</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="376"/>
+        <location filename="../../src/MenuBar.cpp" line="377"/>
         <source>Duplicate missing wave records</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="379"/>
+        <location filename="../../src/MenuBar.cpp" line="380"/>
         <source>Current map</source>
         <translation>Χάρτης τώρα</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="380"/>
+        <location filename="../../src/MenuBar.cpp" line="381"/>
         <source>Current arrows</source>
         <translation>Βελάκια τώρα</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="381"/>
+        <location filename="../../src/MenuBar.cpp" line="382"/>
         <source>Show current arrows</source>
         <translation>Δείξε βελάκια τώρα</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="383"/>
+        <location filename="../../src/MenuBar.cpp" line="384"/>
         <source>Current arrows on Grib grid</source>
         <translation>Βελάκια τώρα στο πλέγμα Grib</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="400"/>
+        <location filename="../../src/MenuBar.cpp" line="402"/>
         <source>Internet parameters</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="401"/>
-        <location filename="../../src/MenuBar.cpp" line="402"/>
+        <location filename="../../src/MenuBar.cpp" line="403"/>
+        <location filename="../../src/MenuBar.cpp" line="404"/>
         <source>Show values panel</source>
         <translation>Δείξε το πάνελ παραμέτρων</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="404"/>
+        <location filename="../../src/MenuBar.cpp" line="406"/>
         <source>Angle converter</source>
         <translation>Μετατροπέας γωνίας</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="406"/>
+        <location filename="../../src/MenuBar.cpp" line="408"/>
         <source>Date selector</source>
         <translation>Επιλογέας ημερομηνίας</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="408"/>
+        <location filename="../../src/MenuBar.cpp" line="410"/>
         <source>Units</source>
         <translation>Μονάδα μέτρησης</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="410"/>
+        <location filename="../../src/MenuBar.cpp" line="412"/>
         <source>Fonts</source>
         <translation>Μορφή κειμένου</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="413"/>
+        <location filename="../../src/MenuBar.cpp" line="415"/>
         <source>Dark Skin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="415"/>
+        <location filename="../../src/MenuBar.cpp" line="417"/>
         <source>Graphical parameters</source>
         <translation>Γραφικές παράμετροι</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="417"/>
+        <location filename="../../src/MenuBar.cpp" line="419"/>
         <source>Click to Pan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="476"/>
+        <location filename="../../src/MenuBar.cpp" line="475"/>
         <source>Toggle click to pan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="422"/>
+        <location filename="../../src/MenuBar.cpp" line="424"/>
         <source>Language</source>
         <translation>Γλώσσες</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="425"/>
-        <location filename="../../src/MenuBar.cpp" line="428"/>
+        <location filename="../../src/MenuBar.cpp" line="427"/>
+        <location filename="../../src/MenuBar.cpp" line="430"/>
         <source>Help</source>
         <translation>Βοήθεια</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="430"/>
+        <location filename="../../src/MenuBar.cpp" line="432"/>
         <source>About XyGrib</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="431"/>
+        <location filename="../../src/MenuBar.cpp" line="433"/>
         <source>Check for updates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="434"/>
+        <location filename="../../src/MenuBar.cpp" line="436"/>
         <source>Run XyGrib Maintenance Tool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="435"/>
+        <location filename="../../src/MenuBar.cpp" line="437"/>
         <source>To add, update or remove XyGrib components</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="437"/>
+        <location filename="../../src/MenuBar.cpp" line="439"/>
         <source>About QT</source>
         <translation>Σχετικά QT</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="452"/>
+        <location filename="../../src/MenuBar.cpp" line="454"/>
         <source>Last forecast [page up]</source>
         <translation>Τελευταία πρόγνωση [σελίδα πάνω]</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="454"/>
+        <location filename="../../src/MenuBar.cpp" line="456"/>
         <source>Next forecast [page down]</source>
         <translation>Επόμενη πρόγνωση [σελίδα κάτω]</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="466"/>
+        <location filename="../../src/MenuBar.cpp" line="465"/>
         <source>Show Model Limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="478"/>
+        <location filename="../../src/MenuBar.cpp" line="477"/>
         <source>Toggle click to select</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="515"/>
+        <location filename="../../src/MenuBar.cpp" line="514"/>
         <source>Meteotable</source>
         <translation>Μετεοπίνακας</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="516"/>
+        <location filename="../../src/MenuBar.cpp" line="515"/>
         <source>Mark Point Of Interest</source>
         <translation>Σημειώστε το σημείο ενδιαφέροντος</translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="517"/>
+        <location filename="../../src/MenuBar.cpp" line="516"/>
         <source>SkewT-LogP diagram</source>
         <translation></translation>
     </message>
@@ -3687,7 +3751,7 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MenuBar.cpp" line="398"/>
+        <location filename="../../src/MenuBar.cpp" line="400"/>
         <source>Options</source>
         <translation>Επιλογές</translation>
     </message>
@@ -3852,32 +3916,32 @@ Point outside GRIB area.</source>
         <translation>Aδυνατή η εγγραφή αρχείου.</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTable.cpp" line="419"/>
-        <location filename="../../src/MeteoTable.cpp" line="424"/>
+        <location filename="../../src/MeteoTable.cpp" line="425"/>
+        <location filename="../../src/MeteoTable.cpp" line="430"/>
         <source>Wind</source>
         <translation>Άνεμος</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTable.cpp" line="419"/>
-        <location filename="../../src/MeteoTable.cpp" line="452"/>
+        <location filename="../../src/MeteoTable.cpp" line="425"/>
+        <location filename="../../src/MeteoTable.cpp" line="458"/>
         <source>speed</source>
         <translation>ταχύτητα</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTable.cpp" line="424"/>
-        <location filename="../../src/MeteoTable.cpp" line="457"/>
+        <location filename="../../src/MeteoTable.cpp" line="430"/>
+        <location filename="../../src/MeteoTable.cpp" line="463"/>
         <source>direction</source>
         <translation>διεύθυνση</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTable.cpp" line="426"/>
-        <location filename="../../src/MeteoTable.cpp" line="459"/>
+        <location filename="../../src/MeteoTable.cpp" line="432"/>
+        <location filename="../../src/MeteoTable.cpp" line="465"/>
         <source>°</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTable.cpp" line="452"/>
-        <location filename="../../src/MeteoTable.cpp" line="457"/>
+        <location filename="../../src/MeteoTable.cpp" line="458"/>
+        <location filename="../../src/MeteoTable.cpp" line="463"/>
         <source>Current</source>
         <translation>Τώρα</translation>
     </message>
@@ -3885,12 +3949,12 @@ Point outside GRIB area.</source>
 <context>
     <name>MeteoTableWidget</name>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="832"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="831"/>
         <source>mm/h</source>
         <translation>mm/h</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="554"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="556"/>
         <source> Bf</source>
         <translation> Bf</translation>
     </message>
@@ -3905,88 +3969,88 @@ Point outside GRIB area.</source>
         <translation>Σελήνη</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="339"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="340"/>
         <source>Whitecap (prob)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="470"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="472"/>
         <source>Isotherm 0°C</source>
         <translation>Ισόθερμη 0°C</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="492"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="494"/>
         <source>Geopotential altitude</source>
         <translation>Γεωδυναμικά ύψη</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="515"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="517"/>
         <source>Pressure</source>
         <translation>Πίεση</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="537"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="539"/>
         <source>Wind</source>
         <translation>Άνεμος</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="549"/>
-        <location filename="../../src/MeteoTableWidget.cpp" line="583"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="551"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="585"/>
         <source> °</source>
         <translation> °</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="571"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="573"/>
         <source>Current</source>
         <translation>Τώρα</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="600"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="602"/>
         <source>Wind gust</source>
         <translation>Ριπή</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="623"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="625"/>
         <source>Relative humidity</source>
         <translation>Σχετική Υγρασία</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="652"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="654"/>
         <source>Theta-e</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="654"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="656"/>
         <source>Temperature</source>
         <translation>Θερμοκρασία</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="656"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="658"/>
         <source>Temp. min</source>
         <translation>Ελάχιστη Θερμ</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="658"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="660"/>
         <source>Temp. max</source>
         <translation>Μέγιστη Θερμ</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="660"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="662"/>
         <source>Temp. pot</source>
         <translation>Δυνητική Θερμ</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="696"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="698"/>
         <source>Gap temp-dew point</source>
         <translation>Διαφορά θερμοκρασίας-σημείου δρόσου</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="727"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="729"/>
         <source>Dew point</source>
         <translation>Σημείο Δρόσου</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="775"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="776"/>
         <source>CIN (surface)</source>
         <translation>CΙΝ (επιφάνεια)</translation>
     </message>
@@ -3996,50 +4060,43 @@ Point outside GRIB area.</source>
         <translation>Συνολική ανακλαστικότητα</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="808"/>
-        <source>dBZ</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="823"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="822"/>
         <source>Precipitation</source>
         <translation>Υετός</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="847"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="846"/>
         <source>Cloud cover</source>
         <translation>Νέφωση</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="874"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="873"/>
         <source>Frozen rain possible</source>
         <translation>Πιθανόν παγωμένη βροχή</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="877"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="876"/>
         <source>Snowfall possible</source>
         <translation>Πιθανή χιονόπτωση</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="909"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="908"/>
         <source>Snow</source>
         <translation>Χιόνι</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="931"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="929"/>
         <source>SkewT-LogP</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="751"/>
+        <location filename="../../src/MeteoTableWidget.cpp" line="753"/>
         <source>CAPE (surface)</source>
         <translation>CAPE (επιφάνεια)</translation>
     </message>
     <message>
-        <location filename="../../src/MeteoTableWidget.cpp" line="760"/>
-        <location filename="../../src/MeteoTableWidget.cpp" line="784"/>
         <source>J/kg</source>
-        <translation>J/kg</translation>
+        <translation type="vanished">J/kg</translation>
     </message>
 </context>
 <context>
@@ -4535,13 +4592,13 @@ Are you sure ?</source>
     <message>
         <location filename="../../src/util/Util.cpp" line="241"/>
         <location filename="../../src/util/Util.cpp" line="254"/>
-        <location filename="../../src/util/Util.cpp" line="370"/>
+        <location filename="../../src/util/Util.cpp" line="371"/>
         <source>kts</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../src/util/Util.cpp" line="260"/>
-        <location filename="../../src/util/Util.cpp" line="398"/>
+        <location filename="../../src/util/Util.cpp" line="401"/>
         <source>°</source>
         <translation></translation>
     </message>
@@ -4563,60 +4620,60 @@ Are you sure ?</source>
     </message>
     <message>
         <location filename="../../src/util/Util.cpp" line="344"/>
-        <location filename="../../src/util/Util.cpp" line="378"/>
         <location filename="../../src/util/Util.cpp" line="379"/>
-        <location filename="../../src/util/Util.cpp" line="391"/>
-        <location filename="../../src/util/Util.cpp" line="497"/>
-        <location filename="../../src/util/Util.cpp" line="500"/>
-        <location filename="../../src/util/Util.cpp" line="535"/>
-        <location filename="../../src/util/Util.cpp" line="538"/>
+        <location filename="../../src/util/Util.cpp" line="380"/>
+        <location filename="../../src/util/Util.cpp" line="392"/>
+        <location filename="../../src/util/Util.cpp" line="501"/>
+        <location filename="../../src/util/Util.cpp" line="504"/>
+        <location filename="../../src/util/Util.cpp" line="539"/>
+        <location filename="../../src/util/Util.cpp" line="542"/>
         <source>m</source>
         <translation>m</translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="373"/>
+        <location filename="../../src/util/Util.cpp" line="374"/>
         <source>J/kg</source>
         <translation>J/kg</translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="376"/>
+        <location filename="../../src/util/Util.cpp" line="377"/>
         <source>dBZ</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="380"/>
+        <location filename="../../src/util/Util.cpp" line="381"/>
         <source>cm</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="384"/>
+        <location filename="../../src/util/Util.cpp" line="385"/>
         <source>mm/h</source>
         <translation>mm/h</translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="386"/>
+        <location filename="../../src/util/Util.cpp" line="387"/>
         <source>hPa</source>
         <translation>hPa</translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="404"/>
-        <location filename="../../src/util/Util.cpp" line="517"/>
+        <location filename="../../src/util/Util.cpp" line="408"/>
+        <location filename="../../src/util/Util.cpp" line="521"/>
         <source>s</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="406"/>
+        <location filename="../../src/util/Util.cpp" line="410"/>
         <source>%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="558"/>
-        <location filename="../../src/util/Util.cpp" line="571"/>
+        <location filename="../../src/util/Util.cpp" line="562"/>
+        <location filename="../../src/util/Util.cpp" line="575"/>
         <source>dd°mm&apos;ss&quot;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/util/Util.cpp" line="561"/>
+        <location filename="../../src/util/Util.cpp" line="565"/>
         <source>dd°mm,mm&apos;</source>
         <translation></translation>
     </message>
