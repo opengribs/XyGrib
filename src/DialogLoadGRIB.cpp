@@ -480,6 +480,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
         chkIsotherm0->setEnabled(true);
         chkCAPEsfc->setEnabled(true);
         chkCINsfc->setEnabled(true);
+        chkReflectivity->setEnabled(true);
         chkCloud->setEnabled(true);
         chkHumid->setEnabled(true);
         chkRain->setEnabled(true);
@@ -500,8 +501,6 @@ void DialogLoadGRIB::slotAtmModelSettings()
         chkAltitude_SkewT->setEnabled(true);
 
         // deactivate unvalid parameters
-        chkReflectivity->setEnabled(false); chkReflectivity->setChecked(false);
-
     }
     else if (amod == "ICON")
     {
