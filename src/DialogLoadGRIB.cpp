@@ -445,6 +445,9 @@ void DialogLoadGRIB::slotAtmModelSettings()
 {
     QString amod = cbModel->currentText();
     int ind = 0;
+
+    cbInterval->setEnabled(true);
+    cbResolution->setEnabled(true);
     if (amod == "GFS")
     {
         // set res, days, cyc options
@@ -506,6 +509,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
     {
         cbResolution->clear();
         cbResolution->addItem("0.25");
+        cbResolution->setEnabled(false);
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4"<<"5"<<"6"<<"7"<<"8");
         ind = Util::getSetting("downloadIndNbDays", 7).toInt();
@@ -561,6 +565,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
     {
         cbResolution->clear();
         cbResolution->addItem("0.5");
+        cbResolution->setEnabled(false);
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4");
         ind = Util::getSetting("downloadIndNbDays", 3).toInt();
@@ -616,6 +621,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
     {
         cbResolution->clear();
         cbResolution->addItem("0.5");
+        cbResolution->setEnabled(false);
         cbDays->clear();
         cbDays->addItems(QStringList()<<"1"<<"2"<<"3"<<"4"<<"5"<<"6"<<"7"<<"8"<<"9"<<"10");
         ind = Util::getSetting("downloadIndNbDays", 9).toInt();
@@ -673,6 +679,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
 
         cbResolution->clear();
         cbResolution->addItems(QStringList()<< "0.11");
+        cbResolution->setEnabled(false);
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2");
         ind = Util::getSetting("downloadIndNbDays", 1).toInt();
@@ -743,6 +750,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
 
         cbResolution->clear();
         cbResolution->addItems(QStringList()<< "0.11");
+        cbResolution->setEnabled(false);
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4");
         ind = Util::getSetting("downloadIndNbDays", 3).toInt();
@@ -751,6 +759,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
         ind = 0;
         cbInterval->clear();
         cbInterval->addItems(QStringList()<<"3");
+        cbInterval->setEnabled(false);
         cbInterval->setMinimumWidth (0);
         ind = Util::getSetting("downloadIndInterval", 0).toInt();
         if (ind == 24) ind = 1;
@@ -814,6 +823,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
 
         cbResolution->clear();
         cbResolution->addItems(QStringList()<< "0.11");
+        cbResolution->setEnabled(false);
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4");
         ind = Util::getSetting("downloadIndNbDays", 3).toInt();
@@ -822,6 +832,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
         ind = 0;
         cbInterval->clear();
         cbInterval->addItems(QStringList()<<"3");
+        cbInterval->setEnabled(false);
         cbInterval->setMinimumWidth (0);
         ind = Util::getSetting("downloadIndInterval", 0).toInt();
         if (ind == 24) ind = 1;
@@ -884,6 +895,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
 
         cbResolution->clear();
         cbResolution->addItems(QStringList()<< "0.06");
+        cbResolution->setEnabled(false);
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4"<<"5");
         ind = Util::getSetting("downloadIndNbDays", 4).toInt();
@@ -955,6 +967,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
 
         cbResolution->clear();
         cbResolution->addItems(QStringList()<< "0.1");
+        cbResolution->setEnabled(false);
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3");
         ind = Util::getSetting("downloadIndNbDays", 2).toInt();
@@ -1026,6 +1039,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
 
         cbResolution->clear();
         cbResolution->addItems(QStringList()<< "0.025");
+        cbResolution->setEnabled(false);
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2");
         ind = Util::getSetting("downloadIndNbDays", 2).toInt();
@@ -1167,10 +1181,12 @@ void DialogLoadGRIB::setWaveSelectors ()
 {
     int ind = 0;
 
+    cbResolution->setEnabled(true);
     if (cbWvModel->currentText() == "GWAM" )
     {
         cbResolution->clear();
         cbResolution->addItem("0.25");
+        cbResolution->setEnabled(false);
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4"<<"5"<<"6"<<"7"<<"8");
         ind = Util::getSetting("downloadIndNbDays", 7).toInt();
@@ -1190,6 +1206,7 @@ void DialogLoadGRIB::setWaveSelectors ()
     {
         cbResolution->clear();
         cbResolution->addItem("0.05");
+        cbResolution->setEnabled(false);
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4");
         ind = Util::getSetting("downloadIndNbDays", 3).toInt();
@@ -1209,6 +1226,7 @@ void DialogLoadGRIB::setWaveSelectors ()
     {
         cbResolution->clear();
         cbResolution->addItem("0.5");
+        cbResolution->setEnabled(false);
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4"<<"5"<<"6"<<"7"<<"8");
         ind = Util::getSetting("downloadIndNbDays", 7).toInt();
