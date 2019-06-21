@@ -674,8 +674,8 @@ void DialogLoadGRIB::slotAtmModelSettings()
         cbResolution->clear();
         cbResolution->addItems(QStringList()<< "0.11");
         cbDays->clear();
-        cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4");
-        ind = Util::getSetting("downloadIndNbDays", 3).toInt();
+        cbDays->addItems(QStringList()<< "1"<<"2");
+        ind = Util::getSetting("downloadIndNbDays", 1).toInt();
         ind = Util::inRange(ind, 0, cbDays->count()-1);
         cbDays->setCurrentIndex(ind);
         ind = 0;
