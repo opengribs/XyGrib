@@ -1252,9 +1252,9 @@ void DialogLoadGRIB::slotParameterUpdated ()
         estimate += nbrec*nbalt*2*(head+(nbits*npts)/8+2 );
     else
         estimate += nbrec*nbalt*5*(head+(nbits*npts)/8+2 );
-	
-	int nbskewt = 0;
-	if (chkAltitude_SkewT->isChecked())
+
+    int nbskewt = 0;
+    if (chkAltitude_SkewT->isChecked())
     {
         if (atmosphericModel == "GFS") nbskewt = 70;
         if (atmosphericModel == "ICON") nbskewt = 26;
