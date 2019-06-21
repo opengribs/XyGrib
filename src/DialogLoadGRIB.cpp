@@ -750,7 +750,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
         cbDays->setCurrentIndex(ind);
         ind = 0;
         cbInterval->clear();
-        cbInterval->addItems(QStringList()<<"1"<<"3"<<"6"<<"12");
+        cbInterval->addItems(QStringList()<<"3");
         cbInterval->setMinimumWidth (0);
         ind = Util::getSetting("downloadIndInterval", 0).toInt();
         if (ind == 24) ind = 1;
@@ -821,7 +821,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
         cbDays->setCurrentIndex(ind);
         ind = 0;
         cbInterval->clear();
-        cbInterval->addItems(QStringList()<<"1"<<"3"<<"6"<<"12");
+        cbInterval->addItems(QStringList()<<"3");
         cbInterval->setMinimumWidth (0);
         ind = Util::getSetting("downloadIndInterval", 0).toInt();
         if (ind == 24) ind = 1;
