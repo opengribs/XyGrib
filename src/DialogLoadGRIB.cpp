@@ -445,6 +445,9 @@ void DialogLoadGRIB::slotAtmModelSettings()
 {
     QString amod = cbModel->currentText();
     int ind = 0;
+
+    cbInterval->setEnabled(true);
+    cbResolution->setEnabled(true);
     if (amod == "GFS")
     {
         // set res, days, cyc options
@@ -506,6 +509,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
     {
         cbResolution->clear();
         cbResolution->addItem("0.25");
+        cbResolution->setEnabled(false);
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4"<<"5"<<"6"<<"7"<<"8");
         ind = Util::getSetting("downloadIndNbDays", 7).toInt();
@@ -561,6 +565,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
     {
         cbResolution->clear();
         cbResolution->addItem("0.5");
+        cbResolution->setEnabled(false);
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4");
         ind = Util::getSetting("downloadIndNbDays", 3).toInt();
@@ -616,6 +621,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
     {
         cbResolution->clear();
         cbResolution->addItem("0.5");
+        cbResolution->setEnabled(false);
         cbDays->clear();
         cbDays->addItems(QStringList()<<"1"<<"2"<<"3"<<"4"<<"5"<<"6"<<"7"<<"8"<<"9"<<"10");
         ind = Util::getSetting("downloadIndNbDays", 9).toInt();
@@ -673,9 +679,10 @@ void DialogLoadGRIB::slotAtmModelSettings()
 
         cbResolution->clear();
         cbResolution->addItems(QStringList()<< "0.11");
+        cbResolution->setEnabled(false);
         cbDays->clear();
-        cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4");
-        ind = Util::getSetting("downloadIndNbDays", 3).toInt();
+        cbDays->addItems(QStringList()<< "1"<<"2");
+        ind = Util::getSetting("downloadIndNbDays", 1).toInt();
         ind = Util::inRange(ind, 0, cbDays->count()-1);
         cbDays->setCurrentIndex(ind);
         ind = 0;
@@ -737,12 +744,13 @@ void DialogLoadGRIB::slotAtmModelSettings()
         chkAltitude_SkewT->setEnabled(false); chkAltitude_SkewT->setChecked(false);
 
     }
-    else if (amod == "NAM CACBN")
+    else if (amod == "NAM CACBN" || amod == "NAM PACIFIC")
     {
         // set res, days, cyc options
 
         cbResolution->clear();
         cbResolution->addItems(QStringList()<< "0.11");
+        cbResolution->setEnabled(false);
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4");
         ind = Util::getSetting("downloadIndNbDays", 3).toInt();
@@ -750,78 +758,8 @@ void DialogLoadGRIB::slotAtmModelSettings()
         cbDays->setCurrentIndex(ind);
         ind = 0;
         cbInterval->clear();
-        cbInterval->addItems(QStringList()<<"1"<<"3"<<"6"<<"12");
-        cbInterval->setMinimumWidth (0);
-        ind = Util::getSetting("downloadIndInterval", 0).toInt();
-        if (ind == 24) ind = 1;
-        ind = Util::inRange(ind, 0, cbInterval->count()-1);
-        cbInterval->setCurrentIndex(ind);
-        ind = 0;
-        cbRunCycle->clear();
-        cbRunCycle->insertItem (ind++, tr("Last"), "last");
-        cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
-        cbRunCycle->insertItem (ind++, tr("6 hr"), "06");
-        cbRunCycle->insertItem (ind++, tr("12 hr"), "12");
-        cbRunCycle->insertItem (ind++, tr("18 hr"), "18");
-
-        // reactivate parameters that may have been disabled
-        chkWind->setEnabled(true);
-        chkPressure->setEnabled(true);
-        chkTemp->setEnabled(true);
-        chkCAPEsfc->setEnabled(true);
-        chkCINsfc->setEnabled(true);
-        chkReflectivity->setEnabled(true);
-        chkCloud->setEnabled(true);
-        chkHumid->setEnabled(true);
-        chkRain->setEnabled(true);
-
-        chkAltitude200->setEnabled(true);
-        chkAltitude300->setEnabled(true);
-        chkAltitude400->setEnabled(true);
-        chkAltitude500->setEnabled(true);
-        chkAltitude600->setEnabled(true);
-        chkAltitude700->setEnabled(true);
-        chkAltitude850->setEnabled(true);
-        chkAltitude925->setEnabled(true);
-
-        chkAltitude_All->setEnabled(true);
-        chkAltitude_SkewT->setEnabled(true);
-
-        // deactivate unvalid parameters
-        chkSnowCateg->setEnabled(false); chkSnowCateg->setChecked(false);
-        chkFrzRainCateg->setEnabled(false); chkFrzRainCateg->setChecked(false);
-        chkIsotherm0->setEnabled(false); chkIsotherm0->setChecked(false);
-        chkGUSTsfc->setEnabled(false); chkGUSTsfc->setChecked(false);
-        chkSnowDepth->setEnabled(false); chkSnowDepth->setChecked(false);
-
-        chkAltitude200->setEnabled(false); chkAltitude200->setChecked(false);
-        chkAltitude300->setEnabled(false); chkAltitude300->setChecked(false);
-        chkAltitude400->setEnabled(false); chkAltitude400->setChecked(false);
-        chkAltitude500->setEnabled(false); chkAltitude500->setChecked(false);
-        chkAltitude600->setEnabled(false); chkAltitude600->setChecked(false);
-        chkAltitude700->setEnabled(false); chkAltitude700->setChecked(false);
-        chkAltitude850->setEnabled(false); chkAltitude850->setChecked(false);
-        chkAltitude925->setEnabled(false); chkAltitude925->setChecked(false);
-
-        chkAltitude_All->setEnabled(false); chkAltitude_All->setChecked(false);
-        chkAltitude_SkewT->setEnabled(false); chkAltitude_SkewT->setChecked(false);
-
-
-    }
-    else if (amod == "NAM PACIFIC")
-    {
-        // set res, days, cyc options
-
-        cbResolution->clear();
-        cbResolution->addItems(QStringList()<< "0.11");
-        cbDays->clear();
-        cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4");
-        ind = Util::getSetting("downloadIndNbDays", 3).toInt();
-        ind = Util::inRange(ind, 0, cbDays->count()-1);
-        cbDays->setCurrentIndex(ind);
-        ind = 0;
-        cbInterval->clear();
-        cbInterval->addItems(QStringList()<<"1"<<"3"<<"6"<<"12");
+        cbInterval->addItems(QStringList()<<"3");
+        cbInterval->setEnabled(false);
         cbInterval->setMinimumWidth (0);
         ind = Util::getSetting("downloadIndInterval", 0).toInt();
         if (ind == 24) ind = 1;
@@ -884,6 +822,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
 
         cbResolution->clear();
         cbResolution->addItems(QStringList()<< "0.06");
+        cbResolution->setEnabled(false);
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4"<<"5");
         ind = Util::getSetting("downloadIndNbDays", 4).toInt();
@@ -955,6 +894,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
 
         cbResolution->clear();
         cbResolution->addItems(QStringList()<< "0.1");
+        cbResolution->setEnabled(false);
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3");
         ind = Util::getSetting("downloadIndNbDays", 2).toInt();
@@ -1026,6 +966,7 @@ void DialogLoadGRIB::slotAtmModelSettings()
 
         cbResolution->clear();
         cbResolution->addItems(QStringList()<< "0.025");
+        cbResolution->setEnabled(false);
         cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2");
         ind = Util::getSetting("downloadIndNbDays", 2).toInt();
@@ -1150,14 +1091,13 @@ void DialogLoadGRIB::slotWaveModelSettings()
         chkWaveSig->setEnabled(true);
         chkWaveSwell->setEnabled(true);
         chkWaveWind->setEnabled(true);
-    }
 
-    // if we are wave only then set selectors according to wave models
-    if (cbModel->currentIndex() == 0) // none for atm model
-    {
-        // set appropriate settings for wave mode if selected
-        setWaveSelectors();
-
+	    // if we are wave only then set selectors according to wave models
+	    if (cbModel->currentIndex() == 0) // none for atm model
+	    {
+	        // set appropriate settings for wave mode if selected
+	        setWaveSelectors();
+	    }
     }
     // propagate the change
     slotParameterUpdated ();
@@ -1165,66 +1105,56 @@ void DialogLoadGRIB::slotWaveModelSettings()
 //-------------------------------------------------------------------------------
 void DialogLoadGRIB::setWaveSelectors ()
 {
+    if (cbWvModel->currentIndex() == 0) // none
+    	return;
+
     int ind = 0;
 
+    cbResolution->setEnabled(false);
+    cbResolution->clear();
+    cbDays->clear();
+    cbRunCycle->clear();
     if (cbWvModel->currentText() == "GWAM" )
     {
-        cbResolution->clear();
         cbResolution->addItem("0.25");
-        cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4"<<"5"<<"6"<<"7"<<"8");
         ind = Util::getSetting("downloadIndNbDays", 7).toInt();
         ind = Util::inRange(ind, 0, cbDays->count()-1);
         cbDays->setCurrentIndex(ind);
         ind = 0;
-        cbRunCycle->clear();
         cbRunCycle->insertItem (ind++, tr("Last"), "last");
         cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
         cbRunCycle->insertItem (ind++, tr("12 hr"), "12");
-        cbInterval->clear();
-        cbInterval->addItems(QStringList()<<"3"<<"6"<<"12");
-        cbInterval->setMinimumWidth (0);
-
     }
     else if (cbWvModel->currentText() == "EWAM")
     {
-        cbResolution->clear();
         cbResolution->addItem("0.05");
-        cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4");
         ind = Util::getSetting("downloadIndNbDays", 3).toInt();
         ind = Util::inRange(ind, 0, cbDays->count()-1);
         cbDays->setCurrentIndex(ind);
         ind = 0;
-        cbRunCycle->clear();
         cbRunCycle->insertItem (ind++, tr("Last"), "last");
         cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
         cbRunCycle->insertItem (ind++, tr("12 hr"), "12");
-        cbInterval->clear();
-        cbInterval->addItems(QStringList()<<"3"<<"6"<<"12");
-        cbInterval->setMinimumWidth (0);
-
     }
     else if (cbWvModel->currentText() == "WW3")
     {
-        cbResolution->clear();
         cbResolution->addItem("0.5");
-        cbDays->clear();
         cbDays->addItems(QStringList()<< "1"<<"2"<<"3"<<"4"<<"5"<<"6"<<"7"<<"8");
         ind = Util::getSetting("downloadIndNbDays", 7).toInt();
         ind = Util::inRange(ind, 0, cbDays->count()-1);
         cbDays->setCurrentIndex(ind);
-        cbRunCycle->clear();
         ind = 0;
         cbRunCycle->insertItem (ind++, tr("Last"), "last");
         cbRunCycle->insertItem (ind++, tr("0 hr"), "00");
         cbRunCycle->insertItem (ind++, tr("6 hr"), "06");
         cbRunCycle->insertItem (ind++, tr("12 hr"), "12");
         cbRunCycle->insertItem (ind++, tr("18 hr"), "18");
-        cbInterval->clear();
-        cbInterval->addItems(QStringList()<<"3"<<"6"<<"12");
-        cbInterval->setMinimumWidth (0);
     }
+    cbInterval->clear();
+    cbInterval->addItems(QStringList()<<"3"<<"6"<<"12");
+    cbInterval->setMinimumWidth (0);
 }
 //-------------------------------------------------------------------------------
 void DialogLoadGRIB::slotParameterUpdated ()
@@ -1322,9 +1252,9 @@ void DialogLoadGRIB::slotParameterUpdated ()
         estimate += nbrec*nbalt*2*(head+(nbits*npts)/8+2 );
     else
         estimate += nbrec*nbalt*5*(head+(nbits*npts)/8+2 );
-	
-	int nbskewt = 0;
-	if (chkAltitude_SkewT->isChecked())
+
+    int nbskewt = 0;
+    if (chkAltitude_SkewT->isChecked())
     {
         if (atmosphericModel == "GFS") nbskewt = 70;
         if (atmosphericModel == "ICON") nbskewt = 26;
