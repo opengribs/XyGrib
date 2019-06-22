@@ -298,6 +298,63 @@ void  GribRecord::translateDataType ()
             }
         }
     }
+
+    else if (idCenter==227 && idModel==14 && idGrid==255 && tableVersion == 228)
+    {
+        dataCenterModel = NMC;
+            switch (getDataType()) {
+            case 41:
+                dataType = GRB_PRESSURE_MSL;
+                levelType = LV_MSL;
+                break;
+            case 105:
+                dataType = GRB_HUMID_SPEC;
+                break;
+            case 132:
+                dataType = GRB_PRECIP_TOT;
+                // m/h -> mm/h
+                multiplyAllData( 1000.0 );
+                if (timeRange == 10) {
+                    periodP2 = periodP1;
+                    periodP1 = 0;
+                    timeRange = 4;
+                }
+                break;
+            case 192:
+                dataType = GRB_WIND_VX;
+                break;
+            case 193:
+                dataType = GRB_WIND_VY;
+                break;
+            case 98:
+            case 194:
+                dataType = GRB_TEMP;
+                break;
+            case 195:
+                dataType = GRB_DEWPOINT;
+                break;
+            case 106:
+            case 196:
+                dataType = GRB_HUMID_REL;
+                break;
+            case 198:
+                dataType = GRB_TMAX;
+                break;
+            case 199:
+                dataType = GRB_TMIN;
+                break;
+            case 217:
+                dataType = GRB_CLOUD_TOT;
+                levelType = LV_ATMOS_ALL;
+                multiplyAllData( 100.0 );
+                break;
+            case 240:
+                dataType = GRB_CAPE;
+                break;
+            default:
+                this->knownData = false;
+            }
+    }
     else if (idCenter==98 && idModel==145 && idGrid==255 && tableVersion == 228)
     {
         dataCenterModel = ECMWF_ERA5;
@@ -1277,9 +1334,9 @@ zuint GribRecord::periodSeconds(zuchar unit,zuchar P1,zuchar P2,zuchar range) {
         case 3:
             // dur = ((zuint)P1+(zuint)P2)/2; break;     // TODO
             dur = (zuint)P2; break;
-         case 4:
+         case 4: // Accumulation (reference time + P1 to reference time + P2) product considered valid at reference time + P2
             dur = (zuint)P2; break;
-        case 10:
+        case 10: // product valid at reference time + P1
             dur = ((zuint)P1<<8) + (zuint)P2; break;
         default:
             erreur("id=%d: unknown time range in PDS b21=%d",id,range);

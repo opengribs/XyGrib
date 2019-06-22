@@ -57,6 +57,7 @@ enum DataCenterModel {
     ECMWF,
     ECMWF_WAVE,
     ECMWF_ERA5,
+    NMC,
 	OTHER_DATA_CENTER
 };
 //--------------------------------------------------------
