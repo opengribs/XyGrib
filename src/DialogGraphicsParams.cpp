@@ -51,7 +51,7 @@ DialogChooseLang::DialogChooseLang (QWidget *parent, const QString& defaultlang)
     bt_it = addLanguage ("Italiano",  Util::pathImg("drapeau_it.png"));
 	bt_nl = addLanguage ("Dutch",     Util::pathImg("drapeau_nl.png"));
 	bt_pt = addLanguage ("Português (Brasil)", Util::pathImg("drapeau_pt.png"));
-	bt_ru = addLanguage ("Русско",    Util::pathImg("drapeau_ru.png"));
+    bt_ru = addLanguage ("Русский",    Util::pathImg("drapeau_ru.png"));
 	bt_gr = addLanguage ("Ελληνικά",  Util::pathImg("drapeau_gr.png"));
 	
 	if (defaultlang == "de")
