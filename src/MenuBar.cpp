@@ -436,7 +436,7 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
             acRunMaintenanceTool = addAction (menuHelp, tr("Run XyGrib Maintenance Tool"),"",
                                           tr("To add, update or remove XyGrib components"),"");
 
-        acHelp_AProposQT = addAction (menuHelp, tr("About QT"),"","","");
+        acHelp_AProposQT = addAction (menuHelp, tr("About Qt"),"","","");
 
     //======================================================================
     addMenu (menuFile);

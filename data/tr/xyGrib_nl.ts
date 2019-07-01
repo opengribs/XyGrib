@@ -2598,7 +2598,7 @@
     </message>
     <message>
         <source>About QT</source>
-        <translation>Over QT</translation>
+        <translation type="vanished">Over QT</translation>
     </message>
     <message>
         <source>Equal cylindric</source>
@@ -3006,6 +3006,10 @@
     </message>
     <message>
         <source>Combined wave and swell</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About Qt</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
