@@ -249,7 +249,31 @@ void  GribRecord::translateDataType ()
     else if (idCenter==98 && (idModel==145|| idModel==255 ) && idGrid==255 && tableVersion == 128)
     {
         dataCenterModel = ECMWF_ERA5;
-        if (getLevelType()==LV_GND_SURF && getLevelValue()==0) {
+        if (getLevelType() == LV_ISOBARIC){ // for pressure level data
+            if (getDataType() == 130)
+            {
+                dataType = GRB_TEMP;
+            }
+            else if (getDataType() == 131) // u wind
+            {
+                dataType = GRB_WIND_VX;
+            }
+            else if (getDataType() == 132)  // v wind
+            {
+                dataType = GRB_WIND_VY;
+            }
+            else if (getDataType() == 157)  // rh
+            {
+                dataType = GRB_HUMID_REL;
+            }
+            else if (getDataType() == 129)  // geopotential
+            {
+                dataType = GRB_GEOPOT_HGT;
+                multiplyAllData(0.1);
+            }
+
+        }
+        if (getLevelType()==LV_GND_SURF && getLevelValue()==0) {  // single level data
             if (getDataType() == 141) // Snow depth  (m of water equivalent)
             {
                 dataType = GRB_SNOW_DEPTH;
