@@ -269,7 +269,7 @@ void  GribRecord::translateDataType ()
             else if (getDataType() == 129)  // geopotential
             {
                 dataType = GRB_GEOPOT_HGT;
-                multiplyAllData(0.1);
+                multiplyAllData(0.102);     // convert to geopot height
             }
 
         }
