@@ -916,16 +916,18 @@ void  Terrain::keyReleaseEvent (QKeyEvent *e)
 void  Terrain::wheelEvent(QWheelEvent * e)
 {
 //printf("wheelEvent\n");
-	double k = 1.3;
+    double k = 1 + .002 * e->delta();
 	
-	if (e->delta() > 0)
+    if (e->delta() != 0)
 		deltaZoomWheel *= k;
-	else
-		deltaZoomWheel /= k;
-	
+    else {
+        e->ignore();
+        return;
+    }
+
 	// Le timer évite les multiples update() pendant les changements de taille
     timerZoomWheel->stop();	 // pas d'update() tout de suite
-    timerZoomWheel->start(100); // update() seulement après une petite inactivité
+    timerZoomWheel->start(10); // update() seulement après une petite inactivité
 }
 //---------------------------------------------------------
 void Terrain::slotTimerZoomWheel () {
