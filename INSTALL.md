@@ -31,7 +31,7 @@ git clone https://github.com/opengribs/XyGrib.git
 ```
 - Build
 
-To build, you'll need to tell CMake where QT is located. This will be something like ```/usr/local/Cellar/qt/5.8.1``` The exact version number may differ, check the version you have installed.
+To build, you'll need to tell CMake where Qt is located. This will be something like ```/usr/local/Cellar/qt/5.8.1``` The exact version number may differ, check the version you have installed.
 ```
 mkdir build
 cd build

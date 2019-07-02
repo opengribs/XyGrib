@@ -1,5 +1,16 @@
 XyGrib est un clone de zyGrib (https://opengribs.org/fr)
 
+Les changements dans la version 1.2.6
+
+- Correction du problème de zoom sur le pavé tactile du Macbook
+- Diverses données du modèle Alaro 4km (NMC de Belgique) peuvent être lues par XyGrib
+- Ajout de la réflectivité  dans l'acquisition des données à la volée du modèle GFS
+- Des données de réanalyse (ERA5 hourly data on pressure levels from 1979 to present) de ECMWF peuvent être lues
+- Le modèle NOADD GFS Ensemble peut être lu
+- Amélioration de l'affichage des vagues
+- Les caractères utf-8 dans les chemins de fichiers sont lisibles
+- Nombreuses améliorations et corrections de bugs
+
 Les changements dans la version 1.2.4
 
 - Nouveau modèle régional ajouté : Arome 0.025 deg couverture France et régions environnantes
