@@ -1,6 +1,16 @@
 # XyGrib - Weather Forecast Visualization
 Fork of zyGrib-8.0.1 under a new name and a new home https://opengribs.org
 
+Changes in version 1.2.6
+- Macbook touchpad zooming of map issue fixed
+- Belgium NMC opendata gribs can now be read by XyGrib
+- GFS reflectivity added
+- ECMWF ERA5 reanalysis data can now be read
+- NOADD GFS Ensemble model can now be read
+- Improvements in wave display
+- utf-8 characters in file paths should be readable
+- Many behind the scenes improvements and bug fixes
+
 Changes in version 1.2.4
 - New feature - Arome 0.025 deg regional model has been added covering all of France and neigbouring areas
 - Grib grid only shown if there is weather display selected and if zoom factor allows it (no more black out)
