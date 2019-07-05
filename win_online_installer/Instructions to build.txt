@@ -4,6 +4,7 @@ Instructions For Windows Online Installer
 
 First create the binary deployment package
 *******************************************
+Before final built update version and release date in CMakeLists.txt
 Copy the release version of the XyGrib.exe file to the deployment folder
 Run   windeployqt --no-translations --release --no-opengl-sw .\XyGrib.exe  in the deployment folder. 
 Add libopenjp2.dll (as this is missed for some reason)
