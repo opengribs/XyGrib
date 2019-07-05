@@ -27,7 +27,7 @@
 # After running the script the compiled installers should be in the linux_online_installer folder and the repository should be ready for upload
 #
 
-XVER="1.2.2"
+XVER="1.2.6"
 
 ## go to the installer build folder
 cd linux_online_installer
