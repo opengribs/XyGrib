@@ -8,7 +8,7 @@
 #		-- linux_online_installer					(structure as copied from the repository clone)
 #				-- config
 #				-- packages
-#						-- org.opengribs.xygrib.core.mac	
+#						-- org.opengribs.xygrib.core.linux	
 #								-- data 		(copy the XyGrib.AppImage, LICENSE & README.md to here)
 #										--icons
 #												xyGrib.ico
