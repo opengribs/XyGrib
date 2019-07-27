@@ -20,6 +20,9 @@ https://gihub.com/opengribs/XyGrib/releases or on https://opengribs.org in the d
   - Ubuntu Trusty: `sudo apt-get install build-essential git cmake qt5-default libpng-dev libopenjpeg-dev libnova-dev libproj-dev zlib1g-dev libbz2-dev`
   - Fedora 28: `sudo yum install gcc git cmake qt5-devel libpng-devel openjpeg2-devel libnova-devel libproj-devel zlib-devel bzip2-devel
   - openSUSE Tumbleweed: `sudo zypper install gcc git cmake libqt5-qtbase-devel libpng-devel openjpeg2-devel libnova-devel libproj-devel zlib-devel libbz2-devel
+  - NIXOS: [`nixpkgs` contains a package for XyGrib](https://github.com/NixOS/nixpkgs/tree/master/pkgs/applications/misc/xygrib)
+    - To get a a build environment containing all prerequisities run `nix-shell -p xygrib`
+    - If you simply want to install it, use `nix-env -i xygrib`
 
 ## Build and package
 
