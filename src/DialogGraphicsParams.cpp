@@ -42,7 +42,7 @@ DialogChooseLang::DialogChooseLang (QWidget *parent, const QString& defaultlang)
 	// A. Degwerth [Cassidian]: added Arabic language selection
 	bt_ar = addLanguage ("العربية",   Util::pathImg("drapeau_ar.png"));
     bt_cz = addLanguage ("Čeština",   Util::pathImg("drapeau_cz.png"));
-    bt_cn = addLanguage ("Chinese",   Util::pathImg("drapeau_cn.png"));
+    bt_cn = addLanguage ("简体中文",   Util::pathImg("drapeau_cn.png"));
     bt_de = addLanguage ("Deutsch",   Util::pathImg("drapeau_de.png"));
 	bt_en = addLanguage ("English",   Util::pathImg("drapeau_en.png"));
 	bt_es = addLanguage ("Español",   Util::pathImg("drapeau_es.png"));
