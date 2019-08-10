@@ -1,6 +1,9 @@
 # XyGrib - Weather Forecast Visualization
 Fork of zyGrib-8.0.1 under a new name and a new home https://opengribs.org
 
+Changes in version 1.2.8
+- Chinese translation added. Thanks to 张 树奎
+
 Changes in version 1.2.6
 - Macbook touchpad zooming of map issue fixed
 - Belgium NMC opendata gribs can now be read by XyGrib

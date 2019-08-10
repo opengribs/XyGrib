@@ -41,8 +41,9 @@ DialogChooseLang::DialogChooseLang (QWidget *parent, const QString& defaultlang)
 	assert (btGroup);
 	// A. Degwerth [Cassidian]: added Arabic language selection
 	bt_ar = addLanguage ("العربية",   Util::pathImg("drapeau_ar.png"));
-	bt_cz = addLanguage ("Čeština",   Util::pathImg("drapeau_cz.png"));
-	bt_de = addLanguage ("Deutsch",   Util::pathImg("drapeau_de.png"));
+    bt_cz = addLanguage ("Čeština",   Util::pathImg("drapeau_cz.png"));
+    bt_cn = addLanguage ("Chinese",   Util::pathImg("drapeau_cn.png"));
+    bt_de = addLanguage ("Deutsch",   Util::pathImg("drapeau_de.png"));
 	bt_en = addLanguage ("English",   Util::pathImg("drapeau_en.png"));
 	bt_es = addLanguage ("Español",   Util::pathImg("drapeau_es.png"));
 	bt_fi = addLanguage ("Finnish",   Util::pathImg("drapeau_fi.png"));
@@ -75,13 +76,15 @@ DialogChooseLang::DialogChooseLang (QWidget *parent, const QString& defaultlang)
 	else if (defaultlang == "ru")
 		bt_ru->setChecked (true);
 	else if (defaultlang == "cz")
-		bt_ru->setChecked (true);
+        bt_cz->setChecked (true);
 	// A. Degwerth [Cassidian]: added Arabic language selection
 	else if (defaultlang == "ar")
 		bt_ar->setChecked (true);
-	else if (defaultlang == "gr")
-		bt_gr->setChecked (true);
-	else
+    else if (defaultlang == "gr")
+        bt_gr->setChecked (true);
+    else if (defaultlang == "cn")
+        bt_cn->setChecked (true);
+    else
 		bt_en->setChecked (true);
 }	
 //--------------------------------------------------------------------------------	
@@ -112,9 +115,11 @@ QString DialogChooseLang::getLanguage ()
 	// A. Degwerth [Cassidian]: added Arabic language selection
 	else if (bt_ar->isChecked())
 		return "ar";
-	else if (bt_gr->isChecked())
-		return "gr";
-	else
+    else if (bt_gr->isChecked())
+        return "gr";
+    else if (bt_cn->isChecked())
+        return "cn";
+    else
 		return "en";
 }
 //--------------------------------------------------------------------------------	

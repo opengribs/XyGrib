@@ -893,12 +893,12 @@
 <context>
     <name>DialogGraphicsParams</name>
     <message>
-        <location filename="../../src/DialogGraphicsParams.cpp" line="227"/>
+        <location filename="../../src/DialogGraphicsParams.cpp" line="232"/>
         <source>100 % -&gt; white</source>
         <translation>100 % -&gt; белый</translation>
     </message>
     <message>
-        <location filename="../../src/DialogGraphicsParams.cpp" line="228"/>
+        <location filename="../../src/DialogGraphicsParams.cpp" line="233"/>
         <source>100 % -&gt; dark</source>
         <translation>100 % -&gt; тёмный</translation>
     </message>
@@ -4602,7 +4602,7 @@ Are you sure ?</source>
         <translation>Открыть файл</translation>
     </message>
     <message>
-        <location filename="../../src/Terrain.cpp" line="1179"/>
+        <location filename="../../src/Terrain.cpp" line="1181"/>
         <source>  Please wait...  </source>
         <translation>  Ведутся расчеты...  </translation>
     </message>

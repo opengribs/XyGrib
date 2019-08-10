@@ -46,8 +46,8 @@ class DialogChooseLang : public DialogBoxColumn
 		QButtonGroup *btGroup;
 		
 		QRadioButton *bt_de;
-		QRadioButton *bt_en;
-		QRadioButton *bt_es;
+        QRadioButton *bt_en;
+        QRadioButton *bt_es;
 		QRadioButton *bt_fi;
         QRadioButton *bt_fr;
         QRadioButton *bt_he;
@@ -59,6 +59,8 @@ class DialogChooseLang : public DialogBoxColumn
 		QRadioButton *bt_gr;
 		// A. Degwerth [Cassidian]: added RadioButton for Arabic language
 		QRadioButton *bt_ar;
+        QRadioButton *bt_cn;
+
 };
 
 

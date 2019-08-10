@@ -894,12 +894,12 @@
 <context>
     <name>DialogGraphicsParams</name>
     <message>
-        <location filename="../../src/DialogGraphicsParams.cpp" line="227"/>
+        <location filename="../../src/DialogGraphicsParams.cpp" line="232"/>
         <source>100 % -&gt; white</source>
         <translation>100 % -&gt; valkea</translation>
     </message>
     <message>
-        <location filename="../../src/DialogGraphicsParams.cpp" line="228"/>
+        <location filename="../../src/DialogGraphicsParams.cpp" line="233"/>
         <source>100 % -&gt; dark</source>
         <translation>100 % -&gt; tumma</translation>
     </message>
@@ -4615,7 +4615,7 @@ Oletko varma ?</translation>
         <translation>Avaa tiedosto</translation>
     </message>
     <message>
-        <location filename="../../src/Terrain.cpp" line="1179"/>
+        <location filename="../../src/Terrain.cpp" line="1181"/>
         <source>  Please wait...  </source>
         <translation>  Ole hyvä ja odota...  </translation>
     </message>

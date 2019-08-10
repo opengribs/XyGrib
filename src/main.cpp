@@ -227,6 +227,13 @@ int main (int argc, char *argv[])
         QApplication::installTranslator(&trXygrib);
         QApplication::installTranslator(&trSystem);
     }
+    else if (lang == "cn") {
+        QLocale::setDefault(QLocale("zh_CN"));
+        trSystem.load( QString("qt_cn"), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+        trXygrib.load( Util::pathTr(lang));
+        QApplication::installTranslator(&trXygrib);
+        QApplication::installTranslator(&trSystem);
+    }
     else { 	// e=English = default
         QLocale::setDefault(QLocale("en_US"));
     }
