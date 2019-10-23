@@ -1451,6 +1451,12 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
 	// Geographic area
 	//------------------------------------------------
     int sizemin = 0;
+    sbSouth = new QDoubleSpinBox(this);
+    assert(sbSouth);
+    sbSouth->setDecimals(2);
+    sbSouth->setMinimum(-90);
+    sbSouth->setMaximum(90);
+//    sbSouth->setSuffix(tr(" °N"));
     sbNorth = new QDoubleSpinBox(this);
     assert(sbNorth);
     sbNorth->setDecimals(2);
@@ -1458,12 +1464,6 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
     sbNorth->setMaximum(90);
     // TODO suffix needs to be part of value. i.e. -25N is not acceptable
 //    sbNorth->setSuffix(tr(" °N"));
-    sbSouth = new QDoubleSpinBox(this);
-    assert(sbSouth);
-    sbSouth->setDecimals(2);
-    sbSouth->setMinimum(-90);
-    sbSouth->setMaximum(90);
-//    sbSouth->setSuffix(tr(" °N"));
     sbWest = new QDoubleSpinBox(this);
     assert(sbWest);
     sbWest->setDecimals(2);
@@ -1662,12 +1662,12 @@ QFrame *DialogLoadGRIB::createFrameButtonsZone(QWidget *parent)
 	//----------------------------------------------------------------
     btOK     = new QPushButton(tr("Download"), this);
     assert(btOK);
-    btCancel = new QPushButton(tr("Cancel"), this);
-    assert(btCancel);
     btServerStatus = new QPushButton(tr("Server status"), this);
     assert(btServerStatus);
     btProxy = new QPushButton(tr("Connection"), this);
     assert(btProxy);
+    btCancel = new QPushButton(tr("Cancel"), this);
+    assert(btCancel);
 
     progressBar = new QProgressBar();
     assert(progressBar);
