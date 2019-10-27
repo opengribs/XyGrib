@@ -108,17 +108,12 @@ find_path(OPENJPEG_INCLUDE_DIR
      ~/Library/Frameworks/include
      /Library/Frameworks/include
      /usr/local/include
-     /usr/local/include/openjpeg-2.3
-     /usr/include/openjpeg-2.3
-     /usr/local/include/openjpeg-2.1
-     /usr/include/openjpeg-2.1
-     /usr/local/include/openjpeg-2.2
-     /usr/include/openjpeg-2.2
      /usr/include
      /sw/include # Fink
      /opt/local/include # DarwinPorts
      /opt/csw/include # Blastwave
      /opt/include
+     PATH_SUFFIXES openjpeg-2.3 openjpeg-2.2 openjpeg-2.1
      REQUIRED
  )
 include_directories(${OPENJPEG_INCLUDE_DIR})
