@@ -219,7 +219,7 @@ if(UNIX AND NOT APPLE)
 # This is not exactly a good idea on linux - the code should be changed so that the executable would go to /usr/local/bin and the data to /usr/local/share/XyGrib
 include(GNUInstallDirs)
 set(PREFIX_BIN ${CMAKE_INSTALL_FULL_BINDIR})
-set(PREFIX_PKGDATA ${CMAKE_INSTALL_FULL_DATAROOTDIR}/${PROJECT_NAME})
+set(PREFIX_PKGDATA ${CMAKE_INSTALL_FULL_DATADIR}/openGribs/${PROJECT_NAME})
 endif()
 
 add_subdirectory(src)
