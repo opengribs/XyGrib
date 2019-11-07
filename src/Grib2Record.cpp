@@ -469,6 +469,9 @@ int Grib2Record::analyseProductType ()
                 return GRB_CUR_VX;
             if (paramnumber==3)
                 return GRB_CUR_VY;
+        } else if (paramcat==3){ // Surface Properties
+            if (paramnumber==0)
+                return GRB_WTMP;
         }
     }
     if (discipline != 0)

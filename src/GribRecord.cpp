@@ -49,6 +49,12 @@ void  GribRecord::translateDataType ()
 			)
 				dataType = GRB_TYPE_NOT_DEFINED;
 		}
+		else if (dataType == GRB_TEMP            //gfs Water surface Temperature
+                && levelType == LV_GND_SURF
+                && levelValue == 0 ) {
+            dataType = GRB_WTMP;
+        }
+
 		// altitude level (entire atmosphere vs entire atmosphere considered as 1 level)
 		if (levelType == LV_ATMOS_ENT) {
 				levelType = LV_ATMOS_ALL;
