@@ -232,6 +232,10 @@ QString Util::formatSpeed (float meterspersecond, bool withUnit, QString unit)
         r.sprintf("%.1f ", meterspersecond);
         unit = tr("m/s");
     }
+    else if (unit == "m/min") {
+        r.sprintf("%d ", qRound(meterspersecond*60.f));
+        unit = tr("m/min");
+    }
     else if (unit == "km/h") {
         r.sprintf("%.1f ", meterspersecond*3.6);
         unit = tr("km/h");

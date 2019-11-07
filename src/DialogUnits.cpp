@@ -177,6 +177,7 @@ QFrame *DialogUnits::createFrameGui(QWidget *parent)
     lay->addWidget( label,    lig,0, Qt::AlignRight);
     cbCurrentSpeedUnit = new QComboBox(this);
     cbCurrentSpeedUnit->addItem( tr("m/s") ,  "m/s");
+    cbCurrentSpeedUnit->addItem( tr("m/min") ,  "m/min");
     cbCurrentSpeedUnit->addItem( tr("km/h"),  "km/h");
     cbCurrentSpeedUnit->addItem( tr("kts"), "kts");
     cbCurrentSpeedUnit->setMinimumWidth (sizemin);
