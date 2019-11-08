@@ -471,9 +471,10 @@ int Grib2Record::analyseProductType ()
                 return GRB_CUR_VY;
         }
     }
+    if (discipline != 0)
+	    return GRB_TYPE_NOT_DEFINED;
 
-
-    else if (pdtnum==0 || pdtnum== 2  || pdtnum== 12 ) {
+    if (pdtnum==0 || pdtnum== 2  || pdtnum== 12 ) {
 		if (paramcat==0) {//TABLE 4.2-0-0
 			if (paramnumber==0)
 				return GRB_TEMP;
