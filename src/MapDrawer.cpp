@@ -599,7 +599,9 @@ void MapDrawer::draw_MeteoData_Gridded
 						QColor(0,0,0), pnt, proj);
 	}
 	if (showTemperatureLabels ) {
-		DataCode dtc (GRB_TEMP,temperatureLabelsAlt);
+		auto dataType = colorMapData.dataType == GRB_WTMP?GRB_WTMP:GRB_TEMP;
+
+		DataCode dtc (dataType, temperatureLabelsAlt);
 		if (plotter->hasData (dtc)) {
 			addUsedDataCenterModel (dtc, plotter);
 			plotter->draw_DATA_Labels (
@@ -679,7 +681,9 @@ void MapDrawer::draw_Cartouche_Gridded
 		if (showLinesThetaE)
 			datalist.append (tr("Theta-e")+" "+AltitudeStr::toStringShort(linesThetaEAltitude)+" "+tr("(°C)"));
 		if (showTemperatureLabels) {
-			DataCode dtc (GRB_TEMP,temperatureLabelsAlt);
+			auto dataType = colorMapData.dataType == GRB_WTMP?GRB_WTMP:GRB_TEMP;
+
+			DataCode dtc (dataType, temperatureLabelsAlt);
 			if (plotter->hasData (dtc)) {
 				datalist.append (tr("Temperature label")
 					+" ("+AltitudeStr::toStringShort(temperatureLabelsAlt)+")");

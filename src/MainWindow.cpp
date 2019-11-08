@@ -791,8 +791,9 @@ void MainWindow::setMenubarItems()
     menuBar->menuColorMap->setEnabled (true);
 	menuBar->menuIsolines->setEnabled (true);
  
-	if (plotter->hasDataType (GRB_TEMP) ) {
-	    menuBar->acView_TempColors->setEnabled(true);
+	if (plotter->hasDataType(GRB_TEMP)) menuBar->acView_TempColors->setEnabled(true);
+
+	if (plotter->hasDataType(GRB_TEMP) || plotter->hasDataType (GRB_WTMP)) {
 	    menuBar->acView_TemperatureLabels->setEnabled(true);
     }
 
