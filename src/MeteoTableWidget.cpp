@@ -298,6 +298,10 @@ void MeteoTableWidget::createTable()
 		else if (dataType==GRB_WIND_GUST && levelType==LV_GND_SURF && levelValue==0){
 			addLine_GUSTsfc (lig++);
 		}
+		else if (dataType==GRB_WTMP && levelType==LV_GND_SURF && levelValue==0){
+			Altitude alt (levelType, levelValue);
+			addLine_Temperature (alt, GRB_WTMP, lig++);
+		}
 		//----------------------------------------------
 		// Waves
 		//----------------------------------------------
@@ -652,6 +656,8 @@ void MeteoTableWidget::addLine_Temperature(const Altitude &alt, uchar type, int 
 	switch (type) {
 		case GRB_PRV_THETA_E:
 			title = tr("Theta-e"); break;
+		case GRB_WTMP:
+			title = tr("Water temp"); break;
 		case GRB_TEMP:
 			title = tr("Temperature"); break;
 		case GRB_TMIN:
@@ -677,7 +683,10 @@ void MeteoTableWidget::addLine_Temperature(const Altitude &alt, uchar type, int 
 		txt = "";
 		if (GribDataIsDef(v)) {
 			txt = Util::formatTemperature(v);
-			bgColor = QColor(plotter->getTemperatureColor(v, true));
+			if (type==GRB_WTMP)
+				bgColor = QColor(plotter->getWaterTemperatureColor(v, true));
+			else
+				bgColor = QColor(plotter->getTemperatureColor(v, true));
 		}
 		else
 			bgColor = Qt::white;

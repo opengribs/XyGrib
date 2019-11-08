@@ -193,6 +193,7 @@ QString DataCodeStr::toString_name (const DataCode &dtc)
 		case GRB_PRESSURE     : return tr("Pressure");
 		case GRB_PRESSURE_MSL : return tr("Pressure")+" "+tr("MSL");
         case GRB_GEOPOT_HGT   : return tr("Geopotential height");
+		case GRB_WTMP         : return tr("Water Temperature");
 		case GRB_TEMP         : return tr("Temperature");
 		case GRB_TEMP_POT     : return tr("Potential temperature");
 		case GRB_TMAX         : return tr("Temperature max");

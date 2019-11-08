@@ -510,6 +510,7 @@ int MeteoTableDialog::SYLK_addData_gen (SylkFile &slk, int lig,int col, DataCode
 				case GRB_TMAX         : 
 				case GRB_TMIN         : 
 				case GRB_DEWPOINT     : 
+				case GRB_WTMP         :
 				case GRB_TEMP         : 
 				case GRB_PRV_THETA_E      : 
 					txt = Util::formatTemperature (val, false); 

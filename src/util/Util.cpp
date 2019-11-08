@@ -353,6 +353,7 @@ QString Util::getDataUnit (const DataCode &dtc)
 		case GRB_FRZRAIN_CATEG: 
 		case GRB_SNOW_CATEG   : 
 			return "0/1";
+		case GRB_WTMP         :
 		case GRB_TEMP         : 
 		case GRB_TEMP_POT     : 
 		case GRB_TMAX         : 

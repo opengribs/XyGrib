@@ -484,6 +484,7 @@ void GribPlot::draw_ColoredMapPlain (
 				}
 			}
 			// fall through
+		case GRB_WTMP :
 		case GRB_TEMP :
 		case GRB_CLOUD_TOT : 
 		case GRB_PRECIP_TOT :

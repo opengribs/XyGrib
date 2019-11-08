@@ -469,11 +469,15 @@ int Grib2Record::analyseProductType ()
                 return GRB_CUR_VX;
             if (paramnumber==3)
                 return GRB_CUR_VY;
+        } else if (paramcat==3){ // Surface Properties
+            if (paramnumber==0)
+                return GRB_WTMP;
         }
     }
+    if (discipline != 0)
+	    return GRB_TYPE_NOT_DEFINED;
 
-
-    else if (pdtnum==0 || pdtnum== 2  || pdtnum== 12 ) {
+    if (pdtnum==0 || pdtnum== 2  || pdtnum== 12 ) {
 		if (paramcat==0) {//TABLE 4.2-0-0
 			if (paramnumber==0)
 				return GRB_TEMP;

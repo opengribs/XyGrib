@@ -445,6 +445,7 @@ void MapDrawer::draw_MeteoData_Gridded
 			currentArrowsColor.setRgb(255, 255, 255);
 			break;
 		case GRB_TEMP :
+		case GRB_WTMP :
 		case GRB_TEMP_POT :
 		case GRB_DEWPOINT :
 			temperatureLabelsAlt = mapAltitude;	

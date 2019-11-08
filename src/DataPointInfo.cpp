@@ -118,6 +118,7 @@ DataPointInfo::DataPointInfo (GriddedReader *reader,
 	humidSpec = getValue(DataCode(GRB_HUMID_SPEC,LV_ABOV_GND,2));
 	dewPoint = getValue(DataCode(GRB_DEWPOINT,LV_ABOV_GND,2));
 	isotherm0HGT = getValue(DataCode(GRB_GEOPOT_HGT,LV_ISOTHERM0,0));
+	waterTemp    = getValue(DataCode(GRB_WTMP,LV_GND_SURF,0));
 	snowDepth    = getValue(DataCode(GRB_SNOW_DEPTH,LV_GND_SURF,0));
 	snowCateg    = getValue(DataCode(GRB_SNOW_CATEG,LV_GND_SURF,0));
 	frzRainCateg = getValue(DataCode(GRB_FRZRAIN_CATEG,LV_GND_SURF,0));
@@ -295,6 +296,8 @@ float DataPointInfo::getDataValue (const DataCode &dtc) const
 			return 
 				hasDewPoint()&&hasTemp() ? temp-dewPoint : GRIB_NOTDEF;
 			
+		case GRB_WTMP         :
+			return waterTemp;
 		case GRB_TEMP         : 
 			if (dtc.getAltitude().levelType == LV_ISOBARIC) {
 				int idx = dtc.getAltitude().index();

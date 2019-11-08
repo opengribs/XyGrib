@@ -115,6 +115,7 @@ public:
 		
     QMenu   *menuSeaState;
     QMenu   *menuWavesArrows;
+		QAction *acView_WaterTempColors;
 		QAction *acView_SigWaveHeight;
 		QAction *acView_MaxWaveHeight;
 		QAction *acView_WhiteCapProb;

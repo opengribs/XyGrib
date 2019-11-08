@@ -761,6 +761,7 @@ void MainWindow::disableMenubarItems()
 	menuBar->menuGeopotStep->setEnabled (false);
 	menuBar->acAlt_GeopotLabels->setEnabled (false);
 
+    menuBar->acView_WaterTempColors->setEnabled(false);
 	// Sea current
     menuBar->acView_CurrentColors->setEnabled(false);
     menuBar->acView_CurrentArrow->setEnabled(false);
@@ -928,6 +929,7 @@ void MainWindow::setMenubarItems()
 	    }
     }
 
+	if (plotter->hasDataType (GRB_WTMP))  menuBar->acView_WaterTempColors->setEnabled(true);
 	// Waves
 	if (plotter->hasWaveDataType (GRB_WAV_SIG_HT)) menuBar->acView_SigWaveHeight->setEnabled (true);
 	if (plotter->hasWaveDataType (GRB_WAV_MAX_HT)) menuBar->acView_MaxWaveHeight->setEnabled (true);
@@ -1989,6 +1991,9 @@ void MainWindow::setMenubarColorMapData (const DataCode &dtc, bool trigAction)
 		case GRB_HUMID_REL :
 			act = mb->acView_HumidColors;
 			break;
+		case GRB_WTMP :
+			act = mb->acView_WaterTempColors;
+			break;
 		case GRB_TEMP :
 			act = mb->acView_TempColors;
 			break;
@@ -2149,6 +2154,8 @@ void MainWindow::slot_GroupColorMap (QAction *act)
     	dtc.set (GRB_CAPE,LV_GND_SURF,0);
     else if (act == mb->acView_CINsfc)
         dtc.set (GRB_CIN,LV_GND_SURF,0);
+    else if (act == mb->acView_WaterTempColors)
+        dtc.set (GRB_WTMP,LV_GND_SURF,0);
     // added by david
     else if (act == mb->acView_ReflectColors)
         dtc.set (GRB_COMP_REFL,LV_ATMOS_ALL,0);

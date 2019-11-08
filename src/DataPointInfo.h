@@ -32,6 +32,7 @@ class DataPointInfo
 		
         bool hasPressureMSL() const {return GribDataIsDef(pressureMSL);}
         bool hasTemp()     const {return GribDataIsDef(temp);}
+        bool hasWaterTemp()const {return GribDataIsDef(waterTemp);}
         bool hasTempMin()  const {return GribDataIsDef(tempMin);}
         bool hasTempMax()  const {return GribDataIsDef(tempMax);}
         bool hasRain()     const {return GribDataIsDef(rain);}
@@ -94,6 +95,7 @@ class DataPointInfo
         float   rain;
         float   tempMin;
         float   tempMax;
+        float   waterTemp;
 		
         float    temp;
 		Altitude tempAltitude;

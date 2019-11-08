@@ -88,6 +88,7 @@ enum {
  GRB_CLOUD_LOW     = 72,   /* %      */
  GRB_CLOUD_MID     = 73,   /* %      */
  GRB_CLOUD_HIG     = 74,   /* %      */
+ GRB_WTMP          = 80,   /* "Water Temperature", "K" */
  GRB_FRZRAIN_CATEG =141,   /* 1=yes 0=no */
  GRB_SNOW_CATEG    =143,   /* 1=yes 0=no */
  GRB_CIN 		   =156,   /* J/kg   */

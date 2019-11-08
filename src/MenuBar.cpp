@@ -129,8 +129,7 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
         acView_WindArrow = addActionCheck (menuColorMap, tr("Wind arrows"), "Ctrl+J",
                     tr("Show wind arrows"));
         acView_TemperatureLabels = addActionCheck (menuColorMap,
-                    tr("Temperature")+" (2m)", "Ctrl+T",
-                    "");
+                    tr("Temperatures labels"), "Ctrl+T", "");
         //--------------------------------
         menuColorMap->addSeparator();
         menuViewOptions = new QMenu (tr("Weather Options"));
@@ -360,6 +359,7 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
     menuSeaState = new QMenu(tr("Sea"));
     //======================================================================
 		// Waves
+		acView_WaterTempColors = addActionCheck (menuSeaState, tr("Water temperature"), "", "");
 		acView_SigWaveHeight = addActionCheck (menuSeaState, tr("Significant wave height"), "", "");
 		acView_MaxWaveHeight = addActionCheck (menuSeaState, tr("Maximum wave height"), "", "");
 		acView_WhiteCapProb = addActionCheck (menuSeaState, tr("Whitecap probability"), "", "");
@@ -393,6 +393,7 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
 			acView_GroupWavesArrows->addAction (acView_WavesArrows_scdy);
 		// Actions inserted in the color maps group
 		acView_GroupColorMap->addAction (acView_CurrentColors);
+		acView_GroupColorMap->addAction (acView_WaterTempColors);
 		acView_GroupColorMap->addAction (acView_SigWaveHeight);
 		acView_GroupColorMap->addAction (acView_MaxWaveHeight);
 		acView_GroupColorMap->addAction (acView_WhiteCapProb);

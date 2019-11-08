@@ -49,6 +49,7 @@ class DataColors    // inherited by GriddedPlotter
         QRgb   getHumidColor    (double v, bool smooth);
         QRgb   getCurrentColor     (double v, bool smooth);
         QRgb   getTemperatureColor (double v, bool smooth);
+        QRgb   getWaterTemperatureColor (double v, bool smooth);
         QRgb   getPressureColor    (double v, bool smooth);
 		QRgb   getDeltaTemperaturesColor (double v, bool smooth);
         QRgb   getCAPEColor    (double v, bool smooth);
@@ -73,6 +74,7 @@ class DataColors    // inherited by GriddedPlotter
 		ColorScale colors_Wind_Jet;
 		ColorScale colors_Current;
 		ColorScale colors_Temp;
+		ColorScale colors_WaterTemp;
 		ColorScale colors_Rain;
 		ColorScale colors_SnowDepth;
 		ColorScale colors_CloudsWhite;
