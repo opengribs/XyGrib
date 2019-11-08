@@ -129,8 +129,7 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
         acView_WindArrow = addActionCheck (menuColorMap, tr("Wind arrows"), "Ctrl+J",
                     tr("Show wind arrows"));
         acView_TemperatureLabels = addActionCheck (menuColorMap,
-                    tr("Temperature")+" (2m)", "Ctrl+T",
-                    "");
+                    tr("Temperatures labels"), "Ctrl+T", "");
         //--------------------------------
         menuColorMap->addSeparator();
         menuViewOptions = new QMenu (tr("Weather Options"));
