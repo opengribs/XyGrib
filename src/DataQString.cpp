@@ -28,6 +28,8 @@ QString DataCodeStr::toString (const DataCenterModel &dcm)
             return "NOAA-GFS-ENSEMBLE";
         case NOAA_NAM :
             return "NOAA-NAM";
+        case NOAA_NCEP_SST:
+            return "NOAA-NCEP-SST";
         case NOAA_NCEP_WW3 :
 			return "NOAA-NCEP-WW3";
 		case METEOBLUE_NMM4 :
