@@ -313,6 +313,8 @@ void DialogMeteotableOptions::createDataLists()
     addData (tr("Geopotential altitude")+" (300 hPa)", GRB_GEOPOT_HGT,LV_ISOBARIC,300, defaultvis,defaultpos++);
     addData (tr("Geopotential altitude")+" (200 hPa)", GRB_GEOPOT_HGT,LV_ISOBARIC,200, defaultvis,defaultpos++);
     //----------------------------------
+    addData (tr("Water temperature (surface)"),         GRB_WTMP,LV_GND_SURF,0, defaultvis,defaultpos++);
+
 	int type;
 	type = GRB_WAV_SIG_HT; addData (tr("Waves")+": "+DataCodeStr::toString(type), type,LV_GND_SURF,0, defaultvis,defaultpos++);
 	type = GRB_PRV_WAV_SIG; addData (tr("Waves")+": "+DataCodeStr::toString(type), type,LV_GND_SURF,0, defaultvis,defaultpos++);

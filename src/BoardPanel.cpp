@@ -144,6 +144,12 @@ void BoardPanel::showDataPointInfo (
 		else
 			lbDewPoint.setText("");
 	}
+	if (cellWaterTemp->isVisible()) {
+		if (pf.hasWaterTemp())
+			lbWaterTemp.setText(Util::formatTemperature(pf.waterTemp));
+		else
+			lbWaterTemp.setText("");
+	}
 	if (cellIsotherm0->isVisible()) {
 		if (pf.hasIsotherm0HGT())
 			lbIsotherm0HGT.setText(Util::formatIsotherm0HGT(pf.isotherm0HGT));
@@ -315,6 +321,7 @@ BoardPanel::BoardPanel (QWidget *parent)
         lbCloud.setText("0");
         lbHumid.setText("0");
         lbDewPoint.setText("0");
+        lbWaterTemp.setText("0");
         lbIsotherm0HGT.setText("0");
         lbSnowDepth.setText("0");
         lbCAPEsfc.setText("0");
@@ -350,6 +357,7 @@ BoardPanel::BoardPanel (QWidget *parent)
         lbCloud.setText("");
         lbHumid.setText("");
         lbDewPoint.setText("");
+        lbWaterTemp.setText("");
         lbIsotherm0HGT.setText("");
         lbSnowDepth.setText("");
         lbCAPEsfc.setText("");
@@ -414,6 +422,8 @@ void BoardPanel::updateLabelsSizes()
     lbHumid.setFrameStyle(style);
     lbDewPoint.setMinimumWidth( fmt.width(strlong) );
     lbDewPoint.setFrameStyle(style);
+    lbWaterTemp.setMinimumWidth( fmt.width(strlong) );
+    lbWaterTemp.setFrameStyle(style);
     lbIsotherm0HGT.setMinimumWidth( fmt.width(strlong) );
     lbIsotherm0HGT.setFrameStyle(style);
     lbSnowDepth.setFrameStyle(style);
@@ -472,6 +482,7 @@ void BoardPanel::updateLabelsSizes()
 	lb400.setMinimumWidth (wmin);
 	lb300.setMinimumWidth (wmin);
 	lb200.setMinimumWidth (wmin);
+
 	//---------------------------------------
 	lbWaves_sig.setFont (fontAlt);
 	lbWaves_max.setFont (fontAlt);
@@ -547,6 +558,7 @@ void BoardPanel::createMenuPopup ()
 	addAction (tr("Pressure"), "boardPanelPressure", cellPressure);
 	addAction (tr("Temperature"),"boardPanelTemp", cellTemp);
 	addAction (tr("Dew point"), "boardPanelDewPoint", cellDewPoint);
+	addAction (tr("Sea Temp."),"boardPanelSeaTemp", cellWaterTemp);
 	addAction (tr("Temperature")+" "+tr("Min")+" "+tr("Max"),"boardTempMinMax", cellTempMinMax);
 	addAction (tr("Precipitation"), "boardPanelRain", cellRain);
 	addAction (tr("Cloud cover"),  "boardPanelClouds", cellClouds);
@@ -557,7 +569,7 @@ void BoardPanel::createMenuPopup ()
     // added by david
     addAction (tr("Reflectivity"), "boardPanelReflect", cellReflect);
     addAction (tr("Altitude"), "boardPanelAltitudeData", cellAltitude);
-	addAction (tr("Waves"), "boardPanelWaves", cellWaves);
+    addAction (tr("Waves"), "boardPanelWaves", cellWaves);
 }
 //-------------------------------------------------------
 void BoardPanel::addAction (const QString& title, const QString& settingName, 
@@ -612,6 +624,7 @@ void BoardPanel::createInterface ()
 	cellPressure = new BoardPanelCell (mainFrame, mainFrameLay);
 	cellTemp = new BoardPanelCell (mainFrame, mainFrameLay);
 	cellDewPoint = new BoardPanelCell (mainFrame, mainFrameLay);
+	cellWaterTemp = new BoardPanelCell (mainFrame, mainFrameLay);
 	cellTempMinMax = new BoardPanelCell (mainFrame, mainFrameLay);
 	cellRain = new BoardPanelCell (mainFrame, mainFrameLay);
 	cellClouds = new BoardPanelCell (mainFrame, mainFrameLay);
@@ -665,7 +678,12 @@ void BoardPanel::createInterface ()
         hlay->addWidget(new QLabel(tr("Dew point")+" (2 m)"), 10, Qt::AlignRight);
         hlay->addWidget(&lbDewPoint, 0, Qt::AlignRight);
         cellDewPoint->setLayout(hlay);
-		
+
+    hlay = newQHBoxLayout ();
+        hlay->addWidget(new QLabel(tr("Sea temp.")), 10, Qt::AlignRight);
+        hlay->addWidget(&lbWaterTemp, 0, Qt::AlignRight);
+        cellWaterTemp->setLayout(hlay);
+
     hlay = newQHBoxLayout ();
         hlay->addWidget(new QLabel(tr("Min")), 0, Qt::AlignRight);
         hlay->addWidget(&lbTempMin, 0, Qt::AlignRight);
@@ -713,7 +731,6 @@ void BoardPanel::createInterface ()
         hlay->addWidget(new QLabel(tr("J/Kg")), 10, Qt::AlignRight);
         cellCAPECIN->setLayout(hlay);
 
-
     //--------------------------
     // Altitude data
     //--------------------------
@@ -728,6 +745,7 @@ void BoardPanel::createInterface ()
 		vlay->addWidget (&lb850);
 		vlay->addWidget (&lb925);
         cellAltitude->setLayout (vlay);
+
 
     //--------------------------
     // Waves data

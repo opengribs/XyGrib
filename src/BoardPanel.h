@@ -98,6 +98,8 @@ class BoardPanel : public QDockWidget
         // added by david
         BoardPanelCell *cellReflect;
 		BoardPanelCell *cellAltitude;
+
+		BoardPanelCell *cellWaterTemp;
 		BoardPanelCell *cellWaves;
 
 		QMenu    *menuPopup;
@@ -138,6 +140,7 @@ class BoardPanel : public QDockWidget
 		QLabel     lb300;	
 		QLabel     lb200;	
 		
+		QLabel     lbWaterTemp;
 		QLabel     lbWaves_sig;	
 		QLabel     lbWaves_max;	
 		QLabel     lbWaves_swl;	

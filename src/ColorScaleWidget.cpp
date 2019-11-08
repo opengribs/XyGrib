@@ -105,6 +105,7 @@ QString ColorScaleGraph::formatValue (double v)
             return QString("%1").arg(v,0,'f',2);
 		case GRB_HUMID_REL :
 			return Util::formatPercentValue (v, false);
+		case GRB_WTMP :
 		case GRB_TEMP :
 		case GRB_TEMP_POT :
 		case GRB_DEWPOINT :

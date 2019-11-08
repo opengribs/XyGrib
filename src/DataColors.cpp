@@ -31,6 +31,7 @@ DataColors::DataColors ()
 	colors_Wind_Jet.readFile (Util::pathColors()+"colors_wind_jet_kts.txt", 1.852/3.6, 0);
 	colors_Current.readFile (Util::pathColors()+"colors_current_kts.txt", 1.852/3.6, 0);
 	colors_Temp.readFile (Util::pathColors()+"colors_temp_celcius.txt", 1, 273.15);
+	colors_WaterTemp.readFile (Util::pathColors()+"colors_sea_temp_celcius.txt", 1, 273.15);
 	colors_Rain.readFile (Util::pathColors()+"colors_rain_mmh.txt", 1, 0);
 	colors_SnowDepth.readFile (Util::pathColors()+"colors_snowdepth_m.txt", 1, 0);
 	colors_CloudsWhite.readFile (Util::pathColors()+"colors_clouds_white_pc.txt", 1, 0);
@@ -81,6 +82,10 @@ QRgb DataColors::getCurrentColor (double v, bool smooth)  {
 //--------------------------------------------------------------------------
 QRgb  DataColors::getTemperatureColor (double v, bool smooth) {
 	return colors_Temp.getColor (v, smooth);
+}
+//--------------------------------------------------------------------------
+QRgb  DataColors::getWaterTemperatureColor (double v, bool smooth) {
+	return colors_WaterTemp.getColor (v, smooth);
 }
 //--------------------------------------------------------------------------
 QRgb  DataColors::getThetaEColor (double v, bool smooth) {
@@ -212,6 +217,7 @@ auto DataColors::getFunctionColor(const DataCode &dtc) -> QRgb (DataColors::*)(d
         case GRB_PRECIP_RATE  :
             return &DataColors::getRainColor;
 		case GRB_HUMID_REL :     return &DataColors::getHumidColor;
+		case GRB_WTMP :          return &DataColors::getWaterTemperatureColor;
 		case GRB_TEMP :          return &DataColors::getTemperatureColor;
 		case GRB_TEMP_POT :      return &DataColors::getTemperatureColor;
 		case GRB_DEWPOINT :      return &DataColors::getTemperatureColor;
@@ -275,6 +281,8 @@ ColorScale *DataColors::getColorScale (const DataCode &dtc)
             return &colors_Rain;
 		case GRB_HUMID_REL :
 			return &colors_HumidRel;
+		case GRB_WTMP :
+			return &colors_WaterTemp;
 		case GRB_TEMP :
 			return &colors_Temp;
 		case GRB_TEMP_POT :
