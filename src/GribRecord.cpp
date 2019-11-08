@@ -142,10 +142,12 @@ void  GribRecord::translateDataType ()
 	//----------------------------------------------
 	// NCEP sea surface temperature
 	//----------------------------------------------
-	else if ((idCenter==7 && idModel==44 && idGrid==173)
-	        || (idCenter==7 && idModel==44 && idGrid==235))
+	else if (idCenter==7 && idModel==44 &&
+	          (idGrid== 0|| idGrid==173|| idGrid==235))
 	{
 		dataCenterModel = NOAA_NCEP_SST;
+		if (dataType == GRB_TEMP && levelType == LV_GND_SURF && levelValue == 0 )
+		    dataType = GRB_WTMP;
 	}
 	//----------------------------------------------
 	// FNMOC WW3 mediterranean sea
