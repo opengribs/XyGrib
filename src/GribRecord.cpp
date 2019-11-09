@@ -507,7 +507,9 @@ void  GribRecord::translateDataType ()
 		}
 		if (getLevelType()== LV_ABOV_GND && getLevelValue()== 0) {
 			levelType  = LV_GND_SURF;
-			levelValue = 0;
+		}
+		if (getLevelType()== LV_BLW_SURF && getLevelValue()== 0) {
+			levelType  = LV_GND_SURF;
 		}
 	}
 }
