@@ -45,6 +45,7 @@ class GribRecord : public RegularGridRecord
         GribRecord (const GribRecord &rec, bool copy = true);
         ~GribRecord ();
 
+        void   addAllData(double k);
         void   multiplyAllData(double k);
         void   substract(const GribRecord &rec, bool positive=true);
         void   average(const GribRecord &rec);

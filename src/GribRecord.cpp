@@ -83,6 +83,15 @@ void  GribRecord::translateDataType ()
         dataCenterModel = NOAA_NAM;
     }
     //------------------------
+    // NCOM
+    // https://nomads.ncep.noaa.gov/txt_descriptions/NCOM_doc.shtml
+    //------------------------
+    else if (idCenter==7 && idModel==0 && idGrid==0) {
+        dataCenterModel = OTHER_DATA_CENTER;
+        // expect kelvin but it's celsius...
+		if (getDataType() == GRB_WTMP) addAllData( 273.15 );
+    }
+    //------------------------
     // GLOBAL GFS ENSEMBLE 
     // https://nomads.ncep.noaa.gov/txt_descriptions/GFS_Ensemble_high_resolution_doc.shtml
     //------------------------
@@ -779,6 +788,20 @@ void  GribRecord::setDataType(const zuchar t)
 uint64_t GribRecord::makeKey(int dataType,int levelType,int levelValue)
 {
     return (((static_cast<uint64_t>(dataType) << 16) | static_cast<uint64_t>(levelType)) << 32) | levelValue;
+}
+
+//-------------------------------------------------------------------------------
+void  GribRecord::addAllData(double val)
+{
+    data_t k = val;
+	for (int j=0; j<Nj; j++) {
+		for (int i=0; i<Ni; i++)
+		{
+			if (hasValue(i,j)) {
+				data.get()[j*Ni+i] += k;
+			}
+		}
+	}
 }
 //-------------------------------------------------------------------------------
 void  GribRecord::multiplyAllData(double val)
