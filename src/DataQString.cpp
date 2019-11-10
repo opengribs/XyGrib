@@ -22,58 +22,41 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 QString DataCodeStr::toString (const DataCenterModel &dcm)
 {
 	switch (dcm) {
-        case NOAA_GFS :
-            return "NOAA-GFS";
-        case NOAA_GFS_ENSEMBLE :
-            return "NOAA-GFS-ENSEMBLE";
-        case NOAA_NAM :
-            return "NOAA-NAM";
-        case NOAA_NCEP_SST:
-            return "NOAA-NCEP-SST";
-        case NOAA_NCEP_WW3 :
-			return "NOAA-NCEP-WW3";
-		case METEOBLUE_NMM4 :
-			return "METEOBLUE-NMM4";
-		case FNMOC_WW3_GLB :
-			return "FNMOC-WW3-GLOBAL";
-		case FNMOC_WW3_MED :
-			return "FNMOC-WW3-MEDIT";
-		case NORWAY_METNO :
-			return "NORWAY-MET";
-        case SKIRON :
-            return "OPENSKIRON";
-        case DWD_ICON :
-            return "DWD-ICON";
-        case DWD_ICON_EU :
-            return "DWD-ICON-EU Nest";
-        case ECMWF :
-            return "ECMWF";
-        case ECMWF_WAVE :
-            return "ECMWF-WAVE";
-        case ECMWF_ERA5:
-            return "ECMWF-ERA5";
-        case DWD_ICON_GLOBAL :
-            return "DWD-ICON-Global";
-        case DWD_GWAM :
-            return "DWD-GWAM";
-        case DWD_EWAM :
-            return "DWD-EWAM";
-        case MF_WAM :
-            return "MF-WAM";
-        case MF_ARPEGE_GLOBAL :
-            return "Arpege-Global";
-        case MF_ARPEGE_EU :
-            return "Arpege-EU nest";
-        case MF_ARPEGE :
-            return "Arpege";
-        case MF_AROME :
-            return "Arome";
-        case NMC :
-            return "Belgium NMC";
-        case OTHER_DATA_CENTER :
-		default:
-			return "";
+        case NOAA_GFS :          return "NOAA-GFS";
+        case NOAA_GFS_ENSEMBLE : return "NOAA-GFS-ENSEMBLE";
+        case NOAA_NAM :          return "NOAA-NAM";
+        case NOAA_NCEP_SST:      return "NOAA-NCEP-SST";
+        case NOAA_NCEP_WW3 :     return "NOAA-NCEP-WW3";
+        case METEOBLUE_NMM4 :    return "METEOBLUE-NMM4";
+        case FNMOC_WW3_GLB :     return "FNMOC-WW3-GLOBAL";
+        case FNMOC_WW3_MED :     return "FNMOC-WW3-MEDIT";
+        case FNMOC_WW3_EQAM :    return "FNMOC-WW3-EQAM";
+        case NORWAY_METNO :      return "NORWAY-MET";
+        case SKIRON :            return "OPENSKIRON";
+        case DWD_ICON_GLOBAL :   return "DWD-ICON-Global";
+        case DWD_ICON_EU :       return "DWD-ICON-EU Nest";
+        case DWD_GWAM :          return "DWD-GWAM";
+        case DWD_EWAM :          return "DWD-EWAM";
+        case DWD_ICON :          return "DWD-ICON";
+        case ECMWF :             return "ECMWF";
+        case ECMWF_WAVE :        return "ECMWF-WAVE";
+        case ECMWF_ERA5:         return "ECMWF-ERA5";
+        case MF_ARPEGE_GLOBAL :  return "Arpege-Global";
+        case MF_ARPEGE_EU :      return "Arpege-EU nest";
+        case MF_ARPEGE :         return "Arpege";
+        case MF_AROME :          return "Arome";
+        case MF_WAM :            return "MF-WAM";
+        case NMC :               return "Belgium-NMC";
+        case COAMPS_EUR :        return "COAMPS-EU";
+        case COAMPS_W_ATL :      return "COAMPS-W-ATL";
+        case COAMPS_E_PAC :      return "COAMPS-E-PAC";
+        case COAMPS_C_AM :       return "COAMPS-C-AM";
+        case COAMPS :            return "COAMPS";
+        case NCOM :              return "NCOM";
+        case NOGAPS :            return "NOGAPS";
+        case OTHER_DATA_CENTER : return "";
 	}
+	return "";
 }
 //-------------------------------------------------
 QString AltitudeStr::toString (const Altitude &alt)
