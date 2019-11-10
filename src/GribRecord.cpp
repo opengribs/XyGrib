@@ -87,7 +87,7 @@ void  GribRecord::translateDataType ()
     // https://nomads.ncep.noaa.gov/txt_descriptions/NCOM_doc.shtml
     //------------------------
     else if (idCenter==7 && idModel==0 && idGrid==0) {
-        dataCenterModel = OTHER_DATA_CENTER;
+        dataCenterModel = NCOM;
         // expect kelvin but it's celsius...
 		if (getDataType() == GRB_WTMP) addAllData( 273.15 );
     }
