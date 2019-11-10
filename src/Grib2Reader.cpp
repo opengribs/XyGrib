@@ -144,7 +144,7 @@ void Grib2Reader::readGrib2FileContent (int nbrecs)
 			if (ierr == 0) {
 				// analyse values returned by g2_info
                 // added by david to handle discipling
-                int dicipline = listsec0[0];
+                int discipline = listsec0[0];
 
 				int idCenter = listsec1[0];
 				int refyear  = listsec1[5];
@@ -164,7 +164,7 @@ void Grib2Reader::readGrib2FileContent (int nbrecs)
 					if (ierr == 0) {
 						idrec++;
                         //DBG("LOAD FIELD idrec=%d/%d field=%ld/%ld numlocal=%ld",idrec,nbrecs, n+1,numfields, numlocal);
-                        Grib2Record *rec = new Grib2Record (gfld, idrec, idCenter, refDate, dicipline);
+                        Grib2Record *rec = new Grib2Record (gfld, idrec, idCenter, refDate, discipline);
 						if (rec->isOk()) {
                             //DBG("storeRecordInMap %d", rec->getId());
 							storeRecordInMap (rec);
