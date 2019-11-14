@@ -1405,7 +1405,7 @@ zuint GribRecord::periodSeconds(zuchar unit,zuchar P1,zuchar P2,zuchar range) {
 
 
 //===============================================================================================
-data_t GribRecord::getInterpolatedValue (double px, double py, bool interpolate) const
+data_t GribRecord::getInterpolatedValue (double lon, double lat, bool interpolate) const
 {
     double val; 
 	double eps = 1e-4;
@@ -1418,45 +1418,45 @@ data_t GribRecord::getInterpolatedValue (double px, double py, bool interpolate)
     if (!ok || Di==0 || Dj==0) {
         return GRIB_NOTDEF;
     }
-    if (!isYInMap(py)) {
+    if (!isYInMap(lat)) {
 		return GRIB_NOTDEF;
     } 
-    if (!isXInMap(px)) {
+    if (!isXInMap(lon)) {
 		if (! entireWorldInLongitude) {
-			px += 360.0;               // tour du monde à droite ?
-			if (!isXInMap(px)) {
-				px -= 2*360.0;              // tour du monde à gauche ?
-				if (!isXInMap(px)) {
+			lon += 360.0;               // tour du monde à droite ?
+			if (!isXInMap(lon)) {
+				lon -= 2*360.0;              // tour du monde à gauche ?
+				if (!isXInMap(lon)) {
 					return GRIB_NOTDEF;
 				}
 			}
-			pi = (px-xmin)/Di;
+			pi = (lon-xmin)/Di;
 			i0 = (int) floor(pi);  // point 00
 			i1 = i0+1;
 		}
 		else {
-			while (px< 0)
-				px += 360;
-			if (px <= xmax) {
-				pi = (px-xmin)/Di;
+			while (lon< 0)
+				lon += 360;
+			if (lon <= xmax) {
+				pi = (lon-xmin)/Di;
 				i0 = (int) floor(pi);  // point 00
 				i1 = i0+1;
 			}
 			else {
-				pi = (px-xmin)/Di;
+				pi = (lon-xmin)/Di;
 				i0 = (int) floor(pi);  // point 00
 				i1 = 0;
 			}
 		}
     } 
     else {
-        if (px < xmin)
-            px += 360.;
-		pi = (px-xmin)/Di;
+        if (lon < xmin)
+            lon += 360.;
+		pi = (lon-xmin)/Di;
 		i0 = (int) floor(pi);  // point 00
 		i1 = i0+1;
 	}
-	pj = (py-ymin)/Dj;
+	pj = (lat-ymin)/Dj;
 	j0 = (int) floor(pj);
 	j1 = j0+1;
 	
@@ -1468,8 +1468,7 @@ data_t GribRecord::getInterpolatedValue (double px, double py, bool interpolate)
 	if (ii>=0 && jj>=0) {
 		if (hasValue(ii,jj))
 			return getValue (ii, jj);
-		else
-			return GRIB_NOTDEF;
+        return GRIB_NOTDEF;
 	}
 
     bool h00,h01,h10,h11;

@@ -636,11 +636,11 @@ void GribReader::computeMissingData ()
                     {
                         for (int j=0; j<recModel->getNj(); j++)
                         {
-                            double x,y;
+                            double lon, lat;
 
-                            recModel->getXY(i,j, &x, &y);
-                            double temp = recTemp->getInterpolatedValue   (x, y);
-                            double humid = recHumid->getInterpolatedValue (x, y);
+                            recModel->getXY(i,j, &lon, &lat);
+                            double temp = recTemp->getInterpolatedValue   (lon, lat);
+                            double humid = recHumid->getInterpolatedValue (lon, lat);
                             double dp = DataRecordAbstract::dewpointHardy (temp, humid);
                             recDewpoint->setValue(i, j, dp);
                         }
@@ -793,27 +793,27 @@ std::vector<std::shared_ptr<GribRecord>> * GribReader::getListOfGribRecords (Dat
 }
 //---------------------------------------------------------------------------
 double  GribReader::getDateInterpolatedValue (
-						DataCode dtc, double px, double py, time_t date)
+						DataCode dtc, double lon, double lat, time_t date)
 {
 	if (dtc.dataType == GRB_DEWPOINT) {
 		if (dtc.levelType==LV_ABOV_GND && dtc.levelValue==2)
-			return computeDewPoint(px, py, date);
+			return computeDewPoint(lon, lat, date);
 	}
 	else {
 		GribRecord *rec = getRecord (dtc, date);
 		if ( rec != nullptr)
-			return rec->getInterpolatedValue (px, py);
+			return rec->getInterpolatedValue (lon, lat);
 	}
 	return GRIB_NOTDEF;
 }
 
 //---------------------------------------------------------------------------
 double  GribReader::get2DatesInterpolatedValue (
-				DataCode dtc, double px, double py, time_t date)
+				DataCode dtc, double lon, double lat, time_t date)
 {
 	GribRecord *before, *after;
 	findGribsAroundDate (dtc, date, &before, &after);
-	return get2GribsInterpolatedValueByDate (px, py, date, before, after);
+	return get2GribsInterpolatedValueByDate (lon, lat, date, before, after);
 }
 //------------------------------------------------------------------
 void GribReader::findGribsAroundDate (DataCode dtc, time_t date,
@@ -842,23 +842,23 @@ void GribReader::findGribsAroundDate (DataCode dtc, time_t date,
 }
 //------------------------------------------------------------------
 double 	GribReader::get2GribsInterpolatedValueByDate (
-				double px, double py, time_t date,
+				double lon, double lat, time_t date,
 				GribRecord *before, GribRecord *after)
 {
 	double val = GRIB_NOTDEF;
     if (before!=nullptr && after!=nullptr) {
 		if (before == after) {
-			val = before->getInterpolatedValue(px, py);
+			val = before->getInterpolatedValue(lon, lat);
 		}
 		else {
 			time_t t1 = before->getRecordCurrentDate();
 			time_t t2 = after->getRecordCurrentDate();
 			if (t1 == t2) {
-				val = before->getInterpolatedValue(px, py);
+				val = before->getInterpolatedValue(lon, lat);
 			}
 			else {
-				double v1 = before->getInterpolatedValue(px, py);
-				double v2 = after->getInterpolatedValue(px, py);
+				double v1 = before->getInterpolatedValue(lon, lat);
+				double v2 = after->getInterpolatedValue(lon, lat);
 				if (GribDataIsDef(v1) && GribDataIsDef(v2)) {
 					double k  = fabs( (double)(date-t1)/(t2-t1) );
 					val = (1.0-k)*v1 + k*v2;
