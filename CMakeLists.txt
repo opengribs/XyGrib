@@ -8,6 +8,7 @@ set(XYGRIB_VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 set(XYGRIB_VERSION_DATE "2019-07-19")
 
 option(GNU_PACKAGE "Install into GNU standard directories" OFF)
+option(GEN_TRANSLATIONS "Generate translations" ON)
 
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
@@ -224,7 +225,9 @@ else()
 endif()
 
 add_subdirectory(src)
-add_subdirectory(data/tr)
+if(GEN_TRANSLATIONS)
+    add_subdirectory(data/tr)
+endif()
 
 # Installation
 # macOS bundle parameters
