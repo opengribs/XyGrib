@@ -243,3 +243,9 @@ install(DIRECTORY data DESTINATION ${PREFIX_PKGDATA}
         PATTERN "CMakeLists.txt" EXCLUDE
         PATTERN "Makefile" EXCLUDE
         PATTERN "cmake_install.cmake" EXCLUDE)
+if(GNU_PACKAGE)
+    install(FILES debian/xygrib.desktop
+            DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/applications)
+    install(FILES debian/xygrib.png
+            DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/pixmaps)
+endif()
