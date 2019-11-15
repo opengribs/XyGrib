@@ -1520,41 +1520,40 @@ data_t GribRecord::getInterpolatedValue (double lon, double lat, bool interpolat
         val =  (1.0-dy)*x1 + dy*x2;
         return val;
     }
-    else {
-        // here nbval==3, check the corner without data
-        if (!h00) {
-            //printf("! h00  %f %f\n", dx,dy);
-            xa = getValue(i1, j1);   // A = point 11
-            xb = getValue(i0, j1);   // B = point 01
-            xc = getValue(i1, j0);   // C = point 10
-            kx = 1-dx;
-            ky = 1-dy;
-        }
-        else if (!h01) {
-            //printf("! h01  %f %f\n", dx,dy);
-            xa = getValue(i1, j0);   // A = point 10
-            xb = getValue(i1, j1);   // B = point 11
-            xc = getValue(i0, j0);   // C = point 00
-            kx = dy;
-            ky = 1-dx;
-        }
-        else if (!h10) {
-            //printf("! h10  %f %f\n", dx,dy);
-            xa = getValue(i0, j1);     // A = point 01
-            xb = getValue(i0, j0);     // B = point 00
-            xc = getValue(i1, j1);     // C = point 11
-            kx = 1-dy;
-            ky = dx;
-        }
-        else {
-            //printf("! h11  %f %f\n", dx,dy);
-            xa = getValue(i0, j0);  // A = point 00
-            xb = getValue(i1, j0);  // B = point 10
-            xc = getValue(i0, j1);  // C = point 01
-            kx = dx;
-            ky = dy;
-        }
+    // here nbval==3, check the corner without data
+    if (!h00) {
+        //printf("! h00  %f %f\n", dx,dy);
+        xa = getValue(i1, j1);   // A = point 11
+        xb = getValue(i0, j1);   // B = point 01
+        xc = getValue(i1, j0);   // C = point 10
+        kx = 1-dx;
+        ky = 1-dy;
     }
+    else if (!h01) {
+        //printf("! h01  %f %f\n", dx,dy);
+        xa = getValue(i1, j0);   // A = point 10
+        xb = getValue(i1, j1);   // B = point 11
+        xc = getValue(i0, j0);   // C = point 00
+        kx = dy;
+        ky = 1-dx;
+    }
+    else if (!h10) {
+        //printf("! h10  %f %f\n", dx,dy);
+        xa = getValue(i0, j1);     // A = point 01
+        xb = getValue(i0, j0);     // B = point 00
+        xc = getValue(i1, j1);     // C = point 11
+        kx = 1-dy;
+        ky = dx;
+    }
+    else {
+        //printf("! h11  %f %f\n", dx,dy);
+        xa = getValue(i0, j0);  // A = point 00
+        xb = getValue(i1, j0);  // B = point 10
+        xc = getValue(i0, j1);  // C = point 01
+        kx = dx;
+        ky = dy;
+    }
+
     double k = kx + ky;
     if (k<0 || k>1) {
         val = GRIB_NOTDEF;
