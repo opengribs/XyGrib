@@ -1407,14 +1407,15 @@ zuint GribRecord::periodSeconds(zuchar unit,zuchar P1,zuchar P2,zuchar range) {
 //===============================================================================================
 data_t GribRecord::getInterpolatedValue (double lon, double lat, bool interpolate) const
 {
-    double val; 
-	double eps = 1e-4;
+    double val;
+    double const eps = 1e-4;
     double pi, pj;     // coord. in grid unit
     // 00 10      point is in a square
     // 01 11
     int i0, j0, i1, j1;
-	double ddx, ddy;
-	
+    double ddx, ddy;
+    bool zero = false;
+
     if (!ok || Di==0 || Dj==0) {
         return GRIB_NOTDEF;
     }
@@ -1430,32 +1431,23 @@ data_t GribRecord::getInterpolatedValue (double lon, double lat, bool interpolat
 					return GRIB_NOTDEF;
 				}
 			}
-			pi = (lon-xmin)/Di;
-			i0 = (int) floor(pi);  // point 00
-			i1 = i0+1;
 		}
 		else {
 			while (lon< 0)
 				lon += 360;
-			if (lon <= xmax) {
-				pi = (lon-xmin)/Di;
-				i0 = (int) floor(pi);  // point 00
-				i1 = i0+1;
-			}
-			else {
-				pi = (lon-xmin)/Di;
-				i0 = (int) floor(pi);  // point 00
-				i1 = 0;
+			if (lon > xmax) {
+			    zero = true;
 			}
 		}
     } 
-    else {
-        if (lon < xmin)
-            lon += 360.;
-		pi = (lon-xmin)/Di;
-		i0 = (int) floor(pi);  // point 00
-		i1 = i0+1;
+    else if (lon < xmin) {
+        lon += 360.;
 	}
+
+	pi = (lon-xmin)/Di;
+	i0 = (int) floor(pi);  // point 00
+	i1 = zero?0:i0+1;
+
 	pj = (lat-ymin)/Dj;
 	j0 = (int) floor(pj);
 	j1 = j0+1;
@@ -1597,8 +1589,4 @@ data_t  GribRecord::getInterpolatedValue (
 		return GRIB_NOTDEF;
     return getInterpolatedValueUsingRegularGrid (dtc,px,py,interpolate);
 }
-
-
-
-
 
