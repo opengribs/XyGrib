@@ -27,7 +27,19 @@ https://gihub.com/opengribs/XyGrib/releases or on https://opengribs.org in the d
     - If you simply want to install it, use `nix-env -i xygrib`
 
 ## Build and package
+### Options
 
+XyGrib has two CMake options
+- GNU_PACKAGE (DEFAULT: OFF)
+```
+Files will be installed in GNU standard installation directories such as prefix/bin and prefix/share.
+Packagers are recommended to test this option.
+```
+- GEN_TRANSLATION (DEFAULT: ON)
+```
+Create targets to to generate translation files.
+Turning this off removes the need for qt-linguist, part of qttools qt5 submodule, during build.
+```
 ### macOS
 
 - Get the source
