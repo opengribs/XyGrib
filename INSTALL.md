@@ -37,7 +37,7 @@ Packagers are recommended to test this option.
 ```
 - GEN_TRANSLATION (DEFAULT: ON)
 ```
-Create targets to to generate translation files.
+Create targets to generate translation files.
 Turning this off removes the need for qt-linguist, part of qttools qt5 submodule, during build.
 ```
 ### macOS
