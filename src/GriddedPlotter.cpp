@@ -108,8 +108,6 @@ void GriddedPlotter::drawTransformedLine( QPainter &pnt,
         pnt.drawLine(ii, jj, kk, ll);
 }
 //-----------------------------------------------------------------------------
-//void GriddedPlotter::drawWaveArrow (QPainter &pnt,
-//			int i, int j, double dir, double /*period*/)
 void GriddedPlotter::drawWaveArrow (QPainter &pnt,
             int i, int j, double dir)
 {
@@ -118,9 +116,12 @@ void GriddedPlotter::drawWaveArrow (QPainter &pnt,
     QPen pen (QColor(255,0,255)); // color fuchsia
     pen.setWidth (1);
     pnt.setPen (pen);
-    drawTransformedLine(pnt, si,co, i+windArrowSize/2,j,  0,0, windArrowSize, 0);   // hampe
-    drawTransformedLine(pnt, si,co, i+windArrowSize/2,j,  0,0,  5, 2);   // flèche
-    drawTransformedLine(pnt, si,co, i+windArrowSize/2,j,  0,0,  5,-2);   // flèche
+    // Flèche centrée sur l'origine
+    int dec = -windArrowSize/2;
+    drawTransformedLine(pnt, si,co, i,j,  dec,0, dec+windArrowSize, 0);   // hampe
+
+    drawTransformedLine(pnt, si,co, i,j,  dec,0, dec+5, 2);   // flèche
+    drawTransformedLine(pnt, si,co, i,j,  dec,0, dec+5,-2);   // flèche
 }
 //-----------------------------------------------------------------------------
 void GriddedPlotter::drawCurrentArrow (QPainter &pnt, int i, int j, double cx, double cy)
@@ -167,11 +168,13 @@ void GriddedPlotter::drawCurrentArrow (QPainter &pnt, int i, int j, double cx, d
     QPen pen (currentArrowColor);
     pen.setWidth (yqt);
     pnt.setPen (pen);
-    drawTransformedLine(pnt, si,co, i+ coefLen/2,j,  0,0, coefLen, 0);   // hampe
+    // Flèche centrée sur l'origine
+    int dec = -coefLen/2;
+    drawTransformedLine(pnt, si,co, i,j,  dec,0, dec+coefLen, 0);   // hampe
 
-    drawTransformedLine(pnt, si,co, i+ coefLen/2,j,  0,0,  5, 2*ytt);   // flèche
-    drawTransformedLine(pnt, si,co, i+ coefLen/2,j,  0,0,  5,-2*ytt);   // flèche
-    drawTransformedLine(pnt, si,co, i+ coefLen/2,j,  5,2*ytt,  5,-2*ytt);   // flèche
+    drawTransformedLine(pnt, si,co, i,j,  dec,0, dec+5, 2*ytt);   // flèche
+    drawTransformedLine(pnt, si,co, i,j,  dec,0, dec+5,-2*ytt);   // flèche
+    //drawTransformedLine(pnt, si,co, i,j,  dec+5,2*ytt,  5,-2*ytt);   // flèche
 }
 //-----------------------------------------------------------------------------
 // Called from MeteoTable
@@ -217,9 +220,11 @@ void GriddedPlotter::drawWindArrow (QPainter &pnt, int i, int j, double vx, doub
 	else
 		pen.setWidth (2);
     pnt.setPen (pen);
-    drawTransformedLine(pnt, si,co, i-windArrowSize/2,j,  0,0, windArrowSize, 0);   // hampe
-    drawTransformedLine(pnt, si,co, i-windArrowSize/2,j,  0,0,  5, 2);   // flèche
-    drawTransformedLine(pnt, si,co, i-windArrowSize/2,j,  0,0,  5,-2);   // flèche
+    // Flèche centrée sur l'origine
+    int dec = -windArrowSize/2;
+    drawTransformedLine(pnt, si,co, i,j,  dec,0,  dec+windArrowSize, 0);   // hampe
+    drawTransformedLine(pnt, si,co, i,j,  dec,0,  dec+5, 2);    // flèche
+    drawTransformedLine(pnt, si,co, i,j,  dec,0,  dec+5, -2);   // flèche
 }
 //-----------------------------------------------------------------------------
 void GriddedPlotter::drawWindArrowWithBarbs (
@@ -516,7 +521,7 @@ void  GriddedPlotter::drawColorMapGeneric_Abs_Delta_2D (
         return;
 
     int i, j;
-    double x, y, vx, vy, v, v2;
+    double x, y;
     int W = proj->getW();
     int H = proj->getH();
     QRgb   rgb;
@@ -531,13 +536,13 @@ void  GriddedPlotter::drawColorMapGeneric_Abs_Delta_2D (
                 x += 360.0;    // tour complet ?
             if (recX->isPointInMap(x, y))
             {
-                vx = recX->getInterpolatedValue (dtcX, x, y, mustInterpolateValues);
-                vy = recY->getInterpolatedValue (dtcY, x, y, mustInterpolateValues);
-                v2 = rec2->getInterpolatedValue (dtc2, x, y, mustInterpolateValues);
+                double vx = recX->getInterpolatedValue (dtcX, x, y, mustInterpolateValues);
+                double vy = recY->getInterpolatedValue (dtcY, x, y, mustInterpolateValues);
+                double v2 = rec2->getInterpolatedValue (dtc2, x, y, mustInterpolateValues);
 
                 if (GribDataIsDef(vx) && GribDataIsDef(vy) && GribDataIsDef(v2))
                 {
-                    v = fabs(sqrt(vx*vx+vy*vy) -v2);
+                    double v = fabs(sqrt(vx*vx+vy*vy) -v2);
                     rgb = (this->*function_getColor) (v, smooth);
                     image->setPixel(i,  j, rgb);
                     image->setPixel(i+1,j, rgb);
@@ -565,7 +570,7 @@ void  GriddedPlotter::drawColorMapGeneric_Abs_Delta_Data (
     if (rec1 == nullptr || rec2 == nullptr )
         return;
     int i, j;
-    double x, y, vx, vy, v;
+    double x, y;
     int W = proj->getW();
     int H = proj->getH();
     QRgb   rgb;
@@ -580,12 +585,12 @@ void  GriddedPlotter::drawColorMapGeneric_Abs_Delta_Data (
                 x += 360.0;    // tour complet ?
             if (rec1->isPointInMap(x, y))
             {
-                vx = rec1->getInterpolatedValue (dtc1, x, y, mustInterpolateValues);
-                vy = rec2->getInterpolatedValue (dtc2, x, y, mustInterpolateValues);
+                double vx = rec1->getInterpolatedValue (dtc1, x, y, mustInterpolateValues);
+                double vy = rec2->getInterpolatedValue (dtc2, x, y, mustInterpolateValues);
 
                 if (GribDataIsDef(vx) && GribDataIsDef(vy))
                 {
-                    v = fabs(vx-vy);
+                    double v = fabs(vx-vy);
                     rgb = (this->*function_getColor) (v, smooth);
                     image->setPixel(i,  j, rgb);
                     image->setPixel(i+1,j, rgb);
@@ -960,5 +965,3 @@ bool GriddedPlotter::hasWaveDataType (int dataType)  const
 
     return getReader()->hasWaveDataType (dataType);
 }
-
-
