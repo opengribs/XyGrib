@@ -107,21 +107,29 @@ void GriddedPlotter::drawTransformedLine( QPainter &pnt,
             && Util::isInRange(ll, 0, h) )
         pnt.drawLine(ii, jj, kk, ll);
 }
+
+//-----------------------------------------------------------------------------
+void GriddedPlotter::drawTransformedLine( QPainter &pnt,
+        double ang, int i, int j, double size, int k, double l)
+{
+    double si=sin(ang), co=cos(ang);
+    int dec = -size/2;
+    drawTransformedLine(pnt, si,co, i,j,  dec,0, dec+size, 0);   // hampe
+
+    drawTransformedLine(pnt, si,co, i,j,  dec,0, dec+k, l);   // flèche
+    drawTransformedLine(pnt, si,co, i,j,  dec,0, dec+k,-l);   // flèche
+}
+
 //-----------------------------------------------------------------------------
 void GriddedPlotter::drawWaveArrow (QPainter &pnt,
             int i, int j, double dir)
 {
     double ang = (dir-90)/180.0*M_PI;
-    double si=sin(ang),  co=cos(ang);
     QPen pen (QColor(255,0,255)); // color fuchsia
     pen.setWidth (1);
     pnt.setPen (pen);
     // Flèche centrée sur l'origine
-    int dec = -windArrowSize/2;
-    drawTransformedLine(pnt, si,co, i,j,  dec,0, dec+windArrowSize, 0);   // hampe
-
-    drawTransformedLine(pnt, si,co, i,j,  dec,0, dec+5, 2);   // flèche
-    drawTransformedLine(pnt, si,co, i,j,  dec,0, dec+5,-2);   // flèche
+    drawTransformedLine(pnt, ang, i, j, windArrowSize, 5, 2);
 }
 //-----------------------------------------------------------------------------
 void GriddedPlotter::drawCurrentArrow (QPainter &pnt, int i, int j, double cx, double cy)
@@ -130,8 +138,6 @@ void GriddedPlotter::drawCurrentArrow (QPainter &pnt, int i, int j, double cx, d
 	// double ang = atan2(cy, -cx)-M_PI;  // unlike wind, arrows follows the current
     double ang = atan2(cy, -cx);  // unlike wind, arrows follows the current
     
-    double si=sin(ang),  co=cos(ang);
-
     double tf_a = (TF_MAXC_A - TF_MINC_A) / (TF_MAXC - TF_MINC);
     double tf_b = TF_MAXC_A-TF_MAXC*tf_a;
     double qf_a = (QF_MAXC_A - QF_MINC_A) / (QF_MAXC - QF_MINC);
@@ -169,12 +175,7 @@ void GriddedPlotter::drawCurrentArrow (QPainter &pnt, int i, int j, double cx, d
     pen.setWidth (yqt);
     pnt.setPen (pen);
     // Flèche centrée sur l'origine
-    int dec = -coefLen/2;
-    drawTransformedLine(pnt, si,co, i,j,  dec,0, dec+coefLen, 0);   // hampe
-
-    drawTransformedLine(pnt, si,co, i,j,  dec,0, dec+5, 2*ytt);   // flèche
-    drawTransformedLine(pnt, si,co, i,j,  dec,0, dec+5,-2*ytt);   // flèche
-    //drawTransformedLine(pnt, si,co, i,j,  dec+5,2*ytt,  5,-2*ytt);   // flèche
+    drawTransformedLine(pnt, ang, i, j, coefLen, 5, 2*ytt);
 }
 //-----------------------------------------------------------------------------
 // Called from MeteoTable
@@ -187,7 +188,6 @@ void GriddedPlotter::drawCurrentArrow (
 {
     double vkn = sqrt(cx*cx+cy*cy)*3.6/1.852;
     double ang = atan2(cy, -cx);  // unlike wind, arrows follows the current
-    double si=sin(ang),  co=cos(ang);
  
     QPen pen( arrowColor);
 	pen.setWidth (2);
@@ -201,19 +201,13 @@ void GriddedPlotter::drawCurrentArrow (
     }
     else {
         // Flèche centrée sur l'origine
-        int dec = -windArrowSize/2;
-        drawTransformedLine(pnt, si,co, i,j,  dec,0, dec+windArrowSize, 0);   // hampe
-
-        drawTransformedLine(pnt, si,co, i,j,  dec,0,  dec+5, 2);   // flèche
-        drawTransformedLine(pnt, si,co, i,j,  dec,0,  dec+5,-2);   // flèche
-
+        drawTransformedLine(pnt, ang, i, j, windArrowSize, 5, 2);
     }        
 }
 //-----------------------------------------------------------------------------
 void GriddedPlotter::drawWindArrow (QPainter &pnt, int i, int j, double vx, double vy)
 {
     double ang = atan2(vy, -vx);
-    double si=sin(ang),  co=cos(ang);
     QPen pen (windArrowColor);
 	if (thinWindArrows)
 		pen.setWidth (1);
@@ -221,10 +215,7 @@ void GriddedPlotter::drawWindArrow (QPainter &pnt, int i, int j, double vx, doub
 		pen.setWidth (2);
     pnt.setPen (pen);
     // Flèche centrée sur l'origine
-    int dec = -windArrowSize/2;
-    drawTransformedLine(pnt, si,co, i,j,  dec,0,  dec+windArrowSize, 0);   // hampe
-    drawTransformedLine(pnt, si,co, i,j,  dec,0,  dec+5, 2);    // flèche
-    drawTransformedLine(pnt, si,co, i,j,  dec,0,  dec+5, -2);   // flèche
+    drawTransformedLine(pnt, ang, i, j, windArrowSize, 5, 2);
 }
 //-----------------------------------------------------------------------------
 void GriddedPlotter::drawWindArrowWithBarbs (
@@ -279,6 +270,7 @@ void GriddedPlotter::drawWindArrowWithBarbs_static (
     else {
         // Flèche centrée sur l'origine
         int dec = -windBarbuleSize/2;
+
         drawTransformedLine(pnt, si,co, i,j,  dec,0,  dec+windBarbuleSize, 0);   // hampe
 		if (! thinWindArrows) {
 			drawTransformedLine(pnt, si,co, i,j,  dec,0,  dec+5, 2);    // flèche
@@ -288,7 +280,7 @@ void GriddedPlotter::drawWindArrowWithBarbs_static (
 		if (vkn >= 7.5  &&  vkn < 45 ) {
 			b1 = dec+windBarbuleSize;  // position de la 1ère barbule si >= 10 noeuds
 		}
-        
+
         if (vkn < 7.5) {  // 5 ktn
             drawPetiteBarbule(pnt,south, si,co, i,j, b1);
         }

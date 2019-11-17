@@ -286,7 +286,10 @@ class GriddedPlotter :
 
         static void drawTransformedLine( QPainter &pnt,
                 double si, double co,int di, int dj, int i,int j, int k,int l);
-        
+
+		static void drawTransformedLine( QPainter &pnt,
+				double ang, int i, int j, double size, int k, double l);
+
         static void drawPetiteBarbule(QPainter &pnt, bool south,
                     double si, double co, int di, int dj, int b);
         static void drawGrandeBarbule(QPainter &pnt,  bool south,
