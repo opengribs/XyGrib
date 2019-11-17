@@ -672,8 +672,8 @@ void GriddedPlotter::complete_listIsolines (
 //-----------------------------------------------------------------
 void GriddedPlotter::analyseVisibleGridDensity 
 		(const Projection *proj, GriddedRecord *rec, 
-		 double coef, int *deltaI, int *deltaJ
-) {
+		 double coef, int *deltaI, int *deltaJ) const 
+{
     int i0, j0, i1, j1;
 	double x0,y0, x1,y1;
 	i0 = proj->getW()/2;
@@ -695,6 +695,29 @@ void GriddedPlotter::analyseVisibleGridDensity
 	if (*deltaJ < 1)
 		*deltaJ = 1;
 }
+//-----------------------------------------------------------------
+bool GriddedPlotter::analyseVisibleGridDensity 
+		(const Projection *proj, GriddedRecord *rec, int dl) const
+{
+	double lon, lat;
+    int px,py, px1, py1;
+
+    rec->getXY(0, 0, &lon , &lat);
+	proj->map2screen(lon, lat, &px,&py);
+    rec->getXY(1, 0, &lon , &lat);
+	proj->map2screen(lon, lat, &px1, &py1);
+	if (abs(px -px1) < dl)
+		return false;
+    rec->getXY(0, 0, &lon , &lat);
+	proj->map2screen(lon, lat, &px,&py);
+    rec->getXY(0, 1, &lon , &lat);
+	proj->map2screen(lon, lat, &px1, &py1);
+	if (abs(py -py1) < dl)
+		return false;
+
+    return true;
+}
+
 //======================================================================
 void GriddedPlotter::draw_DATA_Labels (
 				DataCode dtc, 

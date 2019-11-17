@@ -133,34 +133,22 @@ void GribPlot::draw_GridPoints (const DataCode &dtc, QPainter &pnt, const Projec
 		
     GribRecord *rec = gribReader->getRecord (dd, getCurrentDate());
 	if (! rec)
-			return;
+		return;
+
+    const int dl=2;
+	if (! analyseVisibleGridDensity(proj, rec, dl*4)) {
+	  	// XXX display a warning
+		return;
+	}
+
 	int deltaI, deltaJ;
 	analyseVisibleGridDensity (proj, rec, 6, &deltaI, &deltaJ);
-    int px,py, px1, py1;
-    const int dl=2;
-	double lon, lat;
-
-    /*
-	  XXX display a warning
-    */
-    rec->getXY(0, 0, &lon , &lat);
-	proj->map2screen(lon, lat, &px,&py);
-    rec->getXY(1, 0, &lon , &lat);
-	proj->map2screen(lon, lat, &px1, &py1);
-	if (abs(px -px1) < dl *4)
-		return;
-    rec->getXY(0, 0, &lon , &lat);
-	proj->map2screen(lon, lat, &px,&py);
-    rec->getXY(0, 1, &lon , &lat);
-	proj->map2screen(lon, lat, &px1, &py1);
-	if (abs(py -py1) < dl *4)
-		return;
-
-    for (int i=0; i<rec->getNi(); i+=deltaI)
-        for (int j=0; j<rec->getNj(); j+=deltaJ)
-        {
+	for (int j=0; j<rec->getNj(); j+=deltaJ) {
+    	for (int i=0; i<rec->getNi(); i+=deltaI) {
             if (rec->hasValue(i,j))
             {
+                double lon, lat;
+                int px,py;
                 rec->getXY(i, j, &lon , &lat);
                 proj->map2screen(lon, lat, &px,&py);
                 pnt.drawLine(px-dl,py, px+dl,py);
@@ -170,6 +158,7 @@ void GribPlot::draw_GridPoints (const DataCode &dtc, QPainter &pnt, const Projec
                 pnt.drawLine(px,py-dl, px,py+dl);
             }
         }
+	}
 }
 
 
@@ -226,15 +215,21 @@ void GribPlot::draw_WIND_Arrows (
 		}
 	};
 
-	int space;    
-    if (barbules)
+	int space;
+	if (barbules)
 	    space =  drawWindArrowsOnGrid ? windBarbuleSpaceOnGrid : windBarbuleSpace;
     else
 	    space =  drawWindArrowsOnGrid ? windArrowSpaceOnGrid : windArrowSpace;
+
+	bool draw_on_grid = drawWindArrowsOnGrid;
+	if (draw_on_grid && ! analyseVisibleGridDensity(proj, recx, space/2)) {
+		draw_on_grid = false;
+	    space =  barbules ? windBarbuleSpace:windArrowSpace;
+	}
     
     int W = proj->getW();
     int H = proj->getH();
-    if (drawWindArrowsOnGrid)
+    if (draw_on_grid)
     {	// Flèches uniquement sur les points de la grille
 		for (int gj=0; gj<recx->getNj(); gj++) {
 			for (int gi=0; gi<recx->getNi(); gi++) {
@@ -326,7 +321,10 @@ void GribPlot::draw_CURRENT_Arrows (
     int i, j;
     double x, y;
 
-    int space = drawCurrentArrowsOnGrid ? currentArrowSpaceOnGrid : currentArrowSpace;
+	bool draw_on_grid = drawCurrentArrowsOnGrid;
+	if (draw_on_grid && ! analyseVisibleGridDensity(proj, recx, currentArrowSpaceOnGrid/2)) {
+		draw_on_grid = false;
+	}
 
 	auto draw_current_arrow = [&] {
 		if (recx->isPointInMap(x,y)) {
@@ -346,7 +344,7 @@ void GribPlot::draw_CURRENT_Arrows (
 
     int W = proj->getW();
     int H = proj->getH();
-    if (drawCurrentArrowsOnGrid)
+    if (draw_on_grid)
     {	// Flèches uniquement sur les points de la grille
 		for (int gj=0; gj<recx->getNj(); gj++) {
 			for (int gi=0; gi<recx->getNi(); gi++) {
@@ -364,6 +362,7 @@ void GribPlot::draw_CURRENT_Arrows (
     }
     else 
     {	// Flèches uniformément réparties sur l'écran
+    	int space = currentArrowSpace;
 		for (j=0; j<H; j+=space) {
 			for (i=0; i<W; i+=space) {
 				proj->screen2map(i,j, &x,&y);
@@ -528,10 +527,13 @@ void GribPlot::draw_WAVES_Arrows (
 
     int W = proj->getW();
     int H = proj->getH();
+
+	bool draw_on_grid = drawWindArrowsOnGrid;
+	if (draw_on_grid && !analyseVisibleGridDensity(proj, recDir, currentArrowSpaceOnGrid/2)) {
+		draw_on_grid = false;
+	}
     
-	int space = drawWindArrowsOnGrid ? windArrowSpaceOnGrid : windArrowSpace;
-    
-    if (drawWindArrowsOnGrid)
+    if (draw_on_grid)
     {	// Flèches uniquement sur les points de la grille
 		for (int gj=0; gj<recDir->getNj(); gj++) {
 			for (int gi=0; gi<recDir->getNi(); gi++) {
@@ -549,6 +551,7 @@ void GribPlot::draw_WAVES_Arrows (
     }
     else
     {	// Flèches uniformément réparties sur l'écran
+    	int space = currentArrowSpace;
 		for (j=0; j<H; j+=space) {
 			for (i=0; i<W; i+=space) {
 				proj->screen2map(i,j, &x,&y);
