@@ -287,9 +287,10 @@ void GribPlot::draw_WIND_Arrows (
 			for (j=j0; j<H; j+=space)
 			{
 				proj->screen2map(i,j, &x,&y);
-				//----------------------------------------------------------------------    			
+				//----------------------------------------------------------------------
 				if (! recx->isXInMap(x))
 					x += 360.0;   // tour du monde ?
+
 				if (recx->isPointInMap(x,y)) {
 					vx = recx->getInterpolatedValue(x, y, mustInterpolateValues);
 					vy = recy->getInterpolatedValue(x, y, mustInterpolateValues);
@@ -350,47 +351,38 @@ void GribPlot::draw_CURRENT_Arrows (
     double x, y, vx, vy;
     int W = proj->getW();
     int H = proj->getH();
-    
-	int space;    
-	    space =  drawCurrentArrowsOnGrid ? currentArrowSpaceOnGrid : currentArrowSpace;
+
+    int space = drawCurrentArrowsOnGrid ? currentArrowSpaceOnGrid : currentArrowSpace;
     
     if (drawCurrentArrowsOnGrid)
     {	// Flèches uniquement sur les points de la grille
-    	int oldi=-1000, oldj=-1000;
     	for (int gi=0; gi<recx->getNi(); gi++)
     	{
-			recx->getXY(gi, 0, &x, &y);
-			proj->map2screen(x,y, &i,&j);
-			if (true || abs(i-oldi)>=space)
+			for (int gj=0; gj<recx->getNj(); gj++)
 			{
-				oldi = i;
-				for (int gj=0; gj<recx->getNj(); gj++)
-				{
-					recx->getXY(gi, gj, &x, &y);
-					proj->map2screen(x,y, &i,&j);
-					
-						//----------------------------------------------------------------------
-						if (! recx->isXInMap(x))
-							x += 360.0;   // tour du monde ?
+				recx->getXY(gi, gj, &x, &y);
 
-						if (recx->isPointInMap(x,y)) {
-							if (true || abs(j-oldj)>=space)
-							{
-								oldj = j;
-								vx = recx->getInterpolatedValue(x, y, mustInterpolateValues);
-								vy = recy->getInterpolatedValue(x, y, mustInterpolateValues);
-								if (GribDataIsDef(vx) && GribDataIsDef(vy))
-								{
-									if (polar) {
-										double ang = vy/180.0*M_PI;
-										double si=vx*sin(ang),  co=vx*cos(ang);
-										vx = -si;
-										vy = -co;
-									}
-									drawCurrentArrow(pnt, i,j, vx,vy);
-								}
-							}
+				//----------------------------------------------------------------------
+				if (! recx->isXInMap(x))
+					x += 360.0;   // tour du monde ?
+
+				proj->map2screen(x,y, &i,&j);
+				if (i > W)
+					proj->map2screen(x-360,y, &i,&j);
+
+				if (recx->isPointInMap(x,y)) {
+					vx = recx->getInterpolatedValue(x, y, mustInterpolateValues);
+					vy = recy->getInterpolatedValue(x, y, mustInterpolateValues);
+					if (GribDataIsDef(vx) && GribDataIsDef(vy))
+					{
+						if (polar) {
+							double ang = vy/180.0*M_PI;
+							double si=vx*sin(ang),  co=vx*cos(ang);
+							vx = -si;
+							vy = -co;
 						}
+						drawCurrentArrow(pnt, i,j, vx,vy);
+					}
 				}
 			}
     	}
@@ -566,43 +558,33 @@ void GribPlot::draw_WAVES_Arrows (
     int W = proj->getW();
     int H = proj->getH();
     
-	int space = 30;    
-	space =  drawWindArrowsOnGrid ? windArrowSpaceOnGrid : windArrowSpace;
+	int space = drawWindArrowsOnGrid ? windArrowSpaceOnGrid : windArrowSpace;
     
     if (drawWindArrowsOnGrid)
     {	// Flèches uniquement sur les points de la grille
-    	int oldi=-1000, oldj=-1000;
     	for (int gi=0; gi<recDir->getNi(); gi++)
     	{
-			recDir->getXY(gi, 0, &x, &y);
-			proj->map2screen(x,y, &i,&j);
-			if (true || abs(i-oldi)>=space)
+			for (int gj=0; gj<recDir->getNj(); gj++)
 			{
-				oldi = i;
-				for (int gj=0; gj<recDir->getNj(); gj++)
-				{
-					recDir->getXY(gi, gj, &x, &y);
-					proj->map2screen(x,y, &i,&j);
-						//----------------------------------------------------------------------
-						if (! recDir->isXInMap(x))
-							x += 360.0;   // tour du monde ?
-						if (recDir->isPointInMap(x,y)) {
-							if (true || abs(j-oldj)>=space)
-							{
-								oldj = j;
-                                vxy = recDir->getInterpolatedValue(x, y, mustInterpolateValues);
-//                                vy = recPer->getInterpolatedValue(x, y, mustInterpolateValues);
-//                                if (vxy != GRIB_NOTDEF && vy != GRIB_NOTDEF)
-                                if (GribDataIsDef(vxy)) {
-//                                    drawWaveArrow (pnt, i,j, vxy,vy);
-                                    if (recHt && recHt->getInterpolatedValue(x, y, mustInterpolateValues) < 0.01)
-                                    	continue;
-                                    if (recPer && recPer->getInterpolatedValue(x, y, mustInterpolateValues) < 0.01)
-                                    	continue;
-                                    drawWaveArrow (pnt, i,j, vxy);
-                                }
-							}
-						}
+				recDir->getXY(gi, gj, &x, &y);
+
+				//----------------------------------------------------------------------
+				if (! recDir->isXInMap(x))
+					x += 360.0;   // tour du monde ?
+
+				proj->map2screen(x,y, &i,&j);
+				if (i > W)
+					proj->map2screen(x-360,y, &i,&j);
+
+				if (recDir->isPointInMap(x,y)) {
+					vxy = recDir->getInterpolatedValue(x, y, mustInterpolateValues);
+					if (GribDataIsDef(vxy)) {
+						if (recHt && recHt->getInterpolatedValue(x, y, mustInterpolateValues) < 0.01)
+							continue;
+						if (recPer && recPer->getInterpolatedValue(x, y, mustInterpolateValues) < 0.01)
+							continue;
+						drawWaveArrow (pnt, i,j, vxy);
+					}
 				}
 			}
     	}
