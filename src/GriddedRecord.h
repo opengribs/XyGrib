@@ -75,6 +75,7 @@ class GriddedRecord : public DataRecordAbstract
         virtual double  getDeltaX () const = 0;
         virtual double  getDeltaY () const = 0;
         virtual void getXY(int i, int j, double *lon, double *lat) const = 0;
+        virtual void lonLat2XY(double lon, double lat, double *x, double *y) const = 0;
 								
         virtual int    getTotalNumberOfPoints ()  const = 0;
         virtual double getAveragePointsDensity () const = 0;

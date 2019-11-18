@@ -107,6 +107,10 @@ class GribRecord : public RegularGridRecord
                 grid->XY2LonLat(i, j, *lon, *lat);
             }
 
+        virtual void lonLat2XY(double lon, double lat, double *x, double *y) const override {
+                grid->lonLat2XY(lon, lat, *x, *y);
+            }
+
         // Valeur pour un point de la grille
         data_t getValue (int i, int j) const 
 							{ return ok && i>=0 && i<Ni && j>=0 && j<Nj ? data.get()[j*Ni+i] : GRIB_NOTDEF;}

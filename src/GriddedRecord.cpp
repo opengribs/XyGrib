@@ -72,11 +72,10 @@ data_t  GriddedRecord::getInterpolatedValueUsingRegularGrid (
         lon += 360.;
     }
 
-    pi = (lon-xmin)/getDeltaX();
+    lonLat2XY(lon, lat, &pi, &pj);
     i0 = (int) floor(pi);  // point 00
 	i1 = zero?0:i0+1;
 	
-    pj = (lat-ymin)/getDeltaY();
     j0 = (int) floor(pj);
 	j1 = j0+1;
 	
