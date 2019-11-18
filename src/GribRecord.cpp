@@ -1413,7 +1413,6 @@ data_t GribRecord::getInterpolatedValue (double lon, double lat, bool interpolat
     // 00 10      point is in a square
     // 01 11
     int i0, j0, i1, j1;
-    double ddx, ddy;
     bool zero = false;
 
     if (!ok || Di==0 || Dj==0) {
@@ -1453,14 +1452,13 @@ data_t GribRecord::getInterpolatedValue (double lon, double lat, bool interpolat
 	j1 = j0+1;
 	
 	// value very close to a grid point ?
+    double ddx, ddy;
 	ddx = fabs (pi-i0);
 	ddy = fabs (pj-j0);
 	int ii = (ddx<eps) ? i0 : ((1-ddx)<eps) ? i1 : -1;
 	int jj = (ddy<eps) ? j0 : ((1-ddy)<eps) ? j1 : -1;
 	if (ii>=0 && jj>=0) {
-		if (hasValue(ii,jj))
-			return getValue (ii, jj);
-        return GRIB_NOTDEF;
+        return getValue (ii, jj);
 	}
 
     bool h00,h01,h10,h11;
@@ -1501,7 +1499,6 @@ data_t GribRecord::getInterpolatedValue (double lon, double lat, bool interpolat
 
     dx = (3.0 - 2.0*dx)*dx*dx;   // pseudo hermite interpolation
     dy = (3.0 - 2.0*dy)*dy*dy;
-
 
     double xa, xb, xc, kx, ky;
     // Triangle :

@@ -33,50 +33,62 @@ GriddedRecord::GriddedRecord ()
 //=====================================================================
 data_t  GriddedRecord::getInterpolatedValueUsingRegularGrid (
 				DataCode dtc, 
-				double px, double py,
+				double lon, double lat,
 				bool interpolateValues) const
 {
     double val;
+    double const eps = 1e-4;
     double pi, pj;     // coord. in grid unit
     // 00 10      point is in a square
     // 01 11
     int i0, j0, i1, j1;
-	//DBG("%d %g %g ",isOk(), getDeltaX(), getDeltaY());
+    bool zero = false;
+
     if (!isOk() || getDeltaX()==0 || getDeltaY()==0) {
         return GRIB_NOTDEF;
     }
-    if (!isYInMap(py)) {
+    if (!isYInMap(lat)) {
 		return GRIB_NOTDEF;
     } 
-    
-    if (!isXInMap(px)) {
+    if (!isXInMap(lon)) {
 		if (! entireWorldInLongitude) {
-			px += 360.0;               // tour du monde à droite ?
-			if (!isXInMap(px)) {
-				px -= 2*360.0;              // tour du monde à gauche ?
-				if (!isXInMap(px)) {
+			lon += 360.0;               // tour du monde à droite ?
+			if (!isXInMap(lon)) {
+				lon -= 2*360.0;              // tour du monde à gauche ?
+				if (!isXInMap(lon)) {
 					return GRIB_NOTDEF;
 				}
 			}
 		}
 		else {
-			while (px< 0)
-				px += 360;
+			while (lon< 0)
+				lon += 360;
+			if (lon > xmax) {
+			    zero = true;
+			}
 		}
     }
-    else {
-        if (px < xmin)
-            px += 360.;
+    else if (lon < xmin) {
+        lon += 360.;
     }
-    pi = (px-xmin)/getDeltaX();
+
+    pi = (lon-xmin)/getDeltaX();
     i0 = (int) floor(pi);  // point 00
-	i1 = i0+1;
+	i1 = zero?0:i0+1;
 	
-    pj = (py-ymin)/getDeltaY();
+    pj = (lat-ymin)/getDeltaY();
     j0 = (int) floor(pj);
 	j1 = j0+1;
 	
-//printf("%.3f %.3f : %d %d\n", px,py, i0,j0);
+	// value very close to a grid point ?
+    double ddx, ddy;
+	ddx = fabs (pi-i0);
+	ddy = fabs (pj-j0);
+	int ii = (ddx<eps) ? i0 : ((1-ddx)<eps) ? i1 : -1;
+	int jj = (ddy<eps) ? j0 : ((1-ddy)<eps) ? j1 : -1;
+	if (ii>=0 && jj>=0) {
+        return getValueOnRegularGrid (dtc, ii, jj);
+	}
 
     bool   h00,h01,h10,h11;
 	
@@ -98,7 +110,6 @@ data_t  GriddedRecord::getInterpolatedValueUsingRegularGrid (
     if ((h11 = GribDataIsDef(x11)))
         nbval ++;
 	
-//printf ("nbval=%d\n",nbval);
     if (nbval <3) {
         return GRIB_NOTDEF;
     }
@@ -140,41 +151,40 @@ data_t  GriddedRecord::getInterpolatedValueUsingRegularGrid (
         val =  (1.0-dy)*x1 + dy*x2;
         return val;
     }
-    else {
-        // here nbval==3, check the corner without data
-        if (!h00) {
-            //printf("! h00  %f %f\n", dx,dy);
-            xa = x11;   // A = point 11
-            xb = x01;   // B = point 01
-            xc = x10;     // C = point 10
-            kx = 1-dx;
-            ky = 1-dy;
-        }
-        else if (!h01) {
-            //printf("! h01  %f %f\n", dx,dy);
-            xa = x10;     // A = point 10
-            xb = x11;   // B = point 11
-            xc = x00;     // C = point 00
-            kx = dy;
-            ky = 1-dx;
-        }
-        else if (!h10) {
-            //printf("! h10  %f %f\n", dx,dy);
-            xa = x01;     // A = point 01
-            xb = x00;       // B = point 00
-            xc = x11;     // C = point 11
-            kx = 1-dy;
-            ky = dx;
-        }
-        else {
-            //printf("! h11  %f %f\n", dx,dy);
-            xa = x00;    // A = point 00
-            xb = x10;    // B = point 10
-            xc = x01;  // C = point 01
-            kx = dx;
-            ky = dy;
-        }
+    // here nbval==3, check the corner without data
+    if (!h00) {
+        //printf("! h00  %f %f\n", dx,dy);
+        xa = x11;   // A = point 11
+        xb = x01;   // B = point 01
+        xc = x10;   // C = point 10
+        kx = 1-dx;
+        ky = 1-dy;
     }
+    else if (!h01) {
+        //printf("! h01  %f %f\n", dx,dy);
+        xa = x10;   // A = point 10
+        xb = x11;   // B = point 11
+        xc = x00;   // C = point 00
+        kx = dy;
+        ky = 1-dx;
+    }
+    else if (!h10) {
+        //printf("! h10  %f %f\n", dx,dy);
+        xa = x01;     // A = point 01
+        xb = x00;     // B = point 00
+        xc = x11;     // C = point 11
+        kx = 1-dy;
+        ky = dx;
+    }
+    else {
+        //printf("! h11  %f %f\n", dx,dy);
+        xa = x00;  // A = point 00
+        xb = x10;  // B = point 10
+        xc = x01;  // C = point 01
+        kx = dx;
+        ky = dy;
+    }
+    
     double k = kx + ky;
     if (k<0 || k>1) {
         val = GRIB_NOTDEF;
@@ -192,5 +202,3 @@ data_t  GriddedRecord::getInterpolatedValueUsingRegularGrid (
     }
     return val;
 }
-
-
