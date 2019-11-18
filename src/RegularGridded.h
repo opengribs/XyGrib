@@ -26,17 +26,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class RegularGridRecord : public GriddedRecord
 {
     public:
-        RegularGridRecord () {};
-        virtual ~RegularGridRecord () {};
-		virtual bool isRegularGrid () const 	{ return true; }
+        RegularGridRecord () = default;
+        virtual ~RegularGridRecord () = default;
+        virtual bool isRegularGrid () const 	{ return true; }
 };
 
 //===============================================================
 class RegularGridReader : public GriddedReader
 {
     public:
-        RegularGridReader () {};
-        virtual ~RegularGridReader () {};
+        RegularGridReader () = default;
+        virtual ~RegularGridReader () = default;
 };
  
 #endif
