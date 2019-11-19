@@ -37,18 +37,15 @@ class Grib2Reader : public GribReader
         Grib2Reader ();
         ~Grib2Reader ();
 		
-        virtual void  openFile (const QString &fname, int nbrecs);
-		
-	private:
-        void openFilePriv (const QString& fname, int nbrecs);
-		void readGrib2FileContent (int nbrecs);
+    protected:
+		void readGribFileContent (int nbrecs) override;
 
-		void analyseRecords ();
+	private:
+
 		QList<Grib2RecordMarker> allUnknownRecords;
 		
 		void seekgb_zu (ZUFILE *lugb,g2int iseek,g2int mseek,g2int *lskip,g2int *lgrib);
 
 };
-
 
 #endif

@@ -45,6 +45,13 @@ void GribReader::openFile (const QString &fname, int nbrecs)
 	
     if (!fname.isEmpty()) {
         openFilePriv (fname, nbrecs);
+		createListDates ();
+		ok = getNumberOfDates() > 0;
+		if (ok) {
+            computeAccumulationRecords ();
+			analyseRecords ();
+			computeMissingData ();   // RH DewPoint ThetaE
+		}
     }
     else {
         clean_all_vectors();
@@ -574,8 +581,6 @@ void GribReader::readGribFileContent (int nbrecs)
     fileSize = zu_filesize(file);
 	
     readAllGribRecords (nbrecs);
-    createListDates ();
-	computeMissingData ();   // RH DewPoint ThetaE
 }
 //----------------------------------------------------------------------------
 void GribReader::computeMissingData ()
@@ -778,8 +783,7 @@ int GribReader::getNumberOfGribRecords (DataCode dtc)
 	auto liste = getListOfGribRecords (dtc);
 	if (liste != nullptr)
 		return liste->size();
-	else
-		return 0;
+	return 0;
 }
 
 //---------------------------------------------------------------------
@@ -965,8 +969,6 @@ void GribReader::openFilePriv (const QString& fname, int nbrecs)
     if (nbrecs > 0) {
 		emit newMessage (LongTaskMessage::LTASK_PREPARE_MAPS);
 		readGribFileContent (nbrecs);
-		// should be done once after opening all files.
-		computeAccumulationRecords ();
 	}
 	else {
 		ok = false;
@@ -1044,7 +1046,6 @@ int GribReader::countGribRecords (ZUFILE *f)
 	return nb;
 }
 
-
 //---------------------------------------------------------------------------------
 time_t  GribReader::getRefDateForData (const DataCode &dtc)
 {
@@ -1069,6 +1070,7 @@ time_t  GribReader::getFirstRefDate ()
 	}
 	return t;
 }
+
 //------------------------------------------------------------
 time_t  GribReader::getRefDateForDataCenter (const DataCenterModel &dcm)
 {
@@ -1088,4 +1090,46 @@ time_t  GribReader::getRefDateForDataCenter (const DataCenterModel &dcm)
 		
 	}
 	return t;
+}
+
+//---------------------------------------------------------------------------------
+void GribReader::analyseRecords ()
+{
+	// Make a speed wind gust record from a vx and a vy records
+	// TODO : display also gust direction
+	Altitude alt (LV_ABOV_GND, 10);
+	if (hasData(DataCode(GRB_WIND_GUST, alt)))
+		return;
+
+	DataCode dtcx (GRB_WIND_GUST_VX, alt);
+	DataCode dtcy (GRB_WIND_GUST_VY, alt);
+	if (!hasData(dtcx) || !hasData(dtcy))
+		return;
+
+	for (long date : setAllDates)
+	{
+            GribRecord *recx = getRecord (dtcx, date);
+			GribRecord *recy = getRecord (dtcy, date);
+			if (recx && recy) {
+				GribRecord *recGust = new GribRecord (*recx);
+				// compatibility with NOAA : gust is given at the surface
+				recGust->setDataCode (DataCode(GRB_WIND_GUST,LV_GND_SURF,0));
+				for (int i=0; i<recx->getNi(); i++)
+				{
+					for (int j=0; j<recx->getNj(); j++)
+					{
+						double vx = recx->getValue(i,j);
+						double vy = recy->getValue(i,j);
+						if (GribDataIsDef(vx) && GribDataIsDef(vy)) {
+							//DBG("%d %d : %g %g : %g", i,j, vx,vy, sqrt(vx*vx+vy*vy));
+							recGust->setValue (i, j, sqrt(vx*vx+vy*vy));
+						}
+						else
+							recGust->setValue(i, j, GRIB_NOTDEF);
+					}
+				}
+				storeRecordInMap (recGust);
+				//recGust->print("recGust");
+			}
+	}
 }

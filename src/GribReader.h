@@ -38,7 +38,7 @@ class GribReader : public RegularGridReader, public LongTaskMessage
         GribReader ();
         ~GribReader ();
 		
-        virtual void  openFile (const QString &fname, int nbrecs);
+        void  openFile (const QString &fname, int nbrecs);
 		
 		virtual FileDataType getReaderFileDataType () 
 					{return DATATYPE_GRIB;};
@@ -101,7 +101,8 @@ class GribReader : public RegularGridReader, public LongTaskMessage
         void storeRecordInMap (GribRecord *rec);
         //void removeRecordInMap (GribRecord *rec);
 		void computeMissingData ();   // RH DewPoint ThetaE
-		
+		void analyseRecords ();
+		virtual void readGribFileContent (int nbrecs);
 		
     private:
 		std::vector<std::shared_ptr<GribRecord>> * getListOfGribRecords (DataCode dtc);
@@ -112,7 +113,6 @@ class GribReader : public RegularGridReader, public LongTaskMessage
         std::map <uint64_t, std::vector<std::shared_ptr<GribRecord>>* >  mapGribRecords;
 
         void   openFilePriv (const QString& fname, int nbrecs);
-		void   readGribFileContent (int nbrecs);
 		void   readAllGribRecords  (int nbrecs);
         
         std::vector<std::shared_ptr<GribRecord>> *  getFirstNonEmptyList();

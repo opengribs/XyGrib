@@ -27,55 +27,6 @@ Grib2Reader::Grib2Reader ()
 Grib2Reader::~Grib2Reader ()
 {
 }
-//-------------------------------------------------------------------------------
-void Grib2Reader::openFile (const QString &fname, int nbrecs)
-{
-	allUnknownRecords.clear();
-	continueDownload = true;
-	setAllDataCenterModel.clear();
-	setAllDates.clear ();
-	setAllDataCode.clear ();
-	
-    if (!fname.isEmpty()) {
-        openFilePriv (fname, nbrecs);
-		createListDates ();
-		ok = getNumberOfDates() > 0;
-		if (ok) {
-            computeAccumulationRecords ();
-			analyseRecords ();
-			computeMissingData ();   // RH DewPoint ThetaE
-		}
-    }
-    else {
-        clean_all_vectors();
-    }
-}
-//-------------------------------------------------------------------------------
-void Grib2Reader::openFilePriv (const QString& fname, int nbrecs)
-{
-//     debug("Open file: %s", fname.c_str());
-    fileName = fname;
-    ok = false;
-    clean_all_vectors();
-    //--------------------------------------------------------
-    // Ouverture du fichier
-    //--------------------------------------------------------
-    file = zu_open (qPrintable(fname), "rb", ZU_COMPRESS_AUTO);
-    if (file == nullptr) {
-        erreur("Can't open file: %s", qPrintable(fname));
-        return;
-    }
-	emit newMessage (LongTaskMessage::LTASK_OPEN_FILE);
-	//DBG("nbrecs=%d", nbrecs);
-    if (nbrecs > 0) {
-		emit newMessage (LongTaskMessage::LTASK_PREPARE_MAPS);
-		readGrib2FileContent (nbrecs);
-	}
-	else {
-		ok = false;
-	}
-	zu_close (file);
-}
 //-------------------------------------------------------------------------
 void Grib2Reader::seekgb_zu (ZUFILE *lugb,g2int iseek,g2int mseek,g2int *lskip,g2int *lgrib)
 {    // g2clib function modified to use zuFile
@@ -112,7 +63,7 @@ void Grib2Reader::seekgb_zu (ZUFILE *lugb,g2int iseek,g2int mseek,g2int *lskip,g
 	free(cbuf);
 }
 //---------------------------------------------------------------------------------
-void Grib2Reader::readGrib2FileContent (int nbrecs)
+void Grib2Reader::readGribFileContent (int nbrecs)
 {
     fileSize = zu_filesize(file);
 	
@@ -123,10 +74,13 @@ void Grib2Reader::readGrib2FileContent (int nbrecs)
     gribfield  *gfld;
     g2int expand=1;
 	int idrec=0;
+	allUnknownRecords.clear();
     while (ierr==0 && continueDownload) {
 		//qApp->processEvents ();
 		seekgb_zu (file, iseek, 64*1024, &lskip, &lgrib);
-		emit valueChanged ((int)(100.0*idrec/nbrecs));
+		if (idrec%4 == 1)
+			emit valueChanged ((int)(100.0*idrec/nbrecs));
+
         //DBG("READ FIELD : idrec=%d lskip=%ld lgrib=%ld", idrec, lskip, lgrib);
 		if (lgrib == 0)
 			break;    // end loop at EOF or problem
@@ -185,47 +139,3 @@ void Grib2Reader::readGrib2FileContent (int nbrecs)
 		free(cgrib);
     }
 }
-//---------------------------------------------------------------------------------
-void Grib2Reader::analyseRecords ()
-{
-	// Make a speed wind gust record from a vx and a vy records
-	// TODO : display also gust direction
-	Altitude alt (LV_ABOV_GND, 10);
-	if (hasData(DataCode(GRB_WIND_GUST, alt)))
-		return;
-
-	DataCode dtcx (GRB_WIND_GUST_VX, alt);
-	DataCode dtcy (GRB_WIND_GUST_VY, alt);
-	if (!hasData(dtcx) || !hasData(dtcy))
-		return;
-
-	for (long date : setAllDates)
-	{
-            GribRecord *recx = getRecord (dtcx, date);
-			GribRecord *recy = getRecord (dtcy, date);
-			if (recx && recy) {
-				GribRecord *recGust = new GribRecord (*recx);
-				// compatibility with NOAA : gust is given at the surface
-				recGust->setDataCode (DataCode(GRB_WIND_GUST,LV_GND_SURF,0));
-				for (int i=0; i<recx->getNi(); i++)
-				{
-					for (int j=0; j<recx->getNj(); j++)
-					{
-						double vx = recx->getValue(i,j);
-						double vy = recy->getValue(i,j);
-						if (GribDataIsDef(vx) && GribDataIsDef(vy)) {
-							//DBG("%d %d : %g %g : %g", i,j, vx,vy, sqrt(vx*vx+vy*vy));
-							recGust->setValue (i, j, sqrt(vx*vx+vy*vy));
-						}
-						else
-							recGust->setValue(i, j, GRIB_NOTDEF);
-					}
-				}
-				storeRecordInMap (recGust);
-				//recGust->print("recGust");
-			}
-	}
-}
-
-
-
