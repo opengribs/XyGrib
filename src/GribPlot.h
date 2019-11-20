@@ -28,7 +28,6 @@ Dessin des données GRIB (avec QT)
 #include "RegularGriddedPlot.h"
 
 #include "GribReader.h"
-#include "Grib2Reader.h"
 #include "DataPointInfo.h"
 #include "IsoLine.h"
  

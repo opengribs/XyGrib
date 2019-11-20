@@ -28,6 +28,7 @@ Lecture mise en mémoire d'un fichier GRIB
 
 #include "RegularGridded.h"
 #include "GribRecord.h"
+#include "Grib2Record.h"
 #include "LongTaskMessage.h"
 #include "zuFile.h"
 extern "C" {
@@ -106,11 +107,15 @@ class GribReader : public RegularGridReader, public LongTaskMessage
 		void computeMissingData ();   // RH DewPoint ThetaE
 		void analyseRecords ();
 
-		virtual void readGribFileContent (int nbrecs);
 		int seekgb_zu (
 				ZUFILE *lugb, g2int iseek, g2int mseek, g2int *lskip, g2int *lgrib);
 		
     private:
+		void readGribFileContent (int nbrecs);
+		bool readGribRecord(int id);
+		//bool readGrib2Record(int id);
+		bool readGrib2Record(int id, g2int lgrib);
+
 		std::vector<std::shared_ptr<GribRecord>> * getListOfGribRecords (DataCode dtc);
         int	   dewpointDataStatus;
 		bool   hasAltitude;
@@ -119,7 +124,6 @@ class GribReader : public RegularGridReader, public LongTaskMessage
         std::map <uint64_t, std::vector<std::shared_ptr<GribRecord>>* >  mapGribRecords;
 
         void   openFilePriv (const QString& fname, int nbrecs);
-		void   readAllGribRecords  (int nbrecs);
         
         std::vector<std::shared_ptr<GribRecord>> *  getFirstNonEmptyList();
 		

@@ -35,7 +35,7 @@ class Grib2Reader : public GribReader
         ~Grib2Reader ();
 		
     protected:
-		void readGribFileContent (int nbrecs) override;
+		bool readGribRecord(int id) override;
 
 	private:
 
