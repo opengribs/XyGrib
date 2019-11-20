@@ -777,6 +777,12 @@ void GribReader::interpolateMissingRecords ()
 
 	interpolateMissingRecords (DataCode(GRB_WIND_VX,LV_GND_SURF,0));
 	interpolateMissingRecords (DataCode(GRB_WIND_VY,LV_GND_SURF,0));
+
+	interpolateMissingRecords (DataCode(GRB_CUR_VX,LV_GND_SURF,0));
+	interpolateMissingRecords (DataCode(GRB_CUR_VY,LV_GND_SURF,0));
+
+	interpolateMissingRecords (DataCode(GRB_CUR_DIR,LV_GND_SURF,0));
+	interpolateMissingRecords (DataCode(GRB_CUR_SPEED,LV_GND_SURF,0));
 }
 
 //---------------------------------------------------------------------------------
