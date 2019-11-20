@@ -83,78 +83,11 @@ void GribReader::clean_vector (std::vector<GribRecord *> &ls)
     ls.clear();
 }
 //---------------------------------------------------------------------------------
-void GribReader::storeRecordInMap (GribRecord *rec)
+bool GribReader::storeRecordInMap (GribRecord *rec)
 {
     if (rec==nullptr || !rec->isOk())
-		return;
-//    DBG ("%g %g   %g %g", rec->getXmin(),rec->getXmax(), getYmin(),getYmax());
-
-	auto it = mapGribRecords.find(rec->getKey());
-	if (it == mapGribRecords.end())
-	{
-		mapGribRecords[rec->getKey()] = new std::vector<std::shared_ptr<GribRecord>>;
-		assert(mapGribRecords[rec->getKey()]);
-	}
-	
-	mapGribRecords [rec->getKey()]->push_back (std::shared_ptr<GribRecord>(rec));
-	
-	if (xmin > rec->getXmin()) xmin = rec->getXmin();
-	if (xmax < rec->getXmax()) xmax = rec->getXmax();
-	if (ymin > rec->getYmin()) ymin = rec->getYmin();
-	if (ymax < rec->getYmax()) ymax = rec->getYmax();
-	
-	if (rec->isOrientationAmbiguous()) {
-		ambiguousHeader = true;
-	}
-	
-	// Update list of records types
-	setAllDataCode.insert (rec->getDataCode());
-	setAllDataCenterModel.insert (rec->getDataCenterModel());
-	
-	if (rec->getLevelType()==LV_ISOBARIC
-			&& (   rec->getLevelValue()==850
-				|| rec->getLevelValue()==700
-				|| rec->getLevelValue()==500
-				|| rec->getLevelValue()==300 
-				|| rec->getLevelValue()==200 
-				)
-	) {
-		hasAltitude = true;
-	}
-}
-//---------------------------------------------------------------------------------
-void GribReader::readAllGribRecords (int nbrecs)
-{
-    //--------------------------------------------------------
-    // Lecture de l'ensemble des GribRecord du fichier
-    // et stockage dans les listes appropriées.
-    //--------------------------------------------------------
-    GribRecord *rec = nullptr;
-    int id = 0;
-    time_t firstdate = -1;
-	ok = false;
-	bool eof;
-    do {
-		if (id%4 == 1)
-			emit valueChanged ((int)(100.0*id/nbrecs));
-		
-		id ++;
-
-		delete rec;
-        rec = new GribRecord(file, id);
-        assert(rec);
-        
-		if (!rec->isOk())
-        	break;
-
-        eof = rec->isEof();
-
-		if (rec->isDataKnown())
-        {
-			if (firstdate== -1)
-				firstdate = rec->getRecordCurrentDate();
-//            DBG("%d %d %d %d", rec->getDataType(),rec->getLevelType(), rec->getLevelValue(), rec->getRecordCurrentDate());
-			if (//-----------------------------------------
+		return false;
+	  if (! (//-----------------------------------------
 				(rec->getDataType()==GRB_PRESSURE_MSL
 					&& rec->getLevelType()==LV_MSL && rec->getLevelValue()==0)
 			//-----------------------------------------
@@ -232,7 +165,7 @@ void GribReader::readAllGribRecords (int nbrecs)
 						|| rec->getLevelValue()==850
 						|| rec->getLevelValue()==700
 						|| rec->getLevelValue()==500
-						|| rec->getLevelValue()==300 
+						|| rec->getLevelValue()==300
 						|| rec->getLevelValue()==200 ) )
 			//-----------------------------------------
 			//-----------------------------------------
@@ -244,7 +177,7 @@ void GribReader::readAllGribRecords (int nbrecs)
 						|| rec->getLevelValue()==600
 						|| rec->getLevelValue()==500
 						|| rec->getLevelValue()==400
-						|| rec->getLevelValue()==300 
+						|| rec->getLevelValue()==300
 						|| rec->getLevelValue()==200 ) )
 			//-----------------------------------------
 			|| (rec->getDataType()==GRB_HUMID_SPEC
@@ -261,7 +194,7 @@ void GribReader::readAllGribRecords (int nbrecs)
 						|| rec->getLevelValue()==600
 						|| rec->getLevelValue()==500
 						|| rec->getLevelValue()==400
-						|| rec->getLevelValue()==300 
+						|| rec->getLevelValue()==300
 						|| rec->getLevelValue()==200 ) )
 			//-----------------------------------------
 			|| (rec->getDataType()==GRB_PRECIP_TOT
@@ -367,8 +300,77 @@ void GribReader::readAllGribRecords (int nbrecs)
 					|| rec->getDataType()==GRB_WAV_MAX_HT
 				))
 			)
-			{
-				storeRecordInMap (rec);
+		)
+	{
+		return false;
+	}
+
+	auto it = mapGribRecords.find(rec->getKey());
+	if (it == mapGribRecords.end())
+	{
+		mapGribRecords[rec->getKey()] = new std::vector<std::shared_ptr<GribRecord>>;
+		assert(mapGribRecords[rec->getKey()]);
+	}
+
+	mapGribRecords [rec->getKey()]->push_back (std::shared_ptr<GribRecord>(rec));
+
+	if (xmin > rec->getXmin()) xmin = rec->getXmin();
+	if (xmax < rec->getXmax()) xmax = rec->getXmax();
+	if (ymin > rec->getYmin()) ymin = rec->getYmin();
+	if (ymax < rec->getYmax()) ymax = rec->getYmax();
+
+	if (rec->isOrientationAmbiguous()) {
+		ambiguousHeader = true;
+	}
+
+	// Update list of records types
+	setAllDataCode.insert (rec->getDataCode());
+	setAllDataCenterModel.insert (rec->getDataCenterModel());
+
+	if (rec->getLevelType()==LV_ISOBARIC
+			&& (   rec->getLevelValue()==850
+				|| rec->getLevelValue()==700
+				|| rec->getLevelValue()==500
+				|| rec->getLevelValue()==300
+				|| rec->getLevelValue()==200
+				)
+	) {
+		hasAltitude = true;
+	}
+	return true;
+}
+//---------------------------------------------------------------------------------
+void GribReader::readAllGribRecords (int nbrecs)
+{
+    //--------------------------------------------------------
+    // Lecture de l'ensemble des GribRecord du fichier
+    // et stockage dans les listes appropriées.
+    //--------------------------------------------------------
+    GribRecord *rec = nullptr;
+    int id = 0;
+    time_t firstdate = -1;
+	ok = false;
+	bool eof;
+    do {
+		if (id%4 == 1)
+			emit valueChanged ((int)(100.0*id/nbrecs));
+
+		id ++;
+
+		delete rec;
+        rec = new GribRecord(file, id);
+
+        if (!rec->isOk())
+        	break;
+
+        eof = rec->isEof();
+
+        if (rec->isDataKnown())
+        {
+			if (firstdate== -1)
+				firstdate = rec->getRecordCurrentDate();
+//            DBG("%d %d %d %d", rec->getDataType(),rec->getLevelType(), rec->getLevelValue(), rec->getRecordCurrentDate());
+			if (storeRecordInMap (rec)) {
 				rec = nullptr; // release ownership
 				ok = true;   // at least 1 record ok
 			}

@@ -97,8 +97,8 @@ class GribReader : public RegularGridReader, public LongTaskMessage
         ZUFILE *file;
         void clean_vector(std::vector<GribRecord *> &ls);
         void clean_all_vectors();
-        void   createListDates ();
-        void storeRecordInMap (GribRecord *rec);
+        void createListDates ();
+        bool storeRecordInMap (GribRecord *rec);
         //void removeRecordInMap (GribRecord *rec);
 		void computeMissingData ();   // RH DewPoint ThetaE
 		void analyseRecords ();
