@@ -26,9 +26,6 @@ Lecture mise en mémoire d'un fichier GRIB
 
 #include "GribReader.h"
 #include "Grib2Record.h"
-extern "C" {
-    #include <grib2.h>
-}
 
 //===============================================================
 class Grib2Reader : public GribReader
@@ -43,9 +40,6 @@ class Grib2Reader : public GribReader
 	private:
 
 		QList<Grib2RecordMarker> allUnknownRecords;
-		
-		void seekgb_zu (ZUFILE *lugb,g2int iseek,g2int mseek,g2int *lskip,g2int *lgrib);
-
 };
 
 #endif

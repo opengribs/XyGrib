@@ -27,41 +27,6 @@ Grib2Reader::Grib2Reader ()
 Grib2Reader::~Grib2Reader ()
 {
 }
-//-------------------------------------------------------------------------
-void Grib2Reader::seekgb_zu (ZUFILE *lugb,g2int iseek,g2int mseek,g2int *lskip,g2int *lgrib)
-{    // g2clib function modified to use zuFile
-	g2int k,k4,ipos,nread,lim, lengrib;
-	uint32_t end;
-	unsigned char *cbuf = (unsigned char *) malloc (mseek);
-	*lgrib = 0;
-	nread=mseek;
-	ipos=iseek;
-	while (*lgrib==0 && nread==mseek) {
-		zu_seek (lugb, ipos, SEEK_SET);
-		nread = zu_read (lugb, cbuf, mseek);
-		lim = nread-8;
-		//Util::dumpchars(cbuf,0,16);
-		for (k=0; k<lim; k++) {
-			// search GRIB...2
-			if (cbuf[k]=='G' && cbuf[k+1]=='R' && cbuf[k+2]=='I' && cbuf[k+3]=='B'
-				&& cbuf[k+7]==2   // version 2
-			) {
-				//  LOOK FOR '7777' AT END OF GRIB MESSAGE
-				lengrib = (g2int)(cbuf[k+12]<<24)+(cbuf[k+13]<<16)+(cbuf[k+14]<<8)+(cbuf[k+15]);
-				zu_seek (lugb, ipos+k+lengrib-4, SEEK_SET);
-				k4 = zu_read (lugb, &end, 4);
-				if (k4 == 4 && end == 926365495) {      // "7777" found
-					//DBG("FOUND GRIB2 FIELD lengrib=%ld", lengrib);
-					*lskip=ipos+k;
-					*lgrib=lengrib;
-					break;
-				}
-			}
-        }
-        ipos=ipos+lim;
-	}
-	free(cbuf);
-}
 //---------------------------------------------------------------------------------
 void Grib2Reader::readGribFileContent (int nbrecs)
 {

@@ -339,6 +339,54 @@ bool GribReader::storeRecordInMap (GribRecord *rec)
 	}
 	return true;
 }
+
+//---------------------------------------------------------------------------------
+int GribReader::seekgb_zu (
+	ZUFILE *lugb, g2int iseek, g2int mseek,g2int *lskip,g2int *lgrib)
+{
+	g2int ipos,nread,lim;
+	uint32_t end;
+	unsigned char *cbuf = (unsigned char *) malloc (mseek);
+	unsigned char version = 0;
+	*lgrib = 0;
+	nread=mseek;
+	ipos=iseek;
+	while (*lgrib==0 && nread==mseek) {
+		zu_seek (lugb, ipos, SEEK_SET);
+		nread = zu_read (lugb, cbuf, mseek);
+		lim = nread-8;
+		//Util::dumpchars(cbuf,0,16);
+		for (g2int k=0; k<lim; k++) {
+			// search GRIB...2
+			if (cbuf[k]=='G' && cbuf[k+1]=='R' && cbuf[k+2]=='I' && cbuf[k+3]=='B'
+				&& (cbuf[k+7] == 1 || cbuf[k+7] == 2)    // requested version
+			) {
+				g2int k4, lengrib;
+
+				version = cbuf[k+7];
+				//  LOOK FOR '7777' AT END OF GRIB MESSAGE
+				if (version == 1) {
+					lengrib = (g2int)(cbuf[k+4]<<16)+(cbuf[k+5]<<8)+cbuf[k+6];
+				}
+				else {
+					lengrib = (g2int)(cbuf[k+12]<<24)+(cbuf[k+13]<<16)+(cbuf[k+14]<<8)+(cbuf[k+15]);
+				}
+				zu_seek (lugb, ipos+k+lengrib-4, SEEK_SET);
+				k4 = zu_read (lugb, &end, 4);
+				if (k4 == 4 && end == 926365495) {      // "7777" found
+					//DBG("FOUND GRIB2 FIELD lengrib=%ld", lengrib);
+					*lskip=ipos+k;
+					*lgrib=lengrib;
+					break;
+				}
+			}
+        }
+        ipos=ipos+lim;
+	}
+	free(cbuf);
+	return version;
+}
+
 //---------------------------------------------------------------------------------
 void GribReader::readAllGribRecords (int nbrecs)
 {
@@ -351,9 +399,18 @@ void GribReader::readAllGribRecords (int nbrecs)
     time_t firstdate = -1;
 	ok = false;
 	bool eof;
+    g2int lskip=0,lgrib=0,iseek=0;
+
     do {
+		seekgb_zu (file, iseek, 64*1024, &lskip, &lgrib);
 		if (id%4 == 1)
 			emit valueChanged ((int)(100.0*id/nbrecs));
+
+		if (lgrib == 0)
+			break;    // end loop at EOF or problem
+		iseek = lskip + lgrib;
+		if (zu_seek (file, lskip, SEEK_SET) )
+			break;
 
 		id ++;
 
@@ -576,7 +633,6 @@ void  GribReader::removeMissingWaveRecords ()
 		}
 	}
 }
-
 //---------------------------------------------------------------------------------
 void GribReader::readGribFileContent (int nbrecs)
 {
