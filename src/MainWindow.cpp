@@ -148,9 +148,9 @@ void MainWindow::InitActionsStatus ()
     menuBar->acView_LinesThetaE_925hpa->setChecked (Util::getSetting("showLinesThetaE_925hpa", false).toBool());
     menuBar->acView_LinesThetaE_850hpa->setChecked (Util::getSetting("showLinesThetaE_850hpa", false).toBool());
     menuBar->acView_LinesThetaE_700hpa->setChecked (Util::getSetting("showLinesThetaE_700hpa", false).toBool());
-    menuBar->acView_LinesThetaE_600hpa->setChecked (Util::getSetting("showLinesThetaE_500hpa", false).toBool());
+    menuBar->acView_LinesThetaE_600hpa->setChecked (Util::getSetting("showLinesThetaE_600hpa", false).toBool());
     menuBar->acView_LinesThetaE_500hpa->setChecked (Util::getSetting("showLinesThetaE_500hpa", false).toBool());
-    menuBar->acView_LinesThetaE_400hpa->setChecked (Util::getSetting("showLinesThetaE_500hpa", false).toBool());
+    menuBar->acView_LinesThetaE_400hpa->setChecked (Util::getSetting("showLinesThetaE_400hpa", false).toBool());
     menuBar->acView_LinesThetaE_300hpa->setChecked (Util::getSetting("showLinesThetaE_300hpa", false).toBool());
     menuBar->acView_LinesThetaE_200hpa->setChecked (Util::getSetting("showLinesThetaE_200hpa", false).toBool());
 	//--------------------------------------------
@@ -762,6 +762,19 @@ void MainWindow::disableMenubarItems()
 	menuBar->menuGeopotStep->setEnabled (false);
 	menuBar->acAlt_GeopotLabels->setEnabled (false);
 
+    // Theta-e menu
+    menuBar->acView_LinesThetaE_925hpa->setEnabled (false);
+    menuBar->acView_LinesThetaE_850hpa->setEnabled (false);
+    menuBar->acView_LinesThetaE_700hpa->setEnabled (false);
+    menuBar->acView_LinesThetaE_500hpa->setEnabled (false);
+    menuBar->acView_LinesThetaE_300hpa->setEnabled (false);
+    menuBar->acView_LinesThetaE_200hpa->setEnabled (false);
+    menuBar->acView_LinesThetaE_400hpa->setEnabled (false);
+    menuBar->acView_LinesThetaE_600hpa->setEnabled (false);
+    menuBar->menuLinesThetaE->setEnabled (false);
+    menuBar->menuLinesThetaE_Step->setEnabled (false);
+    menuBar->acView_LinesThetaE_Labels->setEnabled (false);
+
     menuBar->acView_WaterTempColors->setEnabled(false);
 	// Sea current
     menuBar->acView_CurrentColors->setEnabled(false);
@@ -914,6 +927,38 @@ void MainWindow::setMenubarItems()
     	menuBar->menuGeopotLine->setEnabled (ok);
     	menuBar->menuGeopotStep->setEnabled (ok);
     	menuBar->acAlt_GeopotLabels->setEnabled (ok);
+    }
+
+	// Set Theta-e menus
+	ok3 = plotter->hasData (GRB_PRV_THETA_E,LV_ISOBARIC,925);
+	if (ok3) menuBar->acView_LinesThetaE_925hpa->setEnabled (ok3);
+
+	ok4 = plotter->hasData (GRB_PRV_THETA_E,LV_ISOBARIC,850);
+	if (ok4) menuBar->acView_LinesThetaE_850hpa->setEnabled (ok4);
+
+	ok5 = plotter->hasData (GRB_PRV_THETA_E,LV_ISOBARIC,700);
+	if (ok5) menuBar->acView_LinesThetaE_700hpa->setEnabled (ok5);
+
+	ok6 = plotter->hasData (GRB_PRV_THETA_E,LV_ISOBARIC,500);
+	if (ok6) menuBar->acView_LinesThetaE_500hpa->setEnabled (ok6);
+
+	ok7 = plotter->hasData (GRB_PRV_THETA_E,LV_ISOBARIC,300);
+	if (ok7) menuBar->acView_LinesThetaE_300hpa->setEnabled (ok7);
+
+	ok8 = plotter->hasData (GRB_PRV_THETA_E,LV_ISOBARIC,200);
+	if (ok8) menuBar->acView_LinesThetaE_200hpa->setEnabled (ok8);
+
+	ok9 = plotter->hasData (GRB_PRV_THETA_E,LV_ISOBARIC,400);
+	if (ok9) menuBar->acView_LinesThetaE_400hpa->setEnabled (ok9);
+
+	ok10 = plotter->hasData (GRB_PRV_THETA_E,LV_ISOBARIC,600);
+	if (ok10) menuBar->acView_LinesThetaE_600hpa->setEnabled (ok10);
+
+	ok = ok3 || ok4 || ok5 || ok6 || ok7 || ok8 || ok9 || ok10;
+	if (ok) {
+    	menuBar->menuLinesThetaE->setEnabled (ok);
+    	menuBar->acView_LinesThetaE_Labels->setEnabled (ok);
+    	menuBar->menuLinesThetaE_Step->setEnabled (ok);
     }
 	//------------------------------------------------------
 	// Common actions to all gridded data file
@@ -1495,7 +1540,7 @@ void MainWindow::slotGroupLinesThetaE (QAction *ac)
 	Util::setSetting ("showLinesThetaE_400hpa", false, false);
 	Util::setSetting ("showLinesThetaE_300hpa", false, false);
 	Util::setSetting ("showLinesThetaE_200hpa", false);
-	if (ac) {
+	if (ac && ac->isChecked()) {
 		Altitude alt;
 		if (ac == menuBar->acView_LinesThetaE_925hpa) {
 			alt = Altitude (LV_ISOBARIC,925);

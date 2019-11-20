@@ -727,13 +727,3 @@ void MenuBar::updateCurrentDate (time_t currentDate)
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
