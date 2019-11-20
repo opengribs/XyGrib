@@ -236,17 +236,17 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
         acView_Isotherms_Labels = addActionCheck (menuIsolines, tr("Isotherms labels"), "",  "");
         //--------------------------------
         menuIsolines->addSeparator();
-		QMenu *menutmp = new QMenu (tr("Geopotential altitude"));
-		menuIsolines->addMenu (menutmp);
-		acAlt_GroupGeopotLine = new ZeroOneActionGroup (menutmp);
-			acAlt_GeopotLine_925hpa = addGroup (acAlt_GroupGeopotLine, menutmp, tr("925 hpa"), "", "");
-			acAlt_GeopotLine_850hpa = addGroup (acAlt_GroupGeopotLine, menutmp, tr("850 hpa"), "", "");
-			acAlt_GeopotLine_700hpa = addGroup (acAlt_GroupGeopotLine, menutmp, tr("700 hpa"), "", "");
-			acAlt_GeopotLine_600hpa = addGroup (acAlt_GroupGeopotLine, menutmp, tr("600 hpa"), "", "");
-			acAlt_GeopotLine_500hpa = addGroup (acAlt_GroupGeopotLine, menutmp, tr("500 hpa"), "", "");
-			acAlt_GeopotLine_400hpa = addGroup (acAlt_GroupGeopotLine, menutmp, tr("400 hpa"), "", "");
-			acAlt_GeopotLine_300hpa = addGroup (acAlt_GroupGeopotLine, menutmp, tr("300 hpa"), "", "");
-			acAlt_GeopotLine_200hpa = addGroup (acAlt_GroupGeopotLine, menutmp, tr("200 hpa"), "", "");
+		menuGeopotLine = new QMenu (tr("Geopotential altitude"));
+		menuIsolines->addMenu (menuGeopotLine);
+		acAlt_GroupGeopotLine = new ZeroOneActionGroup (menuGeopotLine);
+			acAlt_GeopotLine_925hpa = addGroup (acAlt_GroupGeopotLine, menuGeopotLine, tr("925 hpa"), "", "");
+			acAlt_GeopotLine_850hpa = addGroup (acAlt_GroupGeopotLine, menuGeopotLine, tr("850 hpa"), "", "");
+			acAlt_GeopotLine_700hpa = addGroup (acAlt_GroupGeopotLine, menuGeopotLine, tr("700 hpa"), "", "");
+			acAlt_GeopotLine_600hpa = addGroup (acAlt_GroupGeopotLine, menuGeopotLine, tr("600 hpa"), "", "");
+			acAlt_GeopotLine_500hpa = addGroup (acAlt_GroupGeopotLine, menuGeopotLine, tr("500 hpa"), "", "");
+			acAlt_GeopotLine_400hpa = addGroup (acAlt_GroupGeopotLine, menuGeopotLine, tr("400 hpa"), "", "");
+			acAlt_GeopotLine_300hpa = addGroup (acAlt_GroupGeopotLine, menuGeopotLine, tr("300 hpa"), "", "");
+			acAlt_GeopotLine_200hpa = addGroup (acAlt_GroupGeopotLine, menuGeopotLine, tr("200 hpa"), "", "");
 			menuGeopotStep = new QMenu(tr("Geopotentials spacing (m)"));
             acAlt_GroupGeopotStep = new QActionGroup (menuGeopotStep);
                 acAlt_GeopotStep_1  = addGroup (acAlt_GroupGeopotStep, menuGeopotStep, tr("1"), "", "");
