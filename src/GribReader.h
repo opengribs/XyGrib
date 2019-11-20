@@ -102,7 +102,6 @@ class GribReader : public RegularGridReader, public LongTaskMessage
         void clean_vector(std::vector<GribRecord *> &ls);
         void clean_all_vectors();
         void createListDates ();
-        bool storeRecordInMap (GribRecord *rec);
         //void removeRecordInMap (GribRecord *rec);
 		void computeMissingData ();   // RH DewPoint ThetaE
 		void analyseRecords ();
@@ -111,6 +110,8 @@ class GribReader : public RegularGridReader, public LongTaskMessage
 				ZUFILE *lugb, g2int iseek, g2int mseek, g2int *lskip, g2int *lgrib);
 		
     private:
+        bool checkAndStoreRecordInMap (GribRecord *rec);
+        bool storeRecordInMap (GribRecord *rec);
 		void readGribFileContent (int nbrecs);
 		bool readGribRecord(int id);
 		//bool readGrib2Record(int id);

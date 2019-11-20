@@ -87,6 +87,46 @@ bool GribReader::storeRecordInMap (GribRecord *rec)
 {
     if (rec==nullptr || !rec->isOk())
 		return false;
+	auto it = mapGribRecords.find(rec->getKey());
+	if (it == mapGribRecords.end())
+	{
+		mapGribRecords[rec->getKey()] = new std::vector<std::shared_ptr<GribRecord>>;
+		assert(mapGribRecords[rec->getKey()]);
+	}
+
+	mapGribRecords [rec->getKey()]->push_back (std::shared_ptr<GribRecord>(rec));
+
+	if (xmin > rec->getXmin()) xmin = rec->getXmin();
+	if (xmax < rec->getXmax()) xmax = rec->getXmax();
+	if (ymin > rec->getYmin()) ymin = rec->getYmin();
+	if (ymax < rec->getYmax()) ymax = rec->getYmax();
+
+	if (rec->isOrientationAmbiguous()) {
+		ambiguousHeader = true;
+	}
+
+	// Update list of records types
+	setAllDataCode.insert (rec->getDataCode());
+	setAllDataCenterModel.insert (rec->getDataCenterModel());
+
+	if (rec->getLevelType()==LV_ISOBARIC
+			&& (   rec->getLevelValue()==850
+				|| rec->getLevelValue()==700
+				|| rec->getLevelValue()==500
+				|| rec->getLevelValue()==300
+				|| rec->getLevelValue()==200
+				)
+	) {
+		hasAltitude = true;
+	}
+	return true;
+}
+
+//---------------------------------------------------------------------------------
+bool GribReader::checkAndStoreRecordInMap (GribRecord *rec)
+{
+    if (rec==nullptr || !rec->isOk())
+		return false;
 	  if (! (//-----------------------------------------
 				(rec->getDataType()==GRB_PRESSURE_MSL
 					&& rec->getLevelType()==LV_MSL && rec->getLevelValue()==0)
@@ -304,39 +344,7 @@ bool GribReader::storeRecordInMap (GribRecord *rec)
 	{
 		return false;
 	}
-
-	auto it = mapGribRecords.find(rec->getKey());
-	if (it == mapGribRecords.end())
-	{
-		mapGribRecords[rec->getKey()] = new std::vector<std::shared_ptr<GribRecord>>;
-		assert(mapGribRecords[rec->getKey()]);
-	}
-
-	mapGribRecords [rec->getKey()]->push_back (std::shared_ptr<GribRecord>(rec));
-
-	if (xmin > rec->getXmin()) xmin = rec->getXmin();
-	if (xmax < rec->getXmax()) xmax = rec->getXmax();
-	if (ymin > rec->getYmin()) ymin = rec->getYmin();
-	if (ymax < rec->getYmax()) ymax = rec->getYmax();
-
-	if (rec->isOrientationAmbiguous()) {
-		ambiguousHeader = true;
-	}
-
-	// Update list of records types
-	setAllDataCode.insert (rec->getDataCode());
-	setAllDataCenterModel.insert (rec->getDataCenterModel());
-
-	if (rec->getLevelType()==LV_ISOBARIC
-			&& (   rec->getLevelValue()==850
-				|| rec->getLevelValue()==700
-				|| rec->getLevelValue()==500
-				|| rec->getLevelValue()==300
-				|| rec->getLevelValue()==200
-				)
-	) {
-		hasAltitude = true;
-	}
+	storeRecordInMap (rec);
 	return true;
 }
 
@@ -409,7 +417,7 @@ bool GribReader::readGribRecord(int id)
 	if (rec->isDataKnown())
     {
 //            DBG("%d %d %d %d", rec->getDataType(),rec->getLevelType(), rec->getLevelValue(), rec->getRecordCurrentDate());
-		if (storeRecordInMap (rec)) {
+		if (checkAndStoreRecordInMap (rec)) {
 			rec = nullptr; // release ownership
 			ok = true;   // at least 1 record ok
 		}
@@ -470,9 +478,8 @@ bool GribReader::readGrib2Record(int id, g2int lgrib)
 					idrec++;
                     //DBG("LOAD FIELD idrec=%d/%d field=%ld/%ld numlocal=%ld",idrec,nbrecs, n+1,numfields, numlocal);
                     Grib2Record *rec = new Grib2Record (gfld, idrec, idCenter, refDate, discipline);
-					if (rec->isOk()) {
+					if (rec->isOk() && checkAndStoreRecordInMap(rec)) {
                         //DBG("storeRecordInMap %d", rec->getId());
-						storeRecordInMap (rec);
 						rec = nullptr; // release ownership
 						ok = true;   // at least 1 record ok
 					}
