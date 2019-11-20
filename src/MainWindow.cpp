@@ -758,6 +758,7 @@ void MainWindow::disableMenubarItems()
 	menuBar->acAlt_GeopotLine_200hpa->setEnabled (false);
 	menuBar->acAlt_GeopotLine_400hpa->setEnabled (false);
 	menuBar->acAlt_GeopotLine_600hpa->setEnabled (false);
+	menuBar->menuGeopotLine->setEnabled (false);
 	menuBar->menuGeopotStep->setEnabled (false);
 	menuBar->acAlt_GeopotLabels->setEnabled (false);
 
@@ -910,6 +911,7 @@ void MainWindow::setMenubarItems()
 
 	ok = ok9 || ok8 || ok7 || ok5 || ok3 || ok2 || ok10 || ok11;
 	if (ok) {
+    	menuBar->menuGeopotLine->setEnabled (ok);
     	menuBar->menuGeopotStep->setEnabled (ok);
     	menuBar->acAlt_GeopotLabels->setEnabled (ok);
     }
