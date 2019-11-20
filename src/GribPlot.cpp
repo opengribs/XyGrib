@@ -77,6 +77,12 @@ void GribPlot::loadFile (const QString &fileName, LongTaskProgress * taskProgres
 {
 	this->fileName = fileName;
     delete gribReader;
+	gribReader = new Grib2Reader ();
+	loadGrib(taskProgress, nbrecs);
+	if (isReaderOk())
+		return;
+	// Not a GRIB2, try GRIB1
+    delete gribReader;
 	gribReader = new GribReader ();
 	loadGrib(taskProgress, nbrecs);
 }
