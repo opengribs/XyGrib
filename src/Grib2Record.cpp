@@ -151,7 +151,7 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 	    grid = std::make_shared<PlateCarree>(Ni, Nj, xmin, ymin, Di, Dj);
 	}
 	else if (gfld->igdtnum == 10) {
-	    grid = std::make_shared<Mercator>(Ni, Nj, xmin, ymin, xmax, ymax, Di, Dj);
+	    grid = std::make_shared<Mercator>(Ni, Nj, xmin, ymin, ymax, Di, Dj);
 	}
 	else if( gfld->igdtnum == 30 ) {
 		scanFlags = gfld->igdtmpl[17];

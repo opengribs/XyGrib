@@ -58,7 +58,7 @@ private:
 class Mercator : public GridType {
 public:
     Mercator() = default;
-    Mercator(int nx, int ny, double lo, double la, double lo2, double la2, double dlon, double dlat)
+    Mercator(int nx, int ny, double lo, double la, double la2, double dlon, double dlat)
         : Nx(nx), Ny(ny), lon_ll_deg(lo), lat_ll_deg(la),
           delta_lon_deg(dlon), delta_lat_deg(dlat)
         {
