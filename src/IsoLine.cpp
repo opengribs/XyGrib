@@ -156,8 +156,8 @@ void Segment::intersectionAreteGrille (
 {
     double xa, xb, ya, yb, pa, pb, dec;
 
-    pa = rec->getValueOnRegularGrid (dtc, i,j);
-    pb = rec->getValueOnRegularGrid (dtc, k,l);
+    pa = rec->getValueOnRegularGrid (i,j);
+    pb = rec->getValueOnRegularGrid (k,l);
 
     // Abscisse
     rec->getXY(i, j, &xa, &ya);
@@ -192,7 +192,7 @@ void Segment::traduitCode (int I, int J, char c1, int &i, int &j) {
 }
 
 //-----------------------------------------------------------------------
-// Génère la liste des segments.
+// Génère la liste des segments. XXXX
 // Les coordonnées sont les indices dans la grille du GriddedRecord
 //---------------------------------------------------------
 void IsoLine::extractIsoLine (GriddedRecord *rec, int deltaI, int deltaJ)
@@ -204,12 +204,12 @@ void IsoLine::extractIsoLine (GriddedRecord *rec, int deltaI, int deltaJ)
 
 	for (j=deltaI; j<H; j+=deltaJ)     // !!!! 1 to end
     {
-        a = rec->getValueOnRegularGrid (dtc, deltaI, j-deltaJ );
-        c = rec->getValueOnRegularGrid (dtc, deltaI, j  );
+        a = rec->getValueOnRegularGrid (deltaI, j-deltaJ );
+        c = rec->getValueOnRegularGrid (deltaI, j  );
         for (i=deltaI; i<W; i+=deltaI, a =b, c = d )
         {
-            b = rec->getValueOnRegularGrid (dtc, i,        j-deltaJ);
-            d = rec->getValueOnRegularGrid (dtc, i,        j  );
+            b = rec->getValueOnRegularGrid (i,        j-deltaJ);
+            d = rec->getValueOnRegularGrid (i,        j  );
 
             if( a == GRIB_NOTDEF || b == GRIB_NOTDEF || c == GRIB_NOTDEF || d == GRIB_NOTDEF ) continue;
 

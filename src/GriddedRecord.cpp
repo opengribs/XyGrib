@@ -32,7 +32,6 @@ GriddedRecord::GriddedRecord ()
 // Interpolation using a regular rectangular grid
 //=====================================================================
 data_t  GriddedRecord::getInterpolatedValueUsingRegularGrid (
-				DataCode dtc, 
 				double lon, double lat,
 				bool interpolateValues) const
 {
@@ -86,15 +85,15 @@ data_t  GriddedRecord::getInterpolatedValueUsingRegularGrid (
 	int ii = (ddx<eps) ? i0 : ((1-ddx)<eps) ? i1 : -1;
 	int jj = (ddy<eps) ? j0 : ((1-ddy)<eps) ? j1 : -1;
 	if (ii>=0 && jj>=0) {
-        return getValueOnRegularGrid (dtc, ii, jj);
+        return getValueOnRegularGrid (ii, jj);
 	}
 
     bool   h00,h01,h10,h11;
 	
-	double x00 = getValueOnRegularGrid (dtc, i0,j0);
-	double x01 = getValueOnRegularGrid (dtc, i0,j1);
-	double x10 = getValueOnRegularGrid (dtc, i1,j0);
-	double x11 = getValueOnRegularGrid (dtc, i1,j1);
+	double x00 = getValueOnRegularGrid (i0,j0);
+	double x01 = getValueOnRegularGrid (i0,j1);
+	double x10 = getValueOnRegularGrid (i1,j0);
+	double x11 = getValueOnRegularGrid (i1,j1);
 
 // if (dtc.dataType==GRB_CLOUD_TOT)
 // printf("GriddedRecord::getInterpolatedValueUsingRegularGrid : %d: %f %f %f %f\n",dtc.dataType, x00,x01,x10,x11);	

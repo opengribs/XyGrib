@@ -116,17 +116,11 @@ class GribRecord : public RegularGridRecord
 							{ return ok && i>=0 && i<Ni && j>=0 && j<Nj ? data.get()[j*Ni+i] : GRIB_NOTDEF;}
 		
         // Valeur pour un point quelconque
-        data_t  getInterpolatedValue (
-							double px, double py,
-							bool interpolate=true) const;
-
 		data_t  getInterpolatedValue (
-							DataCode dtc,
 							double px, double py,
 							bool interpolate=true ) const override;
 		 
-        data_t getValueOnRegularGrid (
-						DataCode dtc, int i, int j ) const override;
+        data_t getValueOnRegularGrid ( int i, int j ) const override;
 
         void setValue (int i, int j, double v)
         		{ if (i>=0 && i<Ni && j>=0 && j<Nj)

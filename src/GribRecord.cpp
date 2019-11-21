@@ -1408,23 +1408,11 @@ zuint GribRecord::periodSeconds(zuchar unit,zuchar P1,zuchar P2,zuchar range) {
 //===============================================================================================
 data_t GribRecord::getInterpolatedValue (double lon, double lat, bool interpolate) const
 {
-    return getInterpolatedValueUsingRegularGrid ( getDataCode(), lon, lat, interpolate);
+    return getInterpolatedValueUsingRegularGrid (lon, lat, interpolate);
 }
 //--------------------------------------------------------------------------
-data_t GribRecord::getValueOnRegularGrid (DataCode dtc, int i, int j ) const
+data_t GribRecord::getValueOnRegularGrid (int i, int j ) const
 {
-	if ( getDataCode() != dtc )
-		return GRIB_NOTDEF;
     return getValue (i,j);
-}
-//--------------------------------------------------------------------------
-data_t  GribRecord::getInterpolatedValue (
-						DataCode dtc,
-						double px, double py,
-						bool interpolate) const 
-{
-	if ( getDataCode() != dtc )
-		return GRIB_NOTDEF;
-    return getInterpolatedValueUsingRegularGrid (dtc,px,py,interpolate);
 }
 
