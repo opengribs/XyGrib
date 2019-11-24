@@ -265,34 +265,8 @@ void GribPlot::draw_WIND_Arrows (
     }
     else
     {	// Flèches uniformément réparties sur l'écran
-		int i0, j0;
-		//recx->print("");
-		if (recx->entireWorldInLongitude) {
-			//DBG("entireWorldInLongitude ");
-			i0 = 0;
-			j0 = 0;
-		}
-		else {
-			if (recx->getDeltaY() > 0)
-				recx->getXY(0, recx->getNj()-1, &lon, &lat);
-			else
-				recx->getXY(0, 0, &lon, &lat);
-			proj->map2screen (lon, lat, &i0, &j0);
-			if (i0 > W) {
-				if (recx->getDeltaY() > 0) {
-					recx->getXY(0, recx->getNj()-1, &lon, &lat);
-					lon -= 360.;
-				}
-				else
-					recx->getXY(0, 0, &lon, &lat);
-				proj->map2screen (lon, lat, &i0, &j0);
-			}
-		}
-		if (j0<0) {
-			j0 = 0;
-		}
-		for (j=j0; j<H; j+=space) {
-			for (i=i0; i<W; i+=space) {
+		for (j= 0; j<H; j+=space) {
+			for (i= 0; i< W; i+=space) {
 				proj->screen2map(i,j, &lon,&lat);
 				if (! recx->isXInMap(lon))
 					lon += 360.0;   // tour du monde ?

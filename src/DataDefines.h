@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define GRIB_NOTDEF -99999
 
-using data_t = double;
+using data_t = float;
 
 template <typename T> inline bool GribDataIsDef(T n) { return n != GRIB_NOTDEF;}
 

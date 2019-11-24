@@ -28,6 +28,9 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 //        ok = false;
 //        return;
 //	}
+	double laD;
+	double loV;
+	double latin1, latin2;
 
 	if (gfld->igdtnum == 0) {
 		// regular lat/long
@@ -53,21 +56,43 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 	else if (gfld->igdtnum == 10) {
 		// Mercator
 		scanFlags  = gfld->igdtmpl[15];
-		resolFlags = gfld->igdtmpl[11];
 		ymin = gfld->igdtmpl[9]/1000000.;
 		xmin = gfld->igdtmpl[10]/1000000.;
-		//double laD  = gfld->igdtmpl[12]/1000000.;
+		resolFlags = gfld->igdtmpl[11];
+		//laD  = gfld->igdtmpl[12]/1000000.;
 		ymax = gfld->igdtmpl[13]/1000000.;
 		xmax = gfld->igdtmpl[14]/1000000.;
 		Di = gfld->igdtmpl[17];
 		Dj = gfld->igdtmpl[18];
-
 	}
-/*
-	else if( gfld->igdtnum == 30 ) {
+	else if( gfld->igdtnum == 20 ) {
+		// Polar Stereographic 	 
+		ymin = gfld->igdtmpl[9]/1000000.;  //  latitude of first gridpoint
+		xmin = gfld->igdtmpl[10]/1000000.; //  longitude of first gridpoint
+		resolFlags = gfld->igdtmpl[11];
+		laD  = gfld->igdtmpl[12]/1000000.;
+		ymax = ymin;
+		xmax = xmin;
+		loV = gfld->igdtmpl[13]/1000000.;
+		Di = gfld->igdtmpl[14]/1000;
+		Dj = gfld->igdtmpl[15]/1000;
 		scanFlags = gfld->igdtmpl[17];
     }
-*/
+	else if( gfld->igdtnum == 30 ) {
+		// Lambert Conformal
+		ymin = gfld->igdtmpl[9]/1000000.;  //  latitude of first gridpoint
+		xmin = gfld->igdtmpl[10]/1000000.; //  longitude of first gridpoint
+		resolFlags = gfld->igdtmpl[11];
+		//laD  = gfld->igdtmpl[12]/1000000.;
+		ymax = ymin;
+		xmax = xmin;
+		loV = gfld->igdtmpl[13]/1000000.;
+		Di = gfld->igdtmpl[14]/1000;
+		Dj = gfld->igdtmpl[15]/1000;
+		scanFlags = gfld->igdtmpl[17];
+		latin1 = gfld->igdtmpl[18]/1000000.;
+		latin2 = gfld->igdtmpl[19]/1000000.;
+    }
     else {
 		DBG ("Unsupported grid type: %ld", gfld->igdtnum);
 		ok = false;
@@ -99,53 +124,54 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 					|| gfld->igdtmpl[0]==8);
 	Ni = gfld->igdtmpl[7];
 	Nj = gfld->igdtmpl[8];
+	if (Ni<=1 || Nj<=1) {
+		DBG ("Record %d: Ni=%d Nj=%d",id,Ni,Nj);
+		ok = false;
+		return;
+	}
 	savXmin = xmin;
 	savXmax = xmax;
 	savYmin = ymin;
 	savYmax = ymax;
 	savDi = Di;
 	savDj = Dj;
-    while ( xmin> xmax   &&  Di >0) {   // horizontal size > 360 °
-        xmin -= 360.0;
-    }
-     while ( xmax> 360) {
-		xmin -= 360.0;
-        xmax -= 360.0;
-    }
-	// checkOrientation ();
-	if (xmin==xmax) {
-		if (Di >= 0)
-			xmin = xmin-360.0;
-		else
-			xmin = xmin+360.0;
-		Di = 360.0/Ni;
-	}
-	if (Ni<=1 || Nj<=1) {
-		DBG ("Record %d: Ni=%d Nj=%d",id,Ni,Nj);
-		ok = false;
-		return;
-	}
-	else {
+	if( gfld->igdtnum != 30 && gfld->igdtnum != 20 ) {
+	    while ( xmin> xmax   &&  Di >0) {   // horizontal size > 360 °
+    	    xmin -= 360.0;
+		}
+		while ( xmax> 360) {
+			xmin -= 360.0;
+			xmax -= 360.0;
+		}
+		// checkOrientation ();
+		if (xmin==xmax) {
+			if (Di >= 0)
+				xmin = xmin-360.0;
+			else
+				xmin = xmin+360.0;
+			Di = 360.0/Ni;
+		}
 		Di = (xmax-xmin) / (Ni-1);
 		Dj = (ymax-ymin) / (Nj-1);
+
+		double v;
+		if (xmin > xmax)
+		{
+			//printf("GribRecord::checkOrientation (): xmin>xmax => must reverse data\n");
+			v=xmin;  xmin=xmax;  xmax=v;
+			Di = fabs(Di);
+		}
+		if (ymin > ymax)
+		{
+			//printf("GribRecord::checkOrientation (): ymin>ymax => must reverse data\n");
+			v=ymin;  ymin=ymax;  ymax=v;
+			Dj = fabs(Dj);
+		}
+		while (xmin<=-180) {
+        	xmin += 360.0;
+        	xmax += 360.0;
+		}
 	}
-	double v;
-	if (xmin > xmax)
-	{
-		//printf("GribRecord::checkOrientation (): xmin>xmax => must reverse data\n");
-		v=xmin;  xmin=xmax;  xmax=v;
-		Di = fabs(Di);
-	}
-	if (ymin > ymax)
-	{
-		//printf("GribRecord::checkOrientation (): ymin>ymax => must reverse data\n");
-		v=ymin;  ymin=ymax;  ymax=v;
-		Dj = fabs(Dj);
-	}
-    while (xmin<=-180) {
-        xmin += 360.0;
-        xmax += 360.0;
-    }
 
 	if (gfld->igdtnum == 0) {
 	    grid = std::make_shared<PlateCarree>(Ni, Nj, xmin, ymin, Di, Dj);
@@ -153,8 +179,57 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 	else if (gfld->igdtnum == 10) {
 	    grid = std::make_shared<Mercator>(Ni, Nj, xmin, ymin, ymax, Di, Dj);
 	}
+	else if( gfld->igdtnum == 20 ) {
+	    grid = std::make_shared<Stereographic>(Ni, Nj, xmin, ymin, Dj/1000., laD, loV);
+	}
 	else if( gfld->igdtnum == 30 ) {
-		scanFlags = gfld->igdtmpl[17];
+	    grid = std::make_shared<Lambert>(Ni, Nj, xmin, ymin, Dj/1000., latin1, latin2, loV);
+	}
+
+	if( gfld->igdtnum == 30 || gfld->igdtnum == 20 ) {
+		double lon, lat, x, y;
+
+	    // XXXX compute xmax, ymax
+	    xmin = 10000;
+	    xmax = -10000;
+	    ymin = 10000;
+	    ymax = -10000;
+		grid->XY2LonLat(0, 0, lon, lat);
+		if (lon < xmin) xmin = lon;
+		if (lon > xmax) xmax = lon;
+		if (lat < ymin) ymin = lat;
+		if (lat > ymax) ymax = lat;
+
+		grid->XY2LonLat(Ni, 0, lon, lat);
+		if (lon < xmin) xmin = lon;
+		if (lon > xmax) xmax = lon;
+		if (lat < ymin) ymin = lat;
+		if (lat > ymax) ymax = lat;
+
+		grid->XY2LonLat(Ni, Nj, lon, lat);
+		if (lon < xmin) xmin = lon;
+		if (lon > xmax) xmax = lon;
+		if (lat < ymin) ymin = lat;
+		if (lat > ymax) ymax = lat;
+
+		grid->XY2LonLat(0, Nj, lon, lat);
+		if (lon > 360)
+			lon -= 360;
+		if (lon < xmin) xmin = lon;
+		if (lon > xmax) xmax = lon;
+		if (lat < ymin) ymin = lat;
+		if (lat > ymax) ymax = lat;
+		if (xmin < loV && loV < xmax) {
+			grid->lonLat2XY(loV, ymin, x, y);
+			grid->XY2LonLat(x, 0, lon, lat);
+			if (lat < ymin) ymin = lat;
+			if (lat > ymax) ymax = lat;
+			grid->XY2LonLat(x, Nj, lon, lat);
+			if (lat < ymin) ymin = lat;
+			if (lat > ymax) ymax = lat;
+		}
+		Di = (xmax-xmin) / (Ni-1);
+		Dj = (ymax-ymin) / (Nj-1);
     }
 	hasDiDj = (resolFlags&0x10)!=0 && (resolFlags&0x20)!=0;
 	isUeastVnorth =  (resolFlags&0x08) ==0;
@@ -704,7 +779,3 @@ void Grib2Record::print (const char *title)
 		fprintf(stderr,"====== ERROR : GribRecord %d : %s\n", id, title);
 	}
 }
-
-
-
-
