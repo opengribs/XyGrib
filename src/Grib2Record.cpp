@@ -28,7 +28,7 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 //        ok = false;
 //        return;
 //	}
-	// double laD;
+	double laD;
 	double loV;
 	double latin1, latin2;
 
@@ -65,7 +65,21 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 		Di = gfld->igdtmpl[17];
 		Dj = gfld->igdtmpl[18];
 	}
+	else if( gfld->igdtnum == 20 ) {
+		// Polar Stereographic 	 
+		ymin = gfld->igdtmpl[9]/1000000.;  //  latitude of first gridpoint
+		xmin = gfld->igdtmpl[10]/1000000.; //  longitude of first gridpoint
+		resolFlags = gfld->igdtmpl[11];
+		laD  = gfld->igdtmpl[12]/1000000.;
+		ymax = ymin;
+		xmax = xmin;
+		loV = gfld->igdtmpl[13]/1000000.;
+		Di = gfld->igdtmpl[14]/1000;
+		Dj = gfld->igdtmpl[15]/1000;
+		scanFlags = gfld->igdtmpl[17];
+    }
 	else if( gfld->igdtnum == 30 ) {
+		// Lambert Conformal
 		ymin = gfld->igdtmpl[9]/1000000.;  //  latitude of first gridpoint
 		xmin = gfld->igdtmpl[10]/1000000.; //  longitude of first gridpoint
 		resolFlags = gfld->igdtmpl[11];
@@ -121,7 +135,7 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 	savYmax = ymax;
 	savDi = Di;
 	savDj = Dj;
-	if( gfld->igdtnum != 30 ) {
+	if( gfld->igdtnum != 30 && gfld->igdtnum != 20 ) {
 	    while ( xmin> xmax   &&  Di >0) {   // horizontal size > 360 °
     	    xmin -= 360.0;
 		}
@@ -165,10 +179,16 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 	else if (gfld->igdtnum == 10) {
 	    grid = std::make_shared<Mercator>(Ni, Nj, xmin, ymin, ymax, Di, Dj);
 	}
+	else if( gfld->igdtnum == 20 ) {
+	    grid = std::make_shared<Stereographic>(Ni, Nj, xmin, ymin, Dj/1000., laD, loV);
+	}
 	else if( gfld->igdtnum == 30 ) {
+	    grid = std::make_shared<Lambert>(Ni, Nj, xmin, ymin, Dj/1000., latin1, latin2, loV);
+	}
+
+	if( gfld->igdtnum == 30 || gfld->igdtnum == 20 ) {
 		double lon, lat, x, y;
 
-	    grid = std::make_shared<Lambert>(Ni, Nj, xmin, ymin, Dj/1000., latin1, latin2, loV);
 	    // XXXX compute xmax, ymax
 	    xmin = 10000;
 	    xmax = -10000;
@@ -193,6 +213,8 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 		if (lat > ymax) ymax = lat;
 
 		grid->XY2LonLat(0, Nj, lon, lat);
+		if (lon > 360)
+			lon -= 360;
 		if (lon < xmin) xmin = lon;
 		if (lon > xmax) xmax = lon;
 		if (lat < ymin) ymin = lat;
