@@ -845,7 +845,10 @@ void MainWindow::setMenubarItems()
 
     if (plotter->hasDataType (GRB_CLOUD_TOT)) menuBar->acView_CloudColors->setEnabled(true);
 	if (plotter->hasDataType (GRB_HUMID_REL)) menuBar->acView_HumidColors->setEnabled(true);
-	if (plotter->hasDataType (GRB_DEWPOINT))  menuBar->acView_DeltaDewpointColors->setEnabled(true);
+
+	// DEW is only at LV_ABOV_GND 2 level
+	ok = plotter->hasDataType (GRB_DEWPOINT) && plotter->hasData (GRB_TEMP,LV_ABOV_GND,2);;
+	if (ok) menuBar->acView_DeltaDewpointColors->setEnabled(true);
 
 	ok = plotter->hasData (GRB_PRESSURE_MSL,LV_MSL,0);
     if (ok) {
