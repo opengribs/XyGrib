@@ -28,12 +28,52 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 //        ok = false;
 //        return;
 //	}
-	if (!(gfld->griddef==0 && gfld->igdtnum==0 && gfld->igdtlen>=19)) {
-		// ! Latitude/Longitude grid
-//		DBG ("Unsupported grid type: %ld", gfld->igdtnum);
+
+	if (gfld->igdtnum == 0) {
+		// regular lat/long
+		double coefangle = 1e-6;
+
+		if (!(gfld->griddef==0 && gfld->igdtlen>=19)) {
+			// ! Latitude/Longitude grid
+			DBG ("Unsupported grid type: %ld", gfld->igdtnum);
+			ok = false;
+			return;
+		}
+		scanFlags = gfld->igdtmpl[18];
+		resolFlags = gfld->igdtmpl[13];
+		if (gfld->igdtmpl[9]!=0 && gfld->igdtmpl[10]!=0)
+			coefangle = (double)(gfld->igdtmpl[9])/gfld->igdtmpl[10];
+		ymin = gfld->igdtmpl[11]*coefangle;
+		xmin = gfld->igdtmpl[12]*coefangle;
+		ymax = gfld->igdtmpl[14]*coefangle;
+		xmax = gfld->igdtmpl[15]*coefangle;
+		Di = gfld->igdtmpl[16]*coefangle;
+		Dj = gfld->igdtmpl[17]*coefangle;
+	}
+	else if (gfld->igdtnum == 10) {
+		// Mercator
+		scanFlags  = gfld->igdtmpl[15];
+		resolFlags = gfld->igdtmpl[11];
+		ymin = gfld->igdtmpl[9]/1000000.;
+		xmin = gfld->igdtmpl[10]/1000000.;
+		//double laD  = gfld->igdtmpl[12]/1000000.;
+		ymax = gfld->igdtmpl[13]/1000000.;
+		xmax = gfld->igdtmpl[14]/1000000.;
+		Di = gfld->igdtmpl[17];
+		Dj = gfld->igdtmpl[18];
+
+	}
+/*
+	else if( gfld->igdtnum == 30 ) {
+		scanFlags = gfld->igdtmpl[17];
+    }
+*/
+    else {
+		DBG ("Unsupported grid type: %ld", gfld->igdtnum);
 		ok = false;
 		return;
-	}	
+	}
+
 	//------------------------------------------------
 	// General infos
 	//------------------------------------------------
@@ -59,19 +99,10 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 					|| gfld->igdtmpl[0]==8);
 	Ni = gfld->igdtmpl[7];
 	Nj = gfld->igdtmpl[8];
-	double coefangle = 1e-6;
-	if (gfld->igdtmpl[9]!=0 && gfld->igdtmpl[10]!=0)
-		coefangle = (double)(gfld->igdtmpl[9])/gfld->igdtmpl[10];
-	ymin = gfld->igdtmpl[11]*coefangle;
-	xmin = gfld->igdtmpl[12]*coefangle;
-	ymax = gfld->igdtmpl[14]*coefangle;
-	xmax = gfld->igdtmpl[15]*coefangle;
 	savXmin = xmin;
 	savXmax = xmax;
 	savYmin = ymin;
 	savYmax = ymax;
-	Di = gfld->igdtmpl[16]*coefangle;
-	Dj = gfld->igdtmpl[17]*coefangle;
 	savDi = Di;
 	savDj = Dj;
     while ( xmin> xmax   &&  Di >0) {   // horizontal size > 360 °
@@ -81,26 +112,55 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 		xmin -= 360.0;
         xmax -= 360.0;
     }
-	resolFlags = gfld->igdtmpl[13];
-	hasDiDj = (resolFlags&0x10)!=0 && (resolFlags&0x20)!=0;
-	isUeastVnorth =  (resolFlags&0x08) ==0;
-	scanFlags = gfld->igdtmpl[18];
-	isScanIpositive = (scanFlags&0x80) ==0;
-	isScanJpositive = (scanFlags&0x40) !=0;
-	isAdjacentI     = (scanFlags&0x20) ==0;
-	bool allRowsScanSameDir = (scanFlags&0x10) ==0;
-	if (! allRowsScanSameDir) {
-		erreur ("Unsupported grid type: allRowsScanSameDir=%d", (int)allRowsScanSameDir);
-		ok = false;
+	// checkOrientation ();
+	if (xmin==xmax) {
+		if (Di >= 0)
+			xmin = xmin-360.0;
+		else
+			xmin = xmin+360.0;
+		Di = 360.0/Ni;
 	}
 	if (Ni<=1 || Nj<=1) {
 		DBG ("Record %d: Ni=%d Nj=%d",id,Ni,Nj);
 		ok = false;
+		return;
 	}
-	else { 
+	else {
 		Di = (xmax-xmin) / (Ni-1);
 		Dj = (ymax-ymin) / (Nj-1);
 	}
+	double v;
+	if (xmin > xmax)
+	{
+		//printf("GribRecord::checkOrientation (): xmin>xmax => must reverse data\n");
+		v=xmin;  xmin=xmax;  xmax=v;
+		Di = fabs(Di);
+	}
+	if (ymin > ymax)
+	{
+		//printf("GribRecord::checkOrientation (): ymin>ymax => must reverse data\n");
+		v=ymin;  ymin=ymax;  ymax=v;
+		Dj = fabs(Dj);
+	}
+    while (xmin<=-180) {
+        xmin += 360.0;
+        xmax += 360.0;
+    }
+
+	if (gfld->igdtnum == 0) {
+	    grid = std::make_shared<PlateCarree>(Ni, Nj, xmin, ymin, Di, Dj);
+	}
+	else if (gfld->igdtnum == 10) {
+	    grid = std::make_shared<Mercator>(Ni, Nj, xmin, ymin, ymax, Di, Dj);
+	}
+	else if( gfld->igdtnum == 30 ) {
+		scanFlags = gfld->igdtmpl[17];
+    }
+	hasDiDj = (resolFlags&0x10)!=0 && (resolFlags&0x20)!=0;
+	isUeastVnorth =  (resolFlags&0x08) ==0;
+	isScanIpositive = (scanFlags&0x80) ==0;
+	isScanJpositive = (scanFlags&0x40) !=0;
+	isAdjacentI     = (scanFlags&0x20) ==0;
 	//----------------------------------------
 	// BMS
 	//----------------------------------------
@@ -117,41 +177,31 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
     this->data = std::shared_ptr<data_t>(ptr, std::default_delete<data_t[]>());
 
     // Read data in the order given by isAdjacentI
-    int i, j;
-    int ind, indgfld=0;
-    if (isAdjacentI) {
-        for (j=0; j<Nj; j++) {
-            for (i=0; i<Ni; i++, indgfld++) {
-                if (!hasDiDj && !isScanJpositive) {
-                    ind = (Nj-1 -j)*Ni+i;
-                }
-                else {
-                    ind = j*Ni+i;
-                }
-                if (!hasBMS || gfld->bmap[ind]) {
-                    data.get()[ind] = gfld->fld[indgfld];
-                }
-                else {
-                    data.get()[ind] = GRIB_NOTDEF;
-                }
-            }
-        }
-    }
-    else {
-        for (i=0; i<Ni; i++) {
-            for (j=0; j<Nj; j++, indgfld++) {
-                if (!hasDiDj && !isScanJpositive) {
-                    ind = (Nj-1 -j)*Ni+i;
-                }
-                else {
-                    ind = j*Ni+i;
-                }
-                if (!hasBMS || gfld->bmap[ind]) {
-                    data.get()[ind] = gfld->fld[indgfld];
-                }
-                else {
-                    data.get()[ind] = GRIB_NOTDEF;
-                }
+	for (int j=0; j<Nj; j++) {
+		for (int i=0; i<Ni; i++) {
+			int indgfld;
+			switch(scanFlags){
+				case 0:   /* 0000 0000 */ indgfld = (Nj -j -1)*Ni +i;          break;
+				case 128: /* 1000 0000 */ indgfld = (Nj -j -1)*Ni +(Ni -i -1); break;
+				case 64:  /* 0100 0000 */ indgfld =          j*Ni +i;          break;
+				case 192: /* 1100 0000 */ indgfld =          j*Ni +(Ni -i -1); break;
+				case 32:  /* 0010 0000 */ indgfld =          i*Nj +(Nj -j -1); break;
+				case 160: /* 1010 0000 */ indgfld = (Ni -i -1)*Nj +(Ni -i -1); break;
+				case 96:  /* 0110 0000 */ indgfld =          i*Nj +j;          break;
+				case 224: /* 1110 0000 */ indgfld = (Ni -i -1)*Nj +j;          break;
+				case 80:  /* 0101 0000 */ indgfld = ( j % 2 == 0 ?
+                                                j*Ni +i :
+                                                j*Ni +(Ni -i -1) );            break;
+				default:
+					ok = false;
+					return;
+			}
+			int ind = j*Ni +i;
+			if (!hasBMS || gfld->bmap[indgfld]) {
+				data.get()[ind] = gfld->fld[indgfld];
+			}
+            else {
+                data.get()[ind] = GRIB_NOTDEF;
             }
         }
     }
@@ -160,9 +210,9 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 	if (ok && hasBMS) { // replace the BMS bits table with a faster bool table
         boolBMStab = new bool [Ni*Nj];
 		assert (boolBMStab);
-		for (int i=0; i<Ni; i++) {
-			for (int j=0; j<Nj; j++) {
-				ind = j*Ni+i;
+		for (int j=0; j<Nj; j++) {
+			for (int i=0; i<Ni; i++) {
+				int ind = j*Ni+i;
 				boolBMStab [ind] = gfld->bmap[ind];
 			}
 		}
@@ -171,7 +221,6 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 	//----------------------------------------
 	// end
 	//----------------------------------------
-	checkOrientation ();
 	if (ok) {
 		editionNumber = 2;
 		translateDataType ();
@@ -247,6 +296,11 @@ void Grib2Record::analyseProductDefinitionTemplate (gribfield  *gfld)
 		case 4: /* difference */
 		    timeRange = 5;
 		    break;
+		default:
+            DBG("id=%d: pdtnum: %d unknown proc code %d", id, pdtnum, (int)gfld->ipdtmpl[23]);
+            pdtnum = -1;
+            ok = false;
+            return;
         }
 	    switch(gfld->ipdtmpl[25]) { // time_unit, table 4.4
 	    case 1:  // hour
@@ -633,6 +687,7 @@ void Grib2Record::print (const char *title)
 	if (ok) {
 		fprintf(stderr,"====== Grib2Record %d : %s\n", id, title);
 		fprintf(stderr,"idCenter=%d idModel=%d idGrid=%d\n", idCenter,idModel,idGrid);
+		fprintf(stderr,"scanFlags= 0x%x\n", scanFlags);
 		fprintf(stderr,"data=%s alt=%s\n", qPrintable(DataCodeStr::toString_name(dataType)), qPrintable(AltitudeStr::toStringShort(Altitude(levelType,levelValue))) );
 		fprintf(stderr,"dataType=%d levelType=%d levelValue=%d\n", dataType, levelType,levelValue);
 		fprintf(stderr,"hour=%02g  cur=%s  ref=%s\n", (curDate-refDate)/3600.0,strCurDate,strRefDate);
@@ -641,6 +696,7 @@ void Grib2Record::print (const char *title)
 		fprintf(stderr,"hasDiDj=%d Ni=%d Nj=%d    entireWorldInLongitude=%d\n", hasDiDj, Ni,Nj, (int)entireWorldInLongitude);
 // 		fprintf(stderr,"savDi,savDj=(%f %f)\n", hasDiDj, savDi,savDj);
 		fprintf(stderr,"final     Di,Dj=(%f %f)\n", Di,Dj);
+		fprintf(stderr,"scanFlags=0x%x\n", scanFlags);
 		fprintf(stderr,"hasBMS=%d isScanIpositive=%d isScanJpositive=%d isAdjacentI=%d\n",
 							hasBMS, isScanIpositive,isScanJpositive,isAdjacentI );
 	}

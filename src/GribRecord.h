@@ -99,8 +99,16 @@ class GribRecord : public RegularGridRecord
 
         // coordonnées d'un point de la grille
         void getXY(int i, int j, double *lon, double *lat) const override {
-                *lon = getX(i);
-                *lat = getY(j);
+                if (!ok) {
+                    *lon = GRIB_NOTDEF;
+                    *lat = GRIB_NOTDEF;
+                    return;
+                }
+                grid->XY2LonLat(i, j, *lon, *lat);
+            }
+
+        virtual void lonLat2XY(double lon, double lat, double *x, double *y) const override {
+                grid->lonLat2XY(lon, lat, *x, *y);
             }
 
         // Valeur pour un point de la grille
@@ -108,17 +116,11 @@ class GribRecord : public RegularGridRecord
 							{ return ok && i>=0 && i<Ni && j>=0 && j<Nj ? data.get()[j*Ni+i] : GRIB_NOTDEF;}
 		
         // Valeur pour un point quelconque
-        data_t  getInterpolatedValue (
-							double px, double py,
-							bool interpolate=true) const;
-
 		data_t  getInterpolatedValue (
-							DataCode dtc,
 							double px, double py,
 							bool interpolate=true ) const override;
 		 
-        data_t getValueOnRegularGrid (
-						DataCode dtc, int i, int j ) const override;
+        data_t getValueOnRegularGrid ( int i, int j ) const override;
 
         void setValue (int i, int j, double v)
         		{ if (i>=0 && i<Ni && j>=0 && j<Nj)
@@ -139,11 +141,8 @@ class GribRecord : public RegularGridRecord
         bool  isEof () const   {return eof;};
         virtual void  print (const char *title);
 
-    private:
-        double  getX(int i) const override { return ok && i>= 0 && i < Ni? xmin+i*Di : GRIB_NOTDEF;}
-        double  getY(int j) const override { return ok && j >= 0 && j < Nj? ymin+j*Dj : GRIB_NOTDEF;}
-
     protected:
+        std::shared_ptr<GridType> grid{};
         int    id;         // unique identifiant
         bool   ok{false};    // validité des données
         bool   knownData; 	// type de donnée connu

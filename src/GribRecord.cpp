@@ -637,10 +637,11 @@ GribRecord::GribRecord (ZUFILE* file, int id_)
 	
 	checkOrientation ();
     if (ok) {
-		translateDataType ();
-		setDataType (dataType);
-		
-		entireWorldInLongitude = (fabs(xmax-xmin)>=360.0)||(fabs(xmax-360.0+Di-xmin) < fabs(Di/20));
+        grid = std::make_shared<PlateCarree>(Ni, Nj, xmin, ymin, Di, Dj);
+        translateDataType ();
+        setDataType (dataType);
+
+        entireWorldInLongitude = (fabs(xmax-xmin)>=360.0)||(fabs(xmax-360.0+Di-xmin) < fabs(Di/20));
 		//DBG("xmin=%g xmax=%g Di=%g %g entireWorldInLongitude=%d : ", xmin, xmax, Di, 
 		//			fabs(xmax-360.0+Di-xmin),(int)entireWorldInLongitude);
 		//this->print("");
@@ -1405,201 +1406,13 @@ zuint GribRecord::periodSeconds(zuchar unit,zuchar P1,zuchar P2,zuchar range) {
 
 
 //===============================================================================================
-data_t GribRecord::getInterpolatedValue (double px, double py, bool interpolate) const
+data_t GribRecord::getInterpolatedValue (double lon, double lat, bool interpolate) const
 {
-    double val; 
-	double eps = 1e-4;
-    double pi, pj;     // coord. in grid unit
-    // 00 10      point is in a square
-    // 01 11
-    int i0, j0, i1, j1;
-	double ddx, ddy;
-	
-    if (!ok || Di==0 || Dj==0) {
-        return GRIB_NOTDEF;
-    }
-    if (!isYInMap(py)) {
-		return GRIB_NOTDEF;
-    } 
-    if (!isXInMap(px)) {
-		if (! entireWorldInLongitude) {
-			px += 360.0;               // tour du monde à droite ?
-			if (!isXInMap(px)) {
-				px -= 2*360.0;              // tour du monde à gauche ?
-				if (!isXInMap(px)) {
-					return GRIB_NOTDEF;
-				}
-			}
-			pi = (px-xmin)/Di;
-			i0 = (int) floor(pi);  // point 00
-			i1 = i0+1;
-		}
-		else {
-			while (px< 0)
-				px += 360;
-			if (px <= xmax) {
-				pi = (px-xmin)/Di;
-				i0 = (int) floor(pi);  // point 00
-				i1 = i0+1;
-			}
-			else {
-				pi = (px-xmin)/Di;
-				i0 = (int) floor(pi);  // point 00
-				i1 = 0;
-			}
-		}
-    } 
-    else {
-        if (px < xmin)
-            px += 360.;
-		pi = (px-xmin)/Di;
-		i0 = (int) floor(pi);  // point 00
-		i1 = i0+1;
-	}
-	pj = (py-ymin)/Dj;
-	j0 = (int) floor(pj);
-	j1 = j0+1;
-	
-	// value very close to a grid point ?
-	ddx = fabs (pi-i0);
-	ddy = fabs (pj-j0);
-	int ii = (ddx<eps) ? i0 : ((1-ddx)<eps) ? i1 : -1;
-	int jj = (ddy<eps) ? j0 : ((1-ddy)<eps) ? j1 : -1;
-	if (ii>=0 && jj>=0) {
-		if (hasValue(ii,jj))
-			return getValue (ii, jj);
-		else
-			return GRIB_NOTDEF;
-	}
-
-    bool h00,h01,h10,h11;
-    int nbval = 0;     // how many values in grid ?
-    if ((h00=hasValue(i0, j0)))
-        nbval ++;
-    if ((h10=hasValue(i1, j0)))
-        nbval ++;
-    if ((h01=hasValue(i0, j1)))
-        nbval ++;
-    if ((h11=hasValue(i1, j1)))
-        nbval ++;
-
-    if (nbval <3) {
-        return GRIB_NOTDEF;
-    }
-
-    // distances to 00
-    double dx = pi-i0;
-    double dy = pj-j0;
-
-	if (! interpolate)
-	{
-		if (dx < 0.5) {
-			if (dy < 0.5)
-				val = getValue(i0, j0);
-			else
-				val = getValue(i0, j1);
-		}
-		else {
-			if (dy < 0.5)
-				val = getValue(i1, j0);
-			else
-				val = getValue(i1, j1);
-		}
-		return val;
-	}
-
-    dx = (3.0 - 2.0*dx)*dx*dx;   // pseudo hermite interpolation
-    dy = (3.0 - 2.0*dy)*dy*dy;
-
-
-    double xa, xb, xc, kx, ky;
-    // Triangle :
-    //   xa  xb
-    //   xc
-    // kx = distance(xa,x)
-    // ky = distance(xa,y)
-    if (nbval == 4)
-    { 
-        double x00 = getValue(i0, j0);
-        double x01 = getValue(i0, j1);
-        double x10 = getValue(i1, j0);
-        double x11 = getValue(i1, j1);
-        double x1 = (1.0-dx)*x00 + dx*x10;
-        double x2 = (1.0-dx)*x01 + dx*x11;
-        val =  (1.0-dy)*x1 + dy*x2;
-        return val;
-    }
-    else {
-        // here nbval==3, check the corner without data
-        if (!h00) {
-            //printf("! h00  %f %f\n", dx,dy);
-            xa = getValue(i1, j1);   // A = point 11
-            xb = getValue(i0, j1);   // B = point 01
-            xc = getValue(i1, j0);   // C = point 10
-            kx = 1-dx;
-            ky = 1-dy;
-        }
-        else if (!h01) {
-            //printf("! h01  %f %f\n", dx,dy);
-            xa = getValue(i1, j0);   // A = point 10
-            xb = getValue(i1, j1);   // B = point 11
-            xc = getValue(i0, j0);   // C = point 00
-            kx = dy;
-            ky = 1-dx;
-        }
-        else if (!h10) {
-            //printf("! h10  %f %f\n", dx,dy);
-            xa = getValue(i0, j1);     // A = point 01
-            xb = getValue(i0, j0);     // B = point 00
-            xc = getValue(i1, j1);     // C = point 11
-            kx = 1-dy;
-            ky = dx;
-        }
-        else {
-            //printf("! h11  %f %f\n", dx,dy);
-            xa = getValue(i0, j0);  // A = point 00
-            xb = getValue(i1, j0);  // B = point 10
-            xc = getValue(i0, j1);  // C = point 01
-            kx = dx;
-            ky = dy;
-        }
-    }
-    double k = kx + ky;
-    if (k<0 || k>1) {
-        val = GRIB_NOTDEF;
-    }
-    else if (k == 0) {
-        val = xa;
-    }
-    else {
-        // axes interpolation
-        double vx = k*xb + (1-k)*xa;
-        double vy = k*xc + (1-k)*xa;
-        // diagonal interpolation
-        double k2 = kx / k;
-        val =  k2*vx + (1-k2)*vy;
-    }
-    return val;
+    return getInterpolatedValueUsingRegularGrid (lon, lat, interpolate);
 }
 //--------------------------------------------------------------------------
-data_t GribRecord::getValueOnRegularGrid (DataCode dtc, int i, int j ) const
+data_t GribRecord::getValueOnRegularGrid (int i, int j ) const
 {
-	if ( getDataCode() != dtc )
-		return GRIB_NOTDEF;
     return getValue (i,j);
 }
-//--------------------------------------------------------------------------
-data_t  GribRecord::getInterpolatedValue (
-						DataCode dtc,
-						double px, double py,
-						bool interpolate) const 
-{
-	if ( getDataCode() != dtc )
-		return GRIB_NOTDEF;
-    return getInterpolatedValueUsingRegularGrid (dtc,px,py,interpolate);
-}
-
-
-
-
 

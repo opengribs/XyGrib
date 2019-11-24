@@ -275,7 +275,7 @@ double Sounding::hpaMin ()
 SoundingPointWind Sounding::getWindByAlt (double hpa)
 {
 	for (auto pw : allSoundsWind) {
-			if (pw.hpa == hpa) {
+        if (pw.hpa == hpa) {
 			return pw;
 		}
 	}

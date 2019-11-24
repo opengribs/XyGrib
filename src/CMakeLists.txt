@@ -26,8 +26,6 @@ DialogServerStatus.h
 DialogUnits.h
 FileLoader.h
 FileLoaderGRIB.h
-Grib2Plot.h
-Grib2Reader.h
 Grib2Record.h
 GribAnimator.h
 GribPlot.h
@@ -77,8 +75,6 @@ DialogSelectMetar.cpp
 DialogServerStatus.cpp
 DialogUnits.cpp
 FileLoaderGRIB.cpp
-Grib2Plot.cpp
-Grib2Reader.cpp
 Grib2Record.cpp
 GribAnimator.cpp
 GribPlot.cpp

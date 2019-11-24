@@ -685,7 +685,7 @@ FileDataType Terrain::loadMeteoDataFile (const QString& fileName, bool zoom)
     //----------------------------------------------
     GriddedPlotter  *griddedPlot_Temp = nullptr;
 	if (nbrecs>0 && !ok && taskProgress->continueDownload) {	// try to load a GRIB file
-		//DBGQS("try to load a GRIB1 file: "+fileName);
+		//DBGQS("try to load a GRIB file: "+fileName);
 		taskProgress->setWindowTitle (tr("Open file")+" GRIB");
 		taskProgress->setVisible (true);
 		taskProgress->setValue (0);
@@ -701,24 +701,6 @@ FileDataType Terrain::loadMeteoDataFile (const QString& fileName, bool zoom)
             griddedPlot_Temp = nullptr;
 		}
 	}
-	if (nbrecs>0 && !ok && taskProgress->continueDownload) {	// try to load a GRIB2 file
-		//DBGQS("try to load a GRIB2 file: "+fileName);
-		taskProgress->setWindowTitle (tr("Open file")+" GRIB2");
-		taskProgress->setVisible (true);
-		taskProgress->setValue (0);
-		griddedPlot_Temp = new Grib2Plot ();
-		assert(griddedPlot_Temp);
-		griddedPlot_Temp->loadFile (fileName, taskProgress, nbrecs);    // GRIB file ?
-		if (griddedPlot_Temp->isReaderOk()) {
-			currentFileType = DATATYPE_GRIB;
-			ok = true;
-		}
-		else {
-			delete griddedPlot_Temp;
-            griddedPlot_Temp = nullptr;
-		}
-	}
-	
 	taskProgress->setVisible (false);
 	
 	griddedPlot = griddedPlot_Temp;

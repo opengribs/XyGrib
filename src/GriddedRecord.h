@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "DataDefines.h"
 #include "DataMeteoAbstract.h"
+#include "GridType.h"
 
 //====================================================================
 class GriddedRecord : public DataRecordAbstract
@@ -52,7 +53,6 @@ class GriddedRecord : public DataRecordAbstract
 						{ return isXInMap(x) && isYInMap(y); }
 
         virtual data_t  getInterpolatedValue (
-							DataCode dtc,
 							double px, double py,
 							bool interpolate=true ) const = 0;
 								
@@ -63,9 +63,8 @@ class GriddedRecord : public DataRecordAbstract
 		/** All records must have (or simulate) a rectangular regular grid.
 		*/ 
 		virtual data_t getValueOnRegularGrid ( 
-								DataCode dtc, int i, int j ) const = 0;
+								int i, int j ) const = 0;
 		virtual data_t  getInterpolatedValueUsingRegularGrid (
-								DataCode dtc, 
 								double px, double py,
 								bool interpolateValues) const;
 						
@@ -74,6 +73,7 @@ class GriddedRecord : public DataRecordAbstract
         virtual double  getDeltaX () const = 0;
         virtual double  getDeltaY () const = 0;
         virtual void getXY(int i, int j, double *lon, double *lat) const = 0;
+        virtual void lonLat2XY(double lon, double lat, double *x, double *y) const = 0;
 								
         virtual int    getTotalNumberOfPoints ()  const = 0;
         virtual double getAveragePointsDensity () const = 0;
@@ -88,8 +88,6 @@ class GriddedRecord : public DataRecordAbstract
 		bool   entireWorldInLongitude;
 
 	protected:
-        virtual double  getX (int i) const = 0;
-        virtual double  getY (int j) const = 0;
 		double xmin,xmax, ymin,ymax;
 		bool   duplicated;
 		DataCenterModel    dataCenterModel;

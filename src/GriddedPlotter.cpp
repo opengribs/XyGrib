@@ -415,7 +415,7 @@ void  GriddedPlotter::drawColorMapGeneric_1D (
     if (rec == nullptr)
         return;
     int i, j;
-    double x, y, v;
+    double lon, lat, v;
     int W = proj->getW();
     int H = proj->getH();
     QRgb   rgb;
@@ -424,12 +424,12 @@ void  GriddedPlotter::drawColorMapGeneric_1D (
     for (i=0; i<W-1; i+=2) {
         for (j=0; j<H-1; j+=2)
         {
-            proj->screen2map(i,j, &x, &y);
-            if (! rec->isXInMap(x))
-                x += 360.0;    // tour complet ?
-            if (rec->isPointInMap(x, y))
+            proj->screen2map(i,j, &lon, &lat);
+            if (! rec->isXInMap(lon))
+                lon += 360.0;    // tour complet ?
+            if (rec->isPointInMap(lon, lat))
             {
-                v = rec->getInterpolatedValue (dtc, x, y, mustInterpolateValues);
+                v = rec->getInterpolatedValue (lon, lat, mustInterpolateValues);
                 if (GribDataIsDef(v))
                 {
                     rgb = (this->*function_getColor) (v, smooth);
@@ -460,7 +460,7 @@ void  GriddedPlotter::drawColorMapGeneric_2D (
     if (recX == nullptr || recY == nullptr)
         return;
     int i, j;
-    double x, y, vx, vy, v;
+    double lon, lat, vx, vy, v;
     int W = proj->getW();
     int H = proj->getH();
     QRgb   rgb;
@@ -469,14 +469,14 @@ void  GriddedPlotter::drawColorMapGeneric_2D (
     for (i=0; i<W-1; i+=2) {
         for (j=0; j<H-1; j+=2)
         {
-            proj->screen2map(i,j, &x, &y);
+            proj->screen2map(i,j, &lon, &lat);
             
-            if (! recX->isXInMap(x))
-                x += 360.0;    // tour complet ?
-            if (recX->isPointInMap(x, y))
+            if (! recX->isXInMap(lon))
+                lon += 360.0;    // tour complet ?
+            if (recX->isPointInMap(lon, lat))
             {
-                vx = recX->getInterpolatedValue (dtcX, x, y, mustInterpolateValues);
-                vy = recY->getInterpolatedValue (dtcY, x, y, mustInterpolateValues);
+                vx = recX->getInterpolatedValue (lon, lat, mustInterpolateValues);
+                vy = recY->getInterpolatedValue (lon, lat, mustInterpolateValues);
 				
                 if (GribDataIsDef(vx) && GribDataIsDef(vy))
                 {
@@ -508,12 +508,12 @@ void  GriddedPlotter::drawColorMapGeneric_Abs_Delta_2D (
     if (recX == nullptr || recY == nullptr)
         return;
 
-	GriddedRecord *rec2 = getReader()->getRecord (dtc2, currentDate);
+    GriddedRecord *rec2 = getReader()->getRecord (dtc2, currentDate);
     if (rec2 == nullptr )
         return;
 
     int i, j;
-    double x, y;
+    double lon, lat;
     int W = proj->getW();
     int H = proj->getH();
     QRgb   rgb;
@@ -522,15 +522,15 @@ void  GriddedPlotter::drawColorMapGeneric_Abs_Delta_2D (
     for (i=0; i<W-1; i+=2) {
         for (j=0; j<H-1; j+=2)
         {
-            proj->screen2map(i,j, &x, &y);
+            proj->screen2map(i,j, &lon, &lat);
 
-            if (! recX->isXInMap(x))
-                x += 360.0;    // tour complet ?
-            if (recX->isPointInMap(x, y))
+            if (! recX->isXInMap(lon))
+                lon += 360.0;    // tour complet ?
+            if (recX->isPointInMap(lon, lat))
             {
-                double vx = recX->getInterpolatedValue (dtcX, x, y, mustInterpolateValues);
-                double vy = recY->getInterpolatedValue (dtcY, x, y, mustInterpolateValues);
-                double v2 = rec2->getInterpolatedValue (dtc2, x, y, mustInterpolateValues);
+                double vx = recX->getInterpolatedValue (lon, lat, mustInterpolateValues);
+                double vy = recY->getInterpolatedValue (lon, lat, mustInterpolateValues);
+                double v2 = rec2->getInterpolatedValue (lon, lat, mustInterpolateValues);
 
                 if (GribDataIsDef(vx) && GribDataIsDef(vy) && GribDataIsDef(v2))
                 {
@@ -562,7 +562,7 @@ void  GriddedPlotter::drawColorMapGeneric_Abs_Delta_Data (
     if (rec1 == nullptr || rec2 == nullptr )
         return;
     int i, j;
-    double x, y;
+    double lon, lat;
     int W = proj->getW();
     int H = proj->getH();
     QRgb   rgb;
@@ -571,14 +571,14 @@ void  GriddedPlotter::drawColorMapGeneric_Abs_Delta_Data (
     for (i=0; i<W-1; i+=2) {
         for (j=0; j<H-1; j+=2)
         {
-            proj->screen2map(i,j, &x, &y);
+            proj->screen2map(i,j, &lon, &lat);
             
-            if (! rec1->isXInMap(x))
-                x += 360.0;    // tour complet ?
-            if (rec1->isPointInMap(x, y))
+            if (! rec1->isXInMap(lon))
+                lon += 360.0;    // tour complet ?
+            if (rec1->isPointInMap(lon, lat))
             {
-                double vx = rec1->getInterpolatedValue (dtc1, x, y, mustInterpolateValues);
-                double vy = rec2->getInterpolatedValue (dtc2, x, y, mustInterpolateValues);
+                double vx = rec1->getInterpolatedValue (lon, lat, mustInterpolateValues);
+                double vy = rec2->getInterpolatedValue (lon, lat, mustInterpolateValues);
 
                 if (GribDataIsDef(vx) && GribDataIsDef(vy))
                 {
@@ -738,14 +738,14 @@ void GriddedPlotter::draw_DATA_Labels (
     pnt.setFont (labelsFont);
     pnt.setPen  (labelsColor);
 
-	double x, y, v;
+	double lon, lat, v;
     int i, j, dimin, djmin;
     dimin = 50;
     djmin = 30;
     for (j=0; j<proj->getH(); j+= djmin) {
         for (i=0; i<proj->getW(); i+= dimin) {
-            proj->screen2map(i,j, &x,&y);
-            v = rec->getInterpolatedValue (dtc, x, y, mustInterpolateValues);
+            proj->screen2map(i,j, &lon, &lat);
+            v = rec->getInterpolatedValue (lon, lat, mustInterpolateValues);
             if (GribDataIsDef(v)) {
                 QString strtemp = formatLabelFunction (v,false);
                 pnt.drawText(i-fmet.width("XXX")/2, j+fmet.ascent()/2, strtemp);
@@ -797,16 +797,16 @@ void GriddedPlotter::draw_DATA_MinMax (
 
     for (j=1; j<Nj-1; j++) {     // !!!! 1 to end-1
         for (i=1; i<Ni-1; i++) {
-            v = rec->getValueOnRegularGrid (dtc, i, j );
+            v = rec->getValueOnRegularGrid (i, j );
             if ( v <= meanValue
-                   && v < rec->getValueOnRegularGrid (dtc, i-1, j-1 )  // Minima local ?
-                   && v < rec->getValueOnRegularGrid (dtc, i-1, j   )
-                   && v < rec->getValueOnRegularGrid (dtc, i-1, j+1 )
-                   && v < rec->getValueOnRegularGrid (dtc, i  , j-1 )
-                   && v < rec->getValueOnRegularGrid (dtc, i  , j+1 )
-                   && v < rec->getValueOnRegularGrid (dtc, i+1, j-1 )
-                   && v < rec->getValueOnRegularGrid (dtc, i+1, j   )
-                   && v < rec->getValueOnRegularGrid (dtc, i+1, j+1 )
+                   && v < rec->getValueOnRegularGrid (i-1, j-1 )  // Minima local ?
+                   && v < rec->getValueOnRegularGrid (i-1, j   )
+                   && v < rec->getValueOnRegularGrid (i-1, j+1 )
+                   && v < rec->getValueOnRegularGrid (i  , j-1 )
+                   && v < rec->getValueOnRegularGrid (i  , j+1 )
+                   && v < rec->getValueOnRegularGrid (i+1, j-1 )
+                   && v < rec->getValueOnRegularGrid (i+1, j   )
+                   && v < rec->getValueOnRegularGrid (i+1, j+1 )
             ) {
                 rec->getXY(i, j, &x, &y);
 
@@ -843,14 +843,14 @@ void GriddedPlotter::draw_DATA_MinMax (
 
             }
             else if ( v > meanValue
-                   && v > rec->getValueOnRegularGrid (dtc, i-1, j-1 )  // Maxima local ?
-                   && v > rec->getValueOnRegularGrid (dtc, i-1, j   )
-                   && v > rec->getValueOnRegularGrid (dtc, i-1, j+1 )
-                   && v > rec->getValueOnRegularGrid (dtc, i  , j-1 )
-                   && v > rec->getValueOnRegularGrid (dtc, i  , j+1 )
-                   && v > rec->getValueOnRegularGrid (dtc, i+1, j-1 )
-                   && v > rec->getValueOnRegularGrid (dtc, i+1, j   )
-                   && v > rec->getValueOnRegularGrid (dtc, i+1, j+1 )
+                   && v > rec->getValueOnRegularGrid (i-1, j-1 )  // Maxima local ?
+                   && v > rec->getValueOnRegularGrid (i-1, j   )
+                   && v > rec->getValueOnRegularGrid (i-1, j+1 )
+                   && v > rec->getValueOnRegularGrid (i  , j-1 )
+                   && v > rec->getValueOnRegularGrid (i  , j+1 )
+                   && v > rec->getValueOnRegularGrid (i+1, j-1 )
+                   && v > rec->getValueOnRegularGrid (i+1, j   )
+                   && v > rec->getValueOnRegularGrid (i+1, j+1 )
             ) {
                 rec->getXY(i, j, &x, &y);
 

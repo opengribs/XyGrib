@@ -24,11 +24,16 @@ Lecture mise en mémoire d'un fichier GRIB
 #ifndef GRIBREADER_H
 #define GRIBREADER_H
 #include <cstdint>
+#include <memory>
 
 #include "RegularGridded.h"
 #include "GribRecord.h"
+#include "Grib2Record.h"
 #include "LongTaskMessage.h"
 #include "zuFile.h"
+extern "C" {
+    #include <grib2.h>
+}
 
 //===============================================================
 class GribReader : public RegularGridReader, public LongTaskMessage
@@ -37,7 +42,7 @@ class GribReader : public RegularGridReader, public LongTaskMessage
         GribReader ();
         ~GribReader ();
 		
-        virtual void  openFile (const QString &fname, int nbrecs);
+        void  openFile (const QString &fname, int nbrecs);
 		
 		virtual FileDataType getReaderFileDataType () 
 					{return DATATYPE_GRIB;};
@@ -96,25 +101,32 @@ class GribReader : public RegularGridReader, public LongTaskMessage
         ZUFILE *file;
         void clean_vector(std::vector<GribRecord *> &ls);
         void clean_all_vectors();
-        void   createListDates ();
-        void storeRecordInMap (GribRecord *rec);
+        void createListDates ();
         //void removeRecordInMap (GribRecord *rec);
 		void computeMissingData ();   // RH DewPoint ThetaE
-		
+		void analyseRecords ();
+
+		int seekgb_zu (
+				ZUFILE *lugb, g2int iseek, g2int mseek, g2int *lskip, g2int *lgrib);
 		
     private:
-		std::vector<GribRecord *> * getListOfGribRecords (DataCode dtc);
+        bool checkAndStoreRecordInMap (GribRecord *rec);
+        bool storeRecordInMap (GribRecord *rec);
+		void readGribFileContent (int nbrecs);
+		bool readGribRecord(int id);
+		//bool readGrib2Record(int id);
+		bool readGrib2Record(int id, g2int lgrib);
+
+		std::vector<std::shared_ptr<GribRecord>> * getListOfGribRecords (DataCode dtc);
         int	   dewpointDataStatus;
 		bool   hasAltitude;
 		bool   ambiguousHeader;
 		
-        std::map <uint64_t, std::vector<GribRecord *>* >  mapGribRecords;
+        std::map <uint64_t, std::vector<std::shared_ptr<GribRecord>>* >  mapGribRecords;
 
         void   openFilePriv (const QString& fname, int nbrecs);
-		void   readGribFileContent (int nbrecs);
-		void   readAllGribRecords  (int nbrecs);
         
-        std::vector<GribRecord *> * getFirstNonEmptyList();
+        std::vector<std::shared_ptr<GribRecord>> *  getFirstNonEmptyList();
 		
 		double   computeDewPoint (double lon, double lat, time_t date);
 		double   computeHumidRel (double lon, double lat, time_t date);

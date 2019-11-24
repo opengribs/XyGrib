@@ -161,8 +161,8 @@ void SkewT::initFromGriddedReader (GriddedReader *reader, double lon, double lat
 		GriddedRecord *rect = reader->getRecord (DataCode(GRB_TEMP,LV_ISOBARIC,alt), date);
 		GriddedRecord *rech = reader->getRecord (DataCode(GRB_HUMID_REL,LV_ISOBARIC,alt), date);
 		if (rect && rech) {
-			temp = rect->getInterpolatedValue (DataCode(GRB_TEMP,LV_ISOBARIC,alt), lon, lat);
-			rh = rech->getInterpolatedValue (DataCode(GRB_HUMID_REL,LV_ISOBARIC,alt), lon, lat);
+			temp = rect->getInterpolatedValue (lon, lat);
+			rh = rech->getInterpolatedValue (lon, lat);
 			dewp = DataRecordAbstract::dewpointHardy (temp, rh);
 			this->addSoundingPoint (alt, temp, dewp);
 			if (dateref == 0)
@@ -184,8 +184,8 @@ void SkewT::initFromGriddedReader (GriddedReader *reader, double lon, double lat
 		GriddedRecord *recvx = reader->getRecord (DataCode(GRB_WIND_VX,LV_ISOBARIC,alt), date);
 		GriddedRecord *recvy = reader->getRecord (DataCode(GRB_WIND_VY,LV_ISOBARIC,alt), date);
 		if (recvx && recvy) {
-			double vx = recvx->getInterpolatedValue (DataCode(GRB_WIND_VX,LV_ISOBARIC,alt), lon, lat);
-			double vy = recvy->getInterpolatedValue (DataCode(GRB_WIND_VY,LV_ISOBARIC,alt), lon, lat);
+			double vx = recvx->getInterpolatedValue (lon, lat);
+			double vy = recvy->getInterpolatedValue (lon, lat);
 			// DBG("%d : %g %g", alt, vx,vy);
 			this->addSoundingPointWind (alt, vx, vy);
 		}
@@ -195,13 +195,13 @@ void SkewT::initFromGriddedReader (GriddedReader *reader, double lon, double lat
 	GriddedRecord *rec;
 	rec = reader->getRecord (DataCode(GRB_CAPE,LV_GND_SURF,0), date);
 	if (rec) {
-		ModelCAPE = rec->getInterpolatedValue (DataCode(GRB_CAPE,LV_GND_SURF,0), lon, lat);
+		ModelCAPE = rec->getInterpolatedValue (lon, lat);
 	}
 	else
 		ModelCAPE = GRIB_NOTDEF;
 	rec = reader->getRecord (DataCode(GRB_CIN,LV_GND_SURF,0), date);
 	if (rec) {
-		ModelCIN = rec->getInterpolatedValue (DataCode(GRB_CIN,LV_GND_SURF,0), lon, lat);
+		ModelCIN = rec->getInterpolatedValue (lon, lat);
 	}
 	else
 		ModelCIN = GRIB_NOTDEF;
@@ -210,16 +210,16 @@ void SkewT::initFromGriddedReader (GriddedReader *reader, double lon, double lat
 	hasSurfaceData = false;
 	rec = reader->getRecord (DataCode(GRB_PRESSURE,LV_GND_SURF,0), date);
 	if (rec) {
-		surfaceHpa = rec->getInterpolatedValue (DataCode(GRB_PRESSURE,LV_GND_SURF,0), lon, lat);
+		surfaceHpa = rec->getInterpolatedValue (lon, lat);
 		if (GribDataIsDef(surfaceHpa))
 		{
 			surfaceHpa /= 100.0;	// hpa
 			
 			rec = reader->getRecord (DataCode(GRB_TEMP,LV_ABOV_GND,2), date);
-			temp = rec ? rec->getInterpolatedValue (DataCode(GRB_TEMP,LV_ABOV_GND,2), lon, lat)
+			temp = rec ? rec->getInterpolatedValue (lon, lat)
 					: GRIB_NOTDEF;
 			rec = reader->getRecord (DataCode(GRB_DEWPOINT,LV_ABOV_GND,2), date);
-			dewp = rec ? rec->getInterpolatedValue (DataCode(GRB_DEWPOINT,LV_ABOV_GND,2), lon, lat)
+			dewp = rec ? rec->getInterpolatedValue (lon, lat)
 					: GRIB_NOTDEF;
 			if (GribDataIsDef(temp) && GribDataIsDef(dewp)) {
 				this->addSoundingPoint (surfaceHpa, temp, dewp);

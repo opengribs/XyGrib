@@ -203,9 +203,7 @@ void DialogLoadGRIB::slotAltSkew()
 }
 
 //-------------------------------------------------------------------------------
-DialogLoadGRIB::~DialogLoadGRIB()
-{
-}
+DialogLoadGRIB::~DialogLoadGRIB() = default;
 
 //----------------------------------------------------
 void DialogLoadGRIB::slotGribMessage(const QString& msg)

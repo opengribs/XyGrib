@@ -233,7 +233,8 @@ public:
 		QAction *acAlt_300hpa;
 		QAction *acAlt_200hpa;
 		QAction *acAlt_Atmosphere;
-		
+
+    QMenu *menuGeopotLine;
     ZeroOneActionGroup *acAlt_GroupGeopotLine;
 		QAction *acAlt_GeopotLine_925hpa;
 		QAction *acAlt_GeopotLine_850hpa;

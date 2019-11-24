@@ -101,8 +101,7 @@ ImageWriter::ImageWriter (QWidget *parent, Terrain *terre)
 
 //-------------------------------------------------
 ImageWriter::~ImageWriter ()
-{
-}
+= default;
 
 //-------------------------------------------------
 QImage * ImageWriter::createImage (
