@@ -107,20 +107,29 @@ void GriddedPlotter::drawTransformedLine( QPainter &pnt,
             && Util::isInRange(ll, 0, h) )
         pnt.drawLine(ii, jj, kk, ll);
 }
+
 //-----------------------------------------------------------------------------
-//void GriddedPlotter::drawWaveArrow (QPainter &pnt,
-//			int i, int j, double dir, double /*period*/)
+void GriddedPlotter::drawTransformedLine( QPainter &pnt,
+        double ang, int i, int j, double size, int k, double l)
+{
+    double si=sin(ang), co=cos(ang);
+    int dec = -size/2;
+    drawTransformedLine(pnt, si,co, i,j,  dec,0, dec+size, 0);   // hampe
+
+    drawTransformedLine(pnt, si,co, i,j,  dec,0, dec+k, l);   // flèche
+    drawTransformedLine(pnt, si,co, i,j,  dec,0, dec+k,-l);   // flèche
+}
+
+//-----------------------------------------------------------------------------
 void GriddedPlotter::drawWaveArrow (QPainter &pnt,
             int i, int j, double dir)
 {
     double ang = (dir-90)/180.0*M_PI;
-    double si=sin(ang),  co=cos(ang);
     QPen pen (QColor(255,0,255)); // color fuchsia
     pen.setWidth (1);
     pnt.setPen (pen);
-    drawTransformedLine(pnt, si,co, i+windArrowSize/2,j,  0,0, windArrowSize, 0);   // hampe
-    drawTransformedLine(pnt, si,co, i+windArrowSize/2,j,  0,0,  5, 2);   // flèche
-    drawTransformedLine(pnt, si,co, i+windArrowSize/2,j,  0,0,  5,-2);   // flèche
+    // Flèche centrée sur l'origine
+    drawTransformedLine(pnt, ang, i, j, windArrowSize, 5, 2);
 }
 //-----------------------------------------------------------------------------
 void GriddedPlotter::drawCurrentArrow (QPainter &pnt, int i, int j, double cx, double cy)
@@ -129,8 +138,6 @@ void GriddedPlotter::drawCurrentArrow (QPainter &pnt, int i, int j, double cx, d
 	// double ang = atan2(cy, -cx)-M_PI;  // unlike wind, arrows follows the current
     double ang = atan2(cy, -cx);  // unlike wind, arrows follows the current
     
-    double si=sin(ang),  co=cos(ang);
-
     double tf_a = (TF_MAXC_A - TF_MINC_A) / (TF_MAXC - TF_MINC);
     double tf_b = TF_MAXC_A-TF_MAXC*tf_a;
     double qf_a = (QF_MAXC_A - QF_MINC_A) / (QF_MAXC - QF_MINC);
@@ -167,11 +174,8 @@ void GriddedPlotter::drawCurrentArrow (QPainter &pnt, int i, int j, double cx, d
     QPen pen (currentArrowColor);
     pen.setWidth (yqt);
     pnt.setPen (pen);
-    drawTransformedLine(pnt, si,co, i+ coefLen/2,j,  0,0, coefLen, 0);   // hampe
-
-    drawTransformedLine(pnt, si,co, i+ coefLen/2,j,  0,0,  5, 2*ytt);   // flèche
-    drawTransformedLine(pnt, si,co, i+ coefLen/2,j,  0,0,  5,-2*ytt);   // flèche
-    drawTransformedLine(pnt, si,co, i+ coefLen/2,j,  5,2*ytt,  5,-2*ytt);   // flèche
+    // Flèche centrée sur l'origine
+    drawTransformedLine(pnt, ang, i, j, coefLen, 5, 2*ytt);
 }
 //-----------------------------------------------------------------------------
 // Called from MeteoTable
@@ -184,7 +188,6 @@ void GriddedPlotter::drawCurrentArrow (
 {
     double vkn = sqrt(cx*cx+cy*cy)*3.6/1.852;
     double ang = atan2(cy, -cx);  // unlike wind, arrows follows the current
-    double si=sin(ang),  co=cos(ang);
  
     QPen pen( arrowColor);
 	pen.setWidth (2);
@@ -198,28 +201,21 @@ void GriddedPlotter::drawCurrentArrow (
     }
     else {
         // Flèche centrée sur l'origine
-        int dec = -windArrowSize/2;
-        drawTransformedLine(pnt, si,co, i,j,  dec,0, dec+windArrowSize, 0);   // hampe
-
-        drawTransformedLine(pnt, si,co, i,j,  dec,0,  dec+5, 2);   // flèche
-        drawTransformedLine(pnt, si,co, i,j,  dec,0,  dec+5,-2);   // flèche
-
+        drawTransformedLine(pnt, ang, i, j, windArrowSize, 5, 2);
     }        
 }
 //-----------------------------------------------------------------------------
 void GriddedPlotter::drawWindArrow (QPainter &pnt, int i, int j, double vx, double vy)
 {
     double ang = atan2(vy, -vx);
-    double si=sin(ang),  co=cos(ang);
     QPen pen (windArrowColor);
 	if (thinWindArrows)
 		pen.setWidth (1);
 	else
 		pen.setWidth (2);
     pnt.setPen (pen);
-    drawTransformedLine(pnt, si,co, i-windArrowSize/2,j,  0,0, windArrowSize, 0);   // hampe
-    drawTransformedLine(pnt, si,co, i-windArrowSize/2,j,  0,0,  5, 2);   // flèche
-    drawTransformedLine(pnt, si,co, i-windArrowSize/2,j,  0,0,  5,-2);   // flèche
+    // Flèche centrée sur l'origine
+    drawTransformedLine(pnt, ang, i, j, windArrowSize, 5, 2);
 }
 //-----------------------------------------------------------------------------
 void GriddedPlotter::drawWindArrowWithBarbs (
@@ -274,6 +270,7 @@ void GriddedPlotter::drawWindArrowWithBarbs_static (
     else {
         // Flèche centrée sur l'origine
         int dec = -windBarbuleSize/2;
+
         drawTransformedLine(pnt, si,co, i,j,  dec,0,  dec+windBarbuleSize, 0);   // hampe
 		if (! thinWindArrows) {
 			drawTransformedLine(pnt, si,co, i,j,  dec,0,  dec+5, 2);    // flèche
@@ -283,7 +280,7 @@ void GriddedPlotter::drawWindArrowWithBarbs_static (
 		if (vkn >= 7.5  &&  vkn < 45 ) {
 			b1 = dec+windBarbuleSize;  // position de la 1ère barbule si >= 10 noeuds
 		}
-        
+
         if (vkn < 7.5) {  // 5 ktn
             drawPetiteBarbule(pnt,south, si,co, i,j, b1);
         }
@@ -516,7 +513,7 @@ void  GriddedPlotter::drawColorMapGeneric_Abs_Delta_2D (
         return;
 
     int i, j;
-    double x, y, vx, vy, v, v2;
+    double x, y;
     int W = proj->getW();
     int H = proj->getH();
     QRgb   rgb;
@@ -531,13 +528,13 @@ void  GriddedPlotter::drawColorMapGeneric_Abs_Delta_2D (
                 x += 360.0;    // tour complet ?
             if (recX->isPointInMap(x, y))
             {
-                vx = recX->getInterpolatedValue (dtcX, x, y, mustInterpolateValues);
-                vy = recY->getInterpolatedValue (dtcY, x, y, mustInterpolateValues);
-                v2 = rec2->getInterpolatedValue (dtc2, x, y, mustInterpolateValues);
+                double vx = recX->getInterpolatedValue (dtcX, x, y, mustInterpolateValues);
+                double vy = recY->getInterpolatedValue (dtcY, x, y, mustInterpolateValues);
+                double v2 = rec2->getInterpolatedValue (dtc2, x, y, mustInterpolateValues);
 
                 if (GribDataIsDef(vx) && GribDataIsDef(vy) && GribDataIsDef(v2))
                 {
-                    v = fabs(sqrt(vx*vx+vy*vy) -v2);
+                    double v = fabs(sqrt(vx*vx+vy*vy) -v2);
                     rgb = (this->*function_getColor) (v, smooth);
                     image->setPixel(i,  j, rgb);
                     image->setPixel(i+1,j, rgb);
@@ -565,7 +562,7 @@ void  GriddedPlotter::drawColorMapGeneric_Abs_Delta_Data (
     if (rec1 == nullptr || rec2 == nullptr )
         return;
     int i, j;
-    double x, y, vx, vy, v;
+    double x, y;
     int W = proj->getW();
     int H = proj->getH();
     QRgb   rgb;
@@ -580,12 +577,12 @@ void  GriddedPlotter::drawColorMapGeneric_Abs_Delta_Data (
                 x += 360.0;    // tour complet ?
             if (rec1->isPointInMap(x, y))
             {
-                vx = rec1->getInterpolatedValue (dtc1, x, y, mustInterpolateValues);
-                vy = rec2->getInterpolatedValue (dtc2, x, y, mustInterpolateValues);
+                double vx = rec1->getInterpolatedValue (dtc1, x, y, mustInterpolateValues);
+                double vy = rec2->getInterpolatedValue (dtc2, x, y, mustInterpolateValues);
 
                 if (GribDataIsDef(vx) && GribDataIsDef(vy))
                 {
-                    v = fabs(vx-vy);
+                    double v = fabs(vx-vy);
                     rgb = (this->*function_getColor) (v, smooth);
                     image->setPixel(i,  j, rgb);
                     image->setPixel(i+1,j, rgb);
@@ -675,8 +672,8 @@ void GriddedPlotter::complete_listIsolines (
 //-----------------------------------------------------------------
 void GriddedPlotter::analyseVisibleGridDensity 
 		(const Projection *proj, GriddedRecord *rec, 
-		 double coef, int *deltaI, int *deltaJ
-) {
+		 double coef, int *deltaI, int *deltaJ) const 
+{
     int i0, j0, i1, j1;
 	double x0,y0, x1,y1;
 	i0 = proj->getW()/2;
@@ -698,6 +695,29 @@ void GriddedPlotter::analyseVisibleGridDensity
 	if (*deltaJ < 1)
 		*deltaJ = 1;
 }
+//-----------------------------------------------------------------
+bool GriddedPlotter::analyseVisibleGridDensity 
+		(const Projection *proj, GriddedRecord *rec, int dl) const
+{
+	double lon, lat;
+    int px,py, px1, py1;
+
+    rec->getXY(0, 0, &lon , &lat);
+	proj->map2screen(lon, lat, &px,&py);
+    rec->getXY(1, 0, &lon , &lat);
+	proj->map2screen(lon, lat, &px1, &py1);
+	if (abs(px -px1) < dl)
+		return false;
+    rec->getXY(0, 0, &lon , &lat);
+	proj->map2screen(lon, lat, &px,&py);
+    rec->getXY(0, 1, &lon , &lat);
+	proj->map2screen(lon, lat, &px1, &py1);
+	if (abs(py -py1) < dl)
+		return false;
+
+    return true;
+}
+
 //======================================================================
 void GriddedPlotter::draw_DATA_Labels (
 				DataCode dtc, 
@@ -960,5 +980,3 @@ bool GriddedPlotter::hasWaveDataType (int dataType)  const
 
     return getReader()->hasWaveDataType (dataType);
 }
-
-

@@ -1,4 +1,3 @@
-
 /**********************************************************************
 XyGrib: meteorological GRIB file viewer
 Copyright (C) 2008-2012 - Jacques Zaninetti - http://www.zygrib.org
@@ -277,7 +276,10 @@ class GriddedPlotter :
 			);
 		
 		void analyseVisibleGridDensity (const Projection *proj, GriddedRecord *rec, 
-										double coef, int *deltaI, int *deltaJ);
+										double coef, int *deltaI, int *deltaJ) const;
+
+		bool analyseVisibleGridDensity (const Projection *proj, GriddedRecord *rec, 
+										int size) const;
 
 		
 	private:
@@ -286,7 +288,10 @@ class GriddedPlotter :
 
         static void drawTransformedLine( QPainter &pnt,
                 double si, double co,int di, int dj, int i,int j, int k,int l);
-        
+
+		static void drawTransformedLine( QPainter &pnt,
+				double ang, int i, int j, double size, int k, double l);
+
         static void drawPetiteBarbule(QPainter &pnt, bool south,
                     double si, double co, int di, int dj, int b);
         static void drawGrandeBarbule(QPainter &pnt,  bool south,
@@ -294,10 +299,5 @@ class GriddedPlotter :
         static void drawTriangle(QPainter &pnt, bool south,
                     double si, double co, int di, int dj, int b);
 };
-
-
-
-
-
 
 #endif
