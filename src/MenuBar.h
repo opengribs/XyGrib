@@ -132,6 +132,7 @@ public:
     QAction *acView_ColorMapSmooth;
 
 	QAction *acView_DuplicateFirstCumulativeRecord;
+	QAction *acView_InterpolateMissingRecords;
 	QAction *acView_DuplicateMissingWaveRecords;
 	QAction *acView_InterpolateValues;
 	QAction *acView_WindArrowsOnGribGrid;

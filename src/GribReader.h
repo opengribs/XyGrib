@@ -95,6 +95,10 @@ class GribReader : public RegularGridReader, public LongTaskMessage
 		virtual bool hasAltitudeData () const  {return hasAltitude;}
 		bool    hasAmbiguousHeader ()  {return ambiguousHeader;}
 		
+		void   interpolateMissingRecords ();
+		void   interpolateMissingRecords (DataCode dtc);
+		void   removeInterpolateRecords ();
+
 		int countGribRecords (ZUFILE *f);
 
 	protected:

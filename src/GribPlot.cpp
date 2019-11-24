@@ -33,6 +33,7 @@ GribPlot::GribPlot (const GribPlot &model)
 {
 	initNewGribPlot (model.mustInterpolateValues, model.drawWindArrowsOnGrid, model.drawCurrentArrowsOnGrid);	
     GribPlot::loadFile (model.fileName);
+    GribPlot::interpolateMissingRecords (model.mustInterpolateMissingRecords);
     GribPlot::duplicateFirstCumulativeRecord (model.mustDuplicateFirstCumulativeRecord);
     GribPlot::duplicateMissingWaveRecords (model.mustDuplicateMissingWaveRecords);
 }
@@ -109,6 +110,21 @@ void GribPlot::duplicateMissingWaveRecords ( bool mustDuplicate )
 		}
 		else {
 			gribReader->removeMissingWaveRecords ();
+		}
+	}
+}
+
+//----------------------------------------------------
+void GribPlot::interpolateMissingRecords ( bool mustInterpolate )
+{
+	mustInterpolateMissingRecords = mustInterpolate;
+    if (isReaderOk())
+    {
+		if (mustInterpolate) {
+			gribReader->interpolateMissingRecords ();
+		}
+		else {
+			gribReader->removeInterpolateRecords ();
 		}
 	}
 }

@@ -42,6 +42,8 @@ class GriddedRecord : public DataRecordAbstract
         virtual bool  isDuplicated ()  const   {return duplicated;}
         virtual void  setDuplicated (bool b)   {duplicated = b;}
 		
+        virtual bool  isInterpolated ()  const   {return interpolated;}
+        virtual void  setInterpolated (bool b)   {interpolated = b;}
         /** Is a point into the covered space ?
 		*/
         virtual bool isXInMap(double x) const
@@ -89,8 +91,10 @@ class GriddedRecord : public DataRecordAbstract
 
 	protected:
 		double xmin,xmax, ymin,ymax;
-		bool   duplicated;
 		DataCenterModel    dataCenterModel;
+    private:
+		bool   duplicated{false};
+		bool   interpolated{false};
 };
 
 

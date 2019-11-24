@@ -138,6 +138,9 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
         menuViewOptions->addSeparator();
         acView_DuplicateFirstCumulativeRecord = addActionCheck (menuViewOptions,
         			tr("NOAA-GFS")+": "+tr("Duplicate first cumulative record"), "", "");
+        
+        acView_InterpolateMissingRecords = addActionCheck (menuViewOptions,
+        			tr("Interpolate missing records"), "", "");
         acView_InterpolateValues = addActionCheck (menuViewOptions,
         			tr("Numerical data interpolation"), "", "");
         acView_ColorMapSmooth = addActionCheck (menuViewOptions,

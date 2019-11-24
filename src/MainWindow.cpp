@@ -168,6 +168,8 @@ void MainWindow::InitActionsStatus ()
     this->slotMETARSvisibility (Util::getSetting("showMETARs", true).toBool());
 
     menuBar->acView_DuplicateFirstCumulativeRecord->setChecked(Util::getSetting("duplicateFirstCumulativeRecord", true).toBool());
+    menuBar->acView_InterpolateMissingRecords->setChecked(Util::getSetting("interpolateMissingRecords", true).toBool());
+
     menuBar->acView_DuplicateMissingWaveRecords->setChecked(Util::getSetting("duplicateMissingWaveRecords", true).toBool());
     menuBar->acView_InterpolateValues->setChecked(Util::getSetting("interpolateValues", true).toBool());
     menuBar->acView_WindArrowsOnGribGrid->setChecked(Util::getSetting("windArrowsOnGribGrid", false).toBool());
@@ -321,6 +323,8 @@ mb->acMap_SelectMETARs->setVisible (false);	// TODO
             terre,  SLOT(setColorMapSmooth(bool)));
     connect(mb->acView_DuplicateFirstCumulativeRecord, SIGNAL(triggered(bool)),
             terre,  SLOT(setDuplicateFirstCumulativeRecord(bool)));
+    connect(mb->acView_InterpolateMissingRecords, SIGNAL(triggered(bool)),
+            terre,  SLOT(setInterpolateMissingRecords(bool)));
     connect(mb->acView_DuplicateMissingWaveRecords, SIGNAL(triggered(bool)),
             terre,  SLOT(setDuplicateMissingWaveRecords(bool)));
     connect(mb->acView_InterpolateValues, SIGNAL(triggered(bool)),
@@ -1027,6 +1031,7 @@ void MainWindow::openMeteoDataFile (const QString& fileName)
 			gribFileName = fileName;
 
 			menuBar->acView_DuplicateFirstCumulativeRecord->setEnabled (true);
+			menuBar->acView_InterpolateMissingRecords->setEnabled (true);
 			menuBar->acView_DuplicateMissingWaveRecords->setEnabled (true);
 			
 			// Malformed grib file ?
