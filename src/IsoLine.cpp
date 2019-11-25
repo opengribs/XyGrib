@@ -48,7 +48,6 @@ IsoLine::~IsoLine()
 void IsoLine::drawIsoLine (QPainter &pnt,
                             const Projection *proj)
 {
-    std::vector <Segment *>::iterator it;
     int   a,b,c,d;
     int nb = 0;
 	pnt.setRenderHint(QPainter::Antialiasing, true);
@@ -56,7 +55,7 @@ void IsoLine::drawIsoLine (QPainter &pnt,
     //---------------------------------------------------------
     // Dessine les segments
     //---------------------------------------------------------
-    for (it=trace.begin(); it!=trace.end(); ++it,nb++)
+    for (auto it=trace.begin(); it!=trace.end(); ++it,nb++)
     {
         Segment *seg = *it;
 
@@ -84,7 +83,6 @@ void IsoLine::drawIsoLineLabels(QPainter &pnt, QColor &couleur,
                             const Projection *proj,
                             int density, int first, double coef,double offset)
 {
-    std::vector <Segment *>::iterator it;
     int   a,b,c,d;
     int nb = first;
     QString label;
@@ -108,7 +106,7 @@ void IsoLine::drawIsoLineLabels(QPainter &pnt, QColor &couleur,
     //---------------------------------------------------------
     // Ecrit les labels
     //---------------------------------------------------------
-    for (it=trace.begin(); it!=trace.end(); ++it,nb++)
+    for (auto it=trace.begin(); it!=trace.end(); ++it,nb++)
     {
         if (nb % density == 0) {
             Segment *seg = *it;
