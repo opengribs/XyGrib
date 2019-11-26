@@ -50,16 +50,13 @@ void IsoLine::drawIsoLine (QPainter &pnt,
                             const Projection *proj)
 {
     int   a,b,c,d;
-    int nb = 0;
 	pnt.setRenderHint(QPainter::Antialiasing, true);
 
     //---------------------------------------------------------
     // Dessine les segments
     //---------------------------------------------------------
-    for (auto it=trace.begin(); it!=trace.end(); ++it,nb++)
+    for (auto const &seg :trace)
     {
-        Segment *seg = *it;
-
         // Teste la visibilité (bug clipping sous windows avec pen.setWidthF())
         if ( proj->isPointVisible(seg->px1, seg->py1)
                  ||    proj->isPointVisible(seg->px2, seg->py2))
