@@ -33,6 +33,7 @@ IsoLine::IsoLine (DataCode dtc, double val, GriddedRecord *rec, int deltaI, int 
     //---------------------------------------------------------
     // Génère la liste des segments.
     extractIsoLine (rec, deltaI, deltaJ);
+    //extractIsoLine (rec, 1, 1);
 }
 //---------------------------------------------------------------
 IsoLine::~IsoLine()
@@ -79,8 +80,8 @@ void IsoLine::drawIsoLine (QPainter &pnt,
 }
 
 //---------------------------------------------------------------
-void IsoLine::drawIsoLineLabels(QPainter &pnt, QColor &couleur,
-                            const Projection *proj,
+void IsoLine::drawIsoLineLabels(QPainter &pnt, std::vector <QRect> &overlap, 
+                            QColor &couleur, const Projection *proj,
                             int density, int first, double coef,double offset)
 {
     int   a,b,c,d;
@@ -114,15 +115,26 @@ void IsoLine::drawIsoLineLabels(QPainter &pnt, QColor &couleur,
             proj->map2screen( seg->px1, seg->py1, &a, &b );
             proj->map2screen( seg->px2, seg->py2, &c, &d );
             rect.moveTo((a+c)/2-rect.width()/2, (b+d)/2-rect.height()/2);
-            pnt.drawRect(rect.x()-1, rect.y(), rect.width()+2, fmet.ascent()+2);
-            pnt.drawText(rect, Qt::AlignHCenter|Qt::AlignVCenter, label);
-
-            // tour du monde ?
-            proj->map2screen( seg->px1-360.0, seg->py1, &a, &b );
-            proj->map2screen( seg->px2-360.0, seg->py2, &c, &d );
-            rect.moveTo((a+c)/2-rect.width()/2, (b+d)/2-rect.height()/2);
-            pnt.drawRect(rect.x()-1, rect.y(), rect.width()+2, fmet.ascent()+2);
-            pnt.drawText(rect, Qt::AlignHCenter|Qt::AlignVCenter, label);
+            bool o = false;
+            // XXX Bad, linear search
+            for (auto const &r : overlap) {
+                if (r.intersects(rect)) {
+                    o = true;
+                    break;
+                }
+            }
+            if (!o) {
+                pnt.drawRect(rect.x()-1, rect.y(), rect.width()+2, fmet.ascent()+2);
+                pnt.drawText(rect, Qt::AlignHCenter|Qt::AlignVCenter, label);
+                overlap.push_back({rect.x() -rect.width()/2, rect.y() -rect.height()/2, 
+                    rect.width()*2, rect.height()*2});
+                // tour du monde ?
+                proj->map2screen( seg->px1-360.0, seg->py1, &a, &b );
+                proj->map2screen( seg->px2-360.0, seg->py2, &c, &d );
+                rect.moveTo((a+c)/2-rect.width()/2, (b+d)/2-rect.height()/2);
+                pnt.drawRect(rect.x()-1, rect.y(), rect.width()+2, fmet.ascent()+2);
+                pnt.drawText(rect, Qt::AlignHCenter|Qt::AlignVCenter, label);
+            }
         }
     }
 }

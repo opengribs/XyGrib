@@ -81,8 +81,8 @@ class IsoLine
 
         void drawIsoLine (QPainter &pnt, const Projection *proj);
 
-        void drawIsoLineLabels (QPainter &pnt, QColor &couleur, const Projection *proj,
-                                int density, int first, double coef, double offset);
+        void drawIsoLineLabels (QPainter &pnt, std::vector <QRect> &overlap, QColor &couleur, 
+                  const Projection *proj, int density, int first, double coef, double offset);
 
         int getNbSegments()     {return trace.size();}
 
@@ -105,8 +105,5 @@ class IsoLine
         //---------------------------------------------------------
         void extractIsoLine (GriddedRecord *rec, int deltaI, int deltaJ);
 };
-
-
-
 
 #endif
