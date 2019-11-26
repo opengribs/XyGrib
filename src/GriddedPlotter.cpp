@@ -662,7 +662,7 @@ void GriddedPlotter::complete_listIsolines (
 	IsoLine *iso;
 	for (double val=dataMin; val<=dataMax; val += dataStep)
 	{
-		iso = new IsoLine (dtc, val, rec, deltaI, deltaJ);
+		iso = new IsoLine (val, rec, deltaI, deltaJ);
         if (iso->getNbSegments()>0)
             listIsolines->push_back (iso);
         else

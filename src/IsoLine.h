@@ -47,7 +47,6 @@ class Segment
         Segment ( int I, int J,
                   char c1, char c2, char c3, char c4,
                   GriddedRecord *rec, double value,
-				  DataCode dtc,
 				  int deltaI, int deltaJ
 				);
 
@@ -64,16 +63,14 @@ class Segment
         void intersectionAreteGrille ( 
 					int i,int j, int k,int l,
 					double *x, double *y,
-					GriddedRecord *rec, double value,
-					DataCode dtc );
+					GriddedRecord *rec, double value);
 };
 
 //===============================================================
 class IsoLine
 {
     public:
-        IsoLine ( DataCode dtc,
-				  double val, 
+        IsoLine ( double val,
 				  GriddedRecord *rec,
 				  int deltaI, int deltaJ);  
         ~IsoLine();
@@ -90,7 +87,6 @@ class IsoLine
         double value;
         int    W, H;     // taille de la grille
         const  GriddedRecord *rec;
-		DataCode dtc;
 
         QColor isoLineColor;
         std::vector <Segment *> trace;

@@ -20,11 +20,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "Font.h"
 
 //---------------------------------------------------------------
-IsoLine::IsoLine (DataCode dtc, double val, GriddedRecord *rec, int deltaI, int deltaJ)
+IsoLine::IsoLine (double val, GriddedRecord *rec, int deltaI, int deltaJ)
 {
     this->rec    = rec;
     this->value  = val;
-	this->dtc    = dtc;
 	
     W = rec->getNi();
     H = rec->getNj();
@@ -141,7 +140,6 @@ void IsoLine::drawIsoLineLabels(QPainter &pnt, std::vector <QRect> &overlap,
 Segment::Segment ( int I, int J,
 				char c1, char c2, char c3, char c4,
 				GriddedRecord *rec, double val,
-				DataCode dtc,
 				int deltaI, int deltaJ)
 {
 	this->deltaI = deltaI;
@@ -151,15 +149,14 @@ Segment::Segment ( int I, int J,
     traduitCode(I,J, c3, m,n);
     traduitCode(I,J, c4, o,p);
 
-    intersectionAreteGrille (i,j, k,l,  &px1,&py1, rec, val, dtc);
-    intersectionAreteGrille (m,n, o,p,  &px2,&py2, rec, val, dtc);
+    intersectionAreteGrille (i,j, k,l,  &px1,&py1, rec, val);
+    intersectionAreteGrille (m,n, o,p,  &px2,&py2, rec, val);
 }
 //-----------------------------------------------------------------------
 void Segment::intersectionAreteGrille (
 					int i,int j, int k,int l,
 					double *x, double *y,
-					GriddedRecord *rec, double val,
-					DataCode dtc )
+					GriddedRecord *rec, double val)
 {
     double xa, xb, ya, yb, pa, pb, dec;
 
@@ -231,38 +228,37 @@ void IsoLine::extractIsoLine (GriddedRecord *rec, int deltaI, int deltaJ)
             //--------------------------------
             if     ((a<=value && b<=value && c<=value  && d>value)
                  || (a>value && b>value && c>value  && d<=value))
-                trace.push_back(new Segment (i,j, 'c','d',  'b','d',rec,value,dtc,deltaI,deltaJ));
+                trace.push_back(new Segment (i,j, 'c','d',  'b','d',rec,value,deltaI,deltaJ));
             else if ((a<=value && c<=value && d<=value  && b>value)
                  || (a>value && c>value && d>value  && b<=value))
-                trace.push_back(new Segment (i,j, 'a','b',  'b','d',rec,value,dtc,deltaI,deltaJ));
+                trace.push_back(new Segment (i,j, 'a','b',  'b','d',rec,value,deltaI,deltaJ));
             else if ((c<=value && d<=value && b<=value  && a>value)
                  || (c>value && d>value && b>value  && a<=value))
-                trace.push_back(new Segment (i,j, 'a','b',  'a','c',rec,value,dtc,deltaI,deltaJ));
+                trace.push_back(new Segment (i,j, 'a','b',  'a','c',rec,value,deltaI,deltaJ));
             else if ((a<=value && b<=value && d<=value  && c>value)
                  || (a>value && b>value && d>value  && c<=value))
-                trace.push_back(new Segment (i,j, 'a','c',  'c','d',rec,value,dtc,deltaI,deltaJ));
+                trace.push_back(new Segment (i,j, 'a','c',  'c','d',rec,value,deltaI,deltaJ));
             //--------------------------------
             // 1 segment H ou V
             //--------------------------------
             else if ((a<=value && b<=value   &&  c>value && d>value)
                  || (a>value && b>value   &&  c<=value && d<=value))
-                trace.push_back(new Segment (i,j, 'a','c',  'b','d',rec,value,dtc,deltaI,deltaJ));
+                trace.push_back(new Segment (i,j, 'a','c',  'b','d',rec,value,deltaI,deltaJ));
             else if ((a<=value && c<=value   &&  b>value && d>value)
                  || (a>value && c>value   &&  b<=value && d<=value))
-                trace.push_back(new Segment (i,j, 'a','b',  'c','d',rec,value,dtc,deltaI,deltaJ));
+                trace.push_back(new Segment (i,j, 'a','b',  'c','d',rec,value,deltaI,deltaJ));
             //--------------------------------
             // 2 segments en diagonale
             //--------------------------------
             else if  (a<=value && d<=value   &&  c>value && b>value) {
-                trace.push_back(new Segment (i,j, 'a','b',  'b','d',rec,value,dtc,deltaI,deltaJ));
-                trace.push_back(new Segment (i,j, 'a','c',  'c','d',rec,value,dtc,deltaI,deltaJ));
+                trace.push_back(new Segment (i,j, 'a','b',  'b','d',rec,value,deltaI,deltaJ));
+                trace.push_back(new Segment (i,j, 'a','c',  'c','d',rec,value,deltaI,deltaJ));
             }
             else if  (a>value && d>value   &&  c<=value && b<=value) {
-                trace.push_back(new Segment (i,j, 'a','b',  'a','c',rec,value,dtc,deltaI,deltaJ));
-                trace.push_back(new Segment (i,j, 'b','d',  'c','d',rec,value,dtc,deltaI,deltaJ));
+                trace.push_back(new Segment (i,j, 'a','b',  'a','c',rec,value,deltaI,deltaJ));
+                trace.push_back(new Segment (i,j, 'b','d',  'c','d',rec,value,deltaI,deltaJ));
             }
 
         }
     }
 }
-
