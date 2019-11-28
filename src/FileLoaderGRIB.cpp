@@ -67,6 +67,19 @@ void FileLoaderGRIB::stop ()
 }
 
 //-------------------------------------------------------------------------------
+void FileLoaderGRIB::abort ()
+{
+	if (reply_step1) {
+		reply_step1->abort ();
+		downloadError = true;
+	}
+	if (reply_step2) {
+		reply_step2->abort ();
+		downloadError = true;
+	}
+}
+
+//-------------------------------------------------------------------------------
 void FileLoaderGRIB::getGribFile(
         const QString& atmModel,
         float x0, float x1, float y0, float y1,
