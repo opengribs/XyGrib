@@ -310,13 +310,12 @@ bool GribReader::checkAndStoreRecordInMap (GribRecord *rec)
             || (rec->getDataType()==GRB_CIN
 					&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
 			|| (rec->getDataType()==GRB_WIND_GUST
-					&& rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
+				&& (( rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
+					|| (rec->getLevelType()==LV_ABOV_GND && rec->getLevelValue()==10)
+				))
 			//-----------------------------------------
             || (rec->getDataType()==GRB_WTMP
                             && rec->getLevelType()==LV_GND_SURF && rec->getLevelValue()==0)
-            // added by david
-//            || (rec->getDataType()==GRB_WIND_GUST
-//                    && rec->getLevelType()==LV_ABOV_GND && rec->getLevelValue()==10)
             || (rec->getDataType()==GRB_COMP_REFL
                     && rec->getLevelType()==LV_ATMOS_ALL)
             //-----------------------------------------

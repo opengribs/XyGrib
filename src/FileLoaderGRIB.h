@@ -64,6 +64,7 @@ class FileLoaderGRIB : public QObject, FileLoader
                 bool wwav
             );
         void stop();
+        void abort();
         
     private:
 		QString scriptpath;

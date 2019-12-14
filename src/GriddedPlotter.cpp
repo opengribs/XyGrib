@@ -622,8 +622,7 @@ void GriddedPlotter::draw_listIsolines_labels (
     {
         nbseg += listIsoline->getNbSegments();
     }
-    int nbpix, first;
-	nbpix = proj->getW()*proj->getH();
+    int nbpix = proj->getW()*proj->getH();
 	if (nbpix == 0)
 		return;
 	if (density <= 0) {
@@ -633,11 +632,12 @@ void GriddedPlotter::draw_listIsolines_labels (
 		if (density < 20)
 			density = 20;
 	}
-    first = 0; 
+    std::vector <QRect> overlap;
+    int first = 0;
     for(auto & listIsoline : listIsolines)
     {
         first += 20;
-        listIsoline->drawIsoLineLabels (pnt, color, proj, density, first, coef,offset);
+        listIsoline->drawIsoLineLabels (pnt, overlap, color, proj, density, first, coef,offset);
     }
 }
 //----------------------------------------------------
@@ -662,7 +662,7 @@ void GriddedPlotter::complete_listIsolines (
 	IsoLine *iso;
 	for (double val=dataMin; val<=dataMax; val += dataStep)
 	{
-		iso = new IsoLine (dtc, val, rec, deltaI, deltaJ);
+		iso = new IsoLine (val, rec, deltaI, deltaJ);
         if (iso->getNbSegments()>0)
             listIsolines->push_back (iso);
         else

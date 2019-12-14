@@ -1349,11 +1349,10 @@ void DialogLoadGRIB::slotBtOK()
     loadInProgress = true;
     btOK->setEnabled(false);
     if (loadgrib) {
+        loadgrib->abort();
         loadgrib->deleteLater ();
-        loadgrib = nullptr;
 	}
     loadgrib = new FileLoaderGRIB (networkManager, this);
-    assert(loadgrib);
     connect(loadgrib, SIGNAL(signalGribDataReceived(QByteArray *, QString)),
             this,  SLOT(slotGribDataReceived(QByteArray *, QString)));
     connect(loadgrib, SIGNAL(signalGribReadProgress(int, int, int)),
@@ -1411,6 +1410,11 @@ void DialogLoadGRIB::slotBtCancel()
         progressBar->setRange(0,100);
         progressBar->setValue(0);
         slotParameterUpdated();
+        if (loadgrib) {
+        	loadgrib->abort();
+        	loadgrib->deleteLater ();
+        	loadgrib = nullptr;
+        }
     }
     else {
         reject();
