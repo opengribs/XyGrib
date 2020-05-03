@@ -456,6 +456,49 @@ void  GribRecord::translateDataType ()
     {
         dataCenterModel = ECMWF_WAVE;
     }
+    //------------------------------------------
+    // KNMI
+    // ------------------------
+    else if (idCenter==99 && idGrid==255)
+	{
+        if (idModel==8) {
+            dataCenterModel = KNMI_HIRLAM;
+        }
+        else if (idModel==2) {
+            dataCenterModel = KNMI_HARMONIE_AROME;
+        }
+        switch(getDataType()) {
+            case GRB_PRESSURE:
+                if(getLevelType() == LV_ABOV_MSL) {
+                    dataType = GRB_PRESSURE_MSL;
+                    levelType = LV_MSL;
+                }
+                break;
+            case GRB_HUMID_REL:
+                // 0-1 -> 0-100%
+                multiplyAllData( 100.0 );
+                break;
+            case 162:
+                dataType = GRB_WIND_GUST_VX;
+                break;
+            case 163:
+                dataType = GRB_WIND_GUST_VY;
+                break;
+            case GRB_CLOUD_TOT:
+                levelType  = LV_ATMOS_ALL;
+                levelValue = 0;
+                multiplyAllData( 100.0 );
+                break;
+            case 181:
+                if(getTimeRange() == 4) {
+                    dataType = GRB_PRECIP_TOT;
+                }
+                else if (getTimeRange() == 0) {
+                    dataType = GRB_PRECIP_RATE;
+                }
+                break;
+        }
+    }
 	//------------------------------------------
 	// Others recognized grib suppliers
 	//------------------------------------------

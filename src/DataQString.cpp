@@ -54,6 +54,8 @@ QString DataCodeStr::toString (const DataCenterModel &dcm)
         case COAMPS :            return "COAMPS";
         case NCOM :              return "NCOM";
         case NOGAPS :            return "NOGAPS";
+        case KNMI_HIRLAM :       return "KNMI HIRLAM";
+        case KNMI_HARMONIE_AROME : return "KNMI HARMONIE-AROME";
         case OTHER_DATA_CENTER : return "";
 	}
 	return "";

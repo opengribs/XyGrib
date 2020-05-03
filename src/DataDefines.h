@@ -59,6 +59,8 @@ enum DataCenterModel {
     ECMWF_ERA5,
     NMC,
     NCOM,
+    KNMI_HIRLAM,
+    KNMI_HARMONIE_AROME,
 	OTHER_DATA_CENTER
 };
 //--------------------------------------------------------
