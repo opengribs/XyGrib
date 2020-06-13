@@ -31,6 +31,7 @@
 #include <QCheckBox>
 #include <QThread>
 #include <QMessageBox>
+#include <QPainterPath>
 
 class SkewT;
 
