@@ -18,10 +18,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
+#include "GribRecordBuffer.h"
+#include "GribRecordTask.h"
+#include "GribFile.h"
 #include "GribReader.h"
 #include "Util.h"
 #include "DataQString.h"
 #include "Therm.h"
+#include <list>
+#include <QThreadPool>
 
 //-------------------------------------------------------------------------------
 GribReader::GribReader()
@@ -42,7 +47,7 @@ void GribReader::openFile (const QString &fname, int nbrecs)
 	setAllDataCenterModel.clear();
 	setAllDates.clear ();
 	setAllDataCode.clear ();
-	
+
     if (!fname.isEmpty()) {
         openFilePriv (fname, nbrecs);
 		createListDates ();
@@ -83,7 +88,7 @@ void GribReader::clean_vector (std::vector<GribRecord *> &ls)
     ls.clear();
 }
 //---------------------------------------------------------------------------------
-bool GribReader::storeRecordInMap (GribRecord *rec)
+bool GribReader::storeRecordInMap (std::shared_ptr<GribRecord> rec)
 {
     if (rec==nullptr || !rec->isOk())
 		return false;
@@ -94,7 +99,7 @@ bool GribReader::storeRecordInMap (GribRecord *rec)
 		assert(mapGribRecords[rec->getKey()]);
 	}
 
-	mapGribRecords [rec->getKey()]->push_back (std::shared_ptr<GribRecord>(rec));
+	mapGribRecords [rec->getKey()]->push_back (rec);
 
 	if (xmin > rec->getXmin()) xmin = rec->getXmin();
 	if (xmax < rec->getXmax()) xmax = rec->getXmax();
@@ -123,7 +128,7 @@ bool GribReader::storeRecordInMap (GribRecord *rec)
 }
 
 //---------------------------------------------------------------------------------
-bool GribReader::checkAndStoreRecordInMap (GribRecord *rec)
+bool GribReader::checkAndStoreRecordInMap (std::shared_ptr<GribRecord> rec)
 {
     if (rec==nullptr || !rec->isOk())
 		return false;
@@ -356,190 +361,113 @@ bool GribReader::checkAndStoreRecordInMap (GribRecord *rec)
 }
 
 //---------------------------------------------------------------------------------
-int GribReader::seekgb_zu (
-	ZUFILE *lugb, g2int iseek, g2int mseek,g2int *lskip,g2int *lgrib)
-{
-	g2int ipos,nread,lim;
-	uint32_t end;
-	unsigned char *cbuf = (unsigned char *) malloc (mseek);
-	unsigned char version = 0;
-	*lgrib = 0;
-	nread=mseek;
-	ipos=iseek;
-	while (*lgrib==0 && nread==mseek) {
-		zu_seek (lugb, ipos, SEEK_SET);
-		nread = zu_read (lugb, cbuf, mseek);
-		lim = nread-8;
-		//Util::dumpchars(cbuf,0,16);
-		for (g2int k=0; k<lim; k++) {
-			// search GRIB...2
-			if (cbuf[k]=='G' && cbuf[k+1]=='R' && cbuf[k+2]=='I' && cbuf[k+3]=='B'
-				&& (cbuf[k+7] == 1 || cbuf[k+7] == 2)    // requested version
-			) {
-				g2int k4, lengrib;
-
-				version = cbuf[k+7];
-				//  LOOK FOR '7777' AT END OF GRIB MESSAGE
-				if (version == 1) {
-					lengrib = (g2int)(cbuf[k+4]<<16)+(cbuf[k+5]<<8)+cbuf[k+6];
-				}
-				else {
-					lengrib = (g2int)(cbuf[k+12]<<24)+(cbuf[k+13]<<16)+(cbuf[k+14]<<8)+(cbuf[k+15]);
-				}
-				zu_seek (lugb, ipos+k+lengrib-4, SEEK_SET);
-				k4 = zu_read (lugb, &end, 4);
-				if (k4 == 4 && end == 926365495) {      // "7777" found
-					//DBG("FOUND GRIB2 FIELD lengrib=%ld", lengrib);
-					*lskip=ipos+k;
-					*lgrib=lengrib;
-					break;
-				}
-			}
-        }
-        ipos=ipos+lim;
-	}
-	free(cbuf);
-	return version;
-}
-
-//---------------------------------------------------------------------------------
-bool GribReader::readGribRecord(int id)
-{
-    //--------------------------------------------------------
-    // Lecture de l'ensemble des GribRecord du fichier
-    // et stockage dans les listes appropriées.
-    //--------------------------------------------------------
-    GribRecord *rec;
-	bool eof;
-
-    rec = new GribRecord(file, id);
-
-    if (!rec->isOk()) {
-    	delete rec;
-    	return false;
-	}
-
-	eof = rec->isEof();
-
-	if (rec->isDataKnown())
-    {
-//            DBG("%d %d %d %d", rec->getDataType(),rec->getLevelType(), rec->getLevelValue(), rec->getRecordCurrentDate());
-		if (checkAndStoreRecordInMap (rec)) {
-			rec = nullptr; // release ownership
-			ok = true;   // at least 1 record ok
-		}
-		else {
-			fprintf(stderr,
-				"GribReader: id=%d unknown data: key=0x%lx  idCenter==%d && idModel==%d && idGrid==%d dataType==%d\n",
-				rec->getId(),
-				rec->getKey(),
-				rec->getIdCenter(), rec->getIdModel(), rec->getIdGrid(),
-				rec->getDataType()
-			);
-		}
-	}
-	delete rec;
-	return eof;
-}
-//---------------------------------------------------------------------------------
-bool GribReader::readGrib2Record(int id, g2int lgrib)
-{
-	bool eof = false;
-    unsigned char *cgrib;
-    g2int  listsec0[3],listsec1[13],numlocal,numfields;
-    int    unpack=1, ierr=0;
-    gribfield  *gfld;
-    g2int expand=1;
-	int idrec=0;
-
-	cgrib = (unsigned char *) malloc (lgrib);
-    if (cgrib == nullptr)
-		return false;
-
-	if (zu_read(file, cgrib, lgrib) == lgrib)
-	{
-		numfields = 0;
-		numlocal = 0;
-		ierr = g2_info (cgrib,listsec0,listsec1,&numfields,&numlocal);
-		if (ierr == 0) {
-			// analyse values returned by g2_info
-            // added by david to handle discipling
-            int discipline = listsec0[0];
-
-			int idCenter = listsec1[0];
-			int refyear  = listsec1[5];
-			int refmonth = listsec1[6];
-			int refday   = listsec1[7];
-			int refhour  = listsec1[8];
-			int refminute= listsec1[9];
-			int refsecond= listsec1[10];
-			time_t refDate = DataRecordAbstract::UTC_mktime
-								(refyear,refmonth,refday,refhour,refminute,refsecond);
-			// 				idModel
-			// 				idGrid
-			// extract fields
-			for (g2int n=0; n<numfields; n++) {
-                gfld = nullptr;
-				ierr = g2_getfld (cgrib, n+1, unpack, expand, &gfld);
-				if (ierr == 0) {
-					idrec++;
-                    //DBG("LOAD FIELD idrec=%d/%d field=%ld/%ld numlocal=%ld",idrec,nbrecs, n+1,numfields, numlocal);
-                    Grib2Record *rec = new Grib2Record (gfld, idrec, idCenter, refDate, discipline);
-					if (rec->isOk() && checkAndStoreRecordInMap(rec)) {
-                        //DBG("storeRecordInMap %d", rec->getId());
-						rec = nullptr; // release ownership
-						ok = true;   // at least 1 record ok
-					}
-					else {
-						delete rec;
-#if 0						
-						Grib2RecordMarker mark = rec->getGrib2RecordMarker();
-						if (!allUnknownRecords.contains(mark)) {
-							allUnknownRecords << mark;
-							mark.dbgRec();
-						}
-#endif
-					}
-				}
-				if (gfld)
-					g2_free(gfld);
-			}
-		}
-	}
-	free(cgrib);
-	return eof;
-}
-//---------------------------------------------------------------------------------
 void GribReader::readGribFileContent (int nbrecs)
 {
-    int id = 0;
-	bool end;
-    g2int lskip=0,lgrib=0,iseek=0;
 
 	ok = false;
-    fileSize = zu_filesize(file);
+    // get the grib file
+    GribFile gf(file);
+    
+    //fileSize = zu_filesize(file);
+    std::list<GribRecordTask*> tasks;
+
+    // DBG("Number of active threads: %d", QThreadPool::globalInstance()->maxThreadCount());
+    // if (QThreadPool::globalInstance()->maxThreadCount() > 2)
+    //     QThreadPool::globalInstance()->setMaxThreadCount(1);
+    // DBG("Number of active threads: %d", QThreadPool::globalInstance()->maxThreadCount());
+    
+    // read each record and create a task
+    bool end = false;
+    size_t iseek = 0;
+    int id = 0;
     do {
-		int version = seekgb_zu (file, iseek, 64*1024, &lskip, &lgrib);
-		if (id%4 == 1)
-			emit valueChanged ((int)(100.0*id/nbrecs));
-
-		if (lgrib == 0)
-			break;    // end loop at EOF or problem
-		iseek = lskip + lgrib;
-		if (zu_seek (file, lskip, SEEK_SET) )
-			break;
-
-		id ++;
-		if (version == 1) {
-			end = readGribRecord(id);
-		}
-		else {
-			end = readGrib2Record(id, lgrib);
-		}
+        GribRecordBuffer *buf = new GribRecordBuffer(&gf, iseek);
+        if (buf->record_length() == 0) {
+            end = true;
+            delete buf;
+        } else {
+            if (buf->version() == 1 || buf->version() == 2) {
+                iseek += buf->record_start() + buf->record_length();
+                GribRecordTask *task = new GribRecordTask(++id, buf);
+                task->setAutoDelete(false);
+                tasks.push_back(task);
+                QThreadPool::globalInstance()->start(task);
+            } else {
+                printf("Unknown record version - %d\n", buf->version());
+                end = true;
+            }
+        }
     } while (continueDownload && !end);
 
-	if (! continueDownload)
+    // go through the tasks, collect data and remove task when finished
+    size_t count = 0;
+    while (tasks.size() > 0 && continueDownload) {
+        std::list<GribRecordTask*>::iterator it = tasks.begin();
+        while (it != tasks.end() && continueDownload) {
+            GribRecordTask *curtask = *it;
+            if (curtask->isFinished()) {
+                printf("GribRecordTask %d finished\n", curtask->id());
+                if ((++count)%4 == 0)
+                    emit valueChanged (static_cast<int>((100.0*(count)/nbrecs)));
+                if (curtask->isOk()) {
+                    printf("GribRecordTask %d ok\n", curtask->id());
+                    auto rec = curtask->record();
+                    if (rec && rec->isDataKnown() && checkAndStoreRecordInMap(rec)) 
+                    {
+                        DBG("%d %d %d %ld", rec->getDataType(),rec->getLevelType(), rec->getLevelValue(), rec->getRecordCurrentDate());
+                        ok = true;   // at least 1 record ok
+                    } else if (rec) {
+                        fprintf(stderr,
+                                "GribReader: id=%d unknown data: key=0x%lx  idCenter==%d && idModel==%d && idGrid==%d dataType==%d\n",
+                                rec->getId(),
+                                rec->getKey(),
+                                rec->getIdCenter(), rec->getIdModel(), rec->getIdGrid(),
+                                rec->getDataType()
+                            );
+                    }
+                    auto rec2 = curtask->grib2records();
+                    for (size_t j=0; j<rec2.size(); j++) {
+                        if (rec2[j]->isOk() && checkAndStoreRecordInMap(rec2[j])) {
+                            DBG("%d %d %d %ld", rec2->getDataType(),rec2->getLevelType(), rec2->getLevelValue(), rec2->getRecordCurrentDate());
+                            ok = true; // at least 1 record ok
+                        } else if (rec2[j] != nullptr) {
+                            fprintf(stderr,
+                                    "GribReader: id=%d unknown data: key=0x%lx  idCenter==%d && idModel==%d && idGrid==%d dataType==%d\n",
+                                    rec2[j]->getId(),
+                                    rec2[j]->getKey(),
+                                    rec2[j]->getIdCenter(), rec2[j]->getIdModel(), rec2[j]->getIdGrid(),
+                                    rec2[j]->getDataType()
+                                );
+                        }
+                    }
+                }
+                it = tasks.erase(it);
+                delete curtask;
+            } else {
+                ++it;
+            }
+        } // end iterator while
+    }
+    
+    // canceled during file read
+	if (! continueDownload) {
 		ok = false;
+        // need to delete the rests of the tasks
+        for (std::list<GribRecordTask*>::iterator it = tasks.begin(); it!=tasks.end(); ++it)
+            (*it)->cancel();
+        // keep going till all gone
+        while (tasks.size() > 0) {
+            std::list<GribRecordTask*>::iterator it = tasks.begin();
+            while (it!=tasks.end()) {
+                if ((*it)->isFinished()) {
+                    delete *it;
+                    tasks.erase(it);
+                } else {
+                    ++it;
+                }
+            }
+        }
+    }
 }
 
 //---------------------------------------------------------------------------------
@@ -653,7 +581,7 @@ void  GribReader::copyFirstCumulativeRecord (DataCode dtc)
 		rec = getFirstGribRecord (dtc);
 		if (rec != nullptr)
 		{
-			GribRecord *r2 = new GribRecord (*rec, false);
+			auto r2 = std::shared_ptr<GribRecord>(new GribRecord (*rec, false));
 			r2->setRecordCurrentDate (dateref);    // 1er enregistrement factice
 			storeRecordInMap (r2);
 		}
@@ -679,7 +607,7 @@ void  GribReader::copyMissingWaveRecords (DataCode dtc)
 			if (rec2) {
 				if (!rec2->isDuplicated()) {
 					// create a copied record from date2
-					GribRecord *r2 = new GribRecord (*rec2, false);
+					auto r2 = std::shared_ptr<GribRecord>(new GribRecord (*rec2, false));
 					r2->setRecordCurrentDate (date);
 					storeRecordInMap (r2);
 				}
@@ -708,7 +636,7 @@ void  GribReader::interpolateMissingRecords (DataCode dtc)
 			if (rec2) {
 				if (!rec2->isInterpolated()) {
 					// create a copied record from date2
-					GribRecord *r2 = new GribRecord (*rec2, false);
+					auto r2 = std::shared_ptr<GribRecord>(new GribRecord (*rec2, false));
 					r2->setRecordCurrentDate (date);
 					r2->setInterpolated(true);
 					storeRecordInMap (r2);
@@ -827,7 +755,7 @@ void GribReader::computeMissingData ()
             GribRecord *recModel = getRecord (DataCode(GRB_HUMID_SPEC,LV_ABOV_GND,2),date);
 			if (recModel != nullptr)
 			{
-				GribRecord *recHumidRel = new GribRecord(*recModel);
+				auto recHumidRel = std::shared_ptr<GribRecord>(new GribRecord(*recModel));
 
                 recHumidRel->setDataType (GRB_HUMID_REL);
                 for (int i=0; i<recModel->getNi(); i++)
@@ -865,7 +793,7 @@ void GribReader::computeMissingData ()
 				{
 					// Crée un GribRecord avec les dewpoints calculés
 					GribRecord *recModel = recTemp;
-					GribRecord *recDewpoint = new GribRecord(*recModel);
+					auto recDewpoint = std::shared_ptr<GribRecord>(new GribRecord(*recModel));
                     recDewpoint->setDataType (GRB_DEWPOINT);
                     for (int i=0; i<recModel->getNi(); i++)
                     {
@@ -904,7 +832,7 @@ void GribReader::computeMissingData ()
 				// if (recHumidSpec && recTemp)
 				if (recHumidRel && recTemp)
 				{  // Crée un GribRecord avec les theta-e calculées
-					GribRecord *recThetaE = new GribRecord (*recTemp);
+					auto recThetaE = std::shared_ptr<GribRecord>(new GribRecord (*recTemp));
                     recThetaE->setDuplicated (false);
                     recThetaE->setDataType (GRB_PRV_THETA_E);
                     double P = -1;
@@ -1057,8 +985,8 @@ void GribReader::findGribsAroundDate (DataCode dtc, time_t date,
 	auto ls = getListOfGribRecords (dtc);
     *before = nullptr;
     *after  = nullptr;
-	zuint nb = ls->size();
-    for (zuint i=0; i<nb && *before==nullptr && *after==nullptr; i++)
+	size_t nb = ls->size();
+    for (size_t i=0; i<nb && *before==nullptr && *after==nullptr; i++)
 	{
 		GribRecord *rec = (*ls)[i].get();
 		assert(rec->isOk());
@@ -1150,8 +1078,8 @@ GribRecord * GribReader::getRecord (DataCode dtc, time_t date)
     GribRecord *res = nullptr;
     if (ls != nullptr) {
         // Cherche le premier enregistrement à la bonne date
-        zuint nb = ls->size();
-        for (zuint i=0; i<nb && res==nullptr; i++) {
+        size_t nb = ls->size();
+        for (size_t i=0; i<nb && res==nullptr; i++) {
         	GribRecord *p = (*ls)[i].get();
             if (p->isOk() && p->getRecordCurrentDate() == date) {
                 res = p;
@@ -1341,7 +1269,7 @@ void GribReader::analyseRecords ()
             GribRecord *recx = getRecord (dtcx, date);
 			GribRecord *recy = getRecord (dtcy, date);
 			if (recx && recy) {
-				GribRecord *recGust = new GribRecord (*recx);
+				auto recGust = std::shared_ptr<GribRecord>(new GribRecord (*recx));
 				// compatibility with NOAA : gust is given at the surface
 				recGust->setDataCode (DataCode(GRB_WIND_GUST,LV_GND_SURF,0));
 				for (int i=0; i<recx->getNi(); i++)

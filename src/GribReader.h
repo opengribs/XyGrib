@@ -114,11 +114,9 @@ class GribReader : public RegularGridReader, public LongTaskMessage
 				ZUFILE *lugb, g2int iseek, g2int mseek, g2int *lskip, g2int *lgrib);
 		
     private:
-        bool checkAndStoreRecordInMap (GribRecord *rec);
-        bool storeRecordInMap (GribRecord *rec);
+        bool checkAndStoreRecordInMap (std::shared_ptr<GribRecord> rec);
+        bool storeRecordInMap (std::shared_ptr<GribRecord> rec);
 		void readGribFileContent (int nbrecs);
-		bool readGribRecord(int id);
-		//bool readGrib2Record(int id);
 		bool readGrib2Record(int id, g2int lgrib);
 
 		std::vector<std::shared_ptr<GribRecord>> * getListOfGribRecords (DataCode dtc);

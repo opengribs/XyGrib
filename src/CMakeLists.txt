@@ -28,9 +28,12 @@ FileLoader.h
 FileLoaderGRIB.h
 Grib2Record.h
 GribAnimator.h
+GribFile.h
 GribPlot.h
 GribReader.h
 GribRecord.h
+GribRecordBuffer.h
+GribRecordTask.h
 GriddedPlotter.h
 GriddedReader.h
 GriddedRecord.h
@@ -77,9 +80,12 @@ DialogUnits.cpp
 FileLoaderGRIB.cpp
 Grib2Record.cpp
 GribAnimator.cpp
+GribFile.cpp
 GribPlot.cpp
 GribReader.cpp
 GribRecord.cpp
+GribRecordBuffer.cpp
+GribRecordTask.cpp
 GriddedPlotter.cpp
 GriddedReader.cpp
 GriddedRecord.cpp

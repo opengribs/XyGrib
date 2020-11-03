@@ -634,40 +634,36 @@ fprintf(stderr,"hasBMS=%d isScanIpositive=%d isScanJpositive=%d isAdjacentI=%d\n
 //-------------------------------------------------------------------------------
 // Lecture depuis un fichier
 //-------------------------------------------------------------------------------
-GribRecord::GribRecord (ZUFILE* file, int id_)
+GribRecord::GribRecord (GribRecordBuffer* buf, int id)
 {
-    id = id_;
-    seekStart = zu_tell(file);
-    eof     = false;
+    id = id;
+    seekStart = buf->record_start();
 	knownData = true;
 	editionNumber = 0;
 	setDuplicated (false);
 	dataCenterModel = OTHER_DATA_CENTER;
-    ok = readGribSection0_IS (file);
+    ok = true;
+    size_t idx = readGribSection0_IS (buf);
     if (ok) {
-        ok = readGribSection1_PDS (file);
-        ok = ok && zu_seek(file, fileOffset1+sectionSize1, SEEK_SET) == 0;
+        readGribSection1_PDS (buf, idx);
+        idx = fileOffset1 + sectionSize1;
     }
     if (ok) {
-        ok = readGribSection2_GDS (file);
-        ok = ok && zu_seek(file, fileOffset2+sectionSize2, SEEK_SET) == 0;
+        readGribSection2_GDS (buf, idx);
+        idx = fileOffset2 + sectionSize2;
     }
     if (ok) {
-        ok = readGribSection3_BMS (file);
-        ok = ok && zu_seek(file, fileOffset3+sectionSize3, SEEK_SET) == 0;
+        readGribSection3_BMS (buf, idx);
+        idx = fileOffset3 + sectionSize3;
     }
     if (ok) {
-        ok = readGribSection4_BDS (file);
-        ok = ok && zu_seek(file, fileOffset4+sectionSize4, SEEK_SET) == 0;
+        readGribSection4_BDS (buf, idx);
+        idx = fileOffset4 + sectionSize4;
     }
     if (ok) {
-        ok = readGribSection5_ES (file);
+        readGribSection5_ES (buf, idx);
     }
     
-    if (ok) {
-//        zu_seek (file, seekStart+totalSize, SEEK_SET);
-    }
-	
 	if (ok && hasBMS) { // replace the BMS bits table with a faster bool table
         boolBMStab = new bool [Ni*Nj];
 		assert (boolBMStab);
@@ -712,7 +708,7 @@ GribRecord::GribRecord (const GribRecord &rec, bool copy)
     // recopie les champs de bits
     if (rec.BMSbits != nullptr) {
         int size = rec.sectionSize3-6;
-        this->BMSbits = new zuchar[size];
+        this->BMSbits = new uint8_t[size];
 		assert (this->BMSbits);
         for (int i=0; i<size; i++)
             this->BMSbits[i] = rec.BMSbits[i];
@@ -823,7 +819,7 @@ void  GribRecord::setDataCode(const DataCode &dtc)
 	dataKey = makeKey(dataType, levelType, levelValue);
 }
 //------------------------------------------------------------------------------
-void  GribRecord::setDataType(const zuchar t)
+void  GribRecord::setDataType(const uint8_t t)
 {
 	dataType = t;
 	dataKey = makeKey(dataType, levelType, levelValue);
@@ -892,9 +888,9 @@ void GribRecord::average(const GribRecord &rec)
     if (d2 <= d1)
         return;
 
-    zuint size = Ni *Nj;
+    uint32_t size = Ni *Nj;
     double diff = d2 -d1;
-    for (zuint i=0; i<size; i++) {
+    for (uint32_t i=0; i<size; i++) {
         if (! GribDataIsDef(rec.data.get()[i]))
            continue;
         if (! GribDataIsDef(data.get()[i]))
@@ -917,8 +913,8 @@ void GribRecord::substract(const GribRecord &rec, bool pos)
     if (Ni != rec.Ni || Nj != rec.Nj)
         return;
 
-    zuint size = Ni *Nj;
-    for (zuint i=0; i<size; i++) {
+    uint32_t size = Ni *Nj;
+    for (uint32_t i=0; i<size; i++) {
         if (rec.data.get()[i] == GRIB_NOTDEF)
            continue;
         if (! GribDataIsDef(data.get()[i])) {
@@ -943,56 +939,41 @@ void GribRecord::substract(const GribRecord &rec, bool pos)
 //----------------------------------------------
 // SECTION 0: THE INDICATOR SECTION (IS)
 //----------------------------------------------
-bool GribRecord::readGribSection0_IS (ZUFILE* file) {
+size_t GribRecord::readGribSection0_IS (GribRecordBuffer* buf) {
     char strgrib[4];
-    fileOffset0 = zu_tell(file);
+    fileOffset0 = buf->file_offset() + buf->record_start();
 
-// DBG ("START ftell=%ld %lx", zu_tell (file), zu_tell (file));
 	// Cherche le 1er 'G' de 'GRIB'
-	strgrib[0] = 'X';
-	while ( (zu_read(file, strgrib, 1) == 1)
-		   		&&  (strgrib[0] != 'G') )
-	{ 
-// 		fprintf(stderr,"%02X ", (unsigned char) strgrib[0]);
-	}
+    size_t idx = buf->record_start();
+    
+	strgrib[0] = buf->get(idx++);
+    strgrib[1] = buf->get(idx++);
+    strgrib[2] = buf->get(idx++);
+    strgrib[3] = buf->get(idx++);
 
-    if (strgrib[0] != 'G') {
-        ok = false;
-        eof = true;
-        return false;
-    }
-    if (zu_read(file, strgrib+1, 3) != 3) {
-        ok = false;
-        eof = true;
-        return false;
-    }
     if (strncmp(strgrib, "GRIB", 4) != 0)  {
         erreur("readGribSection0_IS(): Unknown file header : %c%c%c%c",
                     strgrib[0],strgrib[1],strgrib[2],strgrib[3]);
         ok = false;
-        eof = true;
-        return false;
+        return 0;
     }
-    totalSize = readInt3(file);
-
-    editionNumber = readChar(file);
+    totalSize = readInt3(buf,idx);
+    editionNumber = readChar(buf,idx);
     if (editionNumber != 1)  {	// 1=GRIB1, 2=GRIB2
         ok = false;
-        eof = true;
-        return false;
+        return 0;
     }
-
-    return true;
+    return idx;
 } 
 //----------------------------------------------
 // SECTION 1: THE PRODUCT DEFINITION SECTION (PDS)
 //----------------------------------------------
-bool GribRecord::readGribSection1_PDS(ZUFILE* file) {
-    fileOffset1 = zu_tell(file);
-    if (zu_read(file, data1, 28) != 28) {
-        ok=false;
-        eof = true;
-        return false;
+void GribRecord::readGribSection1_PDS(GribRecordBuffer* buf, size_t& idx) {
+    fileOffset1 = idx;
+
+    if (!buf->copy(data1, fileOffset1, 28)) {
+        ok = false;
+        return;
     }
     sectionSize1 = makeInt3(data1[0],data1[1],data1[2]);
     tableVersion = data1[3];
@@ -1022,7 +1003,7 @@ bool GribRecord::readGribSection1_PDS(ZUFILE* file) {
     curDate = UTC_mktime(refyear,refmonth,refday,refhour,refminute,periodsec);
 
     int decim;
-    decim = (int)(((((zuint)data1[26]&0x7F)<<8)+(zuint)data1[27])&0x7FFF);
+    decim = (int)(((((uint32_t)data1[26]&0x7F)<<8)+(uint32_t)data1[27])&0x7FFF);
     if (data1[26]&0x80)
         decim *= -1;
     decimalFactorD = pow(10.0, decim);
@@ -1036,19 +1017,18 @@ bool GribRecord::readGribSection1_PDS(ZUFILE* file) {
         erreur("Record %d: decimalFactorD null",id);
         ok = false;
     }
-    return ok;
 }
 //----------------------------------------------
 // SECTION 2: THE GRID DESCRIPTION SECTION (GDS)
 //----------------------------------------------
-bool GribRecord::readGribSection2_GDS(ZUFILE* file) {
+void GribRecord::readGribSection2_GDS(GribRecordBuffer* buf, size_t& idx) {
     if (! hasGDS)
-        return false;
-    fileOffset2 = zu_tell(file);
-    sectionSize2 = readInt3(file);  // byte 1-2-3
-    NV = readChar(file);			// byte 4
-    PV = readChar(file); 			// byte 5
-    gridType = readChar(file); 		// byte 6
+        return;
+    fileOffset2 = idx;
+    sectionSize2 = readInt3(buf, idx);  // byte 1-2-3
+    NV = readChar(buf, idx);			// byte 4
+    PV = readChar(buf, idx); 			// byte 5
+    gridType = readChar(buf, idx); 		// byte 6
 
     if (gridType != 0
     		// && gridType != 4
@@ -1057,20 +1037,20 @@ bool GribRecord::readGribSection2_GDS(ZUFILE* file) {
         ok = false;
     }
 
-    Ni  = readInt2(file);				// byte 7-8
-    Nj  = readInt2(file);				// byte 9-10
-    ymin = readSignedInt3(file)/1000.0;	// byte 11-12-13
-    xmin = readSignedInt3(file)/1000.0;	// byte 14-15-16
-    resolFlags = readChar(file);		// byte 17
-    ymax = readSignedInt3(file)/1000.0;	// byte 18-19-20
-    xmax = readSignedInt3(file)/1000.0;	// byte 21-22-23
+    Ni  = readInt2(buf,idx);				// byte 7-8
+    Nj  = readInt2(buf,idx);				// byte 9-10
+    ymin = readSignedInt3(buf,idx)/1000.0;	// byte 11-12-13
+    xmin = readSignedInt3(buf,idx)/1000.0;	// byte 14-15-16
+    resolFlags = readChar(buf,idx);		// byte 17
+    ymax = readSignedInt3(buf,idx)/1000.0;	// byte 18-19-20
+    xmax = readSignedInt3(buf,idx)/1000.0;	// byte 21-22-23
 	savXmin = xmin;
 	savXmax = xmax;
 	savYmin = ymin;
 	savYmax = ymax;
 
-    Di  = readSignedInt2(file)/1000.0;	// byte 24-25
-    Dj  = readSignedInt2(file)/1000.0;	// byte 26-27
+    Di  = readSignedInt2(buf,idx)/1000.0;	// byte 24-25
+    Dj  = readSignedInt2(buf,idx)/1000.0;	// byte 26-27
 	savDi = Di;
 	savDj = Dj;
 	
@@ -1085,7 +1065,7 @@ bool GribRecord::readGribSection2_GDS(ZUFILE* file) {
     isEarthSpheric = (resolFlags&0x40) ==0;
     isUeastVnorth =  (resolFlags&0x08) ==0;
 
-    scanFlags = readChar(file);			// byte 28
+    scanFlags = readChar(buf,idx);			// byte 28
     isScanIpositive = (scanFlags&0x80) ==0;
     isScanJpositive = (scanFlags&0x40) !=0;
     isAdjacentI     = (scanFlags&0x20) ==0;
@@ -1101,50 +1081,48 @@ bool GribRecord::readGribSection2_GDS(ZUFILE* file) {
 // printf ("Ni=%d Nj=%d\n", Ni, Nj);
 //print ("readGribSection2_GDS");	
 
-    return ok;
 }
 //----------------------------------------------
 // SECTION 3: BIT MAP SECTION (BMS)
 //----------------------------------------------
-bool GribRecord::readGribSection3_BMS(ZUFILE* file) {
-    fileOffset3 = zu_tell(file);
+void GribRecord::readGribSection3_BMS(GribRecordBuffer* buf, size_t& idx) {
+    fileOffset3 = idx;
     if (! hasBMS) {
         sectionSize3 = 0;
-        return ok;
+        return;
     }
-    sectionSize3 = readInt3(file);
-    (void) readChar(file);
-    int bitMapFollows = readInt2(file);
+    sectionSize3 = readInt3(buf,idx);
+    (void) readChar(buf,idx);
+    int bitMapFollows = readInt2(buf,idx);
 
     if (bitMapFollows != 0) {
-        return ok;
+        return;
     }
     if (sectionSize3 <= 6) {
         erreur("Record %d: Bad BMS size %d",id, sectionSize3);
         ok = false;
-        return ok;
+        return;
     }
-    BMSbits = new zuchar[sectionSize3-6];
+    BMSbits = new uint8_t[sectionSize3-6];
     if (!BMSbits) {
         erreur("Record %d: out of memory",id);
         ok = false;
     }
-    for (zuint i=0; i<sectionSize3-6; i++) {
-        BMSbits[i] = readChar(file);
+    for (uint32_t i=0; i<sectionSize3-6; i++) {
+        BMSbits[i] = readChar(buf,idx);
     }
-    return ok;
 }
 //----------------------------------------------
 // SECTION 4: BINARY DATA SECTION (BDS)
 //----------------------------------------------
-bool GribRecord::readGribSection4_BDS(ZUFILE* file) {
-    fileOffset4  = zu_tell(file);
-    sectionSize4 = readInt3(file);  // byte 1-2-3
+void GribRecord::readGribSection4_BDS(GribRecordBuffer* buf, size_t& idx) {
+    fileOffset4  = idx;
+    sectionSize4 = readInt3(buf,idx);  // byte 1-2-3
 
-    zuchar flags  = readChar(file);			// byte 4
-    scaleFactorE = readSignedInt2(file);	// byte 5-6
-    refValue     = readFloat4(file);		// byte 7-8-9-10
-    nbBitsInPack = readChar(file);			// byte 11
+    uint8_t flags  = readChar(buf,idx);			// byte 4
+    scaleFactorE = readSignedInt2(buf,idx);	// byte 5-6
+    refValue     = readFloat4(buf,idx);		// byte 7-8-9-10
+    nbBitsInPack = readChar(buf,idx);			// byte 11
     scaleFactorEpow2 = pow(2,scaleFactorE);
     unusedBitsEndBDS = flags & 0x0F;
 	
@@ -1178,7 +1156,7 @@ bool GribRecord::readGribSection4_BDS(ZUFILE* file) {
     }
 
     if (!ok) {
-        return ok;
+        return;
     }
 
     // Allocate memory for the data
@@ -1189,22 +1167,23 @@ bool GribRecord::readGribSection4_BDS(ZUFILE* file) {
         ok = false;
     }
 
-    zuint  startbit  = 0;
-    int  datasize = sectionSize4-11;
-    zuchar *buf = new zuchar[datasize+4]();  // +4 pour simplifier les décalages ds readPackedBits
+    uint32_t  startbit  = 0;
+    size_t  datasize = sectionSize4-11;
+    uint8_t *pbbuf = new uint8_t[datasize+4]();  // +4 pour simplifier les décalages ds readPackedBits
 	
-    if (!buf) {
+    if (!pbbuf) {
         erreur("Record %d: out of memory",id);
         ok = false;
     }
-    else if (zu_read(file, buf, datasize) != datasize) {
-        erreur("Record %d: data read error",id);
-        ok = false;
-        eof = true;
+    else {
+        if (!buf->copy(pbbuf, idx, datasize)) {
+            erreur("Record %d: data read error",id);
+            ok = false;
+        }
     }
     if (!ok) {
-        delete [] buf;
-        return ok;
+        delete [] pbbuf;
+        return;
     }
     
 
@@ -1221,7 +1200,7 @@ bool GribRecord::readGribSection4_BDS(ZUFILE* file) {
                     ind = j*Ni+i;
                 }
                 if (hasValueInBitBMS(i,j)) {
-                    x = readPackedBits(buf, startbit, nbBitsInPack);
+                    x = readPackedBits(pbbuf, startbit, nbBitsInPack);
                     data.get()[ind] = (refValue + x*scaleFactorEpow2)/decimalFactorD;
                     startbit += nbBitsInPack;
                 }
@@ -1241,7 +1220,7 @@ bool GribRecord::readGribSection4_BDS(ZUFILE* file) {
                     ind = j*Ni+i;
                 }
                 if (hasValueInBitBMS(i,j)) {
-                    x = readPackedBits(buf, startbit, nbBitsInPack);
+                    x = readPackedBits(pbbuf, startbit, nbBitsInPack);
                     startbit += nbBitsInPack;
                     data.get()[ind] = (refValue + x*scaleFactorEpow2)/decimalFactorD;
                 }
@@ -1252,8 +1231,7 @@ bool GribRecord::readGribSection4_BDS(ZUFILE* file) {
         }
     }
 
-    delete [] buf;
-    return ok;
+    delete [] pbbuf;
 }
 
 
@@ -1261,23 +1239,18 @@ bool GribRecord::readGribSection4_BDS(ZUFILE* file) {
 //----------------------------------------------
 // SECTION 5: END SECTION (ES)
 //----------------------------------------------
-bool GribRecord::readGribSection5_ES (ZUFILE* file) {
+void GribRecord::readGribSection5_ES (GribRecordBuffer* buf, size_t& idx) {
 	
-// DBG ("7777? ftell=%ld %lx", zu_tell (file), zu_tell (file));
-
     char str[4];
-    if (zu_read(file, str, 4) != 4) {
-		DBG("can't read 4 chars");
-        ok = false;
-        eof = true;
-        return false;
-    }
+    str[0] = readChar(buf,idx);
+    str[1] = readChar(buf,idx);
+    str[2] = readChar(buf,idx);
+    str[3] = readChar(buf,idx);
+    
     if (strncmp(str, "7777", 4) != 0)  {
         DBG ("Final 7777 not read: %c%c%c%c",str[0],str[1],str[2],str[3]);
         ok = false;
-        return false;
     }
-    return ok;
 }
 
 
@@ -1288,17 +1261,19 @@ bool GribRecord::readGribSection5_ES (ZUFILE* file) {
 //==============================================================
 // Fonctions utiles
 //==============================================================
-double GribRecord::readFloat4(ZUFILE* file) {
+double GribRecord::readFloat4(GribRecordBuffer* buf, size_t& idx) {
     unsigned char t[4];
-    if (zu_read(file, t, 4) != 4) {
+    if (!buf->copy(t, idx, 4)) {
         ok = false;
-        eof = true;
         return 0;
     }
-
+    idx += 4;
+    
     double val;
-    int A = (zuint)t[0]&0x7F;
-    int B = ((zuint)t[1]<<16)+((zuint)t[2]<<8)+(zuint)t[3];
+    int A = static_cast<uint32_t>(t[0]&0x7F);
+    int B = (static_cast<uint32_t>(t[1])<<16)
+        +(static_cast<uint32_t>(t[2])<<8)
+        +static_cast<uint32_t>(t[3]);
 
     val = pow(2,-24)*B*pow(16,A-64);
     if (t[0]&0x80)
@@ -1307,78 +1282,81 @@ double GribRecord::readFloat4(ZUFILE* file) {
         return val;
 }
 //----------------------------------------------
-zuchar GribRecord::readChar(ZUFILE* file) {
-    zuchar t;
-    if (zu_read(file, &t, 1) != 1) {
+uint8_t GribRecord::readChar(GribRecordBuffer* buf, size_t& idx) {
+    if (idx >= buf->record_length()) {
         ok = false;
-        eof = true;
         return 0;
     }
+    uint8_t t = buf->get(idx++);
     return t;
 }
 //----------------------------------------------
-int GribRecord::readSignedInt3(ZUFILE* file) {
+int GribRecord::readSignedInt3(GribRecordBuffer* buf, size_t& idx) {
     unsigned char t[3];
-    if (zu_read(file, t, 3) != 3) {
+    if (!buf->copy(t, idx, 3)) {
         ok = false;
-        eof = true;
         return 0;
     }
-    int val = (((zuint)t[0]&0x7F)<<16)+((zuint)t[1]<<8)+(zuint)t[2];
+    idx += 3;
+    int val = (static_cast<uint32_t>(t[0]&0x7F)<<16)
+               +(static_cast<uint32_t>(t[1])<<8)
+               +static_cast<uint32_t>(t[2]);
     if (t[0]&0x80)
         return -val;
     else
         return val;
 }
 //----------------------------------------------
-int GribRecord::readSignedInt2(ZUFILE* file) {
+int GribRecord::readSignedInt2(GribRecordBuffer* buf, size_t& idx) {
     unsigned char t[2];
-    if (zu_read(file, t, 2) != 2) {
+    if (!buf->copy(t, idx, 2)) {
         ok = false;
-        eof = true;
         return 0;
     }
-    int val = (((zuint)t[0]&0x7F)<<8)+(zuint)t[1];
+    idx += 2;
+    int val = (static_cast<uint32_t>(t[0]&0x7F)<<8)+static_cast<uint32_t>(t[1]);
     if (t[0]&0x80)
         return -val;
     else
         return val;
 }
 //----------------------------------------------
-zuint GribRecord::readInt3(ZUFILE* file) {
+uint32_t GribRecord::readInt3(GribRecordBuffer* buf, size_t& idx) {
     unsigned char t[3];
-    if (zu_read(file, t, 3) != 3) {
+    if (!buf->copy(t, idx, 3)) {
         ok = false;
-        eof = true;
         return 0;
     }
-    return ((zuint)t[0]<<16)+((zuint)t[1]<<8)+(zuint)t[2];
+    idx += 3;
+    return (static_cast<uint32_t>(t[0])<<16)
+        +(static_cast<uint32_t>(t[1])<<8)
+        +static_cast<uint32_t>(t[2]);
 }
 //----------------------------------------------
-zuint GribRecord::readInt2(ZUFILE* file) {
+uint32_t GribRecord::readInt2(GribRecordBuffer* buf, size_t& idx) {
     unsigned char t[2];
-    if (zu_read(file, t, 2) != 2) {
+    if (!buf->copy(t, idx, 2)) {
         ok = false;
-        eof = true;
         return 0;
     }
-    return ((zuint)t[0]<<8)+(zuint)t[1];
+    idx += 2;
+    return (static_cast<uint32_t>(t[0])<<8)+static_cast<uint32_t>(t[1]);
 }
 //----------------------------------------------
-zuint GribRecord::makeInt3(zuchar a, zuchar b, zuchar c) {
-    return ((zuint)a<<16)+((zuint)b<<8)+(zuint)c;
+uint32_t GribRecord::makeInt3(uint8_t a, uint8_t b, uint8_t c) {
+    return ((uint32_t)a<<16)+((uint32_t)b<<8)+(uint32_t)c;
 }
 //----------------------------------------------
-zuint GribRecord::makeInt2(zuchar b, zuchar c) {
-    return ((zuint)b<<8)+(zuint)c;
+uint32_t GribRecord::makeInt2(uint8_t b, uint8_t c) {
+    return ((uint32_t)b<<8)+(uint32_t)c;
 }
 //----------------------------------------------
-zuint GribRecord::readPackedBits(const zuchar *buf, zuint first, zuint nbBits)
+uint32_t GribRecord::readPackedBits(const uint8_t *buf, uint32_t first, uint32_t nbBits)
 {
-    zuint oct = first / 8;
-    zuint bit = first % 8;
+    uint32_t oct = first / 8;
+    uint32_t bit = first % 8;
 
-    zuint val = (buf[oct]<<24) + (buf[oct+1]<<16) + (buf[oct+2]<<8) + (buf[oct+3]);
+    uint32_t val = (buf[oct]<<24) + (buf[oct+1]<<16) + (buf[oct+2]<<8) + (buf[oct+3]);
     val = val << bit;
     val = val >> (32-nbBits);
     return val;
@@ -1389,16 +1367,16 @@ void  GribRecord::setRecordCurrentDate (time_t t)
 {
 	curDate = t;
     struct tm *date = gmtime(&t);
-    zuint year   = date->tm_year+1900;
-    zuint month  = date->tm_mon+1;
-	zuint day    = date->tm_mday;
-	zuint hour   = date->tm_hour;
-	zuint minute = date->tm_min;
+    uint32_t year   = date->tm_year+1900;
+    uint32_t month  = date->tm_mon+1;
+	uint32_t day    = date->tm_mday;
+	uint32_t hour   = date->tm_hour;
+	uint32_t minute = date->tm_min;
 	sprintf(strCurDate, "%04d-%02d-%02d %02d:%02d", year,month,day,hour,minute);
 }
 //----------------------------------------------
-zuint GribRecord::periodSeconds(zuchar unit,zuchar P1,zuchar P2,zuchar range) {
-    zuint res, dur;
+uint32_t GribRecord::periodSeconds(uint8_t unit,uint8_t P1,uint8_t P2,uint8_t range) {
+    uint32_t res, dur;
     switch (unit) {
         case 0: //	Minute
             res = 60; break;
@@ -1428,17 +1406,17 @@ zuint GribRecord::periodSeconds(zuchar unit,zuchar P1,zuchar P2,zuchar range) {
     dur = 0;
     switch (range) {
         case 0:
-            dur = (zuint)P1; break;
+            dur = (uint32_t)P1; break;
         case 1:
             dur = 0; break;
         case 2:
         case 3:
-            // dur = ((zuint)P1+(zuint)P2)/2; break;     // TODO
-            dur = (zuint)P2; break;
+            // dur = ((uint32_t)P1+(uint32_t)P2)/2; break;     // TODO
+            dur = (uint32_t)P2; break;
          case 4: // Accumulation (reference time + P1 to reference time + P2) product considered valid at reference time + P2
-            dur = (zuint)P2; break;
+            dur = (uint32_t)P2; break;
         case 10: // product valid at reference time + P1
-            dur = ((zuint)P1<<8) + (zuint)P2; break;
+            dur = ((uint32_t)P1<<8) + (uint32_t)P2; break;
         default:
             erreur("id=%d: unknown time range in PDS b21=%d",id,range);
             dur = 0;

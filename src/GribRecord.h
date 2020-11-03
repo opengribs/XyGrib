@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <cstdint>
 #include <memory>
 
-#include "zuFile.h"
+#include "GribRecordBuffer.h"
 #include "RegularGridded.h"
 
 #define DEBUG_INFO    false
@@ -33,15 +33,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define debug(format, ...)  {if(DEBUG_INFO)  {fprintf(stderr,format,__VA_ARGS__);fprintf(stderr,"\n");}}
 #define erreur(format, ...) {if(DEBUG_ERROR) {fprintf(stderr,"ERROR: ");fprintf(stderr,format,__VA_ARGS__);fprintf(stderr,"\n");}}
 
-using zuint = uint32_t;
-using zuchar = uint8_t;
-
 //----------------------------------------------
 class GribRecord : public RegularGridRecord  
 {
     public:
         GribRecord () = default;
-        GribRecord (ZUFILE* file, int id_);
+        GribRecord (GribRecordBuffer *buf, int id);
         GribRecord (const GribRecord &rec, bool copy = true);
         ~GribRecord ();
 
@@ -61,11 +58,11 @@ class GribRecord : public RegularGridRecord
 		DataCode getDataCode () const
 						{ return DataCode(dataType,levelType,levelValue); }
 		void    setDataCode(const DataCode &dtc);
-        zuchar  getDataType() const     { return dataType; }
-        void    setDataType(const zuchar t);
+        uint8_t  getDataType() const     { return dataType; }
+        void    setDataType(const uint8_t t);
 
-        zuchar  getLevelType() const   { return levelType; }
-        zuint   getLevelValue() const  { return levelValue; }
+        uint8_t  getLevelType() const   { return levelType; }
+        uint32_t   getLevelValue() const  { return levelValue; }
 
         //-----------------------------------------
 		void    translateDataType();  // adapte les codes des différents centres météo
@@ -82,7 +79,7 @@ class GribRecord : public RegularGridRecord
         //-----------------------------------------
         int    getPeriodP1() const  { return periodP1; }
         int    getPeriodP2() const  { return periodP2; }
-        zuchar getTimeRange() const { return timeRange; }
+        uint8_t getTimeRange() const { return timeRange; }
 
         // Nombre de points de la grille
         int     getNi() const override { return Ni; }
@@ -157,37 +154,37 @@ class GribRecord : public RegularGridRecord
         //---------------------------------------------
         // SECTION 0: THE INDICATOR SECTION (IS)
         //---------------------------------------------
-        zuint  fileOffset0;
-        zuint  seekStart, totalSize;
-        zuchar editionNumber;
+        uint32_t  fileOffset0;
+        uint32_t  seekStart, totalSize;
+        uint8_t editionNumber;
         // SECTION 1: THE PRODUCT DEFINITION SECTION (PDS)
-        zuint  fileOffset1;
-        zuint  sectionSize1;
-        zuchar tableVersion;
-        zuchar data1[28];
-        zuchar idCenter;
-        zuchar idModel;
-        zuchar idGrid;
+        uint32_t  fileOffset1;
+        uint32_t  sectionSize1;
+        uint8_t tableVersion;
+        uint8_t data1[28];
+        uint8_t idCenter;
+        uint8_t idModel;
+        uint8_t idGrid;
         int  dataType;      // octet 9 = parameters and units
         int  levelType;
         int  levelValue;
         bool   hasGDS;
         bool   hasBMS;
-        zuint  refyear, refmonth, refday, refhour, refminute;
-        zuchar periodP1{0}, periodP2{0};
-        zuchar timeRange{255};
-        zuint  periodsec;    // period in seconds
+        uint32_t  refyear, refmonth, refday, refhour, refminute;
+        uint8_t periodP1{0}, periodP2{0};
+        uint8_t timeRange{255};
+        uint32_t  periodsec;    // period in seconds
         time_t refDate;      // Reference date
         time_t curDate;      // Current date
         double  decimalFactorD;
         // SECTION 2: THE GRID DESCRIPTION SECTION (GDS)
-        zuint  fileOffset2;
-        zuint  sectionSize2;
-        zuchar NV, PV;
-        zuchar gridType;
+        uint32_t  fileOffset2;
+        uint32_t  sectionSize2;
+        uint8_t NV, PV;
+        uint8_t gridType;
         int    Ni, Nj;
         double Di, Dj;
-        zuchar resolFlags, scanFlags;
+        uint8_t resolFlags, scanFlags;
         bool  hasDiDj;
         bool  isEarthSpheric;
         bool  isUeastVnorth;
@@ -195,13 +192,13 @@ class GribRecord : public RegularGridRecord
         bool  isScanJpositive;
         bool  isAdjacentI;
         // SECTION 3: BIT MAP SECTION (BMS)
-        zuint  fileOffset3;
-        zuint  sectionSize3;
-        zuchar *BMSbits{};
+        uint32_t  fileOffset3;
+        uint32_t  sectionSize3;
+        uint8_t *BMSbits{};
         // SECTION 4: BINARY DATA SECTION (BDS)
-        zuint  fileOffset4;
-        zuint  sectionSize4;
-        zuchar unusedBitsEndBDS;
+        uint32_t  fileOffset4;
+        uint32_t  sectionSize4;
+        uint8_t unusedBitsEndBDS;
         bool  isGridData;          // not spherical harmonics
         bool  isSimplePacking;
         bool  isFloatValues;
@@ -209,36 +206,36 @@ class GribRecord : public RegularGridRecord
         int   scaleFactorE;
         double scaleFactorEpow2;
         double refValue;
-        zuint  nbBitsInPack;
+        uint32_t  nbBitsInPack;
         std::shared_ptr<data_t> data;
         // SECTION 5: END SECTION (ES)
 
         //---------------------------------------------
         // Lecture des données
         //---------------------------------------------
-        bool readGribSection0_IS (ZUFILE* file);
-        bool readGribSection1_PDS(ZUFILE* file);
-        bool readGribSection2_GDS(ZUFILE* file);
-        bool readGribSection3_BMS(ZUFILE* file);
-        bool readGribSection4_BDS(ZUFILE* file);
-        bool readGribSection5_ES (ZUFILE* file);
+        size_t readGribSection0_IS (GribRecordBuffer* buf);
+        void readGribSection1_PDS(GribRecordBuffer* buf, size_t& idx);
+        void readGribSection2_GDS(GribRecordBuffer* buf, size_t& idx);
+        void readGribSection3_BMS(GribRecordBuffer* buf, size_t& idx);
+        void readGribSection4_BDS(GribRecordBuffer* buf, size_t& idx);
+        void readGribSection5_ES (GribRecordBuffer* buf, size_t& idx);
 
         //---------------------------------------------
         // Fonctions utiles
         //---------------------------------------------
-        zuchar readChar(ZUFILE* file);
-        int    readSignedInt3(ZUFILE* file);
-        int    readSignedInt2(ZUFILE* file);
-        zuint  readInt2(ZUFILE* file);
-        zuint  readInt3(ZUFILE* file);
-        double readFloat4(ZUFILE* file);
+        uint8_t readChar(GribRecordBuffer* buf, size_t& idx);
+        int    readSignedInt3(GribRecordBuffer* buf, size_t& idx);
+        int    readSignedInt2(GribRecordBuffer* buf, size_t& idx);
+        uint32_t  readInt2(GribRecordBuffer* buf, size_t& idx);
+        uint32_t  readInt3(GribRecordBuffer* buf, size_t& idx);
+        double readFloat4(GribRecordBuffer* buf, size_t& idx);
 
-        zuint  readPackedBits(const zuchar *buf, zuint first, zuint nbBits);
-        zuint  makeInt3(zuchar a, zuchar b, zuchar c);
-        zuint  makeInt2(zuchar b, zuchar c);
+        uint32_t  readPackedBits(const uint8_t *buf, uint32_t first, uint32_t nbBits);
+        uint32_t  makeInt3(uint8_t a, uint8_t b, uint8_t c);
+        uint32_t  makeInt2(uint8_t b, uint8_t c);
 
         inline bool   hasValueInBitBMS (int i, int j) const;
-		zuint  periodSeconds(zuchar unit, zuchar P1, zuchar P2, zuchar range);
+		uint32_t  periodSeconds(uint8_t unit, uint8_t P1, uint8_t P2, uint8_t range);
 
 		void   checkOrientation ();
 		void   reverseData (char orientation); // orientation = 'H' or 'V'
@@ -296,8 +293,8 @@ inline bool   GribRecord::hasValueInBitBMS (int i, int j) const
     else {
         bit = i*Nj + j;
     }
-    zuchar c = BMSbits[bit/8];
-    zuchar m = (zuchar)128 >> (bit % 8);
+    uint8_t c = BMSbits[bit/8];
+    uint8_t m = (uint8_t)128 >> (bit % 8);
     return (m & c) != 0;
 }
 
