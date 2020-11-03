@@ -42,10 +42,6 @@ class GribRecordBuffer
         bool copy(uint8_t* buffer, size_t idx, size_t count) const;
     
     protected:
-
-        bool find_length();
-
-    protected:
         
         size_t file_offset_;
         size_t record_start_;

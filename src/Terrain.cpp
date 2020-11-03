@@ -664,45 +664,36 @@ FileDataType Terrain::loadMeteoDataFile (const QString& fileName, bool zoom)
 	currentFileType = DATATYPE_NONE;
 	bool ok = false;
 	
-	taskProgress = new LongTaskProgress (this);
-	assert (taskProgress);
-	taskProgress->continueDownload = true;
-	
     if (griddedPlot != nullptr) {
 		delete griddedPlot;
         griddedPlot = nullptr;
 	}
-	taskProgress->setMessage (LongTaskMessage::LTASK_OPEN_FILE);
-	taskProgress->setValue (0);
     //--------------------------------------------------------
     // Ouverture du fichier
     //--------------------------------------------------------
-    int nbrecs;
-    {
-	    ZUFILE *file = zu_open (qPrintable(fileName), "rb", ZU_COMPRESS_AUTO);
-        if (file == nullptr) {
-        	erreur("Can't open file: %s", qPrintable(fileName));
-			taskProgress->setVisible (false);
-			delete taskProgress;
-            taskProgress = nullptr;
-	        return DATATYPE_NONE;
-		}
-		GribReader r;
-	    QObject::connect(taskProgress, &LongTaskProgress::canceled, &r, &LongTaskMessage::cancel);
-		nbrecs = r.countGribRecords (file);
-		zu_close(file);
-	}
+    ZUFILE *file = zu_open (qPrintable(fileName), "rb", ZU_COMPRESS_AUTO);
+    if (file == nullptr) {
+        erreur("Can't open file: %s", qPrintable(fileName));
+        return DATATYPE_NONE;
+    }
+    zu_close(file);
 
-    //----------------------------------------------
+	taskProgress = new LongTaskProgress (this);
+	assert (taskProgress);
+	taskProgress->continueDownload = true;
+	taskProgress->setMessage (LongTaskMessage::LTASK_OPEN_FILE);
+	taskProgress->setValue (0);
+	
     GriddedPlotter  *griddedPlot_Temp = nullptr;
-	if (nbrecs>0 && !ok && taskProgress->continueDownload) {	// try to load a GRIB file
+    //----------------------------------------------
+	if (taskProgress->continueDownload) {	// try to load a GRIB file
 		//DBGQS("try to load a GRIB file: "+fileName);
 		taskProgress->setWindowTitle (tr("Open file")+" GRIB");
 		taskProgress->setVisible (true);
 		taskProgress->setValue (0);
 		griddedPlot_Temp = new GribPlot ();
 		assert(griddedPlot_Temp);
-		griddedPlot_Temp->loadFile (fileName, taskProgress, nbrecs);    // GRIB file ?
+		griddedPlot_Temp->loadFile (fileName, taskProgress);    // GRIB file ?
 		if (griddedPlot_Temp->isReaderOk()) {
 			currentFileType = DATATYPE_GRIB;
 			ok = true;

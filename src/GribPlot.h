@@ -40,7 +40,7 @@ class GribPlot : public RegularGridPlot
         virtual ~GribPlot ();
         
 		virtual void  loadFile (const QString &fileName,
-						LongTaskProgress *taskProgress=NULL, int nbrecs=0);
+						LongTaskProgress *taskProgress=NULL);
 		
         GribReader *getReader()  const  {return gribReader != nullptr && gribReader->isOk()? gribReader: nullptr;}
 
@@ -83,7 +83,7 @@ class GribPlot : public RegularGridPlot
 						QPainter &pnt, const Projection *proj );
     
     protected:
-		void  loadGrib (LongTaskProgress *taskProgress, int nbrecs);
+		void  loadGrib (LongTaskProgress *taskProgress);
 
         void       	initNewGribPlot (
 						bool interpolateValues=true, 

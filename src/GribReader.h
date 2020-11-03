@@ -42,7 +42,7 @@ class GribReader : public RegularGridReader, public LongTaskMessage
         GribReader ();
         ~GribReader ();
 		
-        void  openFile (const QString &fname, int nbrecs);
+        void  openFile (const QString &fname);
 		
 		virtual FileDataType getReaderFileDataType () 
 					{return DATATYPE_GRIB;};
@@ -99,10 +99,10 @@ class GribReader : public RegularGridReader, public LongTaskMessage
 		void   interpolateMissingRecords (DataCode dtc);
 		void   removeInterpolateRecords ();
 
-		int countGribRecords (ZUFILE *f);
-
 	protected:
         ZUFILE *file;
+        GribFile *gfile;
+    
         void clean_vector(std::vector<GribRecord *> &ls);
         void clean_all_vectors();
         void createListDates ();
@@ -116,7 +116,8 @@ class GribReader : public RegularGridReader, public LongTaskMessage
     private:
         bool checkAndStoreRecordInMap (std::shared_ptr<GribRecord> rec);
         bool storeRecordInMap (std::shared_ptr<GribRecord> rec);
-		void readGribFileContent (int nbrecs);
+		void readGribFileContent ();
+        void processGribFileContent ();
 		bool readGrib2Record(int id, g2int lgrib);
 
 		std::vector<std::shared_ptr<GribRecord>> * getListOfGribRecords (DataCode dtc);
@@ -126,7 +127,7 @@ class GribReader : public RegularGridReader, public LongTaskMessage
 		
         std::map <uint64_t, std::vector<std::shared_ptr<GribRecord>>* >  mapGribRecords;
 
-        void   openFilePriv (const QString& fname, int nbrecs);
+        void   openFilePriv (const QString& fname);
         
         std::vector<std::shared_ptr<GribRecord>> *  getFirstNonEmptyList();
 		

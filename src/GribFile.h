@@ -25,6 +25,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "zuFile.h"
 
 //----------------------------------------------
+typedef struct 
+{
+    size_t file_offset;
+    size_t record_start;
+    size_t record_length;
+    int version;
+} find_record_result_t;
+    
+//----------------------------------------------
 class GribFile
 {
     public:
@@ -33,9 +42,12 @@ class GribFile
         ~GribFile ();
 
         size_t num_bytes() const {return num_bytes_;}
+        size_t num_records()  const {return num_records_;}
     
         uint8_t get(size_t idx) const;
         bool copy(uint8_t* buffer, size_t idx, size_t count) const;
+
+        find_record_result_t find_record(size_t offset) const;
     
     protected:
 
@@ -43,7 +55,8 @@ class GribFile
 
     protected:
         
-        size_t num_bytes_{0};
+        size_t num_bytes_;
+        size_t num_records_;
         uint8_t* grib_data_;
 };
 

@@ -39,9 +39,10 @@ GribReader::GribReader()
 	xmax = -1e300;
 	ymin =  1e300;
 	ymax = -1e300;
+    gfile = nullptr;
 }
 //-------------------------------------------------------------------------------
-void GribReader::openFile (const QString &fname, int nbrecs)
+void GribReader::openFile (const QString &fname)
 {
 	continueDownload = true;
 	setAllDataCenterModel.clear();
@@ -49,7 +50,7 @@ void GribReader::openFile (const QString &fname, int nbrecs)
 	setAllDataCode.clear ();
 
     if (!fname.isEmpty()) {
-        openFilePriv (fname, nbrecs);
+        openFilePriv (fname);
 		createListDates ();
 		ok = getNumberOfDates() > 0;
 		if (ok) {
@@ -67,6 +68,7 @@ GribReader::~GribReader()
 {
 // 	DBGS("Destroy GribReader");
     clean_all_vectors();
+    delete gfile;
 }
 //-------------------------------------------------------------------------------
 void GribReader::clean_all_vectors ()
@@ -361,27 +363,37 @@ bool GribReader::checkAndStoreRecordInMap (std::shared_ptr<GribRecord> rec)
 }
 
 //---------------------------------------------------------------------------------
-void GribReader::readGribFileContent (int nbrecs)
+void GribReader::readGribFileContent ()
 {
-
 	ok = false;
+
     // get the grib file
-    GribFile gf(file);
-    
-    //fileSize = zu_filesize(file);
+    gfile = new GribFile(file);
+    fileSize = gfile->num_bytes();
+    if (fileSize == 0 || gfile->num_records() == 0) {
+        delete gfile;
+        gfile = nullptr;
+        return;
+    }
+
     std::list<GribRecordTask*> tasks;
 
     // DBG("Number of active threads: %d", QThreadPool::globalInstance()->maxThreadCount());
-    // if (QThreadPool::globalInstance()->maxThreadCount() > 2)
-    //     QThreadPool::globalInstance()->setMaxThreadCount(1);
-    // DBG("Number of active threads: %d", QThreadPool::globalInstance()->maxThreadCount());
+    // make the task pool single threaded, for debugging
+    //if (QThreadPool::globalInstance()->maxThreadCount() > 2)
+    //    QThreadPool::globalInstance()->setMaxThreadCount(1);
     
-    // read each record and create a task
+    // read each record and create a task - single threaded, each task is then passed to the
+    // QThreadPool instance, where it will be picked up and run
+    // no locking is necessary as the shared data is in GribFile, which is read only
+    // each GribRecordBuffer delineates a record in the GribFile, this data is processed
+    // in the GribRecordTask, and the resulting GribRecord or Grib2Record's is collected
+    // in the single thread further down in this method
     bool end = false;
     size_t iseek = 0;
     int id = 0;
     do {
-        GribRecordBuffer *buf = new GribRecordBuffer(&gf, iseek);
+        GribRecordBuffer *buf = new GribRecordBuffer(gfile, iseek);
         if (buf->record_length() == 0) {
             end = true;
             delete buf;
@@ -399,18 +411,19 @@ void GribReader::readGribFileContent (int nbrecs)
         }
     } while (continueDownload && !end);
 
-    // go through the tasks, collect data and remove task when finished
+    // go through the finished tasks, collect data and remove task when finished
+    // will continue to loop until each task is completed
     size_t count = 0;
     while (tasks.size() > 0 && continueDownload) {
         std::list<GribRecordTask*>::iterator it = tasks.begin();
         while (it != tasks.end() && continueDownload) {
             GribRecordTask *curtask = *it;
             if (curtask->isFinished()) {
-                printf("GribRecordTask %d finished\n", curtask->id());
+                DBG("GribRecordTask %d finished\n", curtask->id());
                 if ((++count)%4 == 0)
-                    emit valueChanged (static_cast<int>((100.0*(count)/nbrecs)));
+                    emit valueChanged (static_cast<int>((100.0*(count)/gfile->num_records())));
                 if (curtask->isOk()) {
-                    printf("GribRecordTask %d ok\n", curtask->id());
+                    DBG("GribRecordTask %d ok\n", curtask->id());
                     auto rec = curtask->record();
                     if (rec && rec->isDataKnown() && checkAndStoreRecordInMap(rec)) 
                     {
@@ -449,7 +462,8 @@ void GribReader::readGribFileContent (int nbrecs)
         } // end iterator while
     }
     
-    // canceled during file read
+    // if the file read was cancelled, stop all of the tasks, and then delete them once any
+    // that are still running complete
 	if (! continueDownload) {
 		ok = false;
         // need to delete the rests of the tasks
@@ -469,6 +483,7 @@ void GribReader::readGribFileContent (int nbrecs)
         }
     }
 }
+
 
 //---------------------------------------------------------------------------------
 void  GribReader::computeAccumulationRecords (DataCode dtc)
@@ -1108,7 +1123,7 @@ void GribReader::createListDates()
 //-------------------------------------------------------------------------------
 // Lecture complète d'un fichier GRIB
 //-------------------------------------------------------------------------------
-void GribReader::openFilePriv (const QString& fname, int nbrecs)
+void GribReader::openFilePriv (const QString& fname)
 {
 //     debug("Open file: %s", fname.c_str());
     fileName = fname;
@@ -1124,86 +1139,10 @@ void GribReader::openFilePriv (const QString& fname, int nbrecs)
     }
     
 	emit newMessage (LongTaskMessage::LTASK_OPEN_FILE);
-    if (nbrecs > 0) {
-		emit newMessage (LongTaskMessage::LTASK_PREPARE_MAPS);
-		readGribFileContent (nbrecs);
-	}
-	else {
-		ok = false;
-	}
+    emit newMessage (LongTaskMessage::LTASK_PREPARE_MAPS);
+    readGribFileContent ();
 	zu_close (file);
 }
-//-------------------------------------------------------------------------------
-// int GribReader::countGribRecords (ZUFILE *f, LongTaskProgress *taskProgress)
-// {
-// 	long fsize = zu_filesize(f);
-// 	long i=0;
-// 	int nb=0, j=0;
-// 	char c;
-// 	// count 'GRIB' patterns
-// 	zu_rewind (f);
-// 	while (taskProgress->continueDownload &&  zu_read (f, &c, 1) == 1) {
-// 		i ++;
-// 		if (i%1000 == 1)
-// 			taskProgress->setValue ((int)(100.0*i/fsize));
-// 		
-// 		if (nb==0 && i>4) {
-// 			break;	// not a grib file
-// 		}
-// 		
-// 		if (  (j==0 && c=='G')
-// 			||(j==1 && c=='R')
-// 			||(j==2 && c=='I')
-// 			||(j==3 && c=='B') )
-// 			j ++;
-// 		else
-// 			j = 0;
-// 		if (j == 4) {
-// 			nb ++;
-// 			j = 0;
-// 		}
-// 	}
-// 	if (! taskProgress->continueDownload)
-// 		nb = 0;
-// 	zu_rewind (f);
-// 	return nb;
-// }
-//-------------------------------------------------------------------------------
-int GribReader::countGribRecords (ZUFILE *f)
-{
-	//qint64 fsize = zu_filesize(f);
-	qint64 i=0;
-	qint64 nb=0, j=0;
-	char c;
-	// count 'GRIB' patterns
-	const int sizebuf = 300000;
-	int nblus;
-	char buf[sizebuf];
-	zu_rewind (f);
-	while (continueDownload && (nblus=zu_read(f,buf,sizebuf))>0) {
-		for (i=0; i<nblus; i++) {
-			c = buf[i];
-			if (  (j==0 && c=='G')
-				||(j==1 && c=='R')
-				||(j==2 && c=='I')
-				||(j==3 && c=='B') ) {
-				j ++;
-			}
-			else if (j == 4) {
-				nb ++;
-				j = 0;
-			}
-			else {
-				j = 0;
-			}
-		}
-	}
-	if (! continueDownload)
-		nb = 0;
-	zu_rewind (f);
-	return nb;
-}
-
 //---------------------------------------------------------------------------------
 time_t  GribReader::getRefDateForData (const DataCode &dtc)
 {

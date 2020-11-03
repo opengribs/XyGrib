@@ -61,8 +61,10 @@ bool GribRecordTask::readGrib2Record()
 	int idrec=0;
 
 	uint8_t *cgrib = new uint8_t[buffer_->record_length()];
-    if (cgrib == nullptr || !buffer_->copy(cgrib, 0, buffer_->record_length()))
+    if (cgrib == nullptr || !buffer_->copy(cgrib, 0, buffer_->record_length())) {
+        delete [] cgrib;
 		return false;
+    }
 
     g2int numfields = 0;
 	g2int numlocal = 0;
@@ -99,14 +101,6 @@ bool GribRecordTask::readGrib2Record()
                     rec.reset();
                 else
                     v2records_.push_back(rec);
-                // if (rec->isOk() && checkAndStoreRecordInMap(rec)) {
-                //     //DBG("storeRecordInMap %d", rec->getId());
-                //     rec = nullptr; // release ownership
-                //     ok = true;   // at least 1 record ok
-                // }
-                // else {
-                //     delete rec;
-                // }
             }
             if (gfld)
                 g2_free(gfld);

@@ -49,8 +49,7 @@ class GriddedPlotter :
 		virtual bool  isReaderOk () const = 0;
 		virtual GriddedReader *getReader () const = 0;
 		virtual void  loadFile (const QString &fileName, 
-								LongTaskProgress *taskProgress,
-								int nbrecs=0) = 0;
+								LongTaskProgress *taskProgress) = 0;
 		
 		virtual void  updateGraphicsParameters ();
 		
