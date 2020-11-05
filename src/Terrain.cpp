@@ -683,14 +683,13 @@ FileDataType Terrain::loadMeteoDataFile (const QString& fileName, bool zoom)
 	taskProgress->continueDownload = true;
 	taskProgress->setMessage (LongTaskMessage::LTASK_OPEN_FILE);
 	taskProgress->setValue (0);
+    taskProgress->setWindowTitle (tr("Open file")+" GRIB");
+    taskProgress->setVisible (true);
 	
     GriddedPlotter  *griddedPlot_Temp = nullptr;
     //----------------------------------------------
 	if (taskProgress->continueDownload) {	// try to load a GRIB file
 		//DBGQS("try to load a GRIB file: "+fileName);
-		taskProgress->setWindowTitle (tr("Open file")+" GRIB");
-		taskProgress->setVisible (true);
-		taskProgress->setValue (0);
 		griddedPlot_Temp = new GribPlot ();
 		assert(griddedPlot_Temp);
 		griddedPlot_Temp->loadFile (fileName, taskProgress);    // GRIB file ?

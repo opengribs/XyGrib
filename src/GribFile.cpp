@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "GribFile.h"
 #include <cstring>
 
-// start with 1mb chunks
+// read file in 1mb chunks
 const int BUFFER_SIZE = 1 << 20;
 
 GribFile::GribFile (ZUFILE* file)

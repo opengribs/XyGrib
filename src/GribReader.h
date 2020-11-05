@@ -117,8 +117,6 @@ class GribReader : public RegularGridReader, public LongTaskMessage
         bool checkAndStoreRecordInMap (std::shared_ptr<GribRecord> rec);
         bool storeRecordInMap (std::shared_ptr<GribRecord> rec);
 		void readGribFileContent ();
-        void processGribFileContent ();
-		bool readGrib2Record(int id, g2int lgrib);
 
 		std::vector<std::shared_ptr<GribRecord>> * getListOfGribRecords (DataCode dtc);
         int	   dewpointDataStatus;
