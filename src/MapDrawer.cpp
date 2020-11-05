@@ -34,6 +34,7 @@ MapDrawer::MapDrawer(std::shared_ptr<GshhsReader> gshhsReader)
 {
     imgEarth = nullptr;
     imgAll   = nullptr;
+	showWaveArrowsType = GRB_TYPE_NOT_DEFINED;
 
     gisReader = std::make_shared<GisReader>();
 
