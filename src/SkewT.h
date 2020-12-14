@@ -16,6 +16,7 @@
 #include <QMainWindow>
 #include <QFrame>
 #include <QPainter>
+#include <QPainterPath>
 #include <QLayout>
 #include <QKeyEvent>
 #include <QPrintDialog>
