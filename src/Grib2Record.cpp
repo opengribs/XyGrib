@@ -744,6 +744,10 @@ int Grib2Record::analyseProductType ()
         else if (paramcat==2) {
             if (paramnumber==22)
                 return GRB_WIND_GUST;
+            else if (paramnumber==23)
+                return GRB_WIND_GUST_VX;
+            else if (paramnumber==24)
+                return GRB_WIND_GUST_VY;
         }
 		else if (paramcat==6) {//TABLE 4.2-0-6
 			if (paramnumber==1)
