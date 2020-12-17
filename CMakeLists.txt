@@ -7,6 +7,9 @@ set(VERSION_PATCH 7)
 set(XYGRIB_VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 set(XYGRIB_VERSION_DATE "2019-07-19")
 
+option(GNU_PACKAGE "Install into GNU standard directories" OFF)
+option(GEN_TRANSLATIONS "Generate translations" ON)
+
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
 # Find includes in corresponding build directories
@@ -25,7 +28,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_CXX_STANDARD 11)
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
 if(UNIX AND NOT APPLE)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fPIC")
+add_compile_options(-Wall -fPIC)
 endif()
 
 # Add support for address etc sanitizers, part 1/2 (other half after ADD_EXECUTABLE)
@@ -108,17 +111,12 @@ find_path(OPENJPEG_INCLUDE_DIR
      ~/Library/Frameworks/include
      /Library/Frameworks/include
      /usr/local/include
-     /usr/local/include/openjpeg-2.3
-     /usr/include/openjpeg-2.3
-     /usr/local/include/openjpeg-2.1
-     /usr/include/openjpeg-2.1
-     /usr/local/include/openjpeg-2.2
-     /usr/include/openjpeg-2.2
      /usr/include
      /sw/include # Fink
      /opt/local/include # DarwinPorts
      /opt/csw/include # Blastwave
      /opt/include
+     PATH_SUFFIXES openjpeg-2.3 openjpeg-2.2 openjpeg-2.1
      REQUIRED
  )
 include_directories(${OPENJPEG_INCLUDE_DIR})
@@ -212,22 +210,24 @@ include_directories(${PNG_INCLUDE_DIR})
 configure_file(cmake/Version.h.in ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/include/Version.h)
 include_directories(${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/include)
 
-if(APPLE)
-set(PREFIX_BIN ${PROJECT_NAME})
-set(PREFIX_PKGDATA ${PROJECT_NAME})
-endif()
-if(WIN32)
-set(PREFIX_BIN ".")
-set(PREFIX_PKGDATA ".")
-endif()
-if(UNIX AND NOT APPLE)
-# This is not exactly a good idea on linux - the code should be changed so that the executable would go to /usr/local/bin and the data to /usr/local/share/XyGrib
-set(PREFIX_BIN ${PROJECT_NAME})
-set(PREFIX_PKGDATA ${PROJECT_NAME})
+if(GNU_PACKAGE)
+    include(GNUInstallDirs)
+    set(PREFIX_BIN ${CMAKE_INSTALL_FULL_BINDIR})
+    set(PREFIX_PKGDATA ${CMAKE_INSTALL_FULL_DATADIR}/openGribs/${PROJECT_NAME})
+else()
+    if(WIN32)
+        set(PREFIX_BIN ".")
+        set(PREFIX_PKGDATA ".")
+    else()
+        set(PREFIX_BIN ${PROJECT_NAME})
+        set(PREFIX_PKGDATA ${PROJECT_NAME})
+    endif()
 endif()
 
 add_subdirectory(src)
-add_subdirectory(data/tr)
+if(GEN_TRANSLATIONS)
+    add_subdirectory(data/tr)
+endif()
 
 # Installation
 # macOS bundle parameters
@@ -241,4 +241,14 @@ set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE_SHORT_VERSION_STR
 set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE_BUNDLE_VERSION "${XYGRIB_VERSION}")
 set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE_COPYRIGHT "${PROJECT_NAME} Authors")
 # Install data
-install(DIRECTORY data DESTINATION ${PREFIX_PKGDATA})
+install(DIRECTORY data DESTINATION ${PREFIX_PKGDATA}
+        PATTERN "CMakeFiles" EXCLUDE
+        PATTERN "CMakeLists.txt" EXCLUDE
+        PATTERN "Makefile" EXCLUDE
+        PATTERN "cmake_install.cmake" EXCLUDE)
+if(GNU_PACKAGE)
+    install(FILES debian/xygrib.desktop
+            DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/applications)
+    install(FILES debian/xygrib.png
+            DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/pixmaps)
+endif()
