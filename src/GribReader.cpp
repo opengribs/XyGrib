@@ -416,7 +416,7 @@ bool GribReader::readGribRecord(int id)
 
     if (!rec->isOk()) {
     	delete rec;
-    	return false;
+    	return true;
 	}
 
 	eof = rec->isEof();
@@ -454,7 +454,7 @@ bool GribReader::readGrib2Record(int id, g2int lgrib)
 
 	cgrib = (unsigned char *) malloc (lgrib);
     if (cgrib == nullptr)
-		return false;
+		return true;
 
 	if (zu_read(file, cgrib, lgrib) == lgrib)
 	{
@@ -518,7 +518,15 @@ void GribReader::readGribFileContent (int nbrecs)
 
 	ok = false;
     fileSize = zu_filesize(file);
-    do {
+    if (file->type == ZU_COMPRESS_BZIP) {
+    	do{
+			if (id%4 == 1)
+				emit valueChanged ((int)(100.0*id/nbrecs));
+			id ++;
+			end = readGribRecord(id);
+		} while (continueDownload && !end);
+    }
+    else do {
 		int version = seekgb_zu (file, iseek, 64*1024, &lskip, &lgrib);
 		if (id%4 == 1)
 			emit valueChanged ((int)(100.0*id/nbrecs));
