@@ -308,6 +308,27 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 	//========================
 }
 //---------------------------------------------------------------
+// https://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_doc/grib2_table4-4.shtml
+static int unit_of_time_range(int periodcode)
+{
+	if (periodcode == 0)
+		return 60;
+	if (periodcode == 1)
+		return 3600;
+	if (periodcode == 2)
+		return 24*3600;
+	if (periodcode == 10)
+		return 3*3600;
+	if (periodcode == 11)
+		return 6*3600;
+	if (periodcode == 12)
+		return 12*3600;
+	if (periodcode == 13)
+		return 1;
+	return 0;
+}
+
+//---------------------------------------------------------------
 void Grib2Record::analyseProductDefinitionTemplate (gribfield  *gfld)
 {
 	if (gfld->ipdtlen < 15) {
@@ -336,7 +357,7 @@ void Grib2Record::analyseProductDefinitionTemplate (gribfield  *gfld)
 	//-------------------------
 	// forecast date
 	//-------------------------
-	else if (pdtnum == 8) {   // Average, accumulation  TODO: period of time
+	if (pdtnum == 8) {   // Average, accumulation
 	    if (gfld->ipdtlen < 27) {
            DBG ("Missing parameters: ipdtlen=%d", (int)gfld->ipdtlen);
            ok = false;
@@ -377,33 +398,24 @@ void Grib2Record::analyseProductDefinitionTemplate (gribfield  *gfld)
             ok = false;
             return;
         }
-	    switch(gfld->ipdtmpl[25]) { // time_unit, table 4.4
-	    case 1:  // hour
-            periodP1 = gfld->ipdtmpl[8];
-            periodP2 = periodP1 + gfld->ipdtmpl[26]; // time_length
-            break;
-	    }
-	}
+        if (unit_of_time_range(gfld->ipdtmpl[25]) >= 3600) {
+            periodP1 = gfld->ipdtmpl[8] *unit_of_time_range(gfld->ipdtmpl[25])/3600;
+            periodP2 = periodP1 + gfld->ipdtmpl[26] *unit_of_time_range(gfld->ipdtmpl[25])/3600; // time_length
+        }
+        else {
+            DBG("Can't determine forecast date");
+            ok = false;
+            return;
+        }
+    }
 	else {
 		// 0 Analysis or forecast at a point in time
 		// 2 Derived forecasts based on all ensemble members at a horizontal level or in a horizontal layer at a point in time. 
 		//12 Derived forecasts based on all ensemble members at ... in a continuous or non-continuous time interval
 		int periodcode = gfld->ipdtmpl[7];    
 		int periodoffset = gfld->ipdtmpl[8];
-		if (periodcode == 0)
-			this->curDate = this->refDate + 60*periodoffset;
-		else if (periodcode == 1)
-			this->curDate = this->refDate + 3600*periodoffset;
-		else if (periodcode == 2)
-			this->curDate = this->refDate + 24*3600*periodoffset;
-		else if (periodcode == 10)
-			this->curDate = this->refDate + 3*3600*periodoffset;
-		else if (periodcode == 11)
-			this->curDate = this->refDate + 6*3600*periodoffset;
-		else if (periodcode == 12)
-			this->curDate = this->refDate + 12*3600*periodoffset;
-		else if (periodcode == 13)
-			this->curDate = this->refDate + periodoffset;
+		if (unit_of_time_range(periodcode))
+			this->curDate = this->refDate + unit_of_time_range(periodcode)*periodoffset;
 		else {
 			DBG("Can't determine forecast date");
 			ok = false;
