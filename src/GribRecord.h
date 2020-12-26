@@ -83,6 +83,7 @@ class GribRecord : public RegularGridRecord
         int    getPeriodP1() const  { return periodP1; }
         int    getPeriodP2() const  { return periodP2; }
         zuchar getTimeRange() const { return timeRange; }
+        zuint  getPeriodSec() const { return periodsec; }
 
         // Nombre de points de la grille
         int     getNi() const override { return Ni; }
@@ -176,7 +177,7 @@ class GribRecord : public RegularGridRecord
         zuint  refyear, refmonth, refday, refhour, refminute;
         zuchar periodP1{0}, periodP2{0};
         zuchar timeRange{255};
-        zuint  periodsec;    // period in seconds
+        zuint  periodsec{0}; // period in seconds
         time_t refDate;      // Reference date
         time_t curDate;      // Current date
         double  decimalFactorD;
