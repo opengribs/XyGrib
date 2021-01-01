@@ -389,7 +389,7 @@ void MapDrawer::draw_MeteoData_Gridded
 			hasWaveForArrows = plotter->hasData(DataCode(GRB_WAV_DIR,LV_GND_SURF,0));
 			break;
 		case GRB_PRV_WAV_PRIM:
-			hasWaveForArrows = plotter->hasData(DataCode(GRB_WAV_DIR,LV_GND_SURF,0));
+			hasWaveForArrows = plotter->hasData(DataCode(GRB_WAV_PRIM_DIR,LV_GND_SURF,0));
 			break;
 		case GRB_PRV_WAV_SCDY:
 			hasWaveForArrows = plotter->hasData(DataCode(GRB_WAV_SCDY_DIR,LV_GND_SURF,0));
