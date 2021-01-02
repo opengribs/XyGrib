@@ -1019,6 +1019,7 @@ bool GribRecord::readGribSection1_PDS(ZUFILE* file) {
     periodP2  = data1[19];
     timeRange = data1[20];
     periodsec = periodSeconds(data1[17],data1[18],data1[19],timeRange);
+    resosec   = resoSecond(data1[17]);
     curDate = UTC_mktime(refyear,refmonth,refday,refhour,refminute,periodsec);
 
     int decim;
@@ -1372,7 +1373,7 @@ zuint GribRecord::makeInt3(zuchar a, zuchar b, zuchar c) {
 zuint GribRecord::makeInt2(zuchar b, zuchar c) {
     return ((zuint)b<<8)+(zuint)c;
 }
-//----------------------------------------------
+//-----------------------------[A-----------------
 zuint GribRecord::readPackedBits(const zuchar *buf, zuint first, zuint nbBits)
 {
     zuint oct = first / 8;
@@ -1396,9 +1397,10 @@ void  GribRecord::setRecordCurrentDate (time_t t)
 	zuint minute = date->tm_min;
 	sprintf(strCurDate, "%04d-%02d-%02d %02d:%02d", year,month,day,hour,minute);
 }
+
 //----------------------------------------------
-zuint GribRecord::periodSeconds(zuchar unit,zuchar P1,zuchar P2,zuchar range) {
-    zuint res, dur;
+zuint GribRecord::resoSecond(zuchar unit) const {
+    zuint res;
     switch (unit) {
         case 0: //	Minute
             res = 60; break;
@@ -1420,9 +1422,18 @@ zuint GribRecord::periodSeconds(zuchar unit,zuchar P1,zuchar P2,zuchar range) {
         case 6: //	Normal (30 years)
         case 7: //	Century (100 years)
         default:
-            erreur("id=%d: unknown time unit in PDS b18=%d",id,unit);
             res = 0;
-            ok = false;
+    }
+    return res;
+}
+//----------------------------------------------
+zuint GribRecord::periodSeconds(zuchar unit,zuchar P1,zuchar P2,zuchar range) {
+    zuint res, dur;
+    res = resoSecond(unit);
+    if (res == 0) {
+        erreur("id=%d: unknown time unit in PDS b18=%d",id,unit);
+        res = 0;
+        ok = false;
     }
     debug("id=%d: PDS (time range) b21=%d P1=%d P2=%d",id,range,P1,P2);
     dur = 0;
@@ -1446,7 +1457,6 @@ zuint GribRecord::periodSeconds(zuchar unit,zuchar P1,zuchar P2,zuchar range) {
     }
     return res*dur;
 }
-
 
 //===============================================================================================
 data_t GribRecord::getInterpolatedValue (double lon, double lat, bool interpolate) const

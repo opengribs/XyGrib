@@ -569,9 +569,11 @@ void  GribReader::computeAccumulationRecords (DataCode dtc)
 		if ( !rec )
 			continue;
 
-		// XXX double check reference date and timerange 
 		if (prev != nullptr ) {
-			// printf("rec %d, prev %d %d %d\n", rec->getPeriodP1(), prev->getPeriodP1(), prev->getPeriodP2(), prev->getTimeRange());
+#if 0
+			printf("rec %d, prev %d %d timerange %d per sec %d\n", rec->getPeriodP1(), prev->getPeriodP1(), prev->getPeriodP2(), prev->getTimeRange(),
+			 prev->getResoSec());
+#endif
 			if (prev->getPeriodP1() == rec->getPeriodP1()) {
 				if (rec->getTimeRange() == 4) {
 					// accumulation 
@@ -588,7 +590,7 @@ void  GribReader::computeAccumulationRecords (DataCode dtc)
 			}
 			if (p2 > p1 && rec->getTimeRange() == 4) {
 				//p1 and p2 units is getPeriodSec second convert to hour
-				prev->multiplyAllData( 3600.0/((p2 -p1)* prev->getPeriodSec()) );
+				prev->multiplyAllData( 3600.0/((p2 -p1)* prev->getResoSec()) );
 			}
 		}
 		prev = rec;
@@ -597,7 +599,7 @@ void  GribReader::computeAccumulationRecords (DataCode dtc)
 	}
 	if (prev != nullptr && p2 > p1 && prev->getTimeRange() == 4 ) {
 	    // the last one
-        prev->multiplyAllData( 3600.0/((p2 -p1) * prev->getPeriodSec()));
+        prev->multiplyAllData( 3600.0/((p2 -p1) * prev->getResoSec()));
 	}
 }
 
