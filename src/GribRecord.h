@@ -84,6 +84,7 @@ class GribRecord : public RegularGridRecord
         int    getPeriodP2() const  { return periodP2; }
         zuchar getTimeRange() const { return timeRange; }
         zuint  getPeriodSec() const { return periodsec; }
+        zuint  getResoSec() const { return resosec; }
 
         // Nombre de points de la grille
         int     getNi() const override { return Ni; }
@@ -177,7 +178,8 @@ class GribRecord : public RegularGridRecord
         zuint  refyear, refmonth, refday, refhour, refminute;
         zuchar periodP1{0}, periodP2{0};
         zuchar timeRange{255};
-        zuint  periodsec{0}; // period in seconds
+        zuint  resosec{0};   // period resolution in second
+        zuint  periodsec{0}; // seconds from reference time
         time_t refDate;      // Reference date
         time_t curDate;      // Current date
         double  decimalFactorD;
@@ -239,6 +241,7 @@ class GribRecord : public RegularGridRecord
         zuint  makeInt2(zuchar b, zuchar c);
 
         inline bool   hasValueInBitBMS (int i, int j) const;
+        zuint  resoSecond(zuchar unit) const;
 		zuint  periodSeconds(zuchar unit, zuchar P1, zuchar P2, zuchar range);
 
 		void   checkOrientation ();

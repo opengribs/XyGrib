@@ -401,7 +401,7 @@ void Grib2Record::analyseProductDefinitionTemplate (gribfield  *gfld)
         if (unit_of_time_range(gfld->ipdtmpl[25]) >= 3600) {
             periodP1 = gfld->ipdtmpl[8] *unit_of_time_range(gfld->ipdtmpl[25])/3600;
             periodP2 = periodP1 + gfld->ipdtmpl[26] *unit_of_time_range(gfld->ipdtmpl[25])/3600; // time_length
-            periodsec = 3600;
+            resosec = 3600;
         }
         else {
             DBG("Can't determine forecast date");
