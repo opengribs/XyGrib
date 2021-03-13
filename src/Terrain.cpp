@@ -118,9 +118,9 @@ void Terrain::createCrossCursor ()
 		* B=0 and M=1 gives white.
 		* B=0 and M=0 gives transparent.
 		* B=1 and M=0 gives an XOR'd result.*/
-	QBitmap *crossBits = new QBitmap(32,32);
+    QPixmap *crossBits = new QPixmap(32,32);
 	QBitmap *crossMask = new QBitmap(32,32);
-	crossBits->clear();
+    crossBits->fill(Qt::color0);
  	crossMask->clear();
 	QPainter pb (crossBits);
 	QPainter pm (crossMask);
@@ -142,7 +142,9 @@ void Terrain::createCrossCursor ()
 	
 	pb.end();
 	pm.end();
-	myCrossCursor = QCursor(*crossBits, *crossMask);
+
+    crossBits->setMask(*crossMask);
+    myCrossCursor = QCursor(*crossBits);
     
     int v = 180;
     selectColor     = QColor(v,v,v);
