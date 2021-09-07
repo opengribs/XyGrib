@@ -21,10 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QObject>
 #include <cstdio>
 
-#ifndef ACCEPT_USE_OF_DEPRECATED_PROJ_API_H
-#define ACCEPT_USE_OF_DEPRECATED_PROJ_API_H
-#endif
-#include "proj_api.h"
+#include "proj.h"
 
 class Projection : public QObject
 {
@@ -141,7 +138,7 @@ class Projection_libproj : public Projection
 		int   getProjection()   {return currentProj;}
 
 	private :
-		projPJ libProj;
+		PJ * libProj;
 		int  currentProj;
 };
 
