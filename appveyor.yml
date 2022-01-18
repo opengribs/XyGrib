@@ -14,10 +14,9 @@ environment:
   matrix:
   - arch: 32
     cc: MinGW
-    qt: 5.11
+    qt: 5.13
     mode: release
-    QTDIR: C:\Qt\5.11\mingw53_32
-
+    QTDIR: C:\Qt\5.13.2\mingw73_32
 matrix:
   fast_finish: false
 

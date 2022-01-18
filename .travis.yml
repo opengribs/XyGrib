@@ -4,10 +4,10 @@ matrix:
   include:
     - os: linux
       compiler: gcc
-      dist: trusty
+      dist: xenial
       sudo: required
       env:
-        - BUILD_NAME=trusty
+        - BUILD_NAME=xenial
 
     - os: osx
       compiler: clang
@@ -22,23 +22,7 @@ before_install:
 install:
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]];
       then 
-          sudo apt-get install build-essential git cmake qt5-default libpng-dev  libnova-dev libproj-dev zlib1g-dev libbz2-dev qttools5-dev-tools qttools5-dev;
-      fi
-    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then grep -q trusty /etc/lsb-release || sudo apt-get install libopenjpeg-dev || true; fi
-    - if [[ "$TRAVIS_OS_NAME" == "linux" ]];
-      then 
-          if [[ "$BUILD_NAME" == "trusty" ]]; 
-          then
-              wget https://github.com/uclouvain/openjpeg/archive/v2.3.0.tar.gz;
-              tar xf v2.3.0.tar.gz;
-              cd openjpeg-2.3.0;
-              mkdir build;
-              cd build;
-              cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_CODEC=OFF -DOPJ_USE_THREAD=OFF;
-              make;
-              sudo make install;
-              cd ../..;
-          fi;
+          sudo apt-get install build-essential git cmake qt5-default libpng-dev libnova-dev libproj-dev zlib1g-dev libbz2-dev libopenjp2-7-dev qttools5-dev-tools qttools5-dev;
       fi
     - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew tap indilib/indi; brew install git cmake libnova openjpeg libpng qt5; export PATH="/usr/local/opt/qt5/bin:$PATH";  echo 'export PATH="/usr/local/opt/qt5/bin:$PATH"' >> ~/.bash_profile; fi
 
