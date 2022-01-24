@@ -20,8 +20,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PROJECTION_H
 #include <QObject>
 #include <cstdio>
+//#define ACCEPT_USE_OF_DEPRECATED_PROJ_API_H
 
+#ifdef ACCEPT_USE_OF_DEPRECATED_PROJ_API_H
+#include "proj_api.h"
+#else
 #include "proj.h"
+#endif
 
 class Projection : public QObject
 {
@@ -138,7 +143,11 @@ class Projection_libproj : public Projection
 		int   getProjection()   {return currentProj;}
 
 	private :
+#ifdef ACCEPT_USE_OF_DEPRECATED_PROJ_API_H
+		projPJ libProj;
+#else
 		PJ * libProj;
+#endif
 		int  currentProj;
 };
 

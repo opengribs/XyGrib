@@ -122,21 +122,21 @@ find_path(OPENJPEG_INCLUDE_DIR
 include_directories(${OPENJPEG_INCLUDE_DIR})
 
 if(NOT WIN32)
-    include(cmake/FindPROJ8.cmake)
-    if(NOT PROJ8_FOUND)
-      message(FATAL_ERROR "PROJ.8 library not found!")
+    include(cmake/FindPROJ.cmake)
+    if(NOT PROJ_FOUND)
+      message(FATAL_ERROR "PROJ library not found!")
     endif()
-    include_directories(${PROJ8_INCLUDE_DIRS})
+    include_directories(${PROJ_INCLUDE_DIRS})
 endif()
 if(WIN32)
-    find_library(PROJ8_LIBRARIES
+    find_library(PROJ_LIBRARIES
         NAME "libproj.a"
         PATHS
         $ENV{EXTERNLIBS}/lib
          /opt/lib
         REQUIRED
     )
-    find_path(PROJ8_INCLUDE_DIRS
+    find_path(PROJ_INCLUDE_DIRS
          NAMES "proj.h"
          PATHS
          $ENV{EXTERNLIBS}/include
