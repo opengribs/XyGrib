@@ -92,10 +92,15 @@ void Projection_libproj::setProjection(int code)
     params[nbpar++] = "ellps=WGS84";
     params[nbpar++] = "no_defs";
     params[nbpar++] = "over";	// allow longitude > 180Â°
-    // XXX ouch pj_init
+#ifdef ACCEPT_USE_OF_DEPRECATED_PROJ_API_H
     libProj = pj_init(nbpar, (char **)params);
 	if (!libProj)
 		printf("proj error: %s\n", pj_strerrno(pj_errno));
+#else
+    libProj = proj_create_argv(PJ_DEFAULT_CTX, nbpar, (char **)params);
+	if (!libProj)
+		printf("proj error: %s\n", proj_errno_string(proj_errno(libProj)));
+#endif
 	assert(libProj);
 	currentProj = code;
 //	libProj->over = 1;		// allow longitude > 180°
@@ -106,23 +111,39 @@ void Projection_libproj::setProjection(int code)
 Projection_libproj::~Projection_libproj()
 {
     if (libProj != nullptr) {
+#ifdef ACCEPT_USE_OF_DEPRECATED_PROJ_API_H
 		pj_free(libProj);
+#else
+		proj_destroy(libProj);
+#endif
 	}
 }
 
 //-------------------------------------------------------------------------------
 void Projection_libproj::map2screen(double x, double y, int *i, int *j) const
 {
+#ifdef ACCEPT_USE_OF_DEPRECATED_PROJ_API_H
 	projUV data, res;
+#else
+	PJ_COORD data, res;
+#endif
 	if (y <= -90.0)
 		y = -90.0+1e-5;
 	if (y >= 90.0)
 		y = 90.0-1e-5;
+#ifdef ACCEPT_USE_OF_DEPRECATED_PROJ_API_H
 	data.v =  y * DEG_TO_RAD;
 	data.u =  x * DEG_TO_RAD;
 	res = pj_fwd(data, libProj);
 	*i =  (int) (W/2.0 + scale * (res.u/111319.0-CX) + 0.5);
 	*j =  (int) (H/2.0 - scale * (res.v/111319.0-CY) + 0.5);
+#else
+	data.uv.v =  y;
+	data.uv.u =  x;
+	res = proj_trans(libProj, PJ_FWD, data);
+	*i =  (int) (W/2.0 + scale * (res.uv.u/111319.0-CX) + 0.5);
+	*j =  (int) (H/2.0 - scale * (res.uv.v/111319.0-CY) + 0.5);
+#endif
 	//printf("PROJ   map2screen (%f %f) -> (%3d %3d)\n", x,y, *i,*j);
 }
 
@@ -130,12 +151,21 @@ void Projection_libproj::map2screen(double x, double y, int *i, int *j) const
 //-------------------------------------------------------------------------------
 void Projection_libproj::screen2map(int i, int j, double *x, double *y) const
 {
+#ifdef ACCEPT_USE_OF_DEPRECATED_PROJ_API_H
 	projUV data, res;
 	data.u =  ((i-W/2.0)/scale+ CX)*111319.0 ;
 	data.v =  ((H/2.0-j)/scale+ CY)*111319.0 ;
 	res = pj_inv(data, libProj);
 	*x = (double)(res.u*RAD_TO_DEG);
 	*y = (double)(res.v*RAD_TO_DEG);
+#else
+	PJ_COORD data, res;
+	data.uv.u =  ((i-W/2.0)/scale+ CX)*111319.0 ;
+	data.uv.v =  ((H/2.0-j)/scale+ CY)*111319.0 ;
+	res = proj_trans(libProj, PJ_INV, data);
+	*x = (double)(res.uv.u);
+	*y = (double)(res.uv.v);
+#endif
 	//printf("PROJ   screen2map (%3d %3d) -> (%f %f)\n", i,j, *x,*y);
 }
 //--------------------------------------------------------------
