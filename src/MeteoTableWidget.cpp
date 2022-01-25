@@ -464,7 +464,7 @@ void MeteoTableWidget::createListVisibleGribData ()
 					DataCode(GRB_PRESSURE_MSL,LV_MSL,0).toInt32(), pos++) );
 	}
 	// Sort visible data by position
-	qSort (listVisibleData.begin(), listVisibleData.end(), lessThanMTGribData);
+	std::sort (listVisibleData.begin(), listVisibleData.end(), lessThanMTGribData);
 }
 //-----------------------------------------------------------------
 void MeteoTableWidget::addLine_Isotherm0Height(int lig)

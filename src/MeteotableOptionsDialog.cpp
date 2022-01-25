@@ -150,7 +150,7 @@ void DialogMeteotableOptions::slotChangeVisibleItems()
 		}
 	}
 	// update positions after movings (numerate from 0)
-	qSort (listAllOptionItems.begin(), listAllOptionItems.end(), 
+	std::sort (listAllOptionItems.begin(), listAllOptionItems.end(),
 								MeteotableOptionItem::lessThan_byPos);
 	int posVis = 0;
 	int posNotVis = 0;
@@ -218,10 +218,10 @@ void DialogMeteotableOptions::updateListWidgetsItems ()
 	}
 	
 	// sort visible data by position
-	qSort (listVisibleItems.begin(), listVisibleItems.end(), 
+	std::sort (listVisibleItems.begin(), listVisibleItems.end(),
 								MeteotableOptionItem::lessThan_byPos);
 	// sort hidden data by name
-	qSort (listHiddenItems.begin(), listHiddenItems.end(), 
+	std::sort (listHiddenItems.begin(), listHiddenItems.end(),
 								MeteotableOptionItem::lessThan_byName);
 	// add ordered items in widget lists
 	listVisibleData->clear();
