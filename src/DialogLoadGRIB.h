@@ -71,7 +71,7 @@ class DialogLoadGRIB : public DialogBoxBase
 		QString  savedFileName;
 		
         bool     loadInProgress;
-        QTime    timeLoad;
+        QElapsedTimer timeLoad;
         QCursor  oldcursor;
         
         QDoubleSpinBox *sbNorth;

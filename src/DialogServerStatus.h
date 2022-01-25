@@ -59,7 +59,7 @@ class DialogServerStatus : public  DialogBoxBase
 		QNetworkReply *reply_step1;
 		bool downloadError;
         
-        QTime   timeLoad;
+        QElapsedTimer timeLoad;
         QLabel *lbResponseStatus;
 
         std::vector<QLabel* > ar_lbRunDate;
