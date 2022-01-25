@@ -144,7 +144,7 @@ void LonLatGrid::drawLabel(QPainter &pnt,
     QString label;
 	QColor couleur(10,10,10);
 
-    label = label.sprintf("%g", value);
+    label = QString::asprintf("%g", value);
 
     QPen penText(couleur);
     QFont fontText = Font::getFont(FONT_LonLatGridLabel);

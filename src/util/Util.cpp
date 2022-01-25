@@ -196,14 +196,14 @@ QString Util::formatTemperature (float tempKelvin, bool withUnit)
     QString unit = Util::getSetting("unitsTemp", QVariant(tr("°C"))).toString();
     QString r;
     if (unit == tr("°K")) {
-        r.sprintf("%.1f", tempKelvin);
+        r = QString::asprintf("%.1f", tempKelvin);
     }
     else if (unit == tr("°F")) {
-        r.sprintf("%.1f", 1.8f*(tempKelvin-273.15f)+32.0f);
+        r = QString::asprintf("%.1f", 1.8f*(tempKelvin-273.15f)+32.0f);
     }
     else  {   // if (unit == tr("°K"))
         unit = tr("°C");
-        r.sprintf("%.1f", tempKelvin-273.15f);
+        r = QString::asprintf("%.1f", tempKelvin-273.15f);
     }
 	return (withUnit) ? r+""+unit : r;
 }
@@ -213,14 +213,14 @@ QString Util::formatTemperature_short(float tempKelvin, bool withUnit)
     QString unit = Util::getSetting("unitsTemp", tr("°C")).toString();
     QString r;
     if (unit == tr("°K")) {
-        r.sprintf("%d", qRound(tempKelvin) );
+        r = QString::asprintf("%d", qRound(tempKelvin) );
     }
     else if (unit == tr("°F")) {
-        r.sprintf("%d", qRound(1.8f*(tempKelvin-273.15f)+32.0f) );
+        r = QString::asprintf("%d", qRound(1.8f*(tempKelvin-273.15f)+32.0f) );
     }
     else  {   // if (unit == tr("°K"))
         unit = tr("°C");
-        r.sprintf("%d", qRound(tempKelvin-273.15f) );
+        r = QString::asprintf("%d", qRound(tempKelvin-273.15f) );
     }
 	return (withUnit) ? r+""+unit : r;
 }
@@ -229,19 +229,19 @@ QString Util::formatSpeed (float meterspersecond, bool withUnit, QString unit)
 {
     QString r;
     if (unit == "m/s") {
-        r.sprintf("%.1f ", meterspersecond);
+        r = QString::asprintf("%.1f ", meterspersecond);
         unit = tr("m/s");
     }
     else if (unit == "m/min") {
-        r.sprintf("%d ", qRound(meterspersecond*60.f));
+        r = QString::asprintf("%d ", qRound(meterspersecond*60.f));
         unit = tr("m/min");
     }
     else if (unit == "km/h") {
-        r.sprintf("%.1f ", meterspersecond*3.6);
+        r = QString::asprintf("%.1f ", meterspersecond*3.6);
         unit = tr("km/h");
     }
     else  {   // if (unit == tr("kts"))
-        r.sprintf("%.1f ", meterspersecond*3.6/1.852);
+        r = QString::asprintf("%.1f ", meterspersecond*3.6/1.852);
         unit = tr("kts");
     }
 	return (withUnit) ? r+" "+unit : r;
@@ -263,7 +263,7 @@ QString Util::formatDirection (float angle, bool withUnit)
 {
     QString unite = tr("°");
     QString r;
-    r.sprintf("%d", qRound(angle +0.5f));
+    r = QString::asprintf("%d", qRound(angle +0.5f));
 	return (withUnit) ? r+unite : r;
 }
 //----------------------------------------------------------------
@@ -281,11 +281,11 @@ QString Util::formatDistance (float mille, bool withUnit)
         d = mille;
     }
     if (d<10)
-        r.sprintf("%5.2f", d);
+        r = QString::asprintf("%5.2f", d);
     else if (d<100)
-        r.sprintf("%5.1f", d);
+        r = QString::asprintf("%5.1f", d);
 	else
-		r.sprintf("%5.0f", d);
+		r = QString::asprintf("%5.0f", d);
 	return (withUnit) ? r+" "+unit : r;
 }
 //----------------------------------------------------------------
@@ -446,7 +446,7 @@ QString Util::formatIsotherm0HGT (float meter, bool withUnit)
 	double  coef  = Util::getDataCoef (DataCode(GRB_GEOPOT_HGT,LV_ISOTHERM0,0));
     int d = (int) (meter*coef +0.5);
     QString r;
-	r.sprintf("%d", d);
+	r = QString::asprintf("%d", d);
 	return (withUnit) ? r+" "+unite : r;
 }
 //----------------------------------------------------------------
@@ -456,7 +456,7 @@ QString Util::formatGeopotAltitude (float meter, bool withUnit)
 	double  coef  = Util::getDataCoef (DataCode(GRB_GEOPOT_HGT,LV_ISOBARIC,0));
     int d = (int) (meter*coef +0.5);
     QString r;
-	r.sprintf("%d", d);
+	r = QString::asprintf("%d", d);
 	return (withUnit) ? r+" "+unite : r;
 }
 //----------------------------------------------------------------
@@ -466,9 +466,9 @@ QString Util::formatRain (float mmh, bool withUnit)
     QString unite = Util::getDataUnit (DataCode(GRB_PRECIP_TOT,LV_GND_SURF,0));
     QString r;
 	if (mmh<10)
-		r.sprintf("%.2f", mmh);
+		r = QString::asprintf("%.2f", mmh);
 	else
-		r.sprintf("%.1f", mmh);
+		r = QString::asprintf("%.1f", mmh);
 	return (withUnit) ? r+" "+unite : r;
 }
 //----------------------------------------------------------------
@@ -478,9 +478,9 @@ QString Util::formatPressure (float pasc, bool withUnit, int precision)
     QString r;
 	if (GribDataIsDef(pasc)) {
 		if (precision > 0)
-            r.sprintf("%.1f", pasc/100.0f);
+            r = QString::asprintf("%.1f", pasc/100.0f);
 		else
-            r.sprintf("%.0f", pasc/100.0f);
+            r = QString::asprintf("%.0f", pasc/100.0f);
 	}
 	return (withUnit) ? r+" "+unite : r;
 }
@@ -489,7 +489,7 @@ QString Util::formatCAPEsfc (float jkg, bool withUnit)
 {
     QString unite = Util::getDataUnit (DataCode(GRB_CAPE,LV_GND_SURF,0));
     QString r;
-    r.sprintf("%d", qRound(jkg));
+    r = QString::asprintf("%d", qRound(jkg));
     return (withUnit) ? r+" "+unite : r;
 }
 //---------- added by david ---------------------------------
@@ -497,7 +497,7 @@ QString Util::formatReflect(float dbz, bool withUnit)
 {
     QString unite = Util::getDataUnit (DataCode(GRB_COMP_REFL,LV_ATMOS_ALL,0));
     QString r;
-    r.sprintf("%d", qRound(dbz));
+    r = QString::asprintf("%d", qRound(dbz));
     return (withUnit) ? r+" "+unite : r;
 }
 //----------------------------------------------------------------
@@ -515,9 +515,9 @@ QString Util::formatWaveHeight (float meter, bool withUnit)
         d= meter/0.3048f;
     }
 	if (d < 10)
-		r.sprintf("%.1f", d);
+		r = QString::asprintf("%.1f", d);
 	else
-		r.sprintf("%.0f", d);
+		r = QString::asprintf("%.0f", d);
 	return (withUnit) ? r+" "+unite : r;
 }
 //----------------------------------------------------------------
@@ -525,7 +525,7 @@ QString Util::formatWavePeriod (float second, bool withUnit)
 {
     QString unit = Util::getSetting("waveHeightPeriod", tr("s")).toString();
     QString r;
-	r.sprintf("%.0f", second);
+	r = QString::asprintf("%.0f", second);
 	return (withUnit) ? r+" "+unit : r;
 }
 //----------------------------------------------------------------
@@ -548,14 +548,14 @@ QString Util::formatSnowDepth (float meter, bool withUnit)
         unite = "cm";
         d= meter*100.0f;
         if (d < 10)
-			r.sprintf("%.1f", d);
+			r = QString::asprintf("%.1f", d);
 		else
-			r.sprintf("%.0f", d);
+			r = QString::asprintf("%.0f", d);
     }
     else {
         unite = "ft";
         d= meter/0.3048f;
-		r.sprintf("%.2f", d);
+		r = QString::asprintf("%.2f", d);
     }
 	return (withUnit) ? r+" "+unite : r;
 }
@@ -573,9 +573,9 @@ QString Util::formatDegres (float x, bool inf100)     // 123.4 -> 123°24.00'
         float min = (fabs(x) - deg)*60.0f;
         char sign = (x<0) ? '-' : ' ';
         if (inf100)
-        	r.sprintf("%c%02d%s%05.2f'", sign,deg,cdeg, min);
+		r = QString::asprintf("%c%02d%s%05.2f'", sign,deg,cdeg, min);
 		else
-        	r.sprintf("%c%03d%s%05.2f'", sign,deg,cdeg, min);
+		r = QString::asprintf("%c%03d%s%05.2f'", sign,deg,cdeg, min);
     }
     else if (unit == tr("dd°mm'ss\""))
     {
@@ -586,16 +586,16 @@ QString Util::formatDegres (float x, bool inf100)     // 123.4 -> 123°24.00'
         sec = sec % 60;                  // reste en secondes
         char sign = (x<0) ? '-' : ' ';
         if (inf100)
-	        r.sprintf("%c%02d%s%02d'%02d\"", sign,deg,cdeg, min,sec);
+	        r = QString::asprintf("%c%02d%s%02d'%02d\"", sign,deg,cdeg, min,sec);
 		else
-	        r.sprintf("%c%03d%s%02d'%02d\"", sign,deg,cdeg, min,sec);
+	        r = QString::asprintf("%c%03d%s%02d'%02d\"", sign,deg,cdeg, min,sec);
     }
     else // if (unit == tr("dd,dd°"))
     {
         if (inf100)
-    	    r.sprintf("%05.2f%s",x,cdeg);
+	    r = QString::asprintf("%05.2f%s",x,cdeg);
 		else
-    	    r.sprintf("%06.2f%s",x,cdeg);
+	    r = QString::asprintf("%06.2f%s",x,cdeg);
     }
     return r;
 }
@@ -669,9 +669,9 @@ QString Util::formatPercentValue(float prb, bool withUnit)
     QString r;
 	float v = inRange (0.0f, prb, 100.0f);
 	if (v < 10)
-		r.sprintf("%.1f", v);
+		r = QString::asprintf("%.1f", v);
 	else
-		r.sprintf("%.0f", v);
+		r = QString::asprintf("%.0f", v);
 	return withUnit ? r+" "+unite : r;
 }
 

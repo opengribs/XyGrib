@@ -42,7 +42,6 @@ void BoardPanel::clearPosition ()
 void BoardPanel::showDataPointInfo (
 						const DataPointInfo &pf, const Altitude &windAlt)
 {
-    QString s;
 	if (pf.isOk())
 		showPosition (pf.x, pf.y);
 	else
@@ -59,8 +58,8 @@ void BoardPanel::showDataPointInfo (
 		lbWindBf.setText("");
 		float v, dir;
 		if (pf.getWindValues (windAlt, &v, &dir)) {
-			lbWindDir.setText (s.sprintf("%.0f ", dir)+tr("°"));
-			lbWindBf.setText  (s.sprintf("%2d ", Util::msToBeaufort(v))+tr("Bf"));
+			lbWindDir.setText (QString::asprintf("%.0f ", dir)+tr("°"));
+			lbWindBf.setText  (QString::asprintf("%2d ", Util::msToBeaufort(v))+tr("Bf"));
 			lbWindSpeed.setText (Util::formatSpeed_Wind(v) );
 		}
 		else {
@@ -73,7 +72,7 @@ void BoardPanel::showDataPointInfo (
 	if (cellCurrent->isVisible()) {
 		float v, dir;
 		if (pf.getCurrentValues (&v, &dir)) {
-			lbCurrentDir.setText (s.sprintf("%.0f ", dir)+tr("°"));
+			lbCurrentDir.setText (QString::asprintf("%.0f ", dir)+tr("°"));
 			lbCurrentSpeed.setText (Util::formatSpeed_Current(v) );
 		}
 		else {
@@ -190,7 +189,7 @@ void BoardPanel::showDataPointInfo (
 			for (int i=0; i<GEOPOTsize; i++)
 			{
 				int P = GEOPOThgt(i);	// 925 850 700 600 500 400 300 200
-				shpa.sprintf("%3d", P);
+				shpa = QString::asprintf("%3d", P);
 				if (GribDataIsDef(pf.hGeopot[i])) {
 					sgeopot = QString("%1")
 							.arg(Util::formatGeopotAltitude (pf.hGeopot[i],true), 9);
@@ -224,7 +223,7 @@ void BoardPanel::showDataPointInfo (
 
 				if (i>0 && GribDataIsDef(pf.hThetae[i]) && GribDataIsDef(pf.hThetae[i-1])) {
 					QString delta;
-					delta.sprintf(" (%+.1f)", pf.hThetae[i]-pf.hThetae[i-1]);
+					delta = QString::asprintf(" (%+.1f)", pf.hThetae[i]-pf.hThetae[i-1]);
 					sv[i] += delta;
 				}
 			}
@@ -279,19 +278,19 @@ QString BoardPanel::formatWave (const QString &title, float ht, float dir, float
 	
 	QString s;
 	if (GribDataIsDef(ht))
-		s.sprintf(" %5.2fm", ht);
+		s = QString::asprintf(" %5.2fm", ht);
 	else
-		s.sprintf("       ");
+		s = QString::asprintf("       ");
 	r += s;
 	if (GribDataIsDef(dir))
-		s.sprintf(" %+4.0f°", dir);
+		s = QString::asprintf(" %+4.0f°", dir);
 	else
-		s.sprintf("      ");
+		s = QString::asprintf("      ");
 	r += s;
 	if (GribDataIsDef(per))
-		s.sprintf(" %3.0fs", per);
+		s = QString::asprintf(" %3.0fs", per);
 	else
-		s.sprintf("     ");
+		s = QString::asprintf("     ");
 	r += s;
 
 	return r;
