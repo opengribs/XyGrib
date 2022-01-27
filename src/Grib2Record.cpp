@@ -716,6 +716,8 @@ int Grib2Record::analyseProductType ()
 				return GRB_PRECIP_TOT;
 			else if (paramnumber==49)
 				return GRB_PRECIP_TOT;
+			else if (paramnumber==65)
+				return GRB_PRECIP_TOT;
 			else if (paramnumber==52) {
 				/*
 				   cf
