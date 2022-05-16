@@ -101,7 +101,8 @@ void  GribRecord::translateDataType ()
     //------------------------
     // Meteo France Arome/Arpege
     //------------------------
-    else if (idCenter==84 && (idModel==204 || idModel==121 || idModel==211) && idGrid==255) {
+    else if ((idCenter==84 || idCenter==85)
+       && (idModel==204 || idModel==121 || idModel==211) && idGrid==255) {
 
 		if ( (getDataType()==GRB_PRESSURE)
 			&& getLevelType()==LV_MSL
