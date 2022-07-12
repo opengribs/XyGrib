@@ -1069,7 +1069,7 @@ void GribReader::findGribsAroundDate (DataCode dtc, time_t date,
     *before = nullptr;
     *after  = nullptr;
 	zuint nb = ls->size();
-    for (zuint i=0; i<nb && *before==nullptr && *after==nullptr; i++)
+    for (zuint i=0; i<nb && (*before==nullptr || *after==nullptr); i++)
 	{
 		GribRecord *rec = (*ls)[i].get();
 		assert(rec->isOk());
