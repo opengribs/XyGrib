@@ -116,7 +116,7 @@ find_path(OPENJPEG_INCLUDE_DIR
      /opt/local/include # DarwinPorts
      /opt/csw/include # Blastwave
      /opt/include
-     PATH_SUFFIXES openjpeg-2.3 openjpeg-2.2 openjpeg-2.1
+     PATH_SUFFIXES openjpeg-2.5 openjpeg-2.3 openjpeg-2.2 openjpeg-2.1
      REQUIRED
  )
 include_directories(${OPENJPEG_INCLUDE_DIR})
