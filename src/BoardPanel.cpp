@@ -383,68 +383,68 @@ void BoardPanel::updateLabelsSizes()
     QFontMetrics fmt(qApp->font());
     int style = QFrame::Panel | QFrame::Sunken;
 
-    lbLon.setMinimumWidth( fmt.width("X888X88X00XX-") );
+    lbLon.setMinimumWidth( fmt.horizontalAdvance("X888X88X00XX-") );
     lbLon.setFrameStyle(style);
-    lbLat.setMinimumWidth( fmt.width("X888X88X00XX-") );
+    lbLat.setMinimumWidth( fmt.horizontalAdvance("X888X88X00XX-") );
     lbLat.setFrameStyle(style);
 
-    lbWindDir.setMinimumWidth( fmt.width("888XX-.") );
+    lbWindDir.setMinimumWidth( fmt.horizontalAdvance("888XX-.") );
     lbWindDir.setFrameStyle(style);
-    lbWindBf.setMinimumWidth( fmt.width("8888Bf-") );
+    lbWindBf.setMinimumWidth( fmt.horizontalAdvance("8888Bf-") );
     lbWindBf.setFrameStyle(style);
 	
-    lbWindSpeed.setMinimumWidth( fmt.width("888XXXXXkm/h-") );
+    lbWindSpeed.setMinimumWidth( fmt.horizontalAdvance("888XXXXXkm/h-") );
     lbWindSpeed.setFrameStyle(style);
 	
     lbGUSTsfc.setFrameStyle(style);
-    lbGUSTsfc.setMinimumWidth( fmt.width("888XXXXXkm/h-") );
+    lbGUSTsfc.setMinimumWidth( fmt.horizontalAdvance("888XXXXXkm/h-") );
 	
-    lbCurrentDir.setMinimumWidth( fmt.width("888XX-.") );
+    lbCurrentDir.setMinimumWidth( fmt.horizontalAdvance("888XX-.") );
     lbCurrentDir.setFrameStyle(style);
-    lbCurrentSpeed.setMinimumWidth( fmt.width("888XXXXXX-.") );
+    lbCurrentSpeed.setMinimumWidth( fmt.horizontalAdvance("888XXXXXX-.") );
     lbCurrentSpeed.setFrameStyle(style);
 
     QString strlong = "888888888888";
-    lbPres.setMinimumWidth( fmt.width(strlong) );
+    lbPres.setMinimumWidth( fmt.horizontalAdvance(strlong) );
     lbPres.setFrameStyle(style);
-    lbRain.setMinimumWidth( fmt.width(strlong) );
+    lbRain.setMinimumWidth( fmt.horizontalAdvance(strlong) );
     lbRain.setFrameStyle(style);
-    lbTemp.setMinimumWidth( fmt.width(strlong) );
+    lbTemp.setMinimumWidth( fmt.horizontalAdvance(strlong) );
     lbTemp.setFrameStyle(style);
-    lbTempMin.setMinimumWidth( fmt.width(strlong) );
+    lbTempMin.setMinimumWidth( fmt.horizontalAdvance(strlong) );
     lbTempMin.setFrameStyle(style);
-    lbTempMax.setMinimumWidth( fmt.width(strlong) );
+    lbTempMax.setMinimumWidth( fmt.horizontalAdvance(strlong) );
     lbTempMax.setFrameStyle(style);
-    lbCloud.setMinimumWidth( fmt.width(strlong) );
+    lbCloud.setMinimumWidth( fmt.horizontalAdvance(strlong) );
     lbCloud.setFrameStyle(style);
-    lbHumid.setMinimumWidth( fmt.width(strlong) );
+    lbHumid.setMinimumWidth( fmt.horizontalAdvance(strlong) );
     lbHumid.setFrameStyle(style);
-    lbDewPoint.setMinimumWidth( fmt.width(strlong) );
+    lbDewPoint.setMinimumWidth( fmt.horizontalAdvance(strlong) );
     lbDewPoint.setFrameStyle(style);
-    lbWaterTemp.setMinimumWidth( fmt.width(strlong) );
+    lbWaterTemp.setMinimumWidth( fmt.horizontalAdvance(strlong) );
     lbWaterTemp.setFrameStyle(style);
-    lbIsotherm0HGT.setMinimumWidth( fmt.width(strlong) );
+    lbIsotherm0HGT.setMinimumWidth( fmt.horizontalAdvance(strlong) );
     lbIsotherm0HGT.setFrameStyle(style);
     lbSnowDepth.setFrameStyle(style);
-    lbSnowDepth.setMinimumWidth( fmt.width(strlong) );
+    lbSnowDepth.setMinimumWidth( fmt.horizontalAdvance(strlong) );
     lbSnowCateg.setFrameStyle(style);
-    lbSnowCateg.setMinimumWidth( fmt.width(strlong) );
+    lbSnowCateg.setMinimumWidth( fmt.horizontalAdvance(strlong) );
 
     //added by david
     lbReflect.setFrameStyle(style);
-    lbReflect.setMinimumWidth( fmt.width(strlong) );
+    lbReflect.setMinimumWidth( fmt.horizontalAdvance(strlong) );
 
     strlong = "888888";
     lbCAPEsfc.setFrameStyle(style);
-    lbCAPEsfc.setMinimumWidth( fmt.width(strlong) );
+    lbCAPEsfc.setMinimumWidth( fmt.horizontalAdvance(strlong) );
     lbCINsfc.setFrameStyle(style);
-    lbCINsfc.setMinimumWidth( fmt.width(strlong) );
+    lbCINsfc.setMinimumWidth( fmt.horizontalAdvance(strlong) );
 
 
 	
 	// Altitude : hPa Geopot Temp Theta-e
 //    strlong = " 850 hPa ";
-//	lbWindTitle.setMinimumWidth( fmt.width(strlong) );
+//	lbWindTitle.setMinimumWidth( fmt.horizontalAdvance(strlong) );
 	
 	QFont fontAlt = Font::getFont(FONT_AltitudeLabel);
 	QFont fontAltTitle = Font::getFont(FONT_AltitudeLabelTitle);
@@ -469,10 +469,10 @@ void BoardPanel::updateLabelsSizes()
     QFontMetrics fmtAltTitle (fontAltTitle);
     
 	strlong = "hPa  altitude   temp     θe";
-	lbAltTitle.setMinimumWidth (fmtAltTitle.width(strlong));
+	lbAltTitle.setMinimumWidth (fmtAltTitle.horizontalAdvance(strlong));
 	
     strlong = "999 99999 gpft -99.9°C 100% 99.9°C (-99.9)";
-	int wmin = fmtAlt.width(strlong);
+	int wmin = fmtAlt.horizontalAdvance(strlong);
 	lb925.setMinimumWidth (wmin);
 	lb850.setMinimumWidth (wmin);
 	lb700.setMinimumWidth (wmin);

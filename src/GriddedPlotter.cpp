@@ -748,7 +748,7 @@ void GriddedPlotter::draw_DATA_Labels (
             v = rec->getInterpolatedValue (lon, lat, mustInterpolateValues);
             if (GribDataIsDef(v)) {
                 QString strtemp = formatLabelFunction (v,false);
-                pnt.drawText(i-fmet.width("XXX")/2, j+fmet.ascent()/2, strtemp);
+                pnt.drawText(i-fmet.horizontalAdvance("XXX")/2, j+fmet.ascent()/2, strtemp);
             }
         }
     } 
@@ -891,54 +891,54 @@ void GriddedPlotter::draw_DATA_MinMax (
     // now display the maxima and minima for each quarter
     if (q1savLv < 9999999.9) {
         proj->map2screen(q1savLx, q1savLy, &pi, &pj);
-        pnt.drawText(pi-fmet.width('L')/2, pj+fmet.ascent()/2, minSymbol);;
+        pnt.drawText(pi-fmet.horizontalAdvance('L')/2, pj+fmet.ascent()/2, minSymbol);;
         proj->map2screen(q1savLx-360.0,q1savLy, &pi, &pj);
-        pnt.drawText(pi-fmet.width('L')/2, pj+fmet.ascent()/2, minSymbol);;
+        pnt.drawText(pi-fmet.horizontalAdvance('L')/2, pj+fmet.ascent()/2, minSymbol);;
     }
     if (q1savHv > 0.0) {
         proj->map2screen(q1savHx, q1savHy, &pi, &pj);
-        pnt.drawText(pi-fmet.width('H')/2, pj+fmet.ascent()/2, maxSymbol);
+        pnt.drawText(pi-fmet.horizontalAdvance('H')/2, pj+fmet.ascent()/2, maxSymbol);
         proj->map2screen(q1savHx-360.0,q1savHy, &pi, &pj);
-        pnt.drawText(pi-fmet.width('H')/2, pj+fmet.ascent()/2, maxSymbol);
+        pnt.drawText(pi-fmet.horizontalAdvance('H')/2, pj+fmet.ascent()/2, maxSymbol);
     }
     // next quarter
     if (q2savLv < 9999999.9) {
         proj->map2screen(q2savLx, q2savLy, &pi, &pj);
-        pnt.drawText(pi-fmet.width('L')/2, pj+fmet.ascent()/2, minSymbol);;
+        pnt.drawText(pi-fmet.horizontalAdvance('L')/2, pj+fmet.ascent()/2, minSymbol);;
         proj->map2screen(q2savLx-360.0,q2savLy, &pi, &pj);
-        pnt.drawText(pi-fmet.width('L')/2, pj+fmet.ascent()/2, minSymbol);;
+        pnt.drawText(pi-fmet.horizontalAdvance('L')/2, pj+fmet.ascent()/2, minSymbol);;
     }
     if (q2savHv > 0.0) {
         proj->map2screen(q2savHx, q2savHy, &pi, &pj);
-        pnt.drawText(pi-fmet.width('H')/2, pj+fmet.ascent()/2, maxSymbol);
+        pnt.drawText(pi-fmet.horizontalAdvance('H')/2, pj+fmet.ascent()/2, maxSymbol);
         proj->map2screen(q2savHx-360.0,q2savHy, &pi, &pj);
-        pnt.drawText(pi-fmet.width('H')/2, pj+fmet.ascent()/2, maxSymbol);
+        pnt.drawText(pi-fmet.horizontalAdvance('H')/2, pj+fmet.ascent()/2, maxSymbol);
     }
     // next quarter
     if (q3savLv < 9999999.9) {
         proj->map2screen(q3savLx, q3savLy, &pi, &pj);
-        pnt.drawText(pi-fmet.width('L')/2, pj+fmet.ascent()/2, minSymbol);;
+        pnt.drawText(pi-fmet.horizontalAdvance('L')/2, pj+fmet.ascent()/2, minSymbol);;
         proj->map2screen(q3savLx-360.0,q3savLy, &pi, &pj);
-        pnt.drawText(pi-fmet.width('L')/2, pj+fmet.ascent()/2, minSymbol);;
+        pnt.drawText(pi-fmet.horizontalAdvance('L')/2, pj+fmet.ascent()/2, minSymbol);;
     }
     if (q3savHv > 0.0) {
         proj->map2screen(q3savHx, q3savHy, &pi, &pj);
-        pnt.drawText(pi-fmet.width('H')/2, pj+fmet.ascent()/2, maxSymbol);
+        pnt.drawText(pi-fmet.horizontalAdvance('H')/2, pj+fmet.ascent()/2, maxSymbol);
         proj->map2screen(q3savHx-360.0,q3savHy, &pi, &pj);
-        pnt.drawText(pi-fmet.width('H')/2, pj+fmet.ascent()/2, maxSymbol);
+        pnt.drawText(pi-fmet.horizontalAdvance('H')/2, pj+fmet.ascent()/2, maxSymbol);
     }
     // last quarter
     if (q4savLv < 9999999.9) {
         proj->map2screen(q4savLx, q4savLy, &pi, &pj);
-        pnt.drawText(pi-fmet.width('L')/2, pj+fmet.ascent()/2, minSymbol);;
+        pnt.drawText(pi-fmet.horizontalAdvance('L')/2, pj+fmet.ascent()/2, minSymbol);;
         proj->map2screen(q4savLx-360.0,q4savLy, &pi, &pj);
-        pnt.drawText(pi-fmet.width('L')/2, pj+fmet.ascent()/2, minSymbol);;
+        pnt.drawText(pi-fmet.horizontalAdvance('L')/2, pj+fmet.ascent()/2, minSymbol);;
     }
     if (q4savHv > 0.0) {
         proj->map2screen(q4savHx, q4savHy, &pi, &pj);
-        pnt.drawText(pi-fmet.width('H')/2, pj+fmet.ascent()/2, maxSymbol);
+        pnt.drawText(pi-fmet.horizontalAdvance('H')/2, pj+fmet.ascent()/2, maxSymbol);
         proj->map2screen(q4savHx-360.0,q4savHy, &pi, &pj);
-        pnt.drawText(pi-fmet.width('H')/2, pj+fmet.ascent()/2, maxSymbol);
+        pnt.drawText(pi-fmet.horizontalAdvance('H')/2, pj+fmet.ascent()/2, maxSymbol);
     }
 
  }
