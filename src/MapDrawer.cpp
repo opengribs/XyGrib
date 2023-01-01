@@ -38,7 +38,9 @@ MapDrawer::MapDrawer(std::shared_ptr<GshhsReader> gshhsReader)
     gisReader = std::make_shared<GisReader>();
 
 	this->gshhsReader = gshhsReader;
-	
+
+	showWaveArrowsType = GRB_TYPE_NOT_DEFINED;
+
 	initGraphicsParameters();
 	updateGraphicsParameters();
 }
