@@ -73,7 +73,7 @@ std::set<Altitude> GriddedReader::getAllAltitudes (int dataType) const
 
 	std::set<Altitude> res;
 	std::set<DataCode> setdata = getAllDataCode ();
-	for (auto dtc : setdata) {
+	for (auto const & dtc : setdata) {
 		if (dtc.dataType == type)
 			res.insert (dtc.getAltitude());
 	}

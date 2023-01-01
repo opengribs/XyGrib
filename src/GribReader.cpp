@@ -868,7 +868,7 @@ void GribReader::computeMissingData ()
 		   && getNumberOfGribRecords (DataCode(GRB_TEMP, LV_ABOV_GND, 2)) > 0)
 		{
 			dewpointDataStatus = COMPUTED_DATA;
-			for (auto date : setAllDates)
+			for (auto const & date : setAllDates)
 			{
                 GribRecord *recTemp = getRecord (DataCode(GRB_TEMP,LV_ABOV_GND,2),date);
                 GribRecord *recHumid = getRecord (DataCode(GRB_HUMID_REL,LV_ABOV_GND,2), date);
@@ -904,7 +904,7 @@ void GribReader::computeMissingData ()
 		double thmin = 10000;
 		double thmax = -10000;
 		std::set<Altitude> allAlts = getAllAltitudes (GRB_HUMID_REL);
-		for (auto altitude : allAlts)
+		for (auto const & altitude : allAlts)
 		{	// all altitudes
 				//DBGQS(AltitudeStr::toString(altitude));
 			for (long date : setAllDates)
@@ -1303,7 +1303,7 @@ time_t  GribReader::getFirstRefDate ()
 	time_t t, t2;
 	std::set<DataCode> all = getAllDataCode ();
 	t = 0;
-	for (auto dtc : all) {
+	for (auto const & dtc : all) {
 			t2 = getRefDateForData (dtc); 
 		if (t==0 || (t2!=0 && t>t2)) {
 			t = t2;
