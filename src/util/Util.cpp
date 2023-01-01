@@ -717,7 +717,7 @@ QString Util::formatDateLong (time_t t, bool localTime)
 	if (localTime)
 		dt = applyTimeZone(t);
 	else
-		dt.setTime_t(t);
+		dt.setSecsSinceEpoch(t);
 	return formatDayName(dt.date())+" "+formatDateShort(t);
 }
 //---------------------------------------------------------------------
@@ -750,7 +750,7 @@ QString Util::formatTime (time_t t)
 QDateTime Util::applyTimeZone (time_t t, QString *suffix)
 {
     QDateTime dt;
-    dt.setTime_t(t);
+    dt.setSecsSinceEpoch(t);
     //dt.setTimeSpec(Qt::UTC);
 	dt = dt.toUTC();
 	
