@@ -533,8 +533,10 @@ void GribReader::readGribFileContent (int nbrecs)
 		if (id%4 == 1)
 			emit valueChanged ((int)(100.0*id/nbrecs));
 
-		if (lgrib == 0)
+		if (lgrib <= 0)
 			break;    // end loop at EOF or problem
+		if (lgrib > 100*1024*1024)
+			break;
 		iseek = lskip + lgrib;
 		if (zu_seek (file, lskip, SEEK_SET) )
 			break;
