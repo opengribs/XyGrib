@@ -1598,13 +1598,13 @@ void MainWindow::slotHelp_Help() {
     QDesktopServices::openUrl(QUrl(link));
 
     return;
-
+#if 0
     QMessageBox::information (this,
             tr("Help"),
             tr("Help is available at")
                +" https://github.com/opengribs/XyGrib/wiki/XyGrib-User-Manual"
                );
-
+#endif
 }
 //-------------------------------------------------
 void MainWindow::slotHelp_APropos()
