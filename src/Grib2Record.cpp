@@ -109,7 +109,7 @@ Grib2Record::Grib2Record (gribfield  *gfld, int id, int idCenter, time_t refDate
 	this->idCenter = idCenter;
 	this->refDate = refDate;
 	this->idGrid = gfld->griddef;
-	sprintf(strRefDate, "%s", qPrintable(QDateTime::fromTime_t(refDate,Qt::UTC).toString("yyyy-MM-dd HH:mm")));
+	sprintf(strRefDate, "%s", qPrintable(QDateTime::fromSecsSinceEpoch(refDate,Qt::UTC).toString("yyyy-MM-dd HH:mm")));
 	ok = true;
 	waveData = false;  // TODO
 	verticalOrientationIsAmbiguous = false;
@@ -429,7 +429,7 @@ void Grib2Record::analyseProductDefinitionTemplate (gribfield  *gfld)
 			return;
 		}
 	}
-	sprintf(strCurDate, "%s", qPrintable(QDateTime::fromTime_t(curDate,Qt::UTC).toString("yyyy-MM-dd HH:mm")));
+	sprintf(strCurDate, "%s", qPrintable(QDateTime::fromSecsSinceEpoch(curDate,Qt::UTC).toString("yyyy-MM-dd HH:mm")));
 	//-------------------------
 	// Altitude
 	//-------------------------
