@@ -141,7 +141,7 @@ void DialogSelectMetar::make_metar_tree ()
 			assert (itemCountry);
 			itemRoot = itemCountry;
 			curState = "";
-			treeWidget->setFirstItemColumnSpanned (itemCountry, true);
+			itemCountry->setFirstColumnSpanned(true);
 			name = factory.mapCountries [curCountry];
 			if (name == "")
 				DBGQS ("Country name not found : "+curCountry);
@@ -156,7 +156,7 @@ void DialogSelectMetar::make_metar_tree ()
 				itemState = new QTreeWidgetItem (itemCountry);
 				assert (itemState);
 				itemRoot = itemState;
-				treeWidget->setFirstItemColumnSpanned (itemState, true);
+				itemState->setFirstColumnSpanned(true);
 				name = factory.mapStates [QPair<QString,QString>(curCountry,curState)];
 				if (name == "")
 					DBGQS ("State name not found : "+curState);
