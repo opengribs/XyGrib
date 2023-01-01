@@ -367,7 +367,8 @@ int GribReader::seekgb_zu (
 	nread=mseek;
 	ipos=iseek;
 	while (*lgrib==0 && nread==mseek) {
-		zu_seek (lugb, ipos, SEEK_SET);
+		if (zu_seek (lugb, ipos, SEEK_SET))
+			break;
 		nread = zu_read (lugb, cbuf, mseek);
 		lim = nread-8;
 		//Util::dumpchars(cbuf,0,16);
@@ -386,7 +387,8 @@ int GribReader::seekgb_zu (
 				else {
 					lengrib = (g2int)(cbuf[k+12]<<24)+(cbuf[k+13]<<16)+(cbuf[k+14]<<8)+(cbuf[k+15]);
 				}
-				zu_seek (lugb, ipos+k+lengrib-4, SEEK_SET);
+				if (zu_seek (lugb, ipos+k+lengrib-4, SEEK_SET))
+					break;
 				k4 = zu_read (lugb, &end, 4);
 				if (k4 == 4 && end == 926365495) {      // "7777" found
 					//DBG("FOUND GRIB2 FIELD lengrib=%ld", lengrib);
