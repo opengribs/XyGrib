@@ -46,7 +46,8 @@ AnimCommand::AnimCommand(int nbImages, int speed, bool autoLoop, QWidget *parent
 {
 	this->nbImages = nbImages;
 	this->speed = speed;
-    
+
+    currentImage = 0;
     acExit = new QAction(this);
     acExit->setToolTip (tr("Close the window"));
 	acExit->setIcon(QIcon(Util::pathImg("exit.png")));
