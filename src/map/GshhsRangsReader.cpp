@@ -117,7 +117,8 @@ int GshhsRangsCell::readSegmentLoop()
             RimAddress = readInt4(fcel) - 1;
             RimLength = readInt4(fcel);
             //if ((x0cell==x0debug && y0cell==y0debug)) printf("CEL  RimAddress=%d  RimLength=%d\n", RimAddress, RimLength);
-            readSegmentRim(RimAddress, RimLength, newPolygon);
+            if (RimLength > 0 && RimLength < 1*1000*1000)
+            	readSegmentRim(RimAddress, RimLength, newPolygon);
         }
     }
 

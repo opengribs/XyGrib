@@ -40,8 +40,12 @@ GshhsPolygon::GshhsPolygon(ZUFILE *file_)
     {
 	    antarctic = (west==0 && east==360);
 		double x, y=-90;
-        
-        for (int i=0; i<n; i++) {
+
+        if (n < 0 || n > 10*1000*1000) {
+            ok = false;
+            return;
+        }
+        for (int i=0; ok && i<n; i++) {
             x = GshhsPolygon::readInt4() * 1e-6;
             if (greenwich && x > 270)
                 x -= 360;
@@ -79,7 +83,11 @@ GshhsPolygon_WDB::GshhsPolygon_WDB(ZUFILE *file_)
     greenwich = false;
     antarctic = false;
     if (ok) {
-        for (int i=0; i<n; i++) {
+        if (n < 0 || n > 10*1000*1000) {
+            ok = false;
+            return;
+        }
+        for (int i=0; ok && i<n; i++) {
             double x, y;
             x = GshhsPolygon_WDB::readInt4() * 1e-6;
             if (greenwich && x > 270)
