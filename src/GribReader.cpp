@@ -1266,7 +1266,10 @@ int GribReader::countGribRecords (ZUFILE *f)
 	const int sizebuf = 300000;
 	int nblus;
 	char buf[sizebuf];
-	zu_rewind (f);
+
+	if (zu_rewind (f))
+		return nb;
+
 	while (continueDownload && (nblus=zu_read(f,buf,sizebuf))>0) {
 		for (i=0; i<nblus; i++) {
 			c = buf[i];
@@ -1285,9 +1288,9 @@ int GribReader::countGribRecords (ZUFILE *f)
 			}
 		}
 	}
-	if (! continueDownload)
+	if (! continueDownload || zu_rewind (f))
 		nb = 0;
-	zu_rewind (f);
+
 	return nb;
 }
 
