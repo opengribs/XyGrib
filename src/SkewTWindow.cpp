@@ -209,11 +209,11 @@ void SkewTWindow::actionsCommonSlot ()
 		{
 			QPainter painter;
 			painter.begin(&printer);
-			double xscale = printer.pageRect().width()/double(skewt->width());
-			double yscale = printer.pageRect().height()/double(skewt->height());
+			QRect r = printer.pageLayout().paintRectPixels(printer.resolution());
+			double xscale = r.width()/double(skewt->width());
+			double yscale = r.height()/double(skewt->height());
 			double scale = qMin(xscale, yscale);
-			painter.translate(printer.paperRect().x() + printer.pageRect().width()/2,
-								printer.paperRect().y() + printer.pageRect().height()/2);
+			painter.translate(r.x() +r.width()/2,r.y() +r.height()/2);
 			painter.scale(scale, scale);
 			painter.translate(-skewt->width()/2, -skewt->height()/2);
 			skewt->setPrinterRendering (true);
