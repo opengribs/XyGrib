@@ -34,6 +34,7 @@ GribReader::GribReader()
 	xmax = -1e300;
 	ymin =  1e300;
 	ymax = -1e300;
+	file = nullptr;
 }
 //-------------------------------------------------------------------------------
 void GribReader::openFile (const QString &fname, int nbrecs)
