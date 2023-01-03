@@ -61,7 +61,7 @@ class GshhsPoint {
 class GshhsPolygon
 {
     public:
-        GshhsPolygon() {}
+        GshhsPolygon() = default;
         GshhsPolygon(ZUFILE *file);
         virtual ~GshhsPolygon();
         
