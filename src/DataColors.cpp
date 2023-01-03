@@ -46,11 +46,13 @@ DataColors::DataColors ()
 	colors_WaveHeight.readFile (Util::pathColors()+"colors_waveheight_m.txt", 1, 0);
 	colors_WhiteCap.readFile (Util::pathColors()+"colors_whitecap_prb.txt", 1, 0);
 	colors_ThetaE.readFile (Util::pathColors()+"colors_thetae_celcius.txt", 1, 273.15);
+#if 0
 	//test
 	double v;
 	
 	v= 170;
 	colors_Temp.getColor (v, true);
+#endif
 }
 //--------------------------------------------------------------------------
 QColor DataColors::getContrastedColor (const QColor &base)
