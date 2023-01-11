@@ -42,7 +42,6 @@ void BoardPanel::clearPosition ()
 void BoardPanel::showDataPointInfo (
 						const DataPointInfo &pf, const Altitude &windAlt)
 {
-    QString s;
 	if (pf.isOk())
 		showPosition (pf.x, pf.y);
 	else
@@ -59,8 +58,8 @@ void BoardPanel::showDataPointInfo (
 		lbWindBf.setText("");
 		float v, dir;
 		if (pf.getWindValues (windAlt, &v, &dir)) {
-			lbWindDir.setText (s.sprintf("%.0f ", dir)+tr("°"));
-			lbWindBf.setText  (s.sprintf("%2d ", Util::msToBeaufort(v))+tr("Bf"));
+			lbWindDir.setText (QString::asprintf("%.0f ", dir)+tr("°"));
+			lbWindBf.setText  (QString::asprintf("%2d ", Util::msToBeaufort(v))+tr("Bf"));
 			lbWindSpeed.setText (Util::formatSpeed_Wind(v) );
 		}
 		else {
@@ -73,7 +72,7 @@ void BoardPanel::showDataPointInfo (
 	if (cellCurrent->isVisible()) {
 		float v, dir;
 		if (pf.getCurrentValues (&v, &dir)) {
-			lbCurrentDir.setText (s.sprintf("%.0f ", dir)+tr("°"));
+			lbCurrentDir.setText (QString::asprintf("%.0f ", dir)+tr("°"));
 			lbCurrentSpeed.setText (Util::formatSpeed_Current(v) );
 		}
 		else {
@@ -190,7 +189,7 @@ void BoardPanel::showDataPointInfo (
 			for (int i=0; i<GEOPOTsize; i++)
 			{
 				int P = GEOPOThgt(i);	// 925 850 700 600 500 400 300 200
-				shpa.sprintf("%3d", P);
+				shpa = QString::asprintf("%3d", P);
 				if (GribDataIsDef(pf.hGeopot[i])) {
 					sgeopot = QString("%1")
 							.arg(Util::formatGeopotAltitude (pf.hGeopot[i],true), 9);
@@ -224,7 +223,7 @@ void BoardPanel::showDataPointInfo (
 
 				if (i>0 && GribDataIsDef(pf.hThetae[i]) && GribDataIsDef(pf.hThetae[i-1])) {
 					QString delta;
-					delta.sprintf(" (%+.1f)", pf.hThetae[i]-pf.hThetae[i-1]);
+					delta = QString::asprintf(" (%+.1f)", pf.hThetae[i]-pf.hThetae[i-1]);
 					sv[i] += delta;
 				}
 			}
@@ -279,19 +278,19 @@ QString BoardPanel::formatWave (const QString &title, float ht, float dir, float
 	
 	QString s;
 	if (GribDataIsDef(ht))
-		s.sprintf(" %5.2fm", ht);
+		s = QString::asprintf(" %5.2fm", ht);
 	else
-		s.sprintf("       ");
+		s = QString::asprintf("       ");
 	r += s;
 	if (GribDataIsDef(dir))
-		s.sprintf(" %+4.0f°", dir);
+		s = QString::asprintf(" %+4.0f°", dir);
 	else
-		s.sprintf("      ");
+		s = QString::asprintf("      ");
 	r += s;
 	if (GribDataIsDef(per))
-		s.sprintf(" %3.0fs", per);
+		s = QString::asprintf(" %3.0fs", per);
 	else
-		s.sprintf("     ");
+		s = QString::asprintf("     ");
 	r += s;
 
 	return r;
@@ -384,68 +383,68 @@ void BoardPanel::updateLabelsSizes()
     QFontMetrics fmt(qApp->font());
     int style = QFrame::Panel | QFrame::Sunken;
 
-    lbLon.setMinimumWidth( fmt.width("X888X88X00XX-") );
+    lbLon.setMinimumWidth( fmt.horizontalAdvance("X888X88X00XX-") );
     lbLon.setFrameStyle(style);
-    lbLat.setMinimumWidth( fmt.width("X888X88X00XX-") );
+    lbLat.setMinimumWidth( fmt.horizontalAdvance("X888X88X00XX-") );
     lbLat.setFrameStyle(style);
 
-    lbWindDir.setMinimumWidth( fmt.width("888XX-.") );
+    lbWindDir.setMinimumWidth( fmt.horizontalAdvance("888XX-.") );
     lbWindDir.setFrameStyle(style);
-    lbWindBf.setMinimumWidth( fmt.width("8888Bf-") );
+    lbWindBf.setMinimumWidth( fmt.horizontalAdvance("8888Bf-") );
     lbWindBf.setFrameStyle(style);
 	
-    lbWindSpeed.setMinimumWidth( fmt.width("888XXXXXkm/h-") );
+    lbWindSpeed.setMinimumWidth( fmt.horizontalAdvance("888XXXXXkm/h-") );
     lbWindSpeed.setFrameStyle(style);
 	
     lbGUSTsfc.setFrameStyle(style);
-    lbGUSTsfc.setMinimumWidth( fmt.width("888XXXXXkm/h-") );
+    lbGUSTsfc.setMinimumWidth( fmt.horizontalAdvance("888XXXXXkm/h-") );
 	
-    lbCurrentDir.setMinimumWidth( fmt.width("888XX-.") );
+    lbCurrentDir.setMinimumWidth( fmt.horizontalAdvance("888XX-.") );
     lbCurrentDir.setFrameStyle(style);
-    lbCurrentSpeed.setMinimumWidth( fmt.width("888XXXXXX-.") );
+    lbCurrentSpeed.setMinimumWidth( fmt.horizontalAdvance("888XXXXXX-.") );
     lbCurrentSpeed.setFrameStyle(style);
 
     QString strlong = "888888888888";
-    lbPres.setMinimumWidth( fmt.width(strlong) );
+    lbPres.setMinimumWidth( fmt.horizontalAdvance(strlong) );
     lbPres.setFrameStyle(style);
-    lbRain.setMinimumWidth( fmt.width(strlong) );
+    lbRain.setMinimumWidth( fmt.horizontalAdvance(strlong) );
     lbRain.setFrameStyle(style);
-    lbTemp.setMinimumWidth( fmt.width(strlong) );
+    lbTemp.setMinimumWidth( fmt.horizontalAdvance(strlong) );
     lbTemp.setFrameStyle(style);
-    lbTempMin.setMinimumWidth( fmt.width(strlong) );
+    lbTempMin.setMinimumWidth( fmt.horizontalAdvance(strlong) );
     lbTempMin.setFrameStyle(style);
-    lbTempMax.setMinimumWidth( fmt.width(strlong) );
+    lbTempMax.setMinimumWidth( fmt.horizontalAdvance(strlong) );
     lbTempMax.setFrameStyle(style);
-    lbCloud.setMinimumWidth( fmt.width(strlong) );
+    lbCloud.setMinimumWidth( fmt.horizontalAdvance(strlong) );
     lbCloud.setFrameStyle(style);
-    lbHumid.setMinimumWidth( fmt.width(strlong) );
+    lbHumid.setMinimumWidth( fmt.horizontalAdvance(strlong) );
     lbHumid.setFrameStyle(style);
-    lbDewPoint.setMinimumWidth( fmt.width(strlong) );
+    lbDewPoint.setMinimumWidth( fmt.horizontalAdvance(strlong) );
     lbDewPoint.setFrameStyle(style);
-    lbWaterTemp.setMinimumWidth( fmt.width(strlong) );
+    lbWaterTemp.setMinimumWidth( fmt.horizontalAdvance(strlong) );
     lbWaterTemp.setFrameStyle(style);
-    lbIsotherm0HGT.setMinimumWidth( fmt.width(strlong) );
+    lbIsotherm0HGT.setMinimumWidth( fmt.horizontalAdvance(strlong) );
     lbIsotherm0HGT.setFrameStyle(style);
     lbSnowDepth.setFrameStyle(style);
-    lbSnowDepth.setMinimumWidth( fmt.width(strlong) );
+    lbSnowDepth.setMinimumWidth( fmt.horizontalAdvance(strlong) );
     lbSnowCateg.setFrameStyle(style);
-    lbSnowCateg.setMinimumWidth( fmt.width(strlong) );
+    lbSnowCateg.setMinimumWidth( fmt.horizontalAdvance(strlong) );
 
     //added by david
     lbReflect.setFrameStyle(style);
-    lbReflect.setMinimumWidth( fmt.width(strlong) );
+    lbReflect.setMinimumWidth( fmt.horizontalAdvance(strlong) );
 
     strlong = "888888";
     lbCAPEsfc.setFrameStyle(style);
-    lbCAPEsfc.setMinimumWidth( fmt.width(strlong) );
+    lbCAPEsfc.setMinimumWidth( fmt.horizontalAdvance(strlong) );
     lbCINsfc.setFrameStyle(style);
-    lbCINsfc.setMinimumWidth( fmt.width(strlong) );
+    lbCINsfc.setMinimumWidth( fmt.horizontalAdvance(strlong) );
 
 
 	
 	// Altitude : hPa Geopot Temp Theta-e
 //    strlong = " 850 hPa ";
-//	lbWindTitle.setMinimumWidth( fmt.width(strlong) );
+//	lbWindTitle.setMinimumWidth( fmt.horizontalAdvance(strlong) );
 	
 	QFont fontAlt = Font::getFont(FONT_AltitudeLabel);
 	QFont fontAltTitle = Font::getFont(FONT_AltitudeLabelTitle);
@@ -470,10 +469,10 @@ void BoardPanel::updateLabelsSizes()
     QFontMetrics fmtAltTitle (fontAltTitle);
     
 	strlong = "hPa  altitude   temp     θe";
-	lbAltTitle.setMinimumWidth (fmtAltTitle.width(strlong));
+	lbAltTitle.setMinimumWidth (fmtAltTitle.horizontalAdvance(strlong));
 	
     strlong = "999 99999 gpft -99.9°C 100% 99.9°C (-99.9)";
-	int wmin = fmtAlt.width(strlong);
+	int wmin = fmtAlt.horizontalAdvance(strlong);
 	lb925.setMinimumWidth (wmin);
 	lb850.setMinimumWidth (wmin);
 	lb700.setMinimumWidth (wmin);

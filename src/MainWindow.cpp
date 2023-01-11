@@ -51,7 +51,7 @@ void ThreadNewInstance::run ()
 	if (!args.empty()) {
 		const QString& appname = args.at(0);
         //DBGQS (appname);
-        QProcess::execute ("\"" + appname + "\" -sw");
+        QProcess::execute (appname, {"-sw"});
 		exit ();
 	}
 }
@@ -2590,7 +2590,7 @@ void MainWindow::slotRunMaintenanceTool()
     res = QMessageBox::question(this,tr("Exit XyGrib?"),question, QMessageBox::Yes, QMessageBox::No);
 
     if (res == QMessageBox::Yes){  // user wishes to exit
-        result = process.startDetached(maintenanceToolLocation);
+        result = process.startDetached(maintenanceToolLocation, {});
         if (!result){
             QMessageBox::warning(this,tr("Failure"), tr("Unable to find the XyGrib Maintenance Tool. Please start it from the desktop facilities"));
         } else {
@@ -2598,7 +2598,7 @@ void MainWindow::slotRunMaintenanceTool()
         }
 
     } else { // user does not wish to exit
-        result = process.startDetached(maintenanceToolLocation);
+        result = process.startDetached(maintenanceToolLocation, {});
         if (!result){
             QMessageBox::warning(this,tr("Failure"), tr("Unable to find the XyGrib Maintenance Tool. Please start it from the desktop facilities"));
         }

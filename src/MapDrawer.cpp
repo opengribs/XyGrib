@@ -737,11 +737,11 @@ void MapDrawer::draw_Cartouche_Gridded
 		//---------------------------------------------------------
         QString  tval2 = Util::formatDateTimeLong(plotter->getCurrentDate());
 		n +=  datalist.size();
-		w1 = fmbig.width(tval2)+5;
+		w1 = fmbig.horizontalAdvance(tval2)+5;
 		w2 = 0;
 		// get largest string data
 		for (int i = 0; i < datalist.size(); i++) {
-        	int t = fmsmall.width (datalist.at(i))+5;
+        	int t = fmsmall.horizontalAdvance (datalist.at(i))+5;
 			if (t>w2)
 				w2 = t;
 		}
@@ -781,7 +781,7 @@ void MapDrawer::draw_Cartouche_Gridded
 			pnt.setFont (fontdate);
 			w = 0;  // get largest string data
 			for (int i = 0; i < datalist.size(); i++) {
-				int t = fmdate.width (datalist.at(i))+5;
+				int t = fmdate.horizontalAdvance (datalist.at(i))+5;
 				if (t>w)
 					w = t;
 			}
@@ -803,7 +803,7 @@ void MapDrawer::draw_Cartouche_Gridded
 		//--------------------------------------------------
         QString sign = tr("XyGrib");
         pnt.setFont(fontsign);
-		w = fmsign.width(sign)+5;
+		w = fmsign.horizontalAdvance(sign)+5;
 		dy = fontsign.pointSize()+1;
         h = dy+2;
         x = QApplication::isRightToLeft() ? 0 : proj->getW() - w;

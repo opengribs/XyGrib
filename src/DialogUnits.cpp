@@ -243,7 +243,7 @@ QFrame *DialogUnits::createFrameGui(QWidget *parent)
 	{	// UTC-12 UTC-11 ... UTC+1 UTC+2 UTC+3 ... UTC+14
 		QString stz;
 		if (i != 0)
-			stz.sprintf("UTC%+d", i);
+			stz = QString::asprintf("UTC%+d", i);
 		else
 			stz = "UTC";
     	cbTimeZone->addItem( tr("Fixed time ")+stz, stz);
