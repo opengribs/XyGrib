@@ -35,7 +35,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class GriddedReader : public DataReaderAbstract
 {
 	public:
-		GriddedReader () {}
+		GriddedReader () = default;
 		virtual ~GriddedReader () {}
 
 		bool  isOk ()   {return ok;}

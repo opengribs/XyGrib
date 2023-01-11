@@ -82,7 +82,7 @@ class GisCity : public GisPoint
         void  drawCityName (QPainter *pnt, QRect *rectName);
 
 	private:
-	    int     x0, y0;   // for drawing
+	    int     x0{0}, y0{0};   // for drawing
 };
 
 //==========================================================

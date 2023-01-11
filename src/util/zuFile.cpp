@@ -274,9 +274,9 @@ int  zu_bzSeekForward(ZUFILE *f, unsigned long nbytes_)
 }
 
 //-----------------------------------------------------------------
-void   zu_rewind(ZUFILE *f)
+int   zu_rewind(ZUFILE *f)
 {
-    zu_seek(f, 0, SEEK_SET);
+    return zu_seek(f, 0, SEEK_SET);
 }
 
 //-----------------------------------------------------------------

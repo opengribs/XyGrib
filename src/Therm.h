@@ -154,7 +154,6 @@ class Sounding
 		QList <SoundingPointWind> allSoundsWind;
 			
 		bool   levelsAreValid;
-		ConvBase clvl_base;
 		
 		TPoint LCL, CCL, LFC, EL;
 		

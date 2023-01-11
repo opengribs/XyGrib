@@ -34,9 +34,12 @@ GshhsRangsCell::GshhsRangsCell(FILE *fcat_, FILE *fcel_, FILE *frim_, int x0_, i
     // adresse de la cellule lue dans le fichier .cat
     int offset = 4*((89 - y0cell) * 360 + x0cell);
     
-    fseek(fcat, offset, SEEK_SET);
+    if (fseek(fcat, offset, SEEK_SET))
+    	return;
+
     int adrcel = readInt4(fcat)-1;
-    fseek(fcel, adrcel, SEEK_SET);
+    if (fseek(fcel, adrcel, SEEK_SET))
+    	return;
 	//if ((x0cell==x0debug && y0cell==y0debug)) printf("\n===== START CELL =========\n");
 
     readPolygonList();
@@ -114,7 +117,8 @@ int GshhsRangsCell::readSegmentLoop()
             RimAddress = readInt4(fcel) - 1;
             RimLength = readInt4(fcel);
             //if ((x0cell==x0debug && y0cell==y0debug)) printf("CEL  RimAddress=%d  RimLength=%d\n", RimAddress, RimLength);
-            readSegmentRim(RimAddress, RimLength, newPolygon);
+            if (RimLength > 0 && RimLength < 1*1000*1000)
+            	readSegmentRim(RimAddress, RimLength, newPolygon);
         }
     }
 
@@ -129,7 +133,9 @@ void GshhsRangsCell::readSegmentRim(
     int i, x, y;
     GshhsRangsPoint * newPoint;
     
-    fseek(frim, RimAddress, SEEK_SET);
+    if (fseek(frim, RimAddress, SEEK_SET))
+    	return;
+
     for (i=0; i<RimLength; i++)
     {
         nbpoints ++;

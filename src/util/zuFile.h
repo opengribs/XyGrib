@@ -66,7 +66,7 @@ long   zu_tell (ZUFILE *f);
 
 int    zu_seek (ZUFILE *f, long offset, int whence);        // TODO: whence=SEEK_END
 
-void   zu_rewind (ZUFILE *f);
+int    zu_rewind (ZUFILE *f);
 
 long   zu_filesize (ZUFILE *f);
 long   zu_filesize_name (const char *filename);

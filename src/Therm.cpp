@@ -233,7 +233,13 @@ double Therm::dryAdiabaticPressure (double hpa0, double t0, double tempC)
 Sounding::Sounding ()
 {
 	levelsAreValid = false;
-	levelsAreValid = false;
+	CAPE = 0;
+	CIN = 0;
+	LI = GRIB_NOTDEF;
+	SI = GRIB_NOTDEF;
+	SWEAT = GRIB_NOTDEF;
+	KI = 0.;
+	TT = 0.;
 }
 //------------------------------------------------------
 void Sounding::addSoundingPointC (double hpa, double tempC, double dewpC)
@@ -274,7 +280,7 @@ double Sounding::hpaMin ()
 //------------------------------------------------------
 SoundingPointWind Sounding::getWindByAlt (double hpa)
 {
-	for (auto pw : allSoundsWind) {
+	for (auto const & pw : allSoundsWind) {
         if (pw.hpa == hpa) {
 			return pw;
 		}

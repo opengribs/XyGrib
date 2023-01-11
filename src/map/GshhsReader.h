@@ -61,7 +61,7 @@ class GshhsPoint {
 class GshhsPolygon
 {
     public:
-        GshhsPolygon() {}
+        GshhsPolygon() = default;
         GshhsPolygon(ZUFILE *file);
         virtual ~GshhsPolygon();
         
@@ -172,6 +172,7 @@ inline int GshhsPolygon::readInt4() {
     unsigned char tab[4];
     if (zu_read(file, tab, 4) != 4) {
         ok = false;
+        return 0;
     }
     return ((int)tab[3]<<24)+((int)tab[2]<<16)+((int)tab[1]<<8)+((int)tab[0]);
 }
@@ -181,6 +182,7 @@ inline int GshhsPolygon_WDB::readInt4() {    // pas le même indien
     unsigned char tab[4];
     if (zu_read(file, tab, 4) != 4) {
         ok = false;
+        return 0;
     }
     return ((int)tab[0]<<24)+((int)tab[1]<<16)+((int)tab[2]<<8)+((int)tab[3]);
 }
@@ -190,6 +192,7 @@ inline int GshhsPolygon::readInt2() {
     unsigned char tab[2];
     if (zu_read(file, tab, 2) != 2) {
         ok = false;
+        return 0;
     }
     return ((int)tab[1]<<8)+((int)tab[0]);
 }
@@ -198,6 +201,7 @@ inline int GshhsPolygon_WDB::readInt2() {
     unsigned char tab[2];
     if (zu_read(file, tab, 2) != 2) {
         ok = false;
+        return 0;
     }
     return ((int)tab[0]<<8)+((int)tab[1]);
 }

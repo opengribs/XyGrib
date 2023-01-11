@@ -39,6 +39,7 @@ FileLoaderGRIB::FileLoaderGRIB (QNetworkAccessManager *manager, QWidget *parent)
     reply_step1 = nullptr;
     reply_step2 = nullptr;
     scriptpath = "/";
+    fileSize=0;
 }
 //-------------------------------------------------------------------------------
 FileLoaderGRIB::~FileLoaderGRIB () 

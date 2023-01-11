@@ -128,15 +128,15 @@ friend class Terrain;	// TODO (or not) getters setters
 		Altitude linesThetaEAltitude;
 		
 		bool  showWindArrows;
-		bool  hasWindForArrows;
+		bool  hasWindForArrows{false};
 		Altitude windArrowsAltitude;
 		bool  showGribGrid;
 		bool  showBarbules;
 
 		bool  showCurrentArrows;
-		bool  hasCurrentForArrows;
+		bool  hasCurrentForArrows{false};
 		int   showWaveArrowsType;
-		bool  hasWaveForArrows;
+		bool  hasWaveForArrows{false};
 		
 		Altitude currentArrowsAltitude;
 		

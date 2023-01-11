@@ -34,6 +34,7 @@ GribReader::GribReader()
 	xmax = -1e300;
 	ymin =  1e300;
 	ymax = -1e300;
+	file = nullptr;
 }
 //-------------------------------------------------------------------------------
 void GribReader::openFile (const QString &fname, int nbrecs)
@@ -367,7 +368,8 @@ int GribReader::seekgb_zu (
 	nread=mseek;
 	ipos=iseek;
 	while (*lgrib==0 && nread==mseek) {
-		zu_seek (lugb, ipos, SEEK_SET);
+		if (zu_seek (lugb, ipos, SEEK_SET))
+			break;
 		nread = zu_read (lugb, cbuf, mseek);
 		lim = nread-8;
 		//Util::dumpchars(cbuf,0,16);
@@ -386,7 +388,8 @@ int GribReader::seekgb_zu (
 				else {
 					lengrib = (g2int)(cbuf[k+12]<<24)+(cbuf[k+13]<<16)+(cbuf[k+14]<<8)+(cbuf[k+15]);
 				}
-				zu_seek (lugb, ipos+k+lengrib-4, SEEK_SET);
+				if (zu_seek (lugb, ipos+k+lengrib-4, SEEK_SET))
+					break;
 				k4 = zu_read (lugb, &end, 4);
 				if (k4 == 4 && end == 926365495) {      // "7777" found
 					//DBG("FOUND GRIB2 FIELD lengrib=%ld", lengrib);
@@ -531,8 +534,10 @@ void GribReader::readGribFileContent (int nbrecs)
 		if (id%4 == 1)
 			emit valueChanged ((int)(100.0*id/nbrecs));
 
-		if (lgrib == 0)
+		if (lgrib <= 0)
 			break;    // end loop at EOF or problem
+		if (lgrib > 100*1024*1024)
+			break;
 		iseek = lskip + lgrib;
 		if (zu_seek (file, lskip, SEEK_SET) )
 			break;
@@ -868,7 +873,7 @@ void GribReader::computeMissingData ()
 		   && getNumberOfGribRecords (DataCode(GRB_TEMP, LV_ABOV_GND, 2)) > 0)
 		{
 			dewpointDataStatus = COMPUTED_DATA;
-			for (auto date : setAllDates)
+			for (auto const & date : setAllDates)
 			{
                 GribRecord *recTemp = getRecord (DataCode(GRB_TEMP,LV_ABOV_GND,2),date);
                 GribRecord *recHumid = getRecord (DataCode(GRB_HUMID_REL,LV_ABOV_GND,2), date);
@@ -904,7 +909,7 @@ void GribReader::computeMissingData ()
 		double thmin = 10000;
 		double thmax = -10000;
 		std::set<Altitude> allAlts = getAllAltitudes (GRB_HUMID_REL);
-		for (auto altitude : allAlts)
+		for (auto const & altitude : allAlts)
 		{	// all altitudes
 				//DBGQS(AltitudeStr::toString(altitude));
 			for (long date : setAllDates)
@@ -1262,7 +1267,10 @@ int GribReader::countGribRecords (ZUFILE *f)
 	const int sizebuf = 300000;
 	int nblus;
 	char buf[sizebuf];
-	zu_rewind (f);
+
+	if (zu_rewind (f))
+		return nb;
+
 	while (continueDownload && (nblus=zu_read(f,buf,sizebuf))>0) {
 		for (i=0; i<nblus; i++) {
 			c = buf[i];
@@ -1281,9 +1289,9 @@ int GribReader::countGribRecords (ZUFILE *f)
 			}
 		}
 	}
-	if (! continueDownload)
+	if (! continueDownload || zu_rewind (f))
 		nb = 0;
-	zu_rewind (f);
+
 	return nb;
 }
 
@@ -1303,7 +1311,7 @@ time_t  GribReader::getFirstRefDate ()
 	time_t t, t2;
 	std::set<DataCode> all = getAllDataCode ();
 	t = 0;
-	for (auto dtc : all) {
+	for (auto const & dtc : all) {
 			t2 = getRefDateForData (dtc); 
 		if (t==0 || (t2!=0 && t>t2)) {
 			t = t2;

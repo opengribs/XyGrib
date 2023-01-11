@@ -83,16 +83,18 @@ DialogBoxColumn::DialogBoxColumn (QWidget *parent,
     btOK     = new QPushButton (tr("Ok"), this);
 	if (nbButtons > 1)
 		btCancel = new QPushButton (tr("Cancel"), this);
+	else
+		btCancel = nullptr;
 	hlay->addStretch (0);
     hlay->addWidget (btOK);
-	if (nbButtons > 1)
+	if (btCancel != nullptr)
 		hlay->addWidget (btCancel);
 	hlay->addStretch (0);
     layout->addWidget (ftmp, Qt::AlignCenter);
 
     //-----------------------------------------------------------------------
     connect(btOK, SIGNAL(clicked()), this, SLOT(slotBtOK()));
-	if (nbButtons > 1)
+	if (btCancel != nullptr)
 		connect(btCancel, SIGNAL(clicked()), this, SLOT(slotBtCancel()));
 }
 

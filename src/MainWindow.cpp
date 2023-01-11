@@ -1598,13 +1598,13 @@ void MainWindow::slotHelp_Help() {
     QDesktopServices::openUrl(QUrl(link));
 
     return;
-
+#if 0
     QMessageBox::information (this,
             tr("Help"),
             tr("Help is available at")
                +" https://github.com/opengribs/XyGrib/wiki/XyGrib-User-Manual"
                );
-
+#endif
 }
 //-------------------------------------------------
 void MainWindow::slotHelp_APropos()
@@ -1771,8 +1771,8 @@ void MainWindow::slotFile_Info_GRIB ()
 	std::set<DataCode> setdata = plotter->getAllDataCode ();
 	int  currentype = -1;
 	bool firstalt = true;
-	for (auto dtc : setdata) {
-			if (   dtc.dataType != GRIB_NOTDEF
+	for (auto const & dtc : setdata) {
+	    if (   dtc.dataType != GRIB_NOTDEF
 			&& dtc.dataType != GRB_WIND_VY
 			&& dtc.dataType != GRB_CUR_VY
 		) {
@@ -2323,7 +2323,7 @@ void MainWindow::setMenubarAltitudeData (DataCode dtc)
 	}
 	std::set<Altitude> setalt = reader->getAllAltitudes (dtc.dataType);
 	
-	for (auto alt : setalt) {
+	for (auto const & alt : setalt) {
 			checkAltitude (LV_GND_SURF,0, mb->acAlt_GND, alt, dtc);
 		checkAltitude (LV_ABOV_GND,1, mb->acAlt_GND_1m, alt, dtc);
 		checkAltitude (LV_ABOV_GND,2, mb->acAlt_GND_2m, alt, dtc);
