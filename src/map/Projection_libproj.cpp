@@ -138,8 +138,8 @@ void Projection_libproj::map2screen(double x, double y, int *i, int *j) const
 	*i =  (int) (W/2.0 + scale * (res.u/111319.0-CX) + 0.5);
 	*j =  (int) (H/2.0 - scale * (res.v/111319.0-CY) + 0.5);
 #else
-	data.uv.v =  y;
-	data.uv.u =  x;
+	data.xy.x = proj_torad(x);
+	data.xy.y = proj_torad(y);
 	res = proj_trans(libProj, PJ_FWD, data);
 	*i =  (int) (W/2.0 + scale * (res.uv.u/111319.0-CX) + 0.5);
 	*j =  (int) (H/2.0 - scale * (res.uv.v/111319.0-CY) + 0.5);
@@ -163,8 +163,8 @@ void Projection_libproj::screen2map(int i, int j, double *x, double *y) const
 	data.uv.u =  ((i-W/2.0)/scale+ CX)*111319.0 ;
 	data.uv.v =  ((H/2.0-j)/scale+ CY)*111319.0 ;
 	res = proj_trans(libProj, PJ_INV, data);
-	*x = (double)(res.uv.u);
-	*y = (double)(res.uv.v);
+	*x = proj_todeg(res.xy.x);
+	*y = proj_todeg(res.xy.y);
 #endif
 	//printf("PROJ   screen2map (%3d %3d) -> (%f %f)\n", i,j, *x,*y);
 }
