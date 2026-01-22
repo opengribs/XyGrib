@@ -352,7 +352,7 @@ MenuBar::MenuBar (QWidget *parent, bool mbe)
                         tr("Right"), "RIGHT",
                         tr("Move"), Util::pathImg("forward.png"));
         acMap_Go_Up   = addAction (menuMap,
-                        tr("Top"), "UP",
+                        tr("Up"), "UP",
                         tr("Move"), Util::pathImg("up.png"));
         acMap_Go_Down = addAction (menuMap,
                         tr("Down"), "DOWN",
