@@ -26,6 +26,8 @@ DialogServerStatus.h
 DialogUnits.h
 FileLoader.h
 FileLoaderGRIB.h
+GribProvider.h
+NoaaNomadsProvider.h
 Grib2Record.h
 GribAnimator.h
 GribPlot.h
@@ -75,6 +77,7 @@ DialogSelectMetar.cpp
 DialogServerStatus.cpp
 DialogUnits.cpp
 FileLoaderGRIB.cpp
+NoaaNomadsProvider.cpp
 Grib2Record.cpp
 GribAnimator.cpp
 GribPlot.cpp
