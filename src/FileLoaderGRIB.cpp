@@ -299,7 +299,7 @@ void FileLoaderGRIB::getGribFile(
             return;
         }
         GribRequestParams p;
-        buildLocalParams (atmModel, x0, y0, x1, y1, resolution, interval, days,
+        p = buildLocalParams (atmModel, x0, y0, x1, y1, resolution, interval, days,
                           cycle,
                           wind, pressure, rain, cloud, temp, humid, isotherm0,
                           snowDepth, snowCateg, frzRainCateg, CAPEsfc, CINsfc,
@@ -474,7 +474,7 @@ void FileLoaderGRIB::slotFinished_step2 ()
 // separate from getGribFile so the mapping is in one place and the URL builder
 // does not need to know about booleans.
 //-------------------------------------------------------------------------------
-void FileLoaderGRIB::buildLocalParams (const QString& atmModel,
+GribRequestParams FileLoaderGRIB::buildLocalParams (const QString& atmModel,
                                        float x0, float y0, float x1, float y1,
                                        float resolution, int interval, int days,
                                        const QString& cycle,
@@ -492,17 +492,17 @@ void FileLoaderGRIB::buildLocalParams (const QString& atmModel,
                                        const QString& wvModel,
                                        bool sgwh, bool swell, bool wwav)
 {
-    localParams = GribRequestParams ();
-    localParams.model      = atmModel;
-    localParams.waveModel  = wvModel;
-    localParams.cycle      = cycle;
-    localParams.x0 = x0; localParams.y0 = y0;
-    localParams.x1 = x1; localParams.y1 = y1;
-    localParams.resolution = resolution;
-    localParams.interval   = interval;
-    localParams.days       = days;
+    GribRequestParams p;
+    p.model      = atmModel;
+    p.waveModel  = wvModel;
+    p.cycle      = cycle;
+    p.x0 = x0; p.y0 = y0;
+    p.x1 = x1; p.y1 = y1;
+    p.resolution = resolution;
+    p.interval   = interval;
+    p.days       = days;
 
-    QStringList& a = localParams.atmParams;
+    QStringList& a = p.atmParams;
     if (wind)        a << "W";
     if (pressure)    a << "P";
     if (rain)        a << "R";
@@ -527,10 +527,12 @@ void FileLoaderGRIB::buildLocalParams (const QString& atmModel,
     if (altitudeData925) a << "9";
     if (skewTData)   a << "skewt";
 
-    QStringList& w = localParams.waveParams;
+    QStringList& w = p.waveParams;
     if (sgwh)  w << "s";
     if (swell) w << "H" << "D" << "P";
     if (wwav)  w << "h" << "d" << "p";
+
+    return p;
 }
 
 //-------------------------------------------------------------------------------

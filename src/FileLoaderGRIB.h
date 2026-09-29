@@ -104,11 +104,10 @@ class FileLoaderGRIB : public QObject, FileLoader
         qint64                  localDone;      // bytes accumulated
         QString                 localSuggested; // suggested save name
         QList<QNetworkReply *>  localReplies;   // everything outstanding
-        GribRequestParams       localParams;
 
         void startLocalDownload (const GribRequestParams& p);
         void fetchNextLocalUrl ();
-        void buildLocalParams (const QString& atmModel,
+        GribRequestParams buildLocalParams (const QString& atmModel,
                                float x0, float y0, float x1, float y1,
                                float resolution, int interval, int days,
                                const QString& cycle,

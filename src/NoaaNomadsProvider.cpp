@@ -76,12 +76,15 @@ QString NoaaNomadsProvider::buildStepUrl (const GribRequestParams& p,
     const int hour = cycle.toInt();
 
     if (p.model == "GFS") {
-        QString res;
+        QString res, gfsFile = "pgrb2";
         if (p.resolution == 0.25f)      res = "0p25";
-        else if (p.resolution == 0.50f) res = "0p50";
+        // The 0.50 deg GFS is published as pgrb2full, not pgrb2; NOMADS rejects
+        // the short name with "Filename does not match legal pattern".
+        else if (p.resolution == 0.50f) { res = "0p50"; gfsFile = "pgrb2full"; }
         else                            res = "1p00";
         script   = "filter_gfs_" + res + ".pl";
-        fileBase = QString ("gfs.t%1z.pgrb2.%2").arg(cycle, 2, QChar('0')).arg(res);
+        fileBase = QString ("gfs.t%1z.%2.%3").arg (cycle, 2, QChar('0'))
+                                             .arg (gfsFile).arg (res);
         dir      = QString ("/gfs.%1/%2/atmos").arg (stamp).arg (hour, 2, 10, QChar('0'));
     }
     else if (p.model == "NAM CONUS") {
@@ -289,7 +292,7 @@ QStringList NoaaNomadsProvider::buildUrls (const GribRequestParams& p) const
         return urls;
 
     const QString cycle = resolveCycle (p.cycle);
-    const QString stamp = QDate::currentDate().toString ("yyyyMMdd");
+    const QString stamp = QDateTime::currentDateTimeUtc().toString ("yyyyMMdd");
 
     const int maxHour = p.days * 24;
     const int step    = (p.interval > 0) ? p.interval : 3;
@@ -340,8 +343,11 @@ QString NoaaNomadsProvider::resolveCycle (const QString& requested)
     static QString cachedDay;
     static QString cachedCycle;
 
-    const QString today = QDate::currentDate().toString ("yyyyMMdd");
-    const QTime now = QTime::currentTime();
+    const QString today = QDateTime::currentDateTimeUtc().toString ("yyyyMMdd");
+    // NOMADS cycles are UTC, so the readiness check must be UTC too. Using local
+    // time here made the answer depend on the workstation's timezone and could
+    // select a cycle that has not been published.
+    const QTime now = QDateTime::currentDateTimeUtc().time();
     // Assume a ~5h publication lag.
     const int readyHour = now.hour() - 5;
 
